@@ -1,0 +1,4931 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Academic Calendar | Teacher Panel</title>
+
+
+    <!-- =====================================================
+                         BOOTSTRAP CSS
+    ====================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+
+    <!-- =====================================================
+                         FONT AWESOME
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+    <!-- =====================================================
+                         GOOGLE FONT
+    ====================================================== -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+
+    <!-- =====================================================
+                    TEACHER DASHBOARD CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="../../css/teacher-dashboard.css">
+
+
+<style>
+/* =========================================================
+                PREMIUM TOP NAVBAR FIX
+========================================================= */
+
+.top-navbar{
+    min-height:76px;
+    background:#ffffff;
+    border-radius:18px;
+    padding:12px 18px;
+    margin-bottom:25px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+    position:relative;
+    z-index:1000;
+}
+
+
+/* ================= LEFT ================= */
+
+.navbar-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    min-width:0;
+}
+
+.mobile-menu-btn{
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:12px;
+    background:rgba(108,76,255,.10);
+    color:#6c4cff;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.navbar-heading{
+    min-width:0;
+}
+
+.navbar-heading h3{
+    margin:0;
+    font-size:20px;
+    font-weight:700;
+    color:#111827;
+}
+
+.navbar-heading p{
+    margin:3px 0 0;
+    color:#9ca3af;
+    font-size:11px;
+}
+
+
+/* ================= RIGHT ================= */
+
+.top-right{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:10px;
+    margin-left:auto;
+}
+
+
+/* ================= SEARCH ================= */
+
+.navbar-search{
+    width:250px;
+    height:44px;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:0 14px;
+
+    background:#f6f7fb;
+    border:1px solid #eceef5;
+    border-radius:12px;
+
+    transition:.25s;
+}
+
+.navbar-search:focus-within{
+    background:#ffffff;
+    border-color:#6c4cff;
+    box-shadow:0 0 0 3px rgba(108,76,255,.10);
+}
+
+.navbar-search i{
+    color:#9ca3af;
+    font-size:14px;
+}
+
+.navbar-search input{
+    width:100%;
+    border:none;
+    outline:none;
+    background:transparent;
+    color:#111827;
+    font-size:12px;
+}
+
+.navbar-search input::placeholder{
+    color:#9ca3af;
+}
+
+
+/* ================= ICON BUTTON ================= */
+
+.navbar-icon-btn{
+    position:relative;
+
+    width:44px;
+    height:44px;
+    min-width:44px;
+
+    border:none;
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#f6f7fb;
+    color:#4b5563;
+
+    font-size:17px;
+
+    cursor:pointer;
+    transition:.25s;
+}
+
+.navbar-icon-btn:hover{
+    background:rgba(108,76,255,.10);
+    color:#6c4cff;
+}
+
+
+/* ================= BADGE ================= */
+
+.navbar-badge{
+    position:absolute;
+    top:-5px;
+    right:-5px;
+
+    min-width:18px;
+    height:18px;
+
+    padding:0 5px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#ef4444;
+    color:#ffffff;
+
+    border:2px solid #ffffff;
+    border-radius:20px;
+
+    font-size:9px;
+    font-weight:700;
+}
+
+
+/* =========================================================
+                    PROFILE BUTTON
+========================================================= */
+
+.teacher-profile-btn{
+    border:none;
+    outline:none;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    min-height:48px;
+
+    padding:5px 10px 5px 6px;
+
+    background:#f6f7fb;
+    border-radius:14px;
+
+    cursor:pointer;
+    transition:.25s;
+}
+
+.teacher-profile-btn:hover{
+    background:rgba(108,76,255,.08);
+}
+
+.teacher-profile-btn img{
+    width:37px;
+    height:37px;
+    min-width:37px;
+
+    border-radius:50%;
+    object-fit:cover;
+
+    border:2px solid rgba(108,76,255,.25);
+}
+
+.teacher-profile-info{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    line-height:1.25;
+}
+
+.teacher-profile-info strong{
+    font-size:12px;
+    font-weight:700;
+    color:#111827;
+}
+
+.teacher-profile-info small{
+    font-size:9px;
+    color:#9ca3af;
+}
+
+.profile-arrow{
+    font-size:10px;
+    color:#9ca3af;
+    margin-left:3px;
+}
+
+
+/* =========================================================
+                    DROPDOWN COMMON
+========================================================= */
+
+.top-navbar .dropdown-menu{
+    border:none;
+    border-radius:16px;
+
+    padding:8px;
+
+    margin-top:10px !important;
+
+    box-shadow:
+        0 15px 45px
+        rgba(15,23,42,.15);
+
+    z-index:9999;
+}
+
+
+/* =========================================================
+                    NOTIFICATION MENU
+========================================================= */
+
+.notification-menu{
+    width:350px;
+    max-width:calc(100vw - 25px);
+}
+
+.notification-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:10px 10px 13px;
+
+    border-bottom:1px solid #eeeeee;
+}
+
+.notification-header h6{
+    margin:0;
+    font-size:14px;
+    font-weight:700;
+}
+
+.notification-header small{
+    color:#9ca3af;
+    font-size:10px;
+}
+
+.notification-new-badge{
+    padding:4px 8px;
+
+    background:rgba(108,76,255,.10);
+    color:#6c4cff;
+
+    border-radius:20px;
+
+    font-size:9px;
+    font-weight:700;
+}
+
+
+/* ================= NOTIFICATION ITEM ================= */
+
+.notification-item{
+    display:flex;
+    align-items:flex-start;
+    gap:11px;
+
+    padding:11px 9px;
+
+    border-radius:11px;
+
+    color:inherit;
+    text-decoration:none;
+
+    transition:.2s;
+}
+
+.notification-item:hover{
+    background:#f7f5ff;
+}
+
+.notification-item-icon{
+    width:38px;
+    height:38px;
+    min-width:38px;
+
+    border-radius:11px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:14px;
+}
+
+.notification-item-icon.purple{
+    background:rgba(108,76,255,.10);
+    color:#6c4cff;
+}
+
+.notification-item-icon.blue{
+    background:rgba(59,130,246,.10);
+    color:#3b82f6;
+}
+
+.notification-item-icon.green{
+    background:rgba(34,197,94,.10);
+    color:#22c55e;
+}
+
+.notification-item-icon.orange{
+    background:rgba(245,158,11,.12);
+    color:#f59e0b;
+}
+
+.notification-item-content{
+    flex:1;
+    min-width:0;
+}
+
+.notification-item-content strong{
+    display:block;
+
+    color:#111827;
+
+    font-size:11px;
+    font-weight:700;
+}
+
+.notification-item-content span{
+    display:block;
+
+    margin-top:2px;
+
+    color:#6b7280;
+
+    font-size:10px;
+    line-height:1.4;
+}
+
+.notification-item-content small{
+    display:block;
+
+    margin-top:4px;
+
+    color:#9ca3af;
+
+    font-size:9px;
+}
+
+
+/* ================= VIEW ALL ================= */
+
+.view-all-notifications{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+
+    padding:10px;
+
+    border-top:1px solid #eeeeee;
+
+    color:#6c4cff;
+    text-decoration:none;
+
+    font-size:10px;
+    font-weight:700;
+}
+
+.view-all-notifications:hover{
+    color:#5138d8;
+}
+
+
+/* =========================================================
+                    PROFILE DROPDOWN
+========================================================= */
+
+.profile-menu{
+    width:230px;
+}
+
+.profile-menu-header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:8px;
+}
+
+.profile-menu-header img{
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.profile-menu-header div{
+    display:flex;
+    flex-direction:column;
+}
+
+.profile-menu-header strong{
+    font-size:12px;
+    color:#111827;
+}
+
+.profile-menu-header small{
+    font-size:9px;
+    color:#9ca3af;
+}
+
+.profile-menu .dropdown-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:9px 10px;
+
+    border-radius:9px;
+
+    font-size:11px;
+    font-weight:500;
+}
+
+.profile-menu .dropdown-item i{
+    width:17px;
+    color:#6b7280;
+}
+
+.profile-menu .dropdown-item:hover{
+    background:#f7f5ff;
+    color:#6c4cff;
+}
+
+.profile-menu .dropdown-item:hover i{
+    color:#6c4cff;
+}
+
+.profile-menu .logout-item{
+    color:#ef4444;
+}
+
+.profile-menu .logout-item i{
+    color:#ef4444;
+}
+
+
+/* =========================================================
+                    DARK MODE NAVBAR
+========================================================= */
+
+body.dark .top-navbar{
+    background:#1f1f1f;
+}
+
+body.dark .navbar-heading h3{
+    color:#ffffff;
+}
+
+body.dark .navbar-heading p{
+    color:#94a3b8;
+}
+
+body.dark .navbar-search,
+body.dark .navbar-icon-btn,
+body.dark .teacher-profile-btn{
+    background:#292929;
+    border-color:#3b3b3b;
+}
+
+body.dark .navbar-search input{
+    color:#ffffff;
+}
+
+body.dark .teacher-profile-info strong{
+    color:#ffffff;
+}
+
+body.dark .navbar-badge{
+    border-color:#1f1f1f;
+}
+
+body.dark .top-navbar .dropdown-menu{
+    background:#252525;
+    color:#ffffff;
+}
+
+body.dark .notification-header{
+    border-color:#3b3b3b;
+}
+
+body.dark .notification-item:hover,
+body.dark .profile-menu .dropdown-item:hover{
+    background:#303030;
+}
+
+body.dark .notification-item-content strong,
+body.dark .profile-menu-header strong{
+    color:#ffffff;
+}
+
+body.dark .notification-item-content span{
+    color:#cbd5e1;
+}
+
+body.dark .profile-menu .dropdown-item{
+    color:#e5e7eb;
+}
+
+body.dark .view-all-notifications{
+    border-color:#3b3b3b;
+}
+
+
+/* =========================================================
+                    RESPONSIVE NAVBAR
+========================================================= */
+
+@media(max-width:1100px){
+
+    .navbar-search{
+        width:190px;
+    }
+
+    .teacher-profile-info{
+        display:none;
+    }
+}
+
+
+@media(max-width:768px){
+
+    .top-navbar{
+        padding:10px 12px;
+    }
+
+    .mobile-menu-btn{
+        display:flex;
+    }
+
+    .navbar-heading p{
+        display:none;
+    }
+
+    .navbar-search{
+        display:none;
+    }
+
+    .teacher-profile-btn{
+        padding:5px;
+        background:transparent;
+    }
+
+    .profile-arrow{
+        display:none;
+    }
+}
+
+
+@media(max-width:480px){
+
+    .navbar-heading h3{
+        font-size:15px;
+    }
+
+    .top-right{
+        gap:6px;
+    }
+
+    .navbar-icon-btn{
+        width:39px;
+        height:39px;
+        min-width:39px;
+    }
+
+    .teacher-profile-btn img{
+        width:35px;
+        height:35px;
+        min-width:35px;
+    }
+
+}
+/* =========================================================
+                    ACADEMIC CALENDAR
+========================================================= */
+
+.calendar-page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+    margin-bottom:25px;
+
+}
+
+
+.calendar-page-header h2{
+
+    font-size:28px;
+
+    font-weight:800;
+
+    margin-bottom:5px;
+
+}
+
+
+.calendar-page-header p{
+
+    color:#6b7280;
+
+    margin:0;
+
+}
+
+
+/* =========================================================
+                    HEADER ACTIONS
+========================================================= */
+
+.calendar-header-actions{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.calendar-header-actions .btn{
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    padding:10px 18px;
+
+}
+
+
+/* =========================================================
+                    STAT CARDS
+========================================================= */
+
+.calendar-stat-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:20px;
+
+    margin-bottom:25px;
+
+}
+
+
+.calendar-stat-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.07);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    transition:.3s;
+
+}
+
+
+.calendar-stat-card:hover{
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.10);
+
+}
+
+
+.calendar-stat-icon{
+
+    width:58px;
+
+    height:58px;
+
+    min-width:58px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:24px;
+
+}
+
+
+/* Purple */
+
+.calendar-stat-icon.purple{
+
+    background:
+        rgba(108,76,255,.12);
+
+    color:#6c4cff;
+
+}
+
+
+/* Blue */
+
+.calendar-stat-icon.blue{
+
+    background:
+        rgba(59,130,246,.12);
+
+    color:#3b82f6;
+
+}
+
+
+/* Green */
+
+.calendar-stat-icon.green{
+
+    background:
+        rgba(34,197,94,.12);
+
+    color:#22c55e;
+
+}
+
+
+/* Orange */
+
+.calendar-stat-icon.orange{
+
+    background:
+        rgba(245,158,11,.14);
+
+    color:#f59e0b;
+
+}
+
+
+.calendar-stat-info h3{
+
+    margin:0;
+
+    font-size:25px;
+
+    font-weight:800;
+
+}
+
+
+.calendar-stat-info p{
+
+    margin:3px 0 0;
+
+    color:#6b7280;
+
+    font-size:13px;
+
+}
+
+
+/* =========================================================
+                    MAIN CALENDAR GRID
+========================================================= */
+
+.academic-calendar-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,2fr)
+        minmax(300px,1fr);
+
+    gap:25px;
+
+    align-items:start;
+
+}
+
+
+/* =========================================================
+                    COMMON CARD
+========================================================= */
+
+.calendar-card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:24px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.07);
+
+    margin-bottom:25px;
+
+}
+
+
+.calendar-card-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    margin-bottom:22px;
+
+}
+
+
+.calendar-card-title h4{
+
+    font-size:19px;
+
+    font-weight:700;
+
+    margin:0;
+
+    color:#6c4cff;
+
+}
+
+
+/* =========================================================
+                    MONTH NAVIGATION
+========================================================= */
+
+.month-navigation{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.month-navigation button{
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:
+        rgba(108,76,255,.10);
+
+    color:#6c4cff;
+
+    transition:.3s;
+
+}
+
+
+.month-navigation button:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+}
+
+
+#calendarMonthTitle{
+
+    min-width:170px;
+
+    text-align:center;
+
+    font-weight:700;
+
+    margin:0;
+
+}
+
+
+/* =========================================================
+                    CALENDAR
+========================================================= */
+
+.calendar-wrapper{
+
+    overflow-x:auto;
+
+}
+
+
+.calendar-table{
+
+    width:100%;
+
+    min-width:680px;
+
+    border-collapse:separate;
+
+    border-spacing:7px;
+
+    table-layout:fixed;
+
+}
+
+
+/* Week Heading */
+
+.calendar-table thead th{
+
+    text-align:center;
+
+    padding:12px 5px;
+
+    font-size:13px;
+
+    color:#6b7280;
+
+    font-weight:700;
+
+}
+
+
+/* Day */
+
+.calendar-day{
+
+    height:105px;
+
+    background:#f8f9fc;
+
+    border-radius:14px;
+
+    padding:10px;
+
+    vertical-align:top;
+
+    cursor:pointer;
+
+    border:1px solid transparent;
+
+    transition:.25s;
+
+    position:relative;
+
+}
+
+
+.calendar-day:hover{
+
+    border-color:#6c4cff;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 5px 15px
+        rgba(108,76,255,.12);
+
+}
+
+
+/* Empty Day */
+
+.calendar-day.empty{
+
+    background:transparent;
+
+    cursor:default;
+
+}
+
+
+.calendar-day.empty:hover{
+
+    transform:none;
+
+    border-color:transparent;
+
+    box-shadow:none;
+
+}
+
+
+/* Day Number */
+
+.calendar-day-number{
+
+    width:31px;
+
+    height:31px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    margin-bottom:7px;
+
+}
+
+
+/* Today */
+
+.calendar-day.today{
+
+    border:
+        2px solid #6c4cff;
+
+}
+
+
+.calendar-day.today
+.calendar-day-number{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                    EVENT LABELS
+========================================================= */
+
+.calendar-event{
+
+    display:block;
+
+    padding:5px 7px;
+
+    border-radius:7px;
+
+    margin-top:4px;
+
+    font-size:10px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+
+.calendar-event.exam{
+
+    background:
+        rgba(239,68,68,.12);
+
+    color:#dc2626;
+
+}
+
+
+.calendar-event.holiday{
+
+    background:
+        rgba(34,197,94,.12);
+
+    color:#16a34a;
+
+}
+
+
+.calendar-event.meeting{
+
+    background:
+        rgba(59,130,246,.12);
+
+    color:#2563eb;
+
+}
+
+
+.calendar-event.activity{
+
+    background:
+        rgba(168,85,247,.12);
+
+    color:#9333ea;
+
+}
+
+
+.calendar-event.deadline{
+
+    background:
+        rgba(245,158,11,.15);
+
+    color:#d97706;
+
+}
+
+
+/* =========================================================
+                    CALENDAR LEGEND
+========================================================= */
+
+.calendar-legend{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    flex-wrap:wrap;
+
+    margin-top:18px;
+
+    padding-top:18px;
+
+    border-top:1px solid #eeeeee;
+
+}
+
+
+.legend-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    font-size:12px;
+
+    color:#6b7280;
+
+}
+
+
+.legend-dot{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+}
+
+
+.legend-dot.exam{
+
+    background:#ef4444;
+
+}
+
+
+.legend-dot.holiday{
+
+    background:#22c55e;
+
+}
+
+
+.legend-dot.meeting{
+
+    background:#3b82f6;
+
+}
+
+
+.legend-dot.activity{
+
+    background:#a855f7;
+
+}
+
+
+.legend-dot.deadline{
+
+    background:#f59e0b;
+
+}
+
+
+/* =========================================================
+                    UPCOMING EVENTS
+========================================================= */
+
+.upcoming-event-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:13px;
+
+}
+
+
+.upcoming-event{
+
+    display:flex;
+
+    gap:13px;
+
+    align-items:flex-start;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    background:#f8f9fc;
+
+    transition:.3s;
+
+}
+
+
+.upcoming-event:hover{
+
+    transform:
+        translateX(4px);
+
+    background:#f4f1ff;
+
+}
+
+
+.event-date-box{
+
+    width:52px;
+
+    min-width:52px;
+
+    border-radius:12px;
+
+    text-align:center;
+
+    overflow:hidden;
+
+    background:#ffffff;
+
+    box-shadow:
+        0 3px 10px
+        rgba(0,0,0,.07);
+
+}
+
+
+.event-date-box .month{
+
+    display:block;
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    padding:4px;
+
+    text-transform:uppercase;
+
+}
+
+
+.event-date-box .date{
+
+    display:block;
+
+    font-size:19px;
+
+    font-weight:800;
+
+    padding:5px;
+
+}
+
+
+.event-details{
+
+    flex:1;
+
+}
+
+
+.event-details h6{
+
+    font-size:14px;
+
+    font-weight:700;
+
+    margin-bottom:4px;
+
+}
+
+
+.event-details p{
+
+    color:#6b7280;
+
+    font-size:11px;
+
+    margin-bottom:5px;
+
+}
+
+
+.event-details small{
+
+    color:#9ca3af;
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+                    EVENT BADGES
+========================================================= */
+
+.event-type-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:4px 8px;
+
+    border-radius:20px;
+
+    font-size:10px;
+
+    font-weight:700;
+
+}
+
+
+.event-type-badge.exam{
+
+    background:
+        rgba(239,68,68,.12);
+
+    color:#dc2626;
+
+}
+
+
+.event-type-badge.holiday{
+
+    background:
+        rgba(34,197,94,.12);
+
+    color:#16a34a;
+
+}
+
+
+.event-type-badge.meeting{
+
+    background:
+        rgba(59,130,246,.12);
+
+    color:#2563eb;
+
+}
+
+
+.event-type-badge.activity{
+
+    background:
+        rgba(168,85,247,.12);
+
+    color:#9333ea;
+
+}
+
+
+.event-type-badge.deadline{
+
+    background:
+        rgba(245,158,11,.15);
+
+    color:#d97706;
+
+}
+
+
+/* =========================================================
+                    ACADEMIC INFORMATION
+========================================================= */
+
+.academic-info-box{
+
+    border-radius:14px;
+
+    padding:15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(108,76,255,.08),
+            rgba(59,130,246,.07)
+        );
+
+    border:
+        1px solid
+        rgba(108,76,255,.12);
+
+    margin-bottom:13px;
+
+}
+
+
+.academic-info-box:last-child{
+
+    margin-bottom:0;
+
+}
+
+
+.academic-info-box small{
+
+    display:block;
+
+    color:#6b7280;
+
+    margin-bottom:5px;
+
+    font-size:11px;
+
+}
+
+
+.academic-info-box strong{
+
+    font-size:14px;
+
+}
+
+
+/* =========================================================
+                    QUICK FILTERS
+========================================================= */
+
+.calendar-filter-buttons{
+
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.calendar-filter-btn{
+
+    border:none;
+
+    padding:7px 12px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    background:#f3f4f6;
+
+    color:#4b5563;
+
+    transition:.3s;
+
+}
+
+
+.calendar-filter-btn:hover,
+.calendar-filter-btn.active{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                    EVENT MODAL
+========================================================= */
+
+.event-modal-icon{
+
+    width:75px;
+
+    height:75px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin:
+        0 auto 18px;
+
+    background:
+        rgba(108,76,255,.10);
+
+    color:#6c4cff;
+
+    font-size:30px;
+
+}
+
+
+.event-detail-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:20px;
+
+    padding:12px 0;
+
+    border-bottom:1px solid #eeeeee;
+
+}
+
+
+.event-detail-row:last-child{
+
+    border-bottom:none;
+
+}
+
+
+.event-detail-row span{
+
+    color:#6b7280;
+
+    font-size:13px;
+
+}
+
+
+.event-detail-row strong{
+
+    text-align:right;
+
+    font-size:13px;
+
+}
+
+
+/* =========================================================
+                    DARK MODE
+========================================================= */
+
+body.dark .calendar-page-header p{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark .calendar-stat-card,
+body.dark .calendar-card{
+
+    background:#1f1f1f;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .calendar-stat-info p{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark .calendar-card-title h4{
+
+    color:#ffffff;
+
+}
+
+
+body.dark .calendar-table thead th{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark .calendar-day{
+
+    background:#292929;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .calendar-day.empty{
+
+    background:transparent;
+
+}
+
+
+body.dark .upcoming-event{
+
+    background:#292929;
+
+}
+
+
+body.dark .upcoming-event:hover{
+
+    background:#333333;
+
+}
+
+
+body.dark .event-date-box{
+
+    background:#1f1f1f;
+
+}
+
+
+body.dark .event-details p,
+body.dark .legend-item{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark .academic-info-box{
+
+    background:#292929;
+
+    border-color:#444444;
+
+}
+
+
+body.dark .academic-info-box small{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark .calendar-legend,
+body.dark .event-detail-row{
+
+    border-color:#444444;
+
+}
+
+
+body.dark .calendar-filter-btn{
+
+    background:#333333;
+
+    color:#e5e7eb;
+
+}
+
+
+body.dark .calendar-filter-btn.active,
+body.dark .calendar-filter-btn:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .modal-content{
+
+    background:#1f1f1f;
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE
+========================================================= */
+
+@media(max-width:1200px){
+
+    .calendar-stat-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+}
+
+
+@media(max-width:992px){
+
+    .academic-calendar-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+@media(max-width:576px){
+
+    .calendar-stat-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .calendar-page-header{
+
+        align-items:flex-start;
+
+    }
+
+
+    .calendar-card{
+
+        padding:17px;
+
+    }
+
+
+    .calendar-header-actions{
+
+        width:100%;
+
+    }
+
+
+    .calendar-header-actions .btn{
+
+        flex:1;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+                        WRAPPER
+========================================================= -->
+
+<div class="wrapper">
+
+
+<!-- =========================================================
+                        SIDEBAR
+========================================================= -->
+
+<aside class="sidebar">
+
+
+    <!-- ================= LOGO ================= -->
+
+    <div class="logo">
+
+        <img
+            src="../../images/logo.png"
+            alt="Logo">
+
+        <h3>
+            Teacher Panel
+        </h3>
+
+    </div>
+
+
+    <!-- ================= MENU ================= -->
+
+    <ul class="menu">
+
+
+        <li>
+
+            <a href="teacher-dashboard.html">
+
+                <i class="fa-solid fa-house"></i>
+
+                Dashboard
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="profile.html">
+
+                <i class="fa-solid fa-user"></i>
+
+                My Profile
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="my-classes.html">
+
+                <i class="fa-solid fa-chalkboard"></i>
+
+                My Classes
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="timetable.html">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                Timetable
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="attendance-report.html">
+
+                <i class="fa-solid fa-clipboard-user"></i>
+
+                Attendance
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="face-attendance.html">
+
+                <i class="fa-solid fa-face-smile"></i>
+
+                Face Attendance
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="students.html">
+
+                <i class="fa-solid fa-user-graduate"></i>
+
+                Students
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="assignments.html">
+
+                <i class="fa-solid fa-file-pen"></i>
+
+                Assignments
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="leave-request.html">
+
+                <i class="fa-solid fa-file-circle-check"></i>
+
+                Leave
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="notices.html">
+
+                <i class="fa-solid fa-bullhorn"></i>
+
+                Notices
+
+            </a>
+
+        </li>
+
+
+        <!-- Academic Calendar Active -->
+
+        <li>
+
+            <a
+                href="academic-calendar.html"
+                class="active">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                Academic Calendar
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="reports.html">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Reports
+
+            </a>
+
+        </li>
+
+
+        <!-- ================= AI FEATURES ================= -->
+
+        <li>
+
+            <a href="ai-assistant.html">
+
+                <i class="fa-solid fa-robot"></i>
+
+                AI Assistant
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="ai-performance.html">
+
+                <i class="fa-solid fa-brain"></i>
+
+                AI Performance
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="settings.html">
+
+                <i class="fa-solid fa-gear"></i>
+
+                Settings
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="teacher-login.html">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </a>
+
+        </li>
+
+
+    </ul>
+
+
+</aside>
+
+
+<!-- =========================================================
+                    MAIN CONTENT
+========================================================= -->
+
+<main class="main-content">
+
+<!-- =========================================================
+                    PREMIUM TOP NAVBAR
+========================================================= -->
+
+<nav class="top-navbar">
+
+    <!-- ================= LEFT SIDE ================= -->
+
+    <div class="navbar-left">
+
+        <button
+            type="button"
+            class="mobile-menu-btn"
+            id="mobileMenuBtn">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+
+        <div class="navbar-heading">
+
+            <h3>
+                Academic Calendar
+            </h3>
+
+            <p>
+                View academic events, holidays and important schedules
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= RIGHT SIDE ================= -->
+
+    <div class="top-right">
+
+
+        <!-- ================= SEARCH ================= -->
+
+        <div class="navbar-search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="searchBox"
+                placeholder="Search calendar...">
+
+        </div>
+
+
+        <!-- ================= DARK / LIGHT MODE ================= -->
+
+        <button
+            type="button"
+            id="themeToggle"
+            class="navbar-icon-btn"
+            title="Dark / Light Mode">
+
+            <i class="fa-solid fa-moon"></i>
+
+        </button>
+
+
+        <!-- ================= NOTIFICATION ================= -->
+
+        <div class="dropdown">
+
+            <button
+                type="button"
+                class="navbar-icon-btn position-relative"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+
+                <i class="fa-regular fa-bell"></i>
+
+                <span
+                    class="navbar-badge"
+                    id="notificationCount">
+
+                    4
+
+                </span>
+
+            </button>
+
+
+            <ul
+                class="dropdown-menu dropdown-menu-end notification-menu">
+
+
+                <!-- HEADER -->
+
+                <li>
+
+                    <div class="notification-header">
+
+                        <div>
+
+                            <h6>
+                                Notifications
+                            </h6>
+
+                            <small>
+                                You have 4 new updates
+                            </small>
+
+                        </div>
+
+
+                        <span class="notification-new-badge">
+                            4 New
+                        </span>
+
+                    </div>
+
+                </li>
+
+
+                <!-- NOTIFICATION 1 -->
+
+                <li>
+
+                    <a
+                        class="notification-item"
+                        href="notice.html">
+
+                        <div class="notification-item-icon purple">
+
+                            <i class="fa-solid fa-bullhorn"></i>
+
+                        </div>
+
+
+                        <div class="notification-item-content">
+
+                            <strong>
+                                Faculty Meeting
+                            </strong>
+
+                            <span>
+                                Faculty meeting scheduled tomorrow
+                            </span>
+
+                            <small>
+                                10 minutes ago
+                            </small>
+
+                        </div>
+
+                    </a>
+
+                </li>
+
+
+                <!-- NOTIFICATION 2 -->
+
+                <li>
+
+                    <a
+                        class="notification-item"
+                        href="assignments.html">
+
+                        <div class="notification-item-icon blue">
+
+                            <i class="fa-solid fa-file-lines"></i>
+
+                        </div>
+
+
+                        <div class="notification-item-content">
+
+                            <strong>
+                                Assignment Updated
+                            </strong>
+
+                            <span>
+                                Assignment submission details updated
+                            </span>
+
+                            <small>
+                                35 minutes ago
+                            </small>
+
+                        </div>
+
+                    </a>
+
+                </li>
+
+
+                <!-- NOTIFICATION 3 -->
+
+                <li>
+
+                    <a
+                        class="notification-item"
+                        href="attendance-report.html">
+
+                        <div class="notification-item-icon green">
+
+                            <i class="fa-solid fa-user-check"></i>
+
+                        </div>
+
+
+                        <div class="notification-item-content">
+
+                            <strong>
+                                Attendance Updated
+                            </strong>
+
+                            <span>
+                                Latest attendance records available
+                            </span>
+
+                            <small>
+                                1 hour ago
+                            </small>
+
+                        </div>
+
+                    </a>
+
+                </li>
+
+
+                <!-- NOTIFICATION 4 -->
+
+                <li>
+
+                    <a
+                        class="notification-item"
+                        href="academic-calendar.html">
+
+                        <div class="notification-item-icon orange">
+
+                            <i class="fa-solid fa-calendar-days"></i>
+
+                        </div>
+
+
+                        <div class="notification-item-content">
+
+                            <strong>
+                                Calendar Updated
+                            </strong>
+
+                            <span>
+                                New academic event has been added
+                            </span>
+
+                            <small>
+                                2 hours ago
+                            </small>
+
+                        </div>
+
+                    </a>
+
+                </li>
+
+
+                <!-- VIEW ALL -->
+
+                <li>
+
+                    <a
+                        href="notice.html"
+                        class="view-all-notifications">
+
+                        View All Notifications
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </li>
+
+
+            </ul>
+
+        </div>
+
+
+        <!-- ================= PROFILE ================= -->
+
+        <div class="dropdown">
+
+            <button
+                type="button"
+                class="teacher-profile-btn"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+
+
+                <img
+                    src="../../images/default-profile.png"
+                    alt="Teacher">
+
+
+                <div class="teacher-profile-info">
+
+                    <strong>
+                        Teacher
+                    </strong>
+
+                    <small>
+                        Faculty Member
+                    </small>
+
+                </div>
+
+
+                <i
+                    class="fa-solid fa-chevron-down profile-arrow">
+                </i>
+
+            </button>
+
+
+            <ul
+                class="dropdown-menu dropdown-menu-end profile-menu">
+
+
+                <!-- PROFILE HEADER -->
+
+                <li>
+
+                    <div class="profile-menu-header">
+
+                        <img
+                            src="../../images/default-profile.png"
+                            alt="Teacher">
+
+
+                        <div>
+
+                            <strong>
+                                Teacher
+                            </strong>
+
+                            <small>
+                                Faculty Member
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </li>
+
+
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+
+
+                <!-- MY PROFILE -->
+
+                <li>
+
+                    <a
+                        class="dropdown-item"
+                        href="profile.html">
+
+                        <i class="fa-regular fa-user"></i>
+
+                        My Profile
+
+                    </a>
+
+                </li>
+
+
+                <!-- SETTINGS -->
+
+                <li>
+
+                    <a
+                        class="dropdown-item"
+                        href="settings.html">
+
+                        <i class="fa-solid fa-gear"></i>
+
+                        Settings
+
+                    </a>
+
+                </li>
+
+
+                <!-- CHANGE PASSWORD -->
+
+                <li>
+
+                    <a
+                        class="dropdown-item"
+                        href="change-password.html">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        Change Password
+
+                    </a>
+
+                </li>
+
+
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+
+
+                <!-- LOGOUT -->
+
+                <li>
+
+                    <a
+                        class="dropdown-item logout-item"
+                        href="teacher-login.html">
+
+                        <i class="fa-solid fa-right-from-bracket"></i>
+
+                        Logout
+
+                    </a>
+
+                </li>
+
+
+            </ul>
+
+        </div>
+
+
+    </div>
+
+</nav>
+
+<!-- =========================================================
+                    PAGE HEADER
+========================================================= -->
+
+<div class="calendar-page-header">
+
+
+    <div>
+
+        <h2>
+
+            <i
+                class="fa-solid fa-calendar-check me-2"
+                style="color:#6c4cff;">
+            </i>
+
+            Academic Calendar
+
+        </h2>
+
+
+        <p>
+
+            View academic schedules, examinations,
+            holidays, meetings and important events.
+
+        </p>
+
+    </div>
+
+
+    <div class="calendar-header-actions">
+
+
+        <button
+            type="button"
+            class="btn btn-outline-primary"
+            id="todayCalendarBtn">
+
+            <i class="fa-solid fa-calendar-day me-2"></i>
+
+            Today
+
+        </button>
+
+
+        <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#calendarInfoModal">
+
+            <i class="fa-solid fa-circle-info me-2"></i>
+
+            Calendar Info
+
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    STATISTICS
+========================================================= -->
+
+<div class="calendar-stat-grid">
+
+
+    <!-- ================= EVENTS ================= -->
+
+    <div class="calendar-stat-card">
+
+
+        <div class="calendar-stat-icon purple">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+        </div>
+
+
+        <div class="calendar-stat-info">
+
+            <h3 id="totalEventsCount">
+
+                12
+
+            </h3>
+
+            <p>
+
+                Upcoming Events
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ================= EXAMS ================= -->
+
+    <div class="calendar-stat-card">
+
+
+        <div class="calendar-stat-icon blue">
+
+            <i class="fa-solid fa-file-pen"></i>
+
+        </div>
+
+
+        <div class="calendar-stat-info">
+
+            <h3 id="examCount">
+
+                4
+
+            </h3>
+
+            <p>
+
+                Examinations
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ================= HOLIDAYS ================= -->
+
+    <div class="calendar-stat-card">
+
+
+        <div class="calendar-stat-icon green">
+
+            <i class="fa-solid fa-umbrella-beach"></i>
+
+        </div>
+
+
+        <div class="calendar-stat-info">
+
+            <h3 id="holidayCount">
+
+                6
+
+            </h3>
+
+            <p>
+
+                Holidays
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ================= DEADLINES ================= -->
+
+    <div class="calendar-stat-card">
+
+
+        <div class="calendar-stat-icon orange">
+
+            <i class="fa-solid fa-clock"></i>
+
+        </div>
+
+
+        <div class="calendar-stat-info">
+
+            <h3 id="deadlineCount">
+
+                3
+
+            </h3>
+
+            <p>
+
+                Deadlines
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- =========================================================
+                MAIN CALENDAR GRID START
+========================================================= -->
+
+<div class="academic-calendar-grid">
+
+
+<!-- =========================================================
+                    LEFT COLUMN
+========================================================= -->
+
+<div>
+
+
+<!-- =========================================================
+                    CALENDAR CARD
+========================================================= -->
+
+<section class="calendar-card">
+
+
+    <div class="calendar-card-title">
+
+
+        <h4>
+
+            <i class="fa-solid fa-calendar-days me-2"></i>
+
+            Monthly Calendar
+
+        </h4>
+
+
+        <!-- Month Navigation -->
+
+        <div class="month-navigation">
+
+
+            <button
+                type="button"
+                id="previousMonthBtn"
+                title="Previous Month">
+
+                <i class="fa-solid fa-chevron-left"></i>
+
+            </button>
+
+
+            <h5 id="calendarMonthTitle">
+
+                August 2026
+
+            </h5>
+
+
+            <button
+                type="button"
+                id="nextMonthBtn"
+                title="Next Month">
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =====================================================
+                        EVENT FILTERS
+    ====================================================== -->
+
+    <div class="calendar-filter-buttons mb-3">
+
+
+        <button
+            type="button"
+            class="calendar-filter-btn active"
+            data-filter="all">
+
+            All
+
+        </button>
+
+
+        <button
+            type="button"
+            class="calendar-filter-btn"
+            data-filter="exam">
+
+            Exams
+
+        </button>
+
+
+        <button
+            type="button"
+            class="calendar-filter-btn"
+            data-filter="holiday">
+
+            Holidays
+
+        </button>
+
+
+        <button
+            type="button"
+            class="calendar-filter-btn"
+            data-filter="meeting">
+
+            Meetings
+
+        </button>
+
+
+        <button
+            type="button"
+            class="calendar-filter-btn"
+            data-filter="activity">
+
+            Activities
+
+        </button>
+
+
+        <button
+            type="button"
+            class="calendar-filter-btn"
+            data-filter="deadline">
+
+            Deadlines
+
+        </button>
+
+
+    </div>
+
+
+    <!-- =====================================================
+                    CALENDAR TABLE START
+    ====================================================== -->
+
+    <div class="calendar-wrapper">
+
+
+        <table class="calendar-table">
+
+
+            <thead>
+
+                <tr>
+
+                    <th>Sun</th>
+
+                    <th>Mon</th>
+
+                    <th>Tue</th>
+
+                    <th>Wed</th>
+
+                    <th>Thu</th>
+
+                    <th>Fri</th>
+
+                    <th>Sat</th>
+
+                </tr>
+
+            </thead>
+
+
+            <!--
+                PART 2 ME:
+
+                1. Calendar tbody
+                2. Dynamic calendar rendering
+                3. Upcoming events
+                4. Academic information
+                5. Event details modal
+                6. Calendar info modal
+                7. Bootstrap JS
+                8. teacher-dashboard.js
+                9. Complete Academic Calendar JavaScript
+                10. </main>
+                11. </div>
+                12. </body>
+                13. </html>
+
+                SAB CONTINUE HOGA.
+            -->
+
+
+            <tbody id="calendarBody">
+<!-- =========================================================
+                    CALENDAR BODY
+========================================================= -->
+
+<!-- Calendar days JavaScript se dynamically generate honge -->
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<!-- =========================================================
+                    CALENDAR LEGEND
+========================================================= -->
+
+<div class="calendar-legend">
+
+    <div class="legend-item">
+        <span class="legend-dot exam"></span>
+        Examination
+    </div>
+
+    <div class="legend-item">
+        <span class="legend-dot holiday"></span>
+        Holiday
+    </div>
+
+    <div class="legend-item">
+        <span class="legend-dot meeting"></span>
+        Meeting
+    </div>
+
+    <div class="legend-item">
+        <span class="legend-dot activity"></span>
+        Activity
+    </div>
+
+    <div class="legend-item">
+        <span class="legend-dot deadline"></span>
+        Deadline
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+                    SEMESTER INFORMATION
+========================================================= -->
+
+<section class="calendar-card">
+
+    <div class="calendar-card-title">
+
+        <h4>
+            <i class="fa-solid fa-graduation-cap me-2"></i>
+            Current Semester Information
+        </h4>
+
+    </div>
+
+
+    <div class="row g-3">
+
+
+        <div class="col-md-6">
+
+            <div class="academic-info-box">
+
+                <small>
+                    Academic Session
+                </small>
+
+                <strong>
+                    2026 - 2027
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6">
+
+            <div class="academic-info-box">
+
+                <small>
+                    Current Semester
+                </small>
+
+                <strong>
+                    Odd Semester
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6">
+
+            <div class="academic-info-box">
+
+                <small>
+                    Semester Start
+                </small>
+
+                <strong>
+                    01 July 2026
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6">
+
+            <div class="academic-info-box">
+
+                <small>
+                    Semester End
+                </small>
+
+                <strong>
+                    20 December 2026
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6">
+
+            <div class="academic-info-box">
+
+                <small>
+                    Mid Semester Exam
+                </small>
+
+                <strong>
+                    14 - 19 September 2026
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6">
+
+            <div class="academic-info-box">
+
+                <small>
+                    End Semester Exam
+                </small>
+
+                <strong>
+                    01 - 15 December 2026
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+</div>
+
+
+<!-- =========================================================
+                    RIGHT COLUMN
+========================================================= -->
+
+<div>
+
+
+<!-- =========================================================
+                    UPCOMING EVENTS
+========================================================= -->
+
+<section class="calendar-card">
+
+    <div class="calendar-card-title">
+
+        <h4>
+            <i class="fa-solid fa-clock me-2"></i>
+            Upcoming Events
+        </h4>
+
+    </div>
+
+
+    <div
+        class="upcoming-event-list"
+        id="upcomingEventList">
+
+
+        <!-- Event 1 -->
+
+        <div
+            class="upcoming-event"
+            data-event-type="meeting">
+
+            <div class="event-date-box">
+
+                <span class="month">
+                    AUG
+                </span>
+
+                <span class="date">
+                    05
+                </span>
+
+            </div>
+
+
+            <div class="event-details">
+
+                <span class="event-type-badge meeting">
+                    Meeting
+                </span>
+
+                <h6 class="mt-2">
+                    Faculty Meeting
+                </h6>
+
+                <p>
+                    Department faculty meeting regarding
+                    academic activities.
+                </p>
+
+                <small>
+                    <i class="fa-regular fa-clock me-1"></i>
+                    11:00 AM
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- Event 2 -->
+
+        <div
+            class="upcoming-event"
+            data-event-type="deadline">
+
+            <div class="event-date-box">
+
+                <span class="month">
+                    AUG
+                </span>
+
+                <span class="date">
+                    08
+                </span>
+
+            </div>
+
+
+            <div class="event-details">
+
+                <span class="event-type-badge deadline">
+                    Deadline
+                </span>
+
+                <h6 class="mt-2">
+                    Internal Marks Submission
+                </h6>
+
+                <p>
+                    Submit internal assessment marks
+                    before the deadline.
+                </p>
+
+                <small>
+                    <i class="fa-regular fa-clock me-1"></i>
+                    Before 05:00 PM
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- Event 3 -->
+
+        <div
+            class="upcoming-event"
+            data-event-type="holiday">
+
+            <div class="event-date-box">
+
+                <span class="month">
+                    AUG
+                </span>
+
+                <span class="date">
+                    15
+                </span>
+
+            </div>
+
+
+            <div class="event-details">
+
+                <span class="event-type-badge holiday">
+                    Holiday
+                </span>
+
+                <h6 class="mt-2">
+                    Independence Day
+                </h6>
+
+                <p>
+                    College holiday on the occasion of
+                    Independence Day.
+                </p>
+
+                <small>
+                    <i class="fa-solid fa-calendar-day me-1"></i>
+                    Full Day
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- Event 4 -->
+
+        <div
+            class="upcoming-event"
+            data-event-type="activity">
+
+            <div class="event-date-box">
+
+                <span class="month">
+                    AUG
+                </span>
+
+                <span class="date">
+                    21
+                </span>
+
+            </div>
+
+
+            <div class="event-details">
+
+                <span class="event-type-badge activity">
+                    Activity
+                </span>
+
+                <h6 class="mt-2">
+                    Technical Workshop
+                </h6>
+
+                <p>
+                    Workshop on Artificial Intelligence
+                    and emerging technologies.
+                </p>
+
+                <small>
+                    <i class="fa-regular fa-clock me-1"></i>
+                    10:30 AM
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- Event 5 -->
+
+        <div
+            class="upcoming-event"
+            data-event-type="exam">
+
+            <div class="event-date-box">
+
+                <span class="month">
+                    SEP
+                </span>
+
+                <span class="date">
+                    14
+                </span>
+
+            </div>
+
+
+            <div class="event-details">
+
+                <span class="event-type-badge exam">
+                    Examination
+                </span>
+
+                <h6 class="mt-2">
+                    Mid Semester Examination
+                </h6>
+
+                <p>
+                    Mid semester examinations begin.
+                </p>
+
+                <small>
+                    <i class="fa-solid fa-calendar-days me-1"></i>
+                    14 - 19 September
+                </small>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+                    IMPORTANT DATES
+========================================================= -->
+
+<section class="calendar-card">
+
+    <div class="calendar-card-title">
+
+        <h4>
+            <i class="fa-solid fa-star me-2"></i>
+            Important Dates
+        </h4>
+
+    </div>
+
+
+    <div class="academic-info-box">
+
+        <small>
+            Internal Assessment
+        </small>
+
+        <strong>
+            01 - 08 August 2026
+        </strong>
+
+    </div>
+
+
+    <div class="academic-info-box">
+
+        <small>
+            Mid Semester Examination
+        </small>
+
+        <strong>
+            14 - 19 September 2026
+        </strong>
+
+    </div>
+
+
+    <div class="academic-info-box">
+
+        <small>
+            Practical Examination
+        </small>
+
+        <strong>
+            20 - 28 November 2026
+        </strong>
+
+    </div>
+
+
+    <div class="academic-info-box">
+
+        <small>
+            End Semester Examination
+        </small>
+
+        <strong>
+            01 - 15 December 2026
+        </strong>
+
+    </div>
+
+
+    <div class="academic-info-box">
+
+        <small>
+            Winter Vacation
+        </small>
+
+        <strong>
+            From 21 December 2026
+        </strong>
+
+    </div>
+
+</section>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    EVENT DETAILS MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="eventDetailsModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+
+    <div class="modal-dialog modal-dialog-centered">
+
+
+        <div class="modal-content border-0 rounded-4">
+
+
+            <div class="modal-header">
+
+                <h5 class="modal-title fw-bold">
+
+                    <i
+                        class="fa-solid fa-calendar-check me-2"
+                        style="color:#6c4cff;">
+                    </i>
+
+                    Event Details
+
+                </h5>
+
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+
+            <div class="modal-body p-4">
+
+
+                <div class="event-modal-icon">
+
+                    <i
+                        id="eventModalIcon"
+                        class="fa-solid fa-calendar-day">
+                    </i>
+
+                </div>
+
+
+                <h4
+                    id="eventModalTitle"
+                    class="text-center fw-bold mb-2">
+
+                    Academic Event
+
+                </h4>
+
+
+                <p
+                    id="eventModalDescription"
+                    class="text-muted text-center mb-4">
+
+                    Event information will appear here.
+
+                </p>
+
+
+                <div class="event-detail-row">
+
+                    <span>
+                        Event Type
+                    </span>
+
+                    <strong id="eventModalType">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="event-detail-row">
+
+                    <span>
+                        Date
+                    </span>
+
+                    <strong id="eventModalDate">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="event-detail-row">
+
+                    <span>
+                        Time
+                    </span>
+
+                    <strong id="eventModalTime">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="event-detail-row">
+
+                    <span>
+                        Venue
+                    </span>
+
+                    <strong id="eventModalVenue">
+                        --
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="modal-footer justify-content-center">
+
+                <button
+                    type="button"
+                    class="btn btn-primary px-4"
+                    data-bs-dismiss="modal">
+
+                    <i class="fa-solid fa-check me-2"></i>
+
+                    Okay
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+                    CALENDAR INFO MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="calendarInfoModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+
+    <div class="modal-dialog modal-dialog-centered">
+
+
+        <div class="modal-content border-0 rounded-4">
+
+
+            <div class="modal-header">
+
+                <h5 class="modal-title fw-bold">
+
+                    <i
+                        class="fa-solid fa-circle-info me-2"
+                        style="color:#6c4cff;">
+                    </i>
+
+                    Academic Calendar Information
+
+                </h5>
+
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+
+            <div class="modal-body p-4">
+
+
+                <div class="text-center mb-4">
+
+                    <div class="event-modal-icon">
+
+                        <i class="fa-solid fa-calendar-days"></i>
+
+                    </div>
+
+
+                    <h4 class="fw-bold">
+
+                        Academic Session 2026 - 2027
+
+                    </h4>
+
+
+                    <p class="text-muted">
+
+                        Teacher Academic Calendar
+
+                    </p>
+
+                </div>
+
+
+                <div class="event-detail-row">
+
+                    <span>
+                        Session
+                    </span>
+
+                    <strong>
+                        2026 - 2027
+                    </strong>
+
+                </div>
+
+
+                <div class="event-detail-row">
+
+                    <span>
+                        Semester
+                    </span>
+
+                    <strong>
+                        Odd Semester
+                    </strong>
+
+                </div>
+
+
+                <div class="event-detail-row">
+
+                    <span>
+                        Start Date
+                    </span>
+
+                    <strong>
+                        01 July 2026
+                    </strong>
+
+                </div>
+
+
+                <div class="event-detail-row">
+
+                    <span>
+                        End Date
+                    </span>
+
+                    <strong>
+                        20 December 2026
+                    </strong>
+
+                </div>
+
+
+                <div class="alert alert-primary mt-4 mb-0">
+
+                    <i class="fa-solid fa-circle-info me-2"></i>
+
+                    Calendar events are managed by the
+                    college administration.
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+                        FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+    © 2026 Faculty Management & Productivity System |
+    Teacher Academic Calendar
+
+</footer>
+
+
+</main>
+
+</div>
+
+
+<!-- =========================================================
+                    BOOTSTRAP JAVASCRIPT
+========================================================= -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- =========================================================
+                    TEACHER COMMON JS
+========================================================= -->
+
+<script src="../../js/teacher-dashboard.js"></script>
+
+
+<!-- =========================================================
+                ACADEMIC CALENDAR JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+/* =========================================================
+                    ELEMENTS
+========================================================= */
+
+const calendarBody =
+document.getElementById("calendarBody");
+
+
+const calendarMonthTitle =
+document.getElementById("calendarMonthTitle");
+
+
+const previousMonthBtn =
+document.getElementById("previousMonthBtn");
+
+
+const nextMonthBtn =
+document.getElementById("nextMonthBtn");
+
+
+const todayCalendarBtn =
+document.getElementById("todayCalendarBtn");
+
+
+const filterButtons =
+document.querySelectorAll(
+    ".calendar-filter-btn"
+);
+
+
+/* =========================================================
+                    CURRENT DATE
+========================================================= */
+
+let currentDate =
+new Date(2026,7,1);
+
+
+let activeFilter =
+"all";
+
+
+/* =========================================================
+                    ACADEMIC EVENTS
+========================================================= */
+
+const academicEvents = [
+
+    {
+        date:"2026-08-05",
+        title:"Faculty Meeting",
+        type:"meeting",
+        description:
+        "Department faculty meeting regarding academic planning.",
+        time:"11:00 AM",
+        venue:"Department Meeting Room"
+    },
+
+    {
+        date:"2026-08-08",
+        title:"Marks Submission",
+        type:"deadline",
+        description:
+        "Last date for internal assessment marks submission.",
+        time:"05:00 PM",
+        venue:"Faculty Portal"
+    },
+
+    {
+        date:"2026-08-15",
+        title:"Independence Day",
+        type:"holiday",
+        description:
+        "College holiday on the occasion of Independence Day.",
+        time:"Full Day",
+        venue:"College Campus"
+    },
+
+    {
+        date:"2026-08-21",
+        title:"AI Workshop",
+        type:"activity",
+        description:
+        "Technical workshop on Artificial Intelligence.",
+        time:"10:30 AM",
+        venue:"Seminar Hall"
+    },
+
+    {
+        date:"2026-08-27",
+        title:"Project Review",
+        type:"meeting",
+        description:
+        "Student project progress review meeting.",
+        time:"02:00 PM",
+        venue:"Computer Lab"
+    },
+
+    {
+        date:"2026-09-05",
+        title:"Teachers' Day",
+        type:"activity",
+        description:
+        "Teachers' Day celebration and academic activities.",
+        time:"10:00 AM",
+        venue:"College Auditorium"
+    },
+
+    {
+        date:"2026-09-14",
+        title:"Mid Semester Exam",
+        type:"exam",
+        description:
+        "Mid semester examination begins.",
+        time:"09:30 AM",
+        venue:"Examination Hall"
+    },
+
+    {
+        date:"2026-09-19",
+        title:"Mid Semester Ends",
+        type:"exam",
+        description:
+        "Last day of mid semester examination.",
+        time:"09:30 AM",
+        venue:"Examination Hall"
+    },
+
+    {
+        date:"2026-10-02",
+        title:"Gandhi Jayanti",
+        type:"holiday",
+        description:
+        "College holiday.",
+        time:"Full Day",
+        venue:"College"
+    },
+
+    {
+        date:"2026-11-20",
+        title:"Practical Exam",
+        type:"exam",
+        description:
+        "Practical examination begins.",
+        time:"10:00 AM",
+        venue:"Laboratory"
+    },
+
+    {
+        date:"2026-12-01",
+        title:"End Semester Exam",
+        type:"exam",
+        description:
+        "End semester examination begins.",
+        time:"09:30 AM",
+        venue:"Examination Hall"
+    },
+
+    {
+        date:"2026-12-21",
+        title:"Winter Vacation",
+        type:"holiday",
+        description:
+        "Winter vacation begins.",
+        time:"Full Day",
+        venue:"College"
+    }
+
+];
+
+
+/* =========================================================
+                    MONTH NAMES
+========================================================= */
+
+const monthNames = [
+
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+
+];
+
+
+/* =========================================================
+                    FORMAT DATE
+========================================================= */
+
+function formatDateKey(
+    year,
+    month,
+    day
+){
+
+    const formattedMonth =
+    String(month + 1)
+    .padStart(2,"0");
+
+
+    const formattedDay =
+    String(day)
+    .padStart(2,"0");
+
+
+    return (
+        year +
+        "-" +
+        formattedMonth +
+        "-" +
+        formattedDay
+    );
+
+}
+
+
+/* =========================================================
+                    RENDER CALENDAR
+========================================================= */
+
+function renderCalendar(){
+
+
+    calendarBody.innerHTML =
+    "";
+
+
+    const year =
+    currentDate.getFullYear();
+
+
+    const month =
+    currentDate.getMonth();
+
+
+    calendarMonthTitle.innerText =
+    monthNames[month] +
+    " " +
+    year;
+
+
+    const firstDay =
+    new Date(
+        year,
+        month,
+        1
+    ).getDay();
+
+
+    const daysInMonth =
+    new Date(
+        year,
+        month + 1,
+        0
+    ).getDate();
+
+
+    let dateNumber =
+    1;
+
+
+    /* Maximum 6 calendar rows */
+
+    for(
+        let row = 0;
+        row < 6;
+        row++
+    ){
+
+        const tr =
+        document.createElement("tr");
+
+
+        for(
+            let column = 0;
+            column < 7;
+            column++
+        ){
+
+
+            const td =
+            document.createElement("td");
+
+
+            if(
+                row === 0 &&
+                column < firstDay
+            ){
+
+                td.className =
+                "calendar-day empty";
+
+
+                tr.appendChild(td);
+
+                continue;
+
+            }
+
+
+            if(
+                dateNumber >
+                daysInMonth
+            ){
+
+                td.className =
+                "calendar-day empty";
+
+
+                tr.appendChild(td);
+
+                continue;
+
+            }
+
+
+            td.className =
+            "calendar-day";
+
+
+            const dateKey =
+            formatDateKey(
+                year,
+                month,
+                dateNumber
+            );
+
+
+            td.dataset.date =
+            dateKey;
+
+
+            /* =================================================
+                            DAY NUMBER
+            ================================================= */
+
+            const number =
+            document.createElement(
+                "div"
+            );
+
+
+            number.className =
+            "calendar-day-number";
+
+
+            number.innerText =
+            dateNumber;
+
+
+            td.appendChild(number);
+
+
+            /* =================================================
+                            TODAY
+            ================================================= */
+
+            const today =
+            new Date();
+
+
+            if(
+                dateNumber ===
+                today.getDate() &&
+
+                month ===
+                today.getMonth() &&
+
+                year ===
+                today.getFullYear()
+            ){
+
+                td.classList.add(
+                    "today"
+                );
+
+            }
+
+
+            /* =================================================
+                            EVENTS
+            ================================================= */
+
+            const dayEvents =
+            academicEvents.filter(
+                function(event){
+
+                    return (
+                        event.date ===
+                        dateKey
+                    );
+
+                }
+            );
+
+
+            dayEvents.forEach(
+                function(event){
+
+
+                    if(
+                        activeFilter !==
+                        "all" &&
+
+                        event.type !==
+                        activeFilter
+                    ){
+
+                        return;
+
+                    }
+
+
+                    const eventLabel =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                    eventLabel.className =
+                    "calendar-event " +
+                    event.type;
+
+
+                    eventLabel.innerText =
+                    event.title;
+
+
+                    eventLabel.addEventListener(
+                        "click",
+                        function(e){
+
+                            e.stopPropagation();
+
+                            showEventDetails(
+                                event
+                            );
+
+                        }
+                    );
+
+
+                    td.appendChild(
+                        eventLabel
+                    );
+
+
+                }
+            );
+
+
+            /* =================================================
+                        CLICK CALENDAR DAY
+            ================================================= */
+
+            td.addEventListener(
+                "click",
+                function(){
+
+
+                    if(
+                        dayEvents.length >
+                        0
+                    ){
+
+                        let selectedEvents =
+                        dayEvents;
+
+
+                        if(
+                            activeFilter !==
+                            "all"
+                        ){
+
+                            selectedEvents =
+                            dayEvents.filter(
+                                function(event){
+
+                                    return (
+                                        event.type ===
+                                        activeFilter
+                                    );
+
+                                }
+                            );
+
+                        }
+
+
+                        if(
+                            selectedEvents.length >
+                            0
+                        ){
+
+                            showEventDetails(
+                                selectedEvents[0]
+                            );
+
+                        }
+
+                    }
+
+                }
+            );
+
+
+            tr.appendChild(td);
+
+
+            dateNumber++;
+
+        }
+
+
+        calendarBody.appendChild(
+            tr
+        );
+
+
+        if(
+            dateNumber >
+            daysInMonth
+        ){
+
+            break;
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+                    EVENT DETAILS
+========================================================= */
+
+function showEventDetails(event){
+
+
+    document.getElementById(
+        "eventModalTitle"
+    ).innerText =
+    event.title;
+
+
+    document.getElementById(
+        "eventModalDescription"
+    ).innerText =
+    event.description;
+
+
+    document.getElementById(
+        "eventModalType"
+    ).innerText =
+    capitalizeText(
+        event.type
+    );
+
+
+    document.getElementById(
+        "eventModalDate"
+    ).innerText =
+    formatDisplayDate(
+        event.date
+    );
+
+
+    document.getElementById(
+        "eventModalTime"
+    ).innerText =
+    event.time;
+
+
+    document.getElementById(
+        "eventModalVenue"
+    ).innerText =
+    event.venue;
+
+
+    /* =====================================================
+                        MODAL ICON
+    ====================================================== */
+
+    const modalIcon =
+    document.getElementById(
+        "eventModalIcon"
+    );
+
+
+    if(
+        event.type ===
+        "exam"
+    ){
+
+        modalIcon.className =
+        "fa-solid fa-file-pen";
+
+    }
+
+    else if(
+        event.type ===
+        "holiday"
+    ){
+
+        modalIcon.className =
+        "fa-solid fa-umbrella-beach";
+
+    }
+
+    else if(
+        event.type ===
+        "meeting"
+    ){
+
+        modalIcon.className =
+        "fa-solid fa-users";
+
+    }
+
+    else if(
+        event.type ===
+        "activity"
+    ){
+
+        modalIcon.className =
+        "fa-solid fa-star";
+
+    }
+
+    else{
+
+        modalIcon.className =
+        "fa-solid fa-clock";
+
+    }
+
+
+    const modal =
+    new bootstrap.Modal(
+        document.getElementById(
+            "eventDetailsModal"
+        )
+    );
+
+
+    modal.show();
+
+}
+
+
+/* =========================================================
+                    DISPLAY DATE
+========================================================= */
+
+function formatDisplayDate(
+    dateString
+){
+
+    const parts =
+    dateString.split("-");
+
+
+    const date =
+    new Date(
+        Number(parts[0]),
+        Number(parts[1]) - 1,
+        Number(parts[2])
+    );
+
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+
+            day:"2-digit",
+
+            month:"long",
+
+            year:"numeric"
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+                    CAPITALIZE
+========================================================= */
+
+function capitalizeText(text){
+
+    return (
+        text
+        .charAt(0)
+        .toUpperCase() +
+        text.slice(1)
+    );
+
+}
+
+
+/* =========================================================
+                    PREVIOUS MONTH
+========================================================= */
+
+previousMonthBtn.addEventListener(
+    "click",
+    function(){
+
+        currentDate.setMonth(
+            currentDate.getMonth() - 1
+        );
+
+
+        renderCalendar();
+
+    }
+);
+
+
+/* =========================================================
+                    NEXT MONTH
+========================================================= */
+
+nextMonthBtn.addEventListener(
+    "click",
+    function(){
+
+        currentDate.setMonth(
+            currentDate.getMonth() + 1
+        );
+
+
+        renderCalendar();
+
+    }
+);
+
+
+/* =========================================================
+                    TODAY BUTTON
+========================================================= */
+
+todayCalendarBtn.addEventListener(
+    "click",
+    function(){
+
+
+        const today =
+        new Date();
+
+
+        currentDate =
+        new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            1
+        );
+
+
+        activeFilter =
+        "all";
+
+
+        filterButtons.forEach(
+            function(button){
+
+                button.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+        const allButton =
+        document.querySelector(
+            '[data-filter="all"]'
+        );
+
+
+        if(allButton){
+
+            allButton.classList.add(
+                "active"
+            );
+
+        }
+
+
+        renderCalendar();
+
+    }
+);
+
+
+/* =========================================================
+                    EVENT FILTER
+========================================================= */
+
+filterButtons.forEach(
+    function(button){
+
+
+        button.addEventListener(
+            "click",
+            function(){
+
+
+                filterButtons.forEach(
+                    function(btn){
+
+                        btn.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                this.classList.add(
+                    "active"
+                );
+
+
+                activeFilter =
+                this.dataset.filter;
+
+
+                renderCalendar();
+
+
+                filterUpcomingEvents(
+                    activeFilter
+                );
+
+
+            }
+        );
+
+
+    }
+);
+
+
+/* =========================================================
+                FILTER UPCOMING EVENTS
+========================================================= */
+
+function filterUpcomingEvents(
+    filter
+){
+
+
+    const upcomingEvents =
+    document.querySelectorAll(
+        ".upcoming-event"
+    );
+
+
+    upcomingEvents.forEach(
+        function(event){
+
+
+            const type =
+            event.dataset.eventType;
+
+
+            if(
+                filter ===
+                "all" ||
+                type ===
+                filter
+            ){
+
+                event.style.display =
+                "flex";
+
+            }
+
+            else{
+
+                event.style.display =
+                "none";
+
+            }
+
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+                    SEARCH FUNCTION
+========================================================= */
+
+const searchBox =
+document.getElementById(
+    "searchBox"
+);
+
+
+if(searchBox){
+
+    searchBox.addEventListener(
+        "input",
+        function(){
+
+
+            const searchValue =
+            this.value
+            .toLowerCase()
+            .trim();
+
+
+            const upcomingEvents =
+            document.querySelectorAll(
+                ".upcoming-event"
+            );
+
+
+            upcomingEvents.forEach(
+                function(event){
+
+
+                    const eventText =
+                    event.innerText
+                    .toLowerCase();
+
+
+                    if(
+                        eventText.includes(
+                            searchValue
+                        )
+                    ){
+
+                        event.style.display =
+                        "flex";
+
+                    }
+
+                    else{
+
+                        event.style.display =
+                        "none";
+
+                    }
+
+
+                }
+            );
+
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+                    STATISTICS
+========================================================= */
+
+function updateStatistics(){
+
+
+    const upcomingCount =
+    academicEvents.length;
+
+
+    const examCount =
+    academicEvents.filter(
+        function(event){
+
+            return (
+                event.type ===
+                "exam"
+            );
+
+        }
+    ).length;
+
+
+    const holidayCount =
+    academicEvents.filter(
+        function(event){
+
+            return (
+                event.type ===
+                "holiday"
+            );
+
+        }
+    ).length;
+
+
+    const deadlineCount =
+    academicEvents.filter(
+        function(event){
+
+            return (
+                event.type ===
+                "deadline"
+            );
+
+        }
+    ).length;
+
+
+    document.getElementById(
+        "totalEventsCount"
+    ).innerText =
+    upcomingCount;
+
+
+    document.getElementById(
+        "examCount"
+    ).innerText =
+    examCount;
+
+
+    document.getElementById(
+        "holidayCount"
+    ).innerText =
+    holidayCount;
+
+
+    document.getElementById(
+        "deadlineCount"
+    ).innerText =
+    deadlineCount;
+
+}
+
+
+/* =========================================================
+                    INITIAL LOAD
+========================================================= */
+
+renderCalendar();
+
+updateStatistics();
+
+
+});
+
+</script>
+
+
+</body>
+
+</html>

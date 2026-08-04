@@ -1,0 +1,3250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Face Registration | HOD Portal</title>
+
+
+<!-- Bootstrap -->
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<!-- Font Awesome -->
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+<!-- Google Font -->
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+
+<style>
+
+/* =========================================================
+                    GLOBAL
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+
+    background:
+    linear-gradient(
+        135deg,
+        #f7f5ff 0%,
+        #eef5ff 50%,
+        #f8f9fc 100%
+    );
+
+    color:#1f2937;
+    min-height:100vh;
+}
+
+
+/* =========================================================
+                    NAVBAR
+========================================================= */
+
+.register-navbar{
+
+    background:#ffffff;
+
+    padding:15px 0;
+
+    box-shadow:
+    0 3px 15px rgba(0,0,0,.07);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+}
+
+
+.register-brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+}
+
+
+.register-brand img{
+
+    width:55px;
+
+    height:55px;
+
+    object-fit:contain;
+}
+
+
+.register-brand h5{
+
+    margin:0;
+
+    color:#6c4cff;
+
+    font-size:16px;
+
+    font-weight:800;
+}
+
+
+.register-brand small{
+
+    color:#6b7280;
+
+    font-size:12px;
+}
+
+
+/* =========================================================
+                    THEME BUTTON
+========================================================= */
+
+.theme-btn{
+
+    width:44px;
+
+    height:44px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#f2efff;
+
+    color:#6c4cff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    transition:.3s;
+}
+
+
+.theme-btn:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+    transform:translateY(-2px);
+}
+
+
+/* =========================================================
+                    PAGE
+========================================================= */
+
+.registration-page{
+
+    padding:35px 0 30px;
+
+    min-height:
+    calc(100vh - 90px);
+}
+
+
+/* =========================================================
+                    PAGE HEADER
+========================================================= */
+
+.registration-header{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:22px 25px;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.06);
+
+    margin-bottom:25px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+}
+
+
+.registration-header h2{
+
+    font-weight:800;
+
+    margin-bottom:5px;
+}
+
+
+.registration-header h2 i{
+
+    color:#6c4cff;
+}
+
+
+.registration-header p{
+
+    color:#6b7280;
+
+    margin:0;
+}
+
+
+/* =========================================================
+                    GRID
+========================================================= */
+
+.registration-grid{
+
+    display:grid;
+
+    grid-template-columns:1.5fr 1fr;
+
+    gap:25px;
+
+    align-items:start;
+}
+
+
+/* =========================================================
+                    CARD
+========================================================= */
+
+.register-card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.08);
+
+    margin-bottom:25px;
+}
+
+
+.register-card h4{
+
+    color:#6c4cff;
+
+    font-weight:700;
+
+    margin-bottom:20px;
+}
+
+
+/* =========================================================
+                    HOD INFORMATION
+========================================================= */
+
+.hod-info-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:15px;
+}
+
+
+.form-label{
+
+    font-weight:600;
+
+    font-size:14px;
+}
+
+
+.form-control,
+.form-select{
+
+    padding:12px 14px;
+
+    border-radius:10px;
+
+    border:1px solid #d1d5db;
+}
+
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:#6c4cff;
+
+    box-shadow:
+    0 0 0 .2rem rgba(108,76,255,.12);
+}
+
+
+/* =========================================================
+                    CAMERA
+========================================================= */
+
+.register-camera{
+
+    position:relative;
+
+    height:450px;
+
+    background:#111827;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#ffffff;
+}
+
+
+#registerVideo{
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:none;
+}
+
+
+#registerCanvas{
+
+    display:none;
+}
+
+
+/* =========================================================
+                    PLACEHOLDER
+========================================================= */
+
+.camera-placeholder{
+
+    text-align:center;
+
+    padding:30px;
+}
+
+
+.camera-placeholder i{
+
+    font-size:80px;
+
+    color:#8b5cf6;
+
+    margin-bottom:20px;
+}
+
+
+.camera-placeholder h3{
+
+    font-weight:700;
+}
+
+
+.camera-placeholder p{
+
+    color:#cbd5e1;
+
+    max-width:500px;
+}
+
+
+/* =========================================================
+                    FACE FRAME
+========================================================= */
+
+.registration-face-frame{
+
+    position:absolute;
+
+    width:235px;
+
+    height:290px;
+
+    border:3px solid #22c55e;
+
+    border-radius:45%;
+
+    display:none;
+
+    z-index:5;
+
+    box-shadow:
+    0 0 25px rgba(34,197,94,.6);
+
+    animation:
+    faceFramePulse 1.6s infinite;
+}
+
+
+@keyframes faceFramePulse{
+
+    0%,100%{
+
+        box-shadow:
+        0 0 15px rgba(34,197,94,.4);
+
+    }
+
+    50%{
+
+        box-shadow:
+        0 0 38px rgba(34,197,94,.9);
+
+    }
+
+}
+
+
+/* =========================================================
+                    SCAN LINE
+========================================================= */
+
+.registration-scan-line{
+
+    position:absolute;
+
+    left:15%;
+
+    right:15%;
+
+    height:3px;
+
+    background:#22c55e;
+
+    box-shadow:
+    0 0 15px #22c55e;
+
+    top:18%;
+
+    display:none;
+
+    z-index:6;
+
+    animation:
+    registrationScan 2s linear infinite;
+}
+
+
+@keyframes registrationScan{
+
+    0%{
+        top:18%;
+    }
+
+    50%{
+        top:80%;
+    }
+
+    100%{
+        top:18%;
+    }
+
+}
+
+
+/* =========================================================
+                    CAMERA BUTTONS
+========================================================= */
+
+.camera-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-top:20px;
+}
+
+
+.camera-buttons .btn{
+
+    min-width:145px;
+
+    padding:11px 17px;
+
+    border-radius:12px;
+
+    font-weight:600;
+}
+
+
+/* =========================================================
+                    CAPTURE COUNTER
+========================================================= */
+
+.capture-progress-box{
+
+    margin-top:20px;
+
+    padding:17px;
+
+    background:
+    rgba(108,76,255,.06);
+
+    border:
+    1px solid rgba(108,76,255,.15);
+
+    border-radius:15px;
+}
+
+
+.capture-progress-box h6{
+
+    font-weight:700;
+}
+
+
+.capture-dots{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:15px;
+
+    justify-content:center;
+}
+
+
+.capture-dot{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:#e5e7eb;
+
+    color:#6b7280;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-weight:700;
+
+    transition:.3s;
+}
+
+
+.capture-dot.completed{
+
+    background:#22c55e;
+
+    color:#ffffff;
+}
+
+
+/* =========================================================
+                    CAPTURED IMAGE PREVIEW
+========================================================= */
+
+.captured-preview-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:10px;
+
+    margin-top:20px;
+}
+
+
+.captured-preview{
+
+    position:relative;
+
+    height:110px;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    background:#e5e7eb;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+}
+
+
+.captured-preview img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+}
+
+
+.preview-placeholder{
+
+    color:#9ca3af;
+
+    font-size:30px;
+}
+
+
+.preview-check{
+
+    position:absolute;
+
+    top:6px;
+
+    right:6px;
+
+    width:25px;
+
+    height:25px;
+
+    background:#22c55e;
+
+    color:#ffffff;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:12px;
+}
+
+
+/* =========================================================
+                    STATUS
+========================================================= */
+
+.status-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:14px 0;
+
+    border-bottom:
+    1px solid #eeeeee;
+}
+
+
+.status-row:last-child{
+
+    border-bottom:none;
+}
+
+
+.status-row span:first-child{
+
+    font-weight:600;
+}
+
+
+/* =========================================================
+                    INSTRUCTION BOX
+========================================================= */
+
+.instruction-box{
+
+    background:
+    rgba(108,76,255,.06);
+
+    border:
+    1px solid rgba(108,76,255,.15);
+
+    border-radius:15px;
+
+    padding:18px;
+}
+
+
+.instruction-item{
+
+    display:flex;
+
+    gap:13px;
+
+    margin-bottom:15px;
+}
+
+
+.instruction-item:last-child{
+
+    margin-bottom:0;
+}
+
+
+.instruction-icon{
+
+    min-width:36px;
+
+    height:36px;
+
+    border-radius:50%;
+
+    background:#ede9fe;
+
+    color:#6c4cff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+
+.instruction-item strong{
+
+    display:block;
+
+    font-size:14px;
+}
+
+
+.instruction-item p{
+
+    font-size:12px;
+
+    color:#6b7280;
+
+    margin:2px 0 0;
+}
+
+
+/* =========================================================
+                    REGISTER BUTTON
+========================================================= */
+
+.final-register-btn{
+
+    padding:13px;
+
+    border-radius:12px;
+
+    font-weight:700;
+}
+
+
+/* =========================================================
+                    SUCCESS BOX
+========================================================= */
+
+.registration-success{
+
+    display:none;
+
+    text-align:center;
+
+    background:
+    rgba(34,197,94,.10);
+
+    border:
+    1px solid rgba(34,197,94,.25);
+
+    border-radius:15px;
+
+    padding:20px;
+
+    margin-top:20px;
+}
+
+
+.registration-success i{
+
+    font-size:45px;
+
+    color:#22c55e;
+
+    margin-bottom:10px;
+}
+
+
+/* =========================================================
+                    DARK MODE
+========================================================= */
+
+body.dark{
+
+    background:
+    linear-gradient(
+        135deg,
+        #080d18,
+        #0f172a,
+        #111827
+    );
+
+    color:#ffffff;
+}
+
+
+body.dark .register-navbar{
+
+    background:#111827;
+
+    border-bottom:
+    1px solid #263244;
+}
+
+
+body.dark .register-brand h5{
+
+    color:#ffffff;
+}
+
+
+body.dark .register-brand small{
+
+    color:#94a3b8;
+}
+
+
+body.dark .theme-btn{
+
+    background:#1f2937;
+
+    color:#facc15;
+}
+
+
+body.dark .registration-header,
+body.dark .register-card{
+
+    background:#111827;
+
+    color:#ffffff;
+}
+
+
+body.dark .registration-header p{
+
+    color:#94a3b8;
+}
+
+
+body.dark .register-card h4{
+
+    color:#ffffff;
+}
+
+
+body.dark .form-control,
+body.dark .form-select{
+
+    background:#1f2937;
+
+    color:#ffffff;
+
+    border-color:#374151;
+}
+
+
+body.dark .form-control::placeholder{
+
+    color:#94a3b8;
+}
+
+
+body.dark .form-select option{
+
+    background:#1f2937;
+
+    color:#ffffff;
+}
+
+
+body.dark .status-row{
+
+    border-color:#374151;
+}
+
+
+body.dark .capture-progress-box,
+body.dark .instruction-box{
+
+    background:#1f2937;
+
+    border-color:#374151;
+}
+
+
+body.dark .instruction-item p,
+body.dark .text-muted{
+
+    color:#94a3b8 !important;
+}
+
+
+body.dark .modal-content{
+
+    background:#111827;
+
+    color:#ffffff;
+}
+
+
+/* =========================================================
+                    FOOTER
+========================================================= */
+
+.registration-footer{
+
+    text-align:center;
+
+    padding:20px;
+
+    color:#6b7280;
+
+    font-size:13px;
+}
+
+
+body.dark .registration-footer{
+
+    color:#94a3b8;
+}
+
+
+/* =========================================================
+                    RESPONSIVE
+========================================================= */
+
+@media(max-width:992px){
+
+    .registration-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+@media(max-width:768px){
+
+    .register-brand h5{
+
+        font-size:12px;
+
+    }
+
+    .register-brand small{
+
+        display:none;
+
+    }
+
+    .register-brand img{
+
+        width:45px;
+
+        height:45px;
+
+    }
+
+    .hod-info-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+@media(max-width:576px){
+
+    .register-camera{
+
+        height:350px;
+
+    }
+
+    .registration-header{
+
+        padding:18px;
+
+    }
+
+    .register-card{
+
+        padding:18px;
+
+    }
+
+    .captured-preview-grid{
+
+        grid-template-columns:1fr 1fr 1fr;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+                    NAVBAR
+========================================================= -->
+
+<nav class="register-navbar">
+
+<div class="container-fluid px-4 px-lg-5">
+
+<div class="d-flex justify-content-between align-items-center">
+
+
+<!-- BRAND -->
+
+<a
+href="../../index.html"
+class="register-brand text-decoration-none">
+
+
+<img
+src="../../images/logo.png"
+alt="FMPS Logo">
+
+
+<div>
+
+<h5>
+
+FACULTY MANAGEMENT & PRODUCTIVITY SYSTEM
+
+</h5>
+
+<small>
+
+Patna Women's College (Autonomous)
+
+</small>
+
+</div>
+
+
+</a>
+
+
+<!-- RIGHT -->
+
+<div class="d-flex align-items-center gap-2">
+
+
+<button
+type="button"
+id="registrationThemeToggle"
+class="theme-btn"
+title="Dark / Light Mode">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+
+<a
+href="hod-login.html"
+class="btn btn-outline-primary rounded-pill px-4">
+
+<i class="fa-solid fa-arrow-left me-2"></i>
+
+Back to Login
+
+</a>
+
+
+</div>
+
+</div>
+
+</div>
+
+</nav>
+
+
+<!-- =========================================================
+                    MAIN PAGE
+========================================================= -->
+
+<main class="registration-page">
+
+<div class="container-fluid px-4 px-lg-5">
+
+
+<!-- =========================================================
+                    HEADER
+========================================================= -->
+
+<div class="registration-header">
+
+
+<div>
+
+<h2>
+
+<i class="fa-solid fa-user-plus me-2"></i>
+
+HOD Face Registration
+
+</h2>
+
+
+<p>
+
+Register your face securely for
+AI Face Recognition Login.
+
+</p>
+
+</div>
+
+
+<div class="d-flex gap-2 flex-wrap">
+
+
+<a
+href="face-login.html"
+class="btn btn-outline-primary">
+
+<i class="fa-solid fa-face-viewfinder me-2"></i>
+
+Face Login
+
+</a>
+
+
+<a
+href="hod-login.html"
+class="btn btn-primary">
+
+<i class="fa-solid fa-key me-2"></i>
+
+Manual Login
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    MAIN GRID
+========================================================= -->
+
+<div class="registration-grid">
+
+
+<!-- =========================================================
+                    LEFT SIDE
+========================================================= -->
+
+<div>
+
+
+<!-- =========================================================
+                    HOD DETAILS
+========================================================= -->
+
+<section class="register-card">
+
+
+<h4>
+
+<i class="fa-solid fa-id-card me-2"></i>
+
+HOD Information
+
+</h4>
+
+
+<div class="hod-info-grid">
+
+
+<div>
+
+<label class="form-label">
+
+HOD ID
+
+</label>
+
+<input
+type="text"
+id="hodId"
+class="form-control"
+placeholder="Enter HOD ID">
+
+</div>
+
+
+<div>
+
+<label class="form-label">
+
+Full Name
+
+</label>
+
+<input
+type="text"
+id="hodName"
+class="form-control"
+placeholder="Enter Full Name">
+
+</div>
+
+
+<div>
+
+<label class="form-label">
+
+Email Address
+
+</label>
+
+<input
+type="email"
+id="hodEmail"
+class="form-control"
+placeholder="Enter Email Address">
+
+</div>
+
+
+<div>
+
+<label class="form-label">
+
+Department
+
+</label>
+
+<select
+id="hodDepartment"
+class="form-select">
+
+<option value="">
+
+Select Department
+
+</option>
+
+<option>
+
+Computer Science
+
+</option>
+
+<option>
+
+Computer Applications
+
+</option>
+
+<option>
+
+Information Technology
+
+</option>
+
+<option>
+
+Mathematics
+
+</option>
+
+<option>
+
+Physics
+
+</option>
+
+<option>
+
+Chemistry
+
+</option>
+
+<option>
+
+Commerce
+
+</option>
+
+<option>
+
+English
+
+</option>
+
+</select>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    CAMERA CARD
+========================================================= -->
+
+<section class="register-card">
+
+
+<h4>
+
+<i class="fa-solid fa-camera me-2"></i>
+
+Face Capture
+
+</h4>
+
+
+<div
+class="register-camera"
+id="registerCamera">
+
+
+<video
+id="registerVideo"
+autoplay
+playsinline>
+</video>
+
+
+<canvas
+id="registerCanvas">
+</canvas>
+
+
+<!-- PLACEHOLDER -->
+
+<div
+id="registerPlaceholder"
+class="camera-placeholder">
+
+
+<i class="fa-solid fa-face-smile"></i>
+
+
+<h3>
+
+Ready for Face Registration
+
+</h3>
+
+
+<p>
+
+Start the camera and keep your face
+inside the recognition frame.
+
+</p>
+
+
+</div>
+
+
+<!-- FACE FRAME -->
+
+<div
+id="registrationFaceFrame"
+class="registration-face-frame">
+</div>
+
+
+<!-- SCAN LINE -->
+
+<div
+id="registrationScanLine"
+class="registration-scan-line">
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    BUTTONS
+========================================================= -->
+
+<div class="camera-buttons">
+
+
+<button
+type="button"
+id="startRegisterCameraBtn"
+class="btn btn-success">
+
+<i class="fa-solid fa-video me-2"></i>
+
+Start Camera
+
+</button>
+
+
+<button
+type="button"
+id="captureFaceBtn"
+class="btn btn-primary"
+disabled>
+
+<i class="fa-solid fa-camera me-2"></i>
+
+Capture Face
+
+</button>
+
+
+<button
+type="button"
+id="retakeFaceBtn"
+class="btn btn-warning"
+disabled>
+
+<i class="fa-solid fa-rotate-right me-2"></i>
+
+Reset
+
+</button>
+
+
+<button
+type="button"
+id="stopRegisterCameraBtn"
+class="btn btn-danger"
+disabled>
+
+<i class="fa-solid fa-video-slash me-2"></i>
+
+Stop Camera
+
+</button>
+
+
+</div>
+
+
+<!-- =========================================================
+                    CAPTURE PROGRESS
+========================================================= -->
+
+<div class="capture-progress-box">
+
+
+<div
+class="d-flex justify-content-between align-items-center">
+
+
+<div>
+
+<h6 class="mb-1">
+
+Face Samples
+
+</h6>
+
+<small class="text-muted">
+
+Capture 3 face samples for registration.
+
+</small>
+
+</div>
+
+
+<strong id="captureCount">
+
+0 / 3
+
+</strong>
+
+
+</div>
+
+
+<div class="progress mt-3">
+
+<div
+id="captureProgressBar"
+class="progress-bar bg-success"
+style="width:0%">
+</div>
+
+</div>
+
+
+<div class="capture-dots">
+
+
+<div
+id="captureDot1"
+class="capture-dot">
+
+1
+
+</div>
+
+
+<div
+id="captureDot2"
+class="capture-dot">
+
+2
+
+</div>
+
+
+<div
+id="captureDot3"
+class="capture-dot">
+
+3
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    PREVIEWS
+========================================================= -->
+
+<div
+id="capturedPreviewGrid"
+class="captured-preview-grid">
+
+
+<div
+id="preview1"
+class="captured-preview">
+
+<i
+class="fa-solid fa-image preview-placeholder">
+</i>
+
+</div>
+
+
+<div
+id="preview2"
+class="captured-preview">
+
+<i
+class="fa-solid fa-image preview-placeholder">
+</i>
+
+</div>
+
+
+<div
+id="preview3"
+class="captured-preview">
+
+<i
+class="fa-solid fa-image preview-placeholder">
+</i>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+</div>
+
+
+<!-- =========================================================
+                    RIGHT SIDE
+========================================================= -->
+
+<div>
+
+
+<!-- =========================================================
+                    STATUS
+========================================================= -->
+
+<section class="register-card">
+
+
+<h4>
+
+<i class="fa-solid fa-microchip me-2"></i>
+
+Registration Status
+
+</h4>
+
+
+<div class="status-row">
+
+
+<span>
+
+Camera
+
+</span>
+
+
+<span
+id="registerCameraStatus"
+class="badge bg-secondary">
+
+Offline
+
+</span>
+
+
+</div>
+
+
+<div class="status-row">
+
+
+<span>
+
+Face Detection
+
+</span>
+
+
+<span
+id="registerFaceStatus"
+class="badge bg-warning text-dark">
+
+Waiting...
+
+</span>
+
+
+</div>
+
+
+<div class="status-row">
+
+
+<span>
+
+Samples Captured
+
+</span>
+
+
+<span
+id="registerSampleStatus"
+class="badge bg-secondary">
+
+0 / 3
+
+</span>
+
+
+</div>
+
+
+<div class="status-row">
+
+
+<span>
+
+Registration
+
+</span>
+
+
+<span
+id="registrationStatus"
+class="badge bg-danger">
+
+Not Registered
+
+</span>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    INSTRUCTIONS
+========================================================= -->
+
+<section class="register-card">
+
+
+<h4>
+
+<i class="fa-solid fa-circle-info me-2"></i>
+
+Face Registration Guide
+
+</h4>
+
+
+<div class="instruction-box">
+
+
+<div class="instruction-item">
+
+
+<div class="instruction-icon">
+
+<i class="fa-solid fa-lightbulb"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+
+Good Lighting
+
+</strong>
+
+<p>
+
+Make sure your face is clearly visible.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="instruction-item">
+
+
+<div class="instruction-icon">
+
+<i class="fa-solid fa-face-smile"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+
+Look Straight
+
+</strong>
+
+<p>
+
+Keep your face directly toward the camera.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="instruction-item">
+
+
+<div class="instruction-icon">
+
+<i class="fa-solid fa-glasses"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+
+Clear Face
+
+</strong>
+
+<p>
+
+Remove mask or dark sunglasses.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="instruction-item">
+
+
+<div class="instruction-icon">
+
+<i class="fa-solid fa-images"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+
+Multiple Samples
+
+</strong>
+
+<p>
+
+Capture three clear face samples.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    REGISTER
+========================================================= -->
+
+<section class="register-card">
+
+
+<h4>
+
+<i class="fa-solid fa-shield-halved me-2"></i>
+
+Complete Registration
+
+</h4>
+
+
+<p class="text-muted">
+
+After capturing all three samples,
+click the button below to register
+your face.
+
+</p>
+
+
+<button
+type="button"
+id="completeRegistrationBtn"
+class="btn btn-success w-100 final-register-btn"
+disabled>
+
+
+<i class="fa-solid fa-user-check me-2"></i>
+
+Register My Face
+
+</button>
+
+
+<!-- SUCCESS -->
+
+<div
+id="registrationSuccess"
+class="registration-success">
+
+
+<i class="fa-solid fa-circle-check"></i>
+
+
+<h5 class="fw-bold">
+
+Face Registered Successfully!
+
+</h5>
+
+
+<p class="mb-3">
+
+Your face registration has been completed.
+
+You can now use AI Face Login.
+
+</p>
+
+
+<a
+href="face-login.html"
+class="btn btn-success w-100">
+
+<i class="fa-solid fa-face-viewfinder me-2"></i>
+
+Go to Face Login
+
+</a>
+
+
+</div>
+
+
+</section>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</main>
+
+
+<!-- =========================================================
+                    SUCCESS MODAL
+========================================================= -->
+
+<div
+class="modal fade"
+id="registrationSuccessModal"
+tabindex="-1"
+aria-hidden="true">
+
+
+<div
+class="modal-dialog modal-dialog-centered">
+
+
+<div
+class="modal-content border-0 rounded-4">
+
+
+<div
+class="modal-header bg-success text-white">
+
+
+<h5 class="modal-title">
+
+
+<i class="fa-solid fa-circle-check me-2"></i>
+
+Registration Successful
+
+
+</h5>
+
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+</button>
+
+
+</div>
+
+
+<div class="modal-body text-center p-4">
+
+
+<div
+class="mx-auto mb-3 d-flex justify-content-center align-items-center rounded-circle"
+style="
+width:90px;
+height:90px;
+background:rgba(34,197,94,.12);
+color:#16a34a;
+font-size:42px;
+">
+
+
+<i class="fa-solid fa-face-smile"></i>
+
+
+</div>
+
+
+<h4 class="fw-bold">
+
+Face Registered!
+
+</h4>
+
+
+<p class="text-muted">
+
+Your face samples have been
+registered successfully.
+
+</p>
+
+
+<div class="alert alert-success">
+
+<i class="fa-solid fa-shield-halved me-2"></i>
+
+You can now login securely using
+Face Recognition.
+
+</div>
+
+
+</div>
+
+
+<div class="modal-footer justify-content-center">
+
+
+<a
+href="face-login.html"
+class="btn btn-success px-4">
+
+
+<i class="fa-solid fa-right-to-bracket me-2"></i>
+
+Go to Face Login
+
+
+</a>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    ERROR MODAL
+========================================================= -->
+
+<div
+class="modal fade"
+id="registrationErrorModal"
+tabindex="-1"
+aria-hidden="true">
+
+
+<div class="modal-dialog modal-dialog-centered">
+
+
+<div
+class="modal-content border-0 rounded-4">
+
+
+<div
+class="modal-header bg-danger text-white">
+
+
+<h5 class="modal-title">
+
+<i class="fa-solid fa-triangle-exclamation me-2"></i>
+
+Registration Error
+
+</h5>
+
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+</button>
+
+
+</div>
+
+
+<div class="modal-body text-center p-4">
+
+
+<i
+class="fa-solid fa-circle-xmark fa-4x text-danger mb-3">
+</i>
+
+
+<h4>
+
+Unable to Register Face
+
+</h4>
+
+
+<p
+id="registrationErrorMessage"
+class="text-muted">
+
+Please complete all required information.
+
+</p>
+
+
+</div>
+
+
+<div class="modal-footer justify-content-center">
+
+
+<button
+type="button"
+class="btn btn-danger"
+data-bs-dismiss="modal">
+
+OK
+
+</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    FOOTER
+========================================================= -->
+
+<footer class="registration-footer">
+
+© 2026 Faculty Management & Productivity System |
+Secure HOD Face Registration
+
+</footer>
+
+
+<!-- =========================================================
+                    BOOTSTRAP
+========================================================= -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<script>
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+
+/* =========================================================
+                    ELEMENTS
+========================================================= */
+
+const video =
+document.getElementById(
+"registerVideo"
+);
+
+
+const canvas =
+document.getElementById(
+"registerCanvas"
+);
+
+
+const placeholder =
+document.getElementById(
+"registerPlaceholder"
+);
+
+
+const faceFrame =
+document.getElementById(
+"registrationFaceFrame"
+);
+
+
+const scanLine =
+document.getElementById(
+"registrationScanLine"
+);
+
+
+const startBtn =
+document.getElementById(
+"startRegisterCameraBtn"
+);
+
+
+const captureBtn =
+document.getElementById(
+"captureFaceBtn"
+);
+
+
+const resetBtn =
+document.getElementById(
+"retakeFaceBtn"
+);
+
+
+const stopBtn =
+document.getElementById(
+"stopRegisterCameraBtn"
+);
+
+
+const completeBtn =
+document.getElementById(
+"completeRegistrationBtn"
+);
+
+
+const cameraStatus =
+document.getElementById(
+"registerCameraStatus"
+);
+
+
+const faceStatus =
+document.getElementById(
+"registerFaceStatus"
+);
+
+
+const sampleStatus =
+document.getElementById(
+"registerSampleStatus"
+);
+
+
+const registrationStatus =
+document.getElementById(
+"registrationStatus"
+);
+
+
+const captureCount =
+document.getElementById(
+"captureCount"
+);
+
+
+const progressBar =
+document.getElementById(
+"captureProgressBar"
+);
+
+
+const registrationSuccess =
+document.getElementById(
+"registrationSuccess"
+);
+
+
+let cameraStream = null;
+
+let capturedImages = [];
+
+const REQUIRED_SAMPLES = 3;
+
+
+/* =========================================================
+                    START CAMERA
+========================================================= */
+
+async function startCamera(){
+
+try{
+
+
+if(
+!navigator.mediaDevices ||
+!navigator.mediaDevices.getUserMedia
+){
+
+showError(
+"Camera is not supported in this browser."
+);
+
+return;
+
+}
+
+
+cameraStream =
+await navigator.mediaDevices
+.getUserMedia({
+
+video:{
+
+facingMode:"user",
+
+width:{
+ideal:1280
+},
+
+height:{
+ideal:720
+}
+
+},
+
+audio:false
+
+});
+
+
+video.srcObject =
+cameraStream;
+
+
+video.style.display =
+"block";
+
+
+placeholder.style.display =
+"none";
+
+
+faceFrame.style.display =
+"block";
+
+
+startBtn.disabled =
+true;
+
+
+captureBtn.disabled =
+false;
+
+
+resetBtn.disabled =
+false;
+
+
+stopBtn.disabled =
+false;
+
+
+cameraStatus.innerText =
+"Online";
+
+
+cameraStatus.className =
+"badge bg-success";
+
+
+faceStatus.innerText =
+"Ready";
+
+
+faceStatus.className =
+"badge bg-info text-dark";
+
+
+}
+
+catch(error){
+
+
+console.error(
+"Camera Error:",
+error
+);
+
+
+cameraStatus.innerText =
+"Permission Denied";
+
+
+cameraStatus.className =
+"badge bg-danger";
+
+
+showError(
+"Camera permission denied. Please allow camera access."
+);
+
+
+}
+
+}
+
+
+/* =========================================================
+                    START BUTTON
+========================================================= */
+
+startBtn.addEventListener(
+"click",
+startCamera
+);
+
+
+/* =========================================================
+                    CAPTURE FACE
+========================================================= */
+
+captureBtn.addEventListener(
+"click",
+function(){
+
+
+if(!cameraStream){
+
+showError(
+"Please start the camera first."
+);
+
+return;
+
+}
+
+
+if(
+capturedImages.length >=
+REQUIRED_SAMPLES
+){
+
+return;
+
+}
+
+
+if(
+!video.videoWidth ||
+!video.videoHeight
+){
+
+showError(
+"Camera is still loading. Please try again."
+);
+
+return;
+
+}
+
+
+/* =========================================================
+                    SCANNING
+========================================================= */
+
+scanLine.style.display =
+"block";
+
+
+faceStatus.innerText =
+"Detecting...";
+
+
+faceStatus.className =
+"badge bg-warning text-dark";
+
+
+captureBtn.disabled =
+true;
+
+
+setTimeout(
+function(){
+
+
+/* =========================================================
+                    CAPTURE
+========================================================= */
+
+canvas.width =
+video.videoWidth;
+
+
+canvas.height =
+video.videoHeight;
+
+
+const context =
+canvas.getContext("2d");
+
+
+/*
+Mirror captured image so it matches
+the selfie-camera preview.
+*/
+
+context.save();
+
+context.translate(
+canvas.width,
+0
+);
+
+context.scale(
+-1,
+1
+);
+
+
+context.drawImage(
+
+video,
+
+0,
+
+0,
+
+canvas.width,
+
+canvas.height
+
+);
+
+
+context.restore();
+
+
+const imageData =
+canvas.toDataURL(
+"image/jpeg",
+0.90
+);
+
+
+capturedImages.push(
+imageData
+);
+
+
+scanLine.style.display =
+"none";
+
+
+faceStatus.innerText =
+"Face Detected";
+
+
+faceStatus.className =
+"badge bg-success";
+
+
+updateCaptureUI();
+
+
+if(
+capturedImages.length <
+REQUIRED_SAMPLES
+){
+
+captureBtn.disabled =
+false;
+
+}
+
+else{
+
+captureBtn.disabled =
+true;
+
+
+completeBtn.disabled =
+false;
+
+
+registrationStatus.innerText =
+"Ready to Register";
+
+
+registrationStatus.className =
+"badge bg-primary";
+
+}
+
+
+},
+800
+);
+
+
+}
+);
+
+
+/* =========================================================
+                    UPDATE CAPTURE UI
+========================================================= */
+
+function updateCaptureUI(){
+
+
+const count =
+capturedImages.length;
+
+
+captureCount.innerText =
+count +
+" / " +
+REQUIRED_SAMPLES;
+
+
+sampleStatus.innerText =
+count +
+" / " +
+REQUIRED_SAMPLES;
+
+
+if(count === 0){
+
+sampleStatus.className =
+"badge bg-secondary";
+
+}
+
+else if(
+count <
+REQUIRED_SAMPLES
+){
+
+sampleStatus.className =
+"badge bg-warning text-dark";
+
+}
+
+else{
+
+sampleStatus.className =
+"badge bg-success";
+
+}
+
+
+const percentage =
+(count / REQUIRED_SAMPLES) * 100;
+
+
+progressBar.style.width =
+percentage + "%";
+
+
+for(
+let i = 1;
+i <= REQUIRED_SAMPLES;
+i++
+){
+
+
+const dot =
+document.getElementById(
+"captureDot" + i
+);
+
+
+const preview =
+document.getElementById(
+"preview" + i
+);
+
+
+if(i <= count){
+
+
+dot.classList.add(
+"completed"
+);
+
+
+dot.innerHTML =
+'<i class="fa-solid fa-check"></i>';
+
+
+preview.innerHTML =
+
+'<img src="' +
+capturedImages[i - 1] +
+'" alt="Face Sample">' +
+
+'<div class="preview-check">' +
+
+'<i class="fa-solid fa-check"></i>' +
+
+'</div>';
+
+
+}
+
+else{
+
+
+dot.classList.remove(
+"completed"
+);
+
+
+dot.innerText =
+i;
+
+
+preview.innerHTML =
+
+'<i class="fa-solid fa-image preview-placeholder"></i>';
+
+
+}
+
+
+}
+
+
+}
+
+
+/* =========================================================
+                    RESET
+========================================================= */
+
+resetBtn.addEventListener(
+"click",
+function(){
+
+
+capturedImages = [];
+
+
+updateCaptureUI();
+
+
+completeBtn.disabled =
+true;
+
+
+registrationSuccess.style.display =
+"none";
+
+
+registrationStatus.innerText =
+"Not Registered";
+
+
+registrationStatus.className =
+"badge bg-danger";
+
+
+faceStatus.innerText =
+cameraStream
+? "Ready"
+: "Waiting...";
+
+
+faceStatus.className =
+cameraStream
+? "badge bg-info text-dark"
+: "badge bg-warning text-dark";
+
+
+if(cameraStream){
+
+captureBtn.disabled =
+false;
+
+}
+
+
+}
+);
+
+
+/* =========================================================
+                    STOP CAMERA
+========================================================= */
+
+function stopCamera(){
+
+
+if(cameraStream){
+
+
+cameraStream
+.getTracks()
+.forEach(
+function(track){
+
+track.stop();
+
+}
+);
+
+
+}
+
+
+cameraStream =
+null;
+
+
+video.srcObject =
+null;
+
+
+video.style.display =
+"none";
+
+
+placeholder.style.display =
+"block";
+
+
+faceFrame.style.display =
+"none";
+
+
+scanLine.style.display =
+"none";
+
+
+cameraStatus.innerText =
+"Offline";
+
+
+cameraStatus.className =
+"badge bg-secondary";
+
+
+faceStatus.innerText =
+"Waiting...";
+
+
+faceStatus.className =
+"badge bg-warning text-dark";
+
+
+startBtn.disabled =
+false;
+
+
+captureBtn.disabled =
+true;
+
+
+stopBtn.disabled =
+true;
+
+
+}
+
+
+/* =========================================================
+                    STOP BUTTON
+========================================================= */
+
+stopBtn.addEventListener(
+"click",
+stopCamera
+);
+
+
+/* =========================================================
+                    COMPLETE REGISTRATION
+========================================================= */
+
+completeBtn.addEventListener(
+"click",
+function(){
+
+
+const hodId =
+document
+.getElementById(
+"hodId"
+)
+.value
+.trim();
+
+
+const hodName =
+document
+.getElementById(
+"hodName"
+)
+.value
+.trim();
+
+
+const hodEmail =
+document
+.getElementById(
+"hodEmail"
+)
+.value
+.trim();
+
+
+const department =
+document
+.getElementById(
+"hodDepartment"
+)
+.value;
+
+
+/* =========================================================
+                    VALIDATION
+========================================================= */
+
+if(
+!hodId ||
+!hodName ||
+!hodEmail ||
+!department
+){
+
+showError(
+"Please enter HOD ID, Full Name, Email Address and Department."
+);
+
+return;
+
+}
+
+
+if(
+capturedImages.length <
+REQUIRED_SAMPLES
+){
+
+showError(
+"Please capture all 3 face samples before registration."
+);
+
+return;
+
+}
+
+
+/* =========================================================
+                FRONTEND DEMO REGISTRATION
+========================================================= */
+
+/*
+
+IMPORTANT:
+
+Currently this is frontend demonstration.
+
+Actual registration will send:
+
+HOD ID
+Name
+Email
+Department
+Face Images
+
+to Python / OpenCV backend.
+
+*/
+
+
+completeBtn.disabled =
+true;
+
+
+completeBtn.innerHTML =
+
+'<span class="spinner-border spinner-border-sm me-2"></span>' +
+
+'Registering Face...';
+
+
+registrationStatus.innerText =
+"Processing";
+
+
+registrationStatus.className =
+"badge bg-warning text-dark";
+
+
+setTimeout(
+function(){
+
+
+registrationStatus.innerText =
+"Registered";
+
+
+registrationStatus.className =
+"badge bg-success";
+
+
+registrationSuccess.style.display =
+"block";
+
+
+completeBtn.innerHTML =
+
+'<i class="fa-solid fa-circle-check me-2"></i>' +
+
+'Face Registered';
+
+
+stopCamera();
+
+
+const successModal =
+new bootstrap.Modal(
+document.getElementById(
+"registrationSuccessModal"
+)
+);
+
+
+successModal.show();
+
+
+},
+1800
+);
+
+
+}
+);
+
+
+/* =========================================================
+                    ERROR
+========================================================= */
+
+function showError(message){
+
+
+document
+.getElementById(
+"registrationErrorMessage"
+)
+.innerText =
+message;
+
+
+const errorModal =
+new bootstrap.Modal(
+document.getElementById(
+"registrationErrorModal"
+)
+);
+
+
+errorModal.show();
+
+
+}
+
+
+/* =========================================================
+                    DARK MODE
+========================================================= */
+
+const themeToggle =
+document.getElementById(
+"registrationThemeToggle"
+);
+
+
+if(
+localStorage.getItem(
+"hodFaceTheme"
+) === "dark"
+){
+
+
+document.body.classList.add(
+"dark"
+);
+
+
+themeToggle
+.querySelector("i")
+.className =
+"fa-solid fa-sun";
+
+
+}
+
+
+themeToggle.addEventListener(
+"click",
+function(){
+
+
+document.body.classList.toggle(
+"dark"
+);
+
+
+const icon =
+themeToggle.querySelector(
+"i"
+);
+
+
+if(
+document.body.classList.contains(
+"dark"
+)
+){
+
+
+icon.className =
+"fa-solid fa-sun";
+
+
+localStorage.setItem(
+"hodFaceTheme",
+"dark"
+);
+
+
+}
+
+else{
+
+
+icon.className =
+"fa-solid fa-moon";
+
+
+localStorage.setItem(
+"hodFaceTheme",
+"light"
+);
+
+
+}
+
+
+}
+);
+
+
+/* =========================================================
+                    PAGE CLOSE
+========================================================= */
+
+window.addEventListener(
+"beforeunload",
+function(){
+
+
+if(cameraStream){
+
+
+cameraStream
+.getTracks()
+.forEach(
+function(track){
+
+track.stop();
+
+}
+);
+
+
+}
+
+
+}
+);
+
+
+});
+
+</script>
+
+
+</body>
+
+</html>

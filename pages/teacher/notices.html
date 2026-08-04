@@ -1,0 +1,6155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>
+    Notices | Teacher Panel
+</title>
+
+
+<!-- =========================================================
+                        BOOTSTRAP
+========================================================= -->
+
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+
+
+<!-- =========================================================
+                        FONT AWESOME
+========================================================= -->
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+<!-- =========================================================
+                        GOOGLE FONT
+========================================================= -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+
+<style>
+
+/* =========================================================
+                        GLOBAL
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+html{
+    scroll-behavior:smooth;
+}
+
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#f5f7fb;
+
+    color:#1f2937;
+
+    min-height:100vh;
+
+}
+
+
+a{
+    text-decoration:none;
+}
+
+
+button,
+input,
+select{
+    font-family:inherit;
+}
+
+
+/* =========================================================
+                    MAIN LAYOUT
+========================================================= */
+
+.teacher-layout{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+
+/* =========================================================
+                        SIDEBAR
+========================================================= */
+
+.teacher-sidebar{
+
+    width:270px;
+
+    min-height:100vh;
+
+    background:
+        linear-gradient(
+            180deg,
+            #263bd8 0%,
+            #6747dc 52%,
+            #ad72dd 100%
+        );
+
+    position:fixed;
+
+    top:0;
+    left:0;
+    bottom:0;
+
+    z-index:1200;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow-y:auto;
+
+    transition:.3s ease;
+
+    box-shadow:
+        8px 0 30px
+        rgba(76,58,180,.13);
+
+}
+
+
+/* =========================================================
+                    SIDEBAR SCROLLBAR
+========================================================= */
+
+.teacher-sidebar::-webkit-scrollbar{
+
+    width:5px;
+
+}
+
+
+.teacher-sidebar::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+
+.teacher-sidebar::-webkit-scrollbar-thumb{
+
+    background:
+        rgba(255,255,255,.25);
+
+    border-radius:20px;
+
+}
+
+
+/* =========================================================
+                    SIDEBAR LOGO
+========================================================= */
+
+.teacher-sidebar-brand{
+
+    text-align:center;
+
+    padding:
+        27px 20px 20px;
+
+    color:#ffffff;
+
+}
+
+
+.teacher-sidebar-brand img{
+
+    width:82px;
+
+    height:82px;
+
+    object-fit:contain;
+
+    background:#ffffff;
+
+    padding:6px;
+
+    border-radius:50%;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.15);
+
+    margin-bottom:12px;
+
+}
+
+
+.teacher-sidebar-brand h3{
+
+    margin:0;
+
+    font-size:25px;
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+
+}
+
+
+.teacher-sidebar-brand p{
+
+    margin:
+        4px 0 0;
+
+    font-size:13px;
+
+    color:
+        rgba(255,255,255,.82);
+
+}
+
+
+/* =========================================================
+                    SIDEBAR MENU
+========================================================= */
+
+.teacher-sidebar-menu{
+
+    list-style:none;
+
+    padding:
+        15px 16px 30px;
+
+    margin:0;
+
+}
+
+
+.teacher-sidebar-menu li{
+
+    margin-bottom:7px;
+
+}
+
+
+.teacher-sidebar-menu a{
+
+    color:
+        rgba(255,255,255,.88);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:
+        13px 17px;
+
+    border-radius:13px;
+
+    font-size:14px;
+
+    font-weight:500;
+
+    transition:.25s ease;
+
+}
+
+
+.teacher-sidebar-menu a i{
+
+    width:22px;
+
+    text-align:center;
+
+    font-size:16px;
+
+}
+
+
+.teacher-sidebar-menu a:hover{
+
+    background:
+        rgba(255,255,255,.16);
+
+    color:#ffffff;
+
+    transform:
+        translateX(4px);
+
+}
+
+
+.teacher-sidebar-menu a.active{
+
+    background:
+        rgba(255,255,255,.23);
+
+    color:#ffffff;
+
+    font-weight:700;
+
+    box-shadow:
+        0 6px 18px
+        rgba(0,0,0,.08);
+
+}
+
+
+/* =========================================================
+                    SIDEBAR SECTION TITLE
+========================================================= */
+
+.sidebar-section-title{
+
+    color:
+        rgba(255,255,255,.58);
+
+    font-size:10px;
+
+    font-weight:700;
+
+    letter-spacing:1.2px;
+
+    text-transform:uppercase;
+
+    padding:
+        18px 17px 7px;
+
+}
+
+
+/* =========================================================
+                        MAIN
+========================================================= */
+
+.teacher-main{
+
+    margin-left:270px;
+
+    width:
+        calc(100% - 270px);
+
+    min-height:100vh;
+
+}
+
+
+/* =========================================================
+                        NAVBAR
+========================================================= */
+
+.teacher-navbar{
+
+    height:78px;
+
+    background:#ffffff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:
+        0 30px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    box-shadow:
+        0 3px 16px
+        rgba(0,0,0,.06);
+
+}
+
+
+/* =========================================================
+                    NAVBAR LEFT
+========================================================= */
+
+.navbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+.mobile-menu-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#f0edff;
+
+    color:#6c4cff;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+}
+
+
+.navbar-title h4{
+
+    margin:0;
+
+    color:#243c9e;
+
+    font-size:21px;
+
+    font-weight:800;
+
+}
+
+
+.navbar-title p{
+
+    margin:
+        2px 0 0;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                    NAVBAR RIGHT
+========================================================= */
+
+.navbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+}
+
+
+.nav-icon-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#f2efff;
+
+    color:#6c4cff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    position:relative;
+
+}
+
+
+.nav-icon-btn:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+                    NOTIFICATION COUNT
+========================================================= */
+
+.notification-count{
+
+    position:absolute;
+
+    top:-3px;
+
+    right:-3px;
+
+    min-width:18px;
+
+    height:18px;
+
+    padding:
+        0 4px;
+
+    border-radius:20px;
+
+    background:#ef4444;
+
+    color:#ffffff;
+
+    border:
+        2px solid #ffffff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:9px;
+
+    font-weight:700;
+
+}
+
+
+/* =========================================================
+                    PROFILE
+========================================================= */
+
+.teacher-profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-left:5px;
+
+}
+
+
+.teacher-profile img{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:
+        3px solid #ddd6fe;
+
+}
+
+
+.teacher-profile-info strong{
+
+    display:block;
+
+    font-size:13px;
+
+}
+
+
+.teacher-profile-info small{
+
+    display:block;
+
+    color:#64748b;
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+                    PAGE CONTENT
+========================================================= */
+
+.teacher-content{
+
+    padding:
+        28px 30px 20px;
+
+}
+
+
+/* =========================================================
+                    PAGE HEADER
+========================================================= */
+
+.notice-page-header{
+
+    background:#ffffff;
+
+    padding:
+        22px 25px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.055);
+
+    margin-bottom:24px;
+
+}
+
+
+.notice-page-header h2{
+
+    margin:
+        0 0 5px;
+
+    font-weight:800;
+
+    font-size:25px;
+
+}
+
+
+.notice-page-header h2 i{
+
+    color:#6c4cff;
+
+}
+
+
+.notice-page-header p{
+
+    margin:0;
+
+    color:#64748b;
+
+    font-size:13px;
+
+}
+
+
+/* =========================================================
+                NOTICE INFORMATION BUTTON
+========================================================= */
+
+.notice-info-btn{
+
+    border:none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c4cff,
+            #8b5cf6
+        );
+
+    color:#ffffff;
+
+    border-radius:12px;
+
+    padding:
+        11px 18px;
+
+    font-weight:600;
+
+    font-size:13px;
+
+    transition:.25s;
+
+}
+
+
+.notice-info-btn:hover{
+
+    color:#ffffff;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(108,76,255,.25);
+
+}
+
+
+/* =========================================================
+                    STATISTICS GRID
+========================================================= */
+
+.notice-stat-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
+
+    margin-bottom:25px;
+
+}
+
+
+/* =========================================================
+                    STAT CARD
+========================================================= */
+
+.notice-stat-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    box-shadow:
+        0 7px 22px
+        rgba(0,0,0,.055);
+
+    transition:.3s;
+
+}
+
+
+.notice-stat-card:hover{
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.09);
+
+}
+
+
+.notice-stat-icon{
+
+    width:55px;
+
+    height:55px;
+
+    flex-shrink:0;
+
+    border-radius:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:22px;
+
+}
+
+
+/* =========================================================
+                    STAT COLORS
+========================================================= */
+
+.notice-stat-icon.purple{
+
+    color:#6c4cff;
+
+    background:#ede9fe;
+
+}
+
+
+.notice-stat-icon.red{
+
+    color:#dc2626;
+
+    background:#fee2e2;
+
+}
+
+
+.notice-stat-icon.blue{
+
+    color:#2563eb;
+
+    background:#dbeafe;
+
+}
+
+
+.notice-stat-icon.orange{
+
+    color:#ea580c;
+
+    background:#ffedd5;
+
+}
+
+
+.notice-stat-info h3{
+
+    margin:0;
+
+    font-size:23px;
+
+    font-weight:800;
+
+}
+
+
+.notice-stat-info p{
+
+    margin:
+        3px 0 0;
+
+    font-size:12px;
+
+    color:#64748b;
+
+}
+
+
+/* =========================================================
+                    CONTENT CARD
+========================================================= */
+
+.notice-main-card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:23px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.055);
+
+}
+
+
+/* =========================================================
+                    CARD HEADER
+========================================================= */
+
+.notice-main-card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+
+}
+
+
+.notice-main-card-header h4{
+
+    margin:0;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:#6c4cff;
+
+}
+
+
+.notice-main-card-header p{
+
+    margin:
+        4px 0 0;
+
+    color:#64748b;
+
+    font-size:12px;
+
+}
+
+
+/* =========================================================
+                    NOTICE TOOLBAR
+========================================================= */
+
+.notice-toolbar{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+
+/* =========================================================
+                    SEARCH
+========================================================= */
+
+.notice-search{
+
+    position:relative;
+
+}
+
+
+.notice-search i{
+
+    position:absolute;
+
+    left:14px;
+
+    top:50%;
+
+    transform:
+        translateY(-50%);
+
+    color:#94a3b8;
+
+}
+
+
+.notice-search input{
+
+    width:260px;
+
+    height:43px;
+
+    padding:
+        0 15px 0 40px;
+
+    border:
+        1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    outline:none;
+
+    font-size:12px;
+
+    background:#ffffff;
+
+}
+
+
+.notice-search input:focus{
+
+    border-color:#8b5cf6;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139,92,246,.10);
+
+}
+
+
+/* =========================================================
+                    SORT SELECT
+========================================================= */
+
+.notice-sort{
+
+    min-width:155px;
+
+    height:43px;
+
+    border:
+        1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    padding:
+        0 12px;
+
+    font-size:12px;
+
+    outline:none;
+
+    background:#ffffff;
+
+}
+
+
+/* =========================================================
+                    FILTER BUTTONS
+========================================================= */
+
+.notice-filter-group{
+
+    display:flex;
+
+    gap:9px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:22px;
+
+}
+
+
+.notice-filter-btn{
+
+    border:
+        1px solid #ddd6fe;
+
+    background:#ffffff;
+
+    color:#6c4cff;
+
+    padding:
+        8px 15px;
+
+    border-radius:30px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.notice-filter-btn:hover,
+.notice-filter-btn.active{
+
+    background:#6c4cff;
+
+    border-color:#6c4cff;
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                    NOTICE LAYOUT
+========================================================= */
+
+.notice-layout{
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1fr) 320px;
+
+    gap:22px;
+
+    align-items:start;
+
+}
+
+
+/* =========================================================
+                    NOTICE LIST
+========================================================= */
+
+.notice-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+}
+
+
+/* =========================================================
+                    NOTICE CARD
+========================================================= */
+
+.notice-card{
+
+    background:#ffffff;
+
+    border:
+        1px solid #eceaf5;
+
+    border-left:
+        5px solid #6c4cff;
+
+    border-radius:17px;
+
+    padding:19px;
+
+    position:relative;
+
+    transition:.3s;
+
+}
+
+
+.notice-card:hover{
+
+    transform:
+        translateY(-3px);
+
+    border-color:#d8d2ff;
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,.08);
+
+}
+
+
+.notice-card.important{
+
+    border-left-color:#ef4444;
+
+}
+
+
+.notice-card.academic{
+
+    border-left-color:#3b82f6;
+
+}
+
+
+.notice-card.exam{
+
+    border-left-color:#8b5cf6;
+
+}
+
+
+.notice-card.event{
+
+    border-left-color:#22c55e;
+
+}
+
+
+.notice-card.general{
+
+    border-left-color:#64748b;
+
+}
+
+
+/* =========================================================
+                    UNREAD INDICATOR
+========================================================= */
+
+.notice-card.unread::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:15px;
+
+    right:15px;
+
+    width:9px;
+
+    height:9px;
+
+    background:#ef4444;
+
+    border-radius:50%;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(239,68,68,.10);
+
+}
+
+
+/* =========================================================
+                    NOTICE CARD HEADER
+========================================================= */
+
+.notice-card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+    margin-bottom:13px;
+
+}
+
+
+.notice-title-area{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:13px;
+
+}
+
+
+/* =========================================================
+                    NOTICE ICON
+========================================================= */
+
+.notice-icon{
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:13px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#ede9fe;
+
+    color:#6c4cff;
+
+    font-size:18px;
+
+    flex-shrink:0;
+
+}
+
+
+.notice-card.important
+.notice-icon{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+
+.notice-card.academic
+.notice-icon{
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+}
+
+
+.notice-card.exam
+.notice-icon{
+
+    background:#ede9fe;
+
+    color:#7c3aed;
+
+}
+
+
+.notice-card.event
+.notice-icon{
+
+    background:#dcfce7;
+
+    color:#16a34a;
+
+}
+
+
+.notice-card.general
+.notice-icon{
+
+    background:#f1f5f9;
+
+    color:#475569;
+
+}
+
+
+/* =========================================================
+                    NOTICE TITLE
+========================================================= */
+
+.notice-title-area h5{
+
+    margin:
+        0 0 5px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+}
+
+
+/* =========================================================
+                    NOTICE META
+========================================================= */
+
+.notice-meta{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+    flex-wrap:wrap;
+
+    color:#64748b;
+
+    font-size:10px;
+
+}
+
+
+.notice-meta span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
+}
+
+
+/* =========================================================
+                    NOTICE BADGE
+========================================================= */
+
+.notice-badge{
+
+    display:inline-block;
+
+    padding:
+        5px 10px;
+
+    border-radius:30px;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    white-space:nowrap;
+
+}
+
+
+.notice-badge.important{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+
+.notice-badge.academic{
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+}
+
+
+.notice-badge.exam{
+
+    background:#ede9fe;
+
+    color:#7c3aed;
+
+}
+
+
+.notice-badge.event{
+
+    background:#dcfce7;
+
+    color:#16a34a;
+
+}
+
+
+.notice-badge.general{
+
+    background:#f1f5f9;
+
+    color:#475569;
+
+}
+
+
+/* =========================================================
+                    DESCRIPTION
+========================================================= */
+
+.notice-description{
+
+    color:#64748b;
+
+    font-size:11px;
+
+    line-height:1.7;
+
+    margin-bottom:15px;
+
+}
+
+
+/* =========================================================
+                    NOTICE FOOTER
+========================================================= */
+
+.notice-card-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    padding-top:13px;
+
+    border-top:
+        1px solid #f1f1f1;
+
+}
+
+
+.notice-publisher{
+
+    color:#64748b;
+
+    font-size:10px;
+
+}
+
+
+.notice-publisher strong{
+
+    color:#374151;
+
+}
+
+
+/* =========================================================
+                    VIEW BUTTON
+========================================================= */
+
+.notice-view-btn{
+
+    border:none;
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+    border-radius:9px;
+
+    padding:
+        8px 12px;
+
+    font-size:10px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+
+.notice-view-btn:hover{
+
+    background:#5838ed;
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+/* =========================================================
+                    SIDE CARD
+========================================================= */
+
+.notice-side-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    box-shadow:
+        0 7px 22px
+        rgba(0,0,0,.055);
+
+    margin-bottom:18px;
+
+}
+
+
+.notice-side-card h5{
+
+    margin-bottom:17px;
+
+    color:#6c4cff;
+
+    font-size:15px;
+
+    font-weight:700;
+
+}
+
+
+/* =========================================================
+                    PINNED NOTICE
+========================================================= */
+
+.pinned-notice{
+
+    padding:
+        13px 0;
+
+    border-bottom:
+        1px solid #eeeeee;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.pinned-notice:first-of-type{
+
+    padding-top:0;
+
+}
+
+
+.pinned-notice:last-child{
+
+    border-bottom:none;
+
+    padding-bottom:0;
+
+}
+
+
+.pinned-notice:hover{
+
+    padding-left:5px;
+
+}
+
+
+.pinned-notice h6{
+
+    margin:
+        0 0 5px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+
+.pinned-notice small{
+
+    color:#64748b;
+
+    font-size:9px;
+
+}
+
+
+/* =========================================================
+                    NOTICE SUMMARY
+========================================================= */
+
+.notice-info-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:
+        11px 0;
+
+    border-bottom:
+        1px solid #eeeeee;
+
+    font-size:11px;
+
+}
+
+
+.notice-info-row:last-child{
+
+    border-bottom:none;
+
+}
+
+
+.notice-info-row span{
+
+    color:#64748b;
+
+}
+
+
+.notice-info-row strong{
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                    NO RESULT
+========================================================= */
+
+.no-notice-result{
+
+    display:none;
+
+    text-align:center;
+
+    padding:
+        50px 20px;
+
+}
+
+
+.no-notice-result i{
+
+    font-size:52px;
+
+    color:#c4b5fd;
+
+    margin-bottom:14px;
+
+}
+
+
+.no-notice-result h5{
+
+    font-weight:700;
+
+}
+
+
+.no-notice-result p{
+
+    color:#64748b;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                    MODAL
+========================================================= */
+
+.notice-modal-icon{
+
+    width:78px;
+
+    height:78px;
+
+    margin:
+        0 auto 15px;
+
+    border-radius:50%;
+
+    background:#ede9fe;
+
+    color:#6c4cff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:30px;
+
+}
+
+
+.notice-detail-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    padding:
+        12px 0;
+
+    border-bottom:
+        1px solid #eeeeee;
+
+}
+
+
+.notice-detail-row span{
+
+    color:#64748b;
+
+    font-size:11px;
+
+}
+
+
+.notice-detail-row strong{
+
+    text-align:right;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                    FOOTER
+========================================================= */
+
+.footer{
+
+    text-align:center;
+
+    padding:
+        20px 10px 10px;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                        DARK MODE
+========================================================= */
+
+body.dark{
+
+    background:#0f172a;
+
+    color:#f8fafc;
+
+}
+/* =========================================================
+            DARK MODE - TEACHER SIDEBAR
+========================================================= */
+
+body.dark .teacher-sidebar{
+
+    background:
+        linear-gradient(
+            180deg,
+            #080d1a 0%,
+            #10172a 48%,
+            #17162f 100%
+        );
+
+    box-shadow:
+        8px 0 30px
+        rgba(0,0,0,.35);
+
+}
+
+
+/* =========================================================
+            DARK SIDEBAR BRAND
+========================================================= */
+
+body.dark .teacher-sidebar-brand{
+
+    color:#ffffff;
+
+}
+
+
+body.dark .teacher-sidebar-brand p{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .teacher-sidebar-brand img{
+
+    background:#ffffff;
+
+    box-shadow:
+        0 8px 24px
+        rgba(0,0,0,.30);
+
+}
+
+
+/* =========================================================
+            DARK SIDEBAR MENU LINKS
+========================================================= */
+
+body.dark .teacher-sidebar-menu a{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark .teacher-sidebar-menu a i{
+
+    color:#a5b4fc;
+
+}
+
+
+/* =========================================================
+            DARK SIDEBAR MENU HOVER
+========================================================= */
+
+body.dark .teacher-sidebar-menu a:hover{
+
+    background:
+        rgba(139,92,246,.14);
+
+    color:#ffffff;
+
+    transform:
+        translateX(4px);
+
+}
+
+
+body.dark .teacher-sidebar-menu a:hover i{
+
+    color:#c4b5fd;
+
+}
+
+
+/* =========================================================
+            DARK SIDEBAR ACTIVE MENU
+========================================================= */
+
+body.dark .teacher-sidebar-menu a.active{
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(108,76,255,.32),
+            rgba(139,92,246,.22)
+        );
+
+    color:#ffffff;
+
+    border:
+        1px solid
+        rgba(167,139,250,.20);
+
+    box-shadow:
+        0 8px 22px
+        rgba(0,0,0,.18);
+
+}
+
+
+body.dark .teacher-sidebar-menu a.active i{
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+            DARK SIDEBAR SECTION TITLE
+========================================================= */
+
+body.dark .sidebar-section-title{
+
+    color:#64748b;
+
+}
+
+
+
+body.dark
+.teacher-sidebar::-webkit-scrollbar-thumb{
+
+    background:
+        rgba(148,163,184,.30);
+
+}
+
+
+body.dark
+.teacher-sidebar::-webkit-scrollbar-track{
+
+    background:
+        transparent;
+
+}
+
+body.dark
+.teacher-navbar{
+
+    background:#111827;
+
+    border-bottom:
+        1px solid #263244;
+
+}
+
+
+body.dark
+.navbar-title h4{
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.navbar-title p{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.nav-icon-btn{
+
+    background:#1f2937;
+
+    color:#facc15;
+
+}
+
+
+body.dark
+.notification-count{
+
+    border-color:#111827;
+
+}
+
+
+body.dark
+.notice-page-header,
+body.dark
+.notice-stat-card,
+body.dark
+.notice-main-card,
+body.dark
+.notice-card,
+body.dark
+.notice-side-card{
+
+    background:#111827;
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.notice-page-header p,
+body.dark
+.notice-stat-info p,
+body.dark
+.notice-main-card-header p,
+body.dark
+.notice-description,
+body.dark
+.notice-meta,
+body.dark
+.notice-publisher,
+body.dark
+.pinned-notice small,
+body.dark
+.notice-info-row span{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.notice-main-card-header h4,
+body.dark
+.notice-side-card h5{
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark
+.notice-search input,
+body.dark
+.notice-sort{
+
+    background:#1f2937;
+
+    border-color:#374151;
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.notice-search input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.notice-filter-btn{
+
+    background:#1f2937;
+
+    border-color:#374151;
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark
+.notice-filter-btn:hover,
+body.dark
+.notice-filter-btn.active{
+
+    background:#6c4cff;
+
+    border-color:#6c4cff;
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.notice-card{
+
+    border-top-color:#374151;
+
+    border-right-color:#374151;
+
+    border-bottom-color:#374151;
+
+}
+
+
+body.dark
+.notice-card-footer,
+body.dark
+.pinned-notice,
+body.dark
+.notice-info-row,
+body.dark
+.notice-detail-row{
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.notice-publisher strong{
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.modal-content{
+
+    background:#111827;
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.modal-header,
+body.dark
+.modal-footer{
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.btn-close{
+
+    filter:invert(1);
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE
+========================================================= */
+
+@media(max-width:1200px){
+
+    .notice-stat-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+}
+
+
+@media(max-width:992px){
+
+    .teacher-sidebar{
+
+        transform:
+            translateX(-100%);
+
+    }
+
+
+    .teacher-sidebar.show{
+
+        transform:
+            translateX(0);
+
+    }
+
+
+    .teacher-main{
+
+        margin-left:0;
+
+        width:100%;
+
+    }
+
+
+    .mobile-menu-btn{
+
+        display:flex;
+
+    }
+
+
+    .notice-layout{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+@media(max-width:768px){
+
+    .teacher-navbar{
+
+        padding:
+            0 17px;
+
+    }
+
+
+    .teacher-content{
+
+        padding:
+            20px 16px;
+
+    }
+
+
+    .teacher-profile-info{
+
+        display:none;
+
+    }
+
+
+    .navbar-title p{
+
+        display:none;
+
+    }
+
+
+    .notice-toolbar{
+
+        width:100%;
+
+    }
+
+
+    .notice-search{
+
+        width:100%;
+
+    }
+
+
+    .notice-search input{
+
+        width:100%;
+
+    }
+
+
+    .notice-sort{
+
+        width:100%;
+
+    }
+
+}
+
+
+@media(max-width:576px){
+
+    .notice-stat-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .notice-page-header{
+
+        padding:18px;
+
+        align-items:flex-start;
+
+    }
+
+
+    .notice-page-header h2{
+
+        font-size:21px;
+
+    }
+
+
+    .notice-main-card{
+
+        padding:16px;
+
+    }
+
+
+    .notice-card{
+
+        padding:16px;
+
+    }
+
+
+    .notice-card-header{
+
+        flex-direction:column;
+
+    }
+
+
+    .notice-title-area{
+
+        width:100%;
+
+    }
+
+
+    .notice-card-footer{
+
+        align-items:flex-start;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+                    TEACHER LAYOUT
+========================================================= -->
+
+<div class="teacher-layout">
+
+
+<!-- =========================================================
+                        SIDEBAR
+========================================================= -->
+
+<aside
+    class="teacher-sidebar"
+    id="teacherSidebar">
+
+
+<!-- =========================================================
+                    SIDEBAR BRAND
+========================================================= -->
+
+<div class="teacher-sidebar-brand">
+
+
+<img
+    src="../../images/logo.png"
+    alt="FMPS Logo">
+
+
+<h3>
+    FMPS
+</h3>
+
+
+<p>
+    Teacher Panel
+</p>
+
+
+</div>
+
+
+<!-- =========================================================
+                    SIDEBAR MENU
+========================================================= -->
+
+<ul class="teacher-sidebar-menu">
+
+
+<!-- DASHBOARD -->
+
+<li>
+
+<a href="teacher-dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+<span>
+    Dashboard
+</span>
+
+</a>
+
+</li>
+
+
+<!-- TIMETABLE -->
+
+<li>
+
+<a href="timetable.html">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+<span>
+    Timetable
+</span>
+
+</a>
+
+</li>
+
+
+<!-- ATTENDANCE -->
+
+<li>
+
+<a href="attendance.html">
+
+<i class="fa-solid fa-user-check"></i>
+
+<span>
+    Attendance
+</span>
+
+</a>
+
+</li>
+
+
+<!-- MY CLASSES -->
+
+<li>
+
+<a href="my-classes.html">
+
+<i class="fa-solid fa-book-open"></i>
+
+<span>
+    My Classes
+</span>
+
+</a>
+
+</li>
+
+
+<!-- ASSIGNMENTS -->
+
+<li>
+
+<a href="assignments.html">
+
+<i class="fa-solid fa-file-lines"></i>
+
+<span>
+    Assignments
+</span>
+
+</a>
+
+</li>
+
+
+<!-- PERFORMANCE -->
+
+<li>
+
+<a href="performance.html">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<span>
+    Performance
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                    ACADEMIC TOOLS
+========================================================= -->
+
+<div class="sidebar-section-title">
+
+Academic Tools
+
+</div>
+
+
+<!-- ACADEMIC CALENDAR -->
+
+<li>
+
+<a href="academic-calendar.html">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+<span>
+    Academic Calendar
+</span>
+
+</a>
+
+</li>
+
+
+<!-- NOTICES -->
+
+<li>
+
+<a
+    href="notices.html"
+    class="active">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+<span>
+    Notices
+</span>
+
+</a>
+
+</li>
+
+
+<!-- LEAVE REQUEST -->
+
+<li>
+
+<a href="leave-request.html">
+
+<i class="fa-solid fa-calendar-minus"></i>
+
+<span>
+    Leave Request
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                    AI SMART FEATURES
+========================================================= -->
+
+<div class="sidebar-section-title">
+
+AI Smart Features
+
+</div>
+
+
+<!-- FACE ATTENDANCE -->
+
+<li>
+
+<a href="face-attendance.html">
+
+<i class="fa-solid fa-camera"></i>
+
+<span>
+    Face Attendance
+</span>
+
+</a>
+
+</li>
+
+
+<!-- STUDENT PERFORMANCE AI -->
+
+<li>
+
+<a href="student-performance-ai.html">
+
+<i class="fa-solid fa-brain"></i>
+
+<span>
+    Student Performance AI
+</span>
+
+</a>
+
+</li>
+
+
+<!-- SMART REPORT -->
+
+<li>
+
+<a href="smart-report.html">
+
+<i class="fa-solid fa-file-waveform"></i>
+
+<span>
+    Smart Reports
+</span>
+
+</a>
+
+</li>
+
+
+<!-- AI ASSISTANT -->
+
+<li>
+
+<a href="ai-assistant.html">
+
+<i class="fa-solid fa-robot"></i>
+
+<span>
+    AI Assistant
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                        ACCOUNT
+========================================================= -->
+
+<div class="sidebar-section-title">
+
+Account
+
+</div>
+
+
+<!-- PROFILE -->
+
+<li>
+
+<a href="profile.html">
+
+<i class="fa-solid fa-user"></i>
+
+<span>
+    Profile
+</span>
+
+</a>
+
+</li>
+
+
+<!-- SETTINGS -->
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+<span>
+    Settings
+</span>
+
+</a>
+
+</li>
+
+
+<!-- CHANGE PASSWORD -->
+
+<li>
+
+<a href="change-password.html">
+
+<i class="fa-solid fa-lock"></i>
+
+<span>
+    Change Password
+</span>
+
+</a>
+
+</li>
+
+
+<!-- LOGOUT -->
+
+<li>
+
+<a href="teacher-login.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+<span>
+    Logout
+</span>
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</aside>
+
+
+<!-- =========================================================
+                        MAIN AREA
+========================================================= -->
+
+<div class="teacher-main">
+
+
+<!-- =========================================================
+                        NAVBAR
+========================================================= -->
+
+<header class="teacher-navbar">
+
+
+<!-- =========================================================
+                    NAVBAR LEFT
+========================================================= -->
+
+<div class="navbar-left">
+
+
+<button
+    type="button"
+    class="mobile-menu-btn"
+    id="mobileMenuBtn">
+
+<i class="fa-solid fa-bars"></i>
+
+</button>
+
+
+<div class="navbar-title">
+
+
+<h4>
+    Notices
+</h4>
+
+
+<p>
+    Faculty Management & Productivity System
+</p>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    NAVBAR RIGHT
+========================================================= -->
+
+<div class="navbar-right">
+
+
+<!-- DARK MODE -->
+
+<button
+    type="button"
+    class="nav-icon-btn"
+    id="themeToggle"
+    title="Dark / Light Mode">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+
+<!-- NOTIFICATIONS -->
+
+<a
+    href="notices.html"
+    class="nav-icon-btn"
+    title="Notifications">
+
+
+<i class="fa-solid fa-bell"></i>
+
+
+<span
+    class="notification-count"
+    id="navbarNotificationCount">
+
+3
+
+</span>
+
+
+</a>
+
+
+<!-- PROFILE -->
+
+<div class="teacher-profile">
+
+
+<img
+    src="../../images/default-profile.png"
+    alt="Teacher">
+
+
+<div class="teacher-profile-info">
+
+
+<strong>
+    Teacher
+</strong>
+
+
+<small>
+    Faculty Member
+</small>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</header>
+
+
+<!-- =========================================================
+                    PAGE CONTENT
+========================================================= -->
+
+<main class="teacher-content">
+
+
+<!-- =========================================================
+                    PAGE HEADER
+========================================================= -->
+
+<section class="notice-page-header">
+
+
+<div>
+
+
+<h2>
+
+<i class="fa-solid fa-bullhorn me-2"></i>
+
+Notice Board
+
+</h2>
+
+
+<p>
+
+Stay updated with academic,
+administrative and college announcements.
+
+</p>
+
+
+</div>
+
+
+<button
+    type="button"
+    class="notice-info-btn"
+    data-bs-toggle="modal"
+    data-bs-target="#noticeInfoModal">
+
+
+<i class="fa-solid fa-circle-info me-2"></i>
+
+Notice Information
+
+</button>
+
+
+</section>
+
+
+<!-- =========================================================
+                    STATISTICS
+========================================================= -->
+
+<section class="notice-stat-grid">
+
+
+<!-- TOTAL NOTICES -->
+
+<div class="notice-stat-card">
+
+
+<div class="notice-stat-icon purple">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+</div>
+
+
+<div class="notice-stat-info">
+
+<h3 id="totalNoticeCount">
+    6
+</h3>
+
+<p>
+    Total Notices
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- IMPORTANT -->
+
+<div class="notice-stat-card">
+
+
+<div class="notice-stat-icon red">
+
+<i class="fa-solid fa-triangle-exclamation"></i>
+
+</div>
+
+
+<div class="notice-stat-info">
+
+<h3 id="importantNoticeCount">
+    1
+</h3>
+
+<p>
+    Important Notices
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- ACADEMIC -->
+
+<div class="notice-stat-card">
+
+
+<div class="notice-stat-icon blue">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+</div>
+
+
+<div class="notice-stat-info">
+
+<h3 id="academicNoticeCount">
+    2
+</h3>
+
+<p>
+    Academic Notices
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- UNREAD -->
+
+<div class="notice-stat-card">
+
+
+<div class="notice-stat-icon orange">
+
+<i class="fa-solid fa-envelope"></i>
+
+</div>
+
+
+<div class="notice-stat-info">
+
+<h3 id="unreadNoticeCount">
+    3
+</h3>
+
+<p>
+    Unread Notices
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                NOTICE BOARD MAIN CARD
+========================================================= -->
+
+<section class="notice-main-card">
+
+
+<!-- =========================================================
+                NOTICE CARD HEADER
+========================================================= -->
+
+<div class="notice-main-card-header">
+
+
+<div>
+
+
+<h4>
+
+<i class="fa-solid fa-list me-2"></i>
+
+All Notices
+
+</h4>
+
+
+<p>
+
+Search, filter and view college notices
+
+</p>
+
+
+</div>
+
+
+<!-- =========================================================
+                    SEARCH + SORT
+========================================================= -->
+
+<div class="notice-toolbar">
+
+
+<div class="notice-search">
+
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+
+<input
+    type="text"
+    id="noticeSearchInput"
+    placeholder="Search notices...">
+
+
+</div>
+
+
+<select
+    class="notice-sort"
+    id="noticeSortSelect">
+
+
+<option value="latest">
+
+Latest First
+
+</option>
+
+
+<option value="oldest">
+
+Oldest First
+
+</option>
+
+
+<option value="important">
+
+Important First
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    CATEGORY FILTER
+========================================================= -->
+
+<div class="notice-filter-group">
+
+
+<button
+    type="button"
+    class="notice-filter-btn active"
+    data-filter="all">
+
+All Notices
+
+</button>
+
+
+<button
+    type="button"
+    class="notice-filter-btn"
+    data-filter="important">
+
+Important
+
+</button>
+
+
+<button
+    type="button"
+    class="notice-filter-btn"
+    data-filter="academic">
+
+Academic
+
+</button>
+
+
+<button
+    type="button"
+    class="notice-filter-btn"
+    data-filter="exam">
+
+Examination
+
+</button>
+
+
+<button
+    type="button"
+    class="notice-filter-btn"
+    data-filter="event">
+
+Events
+
+</button>
+
+
+<button
+    type="button"
+    class="notice-filter-btn"
+    data-filter="general">
+
+General
+
+</button>
+
+
+</div>
+
+
+<!-- =========================================================
+                    NOTICE LAYOUT
+========================================================= -->
+
+<div class="notice-layout">
+
+
+<!-- =========================================================
+                LEFT SIDE NOTICE LIST
+========================================================= -->
+
+<div>
+
+
+<div
+    class="notice-list"
+    id="noticeList">
+
+
+<!-- =========================================================
+                    NOTICE CARD 1
+                    IMPORTANT
+========================================================= -->
+
+<div
+    class="notice-card important unread"
+    data-category="important"
+    data-date="2026-08-03"
+    data-title="Faculty Meeting Regarding New Academic Session">
+
+
+<div class="notice-card-header">
+
+
+<div class="notice-title-area">
+
+
+<div class="notice-icon">
+
+<i class="fa-solid fa-triangle-exclamation"></i>
+
+</div>
+
+
+<div>
+
+
+<h5>
+    Faculty Meeting Regarding New Academic Session
+</h5>
+
+
+<div class="notice-meta">
+
+
+<span>
+
+<i class="fa-regular fa-calendar"></i>
+
+03 Aug 2026
+
+</span>
+
+
+<span>
+
+<i class="fa-regular fa-clock"></i>
+
+10:30 AM
+
+</span>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<span class="notice-badge important">
+
+IMPORTANT
+
+</span>
+
+
+</div>
+
+
+<p class="notice-description">
+
+All faculty members are requested to attend an important
+meeting regarding the upcoming academic session, class
+allocation, timetable planning and departmental activities.
+
+</p>
+
+
+<div class="notice-card-footer">
+
+
+<div class="notice-publisher">
+
+Published by
+
+<strong>
+    Administration
+</strong>
+
+</div>
+
+
+<button
+    type="button"
+    class="notice-view-btn"
+    onclick="openNotice(
+        'Faculty Meeting Regarding New Academic Session',
+        'Important',
+        '03 Aug 2026',
+        '10:30 AM',
+        'Administration',
+        'All faculty members are requested to attend an important meeting regarding the upcoming academic session, class allocation, timetable planning and departmental activities.'
+    )">
+
+<i class="fa-regular fa-eye me-1"></i>
+
+View Notice
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    NOTICE CARD 2
+                    ACADEMIC
+========================================================= -->
+
+<div
+    class="notice-card academic unread"
+    data-category="academic"
+    data-date="2026-08-01"
+    data-title="Submission of Internal Assessment Marks">
+
+
+<div class="notice-card-header">
+
+
+<div class="notice-title-area">
+
+
+<div class="notice-icon">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+</div>
+
+
+<div>
+
+
+<h5>
+    Submission of Internal Assessment Marks
+</h5>
+
+
+<div class="notice-meta">
+
+
+<span>
+
+<i class="fa-regular fa-calendar"></i>
+
+01 Aug 2026
+
+</span>
+
+
+<span>
+
+<i class="fa-regular fa-clock"></i>
+
+02:15 PM
+
+</span>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<span class="notice-badge academic">
+
+ACADEMIC
+
+</span>
+
+
+</div>
+
+
+<p class="notice-description">
+
+Faculty members are requested to submit the internal
+assessment marks of their respective classes before the
+specified deadline through the faculty management portal.
+
+</p>
+
+
+<div class="notice-card-footer">
+
+
+<div class="notice-publisher">
+
+Published by
+
+<strong>
+    Academic Department
+</strong>
+
+</div>
+
+
+<button
+    type="button"
+    class="notice-view-btn"
+    onclick="openNotice(
+        'Submission of Internal Assessment Marks',
+        'Academic',
+        '01 Aug 2026',
+        '02:15 PM',
+        'Academic Department',
+        'Faculty members are requested to submit the internal assessment marks of their respective classes before the specified deadline through the faculty management portal.'
+    )">
+
+<i class="fa-regular fa-eye me-1"></i>
+
+View Notice
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    NOTICE CARD 3
+                    EXAMINATION
+========================================================= -->
+
+<div
+    class="notice-card exam unread"
+    data-category="exam"
+    data-date="2026-07-30"
+    data-title="Mid Semester Examination Schedule">
+
+
+<div class="notice-card-header">
+
+
+<div class="notice-title-area">
+
+
+<div class="notice-icon">
+
+<i class="fa-solid fa-file-pen"></i>
+
+</div>
+
+
+<div>
+
+
+<h5>
+    Mid Semester Examination Schedule
+</h5>
+
+
+<div class="notice-meta">
+
+
+<span>
+
+<i class="fa-regular fa-calendar"></i>
+
+30 Jul 2026
+
+</span>
+
+
+<span>
+
+<i class="fa-regular fa-clock"></i>
+
+11:00 AM
+
+</span>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<span class="notice-badge exam">
+
+EXAMINATION
+
+</span>
+
+
+</div>
+
+
+<p class="notice-description">
+
+The schedule for the upcoming mid-semester examinations
+has been released. Faculty members are requested to review
+their invigilation duties and examination timings.
+
+</p>
+
+
+<div class="notice-card-footer">
+
+
+<div class="notice-publisher">
+
+Published by
+
+<strong>
+    Examination Cell
+</strong>
+
+</div>
+
+
+<button
+    type="button"
+    class="notice-view-btn"
+    onclick="openNotice(
+        'Mid Semester Examination Schedule',
+        'Examination',
+        '30 Jul 2026',
+        '11:00 AM',
+        'Examination Cell',
+        'The schedule for the upcoming mid-semester examinations has been released. Faculty members are requested to review their invigilation duties and examination timings.'
+    )">
+
+<i class="fa-regular fa-eye me-1"></i>
+
+View Notice
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    NOTICE CARD 4
+                    EVENT
+========================================================= -->
+
+<div
+    class="notice-card event"
+    data-category="event"
+    data-date="2026-07-28"
+    data-title="Faculty Development Programme">
+
+
+<div class="notice-card-header">
+
+
+<div class="notice-title-area">
+
+
+<div class="notice-icon">
+
+<i class="fa-solid fa-users"></i>
+
+</div>
+
+
+<div>
+
+
+<h5>
+    Faculty Development Programme
+</h5>
+
+
+<div class="notice-meta">
+
+
+<span>
+
+<i class="fa-regular fa-calendar"></i>
+
+28 Jul 2026
+
+</span>
+
+
+<span>
+
+<i class="fa-regular fa-clock"></i>
+
+04:00 PM
+
+</span>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<span class="notice-badge event">
+
+EVENT
+
+</span>
+
+
+</div>
+
+
+<p class="notice-description">
+
+A Faculty Development Programme on modern teaching
+methodologies, digital learning tools and AI-assisted
+education will be organized in the college auditorium.
+
+</p>
+
+
+<div class="notice-card-footer">
+
+
+<div class="notice-publisher">
+
+Published by
+
+<strong>
+    Faculty Development Cell
+</strong>
+
+</div>
+
+
+<button
+    type="button"
+    class="notice-view-btn"
+    onclick="openNotice(
+        'Faculty Development Programme',
+        'Event',
+        '28 Jul 2026',
+        '04:00 PM',
+        'Faculty Development Cell',
+        'A Faculty Development Programme on modern teaching methodologies, digital learning tools and AI-assisted education will be organized in the college auditorium.'
+    )">
+
+<i class="fa-regular fa-eye me-1"></i>
+
+View Notice
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    NOTICE CARD 5
+                    ACADEMIC
+========================================================= -->
+
+<div
+    class="notice-card academic"
+    data-category="academic"
+    data-date="2026-07-25"
+    data-title="Course File Documentation Update">
+
+
+<div class="notice-card-header">
+
+
+<div class="notice-title-area">
+
+
+<div class="notice-icon">
+
+<i class="fa-solid fa-folder-open"></i>
+
+</div>
+
+
+<div>
+
+
+<h5>
+    Course File Documentation Update
+</h5>
+
+
+<div class="notice-meta">
+
+
+<span>
+
+<i class="fa-regular fa-calendar"></i>
+
+25 Jul 2026
+
+</span>
+
+
+<span>
+
+<i class="fa-regular fa-clock"></i>
+
+12:30 PM
+
+</span>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<span class="notice-badge academic">
+
+ACADEMIC
+
+</span>
+
+
+</div>
+
+
+<p class="notice-description">
+
+All teachers are requested to update their course files
+with lesson plans, attendance records, assignments,
+internal assessment records and other required documents.
+
+</p>
+
+
+<div class="notice-card-footer">
+
+
+<div class="notice-publisher">
+
+Published by
+
+<strong>
+    Academic Coordinator
+</strong>
+
+</div>
+
+
+<button
+    type="button"
+    class="notice-view-btn"
+    onclick="openNotice(
+        'Course File Documentation Update',
+        'Academic',
+        '25 Jul 2026',
+        '12:30 PM',
+        'Academic Coordinator',
+        'All teachers are requested to update their course files with lesson plans, attendance records, assignments, internal assessment records and other required documents.'
+    )">
+
+<i class="fa-regular fa-eye me-1"></i>
+
+View Notice
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    NOTICE CARD 6
+                    GENERAL
+========================================================= -->
+
+<div
+    class="notice-card general"
+    data-category="general"
+    data-date="2026-07-22"
+    data-title="College Library Timing Updated">
+
+
+<div class="notice-card-header">
+
+
+<div class="notice-title-area">
+
+
+<div class="notice-icon">
+
+<i class="fa-solid fa-book"></i>
+
+</div>
+
+
+<div>
+
+
+<h5>
+    College Library Timing Updated
+</h5>
+
+
+<div class="notice-meta">
+
+
+<span>
+
+<i class="fa-regular fa-calendar"></i>
+
+22 Jul 2026
+
+</span>
+
+
+<span>
+
+<i class="fa-regular fa-clock"></i>
+
+09:15 AM
+
+</span>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<span class="notice-badge general">
+
+GENERAL
+
+</span>
+
+
+</div>
+
+
+<p class="notice-description">
+
+The college library timings have been revised for the
+current academic session. Faculty members may access
+library resources according to the updated schedule.
+
+</p>
+
+
+<div class="notice-card-footer">
+
+
+<div class="notice-publisher">
+
+Published by
+
+<strong>
+    Library Department
+</strong>
+
+</div>
+
+
+<button
+    type="button"
+    class="notice-view-btn"
+    onclick="openNotice(
+        'College Library Timing Updated',
+        'General',
+        '22 Jul 2026',
+        '09:15 AM',
+        'Library Department',
+        'The college library timings have been revised for the current academic session. Faculty members may access library resources according to the updated schedule.'
+    )">
+
+<i class="fa-regular fa-eye me-1"></i>
+
+View Notice
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    NO RESULT
+========================================================= -->
+
+<div
+    class="no-notice-result"
+    id="noNoticeResult">
+
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+
+<h5>
+    No Notices Found
+</h5>
+
+
+<p>
+
+We could not find any notice matching
+your search or selected category.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    RIGHT SIDE
+========================================================= -->
+
+<aside class="notice-side-area">
+
+
+<!-- =========================================================
+                    PINNED NOTICES
+========================================================= -->
+
+<div class="notice-side-card">
+
+
+<h5>
+
+<i class="fa-solid fa-thumbtack me-2"></i>
+
+Pinned Notices
+
+</h5>
+
+
+<!-- PINNED 1 -->
+
+<div
+    class="pinned-notice"
+    onclick="openNotice(
+        'Faculty Meeting Regarding New Academic Session',
+        'Important',
+        '03 Aug 2026',
+        '10:30 AM',
+        'Administration',
+        'All faculty members are requested to attend an important meeting regarding the upcoming academic session, class allocation, timetable planning and departmental activities.'
+    )">
+
+
+<h6>
+
+<i class="fa-solid fa-circle-exclamation text-danger me-1"></i>
+
+Faculty Meeting Regarding New Academic Session
+
+</h6>
+
+
+<small>
+
+<i class="fa-regular fa-calendar me-1"></i>
+
+03 Aug 2026
+
+</small>
+
+
+</div>
+
+
+
+<!-- PINNED 2 -->
+
+<div
+    class="pinned-notice"
+    onclick="openNotice(
+        'Submission of Internal Assessment Marks',
+        'Academic',
+        '01 Aug 2026',
+        '02:15 PM',
+        'Academic Department',
+        'Faculty members are requested to submit the internal assessment marks of their respective classes before the specified deadline through the faculty management portal.'
+    )">
+
+
+<h6>
+
+<i class="fa-solid fa-thumbtack text-primary me-1"></i>
+
+Submission of Internal Assessment Marks
+
+</h6>
+
+
+<small>
+
+<i class="fa-regular fa-calendar me-1"></i>
+
+01 Aug 2026
+
+</small>
+
+
+</div>
+
+
+
+<!-- PINNED 3 -->
+
+<div
+    class="pinned-notice"
+    onclick="openNotice(
+        'Mid Semester Examination Schedule',
+        'Examination',
+        '30 Jul 2026',
+        '11:00 AM',
+        'Examination Cell',
+        'The schedule for the upcoming mid-semester examinations has been released. Faculty members are requested to review their invigilation duties and examination timings.'
+    )">
+
+
+<h6>
+
+<i class="fa-solid fa-thumbtack text-warning me-1"></i>
+
+Mid Semester Examination Schedule
+
+</h6>
+
+
+<small>
+
+<i class="fa-regular fa-calendar me-1"></i>
+
+30 Jul 2026
+
+</small>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    NOTICE SUMMARY
+========================================================= -->
+
+<div class="notice-side-card">
+
+
+<h5>
+
+<i class="fa-solid fa-chart-pie me-2"></i>
+
+Notice Summary
+
+</h5>
+
+
+<div class="notice-info-row">
+
+<span>
+
+<i class="fa-solid fa-bullhorn me-2"></i>
+
+Total Notices
+
+</span>
+
+<strong>
+    6
+</strong>
+
+</div>
+
+
+<div class="notice-info-row">
+
+<span>
+
+<i class="fa-solid fa-triangle-exclamation me-2 text-danger"></i>
+
+Important
+
+</span>
+
+<strong>
+    1
+</strong>
+
+</div>
+
+
+<div class="notice-info-row">
+
+<span>
+
+<i class="fa-solid fa-graduation-cap me-2 text-primary"></i>
+
+Academic
+
+</span>
+
+<strong>
+    2
+</strong>
+
+</div>
+
+
+<div class="notice-info-row">
+
+<span>
+
+<i class="fa-solid fa-file-pen me-2"></i>
+
+Examination
+
+</span>
+
+<strong>
+    1
+</strong>
+
+</div>
+
+
+<div class="notice-info-row">
+
+<span>
+
+<i class="fa-solid fa-users me-2 text-success"></i>
+
+Events
+
+</span>
+
+<strong>
+    1
+</strong>
+
+</div>
+
+
+<div class="notice-info-row">
+
+<span>
+
+<i class="fa-solid fa-book me-2"></i>
+
+General
+
+</span>
+
+<strong>
+    1
+</strong>
+
+</div>
+
+
+<div class="notice-info-row">
+
+<span>
+
+<i class="fa-solid fa-envelope me-2 text-warning"></i>
+
+Unread
+
+</span>
+
+<strong id="summaryUnreadCount">
+    3
+</strong>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    QUICK INFORMATION
+========================================================= -->
+
+<div class="notice-side-card">
+
+
+<h5>
+
+<i class="fa-solid fa-circle-info me-2"></i>
+
+Quick Information
+
+</h5>
+
+
+<div class="notice-info-row">
+
+<span>
+    Last Updated
+</span>
+
+<strong>
+    03 Aug 2026
+</strong>
+
+</div>
+
+
+<div class="notice-info-row">
+
+<span>
+    Latest Notice
+</span>
+
+<strong>
+    Today
+</strong>
+
+</div>
+
+
+<div class="notice-info-row">
+
+<span>
+    Notice Access
+</span>
+
+<strong class="text-success">
+
+<i class="fa-solid fa-circle-check me-1"></i>
+
+Active
+
+</strong>
+
+</div>
+
+
+</div>
+
+
+</aside>
+
+
+</div>
+
+
+<!-- =========================================================
+                    END NOTICE LAYOUT
+========================================================= -->
+
+
+</section>
+
+
+<!-- =========================================================
+                    NOTICE DETAILS MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="noticeDetailsModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+
+<div class="modal-dialog modal-dialog-centered modal-lg">
+
+
+<div class="modal-content border-0 rounded-4">
+
+
+<!-- MODAL HEADER -->
+
+<div class="modal-header">
+
+<h5 class="modal-title fw-bold">
+
+<i
+    class="fa-solid fa-bullhorn me-2"
+    style="color:#6c4cff;">
+</i>
+
+Notice Details
+
+</h5>
+
+
+<button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal"
+    aria-label="Close">
+</button>
+
+</div>
+
+
+<!-- MODAL BODY -->
+
+<div class="modal-body p-4">
+
+
+<div class="notice-modal-icon">
+
+<i
+    id="noticeModalIcon"
+    class="fa-solid fa-bullhorn">
+</i>
+
+</div>
+
+
+<div class="text-center mb-4">
+
+
+<span
+    id="noticeModalBadge"
+    class="notice-badge general">
+
+General
+
+</span>
+
+
+<h3
+    id="noticeModalTitle"
+    class="fw-bold mt-3 mb-2">
+
+Notice Title
+
+</h3>
+
+
+<p
+    id="noticeModalShortDescription"
+    class="text-muted mb-0">
+
+Complete notice information
+
+</p>
+
+
+</div>
+
+
+<!-- NOTICE INFORMATION -->
+
+<div class="notice-detail-row">
+
+<span>
+
+<i class="fa-solid fa-layer-group me-2"></i>
+
+Category
+
+</span>
+
+<strong id="noticeModalCategory">
+--
+</strong>
+
+</div>
+
+
+<div class="notice-detail-row">
+
+<span>
+
+<i class="fa-regular fa-calendar me-2"></i>
+
+Published Date
+
+</span>
+
+<strong id="noticeModalDate">
+--
+</strong>
+
+</div>
+
+
+<div class="notice-detail-row">
+
+<span>
+
+<i class="fa-regular fa-clock me-2"></i>
+
+Time
+
+</span>
+
+<strong id="noticeModalTime">
+--
+</strong>
+
+</div>
+
+
+<div class="notice-detail-row">
+
+<span>
+
+<i class="fa-solid fa-user-tie me-2"></i>
+
+Published By
+
+</span>
+
+<strong id="noticeModalPublisher">
+--
+</strong>
+
+</div>
+
+
+<!-- COMPLETE NOTICE -->
+
+<div
+    class="mt-4 p-4 rounded-4"
+    style="
+        background:rgba(108,76,255,.06);
+        border:1px solid rgba(108,76,255,.12);
+    ">
+
+
+<h6 class="fw-bold mb-3">
+
+<i
+    class="fa-solid fa-align-left me-2"
+    style="color:#6c4cff;">
+</i>
+
+Complete Notice
+
+</h6>
+
+
+<p
+    id="noticeModalDescription"
+    class="mb-0"
+    style="
+        line-height:1.8;
+        white-space:pre-line;
+    ">
+
+Notice description
+
+</p>
+
+
+</div>
+
+
+<div
+    class="alert alert-primary mt-4 mb-0">
+
+
+<i class="fa-solid fa-circle-info me-2"></i>
+
+Please read the notice carefully and
+follow the instructions provided by the department.
+
+</div>
+
+
+</div>
+
+
+<!-- MODAL FOOTER -->
+
+<div class="modal-footer justify-content-between">
+
+
+<button
+    type="button"
+    class="btn btn-outline-secondary"
+    onclick="printNotice()">
+
+<i class="fa-solid fa-print me-2"></i>
+
+Print Notice
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-primary px-4"
+    data-bs-dismiss="modal">
+
+<i class="fa-solid fa-check me-2"></i>
+
+Got It
+
+</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================================================
+                    NOTICE INFORMATION MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="noticeInfoModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+
+<div class="modal-dialog modal-dialog-centered">
+
+
+<div class="modal-content border-0 rounded-4">
+
+
+<div class="modal-header">
+
+<h5 class="modal-title fw-bold">
+
+<i
+    class="fa-solid fa-circle-info me-2"
+    style="color:#6c4cff;">
+</i>
+
+Notice Board Information
+
+</h5>
+
+
+<button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal">
+</button>
+
+</div>
+
+
+<div class="modal-body p-4">
+
+
+<div class="text-center mb-4">
+
+
+<div class="notice-modal-icon">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+</div>
+
+
+<h4 class="fw-bold">
+
+Teacher Notice Board
+
+</h4>
+
+
+<p class="text-muted mb-0">
+
+Faculty Management & Productivity System
+
+</p>
+
+
+</div>
+
+
+<div class="notice-detail-row">
+
+<span>
+Available Notices
+</span>
+
+<strong id="infoTotalNotices">
+6
+</strong>
+
+</div>
+
+
+<div class="notice-detail-row">
+
+<span>
+Important Notices
+</span>
+
+<strong id="infoImportantNotices">
+1
+</strong>
+
+</div>
+
+
+<div class="notice-detail-row">
+
+<span>
+Unread Notices
+</span>
+
+<strong id="infoUnreadNotices">
+3
+</strong>
+
+</div>
+
+
+<div class="notice-detail-row">
+
+<span>
+Last Updated
+</span>
+
+<strong>
+03 August 2026
+</strong>
+
+</div>
+
+
+<div class="alert alert-primary mt-4 mb-0">
+
+<i class="fa-solid fa-circle-info me-2"></i>
+
+Notices are published by the Administration,
+Academic Department, Examination Cell and
+other authorized college departments.
+
+</div>
+
+
+</div>
+
+
+<div class="modal-footer justify-content-center">
+
+
+<button
+    type="button"
+    class="btn btn-primary px-4"
+    data-bs-dismiss="modal">
+
+<i class="fa-solid fa-check me-2"></i>
+
+Okay
+
+</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================================================
+                        FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+© 2026 Faculty Management & Productivity System |
+Teacher Notice Board
+
+</footer>
+
+
+</main>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    BOOTSTRAP JAVASCRIPT
+========================================================= -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+
+<!-- =========================================================
+                    NOTICE JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+
+/* =========================================================
+                    ELEMENTS
+========================================================= */
+
+const sidebar =
+document.getElementById(
+    "teacherSidebar"
+);
+
+
+const mobileMenuBtn =
+document.getElementById(
+    "mobileMenuBtn"
+);
+
+
+const themeToggle =
+document.getElementById(
+    "themeToggle"
+);
+
+
+const noticeSearchInput =
+document.getElementById(
+    "noticeSearchInput"
+);
+
+
+const globalSearchBox =
+document.getElementById(
+    "searchBox"
+);
+
+
+const sortSelect =
+document.getElementById(
+    "noticeSortSelect"
+);
+
+
+const noticeList =
+document.getElementById(
+    "noticeList"
+);
+
+
+const noNoticeResult =
+document.getElementById(
+    "noNoticeResult"
+);
+
+
+const filterButtons =
+document.querySelectorAll(
+    ".notice-filter-btn"
+);
+
+
+const noticeCards =
+Array.from(
+    document.querySelectorAll(
+        ".notice-card"
+    )
+);
+
+
+let activeFilter =
+"all";
+
+
+/* =========================================================
+                    MOBILE SIDEBAR
+========================================================= */
+
+if(
+    mobileMenuBtn &&
+    sidebar
+){
+
+mobileMenuBtn.addEventListener(
+    "click",
+    function(){
+
+        sidebar.classList.toggle(
+            "show"
+        );
+
+    }
+);
+
+}
+
+
+/* =========================================================
+                    DARK MODE
+========================================================= */
+
+const savedTheme =
+localStorage.getItem(
+    "teacherTheme"
+);
+
+
+if(
+    savedTheme ===
+    "dark"
+){
+
+document.body.classList.add(
+    "dark"
+);
+
+}
+
+
+function updateThemeIcon(){
+
+
+if(!themeToggle){
+
+return;
+
+}
+
+
+const icon =
+themeToggle.querySelector(
+    "i"
+);
+
+
+if(
+    document.body.classList.contains(
+        "dark"
+    )
+){
+
+icon.className =
+"fa-solid fa-sun";
+
+}
+
+else{
+
+icon.className =
+"fa-solid fa-moon";
+
+}
+
+
+}
+
+
+updateThemeIcon();
+
+
+if(themeToggle){
+
+themeToggle.addEventListener(
+    "click",
+    function(){
+
+
+document.body.classList.toggle(
+    "dark"
+);
+
+
+if(
+    document.body.classList.contains(
+        "dark"
+    )
+){
+
+localStorage.setItem(
+    "teacherTheme",
+    "dark"
+);
+
+}
+
+else{
+
+localStorage.setItem(
+    "teacherTheme",
+    "light"
+);
+
+}
+
+
+updateThemeIcon();
+
+
+    }
+);
+
+}
+
+
+/* =========================================================
+                    FILTER NOTICES
+========================================================= */
+
+function filterNotices(){
+
+
+let searchValue =
+"";
+
+
+if(noticeSearchInput){
+
+searchValue =
+noticeSearchInput.value
+.toLowerCase()
+.trim();
+
+}
+
+
+let visibleCount =
+0;
+
+
+noticeCards.forEach(
+    function(card){
+
+
+const title =
+(
+    card.dataset.title ||
+    ""
+)
+.toLowerCase();
+
+
+const text =
+card.innerText
+.toLowerCase();
+
+
+const category =
+card.dataset.category;
+
+
+const categoryMatch =
+
+activeFilter ===
+"all"
+
+||
+
+category ===
+activeFilter;
+
+
+const searchMatch =
+
+title.includes(
+    searchValue
+)
+
+||
+
+text.includes(
+    searchValue
+);
+
+
+if(
+    categoryMatch &&
+    searchMatch
+){
+
+card.style.display =
+"block";
+
+visibleCount++;
+
+}
+
+else{
+
+card.style.display =
+"none";
+
+}
+
+
+    }
+);
+
+
+/* NO RESULT */
+
+if(noNoticeResult){
+
+noNoticeResult.style.display =
+
+visibleCount === 0
+?
+"block"
+:
+"none";
+
+}
+
+
+}
+
+
+/* =========================================================
+                    NOTICE SEARCH
+========================================================= */
+
+if(noticeSearchInput){
+
+noticeSearchInput.addEventListener(
+    "input",
+    function(){
+
+        filterNotices();
+
+    }
+);
+
+}
+
+
+/* =========================================================
+                    GLOBAL NAV SEARCH
+========================================================= */
+
+if(globalSearchBox){
+
+globalSearchBox.addEventListener(
+    "input",
+    function(){
+
+
+if(noticeSearchInput){
+
+noticeSearchInput.value =
+this.value;
+
+}
+
+
+filterNotices();
+
+
+    }
+);
+
+}
+
+
+/* =========================================================
+                    FILTER BUTTONS
+========================================================= */
+
+filterButtons.forEach(
+    function(button){
+
+
+button.addEventListener(
+    "click",
+    function(){
+
+
+filterButtons.forEach(
+    function(btn){
+
+btn.classList.remove(
+    "active"
+);
+
+    }
+);
+
+
+this.classList.add(
+    "active"
+);
+
+
+activeFilter =
+this.dataset.filter;
+
+
+filterNotices();
+
+
+    }
+);
+
+
+    }
+);
+
+
+/* =========================================================
+                    SORTING
+========================================================= */
+
+if(sortSelect){
+
+sortSelect.addEventListener(
+    "change",
+    function(){
+
+
+const sortType =
+this.value;
+
+
+const cards =
+[...noticeCards];
+
+
+if(
+    sortType ===
+    "latest"
+){
+
+cards.sort(
+    function(a,b){
+
+return (
+    new Date(
+        b.dataset.date
+    )
+    -
+    new Date(
+        a.dataset.date
+    )
+);
+
+    }
+);
+
+}
+
+
+else if(
+    sortType ===
+    "oldest"
+){
+
+cards.sort(
+    function(a,b){
+
+return (
+    new Date(
+        a.dataset.date
+    )
+    -
+    new Date(
+        b.dataset.date
+    )
+);
+
+    }
+);
+
+}
+
+
+else if(
+    sortType ===
+    "important"
+){
+
+cards.sort(
+    function(a,b){
+
+
+const aImportant =
+a.dataset.category ===
+"important"
+?
+1
+:
+0;
+
+
+const bImportant =
+b.dataset.category ===
+"important"
+?
+1
+:
+0;
+
+
+if(
+    aImportant !==
+    bImportant
+){
+
+return (
+    bImportant -
+    aImportant
+);
+
+}
+
+
+return (
+    new Date(
+        b.dataset.date
+    )
+    -
+    new Date(
+        a.dataset.date
+    )
+);
+
+
+    }
+);
+
+}
+
+
+cards.forEach(
+    function(card){
+
+noticeList.appendChild(
+    card
+);
+
+    }
+);
+
+
+filterNotices();
+
+
+    }
+);
+
+}
+
+
+/* =========================================================
+                    LOAD READ STATUS
+========================================================= */
+
+noticeCards.forEach(
+    function(card,index){
+
+
+const readStatus =
+localStorage.getItem(
+    "teacherNoticeRead_" +
+    index
+);
+
+
+if(
+    readStatus ===
+    "true"
+){
+
+card.classList.remove(
+    "unread"
+);
+
+}
+
+
+    }
+);
+
+
+/* =========================================================
+                    UPDATE STATISTICS
+========================================================= */
+
+function updateNoticeStatistics(){
+
+
+const total =
+noticeCards.length;
+
+
+const important =
+noticeCards.filter(
+    function(card){
+
+return (
+    card.dataset.category ===
+    "important"
+);
+
+    }
+).length;
+
+
+const academic =
+noticeCards.filter(
+    function(card){
+
+return (
+    card.dataset.category ===
+    "academic"
+);
+
+    }
+).length;
+
+
+const unread =
+noticeCards.filter(
+    function(card){
+
+return card.classList.contains(
+    "unread"
+);
+
+    }
+).length;
+
+
+/* TOP STATISTICS */
+
+setText(
+    "totalNoticeCount",
+    total
+);
+
+
+setText(
+    "importantNoticeCount",
+    important
+);
+
+
+setText(
+    "academicNoticeCount",
+    academic
+);
+
+
+setText(
+    "unreadNoticeCount",
+    unread
+);
+
+
+/* SIDE SUMMARY */
+
+setText(
+    "summaryUnreadCount",
+    unread
+);
+
+
+/* INFORMATION MODAL */
+
+setText(
+    "infoTotalNotices",
+    total
+);
+
+
+setText(
+    "infoImportantNotices",
+    important
+);
+
+
+setText(
+    "infoUnreadNotices",
+    unread
+);
+
+
+}
+
+
+/* =========================================================
+                    HELPER SET TEXT
+========================================================= */
+
+function setText(
+    id,
+    value
+){
+
+
+const element =
+document.getElementById(
+    id
+);
+
+
+if(element){
+
+element.innerText =
+value;
+
+}
+
+
+}
+
+
+/* =========================================================
+                MARK NOTICE AS READ
+========================================================= */
+
+noticeCards.forEach(
+    function(card,index){
+
+
+const button =
+card.querySelector(
+    ".notice-view-btn"
+);
+
+
+if(!button){
+
+return;
+
+}
+
+
+button.addEventListener(
+    "click",
+    function(){
+
+
+if(
+    card.classList.contains(
+        "unread"
+    )
+){
+
+card.classList.remove(
+    "unread"
+);
+
+
+localStorage.setItem(
+    "teacherNoticeRead_" +
+    index,
+    "true"
+);
+
+
+updateNoticeStatistics();
+
+
+}
+
+
+    }
+);
+
+
+    }
+);
+
+
+/* =========================================================
+                    INITIAL LOAD
+========================================================= */
+
+updateNoticeStatistics();
+
+filterNotices();
+
+
+});
+
+
+/* =========================================================
+                    OPEN NOTICE
+========================================================= */
+
+function openNotice(
+    title,
+    category,
+    date,
+    time,
+    publisher,
+    description
+){
+
+
+/* TITLE */
+
+document.getElementById(
+    "noticeModalTitle"
+).innerText =
+title;
+
+
+/* SHORT DESCRIPTION */
+
+document.getElementById(
+    "noticeModalShortDescription"
+).innerText =
+
+"Published by " +
+publisher;
+
+
+/* DESCRIPTION */
+
+document.getElementById(
+    "noticeModalDescription"
+).innerText =
+description;
+
+
+/* CATEGORY */
+
+document.getElementById(
+    "noticeModalCategory"
+).innerText =
+category;
+
+
+/* DATE */
+
+document.getElementById(
+    "noticeModalDate"
+).innerText =
+date;
+
+
+/* TIME */
+
+document.getElementById(
+    "noticeModalTime"
+).innerText =
+time;
+
+
+/* PUBLISHER */
+
+document.getElementById(
+    "noticeModalPublisher"
+).innerText =
+publisher;
+
+
+/* =========================================================
+                    BADGE
+========================================================= */
+
+const badge =
+document.getElementById(
+    "noticeModalBadge"
+);
+
+
+badge.innerText =
+category;
+
+
+let categoryClass =
+category
+.toLowerCase();
+
+
+if(
+    categoryClass ===
+    "examination"
+){
+
+categoryClass =
+"exam";
+
+}
+
+
+badge.className =
+"notice-badge " +
+categoryClass;
+
+
+/* =========================================================
+                    ICON
+========================================================= */
+
+const icon =
+document.getElementById(
+    "noticeModalIcon"
+);
+
+
+if(
+    category ===
+    "Important"
+){
+
+icon.className =
+"fa-solid fa-triangle-exclamation";
+
+}
+
+else if(
+    category ===
+    "Academic"
+){
+
+icon.className =
+"fa-solid fa-graduation-cap";
+
+}
+
+else if(
+    category ===
+    "Examination"
+){
+
+icon.className =
+"fa-solid fa-file-pen";
+
+}
+
+else if(
+    category ===
+    "Event"
+){
+
+icon.className =
+"fa-solid fa-calendar-days";
+
+}
+
+else{
+
+icon.className =
+"fa-solid fa-bullhorn";
+
+}
+
+
+/* =========================================================
+                    SHOW MODAL
+========================================================= */
+
+const modalElement =
+document.getElementById(
+    "noticeDetailsModal"
+);
+
+
+const modal =
+bootstrap.Modal.getOrCreateInstance(
+    modalElement
+);
+
+
+modal.show();
+
+
+}
+
+
+/* =========================================================
+                    PRINT NOTICE
+========================================================= */
+
+function printNotice(){
+
+
+const title =
+document.getElementById(
+    "noticeModalTitle"
+).innerText;
+
+
+const category =
+document.getElementById(
+    "noticeModalCategory"
+).innerText;
+
+
+const date =
+document.getElementById(
+    "noticeModalDate"
+).innerText;
+
+
+const time =
+document.getElementById(
+    "noticeModalTime"
+).innerText;
+
+
+const publisher =
+document.getElementById(
+    "noticeModalPublisher"
+).innerText;
+
+
+const description =
+document.getElementById(
+    "noticeModalDescription"
+).innerText;
+
+
+/* =========================================================
+                    PRINT WINDOW
+========================================================= */
+
+const printWindow =
+window.open(
+    "",
+    "_blank",
+    "width=900,height=700"
+);
+
+
+if(!printWindow){
+
+alert(
+    "Please allow pop-ups to print the notice."
+);
+
+return;
+
+}
+
+
+printWindow.document.write(`
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>
+${title}
+</title>
+
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:
+    Arial,
+    sans-serif;
+
+    padding:45px;
+
+    color:#1f2937;
+
+    line-height:1.7;
+
+}
+
+
+.print-header{
+
+    text-align:center;
+
+    padding-bottom:20px;
+
+    border-bottom:
+    3px solid #6c4cff;
+
+    margin-bottom:30px;
+
+}
+
+
+.print-header h2{
+
+    margin:
+    0 0 5px;
+
+    color:#4f46e5;
+
+}
+
+
+.print-header p{
+
+    margin:0;
+
+    color:#6b7280;
+
+}
+
+
+.notice-heading{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+
+.notice-heading h1{
+
+    margin-bottom:10px;
+
+}
+
+
+.category{
+
+    display:inline-block;
+
+    padding:
+    6px 14px;
+
+    border-radius:20px;
+
+    background:#ede9fe;
+
+    color:#6c4cff;
+
+    font-weight:bold;
+
+    font-size:12px;
+
+}
+
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-bottom:30px;
+
+}
+
+
+td{
+
+    border:
+    1px solid #e5e7eb;
+
+    padding:12px;
+
+}
+
+
+td:first-child{
+
+    width:30%;
+
+    font-weight:bold;
+
+    background:#f8fafc;
+
+}
+
+
+.notice-description{
+
+    padding:22px;
+
+    background:#f8f7ff;
+
+    border-left:
+    4px solid #6c4cff;
+
+    white-space:pre-line;
+
+}
+
+
+.print-footer{
+
+    margin-top:50px;
+
+    padding-top:15px;
+
+    border-top:
+    1px solid #e5e7eb;
+
+    text-align:center;
+
+    font-size:12px;
+
+    color:#6b7280;
+
+}
+
+
+@media print{
+
+    body{
+        padding:15px;
+    }
+
+}
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div class="print-header">
+
+<h2>
+Faculty Management & Productivity System
+</h2>
+
+<p>
+Teacher Notice Board
+</p>
+
+</div>
+
+
+<div class="notice-heading">
+
+<h1>
+${title}
+</h1>
+
+<span class="category">
+${category}
+</span>
+
+</div>
+
+
+<table>
+
+
+<tr>
+
+<td>
+Published Date
+</td>
+
+<td>
+${date}
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Time
+</td>
+
+<td>
+${time}
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Published By
+</td>
+
+<td>
+${publisher}
+</td>
+
+</tr>
+
+
+</table>
+
+
+<h3>
+Notice
+</h3>
+
+
+<div class="notice-description">
+
+${description}
+
+</div>
+
+
+<div class="print-footer">
+
+© 2026 Faculty Management & Productivity System
+
+</div>
+
+
+</body>
+
+</html>
+
+`);
+
+
+printWindow.document.close();
+
+
+printWindow.focus();
+
+
+setTimeout(
+    function(){
+
+printWindow.print();
+
+    },
+    400
+);
+
+
+}
+
+</script>
+
+
+</body>
+
+</html>

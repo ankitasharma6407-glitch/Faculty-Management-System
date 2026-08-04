@@ -1,0 +1,3880 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Face Login | Teacher Panel</title>
+
+<!-- Bootstrap -->
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<!-- Font Awesome -->
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<!-- Google Font -->
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<!-- =====================================================
+     PART 2 CSS WILL BE ADDED HERE
+===================================================== -->
+
+<style>
+
+/* =========================================================
+   PART 2 — AI FACE LOGIN PREMIUM CSS
+   Paste this inside the <style> tag from Part 1
+========================================================= */
+
+
+/* =========================================================
+                        GLOBAL
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#080d19;
+    --bg-2:#0c1220;
+    --card:#111827;
+    --card-2:#141c2b;
+
+    --border:rgba(148,163,184,.18);
+
+    --text:#f8fafc;
+    --muted:#94a3b8;
+
+    --purple:#635bff;
+    --purple-light:#8b7cff;
+
+    --green:#22c55e;
+    --yellow:#fbbf24;
+    --red:#ef4444;
+
+    --navbar:#101725;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+
+    font-family:'Poppins',sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(79,70,229,.10),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #080d19,
+            #0a101d
+        );
+
+    color:var(--text);
+}
+
+
+/* =========================================================
+                    PAGE WRAPPER
+========================================================= */
+
+.face-page{
+    width:100%;
+    min-height:100vh;
+    background:transparent;
+}
+
+
+/* =========================================================
+                        NAVBAR
+========================================================= */
+
+.face-navbar{
+    width:calc(100% - 24px);
+
+    min-height:92px;
+
+    margin:10px 12px 0;
+
+    padding:15px 30px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:25px;
+
+    position:relative;
+    z-index:1000;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(18,26,42,.98),
+            rgba(13,20,34,.98)
+        );
+
+    border:
+        1px solid rgba(148,163,184,.08);
+
+    border-radius:17px;
+
+    box-shadow:
+        0 8px 35px rgba(0,0,0,.24);
+}
+
+
+/* =========================================================
+                    NAVBAR BRAND
+========================================================= */
+
+.face-navbar-brand{
+    display:flex;
+    align-items:center;
+    gap:17px;
+
+    flex-shrink:0;
+}
+
+.brand-icon{
+    width:58px;
+    height:58px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(99,91,255,.25),
+            rgba(139,124,255,.15)
+        );
+
+    border:
+        1px solid rgba(139,124,255,.45);
+
+    box-shadow:
+        0 0 25px rgba(99,91,255,.18);
+}
+
+.brand-icon i{
+    font-size:29px;
+    color:#a99cff;
+}
+
+.face-navbar-brand h2{
+    margin:0;
+
+    font-size:22px;
+    font-weight:700;
+
+    color:#ffffff;
+}
+
+.face-navbar-brand span{
+    display:block;
+
+    margin-top:2px;
+
+    color:#94a3b8;
+
+    font-size:13px;
+}
+
+
+/* =========================================================
+                    NAVBAR RIGHT
+========================================================= */
+
+.face-navbar-right{
+    display:flex;
+    align-items:center;
+
+    gap:15px;
+}
+
+
+/* =========================================================
+                        SEARCH
+========================================================= */
+
+.face-search-box{
+    width:260px;
+    height:45px;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 16px;
+
+    border-radius:25px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid rgba(148,163,184,.15);
+
+    transition:.3s;
+}
+
+.face-search-box:focus-within{
+    border-color:
+        rgba(99,91,255,.70);
+
+    box-shadow:
+        0 0 0 3px rgba(99,91,255,.08);
+}
+
+.face-search-box input{
+    width:100%;
+
+    border:none;
+    outline:none;
+
+    background:transparent;
+
+    color:#ffffff;
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:13px;
+}
+
+.face-search-box input::placeholder{
+    color:#7f8b9e;
+}
+
+.face-search-box i{
+    color:#e2e8f0;
+    font-size:16px;
+}
+
+
+/* =========================================================
+                    THEME SWITCHER
+========================================================= */
+
+.theme-switcher{
+    height:44px;
+
+    display:flex;
+    align-items:center;
+
+    gap:2px;
+
+    padding:4px;
+
+    border-radius:25px;
+
+    background:
+        rgba(255,255,255,.04);
+
+    border:
+        1px solid rgba(148,163,184,.12);
+}
+
+.theme-option{
+    width:34px;
+    height:34px;
+
+    border:none;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:transparent;
+
+    color:#cbd5e1;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.theme-option:hover{
+    color:#ffffff;
+
+    background:
+        rgba(255,255,255,.07);
+}
+
+.theme-option.active{
+    color:#8b7cff;
+
+    background:
+        rgba(99,91,255,.18);
+
+    box-shadow:
+        0 0 12px rgba(99,91,255,.18);
+}
+
+
+/* =========================================================
+                    NAVBAR ICON BUTTON
+========================================================= */
+
+.navbar-icon-btn{
+    position:relative;
+
+    width:44px;
+    height:44px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.04);
+
+    color:#ffffff;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.navbar-icon-btn:hover{
+    background:
+        rgba(99,91,255,.15);
+
+    color:#9f93ff;
+
+    transform:translateY(-2px);
+}
+
+.navbar-icon-btn i{
+    font-size:18px;
+}
+
+
+/* =========================================================
+                    NOTIFICATION BADGE
+========================================================= */
+
+.notification-count{
+    position:absolute;
+
+    top:-5px;
+    right:-3px;
+
+    min-width:21px;
+    height:21px;
+
+    padding:0 5px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:20px;
+
+    background:#ef3340;
+
+    border:
+        2px solid #111827;
+
+    color:#ffffff;
+
+    font-size:10px;
+    font-weight:700;
+}
+
+
+/* =========================================================
+                    PROFILE
+========================================================= */
+
+.teacher-profile{
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+
+    padding:5px 10px 5px 5px;
+
+    border:none;
+
+    background:transparent;
+
+    color:#ffffff;
+
+    cursor:pointer;
+
+    border-radius:25px;
+
+    transition:.25s;
+}
+
+.teacher-profile:hover{
+    background:
+        rgba(255,255,255,.04);
+}
+
+.teacher-profile img{
+    width:40px;
+    height:40px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:
+        2px solid rgba(255,255,255,.25);
+}
+
+.teacher-profile span{
+    font-size:13px;
+    font-weight:600;
+
+    white-space:nowrap;
+}
+
+.teacher-profile > i{
+    color:#94a3b8;
+    font-size:11px;
+}
+
+
+/* =========================================================
+                    DROPDOWN
+========================================================= */
+
+.premium-dropdown{
+    min-width:245px;
+
+    margin-top:12px !important;
+
+    padding:10px;
+
+    background:#151d2c;
+
+    border:
+        1px solid rgba(148,163,184,.15);
+
+    border-radius:14px;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.45);
+}
+
+.premium-dropdown .dropdown-header{
+    color:#ffffff;
+
+    font-weight:700;
+}
+
+.premium-dropdown .dropdown-item{
+    padding:10px 12px;
+
+    border-radius:9px;
+
+    color:#cbd5e1;
+
+    font-size:13px;
+
+    transition:.2s;
+}
+
+.premium-dropdown .dropdown-item:hover{
+    background:
+        rgba(99,91,255,.13);
+
+    color:#ffffff;
+}
+
+.premium-dropdown .dropdown-divider{
+    border-color:
+        rgba(148,163,184,.15);
+}
+
+
+/* =========================================================
+                    MAIN CONTENT
+========================================================= */
+
+.face-main-content{
+    width:100%;
+
+    max-width:1320px;
+
+    margin:0 auto;
+
+    padding:42px 36px 35px;
+}
+
+
+/* =========================================================
+                    PAGE HEADER
+========================================================= */
+
+.face-page-header{
+    width:100%;
+
+    display:flex;
+
+    justify-content:space-between;
+    align-items:flex-end;
+
+    gap:30px;
+
+    margin-bottom:25px;
+}
+
+
+/* =========================================================
+                    AI BADGE
+========================================================= */
+
+.ai-smart-badge{
+    width:max-content;
+
+    display:flex;
+    align-items:center;
+
+    gap:7px;
+
+    margin-bottom:13px;
+
+    padding:7px 12px;
+
+    border-radius:20px;
+
+    background:
+        rgba(99,91,255,.10);
+
+    border:
+        1px solid rgba(99,91,255,.50);
+
+    color:#b5acff;
+
+    font-size:10px;
+    font-weight:700;
+
+    box-shadow:
+        0 0 15px rgba(99,91,255,.08);
+}
+
+
+/* =========================================================
+                    TITLE
+========================================================= */
+
+.face-title{
+    display:flex;
+    align-items:center;
+
+    gap:14px;
+}
+
+.face-title > i{
+    color:#665cff;
+
+    font-size:30px;
+}
+
+.face-title h1{
+    margin:0;
+
+    color:#ffffff;
+
+    font-size:31px;
+    font-weight:700;
+}
+
+.face-heading-content > p{
+    margin:
+        8px 0 0;
+
+    color:#a8b1c1;
+
+    font-size:14px;
+}
+
+
+/* =========================================================
+                    HEADER BUTTONS
+========================================================= */
+
+.face-header-actions{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+}
+
+.register-face-btn,
+.manual-login-btn{
+    min-width:155px;
+
+    height:48px;
+
+    padding:0 20px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:9px;
+
+    border-radius:9px;
+
+    text-decoration:none;
+
+    font-size:13px;
+    font-weight:600;
+
+    transition:.25s;
+}
+
+.register-face-btn{
+    color:#8d82ff;
+
+    border:
+        1px solid #6258ff;
+
+    background:
+        rgba(99,91,255,.035);
+}
+
+.register-face-btn:hover{
+    color:#ffffff;
+
+    background:
+        rgba(99,91,255,.18);
+
+    transform:translateY(-2px);
+}
+
+.manual-login-btn{
+    color:#ffffff;
+
+    border:
+        1px solid #655bff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5448ef,
+            #6758ff
+        );
+
+    box-shadow:
+        0 7px 20px rgba(84,72,239,.20);
+}
+
+.manual-login-btn:hover{
+    color:#ffffff;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 10px 27px rgba(84,72,239,.30);
+}
+
+
+/* =========================================================
+                AI AUTHENTICATION CARD
+========================================================= */
+
+.ai-authentication-card{
+    width:64%;
+
+    min-height:122px;
+
+    padding:22px 25px;
+
+    margin-bottom:14px;
+
+    display:flex;
+    align-items:center;
+
+    gap:22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(21,29,45,.95),
+            rgba(17,24,39,.95)
+        );
+
+    border:
+        1px solid rgba(148,163,184,.18);
+
+    border-radius:15px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.10);
+}
+
+.ai-brain-icon{
+    width:60px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+}
+
+.ai-brain-icon i{
+    color:#655cff;
+
+    font-size:52px;
+
+    filter:
+        drop-shadow(
+            0 0 10px rgba(99,91,255,.30)
+        );
+}
+
+.ai-authentication-card h3{
+    margin:
+        0 0 5px;
+
+    color:#8f84ff;
+
+    font-size:15px;
+    font-weight:700;
+}
+
+.ai-authentication-card p{
+    margin:0;
+
+    color:#c0c8d4;
+
+    font-size:12.5px;
+
+    line-height:1.75;
+}
+
+
+/* =========================================================
+                    MAIN GRID
+========================================================= */
+
+.face-login-grid{
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1.75fr)
+        minmax(330px,1fr);
+
+    gap:20px;
+
+    align-items:start;
+}
+
+
+/* =========================================================
+                    COMMON CARDS
+========================================================= */
+
+.scanner-card,
+.status-card,
+.recognized-card{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18,26,41,.98),
+            rgba(15,22,35,.98)
+        );
+
+    border:
+        1px solid rgba(148,163,184,.18);
+
+    border-radius:15px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.12);
+}
+
+
+/* =========================================================
+                    CARD HEADING
+========================================================= */
+
+.card-heading{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:
+        20px 22px 17px;
+}
+
+.card-heading i{
+    width:25px;
+
+    color:#665cff;
+
+    font-size:18px;
+
+    text-align:center;
+}
+
+.card-heading h3{
+    margin:0;
+
+    color:#f8fafc;
+
+    font-size:16px;
+
+    font-weight:700;
+}
+
+
+/* =========================================================
+                    SCANNER CARD
+========================================================= */
+
+.scanner-card{
+    padding-bottom:20px;
+}
+
+
+/* =========================================================
+                    CAMERA SCANNER
+========================================================= */
+
+.camera-scanner{
+    position:relative;
+
+    height:425px;
+
+    margin:
+        0 22px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    border-radius:13px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #151d2a 0%,
+            #0c121e 60%,
+            #080d16 100%
+        );
+
+    border:
+        1px solid rgba(148,163,184,.18);
+
+    box-shadow:
+        inset 0 0 50px rgba(0,0,0,.30);
+}
+
+
+/* =========================================================
+                        VIDEO
+========================================================= */
+
+#faceLoginVideo{
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:none;
+
+    transform:scaleX(-1);
+
+    z-index:2;
+}
+
+#faceLoginCanvas{
+    display:none;
+}
+
+
+/* =========================================================
+                    LIVE CAMERA
+========================================================= */
+
+.live-camera-badge{
+    position:absolute;
+
+    top:18px;
+    left:18px;
+
+    z-index:20;
+
+    display:none;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:
+        8px 12px;
+
+    border-radius:20px;
+
+    background:
+        rgba(5,10,17,.85);
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    color:#ffffff;
+
+    font-size:10px;
+
+    font-weight:600;
+
+    backdrop-filter:
+        blur(10px);
+}
+
+.live-dot{
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+
+    background:#35df75;
+
+    box-shadow:
+        0 0 10px #35df75;
+
+    animation:
+        liveDotPulse 1.3s infinite;
+}
+
+@keyframes liveDotPulse{
+
+    0%,
+    100%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:.35;
+    }
+}
+
+
+/* =========================================================
+                    PLACEHOLDER
+========================================================= */
+
+.scanner-placeholder{
+    position:relative;
+
+    z-index:5;
+
+    width:100%;
+
+    text-align:center;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+.scanner-placeholder h2{
+    margin:
+        20px 0 8px;
+
+    color:#f8fafc;
+
+    font-size:18px;
+
+    font-weight:700;
+}
+
+.scanner-placeholder p{
+    margin:0;
+
+    color:#9ba6b6;
+
+    font-size:12px;
+
+    line-height:1.7;
+}
+
+
+/* =========================================================
+                    FACE SCAN FRAME
+========================================================= */
+
+.face-scan-frame{
+    position:relative;
+
+    width:330px;
+    height:255px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+}
+
+
+/* =========================================================
+                    FACE OUTLINE
+========================================================= */
+
+.face-outline{
+    position:relative;
+
+    width:150px;
+    height:225px;
+
+    border:
+        3px solid #41e56e;
+
+    border-radius:
+        48% 48% 45% 45%;
+
+    box-shadow:
+        0 0 14px rgba(65,229,110,.25);
+}
+
+.face-head{
+    position:absolute;
+    inset:0;
+}
+
+.face-ear{
+    position:absolute;
+
+    top:94px;
+
+    width:12px;
+    height:42px;
+
+    border:
+        3px solid #41e56e;
+}
+
+.face-ear-left{
+    left:-11px;
+
+    border-right:0;
+
+    border-radius:
+        10px 0 0 10px;
+}
+
+.face-ear-right{
+    right:-11px;
+
+    border-left:0;
+
+    border-radius:
+        0 10px 10px 0;
+}
+
+
+/* =========================================================
+                    GREEN CORNERS
+========================================================= */
+
+.corner{
+    position:absolute;
+
+    width:30px;
+    height:30px;
+
+    border-color:#43e774;
+
+    border-style:solid;
+
+    filter:
+        drop-shadow(
+            0 0 5px rgba(67,231,116,.45)
+        );
+}
+
+.top-left{
+    left:55px;
+    top:13px;
+
+    border-width:
+        4px 0 0 4px;
+
+    border-radius:
+        6px 0 0 0;
+}
+
+.top-right{
+    right:55px;
+    top:13px;
+
+    border-width:
+        4px 4px 0 0;
+
+    border-radius:
+        0 6px 0 0;
+}
+
+.bottom-left{
+    left:55px;
+    bottom:13px;
+
+    border-width:
+        0 0 4px 4px;
+
+    border-radius:
+        0 0 0 6px;
+}
+
+.bottom-right{
+    right:55px;
+    bottom:13px;
+
+    border-width:
+        0 4px 4px 0;
+
+    border-radius:
+        0 0 6px 0;
+}
+
+
+/* =========================================================
+                    SCANNER LINE
+========================================================= */
+
+.scanner-line{
+    position:absolute;
+
+    left:25px;
+    right:25px;
+
+    top:50%;
+
+    height:2px;
+
+    background:#42e56f;
+
+    box-shadow:
+        0 0 8px #42e56f,
+        0 0 25px rgba(66,229,111,.75),
+        0 0 45px rgba(66,229,111,.35);
+
+    animation:
+        faceScannerMove 2.4s ease-in-out infinite;
+}
+
+@keyframes faceScannerMove{
+
+    0%{
+        top:18%;
+    }
+
+    50%{
+        top:80%;
+    }
+
+    100%{
+        top:18%;
+    }
+}
+
+
+/* =========================================================
+                VIDEO FACE FRAME
+========================================================= */
+
+.video-face-frame{
+    position:absolute;
+
+    z-index:10;
+
+    width:240px;
+    height:315px;
+
+    display:none;
+
+    border:
+        3px solid #41e56e;
+
+    border-radius:
+        47% 47% 44% 44%;
+
+    box-shadow:
+        0 0 22px rgba(65,229,110,.35);
+}
+
+.video-corner{
+    position:absolute;
+
+    width:35px;
+    height:35px;
+
+    border-style:solid;
+
+    border-color:#42e56f;
+}
+
+.corner-one{
+    top:-18px;
+    left:-18px;
+
+    border-width:
+        4px 0 0 4px;
+}
+
+.corner-two{
+    top:-18px;
+    right:-18px;
+
+    border-width:
+        4px 4px 0 0;
+}
+
+.corner-three{
+    bottom:-18px;
+    left:-18px;
+
+    border-width:
+        0 0 4px 4px;
+}
+
+.corner-four{
+    bottom:-18px;
+    right:-18px;
+
+    border-width:
+        0 4px 4px 0;
+}
+
+.video-scan-line{
+    position:absolute;
+
+    left:-60px;
+    right:-60px;
+
+    top:20%;
+
+    height:2px;
+
+    background:#42e56f;
+
+    box-shadow:
+        0 0 15px #42e56f;
+
+    animation:
+        videoScanAnimation
+        2s linear infinite;
+}
+
+@keyframes videoScanAnimation{
+
+    0%{
+        top:15%;
+    }
+
+    50%{
+        top:85%;
+    }
+
+    100%{
+        top:15%;
+    }
+}
+
+
+/* =========================================================
+                    SCANNER BUTTONS
+========================================================= */
+
+.scanner-buttons{
+    padding:
+        20px 22px 0;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:16px;
+}
+
+.scanner-btn{
+    height:48px;
+
+    border:none;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:9px;
+
+    border-radius:9px;
+
+    color:#ffffff;
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:12px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:
+        transform .25s,
+        box-shadow .25s,
+        filter .25s;
+}
+
+.scanner-btn:hover:not(:disabled){
+    transform:
+        translateY(-3px);
+
+    filter:
+        brightness(1.08);
+}
+
+.scanner-btn:active:not(:disabled){
+    transform:
+        scale(.97);
+}
+
+.scanner-btn:disabled{
+    cursor:not-allowed;
+
+    opacity:.50;
+}
+
+
+/* START CAMERA */
+
+.start-camera-btn{
+    background:
+        linear-gradient(
+            135deg,
+            #1eae52,
+            #2bc865
+        );
+
+    box-shadow:
+        0 7px 20px rgba(34,197,94,.18);
+}
+
+
+/* SCAN */
+
+.scan-face-btn{
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #665cff
+        );
+
+    box-shadow:
+        0 7px 20px rgba(79,70,229,.20);
+}
+
+
+/* RETRY */
+
+.retry-face-btn{
+    color:#171717;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f6ae15,
+            #ffc42d
+        );
+
+    box-shadow:
+        0 7px 20px rgba(251,191,36,.17);
+}
+
+
+/* STOP */
+
+.stop-camera-btn{
+    background:
+        linear-gradient(
+            135deg,
+            #dc3545,
+            #ef4454
+        );
+
+    box-shadow:
+        0 7px 20px rgba(239,68,68,.17);
+}
+
+
+/* =========================================================
+                    STATUS CARD
+========================================================= */
+
+.status-card{
+    margin-bottom:18px;
+
+    padding-bottom:8px;
+}
+
+.status-list{
+    padding:
+        0 22px 10px;
+}
+
+.status-item{
+    min-height:56px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    gap:15px;
+
+    border-top:
+        1px solid rgba(148,163,184,.12);
+}
+
+.status-name{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    color:#e2e8f0;
+
+    font-size:13px;
+
+    font-weight:600;
+}
+
+.status-name i{
+    width:20px;
+
+    color:#665cff;
+
+    text-align:center;
+}
+
+
+/* =========================================================
+                    STATUS BADGES
+========================================================= */
+
+.status-badge{
+    min-width:72px;
+
+    padding:
+        6px 11px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    font-size:10px;
+
+    font-weight:600;
+}
+
+.status-offline,
+.status-pending{
+    color:#e2e8f0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #64748b,
+            #8491a5
+        );
+}
+
+.status-waiting{
+    color:#211600;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0a900,
+            #ffc326
+        );
+}
+
+.status-success{
+    color:#ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #16a34a,
+            #22c55e
+        );
+}
+
+.status-failed{
+    color:#ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b92e3c,
+            #d33b4a
+        );
+}
+
+
+/* =========================================================
+                    RECOGNIZED CARD
+========================================================= */
+
+.recognized-card{
+    min-height:345px;
+}
+
+.recognition-waiting{
+    min-height:275px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:25px;
+
+    text-align:center;
+}
+
+.waiting-face{
+    width:90px;
+    height:90px;
+
+    margin-bottom:22px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border:
+        5px solid #475166;
+        
+
+    border-radius:50%;
+
+    color:#59647b;
+
+    font-size:45px;
+
+    background:
+        rgba(71,81,102,.08);
+
+    box-shadow:
+        inset 0 0 25px rgba(0,0,0,.18);
+}
+
+.recognition-waiting h3{
+    margin:
+        0 0 9px;
+
+    color:#f8fafc;
+
+    font-size:17px;
+    font-weight:600;
+}
+
+.recognition-waiting p{
+    max-width:270px;
+
+    margin:0;
+
+    color:#94a3b8;
+
+    font-size:12px;
+    line-height:1.7;
+}
+
+
+/* =========================================================
+                    RECOGNIZED RESULT
+========================================================= */
+
+.recognized-result{
+    display:none;
+
+    padding:
+        15px 25px 28px;
+
+    text-align:center;
+}
+
+.recognized-photo-wrapper{
+    position:relative;
+
+    width:100px;
+    height:100px;
+
+    margin:
+        5px auto 15px;
+}
+
+.recognized-photo-wrapper img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:
+        4px solid #22c55e;
+
+    padding:3px;
+
+    box-shadow:
+        0 0 25px rgba(34,197,94,.25);
+}
+
+.verified-icon{
+    position:absolute;
+
+    right:-2px;
+    bottom:4px;
+
+    width:29px;
+    height:29px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#22c55e;
+
+    border:
+        3px solid #111827;
+
+    color:#ffffff;
+
+    font-size:12px;
+}
+
+.recognized-result h3{
+    margin:
+        0 0 3px;
+
+    color:#ffffff;
+
+    font-size:19px;
+    font-weight:700;
+}
+
+.recognized-role{
+    margin:
+        0 0 18px;
+
+    color:#94a3b8;
+
+    font-size:12px;
+}
+
+
+/* =========================================================
+                RECOGNIZED TEACHER INFO
+========================================================= */
+
+.recognized-info-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:10px;
+
+    margin-top:15px;
+
+    text-align:left;
+}
+
+.recognized-info-box{
+    padding:
+        11px 13px;
+
+    background:
+        rgba(255,255,255,.025);
+
+    border:
+        1px solid rgba(148,163,184,.12);
+
+    border-radius:9px;
+}
+
+.recognized-info-box span{
+    display:block;
+
+    margin-bottom:4px;
+
+    color:#7f8a9d;
+
+    font-size:9px;
+    font-weight:500;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+}
+
+.recognized-info-box strong{
+    display:block;
+
+    color:#e2e8f0;
+
+    font-size:11px;
+    font-weight:600;
+
+    word-break:break-word;
+}
+
+
+/* =========================================================
+                RECOGNITION CONFIDENCE
+========================================================= */
+
+.confidence-section{
+    margin-top:20px;
+
+    text-align:left;
+}
+
+.confidence-header{
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:8px;
+}
+
+.confidence-header span{
+    color:#cbd5e1;
+
+    font-size:11px;
+    font-weight:500;
+}
+
+.confidence-header strong{
+    color:#22c55e;
+
+    font-size:12px;
+    font-weight:700;
+}
+
+.confidence-track{
+    width:100%;
+    height:8px;
+
+    overflow:hidden;
+
+    border-radius:20px;
+
+    background:
+        rgba(148,163,184,.14);
+}
+
+.confidence-progress{
+    width:0%;
+    height:100%;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #16a34a,
+            #22c55e,
+            #4ade80
+        );
+
+    box-shadow:
+        0 0 10px rgba(34,197,94,.30);
+
+    transition:
+        width .8s ease;
+}
+
+
+/* =========================================================
+                AUTHENTICATION SUCCESS
+========================================================= */
+
+.authentication-success{
+    margin-top:18px;
+
+    padding:13px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:9px;
+
+    border-radius:9px;
+
+    color:#4ade80;
+
+    background:
+        rgba(34,197,94,.08);
+
+    border:
+        1px solid rgba(34,197,94,.20);
+
+    font-size:11px;
+    font-weight:600;
+}
+
+.authentication-success i{
+    font-size:15px;
+}
+
+
+/* =========================================================
+                CONTINUE DASHBOARD BUTTON
+========================================================= */
+
+.continue-dashboard-btn{
+    width:100%;
+    height:43px;
+
+    margin-top:14px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:8px;
+
+    border:none;
+
+    border-radius:9px;
+
+    color:#ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #16a34a,
+            #22c55e
+        );
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:11px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 7px 20px rgba(34,197,94,.18);
+
+    transition:
+        transform .25s,
+        box-shadow .25s,
+        filter .25s;
+}
+
+.continue-dashboard-btn:hover{
+    transform:
+        translateY(-2px);
+
+    filter:
+        brightness(1.08);
+
+    box-shadow:
+        0 10px 25px rgba(34,197,94,.25);
+}
+
+.continue-dashboard-btn:active{
+    transform:
+        scale(.98);
+}
+
+
+/* =========================================================
+                    NOTIFICATION DROPDOWN
+========================================================= */
+
+.notification-dropdown{
+    min-width:300px;
+
+    padding:10px;
+
+    margin-top:12px !important;
+
+    background:#151d2c;
+
+    border:
+        1px solid rgba(148,163,184,.15);
+
+    border-radius:14px;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.45);
+}
+
+.notification-dropdown .dropdown-header{
+    padding:
+        9px 12px 12px;
+
+    color:#ffffff;
+
+    font-size:13px;
+    font-weight:700;
+
+    border-bottom:
+        1px solid rgba(148,163,184,.12);
+}
+
+.notification-dropdown .dropdown-item{
+    padding:
+        11px 12px;
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+    color:#cbd5e1;
+
+    border-radius:9px;
+
+    white-space:normal;
+
+    font-size:11px;
+
+    line-height:1.5;
+
+    transition:.2s;
+}
+
+.notification-dropdown .dropdown-item:hover{
+    color:#ffffff;
+
+    background:
+        rgba(99,91,255,.12);
+}
+
+.notification-dropdown .dropdown-item i{
+    width:18px;
+
+    margin-top:2px;
+
+    color:#766cff;
+
+    text-align:center;
+}
+
+
+/* =========================================================
+                    PROFILE DROPDOWN
+========================================================= */
+
+.profile-dropdown{
+    min-width:220px;
+
+    padding:9px;
+
+    margin-top:12px !important;
+
+    background:#151d2c;
+
+    border:
+        1px solid rgba(148,163,184,.15);
+
+    border-radius:14px;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.45);
+}
+
+.profile-dropdown .dropdown-item{
+    padding:
+        10px 12px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    border-radius:8px;
+
+    color:#cbd5e1;
+
+    font-size:12px;
+
+    transition:.2s;
+}
+
+.profile-dropdown .dropdown-item i{
+    width:18px;
+
+    color:#776dff;
+
+    text-align:center;
+}
+
+.profile-dropdown .dropdown-item:hover{
+    color:#ffffff;
+
+    background:
+        rgba(99,91,255,.12);
+}
+
+.profile-dropdown .dropdown-item.text-danger{
+    color:#f87171 !important;
+}
+
+.profile-dropdown .dropdown-item.text-danger i{
+    color:#f87171;
+}
+
+.profile-dropdown .dropdown-divider{
+    border-color:
+        rgba(148,163,184,.15);
+}
+
+
+/* =========================================================
+                    FOOTER
+========================================================= */
+
+.face-footer{
+    max-width:1320px;
+
+    margin:
+        20px auto 0;
+
+    padding:
+        20px 35px 30px;
+
+    text-align:center;
+
+    color:#64748b;
+
+    font-size:11px;
+}
+
+.face-footer span{
+    color:#8b7cff;
+
+    font-weight:600;
+}
+
+
+/* =========================================================
+                    LIGHT MODE
+========================================================= */
+
+body.light-mode{
+    --bg:#f4f7fc;
+    --bg-2:#eef2f8;
+    --card:#ffffff;
+    --card-2:#f8fafc;
+
+    --border:
+        rgba(15,23,42,.10);
+
+    --text:#111827;
+    --muted:#64748b;
+
+    --navbar:#ffffff;
+
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(99,91,255,.08),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #f4f7fc,
+            #edf2f9
+        );
+
+    color:#111827;
+}
+
+
+/* =========================================================
+                LIGHT MODE NAVBAR
+========================================================= */
+
+body.light-mode .face-navbar{
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.98),
+            rgba(248,250,252,.98)
+        );
+
+    border-color:
+        rgba(15,23,42,.08);
+
+    box-shadow:
+        0 8px 30px rgba(15,23,42,.08);
+}
+
+body.light-mode
+.face-navbar-brand h2{
+    color:#111827;
+}
+
+body.light-mode
+.face-navbar-brand span{
+    color:#64748b;
+}
+
+body.light-mode
+.face-search-box{
+    background:#f1f5f9;
+
+    border-color:
+        rgba(15,23,42,.10);
+}
+
+body.light-mode
+.face-search-box input{
+    color:#111827;
+}
+
+body.light-mode
+.face-search-box input::placeholder{
+    color:#94a3b8;
+}
+
+body.light-mode
+.face-search-box i{
+    color:#475569;
+}
+
+body.light-mode
+.theme-switcher{
+    background:#f1f5f9;
+
+    border-color:
+        rgba(15,23,42,.08);
+}
+
+body.light-mode
+.theme-option{
+    color:#64748b;
+}
+
+body.light-mode
+.theme-option:hover{
+    color:#111827;
+
+    background:#e2e8f0;
+}
+
+body.light-mode
+.navbar-icon-btn{
+    color:#334155;
+
+    background:#f1f5f9;
+}
+
+body.light-mode
+.navbar-icon-btn:hover{
+    color:#635bff;
+
+    background:
+        rgba(99,91,255,.10);
+}
+
+body.light-mode
+.teacher-profile{
+    color:#111827;
+}
+
+body.light-mode
+.teacher-profile:hover{
+    background:#f1f5f9;
+}
+
+
+/* =========================================================
+                LIGHT MODE PAGE HEADER
+========================================================= */
+
+body.light-mode
+.face-title h1{
+    color:#111827;
+}
+
+body.light-mode
+.face-heading-content > p{
+    color:#64748b;
+}
+
+
+/* =========================================================
+                    LIGHT MODE CARDS
+========================================================= */
+
+body.light-mode
+.ai-authentication-card,
+body.light-mode
+.scanner-card,
+body.light-mode
+.status-card,
+body.light-mode
+.recognized-card{
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f8fafc
+        );
+
+    border-color:
+        rgba(15,23,42,.09);
+
+    box-shadow:
+        0 10px 30px rgba(15,23,42,.06);
+}
+
+body.light-mode
+.ai-authentication-card p{
+    color:#64748b;
+}
+
+body.light-mode
+.card-heading h3{
+    color:#111827;
+}
+
+body.light-mode
+.status-item{
+    border-color:
+        rgba(15,23,42,.08);
+}
+
+body.light-mode
+.status-name{
+    color:#334155;
+}
+
+
+/* =========================================================
+                LIGHT MODE SCANNER
+========================================================= */
+
+body.light-mode
+.camera-scanner{
+    background:
+        radial-gradient(
+            circle at center,
+            #172033 0%,
+            #0d1421 65%,
+            #080d16 100%
+        );
+
+    border-color:
+        rgba(15,23,42,.10);
+}
+
+
+/*
+Scanner dark hi rakha gaya hai light mode me bhi,
+kyunki green face recognition effect dark background
+par premium dikhta hai.
+*/
+
+
+/* =========================================================
+            LIGHT MODE RECOGNIZED TEACHER
+========================================================= */
+
+body.light-mode
+.recognition-waiting h3{
+    color:#111827;
+}
+
+body.light-mode
+.recognition-waiting p{
+    color:#64748b;
+}
+
+body.light-mode
+.recognized-result h3{
+    color:#111827;
+}
+
+body.light-mode
+.recognized-role{
+    color:#64748b;
+}
+
+body.light-mode
+.recognized-info-box{
+    background:#f8fafc;
+
+    border-color:
+        rgba(15,23,42,.08);
+}
+
+body.light-mode
+.recognized-info-box span{
+    color:#64748b;
+}
+
+body.light-mode
+.recognized-info-box strong{
+    color:#1e293b;
+}
+
+body.light-mode
+.confidence-header span{
+    color:#475569;
+}
+
+
+/* =========================================================
+                LIGHT MODE DROPDOWNS
+========================================================= */
+
+body.light-mode
+.premium-dropdown,
+body.light-mode
+.notification-dropdown,
+body.light-mode
+.profile-dropdown{
+    background:#ffffff;
+
+    border-color:
+        rgba(15,23,42,.10);
+
+    box-shadow:
+        0 20px 45px rgba(15,23,42,.12);
+}
+
+body.light-mode
+.premium-dropdown .dropdown-header,
+body.light-mode
+.notification-dropdown .dropdown-header{
+    color:#111827;
+}
+
+body.light-mode
+.premium-dropdown .dropdown-item,
+body.light-mode
+.notification-dropdown .dropdown-item,
+body.light-mode
+.profile-dropdown .dropdown-item{
+    color:#475569;
+}
+
+body.light-mode
+.premium-dropdown .dropdown-item:hover,
+body.light-mode
+.notification-dropdown .dropdown-item:hover,
+body.light-mode
+.profile-dropdown .dropdown-item:hover{
+    color:#111827;
+
+    background:
+        rgba(99,91,255,.08);
+}
+
+
+/* =========================================================
+                    RESPONSIVE 1200PX
+========================================================= */
+
+@media(max-width:1200px){
+
+    .face-main-content{
+        padding:
+            35px 25px;
+    }
+
+    .face-login-grid{
+        grid-template-columns:
+            minmax(0,1.55fr)
+            minmax(300px,1fr);
+    }
+
+    .camera-scanner{
+        height:400px;
+    }
+
+    .scanner-buttons{
+        gap:10px;
+    }
+
+    .scanner-btn{
+        font-size:11px;
+    }
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE 1050PX
+========================================================= */
+
+@media(max-width:1050px){
+
+    .face-search-box{
+        width:210px;
+    }
+
+    .teacher-profile span{
+        display:none;
+    }
+
+    .ai-authentication-card{
+        width:100%;
+    }
+
+    .face-login-grid{
+        grid-template-columns:1fr;
+    }
+
+    .recognized-card{
+        min-height:auto;
+    }
+
+    .recognition-waiting{
+        min-height:250px;
+    }
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE 850PX
+========================================================= */
+
+@media(max-width:850px){
+
+    .face-navbar{
+        padding:
+            14px 20px;
+    }
+
+    .face-navbar-brand h2{
+        font-size:18px;
+    }
+
+    .brand-icon{
+        width:50px;
+        height:50px;
+    }
+
+    .face-search-box{
+        display:none;
+    }
+
+    .face-page-header{
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+    .face-header-actions{
+        width:100%;
+    }
+
+    .register-face-btn,
+    .manual-login-btn{
+        flex:1;
+    }
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE 650PX
+========================================================= */
+
+@media(max-width:650px){
+
+    .face-navbar{
+        width:
+            calc(100% - 16px);
+
+        margin:
+            8px 8px 0;
+
+        min-height:75px;
+
+        padding:
+            12px 15px;
+    }
+
+    .brand-icon{
+        width:45px;
+        height:45px;
+
+        border-radius:13px;
+    }
+
+    .brand-icon i{
+        font-size:23px;
+    }
+
+    .face-navbar-brand{
+        gap:10px;
+    }
+
+    .face-navbar-brand h2{
+        font-size:16px;
+    }
+
+    .face-navbar-brand span{
+        font-size:10px;
+    }
+
+    .face-navbar-right{
+        gap:7px;
+    }
+
+    .teacher-profile{
+        display:none;
+    }
+
+    .face-main-content{
+        padding:
+            28px 15px;
+    }
+
+    .face-title h1{
+        font-size:24px;
+    }
+
+    .face-title > i{
+        font-size:25px;
+    }
+
+    .face-heading-content > p{
+        font-size:12px;
+    }
+
+    .face-header-actions{
+        flex-direction:column;
+    }
+
+    .register-face-btn,
+    .manual-login-btn{
+        width:100%;
+    }
+
+    .ai-authentication-card{
+        padding:
+            18px;
+
+        align-items:flex-start;
+    }
+
+    .ai-brain-icon{
+        width:45px;
+    }
+
+    .ai-brain-icon i{
+        font-size:38px;
+    }
+
+    .camera-scanner{
+        height:380px;
+
+        margin:
+            0 15px;
+    }
+
+    .scanner-buttons{
+        padding:
+            15px 15px 0;
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .card-heading{
+        padding:
+            18px 16px 15px;
+    }
+
+    .status-list{
+        padding:
+            0 16px 10px;
+    }
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE 480PX
+========================================================= */
+
+@media(max-width:480px){
+
+    .face-navbar-brand span{
+        display:none;
+    }
+
+    .face-navbar-brand h2{
+        font-size:14px;
+    }
+
+    .brand-icon{
+        width:40px;
+        height:40px;
+    }
+
+    .theme-switcher{
+        height:40px;
+    }
+
+    .theme-option{
+        width:30px;
+        height:30px;
+    }
+
+    .navbar-icon-btn{
+        width:40px;
+        height:40px;
+    }
+
+    .face-title{
+        align-items:flex-start;
+    }
+
+    .face-title h1{
+        font-size:21px;
+    }
+
+    .ai-authentication-card{
+        gap:12px;
+    }
+
+    .ai-authentication-card h3{
+        font-size:13px;
+    }
+
+    .ai-authentication-card p{
+        font-size:11px;
+    }
+
+    .camera-scanner{
+        height:350px;
+    }
+
+    .face-scan-frame{
+        transform:
+            scale(.82);
+    }
+
+    .scanner-placeholder h2{
+        font-size:16px;
+    }
+
+    .scanner-placeholder p{
+        max-width:270px;
+
+        padding:
+            0 15px;
+    }
+
+    .scanner-buttons{
+        grid-template-columns:1fr;
+    }
+
+    .scanner-btn{
+        height:45px;
+    }
+
+    .status-item{
+        min-height:54px;
+    }
+
+    .status-name{
+        font-size:11px;
+    }
+
+    .status-badge{
+        min-width:65px;
+
+        font-size:9px;
+    }
+
+    .recognized-info-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+
+/* =========================================================
+                VERY SMALL MOBILE
+========================================================= */
+
+@media(max-width:370px){
+
+    .face-navbar-right{
+        gap:4px;
+    }
+
+    .theme-switcher{
+        display:none;
+    }
+
+    .face-title h1{
+        font-size:19px;
+    }
+
+    .camera-scanner{
+        height:325px;
+    }
+
+    .face-scan-frame{
+        transform:
+            scale(.72);
+    }
+
+}
+
+
+/* =========================================================
+                    CUSTOM SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar{
+    width:8px;
+    height:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#080d19;
+}
+
+::-webkit-scrollbar-thumb{
+    background:
+        linear-gradient(
+            #4f46e5,
+            #665cff
+        );
+
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#766dff;
+}
+
+body.light-mode::-webkit-scrollbar-track{
+    background:#edf2f7;
+}
+
+
+/* =========================================================
+                    SELECTION
+========================================================= */
+
+::selection{
+    color:#ffffff;
+
+    background:#635bff;
+}
+
+
+/* =========================================================
+                    FOCUS
+========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible{
+    outline:
+        2px solid #766dff;
+
+    outline-offset:3px;
+}
+
+
+/* =========================================================
+                    ANIMATIONS
+========================================================= */
+
+@keyframes cardFadeUp{
+
+    from{
+        opacity:0;
+
+        transform:
+            translateY(15px);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+.ai-authentication-card,
+.scanner-card,
+.status-card,
+.recognized-card{
+    animation:
+        cardFadeUp
+        .55s ease both;
+}
+
+.scanner-card{
+    animation-delay:.05s;
+}
+
+.status-card{
+    animation-delay:.10s;
+}
+
+.recognized-card{
+    animation-delay:.15s;
+}
+
+
+
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- =====================================================
+                    PAGE WRAPPER
+===================================================== -->
+
+<div class="face-page">
+
+
+<!-- =====================================================
+                    TOP NAVBAR
+===================================================== -->
+
+<nav class="face-navbar">
+
+    <!-- LEFT -->
+
+    <div class="face-navbar-brand">
+
+        <div class="brand-icon">
+
+            <i class="fa-solid fa-face-viewfinder"></i>
+
+        </div>
+
+        <div>
+
+            <h2>AI Face Login</h2>
+
+            <span>Teacher Panel</span>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT -->
+
+    <div class="face-navbar-right">
+
+
+        <!-- SEARCH -->
+
+        <div class="face-search-box">
+
+            <input
+                type="text"
+                id="faceSearch"
+                placeholder="Search...">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+        </div>
+
+
+        <!-- THEME SWITCH -->
+
+        <div class="theme-switcher">
+
+            <button
+                type="button"
+                id="lightModeBtn"
+                class="theme-option active"
+                title="Light Mode">
+
+                <i class="fa-solid fa-sun"></i>
+
+            </button>
+
+
+            <button
+                type="button"
+                id="darkModeBtn"
+                class="theme-option"
+                title="Dark Mode">
+
+                <i class="fa-solid fa-moon"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- NOTIFICATION -->
+
+        <div class="dropdown">
+
+            <button
+                class="navbar-icon-btn notification-button"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+
+                <i class="fa-regular fa-bell"></i>
+
+                <span class="notification-count">
+                    4
+                </span>
+
+            </button>
+
+
+            <ul class="dropdown-menu dropdown-menu-end premium-dropdown">
+
+                <li>
+
+                    <h6 class="dropdown-header">
+                        Notifications
+                    </h6>
+
+                </li>
+
+                <li>
+
+                    <a
+                        class="dropdown-item"
+                        href="notices.html">
+
+                        📢 Faculty Meeting Tomorrow
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a
+                        class="dropdown-item"
+                        href="assignments.html">
+
+                        📄 Assignment Deadline Today
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a
+                        class="dropdown-item"
+                        href="attendance.html">
+
+                        ✅ Attendance Updated
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a
+                        class="dropdown-item"
+                        href="academic-calendar.html">
+
+                        📅 Academic Event Added
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- PROFILE -->
+
+        <div class="dropdown">
+
+            <button
+                class="teacher-profile"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+
+                <img
+                    src="https://i.pravatar.cc/100?img=47"
+                    alt="Teacher">
+
+                <span>
+                    Welcome, Teacher
+                </span>
+
+                <i class="fa-solid fa-chevron-down"></i>
+
+            </button>
+
+
+            <ul class="dropdown-menu dropdown-menu-end premium-dropdown">
+
+                <li>
+
+                    <a
+                        class="dropdown-item"
+                        href="profile.html">
+
+                        <i class="fa-solid fa-user me-2"></i>
+                        My Profile
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a
+                        class="dropdown-item"
+                        href="change-password.html">
+
+                        <i class="fa-solid fa-lock me-2"></i>
+                        Change Password
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a
+                        class="dropdown-item"
+                        href="settings.html">
+
+                        <i class="fa-solid fa-gear me-2"></i>
+                        Settings
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <hr class="dropdown-divider">
+
+                </li>
+
+                <li>
+
+                    <a
+                        class="dropdown-item text-danger"
+                        href="teacher-login.html">
+
+                        <i class="fa-solid fa-right-from-bracket me-2"></i>
+                        Logout
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+                    MAIN CONTENT
+===================================================== -->
+
+<main class="face-main-content">
+
+
+<!-- =====================================================
+                    PAGE HEADER
+===================================================== -->
+
+<section class="face-page-header">
+
+    <div class="face-heading-content">
+
+
+        <!-- AI BADGE -->
+
+        <div class="ai-smart-badge">
+
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+            <span>
+                AI SMART FEATURE
+            </span>
+
+        </div>
+
+
+        <!-- TITLE -->
+
+        <div class="face-title">
+
+            <i class="fa-solid fa-face-viewfinder"></i>
+
+            <h1>
+                Teacher Face Login
+            </h1>
+
+        </div>
+
+
+        <p>
+            Securely verify teacher identity using
+            AI-powered Face Recognition.
+        </p>
+
+    </div>
+
+
+    <!-- HEADER BUTTONS -->
+
+    <div class="face-header-actions">
+
+        <a
+            href="face-register.html"
+            class="register-face-btn">
+
+            <i class="fa-solid fa-user-plus"></i>
+
+            Register Face
+
+        </a>
+
+
+        <a
+            href="teacher-login.html"
+            class="manual-login-btn">
+
+            <i class="fa-solid fa-key"></i>
+
+            Manual Login
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+            AI AUTHENTICATION INFORMATION
+===================================================== -->
+
+<section class="ai-authentication-card">
+
+    <div class="ai-brain-icon">
+
+        <i class="fa-solid fa-brain"></i>
+
+    </div>
+
+
+    <div>
+
+        <h3>
+            AI-Powered Teacher Authentication
+        </h3>
+
+        <p>
+
+            The Face Login system captures a live camera image,
+            detects the teacher's face, compares it with the
+            registered facial dataset and verifies identity before
+            allowing access to the Teacher Dashboard.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+                    MAIN GRID
+===================================================== -->
+
+<div class="face-login-grid">
+
+
+<!-- =====================================================
+                    LEFT COLUMN
+===================================================== -->
+
+<div class="face-left-column">
+
+
+<!-- =====================================================
+                FACE RECOGNITION SCANNER
+===================================================== -->
+
+<section class="scanner-card">
+
+
+    <div class="card-heading">
+
+        <i class="fa-solid fa-camera-retro"></i>
+
+        <h3>
+            AI Face Recognition Scanner
+        </h3>
+
+    </div>
+
+
+    <!-- CAMERA -->
+
+    <div
+        class="camera-scanner"
+        id="cameraScanner">
+
+
+        <!-- VIDEO -->
+
+        <video
+            id="faceLoginVideo"
+            autoplay
+            muted
+            playsinline>
+        </video>
+
+
+        <!-- CAPTURE CANVAS -->
+
+        <canvas
+            id="faceLoginCanvas">
+        </canvas>
+
+
+        <!-- LIVE CAMERA BADGE -->
+
+        <div
+            class="live-camera-badge"
+            id="liveCameraBadge">
+
+            <span class="live-dot"></span>
+
+            LIVE CAMERA
+
+        </div>
+
+
+        <!-- PLACEHOLDER -->
+
+        <div
+            class="scanner-placeholder"
+            id="scannerPlaceholder">
+
+
+            <!-- FACE FRAME -->
+
+            <div class="face-scan-frame">
+
+
+                <!-- CORNERS -->
+
+                <span class="corner top-left"></span>
+
+                <span class="corner top-right"></span>
+
+                <span class="corner bottom-left"></span>
+
+                <span class="corner bottom-right"></span>
+
+
+                <!-- FACE -->
+
+                <div class="face-outline">
+
+                    <div class="face-ear face-ear-left"></div>
+
+                    <div class="face-head"></div>
+
+                    <div class="face-ear face-ear-right"></div>
+
+                </div>
+
+
+                <!-- SCAN LINE -->
+
+                <div
+                    class="scanner-line"
+                    id="scannerLine">
+                </div>
+
+
+            </div>
+
+
+            <h2>
+                Teacher Face Login Ready
+            </h2>
+
+
+            <p>
+
+                Start the camera and position your face inside
+                <br>
+
+                the recognition frame for secure AI-based
+                authentication.
+
+            </p>
+
+        </div>
+
+
+        <!-- VIDEO FACE FRAME -->
+
+        <div
+            class="video-face-frame"
+            id="videoFaceFrame">
+
+            <span class="video-corner corner-one"></span>
+
+            <span class="video-corner corner-two"></span>
+
+            <span class="video-corner corner-three"></span>
+
+            <span class="video-corner corner-four"></span>
+
+            <div
+                class="video-scan-line"
+                id="videoScanLine">
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =================================================
+                    CAMERA BUTTONS
+    ================================================= -->
+
+    <div class="scanner-buttons">
+
+
+        <!-- START -->
+
+        <button
+            type="button"
+            id="startCameraBtn"
+            class="scanner-btn start-camera-btn">
+
+            <i class="fa-solid fa-video"></i>
+
+            <span>
+                Start Camera
+            </span>
+
+        </button>
+
+
+        <!-- SCAN -->
+
+        <button
+            type="button"
+            id="scanFaceBtn"
+            class="scanner-btn scan-face-btn"
+            disabled>
+
+            <i class="fa-solid fa-expand"></i>
+
+            <span>
+                Scan Face
+            </span>
+
+        </button>
+
+
+        <!-- RETRY -->
+
+        <button
+            type="button"
+            id="retryFaceBtn"
+            class="scanner-btn retry-face-btn"
+            disabled>
+
+            <i class="fa-solid fa-rotate-right"></i>
+
+            <span>
+                Retry
+            </span>
+
+        </button>
+
+
+        <!-- STOP -->
+
+        <button
+            type="button"
+            id="stopCameraBtn"
+            class="scanner-btn stop-camera-btn"
+            disabled>
+
+            <i class="fa-solid fa-video-slash"></i>
+
+            <span>
+                Stop Camera
+            </span>
+
+        </button>
+
+
+    </div>
+
+
+</section>
+
+
+</div>
+
+
+<!-- =====================================================
+                    RIGHT COLUMN
+===================================================== -->
+
+<div class="face-right-column">
+
+
+<!-- =====================================================
+                    RECOGNITION STATUS
+===================================================== -->
+
+<section class="status-card">
+
+
+    <div class="card-heading">
+
+        <i class="fa-solid fa-microchip"></i>
+
+        <h3>
+            Recognition Status
+        </h3>
+
+    </div>
+
+
+    <div class="status-list">
+
+
+        <!-- CAMERA -->
+
+        <div class="status-item">
+
+            <div class="status-name">
+
+                <i class="fa-solid fa-camera"></i>
+
+                <span>
+                    Camera
+                </span>
+
+            </div>
+
+
+            <span
+                id="cameraStatus"
+                class="status-badge status-offline">
+
+                Offline
+
+            </span>
+
+        </div>
+
+
+        <!-- FACE DETECTION -->
+
+        <div class="status-item">
+
+            <div class="status-name">
+
+                <i class="fa-solid fa-circle-user"></i>
+
+                <span>
+                    Face Detection
+                </span>
+
+            </div>
+
+
+            <span
+                id="faceDetectionStatus"
+                class="status-badge status-waiting">
+
+                Waiting...
+
+            </span>
+
+        </div>
+
+
+        <!-- AI RECOGNITION -->
+
+        <div class="status-item">
+
+            <div class="status-name">
+
+                <i class="fa-solid fa-brain"></i>
+
+                <span>
+                    AI Recognition
+                </span>
+
+            </div>
+
+
+            <span
+                id="aiRecognitionStatus"
+                class="status-badge status-pending">
+
+                Pending
+
+            </span>
+
+        </div>
+
+
+        <!-- ROLE -->
+
+        <div class="status-item">
+
+            <div class="status-name">
+
+                <i class="fa-solid fa-user-tag"></i>
+
+                <span>
+                    Role Verification
+                </span>
+
+            </div>
+
+
+            <span
+                id="roleVerificationStatus"
+                class="status-badge status-pending">
+
+                Pending
+
+            </span>
+
+        </div>
+
+
+        <!-- AUTHENTICATION -->
+
+        <div class="status-item">
+
+            <div class="status-name">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <span>
+                    Authentication
+                </span>
+
+            </div>
+
+
+            <span
+                id="authenticationStatus"
+                class="status-badge status-failed">
+
+                Not Authenticated
+
+            </span>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+                    RECOGNIZED TEACHER
+===================================================== -->
+
+<section class="recognized-card">
+
+
+    <div class="card-heading">
+
+        <i class="fa-solid fa-user"></i>
+
+        <h3>
+            Recognized Teacher
+        </h3>
+
+    </div>
+
+
+    <!-- WAITING -->
+
+    <div
+        class="recognition-waiting"
+        id="recognitionWaiting">
+
+
+        <div class="waiting-face">
+
+            <i class="fa-regular fa-face-smile"></i>
+
+        </div>
+
+
+        <h3>
+            Waiting for Recognition
+        </h3>
+
+
+        <p>
+
+            Start the camera and scan your face
+            <br>
+
+            to verify your Teacher account.
+
+        </p>
+
+    </div>
+
+
+    <!-- =================================================
+                    RECOGNIZED RESULT
+    ================================================= -->
+
+    <div
+        class="recognized-result"
+        id="recognizedResult">
+
+
+        <img
+            id="recognizedTeacherPhoto"
+            src="https://i.pravatar.cc/200?img=47"
+            alt="Teacher">
+
+
+        <h2 id="recognizedTeacherName">
+
+            Dr. Priya Sharma
+
+        </h2>
+
+
+        <p id="recognizedTeacherRole">
+
+            Faculty Member
+
+        </p>
+
+
+        <div class="teacher-details">
+
+
+            <div>
+
+                <span>
+                    Teacher ID
+                </span>
+
+                <strong id="recognizedTeacherId">
+                    TCH001
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Department
+                </span>
+
+                <strong id="recognizedDepartment">
+                    Computer Science
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- CONFIDENCE -->
+
+        <div class="confidence-section">
+
+
+            <div class="confidence-heading">
+
+                <span>
+                    Recognition Confidence
+                </span>
+
+                <strong id="confidenceText">
+                    97.4%
+                </strong>
+
+            </div>
+
+
+            <div class="confidence-track">
+
+                <div
+                    class="confidence-progress"
+                    id="confidenceProgress">
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- CONTINUE -->
+
+        <button
+            type="button"
+            id="continueDashboardBtn"
+            class="continue-dashboard-btn">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            Continue to Dashboard
+
+        </button>
+
+
+    </div>
+
+
+</section>
+
+
+</div>
+
+
+</div>
+
+
+</main>
+
+
+<!-- =====================================================
+                    FOOTER
+===================================================== -->
+
+<footer class="face-footer">
+
+    © 2026 Faculty Management & Productivity System |
+    AI Teacher Face Login
+
+</footer>
+
+
+</div>
+
+
+<!-- =====================================================
+                    BOOTSTRAP JS
+===================================================== -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,6690 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Smart Reports | Teacher Panel
+</title>
+
+
+<!-- =========================================================
+                        BOOTSTRAP
+========================================================= -->
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<!-- =========================================================
+                        FONT AWESOME
+========================================================= -->
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+<!-- =========================================================
+                        GOOGLE FONT
+========================================================= -->
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+
+<style>
+
+/* =========================================================
+                        ROOT
+========================================================= */
+
+:root{
+
+    --primary:#6c4cff;
+    --primary-dark:#5538e8;
+    --primary-light:#eeeaff;
+
+    --success:#22c55e;
+    --warning:#f59e0b;
+    --danger:#ef4444;
+    --info:#0ea5e9;
+
+    --dark:#111827;
+    --text:#1f2937;
+    --muted:#6b7280;
+
+    --border:#e5e7eb;
+
+    --sidebar-width:270px;
+
+}
+
+
+/* =========================================================
+                        RESET
+========================================================= */
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#f5f7fb;
+
+    color:var(--text);
+
+    min-height:100vh;
+
+}
+
+
+/* =========================================================
+                        LAYOUT
+========================================================= */
+
+.teacher-wrapper{
+
+    display:flex;
+    min-height:100vh;
+
+}
+
+
+/* =========================================================
+                        SIDEBAR
+========================================================= */
+
+.sidebar{
+
+    width:var(--sidebar-width);
+
+    height:100vh;
+
+    position:fixed;
+
+    left:0;
+    top:0;
+
+    background:#ffffff;
+
+    border-right:1px solid #edf0f5;
+
+    z-index:1100;
+
+    overflow-y:auto;
+
+    transition:.3s;
+
+}
+
+
+.sidebar::-webkit-scrollbar{
+
+    width:5px;
+
+}
+
+
+.sidebar::-webkit-scrollbar-thumb{
+
+    background:#d1d5db;
+
+    border-radius:10px;
+
+}
+
+
+/* =========================================================
+                        SIDEBAR LOGO
+========================================================= */
+
+.sidebar-logo{
+
+    padding:20px 18px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    border-bottom:1px solid #edf0f5;
+
+}
+
+
+.sidebar-logo img{
+
+    width:48px;
+    height:48px;
+
+    object-fit:contain;
+
+}
+
+
+.sidebar-logo h5{
+
+    font-size:13px;
+
+    font-weight:800;
+
+    color:var(--primary);
+
+    margin:0;
+
+    line-height:1.4;
+
+}
+
+
+.sidebar-logo small{
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+                        TEACHER PROFILE
+========================================================= */
+
+.sidebar-profile{
+
+    padding:18px;
+
+    text-align:center;
+
+    border-bottom:1px solid #edf0f5;
+
+}
+
+
+.sidebar-profile img{
+
+    width:75px;
+    height:75px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid var(--primary-light);
+
+    padding:3px;
+
+    margin-bottom:10px;
+
+}
+
+
+.sidebar-profile h6{
+
+    margin:0;
+
+    font-weight:700;
+
+    font-size:14px;
+
+}
+
+
+.sidebar-profile p{
+
+    margin:3px 0 0;
+
+    font-size:11px;
+
+    color:var(--muted);
+
+}
+
+
+.teacher-status{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    margin-top:8px;
+
+    padding:4px 9px;
+
+    border-radius:20px;
+
+    background:rgba(34,197,94,.10);
+
+    color:#16a34a;
+
+    font-size:10px;
+
+    font-weight:600;
+
+}
+
+
+.teacher-status span{
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#22c55e;
+
+}
+
+
+/* =========================================================
+                        SIDEBAR MENU
+========================================================= */
+
+.sidebar-menu{
+
+    list-style:none;
+
+    padding:15px 12px 25px;
+
+    margin:0;
+
+}
+
+
+.sidebar-title{
+
+    padding:10px 12px 7px;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.7px;
+
+    color:#9ca3af;
+
+}
+
+
+.sidebar-menu li{
+
+    margin-bottom:4px;
+
+}
+
+
+.sidebar-menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:11px 13px;
+
+    border-radius:11px;
+
+    text-decoration:none;
+
+    color:#4b5563;
+
+    font-size:13px;
+
+    font-weight:500;
+
+    transition:.25s;
+
+}
+
+
+.sidebar-menu a i{
+
+    width:20px;
+
+    text-align:center;
+
+    font-size:15px;
+
+}
+
+
+.sidebar-menu a:hover{
+
+    background:var(--primary-light);
+
+    color:var(--primary);
+
+    transform:translateX(2px);
+
+}
+
+
+.sidebar-menu a.active{
+
+    background:linear-gradient(
+        135deg,
+        #6c4cff,
+        #8b5cf6
+    );
+
+    color:#ffffff;
+
+    box-shadow:0 7px 18px rgba(108,76,255,.22);
+
+}
+
+
+/* =========================================================
+                    AI MENU BADGE
+========================================================= */
+
+.ai-menu-badge{
+
+    margin-left:auto;
+
+    background:linear-gradient(
+        135deg,
+        #8b5cf6,
+        #ec4899
+    );
+
+    color:#ffffff;
+
+    padding:2px 7px;
+
+    border-radius:10px;
+
+    font-size:8px;
+
+    font-weight:700;
+
+}
+
+
+/* =========================================================
+                        MAIN CONTENT
+========================================================= */
+
+.main-content{
+
+    width:calc(100% - var(--sidebar-width));
+
+    margin-left:var(--sidebar-width);
+
+    min-height:100vh;
+
+    transition:.3s;
+
+}
+
+
+/* =========================================================
+                        TOPBAR
+========================================================= */
+
+.topbar{
+
+    height:72px;
+
+    background:#ffffff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 28px;
+
+    border-bottom:1px solid #edf0f5;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+}
+
+
+.topbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+.sidebar-toggle{
+
+    width:40px;
+    height:40px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#f3f4f6;
+
+    color:#374151;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+}
+
+
+.topbar-search{
+
+    position:relative;
+
+    width:330px;
+
+}
+
+
+.topbar-search i{
+
+    position:absolute;
+
+    left:15px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#9ca3af;
+
+}
+
+
+.topbar-search input{
+
+    width:100%;
+
+    border:1px solid #e5e7eb;
+
+    background:#f9fafb;
+
+    border-radius:12px;
+
+    padding:10px 15px 10px 42px;
+
+    outline:none;
+
+    font-size:13px;
+
+}
+
+
+.topbar-search input:focus{
+
+    border-color:var(--primary);
+
+    background:#ffffff;
+
+}
+
+
+/* =========================================================
+                        TOPBAR RIGHT
+========================================================= */
+
+.topbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.topbar-icon{
+
+    width:42px;
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#f3f4f6;
+
+    color:#4b5563;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    position:relative;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.topbar-icon:hover{
+
+    background:var(--primary-light);
+
+    color:var(--primary);
+
+}
+
+
+.notification-dot{
+
+    position:absolute;
+
+    top:5px;
+    right:5px;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#ef4444;
+
+    border:2px solid #ffffff;
+
+}
+
+
+.topbar-user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-left:7px;
+
+}
+
+
+.topbar-user img{
+
+    width:42px;
+    height:42px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+}
+
+
+.topbar-user strong{
+
+    display:block;
+
+    font-size:12px;
+
+}
+
+
+.topbar-user small{
+
+    display:block;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+                        PAGE
+========================================================= */
+
+.page-content{
+
+    padding:28px;
+
+}
+
+
+/* =========================================================
+                        PAGE HEADER
+========================================================= */
+
+.page-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:25px;
+
+}
+
+
+.page-header h2{
+
+    font-size:26px;
+
+    font-weight:800;
+
+    margin-bottom:5px;
+
+}
+
+
+.page-header p{
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    margin:0;
+
+}
+
+
+.ai-title-icon{
+
+    width:45px;
+    height:45px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:13px;
+
+    margin-right:8px;
+
+    background:linear-gradient(
+        135deg,
+        #6c4cff,
+        #ec4899
+    );
+
+    color:#ffffff;
+
+    font-size:20px;
+
+}
+
+
+/* =========================================================
+                        BUTTONS
+========================================================= */
+
+.btn-primary{
+
+    background:var(--primary);
+
+    border-color:var(--primary);
+
+}
+
+
+.btn-primary:hover{
+
+    background:var(--primary-dark);
+
+    border-color:var(--primary-dark);
+
+}
+
+
+.report-action-btn{
+
+    border-radius:11px;
+
+    padding:10px 17px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+
+/* =========================================================
+                        AI HERO
+========================================================= */
+
+.smart-report-hero{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        135deg,
+        #5b3df5,
+        #7c3aed 50%,
+        #a855f7
+    );
+
+    border-radius:22px;
+
+    padding:30px;
+
+    color:#ffffff;
+
+    margin-bottom:25px;
+
+    box-shadow:0 12px 30px rgba(108,76,255,.20);
+
+}
+
+
+.smart-report-hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+    height:250px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    right:-80px;
+    top:-100px;
+
+}
+
+
+.smart-report-hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.06);
+
+    right:120px;
+    bottom:-120px;
+
+}
+
+
+.smart-report-hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+    max-width:750px;
+
+}
+
+
+.smart-report-hero h3{
+
+    font-weight:800;
+
+    margin-bottom:10px;
+
+}
+
+
+.smart-report-hero p{
+
+    margin:0;
+
+    color:rgba(255,255,255,.86);
+
+    font-size:13px;
+
+    line-height:1.8;
+
+}
+
+
+.ai-powered-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.16);
+
+    border:1px solid rgba(255,255,255,.20);
+
+    font-size:11px;
+
+    font-weight:600;
+
+    margin-bottom:15px;
+
+}
+
+
+/* =========================================================
+                    STATISTICS GRID
+========================================================= */
+
+.report-stat-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:18px;
+
+    margin-bottom:25px;
+
+}
+
+
+.report-stat-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.05);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    border:1px solid #f1f3f6;
+
+    transition:.25s;
+
+}
+
+
+.report-stat-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+
+.report-stat-icon{
+
+    width:55px;
+    height:55px;
+
+    border-radius:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:22px;
+
+    flex-shrink:0;
+
+}
+
+
+.report-stat-icon.purple{
+
+    background:rgba(108,76,255,.10);
+    color:#6c4cff;
+
+}
+
+
+.report-stat-icon.green{
+
+    background:rgba(34,197,94,.10);
+    color:#22c55e;
+
+}
+
+
+.report-stat-icon.orange{
+
+    background:rgba(245,158,11,.10);
+    color:#f59e0b;
+
+}
+
+
+.report-stat-icon.blue{
+
+    background:rgba(14,165,233,.10);
+    color:#0ea5e9;
+
+}
+
+
+.report-stat-info h3{
+
+    font-size:23px;
+
+    font-weight:800;
+
+    margin:0;
+
+}
+
+
+.report-stat-info span{
+
+    color:var(--muted);
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                        GRID
+========================================================= */
+
+.smart-report-grid{
+
+    display:grid;
+
+    grid-template-columns:1.4fr .9fr;
+
+    gap:22px;
+
+    align-items:start;
+
+}
+
+
+/* =========================================================
+                        COMMON CARD
+========================================================= */
+
+.report-card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:23px;
+
+    box-shadow:0 7px 24px rgba(0,0,0,.055);
+
+    border:1px solid #f0f2f5;
+
+    margin-bottom:22px;
+
+}
+
+
+.report-card-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+
+}
+
+
+.report-card-header h4{
+
+    font-size:16px;
+
+    font-weight:700;
+
+    margin:0;
+
+}
+
+
+.report-card-header p{
+
+    margin:5px 0 0;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                    REPORT GENERATOR
+========================================================= */
+
+.ai-generator-box{
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(108,76,255,.07),
+        rgba(168,85,247,.05)
+    );
+
+    border:1px solid rgba(108,76,255,.14);
+
+    border-radius:18px;
+
+    padding:20px;
+
+}
+
+
+.generator-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:18px;
+
+}
+
+
+.generator-icon{
+
+    width:48px;
+    height:48px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:linear-gradient(
+        135deg,
+        #6c4cff,
+        #a855f7
+    );
+
+    color:#ffffff;
+
+    font-size:20px;
+
+}
+
+
+.generator-title h5{
+
+    margin:0;
+
+    font-size:14px;
+
+    font-weight:700;
+
+}
+
+
+.generator-title p{
+
+    color:var(--muted);
+
+    margin:3px 0 0;
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+                        FORM
+========================================================= */
+
+.form-label{
+
+    font-size:12px;
+
+    font-weight:600;
+
+    color:#374151;
+
+    margin-bottom:7px;
+
+}
+
+
+.form-select,
+.form-control{
+
+    border:1px solid #e5e7eb;
+
+    border-radius:11px;
+
+    padding:10px 12px;
+
+    font-size:12px;
+
+    box-shadow:none !important;
+
+}
+
+
+.form-select:focus,
+.form-control:focus{
+
+    border-color:var(--primary);
+
+}
+
+
+.report-type-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:10px;
+
+}
+
+
+.report-type-option{
+
+    position:relative;
+
+}
+
+
+.report-type-option input{
+
+    position:absolute;
+
+    opacity:0;
+
+    pointer-events:none;
+
+}
+
+
+.report-type-label{
+
+    width:100%;
+
+    padding:13px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    background:#ffffff;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    cursor:pointer;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    transition:.2s;
+
+}
+
+
+.report-type-label i{
+
+    width:32px;
+    height:32px;
+
+    border-radius:9px;
+
+    background:#f3f0ff;
+
+    color:var(--primary);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.report-type-option input:checked +
+.report-type-label{
+
+    border-color:var(--primary);
+
+    background:#f8f6ff;
+
+    color:var(--primary);
+
+    box-shadow:0 0 0 2px rgba(108,76,255,.08);
+
+}
+
+
+/* =========================================================
+                    GENERATE BUTTON
+========================================================= */
+
+.generate-report-btn{
+
+    width:100%;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:12px;
+
+    color:#ffffff;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    background:linear-gradient(
+        135deg,
+        #6c4cff,
+        #a855f7
+    );
+
+    box-shadow:0 8px 18px rgba(108,76,255,.20);
+
+    transition:.25s;
+
+}
+
+
+.generate-report-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 12px 22px rgba(108,76,255,.27);
+
+}
+
+
+/* =========================================================
+                    AI QUICK REPORTS
+========================================================= */
+
+.quick-report-list{
+
+    display:grid;
+
+    gap:11px;
+
+}
+
+
+.quick-report-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:13px;
+
+    border:1px solid #edf0f4;
+
+    border-radius:13px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.quick-report-item:hover{
+
+    border-color:#cfc5ff;
+
+    background:#faf9ff;
+
+    transform:translateX(3px);
+
+}
+
+
+.quick-report-icon{
+
+    width:42px;
+    height:42px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-shrink:0;
+
+}
+
+
+.quick-report-icon.attendance{
+
+    color:#0ea5e9;
+    background:rgba(14,165,233,.10);
+
+}
+
+
+.quick-report-icon.performance{
+
+    color:#22c55e;
+    background:rgba(34,197,94,.10);
+
+}
+
+
+.quick-report-icon.risk{
+
+    color:#ef4444;
+    background:rgba(239,68,68,.10);
+
+}
+
+
+.quick-report-icon.assignment{
+
+    color:#f59e0b;
+    background:rgba(245,158,11,.10);
+
+}
+
+
+.quick-report-content{
+
+    flex:1;
+
+}
+
+
+.quick-report-content strong{
+
+    display:block;
+
+    font-size:12px;
+
+    margin-bottom:2px;
+
+}
+
+
+.quick-report-content small{
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+
+.quick-report-item > i{
+
+    color:#9ca3af;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                    AI INSIGHT CARD
+========================================================= */
+
+.ai-insight-box{
+
+    padding:17px;
+
+    border-radius:15px;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(14,165,233,.07),
+        rgba(108,76,255,.06)
+    );
+
+    border:1px solid rgba(14,165,233,.13);
+
+}
+
+
+.ai-insight-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:12px;
+
+}
+
+
+.ai-insight-header i{
+
+    width:38px;
+    height:38px;
+
+    border-radius:11px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#ffffff;
+
+    color:var(--primary);
+
+    box-shadow:0 3px 10px rgba(0,0,0,.05);
+
+}
+
+
+.ai-insight-header strong{
+
+    font-size:12px;
+
+}
+
+
+.ai-insight-box p{
+
+    color:#4b5563;
+
+    font-size:11px;
+
+    line-height:1.7;
+
+    margin:0;
+
+}
+
+
+/* =========================================================
+                    REPORT PREVIEW
+========================================================= */
+
+.report-preview-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+.report-preview-empty{
+
+    text-align:center;
+
+    padding:50px 20px;
+
+}
+
+
+.report-preview-empty i{
+
+    font-size:65px;
+
+    color:#d8d2ff;
+
+    margin-bottom:18px;
+
+}
+
+
+.report-preview-empty h5{
+
+    font-weight:700;
+
+    font-size:15px;
+
+}
+
+
+.report-preview-empty p{
+
+    max-width:500px;
+
+    margin:7px auto 0;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.7;
+
+}
+
+
+/* =========================================================
+                    LOADING
+========================================================= */
+
+.ai-report-loading{
+
+    display:none;
+
+    text-align:center;
+
+    padding:45px 20px;
+
+}
+
+
+.ai-loading-circle{
+
+    width:65px;
+    height:65px;
+
+    margin:0 auto 18px;
+
+    border-radius:50%;
+
+    border:5px solid #eeeaff;
+
+    border-top-color:var(--primary);
+
+    animation:reportSpin 1s linear infinite;
+
+}
+
+
+@keyframes reportSpin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+.ai-report-loading h5{
+
+    font-weight:700;
+
+    font-size:14px;
+
+}
+
+
+.ai-report-loading p{
+
+    color:var(--muted);
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                    GENERATED REPORT
+========================================================= */
+
+.generated-report{
+
+    display:none;
+
+}
+
+
+.generated-report-header{
+
+    padding:18px;
+
+    border-radius:15px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #f8f6ff,
+        #f5f9ff
+    );
+
+    border:1px solid #ece8ff;
+
+    margin-bottom:18px;
+
+}
+
+
+.generated-report-header h3{
+
+    font-size:18px;
+
+    font-weight:800;
+
+    margin-bottom:5px;
+
+}
+
+
+.generated-report-header p{
+
+    margin:0;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+
+.report-summary-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:10px;
+
+    margin-bottom:20px;
+
+}
+
+
+.report-summary-box{
+
+    padding:14px;
+
+    border:1px solid #edf0f5;
+
+    border-radius:12px;
+
+    text-align:center;
+
+}
+
+
+.report-summary-box h4{
+
+    font-size:18px;
+
+    font-weight:800;
+
+    margin:0 0 3px;
+
+}
+
+
+.report-summary-box small{
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+
+/* =========================================================
+                    DARK MODE
+========================================================= */
+
+body.dark{
+
+    background:#0b1120;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .sidebar,
+body.dark .topbar,
+body.dark .report-card,
+body.dark .report-stat-card{
+
+    background:#111827;
+
+    border-color:#253044;
+
+}
+
+
+body.dark .sidebar-logo,
+body.dark .sidebar-profile{
+
+    border-color:#253044;
+
+}
+
+
+body.dark .sidebar-menu a{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark .sidebar-menu a:hover{
+
+    background:#1f2937;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .topbar-search input{
+
+    background:#1f2937;
+
+    border-color:#374151;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .topbar-icon{
+
+    background:#1f2937;
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark .report-type-label{
+
+    background:#1f2937;
+
+    border-color:#374151;
+
+    color:#e5e7eb;
+
+}
+
+
+body.dark .report-type-option input:checked +
+.report-type-label{
+
+    background:#29244b;
+
+    border-color:#8b5cf6;
+
+}
+
+
+body.dark .form-select,
+body.dark .form-control{
+
+    background:#1f2937;
+
+    border-color:#374151;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .quick-report-item{
+
+    border-color:#374151;
+
+}
+
+
+body.dark .quick-report-item:hover{
+
+    background:#1f2937;
+
+}
+
+
+body.dark .ai-insight-box p{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark .generated-report-header{
+
+    background:#1f2937;
+
+    border-color:#374151;
+
+}
+
+
+body.dark .report-summary-box{
+
+    border-color:#374151;
+
+}
+
+
+body.dark .text-muted{
+
+    color:#94a3b8 !important;
+
+}
+
+
+/* =========================================================
+                        RESPONSIVE
+========================================================= */
+
+@media(max-width:1200px){
+
+    .report-stat-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+
+    .smart-report-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+@media(max-width:992px){
+
+    .sidebar{
+
+        transform:translateX(-100%);
+
+    }
+
+
+    .sidebar.show{
+
+        transform:translateX(0);
+
+    }
+
+
+    .main-content{
+
+        margin-left:0;
+
+        width:100%;
+
+    }
+
+
+    .sidebar-toggle{
+
+        display:flex;
+
+    }
+
+}
+
+
+@media(max-width:768px){
+
+    .topbar-search{
+
+        display:none;
+
+    }
+
+
+    .page-content{
+
+        padding:20px 15px;
+
+    }
+
+
+    .report-summary-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+
+    .report-type-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+@media(max-width:576px){
+
+    .report-stat-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .topbar-user div{
+
+        display:none;
+
+    }
+
+
+    .page-header h2{
+
+        font-size:21px;
+
+    }
+
+
+    .smart-report-hero{
+
+        padding:23px 18px;
+
+    }
+
+
+    .report-card{
+
+        padding:17px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+                    TEACHER WRAPPER
+========================================================= -->
+
+<div class="teacher-wrapper">
+
+
+<!-- =========================================================
+                        SIDEBAR
+========================================================= -->
+
+<aside
+class="sidebar"
+id="teacherSidebar">
+
+
+<!-- ================= LOGO ================= -->
+
+<div class="sidebar-logo">
+
+    <img
+    src="../../images/logo.png"
+    alt="PWC Logo">
+
+
+    <div>
+
+        <h5>
+            FACULTY MANAGEMENT
+            & PRODUCTIVITY SYSTEM
+        </h5>
+
+        <small>
+            Patna Women's College
+        </small>
+
+    </div>
+
+</div>
+
+
+<!-- ================= PROFILE ================= -->
+
+<div class="sidebar-profile">
+
+    <img
+    src="../../images/default-profile.png"
+    alt="Teacher">
+
+
+    <h6>
+        Dr. Priya Sharma
+    </h6>
+
+
+    <p>
+        Assistant Professor
+    </p>
+
+
+    <div class="teacher-status">
+
+        <span></span>
+
+        Active Teacher
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+                        MENU
+========================================================= -->
+
+<ul class="sidebar-menu">
+
+
+<li class="sidebar-title">
+    Main
+</li>
+
+
+<li>
+
+    <a href="teacher-dashboard.html">
+
+        <i class="fa-solid fa-house"></i>
+
+        Dashboard
+
+    </a>
+
+</li>
+
+
+<li>
+
+    <a href="profile.html">
+
+        <i class="fa-solid fa-user"></i>
+
+        My Profile
+
+    </a>
+
+</li>
+
+
+<li class="sidebar-title">
+    Academic
+</li>
+
+
+<li>
+
+    <a href="academic-calendar.html">
+
+        <i class="fa-solid fa-calendar-days"></i>
+
+        Academic Calendar
+
+    </a>
+
+</li>
+
+
+<li>
+
+    <a href="attendance.html">
+
+        <i class="fa-solid fa-clipboard-user"></i>
+
+        Attendance
+
+    </a>
+
+</li>
+
+
+<li>
+
+    <a href="assignments.html">
+
+        <i class="fa-solid fa-book-open"></i>
+
+        Assignments
+
+    </a>
+
+</li>
+
+
+<li>
+
+    <a href="performance.html">
+
+        <i class="fa-solid fa-chart-line"></i>
+
+        Performance
+
+    </a>
+
+</li>
+
+
+<li class="sidebar-title">
+    AI Smart Features
+</li>
+
+
+<li>
+
+    <a href="ai-assistant.html">
+
+        <i class="fa-solid fa-robot"></i>
+
+        AI Assistant
+
+        <span class="ai-menu-badge">
+            AI
+        </span>
+
+    </a>
+
+</li>
+
+
+<li>
+
+    <a
+    href="smart-report.html"
+    class="active">
+
+        <i class="fa-solid fa-chart-pie"></i>
+
+        Smart Reports
+
+        <span class="ai-menu-badge">
+            AI
+        </span>
+
+    </a>
+
+</li>
+
+
+<li>
+
+    <a href="face-register.html">
+
+        <i class="fa-solid fa-face-smile"></i>
+
+        Face Registration
+
+    </a>
+
+</li>
+
+
+<li>
+
+    <a href="face-login.html">
+
+        <i class="fa-solid fa-face-viewfinder"></i>
+
+        Face Login
+
+    </a>
+
+</li>
+
+
+<li class="sidebar-title">
+    Communication
+</li>
+
+
+<li>
+
+    <a href="notices.html">
+
+        <i class="fa-solid fa-bullhorn"></i>
+
+        Notices
+
+    </a>
+
+</li>
+
+
+<li>
+
+    <a href="leave-request.html">
+
+        <i class="fa-solid fa-calendar-minus"></i>
+
+        Leave Request
+
+    </a>
+
+</li>
+
+
+<li>
+
+    <a href="notifications.html">
+
+        <i class="fa-solid fa-bell"></i>
+
+        Notifications
+
+    </a>
+
+</li>
+
+
+<li class="sidebar-title">
+    Account
+</li>
+
+
+<li>
+
+    <a href="settings.html">
+
+        <i class="fa-solid fa-gear"></i>
+
+        Settings
+
+    </a>
+
+</li>
+
+
+<li>
+
+    <a href="change-password.html">
+
+        <i class="fa-solid fa-lock"></i>
+
+        Change Password
+
+    </a>
+
+</li>
+
+
+<li>
+
+    <a href="teacher-login.html">
+
+        <i class="fa-solid fa-right-from-bracket"></i>
+
+        Logout
+
+    </a>
+
+</li>
+
+
+</ul>
+
+</aside>
+
+
+<!-- =========================================================
+                    MAIN CONTENT
+========================================================= -->
+
+<div class="main-content">
+
+
+<!-- =========================================================
+                        TOPBAR
+========================================================= -->
+
+<header class="topbar">
+
+
+<div class="topbar-left">
+
+
+<button
+type="button"
+class="sidebar-toggle"
+id="sidebarToggle">
+
+    <i class="fa-solid fa-bars"></i>
+
+</button>
+
+
+<div class="topbar-search">
+
+    <i class="fa-solid fa-magnifying-glass"></i>
+
+    <input
+    type="text"
+    id="searchBox"
+    placeholder="Search smart reports...">
+
+</div>
+
+
+</div>
+
+
+<div class="topbar-right">
+
+
+<!-- ================= THEME ================= -->
+
+<button
+type="button"
+class="topbar-icon"
+id="themeToggle"
+title="Dark / Light Mode">
+
+    <i class="fa-solid fa-moon"></i>
+
+</button>
+
+
+<!-- ================= NOTIFICATION ================= -->
+
+<a
+href="notifications.html"
+class="topbar-icon text-decoration-none"
+title="Notifications">
+
+    <i class="fa-solid fa-bell"></i>
+
+    <span class="notification-dot"></span>
+
+</a>
+
+
+<!-- ================= USER ================= -->
+
+<div class="topbar-user">
+
+    <img
+    src="../../images/default-profile.png"
+    alt="Teacher">
+
+
+    <div>
+
+        <strong>
+            Dr. Priya Sharma
+        </strong>
+
+        <small>
+            Teacher
+        </small>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</header>
+
+
+<!-- =========================================================
+                        PAGE CONTENT
+========================================================= -->
+
+<main class="page-content">
+
+
+<!-- =========================================================
+                        PAGE HEADER
+========================================================= -->
+
+<div class="page-header">
+
+
+<div>
+
+    <h2>
+
+        <span class="ai-title-icon">
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+        </span>
+
+        Smart Reports
+
+    </h2>
+
+
+    <p>
+        Generate AI-powered academic reports,
+        performance insights and intelligent recommendations.
+    </p>
+
+</div>
+
+
+<div class="d-flex gap-2 flex-wrap">
+
+
+<button
+type="button"
+class="btn btn-outline-primary report-action-btn"
+id="reportHistoryBtn">
+
+    <i class="fa-solid fa-clock-rotate-left me-2"></i>
+
+    Report History
+
+</button>
+
+
+<button
+type="button"
+class="btn btn-primary report-action-btn"
+id="newReportBtn">
+
+    <i class="fa-solid fa-wand-magic-sparkles me-2"></i>
+
+    New AI Report
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                        AI HERO
+========================================================= -->
+
+<section class="smart-report-hero">
+
+
+<div class="smart-report-hero-content">
+
+
+<div class="ai-powered-badge">
+
+    <i class="fa-solid fa-sparkles"></i>
+
+    AI Powered Analytics
+
+</div>
+
+
+<h3>
+    Turn Academic Data Into Smart Insights
+</h3>
+
+
+<p>
+
+    Smart Reports analyzes attendance,
+    assignments, student performance and academic
+    activities to generate meaningful reports,
+    identify risks and provide intelligent
+    recommendations for better teaching decisions.
+
+</p>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+                    REPORT STATISTICS
+========================================================= -->
+
+<div class="report-stat-grid">
+
+
+<!-- ================= REPORTS ================= -->
+
+<div class="report-stat-card">
+
+    <div class="report-stat-icon purple">
+
+        <i class="fa-solid fa-file-lines"></i>
+
+    </div>
+
+
+    <div class="report-stat-info">
+
+        <h3 id="totalReportsCount">
+            18
+        </h3>
+
+        <span>
+            Reports Generated
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- ================= ATTENDANCE ================= -->
+
+<div class="report-stat-card">
+
+    <div class="report-stat-icon green">
+
+        <i class="fa-solid fa-user-check"></i>
+
+    </div>
+
+
+    <div class="report-stat-info">
+
+        <h3>
+            87.4%
+        </h3>
+
+        <span>
+            Average Attendance
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- ================= PERFORMANCE ================= -->
+
+<div class="report-stat-card">
+
+    <div class="report-stat-icon blue">
+
+        <i class="fa-solid fa-chart-line"></i>
+
+    </div>
+
+
+    <div class="report-stat-info">
+
+        <h3>
+            82.6%
+        </h3>
+
+        <span>
+            Class Performance
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- ================= RISK ================= -->
+
+<div class="report-stat-card">
+
+    <div class="report-stat-icon orange">
+
+        <i class="fa-solid fa-triangle-exclamation"></i>
+
+    </div>
+
+
+    <div class="report-stat-info">
+
+        <h3>
+            06
+        </h3>
+
+        <span>
+            Students Need Attention
+        </span>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    SMART REPORT GRID
+========================================================= -->
+
+<div class="smart-report-grid">
+
+
+<!-- =========================================================
+                        LEFT COLUMN
+========================================================= -->
+
+<div>
+
+
+<!-- =========================================================
+                    AI REPORT GENERATOR
+========================================================= -->
+
+<section
+class="report-card"
+id="reportGeneratorSection">
+
+
+<div class="report-card-header">
+
+
+<div>
+
+    <h4>
+
+        <i
+        class="fa-solid fa-wand-magic-sparkles me-2"
+        style="color:#6c4cff;">
+        </i>
+
+        AI Report Generator
+
+    </h4>
+
+
+    <p>
+        Select academic data and let AI
+        generate a smart analytical report.
+    </p>
+
+</div>
+
+
+<span class="badge rounded-pill text-bg-primary">
+
+    <i class="fa-solid fa-robot me-1"></i>
+
+    AI Enabled
+
+</span>
+
+
+</div>
+
+
+<div class="ai-generator-box">
+
+
+<!-- ================= GENERATOR TITLE ================= -->
+
+<div class="generator-title">
+
+
+<div class="generator-icon">
+
+    <i class="fa-solid fa-brain"></i>
+
+</div>
+
+
+<div>
+
+    <h5>
+        Configure Smart Report
+    </h5>
+
+    <p>
+        Choose the report type and academic filters.
+    </p>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    REPORT TYPE
+========================================================= -->
+
+<div class="mb-4">
+
+
+<label class="form-label">
+
+    Select Report Type
+
+</label>
+
+
+<div class="report-type-grid">
+
+
+<!-- Attendance -->
+
+<div class="report-type-option">
+
+    <input
+    type="radio"
+    name="reportType"
+    id="attendanceReport"
+    value="attendance"
+    checked>
+
+
+    <label
+    for="attendanceReport"
+    class="report-type-label">
+
+        <i class="fa-solid fa-user-check"></i>
+
+        Attendance Analysis
+
+    </label>
+
+</div>
+
+
+<!-- Performance -->
+
+<div class="report-type-option">
+
+    <input
+    type="radio"
+    name="reportType"
+    id="performanceReport"
+    value="performance">
+
+
+    <label
+    for="performanceReport"
+    class="report-type-label">
+
+        <i class="fa-solid fa-chart-line"></i>
+
+        Performance Analysis
+
+    </label>
+
+</div>
+
+
+<!-- Assignment -->
+
+<div class="report-type-option">
+
+    <input
+    type="radio"
+    name="reportType"
+    id="assignmentReport"
+    value="assignment">
+
+
+    <label
+    for="assignmentReport"
+    class="report-type-label">
+
+        <i class="fa-solid fa-book-open"></i>
+
+        Assignment Report
+
+    </label>
+
+</div>
+
+
+<!-- Risk -->
+
+<div class="report-type-option">
+
+    <input
+    type="radio"
+    name="reportType"
+    id="riskReport"
+    value="risk">
+
+
+    <label
+    for="riskReport"
+    class="report-type-label">
+
+        <i class="fa-solid fa-triangle-exclamation"></i>
+
+        Student Risk Analysis
+
+    </label>
+
+</div>
+
+
+<!-- Complete -->
+
+<div class="report-type-option">
+
+    <input
+    type="radio"
+    name="reportType"
+    id="completeReport"
+    value="complete">
+
+
+    <label
+    for="completeReport"
+    class="report-type-label">
+
+        <i class="fa-solid fa-chart-pie"></i>
+
+        Complete Class Report
+
+    </label>
+
+</div>
+
+
+<!-- AI Recommendation -->
+
+<div class="report-type-option">
+
+    <input
+    type="radio"
+    name="reportType"
+    id="recommendationReport"
+    value="recommendation">
+
+
+    <label
+    for="recommendationReport"
+    class="report-type-label">
+
+        <i class="fa-solid fa-lightbulb"></i>
+
+        AI Recommendations
+
+    </label>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    ACADEMIC FILTERS
+========================================================= -->
+
+<div class="row g-3">
+
+
+<!-- Department -->
+
+<div class="col-md-6">
+
+    <label class="form-label">
+
+        Department
+
+    </label>
+
+
+    <select
+    class="form-select"
+    id="reportDepartment">
+
+        <option value="computer-science">
+            Computer Science
+        </option>
+
+        <option value="bca">
+            BCA
+        </option>
+
+        <option value="mca">
+            MCA
+        </option>
+
+    </select>
+
+</div>
+
+
+<!-- Course -->
+
+<div class="col-md-6">
+
+    <label class="form-label">
+
+        Course / Class
+
+    </label>
+
+
+    <select
+    class="form-select"
+    id="reportCourse">
+
+        <option value="mca-3">
+            MCA - Semester III
+        </option>
+
+        <option value="mca-1">
+            MCA - Semester I
+        </option>
+
+        <option value="bca-5">
+            BCA - Semester V
+        </option>
+
+        <option value="bca-3">
+            BCA - Semester III
+        </option>
+
+    </select>
+
+</div>
+
+
+<!-- Subject -->
+
+<div class="col-md-6">
+
+    <label class="form-label">
+
+        Subject
+
+    </label>
+
+
+    <select
+    class="form-select"
+    id="reportSubject">
+
+        <option value="all">
+            All Subjects
+        </option>
+
+        <option value="java">
+            Advanced Java
+        </option>
+
+        <option value="dbms">
+            Database Management System
+        </option>
+
+        <option value="ai">
+            Artificial Intelligence
+        </option>
+
+        <option value="cloud">
+            Cloud Computing
+        </option>
+
+    </select>
+
+</div>
+
+
+<!-- Period -->
+
+<div class="col-md-6">
+
+    <label class="form-label">
+
+        Report Period
+
+    </label>
+
+
+    <select
+    class="form-select"
+    id="reportPeriod">
+
+        <option value="week">
+            Current Week
+        </option>
+
+        <option
+        value="month"
+        selected>
+            Current Month
+        </option>
+
+        <option value="semester">
+            Current Semester
+        </option>
+
+        <option value="custom">
+            Custom Range
+        </option>
+
+    </select>
+
+</div>
+
+
+<!-- Start Date -->
+
+<div
+class="col-md-6"
+id="startDateColumn"
+style="display:none;">
+
+    <label class="form-label">
+
+        Start Date
+
+    </label>
+
+
+    <input
+    type="date"
+    class="form-control"
+    id="reportStartDate">
+
+</div>
+
+
+<!-- End Date -->
+
+<div
+class="col-md-6"
+id="endDateColumn"
+style="display:none;">
+
+    <label class="form-label">
+
+        End Date
+
+    </label>
+
+
+    <input
+    type="date"
+    class="form-control"
+    id="reportEndDate">
+
+</div>
+
+
+<!-- AI Detail -->
+
+<div class="col-12">
+
+    <label class="form-label">
+
+        AI Analysis Level
+
+    </label>
+
+
+    <select
+    class="form-select"
+    id="analysisLevel">
+
+        <option value="basic">
+            Basic Summary
+        </option>
+
+        <option
+        value="detailed"
+        selected>
+            Detailed Analysis
+        </option>
+
+        <option value="advanced">
+            Advanced AI Insights + Recommendations
+        </option>
+
+    </select>
+
+</div>
+
+
+<!-- Notes -->
+
+<div class="col-12">
+
+    <label class="form-label">
+
+        Additional Instructions
+        <span class="text-muted fw-normal">
+            (Optional)
+        </span>
+
+    </label>
+
+
+    <textarea
+    class="form-control"
+    id="reportInstructions"
+    rows="3"
+    placeholder="Example: Focus on students below 75% attendance and provide improvement suggestions..."></textarea>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    GENERATE BUTTON
+========================================================= -->
+
+<div class="mt-4">
+
+<button
+type="button"
+class="generate-report-btn"
+id="generateReportBtn">
+
+    <i class="fa-solid fa-wand-magic-sparkles me-2"></i>
+
+    Generate Smart Report
+
+</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+                    REPORT PREVIEW
+========================================================= -->
+
+<section
+class="report-card report-preview-card"
+id="reportPreviewSection">
+
+
+<div class="report-card-header">
+
+
+<div>
+
+    <h4>
+
+        <i
+        class="fa-solid fa-file-waveform me-2"
+        style="color:#6c4cff;">
+        </i>
+
+        Smart Report Preview
+
+    </h4>
+
+
+    <p>
+        Your AI-generated analysis will appear here.
+    </p>
+
+</div>
+
+
+<div
+class="d-flex gap-2"
+id="generatedReportActions"
+style="display:none !important;">
+
+
+<button
+type="button"
+class="btn btn-sm btn-outline-primary"
+id="printReportBtn">
+
+    <i class="fa-solid fa-print me-1"></i>
+
+    Print
+
+</button>
+
+
+<button
+type="button"
+class="btn btn-sm btn-primary"
+id="downloadReportBtn">
+
+    <i class="fa-solid fa-download me-1"></i>
+
+    Download
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+<!-- ================= EMPTY STATE ================= -->
+
+<div
+class="report-preview-empty"
+id="reportPreviewEmpty">
+
+
+<i class="fa-solid fa-chart-column"></i>
+
+
+<h5>
+    No Smart Report Generated Yet
+</h5>
+
+
+<p>
+
+    Configure the report generator above and click
+    <strong>Generate Smart Report</strong>.
+    AI-powered academic analysis and recommendations
+    will appear here.
+
+</p>
+
+
+</div>
+
+
+<!-- ================= AI LOADING ================= -->
+
+<div
+class="ai-report-loading"
+id="aiReportLoading">
+
+
+<div class="ai-loading-circle"></div>
+
+
+<h5>
+
+    <i class="fa-solid fa-brain me-2"></i>
+
+    AI is analyzing academic data...
+
+</h5>
+
+
+<p id="aiLoadingText">
+
+    Processing attendance and student records.
+
+</p>
+
+
+</div>
+
+
+<!-- =========================================================
+                    GENERATED REPORT
+========================================================= -->
+
+<div
+class="generated-report"
+id="generatedReport">
+
+
+<div class="generated-report-header">
+
+
+<div
+class="d-flex justify-content-between align-items-start gap-3 flex-wrap">
+
+
+<div>
+
+<h3 id="generatedReportTitle">
+
+    Attendance Analysis Report
+
+</h3>
+
+
+<p>
+
+    AI Generated Academic Report •
+    <span id="generatedReportDate">
+        --
+    </span>
+
+</p>
+
+</div>
+
+
+<span
+class="badge bg-success rounded-pill px-3 py-2">
+
+    <i class="fa-solid fa-circle-check me-1"></i>
+
+    Analysis Complete
+
+</span>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    SUMMARY BOXES
+========================================================= -->
+
+<div class="report-summary-grid">
+
+
+<div class="report-summary-box">
+
+    <h4 id="reportTotalStudents">
+        48
+    </h4>
+
+    <small>
+        Total Students
+    </small>
+
+</div>
+
+
+<div class="report-summary-box">
+
+    <h4
+    id="reportAverage"
+    class="text-success">
+
+        87.4%
+
+    </h4>
+
+    <small>
+        Class Average
+    </small>
+
+</div>
+
+
+<div class="report-summary-box">
+
+    <h4
+    id="reportGoodStudents"
+    class="text-primary">
+
+        39
+
+    </h4>
+
+    <small>
+        Good Standing
+    </small>
+
+</div>
+
+
+<div class="report-summary-box">
+
+    <h4
+    id="reportRiskStudents"
+    class="text-danger">
+
+        06
+
+    </h4>
+
+    <small>
+        Need Attention
+    </small>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    AI EXECUTIVE SUMMARY
+========================================================= -->
+
+<div class="mb-4">
+
+    <h5 class="fw-bold mb-3">
+
+        <i
+        class="fa-solid fa-brain me-2"
+        style="color:#6c4cff;">
+        </i>
+
+        AI Executive Summary
+
+    </h5>
+
+
+    <div
+    class="ai-insight-box"
+    id="executiveSummaryBox">
+
+
+        <div class="ai-insight-header">
+
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+            <strong>
+                AI Generated Insight
+            </strong>
+
+        </div>
+
+
+        <p id="executiveSummaryText">
+
+            The overall academic performance of the class
+            is satisfactory. Most students maintain regular
+            attendance and consistent academic performance.
+            However, a small group of students requires
+            additional attention due to low attendance,
+            incomplete assignments or declining performance.
+
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+                    ATTENDANCE ANALYSIS
+========================================================= -->
+
+<div class="mb-4">
+
+
+<div
+class="d-flex justify-content-between
+align-items-center flex-wrap gap-2 mb-3">
+
+
+<h5 class="fw-bold mb-0">
+
+    <i
+    class="fa-solid fa-user-check me-2"
+    style="color:#22c55e;">
+    </i>
+
+    Attendance Analysis
+
+</h5>
+
+
+<span class="badge bg-success">
+
+    Overall Good
+
+</span>
+
+
+</div>
+
+
+<div class="row g-3">
+
+
+<div class="col-md-4">
+
+    <div class="report-summary-box">
+
+        <h4 class="text-success">
+            42
+        </h4>
+
+        <small>
+            Above 75%
+        </small>
+
+    </div>
+
+</div>
+
+
+<div class="col-md-4">
+
+    <div class="report-summary-box">
+
+        <h4 class="text-warning">
+            4
+        </h4>
+
+        <small>
+            65% - 75%
+        </small>
+
+    </div>
+
+</div>
+
+
+<div class="col-md-4">
+
+    <div class="report-summary-box">
+
+        <h4 class="text-danger">
+            2
+        </h4>
+
+        <small>
+            Below 65%
+        </small>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+<!-- ================= ATTENDANCE PROGRESS ================= -->
+
+<div class="mt-4">
+
+
+<div
+class="d-flex justify-content-between
+mb-2">
+
+    <span class="small fw-semibold">
+        Overall Attendance
+    </span>
+
+    <strong class="text-success">
+        87.4%
+    </strong>
+
+</div>
+
+
+<div
+class="progress"
+style="height:12px;border-radius:20px;">
+
+    <div
+    class="progress-bar bg-success"
+    style="width:87.4%;">
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<hr>
+
+
+<!-- =========================================================
+                    PERFORMANCE ANALYSIS
+========================================================= -->
+
+<div class="mb-4">
+
+
+<div
+class="d-flex justify-content-between
+align-items-center flex-wrap gap-2 mb-3">
+
+
+<h5 class="fw-bold mb-0">
+
+    <i
+    class="fa-solid fa-chart-line me-2"
+    style="color:#0ea5e9;">
+    </i>
+
+    Student Performance Analysis
+
+</h5>
+
+
+<span class="badge bg-primary">
+
+    82.6% Average
+
+</span>
+
+
+</div>
+
+
+<div class="row g-3">
+
+
+<div class="col-md-3 col-6">
+
+    <div class="report-summary-box">
+
+        <h4 class="text-success">
+            12
+        </h4>
+
+        <small>
+            Excellent
+        </small>
+
+    </div>
+
+</div>
+
+
+<div class="col-md-3 col-6">
+
+    <div class="report-summary-box">
+
+        <h4 class="text-primary">
+            22
+        </h4>
+
+        <small>
+            Good
+        </small>
+
+    </div>
+
+</div>
+
+
+<div class="col-md-3 col-6">
+
+    <div class="report-summary-box">
+
+        <h4 class="text-warning">
+            9
+        </h4>
+
+        <small>
+            Average
+        </small>
+
+    </div>
+
+</div>
+
+
+<div class="col-md-3 col-6">
+
+    <div class="report-summary-box">
+
+        <h4 class="text-danger">
+            5
+        </h4>
+
+        <small>
+            Needs Improvement
+        </small>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    PERFORMANCE CHART
+========================================================= -->
+
+<div
+class="mt-4"
+style="
+height:310px;
+position:relative;
+">
+
+
+<canvas id="performanceChart"></canvas>
+
+
+</div>
+
+
+</div>
+
+
+<hr>
+
+
+<!-- =========================================================
+                    ASSIGNMENT ANALYSIS
+========================================================= -->
+
+<div class="mb-4">
+
+
+<h5 class="fw-bold mb-3">
+
+    <i
+    class="fa-solid fa-book-open me-2"
+    style="color:#f59e0b;">
+    </i>
+
+    Assignment Analysis
+
+</h5>
+
+
+<div class="row g-3">
+
+
+<div class="col-md-3 col-6">
+
+    <div class="report-summary-box">
+
+        <h4>
+            08
+        </h4>
+
+        <small>
+            Total Assignments
+        </small>
+
+    </div>
+
+</div>
+
+
+<div class="col-md-3 col-6">
+
+    <div class="report-summary-box">
+
+        <h4 class="text-success">
+            91%
+        </h4>
+
+        <small>
+            Submission Rate
+        </small>
+
+    </div>
+
+</div>
+
+
+<div class="col-md-3 col-6">
+
+    <div class="report-summary-box">
+
+        <h4 class="text-primary">
+            84%
+        </h4>
+
+        <small>
+            Average Score
+        </small>
+
+    </div>
+
+</div>
+
+
+<div class="col-md-3 col-6">
+
+    <div class="report-summary-box">
+
+        <h4 class="text-danger">
+            07
+        </h4>
+
+        <small>
+            Pending
+        </small>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<hr>
+
+
+<!-- =========================================================
+                    STUDENTS NEEDING ATTENTION
+========================================================= -->
+
+<div class="mb-4">
+
+
+<div
+class="d-flex justify-content-between
+align-items-center flex-wrap gap-2 mb-3">
+
+
+<h5 class="fw-bold mb-0">
+
+    <i
+    class="fa-solid fa-triangle-exclamation me-2"
+    style="color:#ef4444;">
+    </i>
+
+    Students Requiring Attention
+
+</h5>
+
+
+<span class="badge bg-danger">
+
+    6 Students
+
+</span>
+
+
+</div>
+
+
+<div class="table-responsive">
+
+
+<table
+class="table align-middle"
+id="riskStudentTable">
+
+
+<thead>
+
+
+<tr>
+
+    <th>
+        Student
+    </th>
+
+    <th>
+        Roll No.
+    </th>
+
+    <th>
+        Attendance
+    </th>
+
+    <th>
+        Performance
+    </th>
+
+    <th>
+        Risk
+    </th>
+
+    <th>
+        Reason
+    </th>
+
+</tr>
+
+
+</thead>
+
+
+<tbody>
+
+
+<tr>
+
+<td>
+
+    <div class="d-flex align-items-center gap-2">
+
+        <div
+        class="rounded-circle bg-danger-subtle
+        text-danger d-flex align-items-center
+        justify-content-center fw-bold"
+        style="width:35px;height:35px;">
+
+            AK
+
+        </div>
+
+        <strong class="small">
+            Anjali Kumari
+        </strong>
+
+    </div>
+
+</td>
+
+
+<td>
+    MCA031
+</td>
+
+
+<td class="text-danger fw-semibold">
+    61%
+</td>
+
+
+<td>
+    58%
+</td>
+
+
+<td>
+
+    <span class="badge bg-danger">
+        High
+    </span>
+
+</td>
+
+
+<td class="small">
+    Low attendance & marks
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+
+    <div class="d-flex align-items-center gap-2">
+
+        <div
+        class="rounded-circle bg-warning-subtle
+        text-warning d-flex align-items-center
+        justify-content-center fw-bold"
+        style="width:35px;height:35px;">
+
+            NS
+
+        </div>
+
+        <strong class="small">
+            Neha Singh
+        </strong>
+
+    </div>
+
+</td>
+
+
+<td>
+    MCA018
+</td>
+
+
+<td class="text-warning fw-semibold">
+    69%
+</td>
+
+
+<td>
+    66%
+</td>
+
+
+<td>
+
+    <span class="badge bg-warning text-dark">
+        Medium
+    </span>
+
+</td>
+
+
+<td class="small">
+    Irregular attendance
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+
+    <div class="d-flex align-items-center gap-2">
+
+        <div
+        class="rounded-circle bg-danger-subtle
+        text-danger d-flex align-items-center
+        justify-content-center fw-bold"
+        style="width:35px;height:35px;">
+
+            PS
+
+        </div>
+
+        <strong class="small">
+            Pooja Sinha
+        </strong>
+
+    </div>
+
+</td>
+
+
+<td>
+    MCA027
+</td>
+
+
+<td>
+    73%
+</td>
+
+
+<td class="text-danger fw-semibold">
+    55%
+</td>
+
+
+<td>
+
+    <span class="badge bg-danger">
+        High
+    </span>
+
+</td>
+
+
+<td class="small">
+    Low assessment score
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+
+    <div class="d-flex align-items-center gap-2">
+
+        <div
+        class="rounded-circle bg-warning-subtle
+        text-warning d-flex align-items-center
+        justify-content-center fw-bold"
+        style="width:35px;height:35px;">
+
+            RS
+
+        </div>
+
+        <strong class="small">
+            Riya Sharma
+        </strong>
+
+    </div>
+
+</td>
+
+
+<td>
+    MCA042
+</td>
+
+
+<td>
+    72%
+</td>
+
+
+<td>
+    64%
+</td>
+
+
+<td>
+
+    <span class="badge bg-warning text-dark">
+        Medium
+    </span>
+
+</td>
+
+
+<td class="small">
+    Pending assignments
+</td>
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</div>
+
+
+<hr>
+
+
+<!-- =========================================================
+                    AI RECOMMENDATIONS
+========================================================= -->
+
+<div class="mb-2">
+
+
+<h5 class="fw-bold mb-3">
+
+    <i
+    class="fa-solid fa-lightbulb me-2"
+    style="color:#f59e0b;">
+    </i>
+
+    AI Recommendations
+
+</h5>
+
+
+<div class="row g-3">
+
+
+<div class="col-md-6">
+
+<div
+class="p-3 rounded-4"
+style="
+background:rgba(34,197,94,.07);
+border:1px solid rgba(34,197,94,.18);
+height:100%;
+">
+
+
+<div class="d-flex gap-3">
+
+<i
+class="fa-solid fa-user-check
+text-success mt-1">
+</i>
+
+
+<div>
+
+<strong class="small">
+    Improve Attendance
+</strong>
+
+
+<p
+class="text-muted small mb-0 mt-1">
+
+    Contact students with attendance
+    below 75% and provide regular
+    attendance reminders.
+
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<div class="col-md-6">
+
+<div
+class="p-3 rounded-4"
+style="
+background:rgba(14,165,233,.07);
+border:1px solid rgba(14,165,233,.18);
+height:100%;
+">
+
+
+<div class="d-flex gap-3">
+
+<i
+class="fa-solid fa-book-open
+text-primary mt-1">
+</i>
+
+
+<div>
+
+<strong class="small">
+    Extra Academic Support
+</strong>
+
+
+<p
+class="text-muted small mb-0 mt-1">
+
+    Arrange additional doubt sessions
+    for students scoring below the
+    class average.
+
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<div class="col-md-6">
+
+<div
+class="p-3 rounded-4"
+style="
+background:rgba(245,158,11,.07);
+border:1px solid rgba(245,158,11,.18);
+height:100%;
+">
+
+
+<div class="d-flex gap-3">
+
+<i
+class="fa-solid fa-list-check
+text-warning mt-1">
+</i>
+
+
+<div>
+
+<strong class="small">
+    Assignment Follow-up
+</strong>
+
+
+<p
+class="text-muted small mb-0 mt-1">
+
+    Send reminders to students who
+    have pending or incomplete
+    assignments.
+
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<div class="col-md-6">
+
+<div
+class="p-3 rounded-4"
+style="
+background:rgba(108,76,255,.07);
+border:1px solid rgba(108,76,255,.18);
+height:100%;
+">
+
+
+<div class="d-flex gap-3">
+
+<i
+class="fa-solid fa-chart-line
+mt-1"
+style="color:#6c4cff;">
+</i>
+
+
+<div>
+
+<strong class="small">
+    Monitor Progress
+</strong>
+
+
+<p
+class="text-muted small mb-0 mt-1">
+
+    Review identified at-risk students
+    weekly and compare their academic
+    progress.
+
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+<!-- END GENERATED REPORT -->
+
+
+</section>
+
+
+</div>
+<!-- END LEFT COLUMN -->
+
+
+<!-- =========================================================
+                        RIGHT COLUMN
+========================================================= -->
+
+<div>
+
+
+<!-- =========================================================
+                    QUICK AI REPORTS
+========================================================= -->
+
+<section class="report-card">
+
+
+<div class="report-card-header">
+
+
+<div>
+
+<h4>
+
+    <i
+    class="fa-solid fa-bolt me-2"
+    style="color:#f59e0b;">
+    </i>
+
+    Quick AI Reports
+
+</h4>
+
+
+<p>
+    Generate commonly used reports instantly.
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="quick-report-list">
+
+
+<!-- ================= ATTENDANCE ================= -->
+
+<div
+class="quick-report-item"
+data-report="attendance">
+
+
+<div class="quick-report-icon attendance">
+
+    <i class="fa-solid fa-user-check"></i>
+
+</div>
+
+
+<div class="quick-report-content">
+
+    <strong>
+        Attendance Report
+    </strong>
+
+    <small>
+        Attendance trends and defaulters
+    </small>
+
+</div>
+
+
+<i class="fa-solid fa-chevron-right"></i>
+
+
+</div>
+
+
+<!-- ================= PERFORMANCE ================= -->
+
+<div
+class="quick-report-item"
+data-report="performance">
+
+
+<div class="quick-report-icon performance">
+
+    <i class="fa-solid fa-chart-line"></i>
+
+</div>
+
+
+<div class="quick-report-content">
+
+    <strong>
+        Performance Report
+    </strong>
+
+    <small>
+        Analyze academic performance
+    </small>
+
+</div>
+
+
+<i class="fa-solid fa-chevron-right"></i>
+
+
+</div>
+
+
+<!-- ================= ASSIGNMENT ================= -->
+
+<div
+class="quick-report-item"
+data-report="assignment">
+
+
+<div class="quick-report-icon assignment">
+
+    <i class="fa-solid fa-book-open"></i>
+
+</div>
+
+
+<div class="quick-report-content">
+
+    <strong>
+        Assignment Report
+    </strong>
+
+    <small>
+        Submission and score analysis
+    </small>
+
+</div>
+
+
+<i class="fa-solid fa-chevron-right"></i>
+
+
+</div>
+
+
+<!-- ================= RISK ================= -->
+
+<div
+class="quick-report-item"
+data-report="risk">
+
+
+<div class="quick-report-icon risk">
+
+    <i class="fa-solid fa-triangle-exclamation"></i>
+
+</div>
+
+
+<div class="quick-report-content">
+
+    <strong>
+        Student Risk Report
+    </strong>
+
+    <small>
+        Identify students needing attention
+    </small>
+
+</div>
+
+
+<i class="fa-solid fa-chevron-right"></i>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    AI SMART INSIGHT
+========================================================= -->
+
+<section class="report-card">
+
+
+<div class="report-card-header">
+
+<div>
+
+<h4>
+
+    <i
+    class="fa-solid fa-robot me-2"
+    style="color:#6c4cff;">
+    </i>
+
+    Today's AI Insight
+
+</h4>
+
+</div>
+
+</div>
+
+
+<div class="ai-insight-box">
+
+
+<div class="ai-insight-header">
+
+<i class="fa-solid fa-lightbulb"></i>
+
+<strong>
+    Attendance Alert
+</strong>
+
+</div>
+
+
+<p>
+
+    AI analysis found that students with
+    attendance below 70% are also showing
+    lower assignment completion rates.
+    Consider scheduling an early intervention
+    session for these students.
+
+</p>
+
+
+</div>
+
+
+<div class="ai-insight-box mt-3">
+
+
+<div class="ai-insight-header">
+
+<i class="fa-solid fa-arrow-trend-up"></i>
+
+<strong>
+    Positive Trend
+</strong>
+
+</div>
+
+
+<p>
+
+    Overall class performance has improved
+    by approximately 6% compared with the
+    previous assessment period.
+
+</p>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    RECENT REPORTS
+========================================================= -->
+
+<section class="report-card">
+
+
+<div class="report-card-header">
+
+
+<div>
+
+<h4>
+
+    <i
+    class="fa-solid fa-clock-rotate-left me-2"
+    style="color:#6c4cff;">
+    </i>
+
+    Recent Reports
+
+</h4>
+
+
+<p>
+    Recently generated smart reports.
+</p>
+
+</div>
+
+
+</div>
+
+
+<div id="recentReportList">
+
+
+<div class="quick-report-item mb-2">
+
+<div class="quick-report-icon attendance">
+
+<i class="fa-solid fa-user-check"></i>
+
+</div>
+
+
+<div class="quick-report-content">
+
+<strong>
+    Attendance Analysis
+</strong>
+
+<small>
+    01 August 2026
+</small>
+
+</div>
+
+
+<span class="badge bg-success">
+    Ready
+</span>
+
+</div>
+
+
+<div class="quick-report-item mb-2">
+
+<div class="quick-report-icon performance">
+
+<i class="fa-solid fa-chart-line"></i>
+
+</div>
+
+
+<div class="quick-report-content">
+
+<strong>
+    Class Performance
+</strong>
+
+<small>
+    28 July 2026
+</small>
+
+</div>
+
+
+<span class="badge bg-success">
+    Ready
+</span>
+
+</div>
+
+
+<div class="quick-report-item">
+
+<div class="quick-report-icon risk">
+
+<i class="fa-solid fa-triangle-exclamation"></i>
+
+</div>
+
+
+<div class="quick-report-content">
+
+<strong>
+    Student Risk Analysis
+</strong>
+
+<small>
+    25 July 2026
+</small>
+
+</div>
+
+
+<span class="badge bg-success">
+    Ready
+</span>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+</div>
+<!-- END RIGHT COLUMN -->
+
+
+</div>
+<!-- END SMART REPORT GRID -->
+
+
+<!-- =========================================================
+                        REPORT HISTORY MODAL
+========================================================= -->
+
+<div
+class="modal fade"
+id="reportHistoryModal"
+tabindex="-1"
+aria-hidden="true">
+
+
+<div
+class="modal-dialog
+modal-lg
+modal-dialog-centered
+modal-dialog-scrollable">
+
+
+<div class="modal-content border-0 rounded-4">
+
+
+<div class="modal-header">
+
+
+<h5 class="modal-title fw-bold">
+
+<i
+class="fa-solid fa-clock-rotate-left
+me-2"
+style="color:#6c4cff;">
+</i>
+
+Smart Report History
+
+</h5>
+
+
+<button
+type="button"
+class="btn-close"
+data-bs-dismiss="modal">
+</button>
+
+
+</div>
+
+
+<div class="modal-body p-4">
+
+
+<div class="table-responsive">
+
+
+<table class="table align-middle">
+
+
+<thead>
+
+<tr>
+
+<th>
+    Report
+</th>
+
+<th>
+    Class
+</th>
+
+<th>
+    Date
+</th>
+
+<th>
+    Status
+</th>
+
+<th>
+    Action
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+<tr>
+
+<td>
+    Attendance Analysis
+</td>
+
+<td>
+    MCA III
+</td>
+
+<td>
+    01 Aug 2026
+</td>
+
+<td>
+
+<span class="badge bg-success">
+    Completed
+</span>
+
+</td>
+
+<td>
+
+<button
+type="button"
+class="btn btn-sm btn-outline-primary">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+    Performance Analysis
+</td>
+
+<td>
+    MCA III
+</td>
+
+<td>
+    28 Jul 2026
+</td>
+
+<td>
+
+<span class="badge bg-success">
+    Completed
+</span>
+
+</td>
+
+<td>
+
+<button
+type="button"
+class="btn btn-sm btn-outline-primary">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+    Student Risk Analysis
+</td>
+
+<td>
+    BCA V
+</td>
+
+<td>
+    25 Jul 2026
+</td>
+
+<td>
+
+<span class="badge bg-success">
+    Completed
+</span>
+
+</td>
+
+<td>
+
+<button
+type="button"
+class="btn btn-sm btn-outline-primary">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+    Assignment Report
+</td>
+
+<td>
+    MCA I
+</td>
+
+<td>
+    20 Jul 2026
+</td>
+
+<td>
+
+<span class="badge bg-success">
+    Completed
+</span>
+
+</td>
+
+<td>
+
+<button
+type="button"
+class="btn btn-sm btn-outline-primary">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    FOOTER
+========================================================= -->
+
+<footer
+class="text-center py-4 text-muted"
+style="font-size:11px;">
+
+© 2026 Faculty Management & Productivity System |
+Teacher Smart Reports
+
+</footer>
+
+
+</main>
+<!-- END PAGE CONTENT -->
+
+
+</div>
+<!-- END MAIN CONTENT -->
+
+
+</div>
+<!-- END WRAPPER -->
+
+
+<!-- =========================================================
+                        BOOTSTRAP
+========================================================= -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- =========================================================
+                        CHART JS
+========================================================= -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/chart.js">
+</script>
+
+
+<!-- =========================================================
+                    SMART REPORT JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+
+/* =========================================================
+                    ELEMENTS
+========================================================= */
+
+const sidebar =
+document.getElementById(
+    "teacherSidebar"
+);
+
+
+const sidebarToggle =
+document.getElementById(
+    "sidebarToggle"
+);
+
+
+const themeToggle =
+document.getElementById(
+    "themeToggle"
+);
+
+
+const generateReportBtn =
+document.getElementById(
+    "generateReportBtn"
+);
+
+
+const reportPreviewEmpty =
+document.getElementById(
+    "reportPreviewEmpty"
+);
+
+
+const aiReportLoading =
+document.getElementById(
+    "aiReportLoading"
+);
+
+
+const generatedReport =
+document.getElementById(
+    "generatedReport"
+);
+
+
+const generatedReportActions =
+document.getElementById(
+    "generatedReportActions"
+);
+
+
+const generatedReportTitle =
+document.getElementById(
+    "generatedReportTitle"
+);
+
+
+const generatedReportDate =
+document.getElementById(
+    "generatedReportDate"
+);
+
+
+const reportPeriod =
+document.getElementById(
+    "reportPeriod"
+);
+
+
+const startDateColumn =
+document.getElementById(
+    "startDateColumn"
+);
+
+
+const endDateColumn =
+document.getElementById(
+    "endDateColumn"
+);
+
+
+const reportHistoryBtn =
+document.getElementById(
+    "reportHistoryBtn"
+);
+
+
+const newReportBtn =
+document.getElementById(
+    "newReportBtn"
+);
+
+
+const printReportBtn =
+document.getElementById(
+    "printReportBtn"
+);
+
+
+const downloadReportBtn =
+document.getElementById(
+    "downloadReportBtn"
+);
+
+
+const quickReports =
+document.querySelectorAll(
+    ".quick-report-item[data-report]"
+);
+
+
+let performanceChart =
+null;
+
+
+/* =========================================================
+                    SIDEBAR TOGGLE
+========================================================= */
+
+if(sidebarToggle){
+
+sidebarToggle.addEventListener(
+"click",
+function(){
+
+    sidebar.classList.toggle(
+        "show"
+    );
+
+});
+
+}
+
+
+/* =========================================================
+                CLOSE SIDEBAR MOBILE
+========================================================= */
+
+document.addEventListener(
+"click",
+function(event){
+
+
+if(
+    window.innerWidth <= 992 &&
+    sidebar.classList.contains("show") &&
+    !sidebar.contains(event.target) &&
+    !sidebarToggle.contains(event.target)
+){
+
+    sidebar.classList.remove(
+        "show"
+    );
+
+}
+
+
+});
+
+
+/* =========================================================
+                    LOAD SAVED THEME
+========================================================= */
+
+const savedTheme =
+localStorage.getItem(
+    "teacherTheme"
+);
+
+
+if(savedTheme === "dark"){
+
+    document.body.classList.add(
+        "dark"
+    );
+
+
+    if(themeToggle){
+
+        themeToggle
+        .querySelector("i")
+        .className =
+        "fa-solid fa-sun";
+
+    }
+
+}
+
+
+/* =========================================================
+                    THEME TOGGLE
+========================================================= */
+
+if(themeToggle){
+
+themeToggle.addEventListener(
+"click",
+function(){
+
+
+document.body.classList.toggle(
+    "dark"
+);
+
+
+const icon =
+themeToggle.querySelector("i");
+
+
+if(
+    document.body
+    .classList
+    .contains("dark")
+){
+
+    icon.className =
+    "fa-solid fa-sun";
+
+
+    localStorage.setItem(
+        "teacherTheme",
+        "dark"
+    );
+
+}
+
+else{
+
+    icon.className =
+    "fa-solid fa-moon";
+
+
+    localStorage.setItem(
+        "teacherTheme",
+        "light"
+    );
+
+}
+
+
+/* Redraw chart */
+
+if(performanceChart){
+
+    createPerformanceChart();
+
+}
+
+
+});
+
+}
+
+
+/* =========================================================
+                    CUSTOM DATE RANGE
+========================================================= */
+
+if(reportPeriod){
+
+reportPeriod.addEventListener(
+"change",
+function(){
+
+
+if(this.value === "custom"){
+
+    startDateColumn.style.display =
+    "block";
+
+    endDateColumn.style.display =
+    "block";
+
+}
+
+else{
+
+    startDateColumn.style.display =
+    "none";
+
+    endDateColumn.style.display =
+    "none";
+
+}
+
+
+});
+
+}
+
+
+/* =========================================================
+                    REPORT NAMES
+========================================================= */
+
+const reportNames = {
+
+    attendance:
+    "Attendance Analysis Report",
+
+    performance:
+    "Student Performance Analysis Report",
+
+    assignment:
+    "Assignment Analysis Report",
+
+    risk:
+    "Student Risk Analysis Report",
+
+    complete:
+    "Complete Class Smart Report",
+
+    recommendation:
+    "AI Academic Recommendation Report"
+
+};
+
+
+/* =========================================================
+                    GET REPORT TYPE
+========================================================= */
+
+function getSelectedReportType(){
+
+
+const selected =
+document.querySelector(
+    'input[name="reportType"]:checked'
+);
+
+
+return selected
+? selected.value
+: "attendance";
+
+
+}
+
+
+/* =========================================================
+                    GENERATE REPORT
+========================================================= */
+
+function generateSmartReport(){
+
+
+const reportType =
+getSelectedReportType();
+
+
+/* Hide empty */
+
+reportPreviewEmpty.style.display =
+"none";
+
+
+/* Hide generated */
+
+generatedReport.style.display =
+"none";
+
+
+generatedReportActions.style.setProperty(
+    "display",
+    "none",
+    "important"
+);
+
+
+/* Show loading */
+
+aiReportLoading.style.display =
+"block";
+
+
+generateReportBtn.disabled =
+true;
+
+
+generateReportBtn.innerHTML =
+
+`
+<i class="fa-solid fa-spinner fa-spin me-2"></i>
+AI Analyzing...
+`;
+
+
+/* Scroll preview */
+
+document.getElementById(
+    "reportPreviewSection"
+)
+.scrollIntoView({
+
+    behavior:"smooth",
+    block:"start"
+
+});
+
+
+/* =========================================================
+                    AI LOADING TEXT
+========================================================= */
+
+const loadingText =
+document.getElementById(
+    "aiLoadingText"
+);
+
+
+loadingText.innerText =
+"Collecting academic records...";
+
+
+setTimeout(function(){
+
+    loadingText.innerText =
+    "Analyzing attendance patterns...";
+
+},600);
+
+
+setTimeout(function(){
+
+    loadingText.innerText =
+    "Evaluating student performance...";
+
+},1200);
+
+
+setTimeout(function(){
+
+    loadingText.innerText =
+    "Identifying academic risks...";
+
+},1800);
+
+
+setTimeout(function(){
+
+    loadingText.innerText =
+    "Generating AI recommendations...";
+
+},2400);
+
+
+/* =========================================================
+                    FINISH REPORT
+========================================================= */
+
+setTimeout(
+function(){
+
+
+aiReportLoading.style.display =
+"none";
+
+
+generatedReport.style.display =
+"block";
+
+
+generatedReportActions.style.setProperty(
+    "display",
+    "flex",
+    "important"
+);
+
+
+generatedReportTitle.innerText =
+reportNames[reportType];
+
+
+/* Date */
+
+const currentDate =
+new Date();
+
+
+generatedReportDate.innerText =
+currentDate.toLocaleDateString(
+    "en-IN",
+    {
+
+        day:"2-digit",
+        month:"long",
+        year:"numeric"
+
+    }
+);
+
+
+/* =========================================================
+                    EXECUTIVE SUMMARY
+========================================================= */
+
+updateExecutiveSummary(
+    reportType
+);
+
+
+/* =========================================================
+                    CREATE CHART
+========================================================= */
+
+createPerformanceChart();
+
+
+/* =========================================================
+                    UPDATE REPORT COUNT
+========================================================= */
+
+const countElement =
+document.getElementById(
+    "totalReportsCount"
+);
+
+
+let count =
+parseInt(
+    countElement.innerText
+);
+
+
+countElement.innerText =
+count + 1;
+
+
+/* =========================================================
+                    BUTTON RESET
+========================================================= */
+
+generateReportBtn.disabled =
+false;
+
+
+generateReportBtn.innerHTML =
+
+`
+<i class="fa-solid fa-wand-magic-sparkles me-2"></i>
+Generate Smart Report
+`;
+
+
+},
+3200
+);
+
+
+}
+
+
+/* =========================================================
+                GENERATE BUTTON EVENT
+========================================================= */
+
+generateReportBtn.addEventListener(
+"click",
+generateSmartReport
+);
+
+
+/* =========================================================
+                    EXECUTIVE SUMMARY
+========================================================= */
+
+function updateExecutiveSummary(
+reportType
+){
+
+
+const summary =
+document.getElementById(
+    "executiveSummaryText"
+);
+
+
+const summaries = {
+
+
+attendance:
+
+"The class maintains an overall attendance rate of 87.4%. Most students satisfy the recommended attendance level. However, six students require closer monitoring, including two students whose attendance has fallen below 65%. Regular follow-up and attendance reminders are recommended.",
+
+
+performance:
+
+"The overall class performance is 82.6%, indicating good academic progress. Twelve students are performing at an excellent level while five students require additional academic support. Targeted revision sessions may help improve overall outcomes.",
+
+
+assignment:
+
+"The assignment submission rate is approximately 91%. Most students are completing their academic work regularly, although several submissions remain pending. Automated reminders and timely feedback may improve the completion rate.",
+
+
+risk:
+
+"AI analysis identified six students who may require academic intervention. Risk indicators include low attendance, declining assessment performance and incomplete assignments. Early teacher intervention is recommended.",
+
+
+complete:
+
+"The class shows satisfactory overall academic progress with 87.4% attendance and 82.6% average performance. Most students are in good academic standing, while a small group requires targeted support in attendance, assessments and assignment completion.",
+
+
+recommendation:
+
+"AI recommends focused intervention for students with low attendance or declining academic scores. Regular mentoring, assignment follow-up, personalized feedback and weekly progress monitoring can help improve student outcomes."
+
+
+};
+
+
+summary.innerText =
+summaries[reportType] ||
+summaries.complete;
+
+
+}
+
+
+/* =========================================================
+                    PERFORMANCE CHART
+========================================================= */
+
+function createPerformanceChart(){
+
+
+const canvas =
+document.getElementById(
+    "performanceChart"
+);
+
+
+if(!canvas){
+
+    return;
+
+}
+
+
+/* Destroy previous chart */
+
+if(performanceChart){
+
+    performanceChart.destroy();
+
+}
+
+
+/* =========================================================
+                    DARK MODE COLORS
+========================================================= */
+
+const darkMode =
+document.body.classList.contains(
+    "dark"
+);
+
+
+const textColor =
+darkMode
+? "#cbd5e1"
+: "#6b7280";
+
+
+const gridColor =
+darkMode
+? "rgba(255,255,255,.08)"
+: "rgba(0,0,0,.05)";
+
+
+/* =========================================================
+                    CREATE CHART
+========================================================= */
+
+performanceChart =
+new Chart(
+canvas,
+{
+
+
+type:"bar",
+
+
+data:{
+
+labels:[
+
+    "Advanced Java",
+    "DBMS",
+    "AI",
+    "Cloud Computing",
+    "Software Eng."
+
+],
+
+
+datasets:[
+
+{
+
+label:"Class Average %",
+
+data:[
+
+    84,
+    79,
+    88,
+    81,
+    85
+
+],
+
+backgroundColor:[
+
+    "rgba(108,76,255,.75)",
+    "rgba(14,165,233,.75)",
+    "rgba(34,197,94,.75)",
+    "rgba(245,158,11,.75)",
+    "rgba(236,72,153,.75)"
+
+],
+
+borderRadius:8,
+
+borderSkipped:false
+
+}
+
+]
+
+},
+
+
+options:{
+
+responsive:true,
+
+maintainAspectRatio:false,
+
+
+plugins:{
+
+legend:{
+
+display:false
+
+}
+
+},
+
+
+scales:{
+
+y:{
+
+beginAtZero:true,
+
+max:100,
+
+ticks:{
+
+color:textColor,
+
+callback:function(value){
+
+    return value + "%";
+
+}
+
+},
+
+grid:{
+
+color:gridColor
+
+}
+
+},
+
+
+x:{
+
+ticks:{
+
+color:textColor
+
+},
+
+grid:{
+
+display:false
+
+}
+
+}
+
+}
+
+
+}
+
+
+}
+);
+
+
+}
+
+
+/* =========================================================
+                    QUICK REPORTS
+========================================================= */
+
+quickReports.forEach(
+function(item){
+
+
+item.addEventListener(
+"click",
+function(){
+
+
+const type =
+this.dataset.report;
+
+
+const radio =
+document.querySelector(
+    'input[name="reportType"][value="' +
+    type +
+    '"]'
+);
+
+
+if(radio){
+
+    radio.checked =
+    true;
+
+}
+
+
+/* Go to generator */
+
+document.getElementById(
+    "reportGeneratorSection"
+)
+.scrollIntoView({
+
+    behavior:"smooth",
+    block:"start"
+
+});
+
+
+});
+
+});
+
+
+/* =========================================================
+                    NEW REPORT
+========================================================= */
+
+if(newReportBtn){
+
+newReportBtn.addEventListener(
+"click",
+function(){
+
+
+reportPreviewEmpty.style.display =
+"block";
+
+
+generatedReport.style.display =
+"none";
+
+
+aiReportLoading.style.display =
+"none";
+
+
+generatedReportActions.style.setProperty(
+    "display",
+    "none",
+    "important"
+);
+
+
+document.getElementById(
+    "attendanceReport"
+).checked =
+true;
+
+
+document.getElementById(
+    "reportInstructions"
+).value =
+"";
+
+
+document.getElementById(
+    "reportGeneratorSection"
+)
+.scrollIntoView({
+
+    behavior:"smooth",
+    block:"start"
+
+});
+
+
+});
+
+}
+
+
+/* =========================================================
+                    REPORT HISTORY
+========================================================= */
+
+if(reportHistoryBtn){
+
+reportHistoryBtn.addEventListener(
+"click",
+function(){
+
+
+const modal =
+new bootstrap.Modal(
+    document.getElementById(
+        "reportHistoryModal"
+    )
+);
+
+
+modal.show();
+
+
+});
+
+}
+
+
+/* =========================================================
+                    PRINT REPORT
+========================================================= */
+
+if(printReportBtn){
+
+printReportBtn.addEventListener(
+"click",
+function(){
+
+
+window.print();
+
+
+});
+
+}
+
+
+/* =========================================================
+                    DOWNLOAD REPORT
+========================================================= */
+
+if(downloadReportBtn){
+
+downloadReportBtn.addEventListener(
+"click",
+function(){
+
+
+const reportType =
+getSelectedReportType();
+
+
+const title =
+reportNames[reportType];
+
+
+const department =
+document.getElementById(
+    "reportDepartment"
+)
+.options[
+document.getElementById(
+    "reportDepartment"
+).selectedIndex
+].text;
+
+
+const course =
+document.getElementById(
+    "reportCourse"
+)
+.options[
+document.getElementById(
+    "reportCourse"
+).selectedIndex
+].text;
+
+
+const subject =
+document.getElementById(
+    "reportSubject"
+)
+.options[
+document.getElementById(
+    "reportSubject"
+).selectedIndex
+].text;
+
+
+/* =========================================================
+                    REPORT TEXT
+========================================================= */
+
+const reportText =
+
+`
+FACULTY MANAGEMENT & PRODUCTIVITY SYSTEM
+Patna Women's College (Autonomous)
+
+SMART ACADEMIC REPORT
+
+Report:
+${title}
+
+Department:
+${department}
+
+Class:
+${course}
+
+Subject:
+${subject}
+
+Generated:
+${new Date().toLocaleString("en-IN")}
+
+
+--------------------------------------------
+
+ACADEMIC SUMMARY
+
+Total Students: 48
+Average Attendance: 87.4%
+Class Performance: 82.6%
+Students Requiring Attention: 6
+
+
+--------------------------------------------
+
+AI EXECUTIVE SUMMARY
+
+${document.getElementById(
+"executiveSummaryText"
+).innerText}
+
+
+--------------------------------------------
+
+ATTENDANCE ANALYSIS
+
+Students Above 75%: 42
+Students Between 65%-75%: 4
+Students Below 65%: 2
+Overall Attendance: 87.4%
+
+
+--------------------------------------------
+
+PERFORMANCE ANALYSIS
+
+Excellent: 12
+Good: 22
+Average: 9
+Needs Improvement: 5
+
+
+--------------------------------------------
+
+ASSIGNMENT ANALYSIS
+
+Total Assignments: 8
+Submission Rate: 91%
+Average Score: 84%
+Pending Assignments: 7
+
+
+--------------------------------------------
+
+AI RECOMMENDATIONS
+
+1. Monitor students with attendance below 75%.
+
+2. Arrange additional academic support sessions.
+
+3. Follow up on incomplete assignments.
+
+4. Review at-risk student progress weekly.
+
+5. Provide personalized feedback and mentoring.
+
+
+--------------------------------------------
+
+Generated using Teacher Smart Report System.
+`;
+
+
+/* =========================================================
+                    CREATE FILE
+========================================================= */
+
+const blob =
+new Blob(
+    [reportText],
+    {
+        type:"text/plain"
+    }
+);
+
+
+const url =
+URL.createObjectURL(
+    blob
+);
+
+
+const link =
+document.createElement(
+    "a"
+);
+
+
+link.href =
+url;
+
+
+link.download =
+"teacher-smart-report.txt";
+
+
+document.body.appendChild(
+    link
+);
+
+
+link.click();
+
+
+document.body.removeChild(
+    link
+);
+
+
+URL.revokeObjectURL(
+    url
+);
+
+
+});
+
+}
+
+
+/* =========================================================
+                    SEARCH REPORTS
+========================================================= */
+
+const searchBox =
+document.getElementById(
+    "searchBox"
+);
+
+
+if(searchBox){
+
+searchBox.addEventListener(
+"input",
+function(){
+
+
+const value =
+this.value
+.toLowerCase()
+.trim();
+
+
+const reportItems =
+document.querySelectorAll(
+    ".quick-report-item"
+);
+
+
+reportItems.forEach(
+function(item){
+
+
+const text =
+item.innerText
+.toLowerCase();
+
+
+if(
+    text.includes(value)
+){
+
+    item.style.display =
+    "flex";
+
+}
+
+else{
+
+    item.style.display =
+    "none";
+
+}
+
+
+});
+
+
+});
+
+}
+
+
+/* =========================================================
+            BACKEND INTEGRATION EXAMPLE
+========================================================= */
+
+/*
+
+Later backend connect karne par frontend demo ke
+generateSmartReport() ko API call se replace kar sakte ho.
+
+
+Example:
+
+
+async function generateReportFromBackend(){
+
+try{
+
+
+const reportType =
+getSelectedReportType();
+
+
+const requestData = {
+
+    reportType:reportType,
+
+    department:
+    document.getElementById(
+        "reportDepartment"
+    ).value,
+
+    course:
+    document.getElementById(
+        "reportCourse"
+    ).value,
+
+    subject:
+    document.getElementById(
+        "reportSubject"
+    ).value,
+
+    period:
+    document.getElementById(
+        "reportPeriod"
+    ).value,
+
+    analysisLevel:
+    document.getElementById(
+        "analysisLevel"
+    ).value,
+
+    instructions:
+    document.getElementById(
+        "reportInstructions"
+    ).value
+
+};
+
+
+const response =
+await fetch(
+    "/api/teacher/smart-report",
+    {
+
+        method:"POST",
+
+        headers:{
+
+            "Content-Type":
+            "application/json"
+
+        },
+
+        credentials:"include",
+
+        body:
+        JSON.stringify(
+            requestData
+        )
+
+    }
+);
+
+
+const data =
+await response.json();
+
+
+if(!response.ok){
+
+    throw new Error(
+        data.message ||
+        "Unable to generate report."
+    );
+
+}
+
+
+console.log(
+    "AI Report:",
+    data
+);
+
+
+}
+
+catch(error){
+
+    console.error(
+        "Smart Report Error:",
+        error
+    );
+
+}
+
+
+}
+
+*/
+
+
+/* =========================================================
+                EXPECTED BACKEND RESPONSE
+========================================================= */
+
+/*
+
+{
+    "success": true,
+
+    "reportId": "RPT-2026-001",
+
+    "reportType": "attendance",
+
+    "class": "MCA Semester III",
+
+    "subject": "Advanced Java",
+
+    "totalStudents": 48,
+
+    "averageAttendance": 87.4,
+
+    "averagePerformance": 82.6,
+
+    "riskStudents": 6,
+
+    "aiSummary":
+    "Overall class performance is satisfactory...",
+
+    "recommendations": [
+
+        "Monitor students below 75% attendance",
+
+        "Arrange additional academic support",
+
+        "Send assignment reminders",
+
+        "Review risk students weekly"
+
+    ]
+}
+
+*/
+
+
+});
+</script>
+
+
+<!-- =========================================================
+                    PRINT CSS
+========================================================= -->
+
+<style>
+
+@media print{
+
+
+.sidebar,
+.topbar,
+.page-header,
+.smart-report-hero,
+.report-stat-grid,
+#reportGeneratorSection,
+.smart-report-grid > div:nth-child(2),
+footer,
+#generatedReportActions{
+
+    display:none !important;
+
+}
+
+
+.main-content{
+
+    width:100% !important;
+
+    margin:0 !important;
+
+}
+
+
+.page-content{
+
+    padding:0 !important;
+
+}
+
+
+.smart-report-grid{
+
+    display:block !important;
+
+}
+
+
+#reportPreviewSection{
+
+    display:block !important;
+
+    box-shadow:none !important;
+
+    border:none !important;
+
+    margin:0 !important;
+
+}
+
+
+.generated-report{
+
+    display:block !important;
+
+}
+
+
+body{
+
+    background:#ffffff !important;
+
+    color:#000000 !important;
+
+}
+
+
+.report-summary-box,
+.ai-insight-box{
+
+    break-inside:avoid;
+
+}
+
+
+}
+
+</style>
+
+
+</body>
+
+</html>

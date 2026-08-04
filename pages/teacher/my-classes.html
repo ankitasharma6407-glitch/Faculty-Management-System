@@ -1,0 +1,7249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>My Classes | Teacher Panel</title>
+
+
+<!-- =========================================================
+                        BOOTSTRAP CSS
+========================================================= -->
+
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+
+
+<!-- =========================================================
+                        FONT AWESOME
+========================================================= -->
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+<!-- =========================================================
+                        GOOGLE FONT
+========================================================= -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+
+<style>
+
+
+/* =========================================================
+                        GLOBAL
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+html{
+    scroll-behavior:smooth;
+}
+
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#f5f7fb;
+
+    color:#1f2937;
+
+    min-height:100vh;
+
+    transition:
+        background .3s ease,
+        color .3s ease;
+
+}
+
+
+a{
+    text-decoration:none;
+}
+
+
+button,
+input,
+select{
+    font-family:inherit;
+}
+
+
+/* =========================================================
+                    MAIN LAYOUT
+========================================================= */
+
+.teacher-layout{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+
+/* =========================================================
+                        SIDEBAR
+========================================================= */
+
+.teacher-sidebar{
+
+    width:270px;
+
+    min-height:100vh;
+
+    background:
+        linear-gradient(
+            180deg,
+            #263bd8 0%,
+            #6747dc 52%,
+            #ad72dd 100%
+        );
+
+    position:fixed;
+
+    top:0;
+    left:0;
+    bottom:0;
+
+    z-index:1200;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+    transition:
+        transform .3s ease;
+
+    box-shadow:
+        8px 0 30px
+        rgba(76,58,180,.13);
+
+}
+
+
+/* =========================================================
+                    SIDEBAR SCROLLBAR
+========================================================= */
+
+.teacher-sidebar::-webkit-scrollbar{
+
+    width:5px;
+
+}
+
+
+.teacher-sidebar::-webkit-scrollbar-track{
+
+    background:
+        rgba(255,255,255,.05);
+
+}
+
+
+.teacher-sidebar::-webkit-scrollbar-thumb{
+
+    background:
+        rgba(255,255,255,.25);
+
+    border-radius:20px;
+
+}
+
+
+/* =========================================================
+                    SIDEBAR BRAND
+========================================================= */
+
+.teacher-sidebar-brand{
+
+    text-align:center;
+
+    padding:
+        27px 20px 20px;
+
+    color:#ffffff;
+
+}
+
+
+.teacher-sidebar-brand img{
+
+    width:82px;
+
+    height:82px;
+
+    object-fit:contain;
+
+    background:#ffffff;
+
+    padding:6px;
+
+    border-radius:50%;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.15);
+
+    margin-bottom:12px;
+
+}
+
+
+.teacher-sidebar-brand h3{
+
+    margin:0;
+
+    font-size:25px;
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+
+}
+
+
+.teacher-sidebar-brand p{
+
+    margin:
+        4px 0 0;
+
+    font-size:13px;
+
+    color:
+        rgba(255,255,255,.82);
+
+}
+
+
+/* =========================================================
+                    SIDEBAR MENU
+========================================================= */
+
+.teacher-sidebar-menu{
+
+    list-style:none;
+
+    padding:
+        15px 16px 30px;
+
+    margin:0;
+
+}
+
+
+.teacher-sidebar-menu li{
+
+    margin-bottom:7px;
+
+}
+
+
+.teacher-sidebar-menu a{
+
+    color:
+        rgba(255,255,255,.88);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:
+        13px 17px;
+
+    border-radius:13px;
+
+    font-size:14px;
+
+    font-weight:500;
+
+    transition:.25s ease;
+
+}
+
+
+.teacher-sidebar-menu a i{
+
+    width:22px;
+
+    text-align:center;
+
+    font-size:16px;
+
+}
+
+
+.teacher-sidebar-menu a span{
+
+    flex:1;
+
+}
+
+
+.teacher-sidebar-menu a:hover{
+
+    background:
+        rgba(255,255,255,.16);
+
+    color:#ffffff;
+
+    transform:
+        translateX(4px);
+
+}
+
+
+.teacher-sidebar-menu a.active{
+
+    background:
+        rgba(255,255,255,.23);
+
+    color:#ffffff;
+
+    font-weight:700;
+
+    box-shadow:
+        0 6px 18px
+        rgba(0,0,0,.08);
+
+}
+
+
+/* =========================================================
+                    SIDEBAR SECTION
+========================================================= */
+
+.sidebar-section-title{
+
+    color:
+        rgba(255,255,255,.58);
+
+    font-size:10px;
+
+    font-weight:700;
+
+    letter-spacing:1.2px;
+
+    text-transform:uppercase;
+
+    padding:
+        18px 17px 7px;
+
+}
+
+
+/* =========================================================
+                    SIDEBAR OVERLAY
+========================================================= */
+
+.sidebar-overlay{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(15,23,42,.48);
+
+    z-index:1100;
+
+    backdrop-filter:
+        blur(2px);
+
+}
+
+
+.sidebar-overlay.show{
+
+    display:block;
+
+}
+
+
+/* =========================================================
+                        MAIN AREA
+========================================================= */
+
+.teacher-main{
+
+    margin-left:270px;
+
+    width:
+        calc(100% - 270px);
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+/* =========================================================
+                        NAVBAR
+========================================================= */
+
+.teacher-navbar{
+
+    min-height:78px;
+
+    background:#ffffff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding:
+        0 30px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    box-shadow:
+        0 3px 16px
+        rgba(0,0,0,.06);
+
+    transition:
+        background .3s ease;
+
+}
+
+
+/* =========================================================
+                    NAVBAR LEFT
+========================================================= */
+
+.navbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+.mobile-menu-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#f0edff;
+
+    color:#6c4cff;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.mobile-menu-btn:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+}
+
+
+.navbar-title h4{
+
+    margin:0;
+
+    color:#243c9e;
+
+    font-size:21px;
+
+    font-weight:800;
+
+}
+
+
+.navbar-title p{
+
+    margin:
+        2px 0 0;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                    NAVBAR RIGHT
+========================================================= */
+
+.navbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+}
+
+
+.nav-icon-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#f2efff;
+
+    color:#6c4cff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    position:relative;
+
+}
+
+
+.nav-icon-btn:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+                    NOTIFICATION BADGE
+========================================================= */
+
+.notification-dot{
+
+    position:absolute;
+
+    top:7px;
+
+    right:7px;
+
+    width:8px;
+
+    height:8px;
+
+    background:#ef4444;
+
+    border-radius:50%;
+
+    border:
+        2px solid #ffffff;
+
+}
+
+
+/* =========================================================
+                    PROFILE
+========================================================= */
+
+.teacher-profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-left:5px;
+
+    cursor:pointer;
+
+    padding:
+        5px 8px;
+
+    border-radius:14px;
+
+    transition:.25s;
+
+}
+
+
+.teacher-profile:hover{
+
+    background:#f8f7ff;
+
+}
+
+
+.teacher-profile img{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:
+        3px solid #ddd6fe;
+
+}
+
+
+.teacher-profile-info strong{
+
+    display:block;
+
+    font-size:13px;
+
+    color:#1f2937;
+
+}
+
+
+.teacher-profile-info small{
+
+    display:block;
+
+    color:#64748b;
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+                    PROFILE DROPDOWN
+========================================================= */
+
+.profile-dropdown-menu{
+
+    min-width:210px;
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:8px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.12);
+
+}
+
+
+.profile-dropdown-menu .dropdown-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    border-radius:10px;
+
+    padding:
+        10px 12px;
+
+    font-size:12px;
+
+}
+
+
+.profile-dropdown-menu .dropdown-item i{
+
+    width:18px;
+
+    text-align:center;
+
+    color:#6c4cff;
+
+}
+
+
+.profile-dropdown-menu .dropdown-item:hover{
+
+    background:#f3f0ff;
+
+    color:#6c4cff;
+
+}
+
+
+/* =========================================================
+                    PAGE CONTENT
+========================================================= */
+
+.teacher-content{
+
+    padding:
+        28px 30px 20px;
+
+    flex:1;
+
+}
+
+
+/* =========================================================
+                    PAGE HEADER
+========================================================= */
+
+.classes-page-header{
+
+    background:#ffffff;
+
+    padding:
+        22px 25px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.055);
+
+    margin-bottom:24px;
+
+}
+
+
+.classes-page-header h2{
+
+    margin:
+        0 0 5px;
+
+    font-weight:800;
+
+    font-size:25px;
+
+}
+
+
+.classes-page-header h2 i{
+
+    color:#6c4cff;
+
+}
+
+
+.classes-page-header p{
+
+    margin:0;
+
+    color:#64748b;
+
+    font-size:13px;
+
+}
+
+
+/* =========================================================
+                    HEADER BUTTON
+========================================================= */
+
+.schedule-btn{
+
+    border:none;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c4cff,
+            #8b5cf6
+        );
+
+    color:#ffffff;
+
+    border-radius:12px;
+
+    padding:
+        11px 18px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+
+.schedule-btn:hover{
+
+    color:#ffffff;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(108,76,255,.25);
+
+}
+
+
+/* =========================================================
+                    STATISTICS GRID
+========================================================= */
+
+.class-stat-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
+
+    margin-bottom:25px;
+
+}
+
+
+/* =========================================================
+                    STAT CARD
+========================================================= */
+
+.class-stat-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    box-shadow:
+        0 7px 22px
+        rgba(0,0,0,.055);
+
+    transition:.3s;
+
+}
+
+
+.class-stat-card:hover{
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.09);
+
+}
+
+
+.class-stat-icon{
+
+    width:55px;
+
+    height:55px;
+
+    flex-shrink:0;
+
+    border-radius:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:22px;
+
+}
+
+
+/* =========================================================
+                    STAT COLORS
+========================================================= */
+
+.class-stat-icon.purple{
+
+    color:#6c4cff;
+
+    background:#ede9fe;
+
+}
+
+
+.class-stat-icon.blue{
+
+    color:#2563eb;
+
+    background:#dbeafe;
+
+}
+
+
+.class-stat-icon.green{
+
+    color:#16a34a;
+
+    background:#dcfce7;
+
+}
+
+
+.class-stat-icon.orange{
+
+    color:#ea580c;
+
+    background:#ffedd5;
+
+}
+
+
+.class-stat-info h3{
+
+    margin:0;
+
+    font-size:23px;
+
+    font-weight:800;
+
+}
+
+
+.class-stat-info p{
+
+    margin:
+        3px 0 0;
+
+    font-size:12px;
+
+    color:#64748b;
+
+}
+
+
+/* =========================================================
+                    CONTENT CARD
+========================================================= */
+
+.classes-card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:23px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.055);
+
+}
+
+
+/* =========================================================
+                    CARD HEADER
+========================================================= */
+
+.classes-card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+
+}
+
+
+.classes-card-header h4{
+
+    margin:0;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:#6c4cff;
+
+}
+
+
+.classes-card-header p{
+
+    margin:
+        4px 0 0;
+
+    color:#64748b;
+
+    font-size:12px;
+
+}
+
+
+/* =========================================================
+                    SEARCH + FILTER
+========================================================= */
+
+.class-toolbar{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.class-search{
+
+    position:relative;
+
+}
+
+
+.class-search i{
+
+    position:absolute;
+
+    left:14px;
+
+    top:50%;
+
+    transform:
+        translateY(-50%);
+
+    color:#94a3b8;
+
+    pointer-events:none;
+
+}
+
+
+.class-search input{
+
+    width:230px;
+
+    height:43px;
+
+    padding:
+        0 15px 0 40px;
+
+    border:
+        1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    outline:none;
+
+    font-size:13px;
+
+    background:#ffffff;
+
+    transition:.25s;
+
+}
+
+
+.class-search input:focus{
+
+    border-color:#8b5cf6;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139,92,246,.10);
+
+}
+
+
+.class-filter{
+
+    min-width:160px;
+
+    height:43px;
+
+    border:
+        1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    padding:
+        0 12px;
+
+    font-size:13px;
+
+    outline:none;
+
+    background:#ffffff;
+
+    cursor:pointer;
+
+}
+
+
+.class-filter:focus{
+
+    border-color:#8b5cf6;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139,92,246,.10);
+
+}
+
+
+/* =========================================================
+                    CLASS GRID
+========================================================= */
+
+.my-class-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+
+/* =========================================================
+                    CLASS CARD
+========================================================= */
+
+.my-class-card{
+
+    border:
+        1px solid #e9e7f5;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    background:#ffffff;
+
+    transition:.3s;
+
+    position:relative;
+
+}
+
+
+.my-class-card:hover{
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 13px 30px
+        rgba(0,0,0,.10);
+
+    border-color:#d8d2ff;
+
+}
+
+
+/* =========================================================
+                    CLASS CARD TOP
+========================================================= */
+
+.class-card-top{
+
+    padding:22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6656e8,
+            #8c67e8
+        );
+
+    color:#ffffff;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+.class-card-top::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.10);
+
+    right:-40px;
+
+    top:-45px;
+
+}
+
+
+.class-card-icon{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:14px;
+
+    background:
+        rgba(255,255,255,.18);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:20px;
+
+    margin-bottom:15px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+.class-card-top h5{
+
+    font-weight:700;
+
+    margin-bottom:4px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+.class-card-top p{
+
+    margin:0;
+
+    color:
+        rgba(255,255,255,.83);
+
+    font-size:12px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+/* =========================================================
+                    CLASS STATUS
+========================================================= */
+
+.class-status{
+
+    position:absolute;
+
+    top:16px;
+
+    right:16px;
+
+    z-index:3;
+
+    padding:
+        5px 10px;
+
+    border-radius:20px;
+
+    background:
+        rgba(255,255,255,.20);
+
+    color:#ffffff;
+
+    font-size:10px;
+
+    font-weight:600;
+
+}
+
+
+/* =========================================================
+                    CLASS BODY
+========================================================= */
+
+.class-card-body{
+
+    padding:18px;
+
+}
+
+
+.class-info-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:10px;
+
+}
+
+
+.class-info-box{
+
+    background:#f8f7ff;
+
+    border-radius:11px;
+
+    padding:10px;
+
+}
+
+
+.class-info-box small{
+
+    display:block;
+
+    color:#64748b;
+
+    font-size:10px;
+
+    margin-bottom:3px;
+
+}
+
+
+.class-info-box strong{
+
+    font-size:12px;
+
+}
+
+
+/* =========================================================
+                    CLASS PROGRESS
+========================================================= */
+
+.class-progress{
+
+    margin-top:16px;
+
+}
+
+
+.class-progress-head{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:7px;
+
+    font-size:11px;
+
+}
+
+
+.class-progress-head span{
+
+    color:#64748b;
+
+}
+
+
+.class-progress-head strong{
+
+    color:#6c4cff;
+
+}
+
+
+.class-progress .progress{
+
+    height:7px;
+
+    border-radius:20px;
+
+    background:#ede9fe;
+
+    overflow:hidden;
+
+}
+
+
+/* =========================================================
+                    CLASS BUTTONS
+========================================================= */
+
+.class-card-actions{
+
+    display:flex;
+
+    gap:8px;
+
+    margin-top:17px;
+
+}
+
+
+.class-card-actions .btn{
+
+    flex:1;
+
+    border-radius:10px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    padding:
+        9px 8px;
+
+}
+
+
+/* =========================================================
+                    TODAY CLASSES
+========================================================= */
+
+.today-class-list{
+
+    display:grid;
+
+    gap:13px;
+
+}
+
+
+.today-class-item{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    border:
+        1px solid #eceaf5;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    transition:.25s;
+
+}
+
+
+.today-class-item:hover{
+
+    border-color:#cfc8ff;
+
+    background:#faf9ff;
+
+}
+
+
+.today-class-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+}
+
+
+.today-time{
+
+    min-width:82px;
+
+    text-align:center;
+
+    padding:9px;
+
+    background:#ede9fe;
+
+    color:#6c4cff;
+
+    border-radius:11px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+
+.today-class-info h6{
+
+    margin:
+        0 0 3px;
+
+    font-weight:700;
+
+    font-size:13px;
+
+}
+
+
+.today-class-info p{
+
+    margin:0;
+
+    font-size:11px;
+
+    color:#64748b;
+
+}
+
+
+.today-class-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.room-badge{
+
+    background:#f1f5f9;
+
+    color:#475569;
+
+    border-radius:20px;
+
+    padding:
+        6px 10px;
+
+    font-size:10px;
+
+    font-weight:600;
+
+}
+
+
+/* =========================================================
+                    EMPTY RESULT
+========================================================= */
+
+.no-class-result{
+
+    display:none;
+
+    text-align:center;
+
+    padding:
+        45px 20px;
+
+}
+
+
+.no-class-result i{
+
+    font-size:55px;
+
+    color:#c4b5fd;
+
+    margin-bottom:15px;
+
+}
+
+
+.no-class-result h5{
+
+    font-weight:700;
+
+}
+
+
+.no-class-result p{
+
+    color:#64748b;
+
+    font-size:12px;
+
+}
+
+
+/* =========================================================
+                    MODAL
+========================================================= */
+
+.class-modal-icon{
+
+    width:75px;
+
+    height:75px;
+
+    margin:
+        0 auto 15px;
+
+    border-radius:50%;
+
+    background:#ede9fe;
+
+    color:#6c4cff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:30px;
+
+}
+
+
+.class-detail-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    padding:
+        12px 0;
+
+    border-bottom:
+        1px solid #eeeeee;
+
+}
+
+
+.class-detail-row:last-child{
+
+    border-bottom:none;
+
+}
+
+
+.class-detail-row span{
+
+    color:#64748b;
+
+    font-size:12px;
+
+}
+
+
+.class-detail-row strong{
+
+    font-size:12px;
+
+    text-align:right;
+
+}
+
+
+/* =========================================================
+                    FOOTER
+========================================================= */
+
+.footer{
+
+    text-align:center;
+
+    padding:
+        20px 10px 10px;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                        DARK MODE
+========================================================= */
+
+body.dark{
+
+    background:#0f172a;
+
+    color:#f8fafc;
+
+}
+
+body.dark .teacher-sidebar{
+
+    background:
+        linear-gradient(
+            180deg,
+            #080d1a 0%,
+            #0b1220 45%,
+            #111827 100%
+        );
+
+    box-shadow:
+        8px 0 30px
+        rgba(0,0,0,.35);
+
+    border-right:
+        1px solid #1f2937;
+
+}
+
+
+/* SIDEBAR BRAND */
+
+body.dark .teacher-sidebar-brand{
+
+    color:#ffffff;
+
+}
+
+
+body.dark .teacher-sidebar-brand p{
+
+    color:#94a3b8;
+
+}
+
+
+/* SIDEBAR MENU LINKS */
+
+body.dark .teacher-sidebar-menu a{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark .teacher-sidebar-menu a i{
+
+    color:#a5b4fc;
+
+}
+
+
+/* HOVER */
+
+body.dark .teacher-sidebar-menu a:hover{
+
+    background:
+        rgba(99,102,241,.14);
+
+    color:#ffffff;
+
+    transform:
+        translateX(4px);
+
+}
+
+
+body.dark .teacher-sidebar-menu a:hover i{
+
+    color:#c4b5fd;
+
+}
+
+
+/* ACTIVE MENU */
+
+body.dark .teacher-sidebar-menu a.active{
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(79,70,229,.85),
+            rgba(124,58,237,.85)
+        );
+
+    color:#ffffff;
+
+    box-shadow:
+        0 7px 20px
+        rgba(79,70,229,.25);
+
+}
+
+
+body.dark .teacher-sidebar-menu a.active i{
+
+    color:#ffffff;
+
+}
+
+
+/* SECTION TITLES */
+
+body.dark .sidebar-section-title{
+
+    color:#64748b;
+
+}
+
+
+/* SCROLLBAR */
+
+body.dark .teacher-sidebar::-webkit-scrollbar-track{
+
+    background:#080d1a;
+
+}
+
+
+body.dark .teacher-sidebar::-webkit-scrollbar-thumb{
+
+    background:#334155;
+
+}
+
+
+/* MOBILE OVERLAY */
+
+body.dark .sidebar-overlay{
+
+    background:
+        rgba(2,6,23,.72);
+
+}
+
+body.dark .teacher-navbar{
+
+    background:#111827;
+
+    border-bottom:
+        1px solid #263244;
+
+}
+
+
+body.dark .navbar-title h4{
+
+    color:#ffffff;
+
+}
+
+
+body.dark .navbar-title p{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .nav-icon-btn,
+body.dark .mobile-menu-btn{
+
+    background:#1f2937;
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark .teacher-profile:hover{
+
+    background:#1f2937;
+
+}
+
+
+body.dark .teacher-profile-info strong{
+
+    color:#ffffff;
+
+}
+
+
+body.dark .teacher-profile-info small{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .profile-dropdown-menu{
+
+    background:#111827;
+
+}
+
+
+body.dark .profile-dropdown-menu .dropdown-item{
+
+    color:#e5e7eb;
+
+}
+
+
+body.dark .profile-dropdown-menu .dropdown-item:hover{
+
+    background:#1f2937;
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark .classes-page-header,
+body.dark .class-stat-card,
+body.dark .classes-card,
+body.dark .my-class-card{
+
+    background:#111827;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .classes-page-header p,
+body.dark .class-stat-info p,
+body.dark .classes-card-header p{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .classes-card-header h4{
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark .class-search input,
+body.dark .class-filter{
+
+    background:#1f2937;
+
+    border-color:#374151;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .class-search input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .class-info-box{
+
+    background:#1f2937;
+
+}
+
+
+body.dark .class-info-box small{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .class-progress-head span{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .today-class-item{
+
+    border-color:#374151;
+
+}
+
+
+body.dark .today-class-item:hover{
+
+    background:#1f2937;
+
+}
+
+
+body.dark .today-class-info p{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .room-badge{
+
+    background:#1f2937;
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark .modal-content{
+
+    background:#111827;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .modal-header,
+body.dark .modal-footer{
+
+    border-color:#374151;
+
+}
+
+
+body.dark .class-detail-row{
+
+    border-color:#374151;
+
+}
+
+
+body.dark .class-detail-row span{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .btn-close{
+
+    filter:invert(1);
+
+}
+
+
+body.dark .table{
+
+    --bs-table-bg:#111827;
+
+    --bs-table-color:#ffffff;
+
+    --bs-table-border-color:#374151;
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE
+========================================================= */
+
+@media(max-width:1200px){
+
+    .class-stat-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+
+    .my-class-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+}
+
+
+@media(max-width:992px){
+
+    .teacher-sidebar{
+
+        transform:
+            translateX(-100%);
+
+    }
+
+
+    .teacher-sidebar.show{
+
+        transform:
+            translateX(0);
+
+    }
+
+
+    .teacher-main{
+
+        margin-left:0;
+
+        width:100%;
+
+    }
+
+
+    .mobile-menu-btn{
+
+        display:flex;
+
+    }
+
+}
+
+
+@media(min-width:993px){
+
+    .sidebar-overlay{
+
+        display:none !important;
+
+    }
+
+}
+
+
+@media(max-width:768px){
+
+    .teacher-navbar{
+
+        padding:
+            0 17px;
+
+    }
+
+
+    .teacher-content{
+
+        padding:
+            20px 16px;
+
+    }
+
+
+    .teacher-profile-info{
+
+        display:none;
+
+    }
+
+
+    .navbar-title p{
+
+        display:none;
+
+    }
+
+
+    .my-class-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .class-search{
+
+        width:100%;
+
+    }
+
+
+    .class-search input{
+
+        width:100%;
+
+    }
+
+
+    .class-filter{
+
+        width:100%;
+
+    }
+
+
+    .class-toolbar{
+
+        width:100%;
+
+    }
+
+}
+
+
+@media(max-width:576px){
+
+    .class-stat-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .classes-page-header{
+
+        padding:18px;
+
+    }
+
+
+    .classes-page-header h2{
+
+        font-size:21px;
+
+    }
+
+
+    .classes-card{
+
+        padding:17px;
+
+    }
+
+
+    .today-class-item{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+    }
+
+
+    .today-class-right{
+
+        width:100%;
+
+        justify-content:
+            space-between;
+
+    }
+
+
+    .class-info-grid{
+
+        grid-template-columns:1fr 1fr;
+
+    }
+
+
+    .navbar-title h4{
+
+        font-size:18px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+                    TEACHER LAYOUT
+========================================================= -->
+
+<div class="teacher-layout">
+
+
+<!-- =========================================================
+                    MOBILE OVERLAY
+========================================================= -->
+
+<div
+    class="sidebar-overlay"
+    id="sidebarOverlay">
+</div>
+
+
+<!-- =========================================================
+                        SIDEBAR
+========================================================= -->
+
+<aside
+    class="teacher-sidebar"
+    id="teacherSidebar">
+
+
+<!-- =========================================================
+                    SIDEBAR BRAND
+========================================================= -->
+
+<div class="teacher-sidebar-brand">
+
+
+<img
+    src="../../images/logo.png"
+    alt="FMPS Logo">
+
+
+<h3>
+    FMPS
+</h3>
+
+
+<p>
+    Teacher Panel
+</p>
+
+
+</div>
+
+
+<!-- =========================================================
+                    SIDEBAR MENU
+========================================================= -->
+
+<ul class="teacher-sidebar-menu">
+
+
+<!-- DASHBOARD -->
+
+<li>
+
+<a href="teacher-dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+<span>
+    Dashboard
+</span>
+
+</a>
+
+</li>
+
+
+<!-- TIMETABLE -->
+
+<li>
+
+<a href="timetable.html">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+<span>
+    Timetable
+</span>
+
+</a>
+
+</li>
+
+
+<!-- ATTENDANCE -->
+
+<li>
+
+<a href="attendance.html">
+
+<i class="fa-solid fa-user-check"></i>
+
+<span>
+    Attendance
+</span>
+
+</a>
+
+</li>
+
+
+<!-- MY CLASSES -->
+
+<li>
+
+<a
+    href="my-classes.html"
+    class="active">
+
+<i class="fa-solid fa-book-open"></i>
+
+<span>
+    My Classes
+</span>
+
+</a>
+
+</li>
+
+
+<!-- ASSIGNMENTS -->
+
+<li>
+
+<a href="assignments.html">
+
+<i class="fa-solid fa-file-lines"></i>
+
+<span>
+    Assignments
+</span>
+
+</a>
+
+</li>
+
+
+<!-- PERFORMANCE -->
+
+<li>
+
+<a href="performance.html">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<span>
+    Performance
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                    ACADEMIC TOOLS
+========================================================= -->
+
+<div class="sidebar-section-title">
+
+Academic Tools
+
+</div>
+
+
+<li>
+
+<a href="academic-calendar.html">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+<span>
+    Academic Calendar
+</span>
+
+</a>
+
+</li>
+
+
+<!-- NOTICES -->
+
+<li>
+
+<a href="notices.html">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+<span>
+    Notices
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="leave-request.html">
+
+<i class="fa-solid fa-calendar-minus"></i>
+
+<span>
+    Leave Request
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                    AI SMART FEATURES
+========================================================= -->
+
+<div class="sidebar-section-title">
+
+AI Smart Features
+
+</div>
+
+
+<li>
+
+<a href="face-attendance.html">
+
+<i class="fa-solid fa-camera"></i>
+
+<span>
+    Face Attendance
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="student-performance-ai.html">
+
+<i class="fa-solid fa-brain"></i>
+
+<span>
+    Student Performance AI
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="smart-report.html">
+
+<i class="fa-solid fa-file-waveform"></i>
+
+<span>
+    Smart Reports
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="ai-assistant.html">
+
+<i class="fa-solid fa-robot"></i>
+
+<span>
+    AI Assistant
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                        ACCOUNT
+========================================================= -->
+
+<div class="sidebar-section-title">
+
+Account
+
+</div>
+
+
+<!-- PROFILE -->
+
+<li>
+
+<a href="profile.html">
+
+<i class="fa-solid fa-user"></i>
+
+<span>
+    Profile
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+<span>
+    Settings
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="change-password.html">
+
+<i class="fa-solid fa-lock"></i>
+
+<span>
+    Change Password
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="teacher-login.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+<span>
+    Logout
+</span>
+
+</a>
+
+</li>
+
+
+</ul>
+
+</aside>
+
+
+<!-- =========================================================
+                        MAIN AREA
+========================================================= -->
+
+<div class="teacher-main">
+
+
+<!-- =========================================================
+                        NAVBAR
+========================================================= -->
+
+<header class="teacher-navbar">
+
+
+<!-- LEFT -->
+
+<div class="navbar-left">
+
+
+<button
+    type="button"
+    class="mobile-menu-btn"
+    id="mobileMenuBtn">
+
+<i class="fa-solid fa-bars"></i>
+
+</button>
+
+
+<div class="navbar-title">
+
+<h4>
+    My Classes
+</h4>
+
+<p>
+    Faculty Management & Productivity System
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    NAVBAR RIGHT
+========================================================= -->
+
+<div class="navbar-right">
+
+
+<!-- DARK MODE -->
+
+<button
+    type="button"
+    class="nav-icon-btn"
+    id="themeToggle"
+    title="Dark / Light Mode">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+
+<!-- NOTIFICATIONS -->
+
+<a
+    href="notices.html"
+    class="nav-icon-btn"
+    title="Notices">
+
+<i class="fa-solid fa-bell"></i>
+
+<span class="notification-dot"></span>
+
+</a>
+
+
+<!-- =========================================================
+                    PROFILE DROPDOWN
+========================================================= -->
+
+<div class="dropdown">
+
+
+<div
+    class="teacher-profile"
+    data-bs-toggle="dropdown"
+    aria-expanded="false">
+
+
+<img
+    src="../../images/default-profile.png"
+    alt="Teacher">
+
+
+<div class="teacher-profile-info">
+
+<strong>
+    Teacher
+</strong>
+
+<small>
+    Faculty Member
+</small>
+
+</div>
+
+
+<i
+    class="fa-solid fa-angle-down"
+    style="
+        font-size:11px;
+        color:#64748b;">
+</i>
+
+
+</div>
+
+
+<ul
+    class="dropdown-menu dropdown-menu-end profile-dropdown-menu">
+
+
+<li>
+
+<a
+    class="dropdown-item"
+    href="profile.html">
+
+<i class="fa-solid fa-user"></i>
+
+My Profile
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+    class="dropdown-item"
+    href="change-password.html">
+
+<i class="fa-solid fa-lock"></i>
+
+Change Password
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+    class="dropdown-item"
+    href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
+
+</a>
+
+</li>
+
+
+<li>
+
+<hr class="dropdown-divider">
+
+</li>
+
+
+<li>
+
+<a
+    class="dropdown-item text-danger"
+    href="teacher-login.html">
+
+<i
+    class="fa-solid fa-right-from-bracket"
+    style="color:#ef4444;">
+</i>
+
+Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+</div>
+
+</header>
+
+
+<!-- =========================================================
+                    PAGE CONTENT
+========================================================= -->
+
+<main class="teacher-content">
+
+
+<!-- =========================================================
+                    PAGE HEADER
+========================================================= -->
+
+<section class="classes-page-header">
+
+
+<div>
+
+
+<h2>
+
+<i class="fa-solid fa-book-open me-2"></i>
+
+My Classes
+
+</h2>
+
+
+<p>
+
+Manage your assigned subjects,
+students and class activities.
+
+</p>
+
+
+</div>
+
+
+<a
+    href="timetable.html"
+    class="schedule-btn">
+
+<i class="fa-solid fa-calendar-days me-2"></i>
+
+View Full Timetable
+
+</a>
+
+
+</section>
+
+
+<!-- =========================================================
+                    STATISTICS
+========================================================= -->
+
+<section class="class-stat-grid">
+
+
+<!-- TOTAL CLASSES -->
+
+<div class="class-stat-card">
+
+
+<div class="class-stat-icon purple">
+
+<i class="fa-solid fa-book"></i>
+
+</div>
+
+
+<div class="class-stat-info">
+
+<h3 id="totalClassesCount">
+    8
+</h3>
+
+<p>
+    Total Classes
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- TOTAL STUDENTS -->
+
+<div class="class-stat-card">
+
+
+<div class="class-stat-icon blue">
+
+<i class="fa-solid fa-users"></i>
+
+</div>
+
+
+<div class="class-stat-info">
+
+<h3 id="totalStudentsCount">
+    315
+</h3>
+
+<p>
+    Total Students
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- TODAY CLASSES -->
+
+<div class="class-stat-card">
+
+
+<div class="class-stat-icon green">
+
+<i class="fa-solid fa-calendar-day"></i>
+
+</div>
+
+
+<div class="class-stat-info">
+
+<h3 id="todayClassesCount">
+    4
+</h3>
+
+<p>
+    Today's Classes
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- SUBJECTS -->
+
+<div class="class-stat-card">
+
+
+<div class="class-stat-icon orange">
+
+<i class="fa-solid fa-book-open-reader"></i>
+
+</div>
+
+
+<div class="class-stat-info">
+
+<h3 id="totalSubjectsCount">
+    8
+</h3>
+
+<p>
+    Subjects Assigned
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    TODAY'S CLASSES
+========================================================= -->
+
+<section class="classes-card">
+
+
+<div class="classes-card-header">
+
+
+<div>
+
+
+<h4>
+
+<i class="fa-solid fa-clock me-2"></i>
+
+Today's Classes
+
+</h4>
+
+
+<p>
+    Your teaching schedule for today
+</p>
+
+
+</div>
+
+
+<span class="badge bg-success px-3 py-2">
+
+<i class="fa-solid fa-circle me-1"></i>
+
+4 Classes Today
+
+</span>
+
+
+</div>
+
+
+<div class="today-class-list">
+
+
+<!-- CLASS 1 -->
+
+<div class="today-class-item">
+
+
+<div class="today-class-left">
+
+
+<div class="today-time">
+
+09:00 AM
+
+</div>
+
+
+<div class="today-class-info">
+
+<h6>
+    Data Structures
+</h6>
+
+<p>
+    BCA Semester III • Section A
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="today-class-right">
+
+
+<span class="room-badge">
+
+<i class="fa-solid fa-location-dot me-1"></i>
+
+Room 204
+
+</span>
+
+
+<button
+    type="button"
+    class="btn btn-sm btn-outline-primary"
+    onclick="openClassDetails('DSA')">
+
+View
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+<!-- CLASS 2 -->
+
+<div class="today-class-item">
+
+
+<div class="today-class-left">
+
+
+<div class="today-time">
+
+10:30 AM
+
+</div>
+
+
+<div class="today-class-info">
+
+<h6>
+    Database Management System
+</h6>
+
+<p>
+    BCA Semester V • Section A
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="today-class-right">
+
+
+<span class="room-badge">
+
+<i class="fa-solid fa-location-dot me-1"></i>
+
+Lab 02
+
+</span>
+
+
+<button
+    type="button"
+    class="btn btn-sm btn-outline-primary"
+    onclick="openClassDetails('DBMS')">
+
+View
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+<!-- CLASS 3 -->
+
+<div class="today-class-item">
+
+
+<div class="today-class-left">
+
+
+<div class="today-time">
+
+12:30 PM
+
+</div>
+
+
+<div class="today-class-info">
+
+<h6>
+    Python Programming
+</h6>
+
+<p>
+    BCA Semester II • Section B
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="today-class-right">
+
+
+<span class="room-badge">
+
+<i class="fa-solid fa-location-dot me-1"></i>
+
+Lab 01
+
+</span>
+
+
+<button
+    type="button"
+    class="btn btn-sm btn-outline-primary"
+    onclick="openClassDetails('PYTHON')">
+
+View
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+<!-- CLASS 4 -->
+
+<div class="today-class-item">
+
+
+<div class="today-class-left">
+
+
+<div class="today-time">
+
+02:00 PM
+
+</div>
+
+
+<div class="today-class-info">
+
+<h6>
+    Web Technology
+</h6>
+
+<p>
+    BCA Semester IV • Section A
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="today-class-right">
+
+
+<span class="room-badge">
+
+<i class="fa-solid fa-location-dot me-1"></i>
+
+Room 305
+
+</span>
+
+
+<button
+    type="button"
+    class="btn btn-sm btn-outline-primary"
+    onclick="openClassDetails('WEB')">
+
+View
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+                    ASSIGNED CLASSES
+========================================================= -->
+
+<section class="classes-card">
+
+
+<!-- =========================================================
+                    CARD HEADER
+========================================================= -->
+
+<div class="classes-card-header">
+
+
+<div>
+
+<h4>
+
+<i class="fa-solid fa-chalkboard-user me-2"></i>
+
+Assigned Classes
+
+</h4>
+
+
+<p>
+    View and manage all your assigned classes
+</p>
+
+</div>
+
+
+<!-- =========================================================
+                    SEARCH + FILTER
+========================================================= -->
+
+<div class="class-toolbar">
+
+
+<div class="class-search">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+    type="text"
+    id="classSearchInput"
+    placeholder="Search class or subject..."
+    autocomplete="off">
+
+</div>
+
+
+<select
+    class="class-filter"
+    id="semesterFilter">
+
+<option value="all">
+    All Semesters
+</option>
+
+<option value="2">
+    Semester II
+</option>
+
+<option value="3">
+    Semester III
+</option>
+
+<option value="4">
+    Semester IV
+</option>
+
+<option value="5">
+    Semester V
+</option>
+
+<option value="6">
+    Semester VI
+</option>
+
+</select>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    CLASS GRID
+========================================================= -->
+
+<div
+    class="my-class-grid"
+    id="myClassGrid">
+
+
+<!-- =========================================================
+                    1. DATA STRUCTURES
+========================================================= -->
+
+<div
+    class="my-class-card"
+    data-semester="3"
+    data-search="data structures dsa bca semester iii semester 3 section a BCA-DS301">
+
+
+<div class="class-card-top">
+
+
+<span class="class-status">
+    Active
+</span>
+
+
+<div class="class-card-icon">
+
+<i class="fa-solid fa-diagram-project"></i>
+
+</div>
+
+
+<h5>
+    Data Structures
+</h5>
+
+
+<p>
+    BCA Semester III • Section A
+</p>
+
+
+</div>
+
+
+<div class="class-card-body">
+
+
+<div class="class-info-grid">
+
+
+<div class="class-info-box">
+
+<small>
+    Subject Code
+</small>
+
+<strong>
+    BCA-DS301
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Students
+</small>
+
+<strong>
+    42 Students
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Room
+</small>
+
+<strong>
+    Room 204
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Weekly Classes
+</small>
+
+<strong>
+    4 Classes
+</strong>
+
+</div>
+
+
+</div>
+
+
+<!-- PROGRESS -->
+
+<div class="class-progress">
+
+
+<div class="class-progress-head">
+
+<span>
+    Syllabus Progress
+</span>
+
+<strong>
+    68%
+</strong>
+
+</div>
+
+
+<div class="progress">
+
+<div
+    class="progress-bar bg-success"
+    role="progressbar"
+    style="width:68%;"
+    aria-valuenow="68"
+    aria-valuemin="0"
+    aria-valuemax="100">
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- ACTIONS -->
+
+<div class="class-card-actions">
+
+
+<button
+    type="button"
+    class="btn btn-primary"
+    onclick="openClassDetails('DSA')">
+
+<i class="fa-solid fa-eye me-1"></i>
+
+View Class
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-primary"
+    onclick="openStudentList('DSA')">
+
+<i class="fa-solid fa-users me-1"></i>
+
+Students
+
+</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                2. DATABASE MANAGEMENT SYSTEM
+========================================================= -->
+
+<div
+    class="my-class-card"
+    data-semester="5"
+    data-search="database management system dbms database bca semester v semester 5 section a BCA-DB501">
+
+
+<div class="class-card-top">
+
+
+<span class="class-status">
+    Active
+</span>
+
+
+<div class="class-card-icon">
+
+<i class="fa-solid fa-database"></i>
+
+</div>
+
+
+<h5>
+    Database Management System
+</h5>
+
+
+<p>
+    BCA Semester V • Section A
+</p>
+
+
+</div>
+
+
+<div class="class-card-body">
+
+
+<div class="class-info-grid">
+
+
+<div class="class-info-box">
+
+<small>
+    Subject Code
+</small>
+
+<strong>
+    BCA-DB501
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Students
+</small>
+
+<strong>
+    38 Students
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Room
+</small>
+
+<strong>
+    Lab 02
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Weekly Classes
+</small>
+
+<strong>
+    5 Classes
+</strong>
+
+</div>
+
+
+</div>
+
+
+<div class="class-progress">
+
+
+<div class="class-progress-head">
+
+<span>
+    Syllabus Progress
+</span>
+
+<strong>
+    74%
+</strong>
+
+</div>
+
+
+<div class="progress">
+
+<div
+    class="progress-bar bg-success"
+    role="progressbar"
+    style="width:74%;"
+    aria-valuenow="74"
+    aria-valuemin="0"
+    aria-valuemax="100">
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="class-card-actions">
+
+
+<button
+    type="button"
+    class="btn btn-primary"
+    onclick="openClassDetails('DBMS')">
+
+<i class="fa-solid fa-eye me-1"></i>
+
+View Class
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-primary"
+    onclick="openStudentList('DBMS')">
+
+<i class="fa-solid fa-users me-1"></i>
+
+Students
+
+</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    3. PYTHON PROGRAMMING
+========================================================= -->
+
+<div
+    class="my-class-card"
+    data-semester="2"
+    data-search="python programming python bca semester ii semester 2 section b BCA-PY201">
+
+
+<div class="class-card-top">
+
+
+<span class="class-status">
+    Active
+</span>
+
+
+<div class="class-card-icon">
+
+<i class="fa-brands fa-python"></i>
+
+</div>
+
+
+<h5>
+    Python Programming
+</h5>
+
+
+<p>
+    BCA Semester II • Section B
+</p>
+
+
+</div>
+
+
+<div class="class-card-body">
+
+
+<div class="class-info-grid">
+
+
+<div class="class-info-box">
+
+<small>
+    Subject Code
+</small>
+
+<strong>
+    BCA-PY201
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Students
+</small>
+
+<strong>
+    45 Students
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Room
+</small>
+
+<strong>
+    Lab 01
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Weekly Classes
+</small>
+
+<strong>
+    5 Classes
+</strong>
+
+</div>
+
+
+</div>
+
+
+<div class="class-progress">
+
+
+<div class="class-progress-head">
+
+<span>
+    Syllabus Progress
+</span>
+
+<strong>
+    61%
+</strong>
+
+</div>
+
+
+<div class="progress">
+
+<div
+    class="progress-bar bg-info"
+    role="progressbar"
+    style="width:61%;"
+    aria-valuenow="61"
+    aria-valuemin="0"
+    aria-valuemax="100">
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="class-card-actions">
+
+
+<button
+    type="button"
+    class="btn btn-primary"
+    onclick="openClassDetails('PYTHON')">
+
+<i class="fa-solid fa-eye me-1"></i>
+
+View Class
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-primary"
+    onclick="openStudentList('PYTHON')">
+
+<i class="fa-solid fa-users me-1"></i>
+
+Students
+
+</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    4. WEB TECHNOLOGY
+========================================================= -->
+
+<div
+    class="my-class-card"
+    data-semester="4"
+    data-search="web technology html css javascript web development bca semester iv semester 4 section a BCA-WT401">
+
+
+<div class="class-card-top">
+
+
+<span class="class-status">
+    Active
+</span>
+
+
+<div class="class-card-icon">
+
+<i class="fa-solid fa-code"></i>
+
+</div>
+
+
+<h5>
+    Web Technology
+</h5>
+
+
+<p>
+    BCA Semester IV • Section A
+</p>
+
+
+</div>
+
+
+<div class="class-card-body">
+
+
+<div class="class-info-grid">
+
+
+<div class="class-info-box">
+
+<small>
+    Subject Code
+</small>
+
+<strong>
+    BCA-WT401
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Students
+</small>
+
+<strong>
+    40 Students
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Room
+</small>
+
+<strong>
+    Room 305
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Weekly Classes
+</small>
+
+<strong>
+    4 Classes
+</strong>
+
+</div>
+
+
+</div>
+
+
+<div class="class-progress">
+
+
+<div class="class-progress-head">
+
+<span>
+    Syllabus Progress
+</span>
+
+<strong>
+    70%
+</strong>
+
+</div>
+
+
+<div class="progress">
+
+<div
+    class="progress-bar bg-success"
+    role="progressbar"
+    style="width:70%;"
+    aria-valuenow="70"
+    aria-valuemin="0"
+    aria-valuemax="100">
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="class-card-actions">
+
+
+<button
+    type="button"
+    class="btn btn-primary"
+    onclick="openClassDetails('WEB')">
+
+<i class="fa-solid fa-eye me-1"></i>
+
+View Class
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-primary"
+    onclick="openStudentList('WEB')">
+
+<i class="fa-solid fa-users me-1"></i>
+
+Students
+
+</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    5. JAVA PROGRAMMING
+========================================================= -->
+
+<div
+    class="my-class-card"
+    data-semester="4"
+    data-search="java programming java object oriented programming oop bca semester iv semester 4 section b BCA-JV402">
+
+
+<div class="class-card-top">
+
+
+<span class="class-status">
+    Active
+</span>
+
+
+<div class="class-card-icon">
+
+<i class="fa-brands fa-java"></i>
+
+</div>
+
+
+<h5>
+    Java Programming
+</h5>
+
+
+<p>
+    BCA Semester IV • Section B
+</p>
+
+
+</div>
+
+
+<div class="class-card-body">
+
+
+<div class="class-info-grid">
+
+
+<div class="class-info-box">
+
+<small>
+    Subject Code
+</small>
+
+<strong>
+    BCA-JV402
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Students
+</small>
+
+<strong>
+    41 Students
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Room
+</small>
+
+<strong>
+    Lab 03
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Weekly Classes
+</small>
+
+<strong>
+    4 Classes
+</strong>
+
+</div>
+
+
+</div>
+
+
+<div class="class-progress">
+
+
+<div class="class-progress-head">
+
+<span>
+    Syllabus Progress
+</span>
+
+<strong>
+    58%
+</strong>
+
+</div>
+
+
+<div class="progress">
+
+<div
+    class="progress-bar bg-info"
+    role="progressbar"
+    style="width:58%;"
+    aria-valuenow="58"
+    aria-valuemin="0"
+    aria-valuemax="100">
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="class-card-actions">
+
+
+<button
+    type="button"
+    class="btn btn-primary"
+    onclick="openClassDetails('JAVA')">
+
+<i class="fa-solid fa-eye me-1"></i>
+
+View Class
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-primary"
+    onclick="openStudentList('JAVA')">
+
+<i class="fa-solid fa-users me-1"></i>
+
+Students
+
+</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    6. SOFTWARE ENGINEERING
+========================================================= -->
+
+<div
+    class="my-class-card"
+    data-semester="6"
+    data-search="software engineering software development bca semester vi semester 6 section a BCA-SE601">
+
+
+<div class="class-card-top">
+
+
+<span class="class-status">
+    Active
+</span>
+
+
+<div class="class-card-icon">
+
+<i class="fa-solid fa-gears"></i>
+
+</div>
+
+
+<h5>
+    Software Engineering
+</h5>
+
+
+<p>
+    BCA Semester VI • Section A
+</p>
+
+
+</div>
+
+
+<div class="class-card-body">
+
+
+<div class="class-info-grid">
+
+
+<div class="class-info-box">
+
+<small>
+    Subject Code
+</small>
+
+<strong>
+    BCA-SE601
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Students
+</small>
+
+<strong>
+    39 Students
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Room
+</small>
+
+<strong>
+    Room 301
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Weekly Classes
+</small>
+
+<strong>
+    3 Classes
+</strong>
+
+</div>
+
+
+</div>
+
+
+<div class="class-progress">
+
+
+<div class="class-progress-head">
+
+<span>
+    Syllabus Progress
+</span>
+
+<strong>
+    82%
+</strong>
+
+</div>
+
+
+<div class="progress">
+
+<div
+    class="progress-bar bg-success"
+    role="progressbar"
+    style="width:82%;"
+    aria-valuenow="82"
+    aria-valuemin="0"
+    aria-valuemax="100">
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="class-card-actions">
+
+
+<button
+    type="button"
+    class="btn btn-primary"
+    onclick="openClassDetails('SE')">
+
+<i class="fa-solid fa-eye me-1"></i>
+
+View Class
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-primary"
+    onclick="openStudentList('SE')">
+
+<i class="fa-solid fa-users me-1"></i>
+
+Students
+
+</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    7. COMPUTER NETWORKS
+========================================================= -->
+
+<div
+    class="my-class-card"
+    data-semester="5"
+    data-search="computer networks networking network bca semester v semester 5 section b BCA-CN502">
+
+
+<div class="class-card-top">
+
+
+<span class="class-status">
+    Active
+</span>
+
+
+<div class="class-card-icon">
+
+<i class="fa-solid fa-network-wired"></i>
+
+</div>
+
+
+<h5>
+    Computer Networks
+</h5>
+
+
+<p>
+    BCA Semester V • Section B
+</p>
+
+
+</div>
+
+
+<div class="class-card-body">
+
+
+<div class="class-info-grid">
+
+
+<div class="class-info-box">
+
+<small>
+    Subject Code
+</small>
+
+<strong>
+    BCA-CN502
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Students
+</small>
+
+<strong>
+    36 Students
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Room
+</small>
+
+<strong>
+    Room 302
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Weekly Classes
+</small>
+
+<strong>
+    3 Classes
+</strong>
+
+</div>
+
+
+</div>
+
+
+<div class="class-progress">
+
+
+<div class="class-progress-head">
+
+<span>
+    Syllabus Progress
+</span>
+
+<strong>
+    65%
+</strong>
+
+</div>
+
+
+<div class="progress">
+
+<div
+    class="progress-bar bg-info"
+    role="progressbar"
+    style="width:65%;"
+    aria-valuenow="65"
+    aria-valuemin="0"
+    aria-valuemax="100">
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="class-card-actions">
+
+
+<button
+    type="button"
+    class="btn btn-primary"
+    onclick="openClassDetails('CN')">
+
+<i class="fa-solid fa-eye me-1"></i>
+
+View Class
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-primary"
+    onclick="openStudentList('CN')">
+
+<i class="fa-solid fa-users me-1"></i>
+
+Students
+
+</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    8. ARTIFICIAL INTELLIGENCE
+========================================================= -->
+
+<div
+    class="my-class-card"
+    data-semester="6"
+    data-search="artificial intelligence ai machine learning ml bca semester vi semester 6 section b BCA-AI602">
+
+
+<div class="class-card-top">
+
+
+<span class="class-status">
+    Active
+</span>
+
+
+<div class="class-card-icon">
+
+<i class="fa-solid fa-brain"></i>
+
+</div>
+
+
+<h5>
+    Artificial Intelligence
+</h5>
+
+
+<p>
+    BCA Semester VI • Section B
+</p>
+
+
+</div>
+
+
+<div class="class-card-body">
+
+
+<div class="class-info-grid">
+
+
+<div class="class-info-box">
+
+<small>
+    Subject Code
+</small>
+
+<strong>
+    BCA-AI602
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Students
+</small>
+
+<strong>
+    34 Students
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Room
+</small>
+
+<strong>
+    Smart Lab
+</strong>
+
+</div>
+
+
+<div class="class-info-box">
+
+<small>
+    Weekly Classes
+</small>
+
+<strong>
+    3 Classes
+</strong>
+
+</div>
+
+
+</div>
+
+
+<div class="class-progress">
+
+
+<div class="class-progress-head">
+
+<span>
+    Syllabus Progress
+</span>
+
+<strong>
+    55%
+</strong>
+
+</div>
+
+
+<div class="progress">
+
+<div
+    class="progress-bar bg-info"
+    role="progressbar"
+    style="width:55%;"
+    aria-valuenow="55"
+    aria-valuemin="0"
+    aria-valuemax="100">
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="class-card-actions">
+
+
+<button
+    type="button"
+    class="btn btn-primary"
+    onclick="openClassDetails('AI')">
+
+<i class="fa-solid fa-eye me-1"></i>
+
+View Class
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-primary"
+    onclick="openStudentList('AI')">
+
+<i class="fa-solid fa-users me-1"></i>
+
+Students
+
+</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    CLASS GRID END
+========================================================= -->
+
+</div>
+
+
+<!-- =========================================================
+                    NO SEARCH RESULT
+========================================================= -->
+
+<div
+    class="no-class-result"
+    id="noClassResult">
+
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+
+<h5>
+    No Classes Found
+</h5>
+
+
+<p>
+    No class matches your search or semester filter.
+</p>
+
+
+<button
+    type="button"
+    class="btn btn-sm btn-outline-primary"
+    id="resetClassFilterBtn">
+
+<i class="fa-solid fa-rotate-left me-1"></i>
+
+Reset Filter
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                        FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+© 2026 Faculty Management & Productivity System |
+Teacher Panel
+
+</footer>
+
+
+</main>
+
+
+<!-- =========================================================
+                    TEACHER MAIN END
+========================================================= -->
+
+</div>
+
+
+<!-- =========================================================
+                    TEACHER LAYOUT END
+========================================================= -->
+
+</div>
+
+
+<!-- =========================================================
+                    CLASS DETAILS MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="classDetailsModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content border-0 rounded-4">
+
+
+<!-- MODAL HEADER -->
+
+<div class="modal-header">
+
+<h5 class="modal-title fw-bold">
+
+<i
+    class="fa-solid fa-chalkboard-user me-2"
+    style="color:#6c4cff;">
+</i>
+
+Class Details
+
+</h5>
+
+<button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal"
+    aria-label="Close">
+</button>
+
+</div>
+
+
+<!-- MODAL BODY -->
+
+<div class="modal-body p-4">
+
+
+<div class="class-modal-icon">
+
+<i
+    id="classModalIcon"
+    class="fa-solid fa-book-open">
+</i>
+
+</div>
+
+
+<h4
+    class="text-center fw-bold"
+    id="classModalTitle">
+
+Class Name
+
+</h4>
+
+
+<p
+    class="text-center text-muted mb-4"
+    id="classModalSubtitle">
+
+Semester Information
+
+</p>
+
+
+<div class="class-detail-row">
+
+<span>
+Subject Code
+</span>
+
+<strong id="classModalCode">
+--
+</strong>
+
+</div>
+
+
+<div class="class-detail-row">
+
+<span>
+Semester
+</span>
+
+<strong id="classModalSemester">
+--
+</strong>
+
+</div>
+
+
+<div class="class-detail-row">
+
+<span>
+Section
+</span>
+
+<strong id="classModalSection">
+--
+</strong>
+
+</div>
+
+
+<div class="class-detail-row">
+
+<span>
+Total Students
+</span>
+
+<strong id="classModalStudents">
+--
+</strong>
+
+</div>
+
+
+<div class="class-detail-row">
+
+<span>
+Classroom
+</span>
+
+<strong id="classModalRoom">
+--
+</strong>
+
+</div>
+
+
+<div class="class-detail-row">
+
+<span>
+Weekly Classes
+</span>
+
+<strong id="classModalWeekly">
+--
+</strong>
+
+</div>
+
+
+<div class="class-detail-row">
+
+<span>
+Syllabus Progress
+</span>
+
+<strong id="classModalProgress">
+--
+</strong>
+
+</div>
+
+
+<div class="class-detail-row">
+
+<span>
+Next Class
+</span>
+
+<strong id="classModalNext">
+--
+</strong>
+
+</div>
+
+
+</div>
+
+
+<!-- MODAL FOOTER -->
+
+<div class="modal-footer justify-content-center">
+
+<button
+    type="button"
+    class="btn btn-outline-secondary px-4"
+    data-bs-dismiss="modal">
+
+Close
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-primary px-4"
+    id="modalStudentsBtn">
+
+<i class="fa-solid fa-users me-2"></i>
+
+View Students
+
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================================================
+                    STUDENT LIST MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="studentListModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+<div class="modal-dialog modal-lg modal-dialog-centered">
+
+<div class="modal-content border-0 rounded-4">
+
+
+<!-- HEADER -->
+
+<div class="modal-header">
+
+<div>
+
+<h5 class="modal-title fw-bold">
+
+<i
+    class="fa-solid fa-users me-2"
+    style="color:#6c4cff;">
+</i>
+
+Student List
+
+</h5>
+
+
+<small
+    class="text-muted"
+    id="studentModalClass">
+
+Class
+
+</small>
+
+</div>
+
+
+<button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal"
+    aria-label="Close">
+</button>
+
+</div>
+
+
+<!-- BODY -->
+
+<div class="modal-body p-4">
+
+
+<!-- STUDENT SEARCH -->
+
+<div class="class-search mb-4">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+    type="text"
+    id="studentSearchInput"
+    placeholder="Search student by name or roll number..."
+    autocomplete="off"
+    style="width:100%;">
+
+</div>
+
+
+<!-- STUDENT TABLE -->
+
+<div class="table-responsive">
+
+<table class="table align-middle">
+
+<thead>
+
+<tr>
+
+<th>#</th>
+
+<th>Student</th>
+
+<th>Roll No.</th>
+
+<th>Attendance</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="studentTableBody">
+
+<!-- Students JavaScript se load honge -->
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<!-- NO STUDENT RESULT -->
+
+<div
+    class="text-center py-4"
+    id="noStudentResult"
+    style="display:none;">
+
+<i
+    class="fa-solid fa-user-slash"
+    style="
+        font-size:42px;
+        color:#c4b5fd;
+        margin-bottom:12px;">
+</i>
+
+<h6 class="fw-bold">
+No Student Found
+</h6>
+
+<small class="text-muted">
+Try another student name or roll number.
+</small>
+
+</div>
+
+
+</div>
+
+
+<!-- FOOTER -->
+
+<div class="modal-footer">
+
+<button
+    type="button"
+    class="btn btn-outline-secondary"
+    data-bs-dismiss="modal">
+
+<i class="fa-solid fa-xmark me-1"></i>
+
+Close
+
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================================================
+                    BOOTSTRAP JAVASCRIPT
+========================================================= -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+
+<!-- =========================================================
+                    MY CLASSES JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+
+/* =========================================================
+                    CLASS DATA
+========================================================= */
+
+const classData = {
+
+
+DSA:{
+
+title:"Data Structures",
+
+code:"BCA-DS301",
+
+semester:"Semester III",
+
+section:"Section A",
+
+students:"42 Students",
+
+room:"Room 204",
+
+weekly:"4 Classes",
+
+progress:"68%",
+
+next:"Today • 09:00 AM",
+
+icon:"fa-solid fa-diagram-project"
+
+},
+
+
+DBMS:{
+
+title:"Database Management System",
+
+code:"BCA-DB501",
+
+semester:"Semester V",
+
+section:"Section A",
+
+students:"38 Students",
+
+room:"Lab 02",
+
+weekly:"5 Classes",
+
+progress:"74%",
+
+next:"Today • 10:30 AM",
+
+icon:"fa-solid fa-database"
+
+},
+
+
+PYTHON:{
+
+title:"Python Programming",
+
+code:"BCA-PY201",
+
+semester:"Semester II",
+
+section:"Section B",
+
+students:"45 Students",
+
+room:"Lab 01",
+
+weekly:"5 Classes",
+
+progress:"61%",
+
+next:"Today • 12:30 PM",
+
+icon:"fa-brands fa-python"
+
+},
+
+
+WEB:{
+
+title:"Web Technology",
+
+code:"BCA-WT401",
+
+semester:"Semester IV",
+
+section:"Section A",
+
+students:"40 Students",
+
+room:"Room 305",
+
+weekly:"4 Classes",
+
+progress:"70%",
+
+next:"Today • 02:00 PM",
+
+icon:"fa-solid fa-code"
+
+},
+
+
+JAVA:{
+
+title:"Java Programming",
+
+code:"BCA-JV402",
+
+semester:"Semester IV",
+
+section:"Section B",
+
+students:"41 Students",
+
+room:"Lab 03",
+
+weekly:"4 Classes",
+
+progress:"58%",
+
+next:"Tomorrow • 09:00 AM",
+
+icon:"fa-brands fa-java"
+
+},
+
+
+SE:{
+
+title:"Software Engineering",
+
+code:"BCA-SE601",
+
+semester:"Semester VI",
+
+section:"Section A",
+
+students:"39 Students",
+
+room:"Room 301",
+
+weekly:"3 Classes",
+
+progress:"82%",
+
+next:"Tomorrow • 11:00 AM",
+
+icon:"fa-solid fa-gears"
+
+},
+
+
+CN:{
+
+title:"Computer Networks",
+
+code:"BCA-CN502",
+
+semester:"Semester V",
+
+section:"Section B",
+
+students:"36 Students",
+
+room:"Room 302",
+
+weekly:"3 Classes",
+
+progress:"65%",
+
+next:"Wednesday • 10:30 AM",
+
+icon:"fa-solid fa-network-wired"
+
+},
+
+
+AI:{
+
+title:"Artificial Intelligence",
+
+code:"BCA-AI602",
+
+semester:"Semester VI",
+
+section:"Section B",
+
+students:"34 Students",
+
+room:"Smart Lab",
+
+weekly:"3 Classes",
+
+progress:"55%",
+
+next:"Wednesday • 01:00 PM",
+
+icon:"fa-solid fa-brain"
+
+}
+
+};
+
+
+
+/* =========================================================
+                    STUDENT DATA
+========================================================= */
+
+const studentData = {
+
+
+DSA:[
+
+{
+name:"Aarav Sharma",
+roll:"BCA26001",
+attendance:92
+},
+
+{
+name:"Aditi Singh",
+roll:"BCA26002",
+attendance:88
+},
+
+{
+name:"Aditya Kumar",
+roll:"BCA26003",
+attendance:76
+},
+
+{
+name:"Ananya Gupta",
+roll:"BCA26004",
+attendance:95
+},
+
+{
+name:"Ayush Raj",
+roll:"BCA26005",
+attendance:71
+},
+
+{
+name:"Ishita Verma",
+roll:"BCA26006",
+attendance:84
+},
+
+{
+name:"Kunal Singh",
+roll:"BCA26007",
+attendance:67
+},
+
+{
+name:"Neha Kumari",
+roll:"BCA26008",
+attendance:91
+},
+
+{
+name:"Priya Sharma",
+roll:"BCA26009",
+attendance:79
+},
+
+{
+name:"Rahul Kumar",
+roll:"BCA26010",
+attendance:86
+}
+
+],
+
+
+DBMS:[
+
+{
+name:"Riya Singh",
+roll:"BCA25001",
+attendance:94
+},
+
+{
+name:"Aryan Kumar",
+roll:"BCA25002",
+attendance:81
+},
+
+{
+name:"Sakshi Gupta",
+roll:"BCA25003",
+attendance:73
+},
+
+{
+name:"Mohit Raj",
+roll:"BCA25004",
+attendance:89
+},
+
+{
+name:"Simran Kumari",
+roll:"BCA25005",
+attendance:96
+},
+
+{
+name:"Vivek Sharma",
+roll:"BCA25006",
+attendance:78
+},
+
+{
+name:"Nisha Verma",
+roll:"BCA25007",
+attendance:83
+},
+
+{
+name:"Rohit Singh",
+roll:"BCA25008",
+attendance:69
+}
+
+],
+
+
+PYTHON:[
+
+{
+name:"Arjun Singh",
+roll:"BCA22001",
+attendance:90
+},
+
+{
+name:"Sneha Kumari",
+roll:"BCA22002",
+attendance:87
+},
+
+{
+name:"Rohan Gupta",
+roll:"BCA22003",
+attendance:74
+},
+
+{
+name:"Pooja Sharma",
+roll:"BCA22004",
+attendance:93
+},
+
+{
+name:"Aman Raj",
+roll:"BCA22005",
+attendance:81
+},
+
+{
+name:"Komal Singh",
+roll:"BCA22006",
+attendance:68
+},
+
+{
+name:"Nitin Kumar",
+roll:"BCA22007",
+attendance:85
+}
+
+],
+
+
+WEB:[
+
+{
+name:"Ankit Kumar",
+roll:"BCA24001",
+attendance:91
+},
+
+{
+name:"Khushi Singh",
+roll:"BCA24002",
+attendance:86
+},
+
+{
+name:"Vishal Raj",
+roll:"BCA24003",
+attendance:72
+},
+
+{
+name:"Muskan Gupta",
+roll:"BCA24004",
+attendance:95
+},
+
+{
+name:"Deepak Kumar",
+roll:"BCA24005",
+attendance:79
+},
+
+{
+name:"Shreya Verma",
+roll:"BCA24006",
+attendance:88
+}
+
+],
+
+
+JAVA:[
+
+{
+name:"Akash Singh",
+roll:"BCA24101",
+attendance:84
+},
+
+{
+name:"Anjali Kumari",
+roll:"BCA24102",
+attendance:92
+},
+
+{
+name:"Harsh Raj",
+roll:"BCA24103",
+attendance:70
+},
+
+{
+name:"Megha Gupta",
+roll:"BCA24104",
+attendance:89
+},
+
+{
+name:"Saurabh Kumar",
+roll:"BCA24105",
+attendance:77
+},
+
+{
+name:"Tanya Singh",
+roll:"BCA24106",
+attendance:96
+}
+
+],
+
+
+SE:[
+
+{
+name:"Abhishek Kumar",
+roll:"BCA26011",
+attendance:87
+},
+
+{
+name:"Kajal Singh",
+roll:"BCA26012",
+attendance:91
+},
+
+{
+name:"Manish Raj",
+roll:"BCA26013",
+attendance:73
+},
+
+{
+name:"Nandini Gupta",
+roll:"BCA26014",
+attendance:85
+},
+
+{
+name:"Prakash Kumar",
+roll:"BCA26015",
+attendance:94
+},
+
+{
+name:"Sonia Verma",
+roll:"BCA26016",
+attendance:79
+}
+
+],
+
+
+CN:[
+
+{
+name:"Dev Kumar",
+roll:"BCA25101",
+attendance:88
+},
+
+{
+name:"Divya Singh",
+roll:"BCA25102",
+attendance:93
+},
+
+{
+name:"Gaurav Raj",
+roll:"BCA25103",
+attendance:71
+},
+
+{
+name:"Jyoti Gupta",
+roll:"BCA25104",
+attendance:82
+},
+
+{
+name:"Karan Kumar",
+roll:"BCA25105",
+attendance:76
+},
+
+{
+name:"Payal Verma",
+roll:"BCA25106",
+attendance:90
+}
+
+],
+
+
+AI:[
+
+{
+name:"Ayesha Khan",
+roll:"BCA26101",
+attendance:95
+},
+
+{
+name:"Harshit Kumar",
+roll:"BCA26102",
+attendance:82
+},
+
+{
+name:"Isha Singh",
+roll:"BCA26103",
+attendance:89
+},
+
+{
+name:"Krishna Raj",
+roll:"BCA26104",
+attendance:72
+},
+
+{
+name:"Mehak Gupta",
+roll:"BCA26105",
+attendance:91
+},
+
+{
+name:"Yash Kumar",
+roll:"BCA26106",
+attendance:78
+}
+
+]
+
+};
+
+
+
+/* =========================================================
+                    SELECTED CLASS
+========================================================= */
+
+let selectedClassKey = null;
+
+
+
+/* =========================================================
+                    OPEN CLASS DETAILS
+========================================================= */
+
+window.openClassDetails =
+function(classKey){
+
+
+const data =
+classData[classKey];
+
+
+if(!data){
+
+console.error(
+"Class not found:",
+classKey
+);
+
+return;
+
+}
+
+
+selectedClassKey =
+classKey;
+
+
+document.getElementById(
+"classModalTitle"
+).innerText =
+data.title;
+
+
+document.getElementById(
+"classModalSubtitle"
+).innerText =
+data.semester +
+" • " +
+data.section;
+
+
+document.getElementById(
+"classModalCode"
+).innerText =
+data.code;
+
+
+document.getElementById(
+"classModalSemester"
+).innerText =
+data.semester;
+
+
+document.getElementById(
+"classModalSection"
+).innerText =
+data.section;
+
+
+document.getElementById(
+"classModalStudents"
+).innerText =
+data.students;
+
+
+document.getElementById(
+"classModalRoom"
+).innerText =
+data.room;
+
+
+document.getElementById(
+"classModalWeekly"
+).innerText =
+data.weekly;
+
+
+document.getElementById(
+"classModalProgress"
+).innerText =
+data.progress;
+
+
+document.getElementById(
+"classModalNext"
+).innerText =
+data.next;
+
+
+document.getElementById(
+"classModalIcon"
+).className =
+data.icon;
+
+
+const modalElement =
+document.getElementById(
+"classDetailsModal"
+);
+
+
+const modal =
+bootstrap.Modal.getOrCreateInstance(
+modalElement
+);
+
+
+modal.show();
+
+
+};
+
+
+
+/* =========================================================
+                    OPEN STUDENT LIST
+========================================================= */
+
+window.openStudentList =
+function(classKey){
+
+
+const data =
+classData[classKey];
+
+
+if(!data){
+
+console.error(
+"Class not found:",
+classKey
+);
+
+return;
+
+}
+
+
+selectedClassKey =
+classKey;
+
+
+document.getElementById(
+"studentModalClass"
+).innerText =
+data.title +
+" • " +
+data.semester +
+" • " +
+data.section;
+
+
+const searchInput =
+document.getElementById(
+"studentSearchInput"
+);
+
+
+searchInput.value =
+"";
+
+
+const currentStudents =
+studentData[classKey] || [];
+
+
+renderStudents(
+currentStudents
+);
+
+
+const modalElement =
+document.getElementById(
+"studentListModal"
+);
+
+
+const studentModal =
+bootstrap.Modal.getOrCreateInstance(
+modalElement
+);
+
+
+studentModal.show();
+
+
+};
+
+
+
+/* =========================================================
+                CLASS MODAL -> STUDENTS
+========================================================= */
+
+const modalStudentsBtn =
+document.getElementById(
+"modalStudentsBtn"
+);
+
+
+if(modalStudentsBtn){
+
+modalStudentsBtn.addEventListener(
+"click",
+function(){
+
+
+if(!selectedClassKey){
+
+return;
+
+}
+
+
+const key =
+selectedClassKey;
+
+
+const classModalElement =
+document.getElementById(
+"classDetailsModal"
+);
+
+
+const classModal =
+bootstrap.Modal.getInstance(
+classModalElement
+);
+
+
+if(classModal){
+
+classModal.hide();
+
+}
+
+
+setTimeout(
+function(){
+
+openStudentList(
+key
+);
+
+},
+300
+);
+
+
+}
+);
+
+}
+
+
+
+/* =========================================================
+                    RENDER STUDENTS
+========================================================= */
+
+function renderStudents(
+students
+){
+
+
+const tableBody =
+document.getElementById(
+"studentTableBody"
+);
+
+
+const noResult =
+document.getElementById(
+"noStudentResult"
+);
+
+
+tableBody.innerHTML =
+"";
+
+
+if(
+students.length === 0
+){
+
+noResult.style.display =
+"block";
+
+return;
+
+}
+
+
+noResult.style.display =
+"none";
+
+
+students.forEach(
+function(student,index){
+
+
+let statusClass =
+"bg-success";
+
+
+let statusText =
+"Good";
+
+
+if(
+student.attendance < 75
+){
+
+statusClass =
+"bg-danger";
+
+statusText =
+"Low";
+
+}
+
+else if(
+student.attendance < 85
+){
+
+statusClass =
+"bg-warning text-dark";
+
+statusText =
+"Average";
+
+}
+
+
+/* =========================================================
+                    STUDENT INITIALS
+========================================================= */
+
+const initials =
+student.name
+.split(" ")
+.map(
+function(word){
+
+return word.charAt(0);
+
+}
+)
+.slice(0,2)
+.join("")
+.toUpperCase();
+
+
+
+const row =
+document.createElement(
+"tr"
+);
+
+
+row.innerHTML = `
+
+
+<td>
+
+${index + 1}
+
+</td>
+
+
+<td>
+
+
+<div
+    class="d-flex
+           align-items-center
+           gap-2">
+
+
+<div
+    style="
+        width:38px;
+        height:38px;
+        min-width:38px;
+        border-radius:50%;
+        background:#ede9fe;
+        color:#6c4cff;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:11px;
+        font-weight:700;">
+
+${initials}
+
+</div>
+
+
+<div>
+
+<strong
+    style="
+        display:block;
+        font-size:12px;">
+
+${student.name}
+
+</strong>
+
+
+<small class="text-muted">
+
+Student
+
+</small>
+
+</div>
+
+
+</div>
+
+
+</td>
+
+
+<td>
+
+<small>
+
+${student.roll}
+
+</small>
+
+</td>
+
+
+<td>
+
+
+<div
+    class="d-flex
+           align-items-center
+           gap-2">
+
+
+<div
+    class="progress"
+    style="
+        width:75px;
+        height:6px;">
+
+
+<div
+    class="progress-bar ${
+        student.attendance < 75
+        ?
+        "bg-danger"
+        :
+        student.attendance < 85
+        ?
+        "bg-warning"
+        :
+        "bg-success"
+    }"
+    style="
+        width:${student.attendance}%;">
+</div>
+
+
+</div>
+
+
+<strong
+    style="font-size:11px;">
+
+${student.attendance}%
+
+</strong>
+
+
+</div>
+
+
+</td>
+
+
+<td>
+
+
+<span
+    class="badge ${statusClass}">
+
+${statusText}
+
+</span>
+
+
+</td>
+
+
+`;
+
+
+tableBody.appendChild(
+row
+);
+
+
+}
+);
+
+
+}
+
+
+
+/* =========================================================
+                    STUDENT SEARCH
+========================================================= */
+
+const studentSearchInput =
+document.getElementById(
+"studentSearchInput"
+);
+
+
+if(studentSearchInput){
+
+studentSearchInput.addEventListener(
+"input",
+function(){
+
+
+if(!selectedClassKey){
+
+return;
+
+}
+
+
+const searchValue =
+this.value
+.toLowerCase()
+.trim();
+
+
+const currentStudents =
+studentData[selectedClassKey]
+||
+[];
+
+
+const filteredStudents =
+currentStudents.filter(
+function(student){
+
+
+return (
+
+student.name
+.toLowerCase()
+.includes(
+searchValue
+)
+
+||
+
+student.roll
+.toLowerCase()
+.includes(
+searchValue
+)
+
+);
+
+
+}
+);
+
+
+renderStudents(
+filteredStudents
+);
+
+
+}
+);
+
+}
+
+
+
+/* =========================================================
+                    CLASS SEARCH + FILTER
+========================================================= */
+
+const classSearchInput =
+document.getElementById(
+"classSearchInput"
+);
+
+
+const semesterFilter =
+document.getElementById(
+"semesterFilter"
+);
+
+
+const classCards =
+Array.from(
+document.querySelectorAll(
+".my-class-card"
+)
+);
+
+
+function filterClasses(){
+
+
+const searchValue =
+classSearchInput
+?
+classSearchInput.value
+.toLowerCase()
+.trim()
+:
+"";
+
+
+const semesterValue =
+semesterFilter
+?
+semesterFilter.value
+:
+"all";
+
+
+let visibleCount =
+0;
+
+
+classCards.forEach(
+function(card){
+
+
+const searchText =
+(
+card.dataset.search
+||
+card.innerText
+)
+.toLowerCase();
+
+
+const semester =
+card.dataset.semester;
+
+
+const matchesSearch =
+searchText.includes(
+searchValue
+);
+
+
+const matchesSemester =
+(
+semesterValue ===
+"all"
+
+||
+
+semester ===
+semesterValue
+);
+
+
+if(
+matchesSearch &&
+matchesSemester
+){
+
+card.style.display =
+"block";
+
+visibleCount++;
+
+}
+
+else{
+
+card.style.display =
+"none";
+
+}
+
+
+}
+);
+
+
+const noResult =
+document.getElementById(
+"noClassResult"
+);
+
+
+if(noResult){
+
+noResult.style.display =
+visibleCount === 0
+?
+"block"
+:
+"none";
+
+}
+
+
+}
+
+
+
+/* =========================================================
+                    SEARCH EVENT
+========================================================= */
+
+if(classSearchInput){
+
+classSearchInput.addEventListener(
+"input",
+filterClasses
+);
+
+}
+
+
+
+/* =========================================================
+                    SEMESTER FILTER
+========================================================= */
+
+if(semesterFilter){
+
+semesterFilter.addEventListener(
+"change",
+filterClasses
+);
+
+}
+
+
+
+/* =========================================================
+                    RESET FILTER
+========================================================= */
+
+const resetClassFilterBtn =
+document.getElementById(
+"resetClassFilterBtn"
+);
+
+
+if(resetClassFilterBtn){
+
+resetClassFilterBtn.addEventListener(
+"click",
+function(){
+
+
+if(classSearchInput){
+
+classSearchInput.value =
+"";
+
+}
+
+
+if(semesterFilter){
+
+semesterFilter.value =
+"all";
+
+}
+
+
+filterClasses();
+
+
+}
+);
+
+}
+
+
+
+/* =========================================================
+                AUTOMATIC STATISTICS
+========================================================= */
+
+function updateClassStatistics(){
+
+
+/* TOTAL CLASSES */
+
+const totalClasses =
+classCards.length;
+
+
+const totalClassesElement =
+document.getElementById(
+"totalClassesCount"
+);
+
+
+if(totalClassesElement){
+
+totalClassesElement.innerText =
+totalClasses;
+
+}
+
+
+
+/* =========================================================
+                    TOTAL STUDENTS
+========================================================= */
+
+let totalStudents =
+0;
+
+
+Object.keys(
+classData
+).forEach(
+function(key){
+
+
+const studentText =
+classData[key].students;
+
+
+const studentNumber =
+parseInt(
+studentText,
+10
+);
+
+
+if(
+!isNaN(
+studentNumber
+)
+){
+
+totalStudents +=
+studentNumber;
+
+}
+
+
+}
+);
+
+
+const totalStudentsElement =
+document.getElementById(
+"totalStudentsCount"
+);
+
+
+if(totalStudentsElement){
+
+totalStudentsElement.innerText =
+totalStudents;
+
+}
+
+
+
+/* =========================================================
+                    TOTAL SUBJECTS
+========================================================= */
+
+const totalSubjectsElement =
+document.getElementById(
+"totalSubjectsCount"
+);
+
+
+if(totalSubjectsElement){
+
+totalSubjectsElement.innerText =
+Object.keys(
+classData
+).length;
+
+}
+
+
+
+/* =========================================================
+                    TODAY CLASSES
+========================================================= */
+
+const todayClasses =
+document.querySelectorAll(
+".today-class-item"
+).length;
+
+
+const todayClassesElement =
+document.getElementById(
+"todayClassesCount"
+);
+
+
+if(todayClassesElement){
+
+todayClassesElement.innerText =
+todayClasses;
+
+}
+
+
+}
+
+
+
+/* =========================================================
+                    DARK MODE
+========================================================= */
+
+const themeToggle =
+document.getElementById(
+"themeToggle"
+);
+
+
+function updateThemeIcon(){
+
+
+if(!themeToggle){
+
+return;
+
+}
+
+
+const icon =
+themeToggle.querySelector(
+"i"
+);
+
+
+if(!icon){
+
+return;
+
+}
+
+
+if(
+document.body.classList.contains(
+"dark"
+)
+){
+
+icon.className =
+"fa-solid fa-sun";
+
+}
+
+else{
+
+icon.className =
+"fa-solid fa-moon";
+
+}
+
+
+}
+
+
+
+/* =========================================================
+                    LOAD SAVED THEME
+========================================================= */
+
+const savedTheme =
+localStorage.getItem(
+"teacherTheme"
+);
+
+
+if(
+savedTheme ===
+"dark"
+){
+
+document.body.classList.add(
+"dark"
+);
+
+}
+
+
+updateThemeIcon();
+
+
+
+/* =========================================================
+                    THEME BUTTON
+========================================================= */
+
+if(themeToggle){
+
+themeToggle.addEventListener(
+"click",
+function(){
+
+
+document.body.classList.toggle(
+"dark"
+);
+
+
+const isDark =
+document.body.classList.contains(
+"dark"
+);
+
+
+localStorage.setItem(
+"teacherTheme",
+isDark
+?
+"dark"
+:
+"light"
+);
+
+
+updateThemeIcon();
+
+
+}
+);
+
+}
+
+
+
+/* =========================================================
+                    MOBILE SIDEBAR
+========================================================= */
+
+const mobileMenuBtn =
+document.getElementById(
+"mobileMenuBtn"
+);
+
+
+const teacherSidebar =
+document.getElementById(
+"teacherSidebar"
+);
+
+
+if(
+mobileMenuBtn &&
+teacherSidebar
+){
+
+mobileMenuBtn.addEventListener(
+"click",
+function(event){
+
+
+event.stopPropagation();
+
+
+teacherSidebar.classList.toggle(
+"show"
+);
+
+
+}
+);
+
+}
+
+
+
+/* =========================================================
+            CLOSE SIDEBAR OUTSIDE CLICK
+========================================================= */
+
+document.addEventListener(
+"click",
+function(event){
+
+
+if(
+window.innerWidth > 992
+){
+
+return;
+
+}
+
+
+if(
+!teacherSidebar ||
+!teacherSidebar.classList.contains(
+"show"
+)
+){
+
+return;
+
+}
+
+
+const clickedInsideSidebar =
+teacherSidebar.contains(
+event.target
+);
+
+
+const clickedMenuButton =
+mobileMenuBtn
+?
+mobileMenuBtn.contains(
+event.target
+)
+:
+false;
+
+
+if(
+!clickedInsideSidebar &&
+!clickedMenuButton
+){
+
+teacherSidebar.classList.remove(
+"show"
+);
+
+}
+
+
+}
+);
+
+
+
+/* =========================================================
+            CLOSE SIDEBAR AFTER MENU CLICK
+========================================================= */
+
+if(teacherSidebar){
+
+const sidebarLinks =
+teacherSidebar.querySelectorAll(
+"a"
+);
+
+
+sidebarLinks.forEach(
+function(link){
+
+
+link.addEventListener(
+"click",
+function(){
+
+
+if(
+window.innerWidth <= 992
+){
+
+teacherSidebar.classList.remove(
+"show"
+);
+
+}
+
+
+}
+);
+
+
+}
+);
+
+}
+
+
+
+/* =========================================================
+                ESC KEY CLOSE SIDEBAR
+========================================================= */
+
+document.addEventListener(
+"keydown",
+function(event){
+
+
+if(
+event.key ===
+"Escape"
+&&
+teacherSidebar
+){
+
+teacherSidebar.classList.remove(
+"show"
+);
+
+}
+
+
+}
+);
+
+
+
+/* =========================================================
+                    INITIAL LOAD
+========================================================= */
+
+updateClassStatistics();
+
+filterClasses();
+
+
+});
+
+</script>
+
+
+
+<!-- =========================================================
+                    DARK MODE TABLE FIX
+========================================================= -->
+
+<style>
+
+body.dark
+#studentListModal
+.table{
+
+color:#ffffff;
+
+}
+
+
+body.dark
+#studentListModal
+.table > :not(caption) > * > *{
+
+background:#111827;
+
+color:#ffffff;
+
+border-color:#374151;
+
+}
+
+
+body.dark
+#studentListModal
+.table thead th{
+
+background:#1f2937;
+
+color:#c4b5fd;
+
+}
+
+
+body.dark
+#studentListModal
+.text-muted{
+
+color:#94a3b8 !important;
+
+}
+
+
+body.dark
+.class-modal-icon{
+
+background:#312e81;
+
+color:#c4b5fd;
+
+}
+
+
+/* =========================================================
+                    MOBILE MODAL
+========================================================= */
+
+@media(max-width:576px){
+
+#studentListModal
+.modal-body{
+
+padding:16px !important;
+
+}
+
+
+#studentListModal
+.table{
+
+font-size:11px;
+
+}
+
+
+.class-detail-row{
+
+gap:10px;
+
+}
+
+
+.class-detail-row span,
+.class-detail-row strong{
+
+font-size:11px;
+
+}
+
+}
+
+</style>
+
+
+</body>
+
+</html>

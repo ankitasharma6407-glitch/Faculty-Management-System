@@ -1,0 +1,11530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>Study Material | Teacher Panel</title>
+
+
+<!-- =========================================================
+                        BOOTSTRAP CSS
+========================================================= -->
+
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+
+
+<!-- =========================================================
+                        FONT AWESOME
+========================================================= -->
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+<!-- =========================================================
+                        GOOGLE FONT
+========================================================= -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+
+<style>
+
+
+/* =========================================================
+                        GLOBAL
+========================================================= */
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#f5f7fb;
+
+    color:#1f2937;
+
+    min-height:100vh;
+
+    transition:
+        background .3s ease,
+        color .3s ease;
+
+}
+
+
+a{
+
+    text-decoration:none;
+
+}
+
+
+button,
+input,
+select,
+textarea{
+
+    font-family:inherit;
+
+}
+
+
+/* =========================================================
+                        MAIN LAYOUT
+========================================================= */
+
+.teacher-layout{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+
+/* =========================================================
+                        SIDEBAR
+========================================================= */
+
+.teacher-sidebar{
+
+    width:270px;
+
+    min-height:100vh;
+
+    background:
+        linear-gradient(
+            180deg,
+            #263bd8 0%,
+            #6747dc 52%,
+            #ad72dd 100%
+        );
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    bottom:0;
+
+    z-index:1200;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        border-color .3s ease;
+
+    box-shadow:
+        8px 0 30px
+        rgba(76,58,180,.13);
+
+}
+
+
+/* =========================================================
+                    SIDEBAR SCROLLBAR
+========================================================= */
+
+.teacher-sidebar::-webkit-scrollbar{
+
+    width:5px;
+
+}
+
+
+.teacher-sidebar::-webkit-scrollbar-track{
+
+    background:
+        rgba(255,255,255,.05);
+
+}
+
+
+.teacher-sidebar::-webkit-scrollbar-thumb{
+
+    background:
+        rgba(255,255,255,.25);
+
+    border-radius:20px;
+
+}
+
+
+.teacher-sidebar::-webkit-scrollbar-thumb:hover{
+
+    background:
+        rgba(255,255,255,.38);
+
+}
+
+
+/* =========================================================
+                    SIDEBAR BRAND
+========================================================= */
+
+.teacher-sidebar-brand{
+
+    text-align:center;
+
+    padding:
+        27px 20px 20px;
+
+    color:#ffffff;
+
+}
+
+
+.teacher-sidebar-brand img{
+
+    width:82px;
+
+    height:82px;
+
+    object-fit:contain;
+
+    background:#ffffff;
+
+    padding:6px;
+
+    border-radius:50%;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.15);
+
+    margin-bottom:12px;
+
+}
+
+
+.teacher-sidebar-brand h3{
+
+    margin:0;
+
+    font-size:25px;
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+
+}
+
+
+.teacher-sidebar-brand p{
+
+    margin:
+        4px 0 0;
+
+    font-size:13px;
+
+    color:
+        rgba(255,255,255,.82);
+
+}
+
+
+/* =========================================================
+                    SIDEBAR MENU
+========================================================= */
+
+.teacher-sidebar-menu{
+
+    list-style:none;
+
+    padding:
+        15px 16px 30px;
+
+    margin:0;
+
+}
+
+
+.teacher-sidebar-menu li{
+
+    margin-bottom:7px;
+
+}
+
+
+.teacher-sidebar-menu a{
+
+    color:
+        rgba(255,255,255,.88);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:
+        13px 17px;
+
+    border-radius:13px;
+
+    font-size:14px;
+
+    font-weight:500;
+
+    transition:.25s ease;
+
+}
+
+
+.teacher-sidebar-menu a i{
+
+    width:22px;
+
+    text-align:center;
+
+    font-size:16px;
+
+}
+
+
+.teacher-sidebar-menu a span{
+
+    flex:1;
+
+}
+
+
+.teacher-sidebar-menu a:hover{
+
+    background:
+        rgba(255,255,255,.16);
+
+    color:#ffffff;
+
+    transform:
+        translateX(4px);
+
+}
+
+
+.teacher-sidebar-menu a.active{
+
+    background:
+        rgba(255,255,255,.23);
+
+    color:#ffffff;
+
+    font-weight:700;
+
+    box-shadow:
+        0 6px 18px
+        rgba(0,0,0,.08);
+
+}
+
+
+/* =========================================================
+                    SIDEBAR SECTION TITLE
+========================================================= */
+
+.sidebar-section-title{
+
+    color:
+        rgba(255,255,255,.58);
+
+    font-size:10px;
+
+    font-weight:700;
+
+    letter-spacing:1.2px;
+
+    text-transform:uppercase;
+
+    padding:
+        18px 17px 7px;
+
+}
+
+
+/* =========================================================
+                    SIDEBAR OVERLAY
+========================================================= */
+
+.sidebar-overlay{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(15,23,42,.48);
+
+    z-index:1100;
+
+    backdrop-filter:
+        blur(2px);
+
+}
+
+
+.sidebar-overlay.show{
+
+    display:block;
+
+}
+
+
+/* =========================================================
+                        MAIN AREA
+========================================================= */
+
+.teacher-main{
+
+    margin-left:270px;
+
+    width:
+        calc(100% - 270px);
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+/* =========================================================
+                        NAVBAR
+========================================================= */
+
+.teacher-navbar{
+
+    min-height:78px;
+
+    background:#ffffff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding:
+        0 30px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    box-shadow:
+        0 3px 16px
+        rgba(0,0,0,.06);
+
+    transition:
+        background .3s ease,
+        border-color .3s ease;
+
+}
+
+
+/* =========================================================
+                    NAVBAR LEFT
+========================================================= */
+
+.navbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+.mobile-menu-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#f0edff;
+
+    color:#6c4cff;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.mobile-menu-btn:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+}
+
+
+.navbar-title h4{
+
+    margin:0;
+
+    color:#243c9e;
+
+    font-size:21px;
+
+    font-weight:800;
+
+}
+
+
+.navbar-title p{
+
+    margin:
+        2px 0 0;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                    NAVBAR RIGHT
+========================================================= */
+
+.navbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+}
+
+
+.nav-icon-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#f2efff;
+
+    color:#6c4cff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    position:relative;
+
+}
+
+
+.nav-icon-btn:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+                    NOTIFICATION BADGE
+========================================================= */
+
+.notification-dot{
+
+    position:absolute;
+
+    top:7px;
+
+    right:7px;
+
+    width:8px;
+
+    height:8px;
+
+    background:#ef4444;
+
+    border-radius:50%;
+
+    border:
+        2px solid #ffffff;
+
+}
+
+
+/* =========================================================
+                    TEACHER PROFILE
+========================================================= */
+
+.teacher-profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-left:5px;
+
+    cursor:pointer;
+
+    padding:
+        5px 8px;
+
+    border-radius:14px;
+
+    transition:.25s;
+
+}
+
+
+.teacher-profile:hover{
+
+    background:#f8f7ff;
+
+}
+
+
+.teacher-profile img{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:
+        3px solid #ddd6fe;
+
+}
+
+
+.teacher-profile-info strong{
+
+    display:block;
+
+    font-size:13px;
+
+    color:#1f2937;
+
+}
+
+
+.teacher-profile-info small{
+
+    display:block;
+
+    color:#64748b;
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+                    PROFILE DROPDOWN
+========================================================= */
+
+.profile-dropdown-menu{
+
+    min-width:210px;
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:8px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.12);
+
+}
+
+
+.profile-dropdown-menu .dropdown-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    border-radius:10px;
+
+    padding:
+        10px 12px;
+
+    font-size:12px;
+
+}
+
+
+.profile-dropdown-menu .dropdown-item i{
+
+    width:18px;
+
+    text-align:center;
+
+    color:#6c4cff;
+
+}
+
+
+.profile-dropdown-menu .dropdown-item:hover{
+
+    background:#f3f0ff;
+
+    color:#6c4cff;
+
+}
+
+
+/* =========================================================
+                    PAGE CONTENT
+========================================================= */
+
+.teacher-content{
+
+    padding:
+        28px 30px 20px;
+
+    flex:1;
+
+}
+
+
+/* =========================================================
+                    PAGE HEADER
+========================================================= */
+
+.material-page-header{
+
+    background:#ffffff;
+
+    padding:
+        22px 25px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.055);
+
+    margin-bottom:24px;
+
+    transition:
+        background .3s ease,
+        color .3s ease;
+
+}
+
+
+.material-page-header h2{
+
+    margin:
+        0 0 5px;
+
+    font-weight:800;
+
+    font-size:25px;
+
+}
+
+
+.material-page-header h2 i{
+
+    color:#6c4cff;
+
+}
+
+
+.material-page-header p{
+
+    margin:0;
+
+    color:#64748b;
+
+    font-size:13px;
+
+}
+
+
+/* =========================================================
+                    UPLOAD MATERIAL BUTTON
+========================================================= */
+
+.upload-material-btn{
+
+    border:none;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c4cff,
+            #8b5cf6
+        );
+
+    color:#ffffff;
+
+    border-radius:12px;
+
+    padding:
+        12px 19px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.upload-material-btn:hover{
+
+    color:#ffffff;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(108,76,255,.25);
+
+}
+
+
+/* =========================================================
+                    STATISTICS GRID
+========================================================= */
+
+.material-stat-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
+
+    margin-bottom:25px;
+
+}
+
+
+/* =========================================================
+                    STAT CARD
+========================================================= */
+
+.material-stat-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    box-shadow:
+        0 7px 22px
+        rgba(0,0,0,.055);
+
+    transition:.3s;
+
+}
+
+
+.material-stat-card:hover{
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.09);
+
+}
+
+
+.material-stat-icon{
+
+    width:55px;
+
+    height:55px;
+
+    min-width:55px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:22px;
+
+}
+
+
+/* =========================================================
+                    STAT ICON COLORS
+========================================================= */
+
+.material-stat-icon.purple{
+
+    color:#6c4cff;
+
+    background:#ede9fe;
+
+}
+
+
+.material-stat-icon.blue{
+
+    color:#2563eb;
+
+    background:#dbeafe;
+
+}
+
+
+.material-stat-icon.green{
+
+    color:#16a34a;
+
+    background:#dcfce7;
+
+}
+
+
+.material-stat-icon.orange{
+
+    color:#ea580c;
+
+    background:#ffedd5;
+
+}
+
+
+.material-stat-info h3{
+
+    margin:0;
+
+    font-size:23px;
+
+    font-weight:800;
+
+}
+
+
+.material-stat-info p{
+
+    margin:
+        3px 0 0;
+
+    font-size:12px;
+
+    color:#64748b;
+
+}
+
+
+/* =========================================================
+                    MAIN CONTENT CARD
+========================================================= */
+
+.material-content-card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:23px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.055);
+
+    transition:
+        background .3s ease,
+        color .3s ease;
+
+}
+
+
+/* =========================================================
+                    CONTENT CARD HEADER
+========================================================= */
+
+.material-card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+
+}
+
+
+.material-card-header h4{
+
+    margin:0;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:#6c4cff;
+
+}
+
+
+.material-card-header p{
+
+    margin:
+        4px 0 0;
+
+    color:#64748b;
+
+    font-size:12px;
+
+}
+
+
+/* =========================================================
+                    SEARCH + FILTER TOOLBAR
+========================================================= */
+
+.material-toolbar{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.material-search{
+
+    position:relative;
+
+}
+
+
+.material-search i{
+
+    position:absolute;
+
+    left:14px;
+
+    top:50%;
+
+    transform:
+        translateY(-50%);
+
+    color:#94a3b8;
+
+    pointer-events:none;
+
+}
+
+
+.material-search input{
+
+    width:240px;
+
+    height:43px;
+
+    padding:
+        0 15px 0 40px;
+
+    border:
+        1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    outline:none;
+
+    font-size:12px;
+
+    background:#ffffff;
+
+    color:#1f2937;
+
+    transition:.25s;
+
+}
+
+
+.material-search input:focus{
+
+    border-color:#8b5cf6;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139,92,246,.10);
+
+}
+
+
+.material-filter{
+
+    min-width:145px;
+
+    height:43px;
+
+    border:
+        1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    padding:
+        0 12px;
+
+    font-size:12px;
+
+    outline:none;
+
+    background:#ffffff;
+
+    color:#1f2937;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.material-filter:focus{
+
+    border-color:#8b5cf6;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139,92,246,.10);
+
+}
+
+
+/* =========================================================
+                    RESET FILTER BUTTON
+========================================================= */
+
+.reset-material-filter{
+
+    height:43px;
+
+    border:
+        1px solid #ddd6fe;
+
+    border-radius:12px;
+
+    padding:
+        0 14px;
+
+    background:#f5f3ff;
+
+    color:#6c4cff;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.reset-material-filter:hover{
+
+    background:#6c4cff;
+
+    border-color:#6c4cff;
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                    MATERIAL GRID
+========================================================= */
+
+.study-material-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+
+/* =========================================================
+                    MATERIAL CARD
+========================================================= */
+
+.study-material-card{
+
+    border:
+        1px solid #e9e7f5;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    background:#ffffff;
+
+    position:relative;
+
+    transition:.3s;
+
+}
+
+
+.study-material-card:hover{
+
+    transform:
+        translateY(-5px);
+
+    border-color:#d8d2ff;
+
+    box-shadow:
+        0 13px 30px
+        rgba(0,0,0,.10);
+
+}
+
+
+/* =========================================================
+                    MATERIAL CARD TOP
+========================================================= */
+
+.material-card-top{
+
+    min-height:145px;
+
+    padding:22px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6656e8,
+            #8c67e8
+        );
+
+    color:#ffffff;
+
+}
+
+
+.material-card-top::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:140px;
+
+    height:140px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.09);
+
+    right:-45px;
+
+    top:-50px;
+
+}
+
+
+.material-card-top::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.07);
+
+    left:-30px;
+
+    bottom:-35px;
+
+}
+
+
+/* =========================================================
+                    FILE ICON
+========================================================= */
+
+.material-file-icon{
+
+    width:62px;
+
+    height:62px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        rgba(255,255,255,.18);
+
+    color:#ffffff;
+
+    font-size:28px;
+
+    position:relative;
+
+    z-index:2;
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(255,255,255,.08);
+
+}
+
+
+/* =========================================================
+                    MATERIAL TYPE BADGE
+========================================================= */
+
+.material-type-badge{
+
+    position:absolute;
+
+    top:16px;
+
+    right:16px;
+
+    z-index:3;
+
+    padding:
+        6px 11px;
+
+    border-radius:20px;
+
+    background:
+        rgba(255,255,255,.20);
+
+    color:#ffffff;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    backdrop-filter:
+        blur(6px);
+
+}
+
+
+/* =========================================================
+                DIFFERENT MATERIAL TOP COLORS
+========================================================= */
+
+.material-card-top.pdf{
+
+    background:
+        linear-gradient(
+            135deg,
+            #ef4444,
+            #f97316
+        );
+
+}
+
+
+.material-card-top.ppt{
+
+    background:
+        linear-gradient(
+            135deg,
+            #f97316,
+            #f59e0b
+        );
+
+}
+
+
+.material-card-top.notes{
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c4cff,
+            #8b5cf6
+        );
+
+}
+
+
+.material-card-top.lab{
+
+    background:
+        linear-gradient(
+            135deg,
+            #0891b2,
+            #2563eb
+        );
+
+}
+
+
+.material-card-top.video{
+
+    background:
+        linear-gradient(
+            135deg,
+            #db2777,
+            #7c3aed
+        );
+
+}
+
+
+.material-card-top.link{
+
+    background:
+        linear-gradient(
+            135deg,
+            #059669,
+            #0d9488
+        );
+
+}
+
+
+/* =========================================================
+                    MATERIAL CARD BODY
+========================================================= */
+
+.material-card-body{
+
+    padding:18px;
+
+}
+
+
+.material-card-body h5{
+
+    margin:
+        0 0 6px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    line-height:1.5;
+
+}
+
+
+.material-subject{
+
+    margin:
+        0 0 14px;
+
+    color:#64748b;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                    MATERIAL META INFO
+========================================================= */
+
+.material-meta-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:9px;
+
+    margin-bottom:14px;
+
+}
+
+
+.material-meta-box{
+
+    background:#f8f7ff;
+
+    border-radius:10px;
+
+    padding:
+        9px 10px;
+
+}
+
+
+.material-meta-box small{
+
+    display:block;
+
+    color:#94a3b8;
+
+    font-size:9px;
+
+    margin-bottom:2px;
+
+}
+
+
+.material-meta-box strong{
+
+    display:block;
+
+    color:#334155;
+
+    font-size:10px;
+
+    font-weight:600;
+
+}
+
+
+/* =========================================================
+                    MATERIAL DESCRIPTION
+========================================================= */
+
+.material-description{
+
+    color:#64748b;
+
+    font-size:10px;
+
+    line-height:1.7;
+
+    margin-bottom:14px;
+
+}
+
+
+/* =========================================================
+                    DOWNLOAD INFO
+========================================================= */
+
+.material-download-info{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    padding:
+        10px 0;
+
+    border-top:
+        1px solid #f0eef8;
+
+    border-bottom:
+        1px solid #f0eef8;
+
+    margin-bottom:14px;
+
+}
+
+
+.material-download-info span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    color:#64748b;
+
+    font-size:10px;
+
+}
+
+
+.material-download-info i{
+
+    color:#8b5cf6;
+
+}
+
+
+/* =========================================================
+                    MATERIAL ACTIONS
+========================================================= */
+
+.material-actions{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr auto;
+
+    gap:8px;
+
+}
+
+
+.material-actions .btn{
+
+    border-radius:10px;
+
+    font-size:10px;
+
+    font-weight:600;
+
+    padding:
+        9px 8px;
+
+}
+
+
+.material-delete-btn{
+
+    width:38px;
+
+    height:36px;
+
+    padding:0 !important;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+/* =========================================================
+                    NO RESULT
+========================================================= */
+
+.no-material-result{
+
+    display:none;
+
+    text-align:center;
+
+    padding:
+        50px 20px;
+
+}
+
+
+.no-material-result i{
+
+    font-size:55px;
+
+    color:#c4b5fd;
+
+    margin-bottom:15px;
+
+}
+
+
+.no-material-result h5{
+
+    font-weight:700;
+
+    margin-bottom:5px;
+
+}
+
+
+.no-material-result p{
+
+    color:#64748b;
+
+    font-size:12px;
+
+    margin-bottom:15px;
+
+}
+
+
+/* =========================================================
+                    UPLOAD MODAL
+========================================================= */
+
+.material-modal-icon{
+
+    width:75px;
+
+    height:75px;
+
+    margin:
+        0 auto 15px;
+
+    border-radius:50%;
+
+    background:#ede9fe;
+
+    color:#6c4cff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:30px;
+
+}
+
+
+/* =========================================================
+                    FORM LABEL
+========================================================= */
+
+.material-form-label{
+
+    font-size:11px;
+
+    font-weight:600;
+
+    color:#475569;
+
+    margin-bottom:7px;
+
+}
+
+
+.material-form-label .required{
+
+    color:#ef4444;
+
+}
+
+
+/* =========================================================
+                    FORM CONTROL
+========================================================= */
+
+.material-form-control{
+
+    width:100%;
+
+    min-height:44px;
+
+    border:
+        1px solid #e5e7eb;
+
+    border-radius:11px;
+
+    padding:
+        10px 12px;
+
+    outline:none;
+
+    font-size:12px;
+
+    background:#ffffff;
+
+    color:#1f2937;
+
+    transition:.25s;
+
+}
+
+
+.material-form-control:focus{
+
+    border-color:#8b5cf6;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139,92,246,.10);
+
+}
+
+
+textarea.material-form-control{
+
+    min-height:95px;
+
+    resize:none;
+
+}
+
+
+/* =========================================================
+                    FILE UPLOAD AREA
+========================================================= */
+
+.material-upload-area{
+
+    border:
+        2px dashed #c4b5fd;
+
+    background:#faf9ff;
+
+    border-radius:15px;
+
+    padding:
+        25px 15px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.material-upload-area:hover{
+
+    border-color:#6c4cff;
+
+    background:#f5f3ff;
+
+}
+
+
+.material-upload-area.dragging{
+
+    border-color:#6c4cff;
+
+    background:#ede9fe;
+
+}
+
+
+.material-upload-area i{
+
+    display:block;
+
+    color:#6c4cff;
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+}
+
+
+.material-upload-area strong{
+
+    display:block;
+
+    color:#334155;
+
+    font-size:12px;
+
+    margin-bottom:4px;
+
+}
+
+
+.material-upload-area small{
+
+    color:#94a3b8;
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+                    SELECTED FILE
+========================================================= */
+
+.selected-material-file{
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    margin-top:10px;
+
+    background:#f5f3ff;
+
+    border:
+        1px solid #ddd6fe;
+
+    border-radius:12px;
+
+    padding:
+        10px 12px;
+
+}
+
+
+.selected-material-file.show{
+
+    display:flex;
+
+}
+
+
+.selected-file-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    min-width:0;
+
+}
+
+
+.selected-file-left i{
+
+    color:#6c4cff;
+
+    font-size:20px;
+
+}
+
+
+.selected-file-info{
+
+    min-width:0;
+
+}
+
+
+.selected-file-info strong{
+
+    display:block;
+
+    color:#334155;
+
+    font-size:10px;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+
+.selected-file-info small{
+
+    color:#94a3b8;
+
+    font-size:9px;
+
+}
+
+
+.remove-selected-file{
+
+    width:30px;
+
+    height:30px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#fee2e2;
+
+    color:#ef4444;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    flex-shrink:0;
+
+}
+
+
+/* =========================================================
+                    VIEW MATERIAL MODAL
+========================================================= */
+
+.material-detail-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+    padding:
+        12px 0;
+
+    border-bottom:
+        1px solid #eeeeee;
+
+}
+
+
+.material-detail-row:last-child{
+
+    border-bottom:none;
+
+}
+
+
+.material-detail-row span{
+
+    color:#64748b;
+
+    font-size:11px;
+
+}
+
+
+.material-detail-row strong{
+
+    color:#1f2937;
+
+    font-size:11px;
+
+    text-align:right;
+
+}
+
+
+/* =========================================================
+                    MATERIAL PREVIEW
+========================================================= */
+
+.material-preview-box{
+
+    background:#f8f7ff;
+
+    border-radius:15px;
+
+    padding:18px;
+
+    margin-bottom:18px;
+
+    text-align:center;
+
+}
+
+
+.material-preview-icon{
+
+    width:68px;
+
+    height:68px;
+
+    margin:
+        0 auto 12px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#ede9fe;
+
+    color:#6c4cff;
+
+    font-size:28px;
+
+}
+
+
+.material-preview-box h5{
+
+    font-size:14px;
+
+    font-weight:700;
+
+    margin-bottom:4px;
+
+}
+
+
+.material-preview-box p{
+
+    margin:0;
+
+    color:#64748b;
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+                    DELETE MODAL
+========================================================= */
+
+.delete-material-icon{
+
+    width:78px;
+
+    height:78px;
+
+    margin:
+        0 auto 15px;
+
+    border-radius:50%;
+
+    background:#fee2e2;
+
+    color:#ef4444;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:31px;
+
+}
+
+
+/* =========================================================
+                    FOOTER
+========================================================= */
+
+.footer{
+
+    text-align:center;
+
+    padding:
+        20px 10px 10px;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                        DARK MODE
+========================================================= */
+
+body.dark{
+
+    background:#0b1120;
+
+    color:#f8fafc;
+
+}
+
+
+/* =========================================================
+                    DARK MODE SIDEBAR
+========================================================= */
+
+body.dark .teacher-sidebar{
+
+    background:
+        linear-gradient(
+            180deg,
+            #080d18 0%,
+            #111827 48%,
+            #172033 100%
+        );
+
+    border-right:
+        1px solid #263244;
+
+    box-shadow:
+        8px 0 30px
+        rgba(0,0,0,.28);
+
+}
+
+
+body.dark .teacher-sidebar-menu a{
+
+    color:
+        rgba(226,232,240,.82);
+
+}
+
+
+body.dark .teacher-sidebar-menu a:hover{
+
+    background:
+        rgba(139,92,246,.13);
+
+    color:#ffffff;
+
+}
+
+
+body.dark .teacher-sidebar-menu a.active{
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(108,76,255,.30),
+            rgba(139,92,246,.20)
+        );
+
+    color:#ffffff;
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(196,181,253,.14),
+        0 6px 18px
+        rgba(0,0,0,.15);
+
+}
+
+
+body.dark .sidebar-section-title{
+
+    color:#64748b;
+
+}
+
+
+/* =========================================================
+                    DARK MODE NAVBAR
+========================================================= */
+
+body.dark .teacher-navbar{
+
+    background:#111827;
+
+    border-bottom:
+        1px solid #263244;
+
+    box-shadow:
+        0 3px 16px
+        rgba(0,0,0,.20);
+
+}
+
+
+body.dark .navbar-title h4{
+
+    color:#ffffff;
+
+}
+
+
+body.dark .navbar-title p{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .nav-icon-btn,
+body.dark .mobile-menu-btn{
+
+    background:#1f2937;
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark .nav-icon-btn:hover,
+body.dark .mobile-menu-btn:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .notification-dot{
+
+    border-color:#111827;
+
+}
+
+
+/* =========================================================
+                    DARK MODE PROFILE
+========================================================= */
+
+body.dark .teacher-profile:hover{
+
+    background:#1f2937;
+
+}
+
+
+body.dark .teacher-profile-info strong{
+
+    color:#ffffff;
+
+}
+
+
+body.dark .teacher-profile-info small{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .teacher-profile img{
+
+    border-color:#4c3f91;
+
+}
+
+
+/* =========================================================
+                DARK MODE PROFILE DROPDOWN
+========================================================= */
+
+body.dark .profile-dropdown-menu{
+
+    background:#111827;
+
+    border:
+        1px solid #263244;
+
+}
+
+
+body.dark .profile-dropdown-menu .dropdown-item{
+
+    color:#e5e7eb;
+
+}
+
+
+body.dark .profile-dropdown-menu .dropdown-item:hover{
+
+    background:#1f2937;
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark .profile-dropdown-menu .dropdown-divider{
+
+    border-color:#374151;
+
+}
+
+
+/* =========================================================
+                    DARK MODE PAGE HEADER
+========================================================= */
+
+body.dark .material-page-header{
+
+    background:#111827;
+
+    color:#ffffff;
+
+    border:
+        1px solid #1f2937;
+
+}
+
+
+body.dark .material-page-header p{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .material-page-header h2 i{
+
+    color:#c4b5fd;
+
+}
+
+
+/* =========================================================
+                    DARK MODE STAT CARDS
+========================================================= */
+
+body.dark .material-stat-card{
+
+    background:#111827;
+
+    color:#ffffff;
+
+    border:
+        1px solid #1f2937;
+
+}
+
+
+body.dark .material-stat-info p{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .material-stat-icon.purple{
+
+    background:#312e81;
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark .material-stat-icon.blue{
+
+    background:#172554;
+
+    color:#60a5fa;
+
+}
+
+
+body.dark .material-stat-icon.green{
+
+    background:#052e16;
+
+    color:#4ade80;
+
+}
+
+
+body.dark .material-stat-icon.orange{
+
+    background:#431407;
+
+    color:#fb923c;
+
+}
+
+
+/* =========================================================
+                    DARK MODE CONTENT CARD
+========================================================= */
+
+body.dark .material-content-card{
+
+    background:#111827;
+
+    color:#ffffff;
+
+    border:
+        1px solid #1f2937;
+
+}
+
+
+body.dark .material-card-header h4{
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark .material-card-header p{
+
+    color:#94a3b8;
+
+}
+
+
+/* =========================================================
+                    DARK MODE SEARCH
+========================================================= */
+
+body.dark .material-search input,
+body.dark .material-filter{
+
+    background:#1f2937;
+
+    color:#ffffff;
+
+    border-color:#374151;
+
+}
+
+
+body.dark .material-search input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .material-filter option{
+
+    background:#1f2937;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .reset-material-filter{
+
+    background:#1f2937;
+
+    color:#c4b5fd;
+
+    border-color:#374151;
+
+}
+
+
+body.dark .reset-material-filter:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+    border-color:#6c4cff;
+
+}
+
+
+/* =========================================================
+                    DARK MODE MATERIAL CARD
+========================================================= */
+
+body.dark .study-material-card{
+
+    background:#111827;
+
+    color:#ffffff;
+
+    border-color:#293548;
+
+}
+
+
+body.dark .study-material-card:hover{
+
+    border-color:#5547a8;
+
+    box-shadow:
+        0 13px 30px
+        rgba(0,0,0,.28);
+
+}
+
+
+body.dark .material-subject,
+body.dark .material-description{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .material-meta-box{
+
+    background:#1f2937;
+
+}
+
+
+body.dark .material-meta-box small{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .material-meta-box strong{
+
+    color:#f1f5f9;
+
+}
+
+
+body.dark .material-download-info{
+
+    border-color:#293548;
+
+}
+
+
+body.dark .material-download-info span{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .material-download-info i{
+
+    color:#c4b5fd;
+
+}
+
+
+/* =========================================================
+                    DARK MODE NO RESULT
+========================================================= */
+
+body.dark .no-material-result p{
+
+    color:#94a3b8;
+
+}
+
+
+/* =========================================================
+                    DARK MODE MODALS
+========================================================= */
+
+body.dark .modal-content{
+
+    background:#111827;
+
+    color:#ffffff;
+
+    border:
+        1px solid #293548 !important;
+
+}
+
+
+body.dark .modal-header,
+body.dark .modal-footer{
+
+    border-color:#374151;
+
+}
+
+
+body.dark .btn-close{
+
+    filter:invert(1);
+
+}
+
+
+body.dark .material-modal-icon{
+
+    background:#312e81;
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark .material-form-label{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark .material-form-control{
+
+    background:#1f2937;
+
+    border-color:#374151;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .material-form-control::placeholder{
+
+    color:#64748b;
+
+}
+
+
+body.dark select.material-form-control option{
+
+    background:#1f2937;
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                DARK MODE UPLOAD AREA
+========================================================= */
+
+body.dark .material-upload-area{
+
+    background:#161e2d;
+
+    border-color:#4c3f91;
+
+}
+
+
+body.dark .material-upload-area:hover{
+
+    background:#1f2937;
+
+    border-color:#8b5cf6;
+
+}
+
+
+body.dark .material-upload-area.dragging{
+
+    background:#27234f;
+
+    border-color:#a78bfa;
+
+}
+
+
+body.dark .material-upload-area strong{
+
+    color:#f1f5f9;
+
+}
+
+
+body.dark .material-upload-area small{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .selected-material-file{
+
+    background:#1f2937;
+
+    border-color:#374151;
+
+}
+
+
+body.dark .selected-file-info strong{
+
+    color:#f1f5f9;
+
+}
+
+
+body.dark .selected-file-info small{
+
+    color:#94a3b8;
+
+}
+
+
+/* =========================================================
+                    DARK MODE MATERIAL DETAILS
+========================================================= */
+
+body.dark .material-detail-row{
+
+    border-color:#374151;
+
+}
+
+
+body.dark .material-detail-row span{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .material-detail-row strong{
+
+    color:#ffffff;
+
+}
+
+
+body.dark .material-preview-box{
+
+    background:#1f2937;
+
+}
+
+
+body.dark .material-preview-icon{
+
+    background:#312e81;
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark .material-preview-box p{
+
+    color:#94a3b8;
+
+}
+
+
+/* =========================================================
+                    DARK MODE BOOTSTRAP TEXT
+========================================================= */
+
+body.dark .text-muted{
+
+    color:#94a3b8 !important;
+
+}
+
+
+body.dark .btn-outline-secondary{
+
+    color:#cbd5e1;
+
+    border-color:#64748b;
+
+}
+
+
+body.dark .btn-outline-secondary:hover{
+
+    background:#475569;
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE DESIGN
+========================================================= */
+
+@media(max-width:1250px){
+
+    .material-stat-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+
+    .study-material-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+}
+
+
+@media(max-width:1100px){
+
+    .material-toolbar{
+
+        width:100%;
+
+    }
+
+
+    .material-search{
+
+        flex:1;
+
+    }
+
+
+    .material-search input{
+
+        width:100%;
+
+    }
+
+}
+
+
+/* =========================================================
+                    TABLET / MOBILE SIDEBAR
+========================================================= */
+
+@media(max-width:992px){
+
+    .teacher-sidebar{
+
+        transform:
+            translateX(-100%);
+
+    }
+
+
+    .teacher-sidebar.show{
+
+        transform:
+            translateX(0);
+
+    }
+
+
+    .teacher-main{
+
+        margin-left:0;
+
+        width:100%;
+
+    }
+
+
+    .mobile-menu-btn{
+
+        display:flex;
+
+    }
+
+}
+
+
+@media(min-width:993px){
+
+    .sidebar-overlay{
+
+        display:none !important;
+
+    }
+
+}
+
+
+/* =========================================================
+                    MOBILE
+========================================================= */
+
+@media(max-width:768px){
+
+    .teacher-navbar{
+
+        padding:
+            0 17px;
+
+    }
+
+
+    .teacher-content{
+
+        padding:
+            20px 16px;
+
+    }
+
+
+    .teacher-profile-info{
+
+        display:none;
+
+    }
+
+
+    .navbar-title p{
+
+        display:none;
+
+    }
+
+
+    .material-page-header{
+
+        padding:19px;
+
+    }
+
+
+    .material-page-header h2{
+
+        font-size:22px;
+
+    }
+
+
+    .material-content-card{
+
+        padding:18px;
+
+    }
+
+
+    .study-material-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .material-toolbar{
+
+        display:grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+
+    .material-search{
+
+        grid-column:
+            1 / -1;
+
+        width:100%;
+
+    }
+
+
+    .material-search input{
+
+        width:100%;
+
+    }
+
+
+    .material-filter{
+
+        width:100%;
+
+        min-width:0;
+
+    }
+
+
+    .reset-material-filter{
+
+        width:100%;
+
+    }
+
+}
+
+
+/* =========================================================
+                    SMALL MOBILE
+========================================================= */
+
+@media(max-width:576px){
+
+    .material-stat-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .navbar-title h4{
+
+        font-size:18px;
+
+    }
+
+
+    .material-page-header{
+
+        align-items:flex-start;
+
+    }
+
+
+    .upload-material-btn{
+
+        width:100%;
+
+    }
+
+
+    .material-toolbar{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .material-search{
+
+        grid-column:auto;
+
+    }
+
+
+    .material-meta-grid{
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+
+    .material-actions{
+
+        grid-template-columns:
+            1fr 1fr auto;
+
+    }
+
+
+    .modal-body{
+
+        padding:
+            18px !important;
+
+    }
+
+
+    .material-detail-row{
+
+        gap:10px;
+
+    }
+
+
+    .material-detail-row span,
+    .material-detail-row strong{
+
+        font-size:10px;
+
+    }
+
+}
+
+
+@media(max-width:420px){
+
+    .teacher-navbar{
+
+        gap:8px;
+
+        padding:
+            0 12px;
+
+    }
+
+
+    .navbar-right{
+
+        gap:6px;
+
+    }
+
+
+    .nav-icon-btn,
+    .mobile-menu-btn{
+
+        width:38px;
+
+        height:38px;
+
+    }
+
+
+    .teacher-profile{
+
+        padding:3px;
+
+        margin-left:0;
+
+    }
+
+
+    .teacher-profile img{
+
+        width:39px;
+
+        height:39px;
+
+    }
+
+
+    .material-meta-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+/* =========================================================
+                    STYLE END
+========================================================= */
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+                    TEACHER LAYOUT
+========================================================= -->
+
+<div class="teacher-layout">
+
+
+<!-- =========================================================
+                    MOBILE SIDEBAR OVERLAY
+========================================================= -->
+
+<div
+    class="sidebar-overlay"
+    id="sidebarOverlay">
+</div>
+
+
+<!-- =========================================================
+                        SIDEBAR
+========================================================= -->
+
+<aside
+    class="teacher-sidebar"
+    id="teacherSidebar">
+
+
+<!-- =========================================================
+                    SIDEBAR BRAND
+========================================================= -->
+
+<div class="teacher-sidebar-brand">
+
+
+<img
+    src="../../images/logo.png"
+    alt="FMPS Logo">
+
+
+<h3>
+    FMPS
+</h3>
+
+
+<p>
+    Teacher Panel
+</p>
+
+
+</div>
+
+
+<!-- =========================================================
+                    SIDEBAR MENU
+========================================================= -->
+
+<ul class="teacher-sidebar-menu">
+
+
+<!-- =========================================================
+                        DASHBOARD
+========================================================= -->
+
+<li>
+
+<a href="teacher-dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+<span>
+    Dashboard
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                        TIMETABLE
+========================================================= -->
+
+<li>
+
+<a href="timetable.html">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+<span>
+    Timetable
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                        ATTENDANCE
+========================================================= -->
+
+<li>
+
+<a href="attendance.html">
+
+<i class="fa-solid fa-user-check"></i>
+
+<span>
+    Attendance
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                        MY CLASSES
+========================================================= -->
+
+<li>
+
+<a href="my-classes.html">
+
+<i class="fa-solid fa-book-open"></i>
+
+<span>
+    My Classes
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                        ASSIGNMENTS
+========================================================= -->
+
+<li>
+
+<a href="assignments.html">
+
+<i class="fa-solid fa-file-lines"></i>
+
+<span>
+    Assignments
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                        PERFORMANCE
+========================================================= -->
+
+<li>
+
+<a href="performance.html">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<span>
+    Performance
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                    ACADEMIC TOOLS
+========================================================= -->
+
+<div class="sidebar-section-title">
+
+Academic Tools
+
+</div>
+
+
+<!-- =========================================================
+                    ACADEMIC CALENDAR
+========================================================= -->
+
+<li>
+
+<a href="academic-calendar.html">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+<span>
+    Academic Calendar
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                        NOTICES
+========================================================= -->
+
+<li>
+
+<a href="notices.html">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+<span>
+    Notices
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                    LEAVE REQUEST
+========================================================= -->
+
+<li>
+
+<a href="leave-request.html">
+
+<i class="fa-solid fa-calendar-minus"></i>
+
+<span>
+    Leave Request
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                    STUDY MATERIAL
+========================================================= -->
+
+<li>
+
+<a
+    href="study-material.html"
+    class="active">
+
+<i class="fa-solid fa-book-bookmark"></i>
+
+<span>
+    Study Material
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                    AI SMART FEATURES
+========================================================= -->
+
+<div class="sidebar-section-title">
+
+AI Smart Features
+
+</div>
+
+
+<!-- =========================================================
+                    FACE ATTENDANCE
+========================================================= -->
+
+<li>
+
+<a href="face-attendance.html">
+
+<i class="fa-solid fa-camera"></i>
+
+<span>
+    Face Attendance
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                STUDENT PERFORMANCE AI
+========================================================= -->
+
+<li>
+
+<a href="student-performance-ai.html">
+
+<i class="fa-solid fa-brain"></i>
+
+<span>
+    Student Performance AI
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                    SMART REPORTS
+========================================================= -->
+
+<li>
+
+<a href="smart-report.html">
+
+<i class="fa-solid fa-file-waveform"></i>
+
+<span>
+    Smart Reports
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                    AI ASSISTANT
+========================================================= -->
+
+<li>
+
+<a href="ai-assistant.html">
+
+<i class="fa-solid fa-robot"></i>
+
+<span>
+    AI Assistant
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                        ACCOUNT
+========================================================= -->
+
+<div class="sidebar-section-title">
+
+Account
+
+</div>
+
+
+<!-- =========================================================
+                        PROFILE
+========================================================= -->
+
+<li>
+
+<a href="profile.html">
+
+<i class="fa-solid fa-user"></i>
+
+<span>
+    Profile
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                        SETTINGS
+========================================================= -->
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+<span>
+    Settings
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                    CHANGE PASSWORD
+========================================================= -->
+
+<li>
+
+<a href="change-password.html">
+
+<i class="fa-solid fa-lock"></i>
+
+<span>
+    Change Password
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                        LOGOUT
+========================================================= -->
+
+<li>
+
+<a href="teacher-login.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+<span>
+    Logout
+</span>
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</aside>
+
+
+<!-- =========================================================
+                        MAIN AREA
+========================================================= -->
+
+<div class="teacher-main">
+
+
+<!-- =========================================================
+                        NAVBAR
+========================================================= -->
+
+<header class="teacher-navbar">
+
+
+<!-- =========================================================
+                    NAVBAR LEFT
+========================================================= -->
+
+<div class="navbar-left">
+
+
+<!-- MOBILE MENU -->
+
+<button
+    type="button"
+    class="mobile-menu-btn"
+    id="mobileMenuBtn"
+    title="Open Menu">
+
+<i class="fa-solid fa-bars"></i>
+
+</button>
+
+
+<!-- PAGE TITLE -->
+
+<div class="navbar-title">
+
+<h4>
+    Study Material
+</h4>
+
+<p>
+    Faculty Management & Productivity System
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    NAVBAR RIGHT
+========================================================= -->
+
+<div class="navbar-right">
+
+
+<!-- =========================================================
+                    LIGHT / DARK MODE
+========================================================= -->
+
+<button
+    type="button"
+    class="nav-icon-btn"
+    id="themeToggle"
+    title="Switch to Dark Mode">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+
+<!-- =========================================================
+                    NOTIFICATIONS
+========================================================= -->
+
+<a
+    href="notices.html"
+    class="nav-icon-btn"
+    title="Notices">
+
+<i class="fa-solid fa-bell"></i>
+
+<span class="notification-dot"></span>
+
+</a>
+
+
+<!-- =========================================================
+                    PROFILE DROPDOWN
+========================================================= -->
+
+<div class="dropdown">
+
+
+<div
+    class="teacher-profile"
+    data-bs-toggle="dropdown"
+    aria-expanded="false">
+
+
+<img
+    src="../../images/default-profile.png"
+    alt="Teacher">
+
+
+<div class="teacher-profile-info">
+
+<strong>
+    Teacher
+</strong>
+
+<small>
+    Faculty Member
+</small>
+
+</div>
+
+
+<i
+    class="fa-solid fa-angle-down"
+    style="
+        font-size:11px;
+        color:#64748b;">
+</i>
+
+
+</div>
+
+
+<!-- =========================================================
+                    DROPDOWN MENU
+========================================================= -->
+
+<ul
+    class="dropdown-menu
+           dropdown-menu-end
+           profile-dropdown-menu">
+
+
+<li>
+
+<a
+    class="dropdown-item"
+    href="profile.html">
+
+<i class="fa-solid fa-user"></i>
+
+My Profile
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+    class="dropdown-item"
+    href="change-password.html">
+
+<i class="fa-solid fa-lock"></i>
+
+Change Password
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+    class="dropdown-item"
+    href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
+
+</a>
+
+</li>
+
+
+<li>
+
+<hr class="dropdown-divider">
+
+</li>
+
+
+<li>
+
+<a
+    class="dropdown-item text-danger"
+    href="teacher-login.html">
+
+<i
+    class="fa-solid fa-right-from-bracket"
+    style="color:#ef4444;">
+</i>
+
+Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+<!-- PROFILE DROPDOWN END -->
+
+
+</div>
+
+
+<!-- NAVBAR RIGHT END -->
+
+
+</header>
+
+<!-- =========================================================
+                    PAGE CONTENT
+========================================================= -->
+
+<main class="teacher-content">
+
+
+<!-- =========================================================
+                    PAGE HEADER
+========================================================= -->
+
+<section class="material-page-header">
+
+
+<div>
+
+<h2>
+
+<i class="fa-solid fa-book-bookmark me-2"></i>
+
+Study Material
+
+</h2>
+
+
+<p>
+
+Upload, organize and manage study resources
+for your assigned classes.
+
+</p>
+
+</div>
+
+
+<button
+    type="button"
+    class="upload-material-btn"
+    data-bs-toggle="modal"
+    data-bs-target="#uploadMaterialModal">
+
+<i class="fa-solid fa-cloud-arrow-up me-2"></i>
+
+Upload Material
+
+</button>
+
+
+</section>
+
+
+
+<!-- =========================================================
+                    STATISTICS
+========================================================= -->
+
+<section class="material-stat-grid">
+
+
+<!-- TOTAL MATERIAL -->
+
+<div class="material-stat-card">
+
+
+<div class="material-stat-icon purple">
+
+<i class="fa-solid fa-folder-open"></i>
+
+</div>
+
+
+<div class="material-stat-info">
+
+<h3 id="totalMaterialCount">
+    12
+</h3>
+
+<p>
+    Total Materials
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- PDF FILES -->
+
+<div class="material-stat-card">
+
+
+<div class="material-stat-icon blue">
+
+<i class="fa-solid fa-file-pdf"></i>
+
+</div>
+
+
+<div class="material-stat-info">
+
+<h3 id="totalPdfCount">
+    6
+</h3>
+
+<p>
+    PDF Documents
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- SUBJECTS -->
+
+<div class="material-stat-card">
+
+
+<div class="material-stat-icon green">
+
+<i class="fa-solid fa-book-open-reader"></i>
+
+</div>
+
+
+<div class="material-stat-info">
+
+<h3 id="materialSubjectCount">
+    8
+</h3>
+
+<p>
+    Subjects Covered
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- DOWNLOADS -->
+
+<div class="material-stat-card">
+
+
+<div class="material-stat-icon orange">
+
+<i class="fa-solid fa-download"></i>
+
+</div>
+
+
+<div class="material-stat-info">
+
+<h3 id="totalDownloadCount">
+    428
+</h3>
+
+<p>
+    Total Downloads
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+                    MATERIAL CONTENT CARD
+========================================================= -->
+
+<section class="material-content-card">
+
+
+<!-- =========================================================
+                    CARD HEADER
+========================================================= -->
+
+<div class="material-card-header">
+
+
+<div>
+
+<h4>
+
+<i class="fa-solid fa-layer-group me-2"></i>
+
+Uploaded Materials
+
+</h4>
+
+
+<p>
+
+Manage notes, presentations, assignments
+and learning resources.
+
+</p>
+
+</div>
+
+
+<!-- =========================================================
+                    SEARCH + FILTER
+========================================================= -->
+
+<div class="material-toolbar">
+
+
+<!-- SEARCH -->
+
+<div class="material-search">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+    type="text"
+    id="materialSearchInput"
+    placeholder="Search study material..."
+    autocomplete="off">
+
+</div>
+
+
+<!-- SUBJECT FILTER -->
+
+<select
+    class="material-filter"
+    id="materialSubjectFilter">
+
+<option value="all">
+    All Subjects
+</option>
+
+<option value="DSA">
+    Data Structures
+</option>
+
+<option value="DBMS">
+    Database Management System
+</option>
+
+<option value="PYTHON">
+    Python Programming
+</option>
+
+<option value="WEB">
+    Web Technology
+</option>
+
+<option value="JAVA">
+    Java Programming
+</option>
+
+<option value="SE">
+    Software Engineering
+</option>
+
+<option value="CN">
+    Computer Networks
+</option>
+
+<option value="AI">
+    Artificial Intelligence
+</option>
+
+</select>
+
+
+<!-- TYPE FILTER -->
+
+<select
+    class="material-filter"
+    id="materialTypeFilter">
+
+<option value="all">
+    All Types
+</option>
+
+<option value="pdf">
+    PDF
+</option>
+
+<option value="ppt">
+    Presentation
+</option>
+
+<option value="doc">
+    Document
+</option>
+
+<option value="link">
+    Link
+</option>
+
+</select>
+
+
+<!-- SEMESTER FILTER -->
+
+<select
+    class="material-filter"
+    id="materialSemesterFilter">
+
+<option value="all">
+    All Semesters
+</option>
+
+<option value="2">
+    Semester II
+</option>
+
+<option value="3">
+    Semester III
+</option>
+
+<option value="4">
+    Semester IV
+</option>
+
+<option value="5">
+    Semester V
+</option>
+
+<option value="6">
+    Semester VI
+</option>
+
+</select>
+
+
+<!-- RESET -->
+
+<button
+    type="button"
+    class="reset-material-filter"
+    id="resetMaterialFilterBtn"
+    title="Reset Filters">
+
+<i class="fa-solid fa-rotate-left"></i>
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    MATERIAL GRID
+========================================================= -->
+
+<div
+    class="study-material-grid"
+    id="studyMaterialGrid">
+
+
+
+<!-- =========================================================
+                MATERIAL 1 - DATA STRUCTURES
+========================================================= -->
+
+<div
+    class="study-material-card"
+    data-id="MAT-001"
+    data-subject="DSA"
+    data-type="pdf"
+    data-semester="3"
+    data-search="data structures introduction arrays linked list dsa notes">
+
+
+<div class="material-card-top">
+
+
+<div class="material-file-icon pdf">
+
+<i class="fa-solid fa-file-pdf"></i>
+
+</div>
+
+
+<div class="material-card-menu dropdown">
+
+
+<button
+    type="button"
+    class="material-menu-btn"
+    data-bs-toggle="dropdown">
+
+<i class="fa-solid fa-ellipsis-vertical"></i>
+
+</button>
+
+
+<ul class="dropdown-menu dropdown-menu-end">
+
+
+<li>
+
+<button
+    class="dropdown-item"
+    type="button"
+    onclick="viewMaterial('MAT-001')">
+
+<i class="fa-solid fa-eye me-2"></i>
+
+View Details
+
+</button>
+
+</li>
+
+
+<li>
+
+<button
+    class="dropdown-item"
+    type="button"
+    onclick="downloadMaterial('MAT-001')">
+
+<i class="fa-solid fa-download me-2"></i>
+
+Download
+
+</button>
+
+</li>
+
+
+<li>
+
+<hr class="dropdown-divider">
+
+</li>
+
+
+<li>
+
+<button
+    class="dropdown-item text-danger"
+    type="button"
+    onclick="openDeleteMaterial('MAT-001')">
+
+<i class="fa-solid fa-trash me-2"></i>
+
+Delete
+
+</button>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+</div>
+
+
+<div class="material-card-body">
+
+
+<span class="material-type-badge pdf">
+
+PDF
+
+</span>
+
+
+<h5>
+
+Data Structures - Unit 1 Notes
+
+</h5>
+
+
+<p class="material-subject">
+
+<i class="fa-solid fa-book me-1"></i>
+
+Data Structures
+
+</p>
+
+
+<p class="material-description">
+
+Introduction to data structures,
+arrays, linked lists and basic
+algorithm concepts.
+
+</p>
+
+
+
+<div class="material-meta-grid">
+
+
+<div class="material-meta-box">
+
+<small>
+Semester
+</small>
+
+<strong>
+III
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Section
+</small>
+
+<strong>
+A
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Size
+</small>
+
+<strong>
+2.4 MB
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Uploaded
+</small>
+
+<strong>
+01 Aug
+</strong>
+
+</div>
+
+
+</div>
+
+
+
+<div class="material-download-info">
+
+<span>
+
+<i class="fa-solid fa-download me-1"></i>
+
+68 Downloads
+
+</span>
+
+
+<span>
+
+<i class="fa-solid fa-clock me-1"></i>
+
+01 Aug 2026
+
+</span>
+
+</div>
+
+
+
+<div class="material-actions">
+
+
+<button
+    type="button"
+    class="btn btn-primary"
+    onclick="viewMaterial('MAT-001')">
+
+<i class="fa-solid fa-eye me-1"></i>
+
+View
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-primary"
+    onclick="downloadMaterial('MAT-001')">
+
+<i class="fa-solid fa-download me-1"></i>
+
+Download
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-danger"
+    onclick="openDeleteMaterial('MAT-001')"
+    title="Delete">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                MATERIAL 2 - DBMS
+========================================================= -->
+
+<div
+    class="study-material-card"
+    data-id="MAT-002"
+    data-subject="DBMS"
+    data-type="ppt"
+    data-semester="5"
+    data-search="database management system normalization dbms presentation ppt">
+
+
+<div class="material-card-top">
+
+
+<div class="material-file-icon ppt">
+
+<i class="fa-solid fa-file-powerpoint"></i>
+
+</div>
+
+
+<div class="material-card-menu dropdown">
+
+
+<button
+    type="button"
+    class="material-menu-btn"
+    data-bs-toggle="dropdown">
+
+<i class="fa-solid fa-ellipsis-vertical"></i>
+
+</button>
+
+
+<ul class="dropdown-menu dropdown-menu-end">
+
+
+<li>
+
+<button
+    class="dropdown-item"
+    type="button"
+    onclick="viewMaterial('MAT-002')">
+
+<i class="fa-solid fa-eye me-2"></i>
+
+View Details
+
+</button>
+
+</li>
+
+
+<li>
+
+<button
+    class="dropdown-item"
+    type="button"
+    onclick="downloadMaterial('MAT-002')">
+
+<i class="fa-solid fa-download me-2"></i>
+
+Download
+
+</button>
+
+</li>
+
+
+<li>
+
+<hr class="dropdown-divider">
+
+</li>
+
+
+<li>
+
+<button
+    class="dropdown-item text-danger"
+    type="button"
+    onclick="openDeleteMaterial('MAT-002')">
+
+<i class="fa-solid fa-trash me-2"></i>
+
+Delete
+
+</button>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+</div>
+
+
+<div class="material-card-body">
+
+
+<span class="material-type-badge ppt">
+
+PPT
+
+</span>
+
+
+<h5>
+
+DBMS Normalization Presentation
+
+</h5>
+
+
+<p class="material-subject">
+
+<i class="fa-solid fa-database me-1"></i>
+
+Database Management System
+
+</p>
+
+
+<p class="material-description">
+
+Presentation covering functional
+dependencies, 1NF, 2NF, 3NF and BCNF.
+
+</p>
+
+
+
+<div class="material-meta-grid">
+
+
+<div class="material-meta-box">
+
+<small>
+Semester
+</small>
+
+<strong>
+V
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Section
+</small>
+
+<strong>
+A
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Size
+</small>
+
+<strong>
+5.8 MB
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Uploaded
+</small>
+
+<strong>
+30 Jul
+</strong>
+
+</div>
+
+
+</div>
+
+
+
+<div class="material-download-info">
+
+<span>
+
+<i class="fa-solid fa-download me-1"></i>
+
+57 Downloads
+
+</span>
+
+
+<span>
+
+<i class="fa-solid fa-clock me-1"></i>
+
+30 Jul 2026
+
+</span>
+
+</div>
+
+
+
+<div class="material-actions">
+
+
+<button
+    type="button"
+    class="btn btn-primary"
+    onclick="viewMaterial('MAT-002')">
+
+<i class="fa-solid fa-eye me-1"></i>
+
+View
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-primary"
+    onclick="downloadMaterial('MAT-002')">
+
+<i class="fa-solid fa-download me-1"></i>
+
+Download
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-danger"
+    onclick="openDeleteMaterial('MAT-002')">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                MATERIAL 3 - PYTHON
+========================================================= -->
+
+<div
+    class="study-material-card"
+    data-id="MAT-003"
+    data-subject="PYTHON"
+    data-type="pdf"
+    data-semester="2"
+    data-search="python programming functions loops notes python pdf">
+
+
+<div class="material-card-top">
+
+
+<div class="material-file-icon pdf">
+
+<i class="fa-solid fa-file-pdf"></i>
+
+</div>
+
+
+<div class="material-card-menu dropdown">
+
+
+<button
+    type="button"
+    class="material-menu-btn"
+    data-bs-toggle="dropdown">
+
+<i class="fa-solid fa-ellipsis-vertical"></i>
+
+</button>
+
+
+<ul class="dropdown-menu dropdown-menu-end">
+
+
+<li>
+
+<button
+    class="dropdown-item"
+    type="button"
+    onclick="viewMaterial('MAT-003')">
+
+<i class="fa-solid fa-eye me-2"></i>
+
+View Details
+
+</button>
+
+</li>
+
+
+<li>
+
+<button
+    class="dropdown-item"
+    type="button"
+    onclick="downloadMaterial('MAT-003')">
+
+<i class="fa-solid fa-download me-2"></i>
+
+Download
+
+</button>
+
+</li>
+
+
+<li>
+
+<hr class="dropdown-divider">
+
+</li>
+
+
+<li>
+
+<button
+    class="dropdown-item text-danger"
+    type="button"
+    onclick="openDeleteMaterial('MAT-003')">
+
+<i class="fa-solid fa-trash me-2"></i>
+
+Delete
+
+</button>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+</div>
+
+
+<div class="material-card-body">
+
+
+<span class="material-type-badge pdf">
+
+PDF
+
+</span>
+
+
+<h5>
+
+Python Functions & Loops
+
+</h5>
+
+
+<p class="material-subject">
+
+<i class="fa-brands fa-python me-1"></i>
+
+Python Programming
+
+</p>
+
+
+<p class="material-description">
+
+Detailed notes on loops, functions,
+arguments, return statements and examples.
+
+</p>
+
+
+
+<div class="material-meta-grid">
+
+
+<div class="material-meta-box">
+
+<small>
+Semester
+</small>
+
+<strong>
+II
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Section
+</small>
+
+<strong>
+B
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Size
+</small>
+
+<strong>
+1.9 MB
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Uploaded
+</small>
+
+<strong>
+28 Jul
+</strong>
+
+</div>
+
+
+</div>
+
+
+
+<div class="material-download-info">
+
+<span>
+
+<i class="fa-solid fa-download me-1"></i>
+
+72 Downloads
+
+</span>
+
+
+<span>
+
+<i class="fa-solid fa-clock me-1"></i>
+
+28 Jul 2026
+
+</span>
+
+</div>
+
+
+
+<div class="material-actions">
+
+
+<button
+    type="button"
+    class="btn btn-primary"
+    onclick="viewMaterial('MAT-003')">
+
+<i class="fa-solid fa-eye me-1"></i>
+
+View
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-primary"
+    onclick="downloadMaterial('MAT-003')">
+
+<i class="fa-solid fa-download me-1"></i>
+
+Download
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-danger"
+    onclick="openDeleteMaterial('MAT-003')">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                MATERIAL 4 - WEB TECHNOLOGY
+========================================================= -->
+
+<div
+    class="study-material-card"
+    data-id="MAT-004"
+    data-subject="WEB"
+    data-type="doc"
+    data-semester="4"
+    data-search="web technology html css javascript practical document">
+
+
+<div class="material-card-top">
+
+
+<div class="material-file-icon doc">
+
+<i class="fa-solid fa-file-word"></i>
+
+</div>
+
+
+<div class="material-card-menu dropdown">
+
+
+<button
+    type="button"
+    class="material-menu-btn"
+    data-bs-toggle="dropdown">
+
+<i class="fa-solid fa-ellipsis-vertical"></i>
+
+</button>
+
+
+<ul class="dropdown-menu dropdown-menu-end">
+
+
+<li>
+
+<button
+    class="dropdown-item"
+    type="button"
+    onclick="viewMaterial('MAT-004')">
+
+<i class="fa-solid fa-eye me-2"></i>
+
+View Details
+
+</button>
+
+</li>
+
+
+<li>
+
+<button
+    class="dropdown-item"
+    type="button"
+    onclick="downloadMaterial('MAT-004')">
+
+<i class="fa-solid fa-download me-2"></i>
+
+Download
+
+</button>
+
+</li>
+
+
+<li>
+
+<hr class="dropdown-divider">
+
+</li>
+
+
+<li>
+
+<button
+    class="dropdown-item text-danger"
+    type="button"
+    onclick="openDeleteMaterial('MAT-004')">
+
+<i class="fa-solid fa-trash me-2"></i>
+
+Delete
+
+</button>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+</div>
+
+
+<div class="material-card-body">
+
+
+<span class="material-type-badge doc">
+
+DOC
+
+</span>
+
+
+<h5>
+
+HTML & CSS Practical Sheet
+
+</h5>
+
+
+<p class="material-subject">
+
+<i class="fa-solid fa-code me-1"></i>
+
+Web Technology
+
+</p>
+
+
+<p class="material-description">
+
+Practical exercises covering HTML forms,
+tables, CSS layouts and responsive design.
+
+</p>
+
+
+
+<div class="material-meta-grid">
+
+
+<div class="material-meta-box">
+
+<small>
+Semester
+</small>
+
+<strong>
+IV
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Section
+</small>
+
+<strong>
+A
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Size
+</small>
+
+<strong>
+860 KB
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Uploaded
+</small>
+
+<strong>
+25 Jul
+</strong>
+
+</div>
+
+
+</div>
+
+
+
+<div class="material-download-info">
+
+<span>
+
+<i class="fa-solid fa-download me-1"></i>
+
+48 Downloads
+
+</span>
+
+
+<span>
+
+<i class="fa-solid fa-clock me-1"></i>
+
+25 Jul 2026
+
+</span>
+
+</div>
+
+
+
+<div class="material-actions">
+
+
+<button
+    type="button"
+    class="btn btn-primary"
+    onclick="viewMaterial('MAT-004')">
+
+<i class="fa-solid fa-eye me-1"></i>
+
+View
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-primary"
+    onclick="downloadMaterial('MAT-004')">
+
+<i class="fa-solid fa-download me-1"></i>
+
+Download
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-danger"
+    onclick="openDeleteMaterial('MAT-004')">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                MATERIAL 5 - JAVA
+========================================================= -->
+
+<div
+    class="study-material-card"
+    data-id="MAT-005"
+    data-subject="JAVA"
+    data-type="pdf"
+    data-semester="4"
+    data-search="java programming oop inheritance polymorphism java notes pdf">
+
+
+<div class="material-card-top">
+
+
+<div class="material-file-icon pdf">
+
+<i class="fa-solid fa-file-pdf"></i>
+
+</div>
+
+
+<div class="material-card-menu dropdown">
+
+
+<button
+    type="button"
+    class="material-menu-btn"
+    data-bs-toggle="dropdown">
+
+<i class="fa-solid fa-ellipsis-vertical"></i>
+
+</button>
+
+
+<ul class="dropdown-menu dropdown-menu-end">
+
+
+<li>
+
+<button
+    class="dropdown-item"
+    type="button"
+    onclick="viewMaterial('MAT-005')">
+
+<i class="fa-solid fa-eye me-2"></i>
+
+View Details
+
+</button>
+
+</li>
+
+
+<li>
+
+<button
+    class="dropdown-item"
+    type="button"
+    onclick="downloadMaterial('MAT-005')">
+
+<i class="fa-solid fa-download me-2"></i>
+
+Download
+
+</button>
+
+</li>
+
+
+<li>
+
+<hr class="dropdown-divider">
+
+</li>
+
+
+<li>
+
+<button
+    class="dropdown-item text-danger"
+    type="button"
+    onclick="openDeleteMaterial('MAT-005')">
+
+<i class="fa-solid fa-trash me-2"></i>
+
+Delete
+
+</button>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+</div>
+
+
+<div class="material-card-body">
+
+
+<span class="material-type-badge pdf">
+
+PDF
+
+</span>
+
+
+<h5>
+
+Object Oriented Programming Notes
+
+</h5>
+
+
+<p class="material-subject">
+
+<i class="fa-brands fa-java me-1"></i>
+
+Java Programming
+
+</p>
+
+
+<p class="material-description">
+
+Java OOP concepts including classes,
+objects, inheritance and polymorphism.
+
+</p>
+
+
+
+<div class="material-meta-grid">
+
+
+<div class="material-meta-box">
+
+<small>
+Semester
+</small>
+
+<strong>
+IV
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Section
+</small>
+
+<strong>
+B
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Size
+</small>
+
+<strong>
+3.1 MB
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Uploaded
+</small>
+
+<strong>
+22 Jul
+</strong>
+
+</div>
+
+
+</div>
+
+
+
+<div class="material-download-info">
+
+<span>
+
+<i class="fa-solid fa-download me-1"></i>
+
+44 Downloads
+
+</span>
+
+
+<span>
+
+<i class="fa-solid fa-clock me-1"></i>
+
+22 Jul 2026
+
+</span>
+
+</div>
+
+
+
+<div class="material-actions">
+
+
+<button
+    type="button"
+    class="btn btn-primary"
+    onclick="viewMaterial('MAT-005')">
+
+<i class="fa-solid fa-eye me-1"></i>
+
+View
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-primary"
+    onclick="downloadMaterial('MAT-005')">
+
+<i class="fa-solid fa-download me-1"></i>
+
+Download
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-danger"
+    onclick="openDeleteMaterial('MAT-005')">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                MATERIAL 6 - SOFTWARE ENGINEERING
+========================================================= -->
+
+<div
+    class="study-material-card"
+    data-id="MAT-006"
+    data-subject="SE"
+    data-type="ppt"
+    data-semester="6"
+    data-search="software engineering sdlc software development life cycle ppt">
+
+
+<div class="material-card-top">
+
+
+<div class="material-file-icon ppt">
+
+<i class="fa-solid fa-file-powerpoint"></i>
+
+</div>
+
+
+<div class="material-card-menu dropdown">
+
+
+<button
+    type="button"
+    class="material-menu-btn"
+    data-bs-toggle="dropdown">
+
+<i class="fa-solid fa-ellipsis-vertical"></i>
+
+</button>
+
+
+<ul class="dropdown-menu dropdown-menu-end">
+
+
+<li>
+
+<button
+    class="dropdown-item"
+    type="button"
+    onclick="viewMaterial('MAT-006')">
+
+<i class="fa-solid fa-eye me-2"></i>
+
+View Details
+
+</button>
+
+</li>
+
+
+<li>
+
+<button
+    class="dropdown-item"
+    type="button"
+    onclick="downloadMaterial('MAT-006')">
+
+<i class="fa-solid fa-download me-2"></i>
+
+Download
+
+</button>
+
+</li>
+
+
+<li>
+
+<hr class="dropdown-divider">
+
+</li>
+
+
+<li>
+
+<button
+    class="dropdown-item text-danger"
+    type="button"
+    onclick="openDeleteMaterial('MAT-006')">
+
+<i class="fa-solid fa-trash me-2"></i>
+
+Delete
+
+</button>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+</div>
+
+
+<div class="material-card-body">
+
+
+<span class="material-type-badge ppt">
+
+PPT
+
+</span>
+
+
+<h5>
+
+Software Development Life Cycle
+
+</h5>
+
+
+<p class="material-subject">
+
+<i class="fa-solid fa-gears me-1"></i>
+
+Software Engineering
+
+</p>
+
+
+<p class="material-description">
+
+SDLC models including waterfall,
+spiral, prototype, agile and comparison.
+
+</p>
+
+
+
+<div class="material-meta-grid">
+
+
+<div class="material-meta-box">
+
+<small>
+Semester
+</small>
+
+<strong>
+VI
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Section
+</small>
+
+<strong>
+A
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Size
+</small>
+
+<strong>
+4.2 MB
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Uploaded
+</small>
+
+<strong>
+20 Jul
+</strong>
+
+</div>
+
+
+</div>
+
+
+
+<div class="material-download-info">
+
+<span>
+
+<i class="fa-solid fa-download me-1"></i>
+
+39 Downloads
+
+</span>
+
+
+<span>
+
+<i class="fa-solid fa-clock me-1"></i>
+
+20 Jul 2026
+
+</span>
+
+</div>
+
+
+
+<div class="material-actions">
+
+
+<button
+    type="button"
+    class="btn btn-primary"
+    onclick="viewMaterial('MAT-006')">
+
+<i class="fa-solid fa-eye me-1"></i>
+
+View
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-primary"
+    onclick="downloadMaterial('MAT-006')">
+
+<i class="fa-solid fa-download me-1"></i>
+
+Download
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-danger"
+    onclick="openDeleteMaterial('MAT-006')">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                MATERIAL 7 - COMPUTER NETWORKS
+========================================================= -->
+
+<div
+    class="study-material-card"
+    data-id="MAT-007"
+    data-subject="CN"
+    data-type="pdf"
+    data-semester="5"
+    data-search="computer networks osi model tcp ip networking notes pdf">
+
+
+<div class="material-card-top">
+
+
+<div class="material-file-icon pdf">
+
+<i class="fa-solid fa-file-pdf"></i>
+
+</div>
+
+
+<div class="material-card-menu dropdown">
+
+
+<button
+    type="button"
+    class="material-menu-btn"
+    data-bs-toggle="dropdown">
+
+<i class="fa-solid fa-ellipsis-vertical"></i>
+
+</button>
+
+
+<ul class="dropdown-menu dropdown-menu-end">
+
+
+<li>
+
+<button
+    class="dropdown-item"
+    type="button"
+    onclick="viewMaterial('MAT-007')">
+
+<i class="fa-solid fa-eye me-2"></i>
+
+View Details
+
+</button>
+
+</li>
+
+
+<li>
+
+<button
+    class="dropdown-item"
+    type="button"
+    onclick="downloadMaterial('MAT-007')">
+
+<i class="fa-solid fa-download me-2"></i>
+
+Download
+
+</button>
+
+</li>
+
+
+<li>
+
+<hr class="dropdown-divider">
+
+</li>
+
+
+<li>
+
+<button
+    class="dropdown-item text-danger"
+    type="button"
+    onclick="openDeleteMaterial('MAT-007')">
+
+<i class="fa-solid fa-trash me-2"></i>
+
+Delete
+
+</button>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+</div>
+
+
+<div class="material-card-body">
+
+
+<span class="material-type-badge pdf">
+
+PDF
+
+</span>
+
+
+<h5>
+
+OSI & TCP/IP Model Notes
+
+</h5>
+
+
+<p class="material-subject">
+
+<i class="fa-solid fa-network-wired me-1"></i>
+
+Computer Networks
+
+</p>
+
+
+<p class="material-description">
+
+Complete notes on OSI layers,
+TCP/IP architecture and network protocols.
+
+</p>
+
+
+
+<div class="material-meta-grid">
+
+
+<div class="material-meta-box">
+
+<small>
+Semester
+</small>
+
+<strong>
+V
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Section
+</small>
+
+<strong>
+B
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Size
+</small>
+
+<strong>
+2.8 MB
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Uploaded
+</small>
+
+<strong>
+18 Jul
+</strong>
+
+</div>
+
+
+</div>
+
+
+
+<div class="material-download-info">
+
+<span>
+
+<i class="fa-solid fa-download me-1"></i>
+
+51 Downloads
+
+</span>
+
+
+<span>
+
+<i class="fa-solid fa-clock me-1"></i>
+
+18 Jul 2026
+
+</span>
+
+</div>
+
+
+
+<div class="material-actions">
+
+
+<button
+    type="button"
+    class="btn btn-primary"
+    onclick="viewMaterial('MAT-007')">
+
+<i class="fa-solid fa-eye me-1"></i>
+
+View
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-primary"
+    onclick="downloadMaterial('MAT-007')">
+
+<i class="fa-solid fa-download me-1"></i>
+
+Download
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-danger"
+    onclick="openDeleteMaterial('MAT-007')">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                MATERIAL 8 - ARTIFICIAL INTELLIGENCE
+========================================================= -->
+
+<div
+    class="study-material-card"
+    data-id="MAT-008"
+    data-subject="AI"
+    data-type="link"
+    data-semester="6"
+    data-search="artificial intelligence machine learning introduction ai learning resource link">
+
+
+<div class="material-card-top">
+
+
+<div class="material-file-icon link">
+
+<i class="fa-solid fa-link"></i>
+
+</div>
+
+
+<div class="material-card-menu dropdown">
+
+
+<button
+    type="button"
+    class="material-menu-btn"
+    data-bs-toggle="dropdown">
+
+<i class="fa-solid fa-ellipsis-vertical"></i>
+
+</button>
+
+
+<ul class="dropdown-menu dropdown-menu-end">
+
+
+<li>
+
+<button
+    class="dropdown-item"
+    type="button"
+    onclick="viewMaterial('MAT-008')">
+
+<i class="fa-solid fa-eye me-2"></i>
+
+View Details
+
+</button>
+
+</li>
+
+
+<li>
+
+<button
+    class="dropdown-item"
+    type="button"
+    onclick="downloadMaterial('MAT-008')">
+
+<i class="fa-solid fa-arrow-up-right-from-square me-2"></i>
+
+Open Resource
+
+</button>
+
+</li>
+
+
+<li>
+
+<hr class="dropdown-divider">
+
+</li>
+
+
+<li>
+
+<button
+    class="dropdown-item text-danger"
+    type="button"
+    onclick="openDeleteMaterial('MAT-008')">
+
+<i class="fa-solid fa-trash me-2"></i>
+
+Delete
+
+</button>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+</div>
+
+
+<div class="material-card-body">
+
+
+<span class="material-type-badge link">
+
+LINK
+
+</span>
+
+
+<h5>
+
+Introduction to Machine Learning
+
+</h5>
+
+
+<p class="material-subject">
+
+<i class="fa-solid fa-brain me-1"></i>
+
+Artificial Intelligence
+
+</p>
+
+
+<p class="material-description">
+
+Additional learning resource covering
+basic AI and machine learning concepts.
+
+</p>
+
+
+
+<div class="material-meta-grid">
+
+
+<div class="material-meta-box">
+
+<small>
+Semester
+</small>
+
+<strong>
+VI
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Section
+</small>
+
+<strong>
+B
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Type
+</small>
+
+<strong>
+Web Link
+</strong>
+
+</div>
+
+
+<div class="material-meta-box">
+
+<small>
+Uploaded
+</small>
+
+<strong>
+15 Jul
+</strong>
+
+</div>
+
+
+</div>
+
+
+
+<div class="material-download-info">
+
+<span>
+
+<i class="fa-solid fa-arrow-pointer me-1"></i>
+
+49 Opens
+
+</span>
+
+
+<span>
+
+<i class="fa-solid fa-clock me-1"></i>
+
+15 Jul 2026
+
+</span>
+
+</div>
+
+
+
+<div class="material-actions">
+
+
+<button
+    type="button"
+    class="btn btn-primary"
+    onclick="viewMaterial('MAT-008')">
+
+<i class="fa-solid fa-eye me-1"></i>
+
+View
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-primary"
+    onclick="downloadMaterial('MAT-008')">
+
+<i class="fa-solid fa-arrow-up-right-from-square me-1"></i>
+
+Open
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-outline-danger"
+    onclick="openDeleteMaterial('MAT-008')">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    MATERIAL GRID END
+========================================================= -->
+
+</div>
+
+
+
+<!-- =========================================================
+                    NO RESULT
+========================================================= -->
+
+<div
+    class="no-material-result"
+    id="noMaterialResult">
+
+
+<i class="fa-solid fa-folder-open"></i>
+
+
+<h5>
+
+No Study Material Found
+
+</h5>
+
+
+<p>
+
+No material matches your current
+search or selected filters.
+
+</p>
+
+
+<button
+    type="button"
+    class="btn btn-sm btn-outline-primary"
+    id="noResultResetBtn">
+
+<i class="fa-solid fa-rotate-left me-1"></i>
+
+Reset Filters
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+                        FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+© 2026 Faculty Management & Productivity System |
+Teacher Panel
+
+</footer>
+
+
+</main>
+
+
+<!-- =========================================================
+                    TEACHER MAIN END
+========================================================= -->
+
+</div>
+
+
+<!-- =========================================================
+                    TEACHER LAYOUT END
+========================================================= -->
+
+</div>
+
+
+
+<!-- =========================================================
+                    UPLOAD MATERIAL MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="uploadMaterialModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+
+<div
+    class="modal-dialog
+           modal-dialog-centered
+           modal-lg">
+
+
+<div class="modal-content border-0 rounded-4">
+
+
+<!-- =========================================================
+                    MODAL HEADER
+========================================================= -->
+
+<div class="modal-header">
+
+
+<div>
+
+<h5 class="modal-title fw-bold">
+
+<i
+    class="fa-solid fa-cloud-arrow-up me-2"
+    style="color:#6c4cff;">
+</i>
+
+Upload Study Material
+
+</h5>
+
+
+<small class="text-muted">
+
+Add a new learning resource for students.
+
+</small>
+
+</div>
+
+
+<button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal"
+    aria-label="Close">
+</button>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    MODAL BODY
+========================================================= -->
+
+<div class="modal-body p-4">
+
+
+<form id="uploadMaterialForm">
+
+
+<div class="row g-3">
+
+
+<!-- MATERIAL TITLE -->
+
+<div class="col-12">
+
+
+<label
+    for="materialTitle"
+    class="material-form-label">
+
+Material Title
+
+<span class="text-danger">
+*
+</span>
+
+</label>
+
+
+<input
+    type="text"
+    class="material-form-control"
+    id="materialTitle"
+    placeholder="Example: Unit 1 - Data Structures Notes"
+    required>
+
+
+</div>
+
+
+
+<!-- SUBJECT -->
+
+<div class="col-md-6">
+
+
+<label
+    for="uploadSubject"
+    class="material-form-label">
+
+Subject
+
+<span class="text-danger">
+*
+</span>
+
+</label>
+
+
+<select
+    class="material-form-control"
+    id="uploadSubject"
+    required>
+
+
+<option value="">
+
+Select Subject
+
+</option>
+
+
+<option value="DSA">
+
+Data Structures
+
+</option>
+
+
+<option value="DBMS">
+
+Database Management System
+
+</option>
+
+
+<option value="PYTHON">
+
+Python Programming
+
+</option>
+
+
+<option value="WEB">
+
+Web Technology
+
+</option>
+
+
+<option value="JAVA">
+
+Java Programming
+
+</option>
+
+
+<option value="SE">
+
+Software Engineering
+
+</option>
+
+
+<option value="CN">
+
+Computer Networks
+
+</option>
+
+
+<option value="AI">
+
+Artificial Intelligence
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+<!-- MATERIAL TYPE -->
+
+<div class="col-md-6">
+
+
+<label
+    for="uploadMaterialType"
+    class="material-form-label">
+
+Material Type
+
+<span class="text-danger">
+*
+</span>
+
+</label>
+
+
+<select
+    class="material-form-control"
+    id="uploadMaterialType"
+    required>
+
+
+<option value="">
+
+Select Type
+
+</option>
+
+
+<option value="pdf">
+
+PDF Document
+
+</option>
+
+
+<option value="ppt">
+
+Presentation
+
+</option>
+
+
+<option value="doc">
+
+Word Document
+
+</option>
+
+
+<option value="link">
+
+External Link
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+<!-- SEMESTER -->
+
+<div class="col-md-6">
+
+
+<label
+    for="uploadSemester"
+    class="material-form-label">
+
+Semester
+
+<span class="text-danger">
+*
+</span>
+
+</label>
+
+
+<select
+    class="material-form-control"
+    id="uploadSemester"
+    required>
+
+
+<option value="">
+
+Select Semester
+
+</option>
+
+
+<option value="2">
+
+Semester II
+
+</option>
+
+
+<option value="3">
+
+Semester III
+
+</option>
+
+
+<option value="4">
+
+Semester IV
+
+</option>
+
+
+<option value="5">
+
+Semester V
+
+</option>
+
+
+<option value="6">
+
+Semester VI
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+<!-- SECTION -->
+
+<div class="col-md-6">
+
+
+<label
+    for="uploadSection"
+    class="material-form-label">
+
+Section
+
+<span class="text-danger">
+*
+</span>
+
+</label>
+
+
+<select
+    class="material-form-control"
+    id="uploadSection"
+    required>
+
+
+<option value="">
+
+Select Section
+
+</option>
+
+
+<option value="A">
+
+Section A
+
+</option>
+
+
+<option value="B">
+
+Section B
+
+</option>
+
+
+<option value="C">
+
+Section C
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+<!-- DESCRIPTION -->
+
+<div class="col-12">
+
+
+<label
+    for="materialDescription"
+    class="material-form-label">
+
+Description
+
+</label>
+
+
+<textarea
+    class="material-form-control"
+    id="materialDescription"
+    rows="4"
+    maxlength="300"
+    placeholder="Write a short description about this study material...">
+</textarea>
+
+
+<div
+    class="text-end text-muted mt-1"
+    style="font-size:10px;">
+
+<span id="materialDescriptionCount">
+0
+</span>
+
+/ 300
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    FILE UPLOAD AREA
+========================================================= -->
+
+<div
+    class="col-12"
+    id="materialFileSection">
+
+
+<label class="material-form-label">
+
+Upload File
+
+<span class="text-danger">
+*
+</span>
+
+</label>
+
+
+<div
+    class="material-upload-area"
+    id="materialUploadArea">
+
+
+<input
+    type="file"
+    id="materialFileInput"
+    accept=".pdf,.ppt,.pptx,.doc,.docx"
+    hidden>
+
+
+<div class="material-upload-icon">
+
+<i class="fa-solid fa-cloud-arrow-up"></i>
+
+</div>
+
+
+<strong>
+
+Drag & Drop File Here
+
+</strong>
+
+
+<small>
+
+or click to browse from your device
+
+</small>
+
+
+<button
+    type="button"
+    class="btn btn-sm btn-outline-primary mt-3"
+    id="browseMaterialFileBtn">
+
+<i class="fa-solid fa-folder-open me-1"></i>
+
+Browse File
+
+</button>
+
+
+<small
+    class="d-block mt-3">
+
+Supported:
+PDF, PPT, PPTX, DOC, DOCX • Maximum 20 MB
+
+</small>
+
+
+</div>
+
+
+
+<!-- SELECTED FILE -->
+
+<div
+    class="selected-material-file"
+    id="selectedMaterialFile"
+    style="display:none;">
+
+
+<div class="selected-file-info">
+
+
+<div class="selected-file-icon">
+
+<i
+    class="fa-solid fa-file"
+    id="selectedFileIcon">
+</i>
+
+</div>
+
+
+<div>
+
+<strong id="selectedFileName">
+
+File Name
+
+</strong>
+
+
+<small id="selectedFileSize">
+
+0 MB
+
+</small>
+
+</div>
+
+
+</div>
+
+
+<button
+    type="button"
+    class="remove-selected-file"
+    id="removeSelectedFileBtn"
+    title="Remove File">
+
+<i class="fa-solid fa-xmark"></i>
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    EXTERNAL LINK
+========================================================= -->
+
+<div
+    class="col-12"
+    id="materialLinkSection"
+    style="display:none;">
+
+
+<label
+    for="materialExternalLink"
+    class="material-form-label">
+
+Resource URL
+
+<span class="text-danger">
+*
+</span>
+
+</label>
+
+
+<div class="position-relative">
+
+
+<i
+    class="fa-solid fa-link"
+    style="
+        position:absolute;
+        left:14px;
+        top:50%;
+        transform:translateY(-50%);
+        color:#94a3b8;">
+</i>
+
+
+<input
+    type="url"
+    class="material-form-control"
+    id="materialExternalLink"
+    placeholder="https://example.com/resource"
+    style="padding-left:40px;">
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</form>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    MODAL FOOTER
+========================================================= -->
+
+<div class="modal-footer">
+
+
+<button
+    type="button"
+    class="btn btn-outline-secondary"
+    data-bs-dismiss="modal">
+
+<i class="fa-solid fa-xmark me-1"></i>
+
+Cancel
+
+</button>
+
+
+<button
+    type="submit"
+    form="uploadMaterialForm"
+    class="btn btn-primary"
+    id="saveMaterialBtn">
+
+<i class="fa-solid fa-cloud-arrow-up me-2"></i>
+
+Upload Material
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    VIEW MATERIAL MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="viewMaterialModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+
+<div class="modal-dialog modal-dialog-centered">
+
+
+<div class="modal-content border-0 rounded-4">
+
+
+<!-- HEADER -->
+
+<div class="modal-header">
+
+
+<h5 class="modal-title fw-bold">
+
+<i
+    class="fa-solid fa-book-open me-2"
+    style="color:#6c4cff;">
+</i>
+
+Material Details
+
+</h5>
+
+
+<button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal">
+</button>
+
+
+</div>
+
+
+
+<!-- BODY -->
+
+<div class="modal-body p-4">
+
+
+<div class="material-preview-box">
+
+
+<div
+    class="material-preview-icon"
+    id="viewMaterialIcon">
+
+<i class="fa-solid fa-file-pdf"></i>
+
+</div>
+
+
+<h5
+    id="viewMaterialTitle"
+    class="fw-bold">
+
+Study Material
+
+</h5>
+
+
+<p id="viewMaterialDescription">
+
+Material description will appear here.
+
+</p>
+
+
+</div>
+
+
+
+<div class="material-detail-row">
+
+<span>
+
+Material ID
+
+</span>
+
+<strong id="viewMaterialId">
+
+--
+
+</strong>
+
+</div>
+
+
+
+<div class="material-detail-row">
+
+<span>
+
+Subject
+
+</span>
+
+<strong id="viewMaterialSubject">
+
+--
+
+</strong>
+
+</div>
+
+
+
+<div class="material-detail-row">
+
+<span>
+
+Type
+
+</span>
+
+<strong id="viewMaterialType">
+
+--
+
+</strong>
+
+</div>
+
+
+
+<div class="material-detail-row">
+
+<span>
+
+Semester
+
+</span>
+
+<strong id="viewMaterialSemester">
+
+--
+
+</strong>
+
+</div>
+
+
+
+<div class="material-detail-row">
+
+<span>
+
+Section
+
+</span>
+
+<strong id="viewMaterialSection">
+
+--
+
+</strong>
+
+</div>
+
+
+
+<div class="material-detail-row">
+
+<span>
+
+File Size
+
+</span>
+
+<strong id="viewMaterialSize">
+
+--
+
+</strong>
+
+</div>
+
+
+
+<div class="material-detail-row">
+
+<span>
+
+Uploaded On
+
+</span>
+
+<strong id="viewMaterialDate">
+
+--
+
+</strong>
+
+</div>
+
+
+
+<div class="material-detail-row">
+
+<span>
+
+Downloads
+
+</span>
+
+<strong id="viewMaterialDownloads">
+
+--
+
+</strong>
+
+</div>
+
+
+</div>
+
+
+
+<!-- FOOTER -->
+
+<div class="modal-footer justify-content-center">
+
+
+<button
+    type="button"
+    class="btn btn-outline-secondary px-4"
+    data-bs-dismiss="modal">
+
+Close
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-primary px-4"
+    id="viewModalDownloadBtn">
+
+<i class="fa-solid fa-download me-2"></i>
+
+Download
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    DELETE CONFIRMATION MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="deleteMaterialModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+
+<div class="modal-dialog modal-dialog-centered">
+
+
+<div class="modal-content border-0 rounded-4">
+
+
+<div class="modal-body text-center p-4">
+
+
+<div
+    style="
+        width:78px;
+        height:78px;
+        margin:0 auto 18px;
+        border-radius:50%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:#fee2e2;
+        color:#ef4444;
+        font-size:30px;">
+
+<i class="fa-solid fa-trash-can"></i>
+
+</div>
+
+
+<h4 class="fw-bold">
+
+Delete Material?
+
+</h4>
+
+
+<p class="text-muted">
+
+Are you sure you want to delete
+
+<strong
+    id="deleteMaterialName"
+    style="color:inherit;">
+
+this material
+
+</strong>
+
+?
+
+<br>
+
+This action cannot be undone.
+
+</p>
+
+
+<input
+    type="hidden"
+    id="deleteMaterialId">
+
+
+<div
+    class="d-flex
+           justify-content-center
+           gap-2
+           mt-4">
+
+
+<button
+    type="button"
+    class="btn btn-outline-secondary px-4"
+    data-bs-dismiss="modal">
+
+Cancel
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-danger px-4"
+    id="confirmDeleteMaterialBtn">
+
+<i class="fa-solid fa-trash me-1"></i>
+
+Delete
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    BOOTSTRAP JAVASCRIPT
+========================================================= -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- =========================================================
+                    PART 3 END
+========================================================= -->
+
+<!-- =========================================================
+                STUDY MATERIAL JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+
+/* =========================================================
+                    MATERIAL DATA
+========================================================= */
+
+const materialData = {
+
+
+"MAT-001":{
+
+    title:
+    "Data Structures - Unit 1 Notes",
+
+    subject:
+    "Data Structures",
+
+    subjectKey:
+    "DSA",
+
+    type:
+    "PDF",
+
+    typeKey:
+    "pdf",
+
+    semester:
+    "Semester III",
+
+    semesterKey:
+    "3",
+
+    section:
+    "Section A",
+
+    size:
+    "2.4 MB",
+
+    date:
+    "01 Aug 2026",
+
+    downloads:
+    68,
+
+    description:
+    "Introduction to data structures, arrays, linked lists and basic algorithm concepts.",
+
+    icon:
+    "fa-solid fa-file-pdf"
+
+},
+
+
+
+"MAT-002":{
+
+    title:
+    "DBMS Normalization Presentation",
+
+    subject:
+    "Database Management System",
+
+    subjectKey:
+    "DBMS",
+
+    type:
+    "PPT",
+
+    typeKey:
+    "ppt",
+
+    semester:
+    "Semester V",
+
+    semesterKey:
+    "5",
+
+    section:
+    "Section A",
+
+    size:
+    "5.8 MB",
+
+    date:
+    "30 Jul 2026",
+
+    downloads:
+    57,
+
+    description:
+    "Presentation covering functional dependencies, 1NF, 2NF, 3NF and BCNF.",
+
+    icon:
+    "fa-solid fa-file-powerpoint"
+
+},
+
+
+
+"MAT-003":{
+
+    title:
+    "Python Functions & Loops",
+
+    subject:
+    "Python Programming",
+
+    subjectKey:
+    "PYTHON",
+
+    type:
+    "PDF",
+
+    typeKey:
+    "pdf",
+
+    semester:
+    "Semester II",
+
+    semesterKey:
+    "2",
+
+    section:
+    "Section B",
+
+    size:
+    "1.9 MB",
+
+    date:
+    "28 Jul 2026",
+
+    downloads:
+    72,
+
+    description:
+    "Detailed notes on loops, functions, arguments, return statements and examples.",
+
+    icon:
+    "fa-solid fa-file-pdf"
+
+},
+
+
+
+"MAT-004":{
+
+    title:
+    "HTML & CSS Practical Sheet",
+
+    subject:
+    "Web Technology",
+
+    subjectKey:
+    "WEB",
+
+    type:
+    "DOC",
+
+    typeKey:
+    "doc",
+
+    semester:
+    "Semester IV",
+
+    semesterKey:
+    "4",
+
+    section:
+    "Section A",
+
+    size:
+    "860 KB",
+
+    date:
+    "25 Jul 2026",
+
+    downloads:
+    48,
+
+    description:
+    "Practical exercises covering HTML forms, tables, CSS layouts and responsive design.",
+
+    icon:
+    "fa-solid fa-file-word"
+
+},
+
+
+
+"MAT-005":{
+
+    title:
+    "Object Oriented Programming Notes",
+
+    subject:
+    "Java Programming",
+
+    subjectKey:
+    "JAVA",
+
+    type:
+    "PDF",
+
+    typeKey:
+    "pdf",
+
+    semester:
+    "Semester IV",
+
+    semesterKey:
+    "4",
+
+    section:
+    "Section B",
+
+    size:
+    "3.1 MB",
+
+    date:
+    "22 Jul 2026",
+
+    downloads:
+    44,
+
+    description:
+    "Java OOP concepts including classes, objects, inheritance and polymorphism.",
+
+    icon:
+    "fa-solid fa-file-pdf"
+
+},
+
+
+
+"MAT-006":{
+
+    title:
+    "Software Development Life Cycle",
+
+    subject:
+    "Software Engineering",
+
+    subjectKey:
+    "SE",
+
+    type:
+    "PPT",
+
+    typeKey:
+    "ppt",
+
+    semester:
+    "Semester VI",
+
+    semesterKey:
+    "6",
+
+    section:
+    "Section A",
+
+    size:
+    "4.2 MB",
+
+    date:
+    "20 Jul 2026",
+
+    downloads:
+    39,
+
+    description:
+    "SDLC models including waterfall, spiral, prototype, agile and comparison.",
+
+    icon:
+    "fa-solid fa-file-powerpoint"
+
+},
+
+
+
+"MAT-007":{
+
+    title:
+    "OSI & TCP/IP Model Notes",
+
+    subject:
+    "Computer Networks",
+
+    subjectKey:
+    "CN",
+
+    type:
+    "PDF",
+
+    typeKey:
+    "pdf",
+
+    semester:
+    "Semester V",
+
+    semesterKey:
+    "5",
+
+    section:
+    "Section B",
+
+    size:
+    "2.8 MB",
+
+    date:
+    "18 Jul 2026",
+
+    downloads:
+    51,
+
+    description:
+    "Complete notes on OSI layers, TCP/IP architecture and network protocols.",
+
+    icon:
+    "fa-solid fa-file-pdf"
+
+},
+
+
+
+"MAT-008":{
+
+    title:
+    "Introduction to Machine Learning",
+
+    subject:
+    "Artificial Intelligence",
+
+    subjectKey:
+    "AI",
+
+    type:
+    "LINK",
+
+    typeKey:
+    "link",
+
+    semester:
+    "Semester VI",
+
+    semesterKey:
+    "6",
+
+    section:
+    "Section B",
+
+    size:
+    "Web Link",
+
+    date:
+    "15 Jul 2026",
+
+    downloads:
+    49,
+
+    description:
+    "Additional learning resource covering basic AI and machine learning concepts.",
+
+    icon:
+    "fa-solid fa-link",
+
+    url:
+    "https://example.com"
+
+}
+
+};
+
+
+
+/* =========================================================
+                    SUBJECT INFORMATION
+========================================================= */
+
+const subjectInformation = {
+
+
+DSA:{
+
+    name:
+    "Data Structures",
+
+    icon:
+    "fa-solid fa-diagram-project"
+
+},
+
+
+DBMS:{
+
+    name:
+    "Database Management System",
+
+    icon:
+    "fa-solid fa-database"
+
+},
+
+
+PYTHON:{
+
+    name:
+    "Python Programming",
+
+    icon:
+    "fa-brands fa-python"
+
+},
+
+
+WEB:{
+
+    name:
+    "Web Technology",
+
+    icon:
+    "fa-solid fa-code"
+
+},
+
+
+JAVA:{
+
+    name:
+    "Java Programming",
+
+    icon:
+    "fa-brands fa-java"
+
+},
+
+
+SE:{
+
+    name:
+    "Software Engineering",
+
+    icon:
+    "fa-solid fa-gears"
+
+},
+
+
+CN:{
+
+    name:
+    "Computer Networks",
+
+    icon:
+    "fa-solid fa-network-wired"
+
+},
+
+
+AI:{
+
+    name:
+    "Artificial Intelligence",
+
+    icon:
+    "fa-solid fa-brain"
+
+}
+
+
+};
+
+
+
+/* =========================================================
+                    GENERAL VARIABLES
+========================================================= */
+
+let selectedMaterialId =
+null;
+
+
+let selectedUploadFile =
+null;
+
+
+let nextMaterialNumber =
+9;
+
+
+
+/* =========================================================
+                    DOM ELEMENTS
+========================================================= */
+
+const materialGrid =
+document.getElementById(
+"studyMaterialGrid"
+);
+
+
+const materialSearchInput =
+document.getElementById(
+"materialSearchInput"
+);
+
+
+const materialSubjectFilter =
+document.getElementById(
+"materialSubjectFilter"
+);
+
+
+const materialTypeFilter =
+document.getElementById(
+"materialTypeFilter"
+);
+
+
+const materialSemesterFilter =
+document.getElementById(
+"materialSemesterFilter"
+);
+
+
+const resetMaterialFilterBtn =
+document.getElementById(
+"resetMaterialFilterBtn"
+);
+
+
+const noResultResetBtn =
+document.getElementById(
+"noResultResetBtn"
+);
+
+
+const noMaterialResult =
+document.getElementById(
+"noMaterialResult"
+);
+
+
+
+/* =========================================================
+                    FILTER MATERIALS
+========================================================= */
+
+function filterMaterials(){
+
+
+    const searchValue =
+    materialSearchInput
+    ?
+    materialSearchInput.value
+    .toLowerCase()
+    .trim()
+    :
+    "";
+
+
+    const subjectValue =
+    materialSubjectFilter
+    ?
+    materialSubjectFilter.value
+    :
+    "all";
+
+
+    const typeValue =
+    materialTypeFilter
+    ?
+    materialTypeFilter.value
+    :
+    "all";
+
+
+    const semesterValue =
+    materialSemesterFilter
+    ?
+    materialSemesterFilter.value
+    :
+    "all";
+
+
+    const materialCards =
+    document.querySelectorAll(
+        ".study-material-card"
+    );
+
+
+    let visibleCount =
+    0;
+
+
+    materialCards.forEach(
+    function(card){
+
+
+        const searchText =
+        (
+            card.dataset.search
+            ||
+            card.innerText
+        )
+        .toLowerCase();
+
+
+        const cardSubject =
+        card.dataset.subject;
+
+
+        const cardType =
+        card.dataset.type;
+
+
+        const cardSemester =
+        card.dataset.semester;
+
+
+        const matchesSearch =
+        searchText.includes(
+            searchValue
+        );
+
+
+        const matchesSubject =
+        (
+            subjectValue ===
+            "all"
+
+            ||
+
+            cardSubject ===
+            subjectValue
+        );
+
+
+        const matchesType =
+        (
+            typeValue ===
+            "all"
+
+            ||
+
+            cardType ===
+            typeValue
+        );
+
+
+        const matchesSemester =
+        (
+            semesterValue ===
+            "all"
+
+            ||
+
+            cardSemester ===
+            semesterValue
+        );
+
+
+        if(
+            matchesSearch
+            &&
+            matchesSubject
+            &&
+            matchesType
+            &&
+            matchesSemester
+        ){
+
+            card.style.display =
+            "";
+
+            visibleCount++;
+
+        }
+
+        else{
+
+            card.style.display =
+            "none";
+
+        }
+
+
+    }
+    );
+
+
+    if(noMaterialResult){
+
+        noMaterialResult.style.display =
+        visibleCount === 0
+        ?
+        "block"
+        :
+        "none";
+
+    }
+
+
+}
+
+
+
+/* =========================================================
+                    SEARCH EVENT
+========================================================= */
+
+if(materialSearchInput){
+
+    materialSearchInput.addEventListener(
+        "input",
+        filterMaterials
+    );
+
+}
+
+
+
+/* =========================================================
+                    FILTER EVENTS
+========================================================= */
+
+if(materialSubjectFilter){
+
+    materialSubjectFilter.addEventListener(
+        "change",
+        filterMaterials
+    );
+
+}
+
+
+if(materialTypeFilter){
+
+    materialTypeFilter.addEventListener(
+        "change",
+        filterMaterials
+    );
+
+}
+
+
+if(materialSemesterFilter){
+
+    materialSemesterFilter.addEventListener(
+        "change",
+        filterMaterials
+    );
+
+}
+
+
+
+/* =========================================================
+                    RESET FILTERS
+========================================================= */
+
+function resetMaterialFilters(){
+
+
+    if(materialSearchInput){
+
+        materialSearchInput.value =
+        "";
+
+    }
+
+
+    if(materialSubjectFilter){
+
+        materialSubjectFilter.value =
+        "all";
+
+    }
+
+
+    if(materialTypeFilter){
+
+        materialTypeFilter.value =
+        "all";
+
+    }
+
+
+    if(materialSemesterFilter){
+
+        materialSemesterFilter.value =
+        "all";
+
+    }
+
+
+    filterMaterials();
+
+
+}
+
+
+
+if(resetMaterialFilterBtn){
+
+    resetMaterialFilterBtn.addEventListener(
+        "click",
+        resetMaterialFilters
+    );
+
+}
+
+
+
+if(noResultResetBtn){
+
+    noResultResetBtn.addEventListener(
+        "click",
+        resetMaterialFilters
+    );
+
+}
+
+
+
+/* =========================================================
+                    VIEW MATERIAL
+========================================================= */
+
+window.viewMaterial =
+function(materialId){
+
+
+    const data =
+    materialData[
+        materialId
+    ];
+
+
+    if(!data){
+
+        console.error(
+            "Material not found:",
+            materialId
+        );
+
+        return;
+
+    }
+
+
+    selectedMaterialId =
+    materialId;
+
+
+    document.getElementById(
+        "viewMaterialId"
+    ).innerText =
+    materialId;
+
+
+    document.getElementById(
+        "viewMaterialTitle"
+    ).innerText =
+    data.title;
+
+
+    document.getElementById(
+        "viewMaterialDescription"
+    ).innerText =
+    data.description;
+
+
+    document.getElementById(
+        "viewMaterialSubject"
+    ).innerText =
+    data.subject;
+
+
+    document.getElementById(
+        "viewMaterialType"
+    ).innerText =
+    data.type;
+
+
+    document.getElementById(
+        "viewMaterialSemester"
+    ).innerText =
+    data.semester;
+
+
+    document.getElementById(
+        "viewMaterialSection"
+    ).innerText =
+    data.section;
+
+
+    document.getElementById(
+        "viewMaterialSize"
+    ).innerText =
+    data.size;
+
+
+    document.getElementById(
+        "viewMaterialDate"
+    ).innerText =
+    data.date;
+
+
+    document.getElementById(
+        "viewMaterialDownloads"
+    ).innerText =
+    data.downloads;
+
+
+    const iconContainer =
+    document.getElementById(
+        "viewMaterialIcon"
+    );
+
+
+    if(iconContainer){
+
+        iconContainer.innerHTML =
+        `<i class="${data.icon}"></i>`;
+
+    }
+
+
+    const downloadButton =
+    document.getElementById(
+        "viewModalDownloadBtn"
+    );
+
+
+    if(downloadButton){
+
+
+        if(
+            data.typeKey ===
+            "link"
+        ){
+
+            downloadButton.innerHTML = `
+
+                <i
+                    class="fa-solid
+                           fa-arrow-up-right-from-square
+                           me-2">
+                </i>
+
+                Open Resource
+
+            `;
+
+        }
+
+        else{
+
+            downloadButton.innerHTML = `
+
+                <i
+                    class="fa-solid
+                           fa-download
+                           me-2">
+                </i>
+
+                Download
+
+            `;
+
+        }
+
+
+    }
+
+
+    const modal =
+    bootstrap.Modal
+    .getOrCreateInstance(
+        document.getElementById(
+            "viewMaterialModal"
+        )
+    );
+
+
+    modal.show();
+
+
+};
+
+
+
+/* =========================================================
+                    DOWNLOAD / OPEN MATERIAL
+========================================================= */
+
+window.downloadMaterial =
+function(materialId){
+
+
+    const data =
+    materialData[
+        materialId
+    ];
+
+
+    if(!data){
+
+        return;
+
+    }
+
+
+    /*
+        IMPORTANT:
+
+        Abhi project frontend-only hai.
+
+        Jab actual PDF/PPT/DOC files
+        backend/server se connect karoge,
+        tab yahan real file URL use karna.
+
+        Example:
+
+        data.fileUrl = "../../uploads/file.pdf";
+
+    */
+
+
+    if(
+        data.typeKey ===
+        "link"
+    ){
+
+
+        if(
+            data.url
+            &&
+            data.url !==
+            "https://example.com"
+        ){
+
+            window.open(
+                data.url,
+                "_blank"
+            );
+
+        }
+
+        else{
+
+            alert(
+                "Demo resource link hai. Backend/database connect karne ke baad actual URL open hoga."
+            );
+
+        }
+
+
+    }
+
+    else{
+
+
+        alert(
+            data.title +
+            "\n\nDownload feature ready hai.\nActual file upload/backend connect hone ke baad file download hogi."
+        );
+
+
+    }
+
+
+    data.downloads++;
+
+
+    updateStatistics();
+
+
+};
+
+
+
+/* =========================================================
+            VIEW MODAL DOWNLOAD BUTTON
+========================================================= */
+
+const viewModalDownloadBtn =
+document.getElementById(
+"viewModalDownloadBtn"
+);
+
+
+if(viewModalDownloadBtn){
+
+    viewModalDownloadBtn.addEventListener(
+        "click",
+        function(){
+
+
+            if(
+                !selectedMaterialId
+            ){
+
+                return;
+
+            }
+
+
+            downloadMaterial(
+                selectedMaterialId
+            );
+
+
+            const data =
+            materialData[
+                selectedMaterialId
+            ];
+
+
+            if(data){
+
+                document.getElementById(
+                    "viewMaterialDownloads"
+                ).innerText =
+                data.downloads;
+
+            }
+
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+                    DELETE MATERIAL
+========================================================= */
+
+window.openDeleteMaterial =
+function(materialId){
+
+
+    const data =
+    materialData[
+        materialId
+    ];
+
+
+    if(!data){
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "deleteMaterialId"
+    ).value =
+    materialId;
+
+
+    document.getElementById(
+        "deleteMaterialName"
+    ).innerText =
+    '"' + data.title + '"';
+
+
+    const modal =
+    bootstrap.Modal
+    .getOrCreateInstance(
+        document.getElementById(
+            "deleteMaterialModal"
+        )
+    );
+
+
+    modal.show();
+
+
+};
+
+
+
+/* =========================================================
+                CONFIRM DELETE MATERIAL
+========================================================= */
+
+const confirmDeleteMaterialBtn =
+document.getElementById(
+"confirmDeleteMaterialBtn"
+);
+
+
+if(confirmDeleteMaterialBtn){
+
+    confirmDeleteMaterialBtn
+    .addEventListener(
+        "click",
+        function(){
+
+
+            const materialId =
+            document.getElementById(
+                "deleteMaterialId"
+            ).value;
+
+
+            if(!materialId){
+
+                return;
+
+            }
+
+
+            const card =
+            document.querySelector(
+                `.study-material-card[data-id="${materialId}"]`
+            );
+
+
+            if(card){
+
+                card.remove();
+
+            }
+
+
+            delete materialData[
+                materialId
+            ];
+
+
+            if(
+                selectedMaterialId ===
+                materialId
+            ){
+
+                selectedMaterialId =
+                null;
+
+            }
+
+
+            const modalElement =
+            document.getElementById(
+                "deleteMaterialModal"
+            );
+
+
+            const modal =
+            bootstrap.Modal.getInstance(
+                modalElement
+            );
+
+
+            if(modal){
+
+                modal.hide();
+
+            }
+
+
+            updateStatistics();
+
+            filterMaterials();
+
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+                    UPLOAD ELEMENTS
+========================================================= */
+
+const uploadMaterialForm =
+document.getElementById(
+"uploadMaterialForm"
+);
+
+
+const uploadMaterialType =
+document.getElementById(
+"uploadMaterialType"
+);
+
+
+const materialFileSection =
+document.getElementById(
+"materialFileSection"
+);
+
+
+const materialLinkSection =
+document.getElementById(
+"materialLinkSection"
+);
+
+
+const materialExternalLink =
+document.getElementById(
+"materialExternalLink"
+);
+
+
+const materialFileInput =
+document.getElementById(
+"materialFileInput"
+);
+
+
+const materialUploadArea =
+document.getElementById(
+"materialUploadArea"
+);
+
+
+const browseMaterialFileBtn =
+document.getElementById(
+"browseMaterialFileBtn"
+);
+
+
+const selectedMaterialFile =
+document.getElementById(
+"selectedMaterialFile"
+);
+
+
+const selectedFileName =
+document.getElementById(
+"selectedFileName"
+);
+
+
+const selectedFileSize =
+document.getElementById(
+"selectedFileSize"
+);
+
+
+const selectedFileIcon =
+document.getElementById(
+"selectedFileIcon"
+);
+
+
+const removeSelectedFileBtn =
+document.getElementById(
+"removeSelectedFileBtn"
+);
+
+
+const materialDescription =
+document.getElementById(
+"materialDescription"
+);
+
+
+const materialDescriptionCount =
+document.getElementById(
+"materialDescriptionCount"
+);
+
+
+
+/* =========================================================
+                DESCRIPTION CHARACTER COUNT
+========================================================= */
+
+if(materialDescription){
+
+    materialDescription.addEventListener(
+        "input",
+        function(){
+
+
+            if(materialDescriptionCount){
+
+                materialDescriptionCount
+                .innerText =
+                this.value.length;
+
+            }
+
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+                MATERIAL TYPE CHANGE
+========================================================= */
+
+if(uploadMaterialType){
+
+    uploadMaterialType.addEventListener(
+        "change",
+        function(){
+
+
+            if(
+                this.value ===
+                "link"
+            ){
+
+
+                if(materialFileSection){
+
+                    materialFileSection
+                    .style.display =
+                    "none";
+
+                }
+
+
+                if(materialLinkSection){
+
+                    materialLinkSection
+                    .style.display =
+                    "block";
+
+                }
+
+
+                removeSelectedFile();
+
+
+            }
+
+            else{
+
+
+                if(materialFileSection){
+
+                    materialFileSection
+                    .style.display =
+                    "block";
+
+                }
+
+
+                if(materialLinkSection){
+
+                    materialLinkSection
+                    .style.display =
+                    "none";
+
+                }
+
+
+                if(materialExternalLink){
+
+                    materialExternalLink.value =
+                    "";
+
+                }
+
+
+            }
+
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+                    BROWSE FILE
+========================================================= */
+
+if(
+    browseMaterialFileBtn
+    &&
+    materialFileInput
+){
+
+    browseMaterialFileBtn
+    .addEventListener(
+        "click",
+        function(event){
+
+
+            event.stopPropagation();
+
+            materialFileInput.click();
+
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+                UPLOAD AREA CLICK
+========================================================= */
+
+if(
+    materialUploadArea
+    &&
+    materialFileInput
+){
+
+    materialUploadArea.addEventListener(
+        "click",
+        function(event){
+
+
+            if(
+                event.target.closest(
+                    "#browseMaterialFileBtn"
+                )
+            ){
+
+                return;
+
+            }
+
+
+            materialFileInput.click();
+
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+                    FILE INPUT CHANGE
+========================================================= */
+
+if(materialFileInput){
+
+    materialFileInput.addEventListener(
+        "change",
+        function(){
+
+
+            if(
+                this.files
+                &&
+                this.files.length > 0
+            ){
+
+                handleSelectedFile(
+                    this.files[0]
+                );
+
+            }
+
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+                    DRAG OVER
+========================================================= */
+
+if(materialUploadArea){
+
+    materialUploadArea.addEventListener(
+        "dragover",
+        function(event){
+
+
+            event.preventDefault();
+
+            this.classList.add(
+                "dragging"
+            );
+
+
+        }
+    );
+
+
+    materialUploadArea.addEventListener(
+        "dragleave",
+        function(event){
+
+
+            event.preventDefault();
+
+            this.classList.remove(
+                "dragging"
+            );
+
+
+        }
+    );
+
+
+    materialUploadArea.addEventListener(
+        "drop",
+        function(event){
+
+
+            event.preventDefault();
+
+
+            this.classList.remove(
+                "dragging"
+            );
+
+
+            const files =
+            event.dataTransfer.files;
+
+
+            if(
+                files
+                &&
+                files.length > 0
+            ){
+
+                handleSelectedFile(
+                    files[0]
+                );
+
+            }
+
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+                    HANDLE FILE
+========================================================= */
+
+function handleSelectedFile(
+file
+){
+
+
+    const allowedExtensions =
+    [
+        "pdf",
+        "ppt",
+        "pptx",
+        "doc",
+        "docx"
+    ];
+
+
+    const fileName =
+    file.name;
+
+
+    const extension =
+    fileName
+    .split(".")
+    .pop()
+    .toLowerCase();
+
+
+    if(
+        !allowedExtensions.includes(
+            extension
+        )
+    ){
+
+        alert(
+            "Invalid file type.\nPlease upload PDF, PPT, PPTX, DOC or DOCX."
+        );
+
+        return;
+
+    }
+
+
+    const maximumSize =
+    20 * 1024 * 1024;
+
+
+    if(
+        file.size >
+        maximumSize
+    ){
+
+        alert(
+            "File size must be less than 20 MB."
+        );
+
+        return;
+
+    }
+
+
+    selectedUploadFile =
+    file;
+
+
+    if(selectedFileName){
+
+        selectedFileName.innerText =
+        file.name;
+
+    }
+
+
+    if(selectedFileSize){
+
+        selectedFileSize.innerText =
+        formatFileSize(
+            file.size
+        );
+
+    }
+
+
+    if(selectedFileIcon){
+
+
+        if(
+            extension ===
+            "pdf"
+        ){
+
+            selectedFileIcon.className =
+            "fa-solid fa-file-pdf";
+
+        }
+
+        else if(
+            extension ===
+            "ppt"
+            ||
+            extension ===
+            "pptx"
+        ){
+
+            selectedFileIcon.className =
+            "fa-solid fa-file-powerpoint";
+
+        }
+
+        else{
+
+            selectedFileIcon.className =
+            "fa-solid fa-file-word";
+
+        }
+
+
+    }
+
+
+    if(selectedMaterialFile){
+
+        selectedMaterialFile
+        .style.display =
+        "flex";
+
+    }
+
+
+}
+
+
+
+/* =========================================================
+                    FORMAT FILE SIZE
+========================================================= */
+
+function formatFileSize(
+bytes
+){
+
+
+    if(
+        bytes < 1024
+    ){
+
+        return bytes +
+        " Bytes";
+
+    }
+
+
+    if(
+        bytes <
+        1024 * 1024
+    ){
+
+        return (
+            bytes / 1024
+        ).toFixed(1)
+        +
+        " KB";
+
+    }
+
+
+    return (
+        bytes /
+        (
+            1024 * 1024
+        )
+    ).toFixed(1)
+    +
+    " MB";
+
+
+}
+
+
+
+/* =========================================================
+                    REMOVE FILE
+========================================================= */
+
+function removeSelectedFile(){
+
+
+    selectedUploadFile =
+    null;
+
+
+    if(materialFileInput){
+
+        materialFileInput.value =
+        "";
+
+    }
+
+
+    if(selectedMaterialFile){
+
+        selectedMaterialFile
+        .style.display =
+        "none";
+
+    }
+
+
+    if(selectedFileName){
+
+        selectedFileName.innerText =
+        "File Name";
+
+    }
+
+
+    if(selectedFileSize){
+
+        selectedFileSize.innerText =
+        "0 MB";
+
+    }
+
+
+}
+
+
+
+if(removeSelectedFileBtn){
+
+    removeSelectedFileBtn
+    .addEventListener(
+        "click",
+        removeSelectedFile
+    );
+
+}
+
+
+
+/* =========================================================
+                GENERATE MATERIAL ID
+========================================================= */
+
+function generateMaterialId(){
+
+
+    let materialId;
+
+
+    do{
+
+
+        materialId =
+        "MAT-" +
+        String(
+            nextMaterialNumber
+        )
+        .padStart(
+            3,
+            "0"
+        );
+
+
+        nextMaterialNumber++;
+
+
+    }
+    while(
+        materialData[
+            materialId
+        ]
+    );
+
+
+    return materialId;
+
+
+}
+
+
+
+/* =========================================================
+                SEMESTER ROMAN NUMBER
+========================================================= */
+
+function semesterRoman(
+semester
+){
+
+
+    const values = {
+
+        "2":"II",
+        "3":"III",
+        "4":"IV",
+        "5":"V",
+        "6":"VI"
+
+    };
+
+
+    return values[
+        semester
+    ]
+    ||
+    semester;
+
+
+}
+
+
+
+/* =========================================================
+                MATERIAL TYPE INFORMATION
+========================================================= */
+
+function getTypeInformation(
+type
+){
+
+
+    if(
+        type ===
+        "pdf"
+    ){
+
+        return {
+
+            label:"PDF",
+
+            icon:
+            "fa-solid fa-file-pdf"
+
+        };
+
+    }
+
+
+    if(
+        type ===
+        "ppt"
+    ){
+
+        return {
+
+            label:"PPT",
+
+            icon:
+            "fa-solid fa-file-powerpoint"
+
+        };
+
+    }
+
+
+    if(
+        type ===
+        "doc"
+    ){
+
+        return {
+
+            label:"DOC",
+
+            icon:
+            "fa-solid fa-file-word"
+
+        };
+
+    }
+
+
+    return {
+
+        label:"LINK",
+
+        icon:
+        "fa-solid fa-link"
+
+    };
+
+
+}
+
+
+
+/* =========================================================
+                    UPLOAD MATERIAL
+========================================================= */
+
+if(uploadMaterialForm){
+
+    uploadMaterialForm.addEventListener(
+        "submit",
+        function(event){
+
+
+            event.preventDefault();
+
+
+            const title =
+            document.getElementById(
+                "materialTitle"
+            )
+            .value
+            .trim();
+
+
+            const subjectKey =
+            document.getElementById(
+                "uploadSubject"
+            ).value;
+
+
+            const typeKey =
+            document.getElementById(
+                "uploadMaterialType"
+            ).value;
+
+
+            const semesterKey =
+            document.getElementById(
+                "uploadSemester"
+            ).value;
+
+
+            const sectionValue =
+            document.getElementById(
+                "uploadSection"
+            ).value;
+
+
+            const description =
+            document.getElementById(
+                "materialDescription"
+            )
+            .value
+            .trim();
+
+
+            if(
+                !title
+                ||
+                !subjectKey
+                ||
+                !typeKey
+                ||
+                !semesterKey
+                ||
+                !sectionValue
+            ){
+
+                alert(
+                    "Please fill all required fields."
+                );
+
+                return;
+
+            }
+
+
+            if(
+                typeKey ===
+                "link"
+            ){
+
+
+                const link =
+                materialExternalLink
+                ?
+                materialExternalLink
+                .value
+                .trim()
+                :
+                "";
+
+
+                if(!link){
+
+                    alert(
+                        "Please enter resource URL."
+                    );
+
+                    return;
+
+                }
+
+
+                try{
+
+                    new URL(
+                        link
+                    );
+
+                }
+
+                catch(error){
+
+                    alert(
+                        "Please enter a valid URL."
+                    );
+
+                    return;
+
+                }
+
+
+            }
+
+            else{
+
+
+                if(
+                    !selectedUploadFile
+                ){
+
+                    alert(
+                        "Please select a file."
+                    );
+
+                    return;
+
+                }
+
+
+            }
+
+
+            const materialId =
+            generateMaterialId();
+
+
+            const typeInfo =
+            getTypeInformation(
+                typeKey
+            );
+
+
+            const subjectInfo =
+            subjectInformation[
+                subjectKey
+            ];
+
+
+            const today =
+            new Date();
+
+
+            const fullDate =
+            today.toLocaleDateString(
+                "en-GB",
+                {
+                    day:"2-digit",
+                    month:"short",
+                    year:"numeric"
+                }
+            );
+
+
+            const shortDate =
+            today.toLocaleDateString(
+                "en-GB",
+                {
+                    day:"2-digit",
+                    month:"short"
+                }
+            );
+
+
+            const fileSize =
+            typeKey ===
+            "link"
+            ?
+            "Web Link"
+            :
+            formatFileSize(
+                selectedUploadFile.size
+            );
+
+
+            const newMaterial = {
+
+                title:
+                title,
+
+                subject:
+                subjectInfo.name,
+
+                subjectKey:
+                subjectKey,
+
+                type:
+                typeInfo.label,
+
+                typeKey:
+                typeKey,
+
+                semester:
+                "Semester " +
+                semesterRoman(
+                    semesterKey
+                ),
+
+                semesterKey:
+                semesterKey,
+
+                section:
+                "Section " +
+                sectionValue,
+
+                size:
+                fileSize,
+
+                date:
+                fullDate,
+
+                shortDate:
+                shortDate,
+
+                downloads:
+                0,
+
+                description:
+                description
+                ||
+                "Study material uploaded for students.",
+
+                icon:
+                typeInfo.icon,
+
+                url:
+                typeKey ===
+                "link"
+                ?
+                materialExternalLink.value.trim()
+                :
+                null
+
+            };
+
+
+            materialData[
+                materialId
+            ] =
+            newMaterial;
+
+
+            createMaterialCard(
+                materialId,
+                newMaterial
+            );
+
+
+            updateStatistics();
+
+
+            resetMaterialFilters();
+
+
+            resetUploadForm();
+
+
+            const uploadModalElement =
+            document.getElementById(
+                "uploadMaterialModal"
+            );
+
+
+            const uploadModal =
+            bootstrap.Modal.getInstance(
+                uploadModalElement
+            );
+
+
+            if(uploadModal){
+
+                uploadModal.hide();
+
+            }
+
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+                CREATE NEW MATERIAL CARD
+========================================================= */
+
+function createMaterialCard(
+materialId,
+data
+){
+
+
+    if(!materialGrid){
+
+        return;
+
+    }
+
+
+    const typeInfo =
+    getTypeInformation(
+        data.typeKey
+    );
+
+
+    const subjectInfo =
+    subjectInformation[
+        data.subjectKey
+    ];
+
+
+    const card =
+    document.createElement(
+        "div"
+    );
+
+
+    card.className =
+    "study-material-card";
+
+
+    card.dataset.id =
+    materialId;
+
+
+    card.dataset.subject =
+    data.subjectKey;
+
+
+    card.dataset.type =
+    data.typeKey;
+
+
+    card.dataset.semester =
+    data.semesterKey;
+
+
+    card.dataset.search =
+    (
+        data.title +
+        " " +
+        data.subject +
+        " " +
+        data.description
+    )
+    .toLowerCase();
+
+
+    const isLink =
+    data.typeKey ===
+    "link";
+
+
+    card.innerHTML = `
+
+
+        <div class="material-card-top">
+
+
+            <div
+                class="material-file-icon
+                       ${data.typeKey}">
+
+                <i class="${typeInfo.icon}"></i>
+
+            </div>
+
+
+            <div
+                class="material-card-menu
+                       dropdown">
+
+
+                <button
+                    type="button"
+                    class="material-menu-btn"
+                    data-bs-toggle="dropdown">
+
+                    <i
+                        class="fa-solid
+                               fa-ellipsis-vertical">
+                    </i>
+
+                </button>
+
+
+                <ul
+                    class="dropdown-menu
+                           dropdown-menu-end">
+
+
+                    <li>
+
+                        <button
+                            class="dropdown-item"
+                            type="button"
+                            onclick="viewMaterial('${materialId}')">
+
+                            <i
+                                class="fa-solid
+                                       fa-eye
+                                       me-2">
+                            </i>
+
+                            View Details
+
+                        </button>
+
+                    </li>
+
+
+                    <li>
+
+                        <button
+                            class="dropdown-item"
+                            type="button"
+                            onclick="downloadMaterial('${materialId}')">
+
+                            <i
+                                class="fa-solid
+                                       ${
+                                           isLink
+                                           ?
+                                           "fa-arrow-up-right-from-square"
+                                           :
+                                           "fa-download"
+                                       }
+                                       me-2">
+                            </i>
+
+                            ${
+                                isLink
+                                ?
+                                "Open Resource"
+                                :
+                                "Download"
+                            }
+
+                        </button>
+
+                    </li>
+
+
+                    <li>
+
+                        <hr class="dropdown-divider">
+
+                    </li>
+
+
+                    <li>
+
+                        <button
+                            class="dropdown-item
+                                   text-danger"
+                            type="button"
+                            onclick="openDeleteMaterial('${materialId}')">
+
+                            <i
+                                class="fa-solid
+                                       fa-trash
+                                       me-2">
+                            </i>
+
+                            Delete
+
+                        </button>
+
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="material-card-body">
+
+
+            <span
+                class="material-type-badge
+                       ${data.typeKey}">
+
+                ${data.type}
+
+            </span>
+
+
+            <h5>
+
+                ${data.title}
+
+            </h5>
+
+
+            <p class="material-subject">
+
+                <i
+                    class="${subjectInfo.icon}
+                           me-1">
+                </i>
+
+                ${data.subject}
+
+            </p>
+
+
+            <p class="material-description">
+
+                ${data.description}
+
+            </p>
+
+
+
+            <div class="material-meta-grid">
+
+
+                <div class="material-meta-box">
+
+                    <small>
+                        Semester
+                    </small>
+
+                    <strong>
+
+                        ${
+                            semesterRoman(
+                                data.semesterKey
+                            )
+                        }
+
+                    </strong>
+
+                </div>
+
+
+                <div class="material-meta-box">
+
+                    <small>
+                        Section
+                    </small>
+
+                    <strong>
+
+                        ${
+                            data.section
+                            .replace(
+                                "Section ",
+                                ""
+                            )
+                        }
+
+                    </strong>
+
+                </div>
+
+
+                <div class="material-meta-box">
+
+                    <small>
+
+                        ${
+                            isLink
+                            ?
+                            "Type"
+                            :
+                            "Size"
+                        }
+
+                    </small>
+
+                    <strong>
+
+                        ${data.size}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="material-meta-box">
+
+                    <small>
+                        Uploaded
+                    </small>
+
+                    <strong>
+
+                        ${
+                            data.shortDate
+                            ||
+                            data.date
+                        }
+
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="material-download-info">
+
+
+                <span>
+
+                    <i
+                        class="fa-solid
+                               ${
+                                   isLink
+                                   ?
+                                   "fa-arrow-pointer"
+                                   :
+                                   "fa-download"
+                               }
+                               me-1">
+                    </i>
+
+                    ${data.downloads}
+
+                    ${
+                        isLink
+                        ?
+                        " Opens"
+                        :
+                        " Downloads"
+                    }
+
+                </span>
+
+
+                <span>
+
+                    <i
+                        class="fa-solid
+                               fa-clock
+                               me-1">
+                    </i>
+
+                    ${data.date}
+
+                </span>
+
+
+            </div>
+
+
+
+            <div class="material-actions">
+
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="viewMaterial('${materialId}')">
+
+                    <i
+                        class="fa-solid
+                               fa-eye
+                               me-1">
+                    </i>
+
+                    View
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn
+                           btn-outline-primary"
+                    onclick="downloadMaterial('${materialId}')">
+
+                    <i
+                        class="fa-solid
+                               ${
+                                   isLink
+                                   ?
+                                   "fa-arrow-up-right-from-square"
+                                   :
+                                   "fa-download"
+                               }
+                               me-1">
+                    </i>
+
+                    ${
+                        isLink
+                        ?
+                        "Open"
+                        :
+                        "Download"
+                    }
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn
+                           btn-outline-danger"
+                    onclick="openDeleteMaterial('${materialId}')">
+
+                    <i
+                        class="fa-solid
+                               fa-trash">
+                    </i>
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    `;
+
+
+    materialGrid.prepend(
+        card
+    );
+
+
+}
+
+
+
+/* =========================================================
+                    RESET UPLOAD FORM
+========================================================= */
+
+function resetUploadForm(){
+
+
+    if(uploadMaterialForm){
+
+        uploadMaterialForm.reset();
+
+    }
+
+
+    removeSelectedFile();
+
+
+    if(materialDescriptionCount){
+
+        materialDescriptionCount
+        .innerText =
+        "0";
+
+    }
+
+
+    if(materialFileSection){
+
+        materialFileSection
+        .style.display =
+        "block";
+
+    }
+
+
+    if(materialLinkSection){
+
+        materialLinkSection
+        .style.display =
+        "none";
+
+    }
+
+
+}
+
+
+
+/* =========================================================
+                RESET MODAL WHEN CLOSED
+========================================================= */
+
+const uploadMaterialModal =
+document.getElementById(
+"uploadMaterialModal"
+);
+
+
+if(uploadMaterialModal){
+
+    uploadMaterialModal.addEventListener(
+        "hidden.bs.modal",
+        function(){
+
+            resetUploadForm();
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+                AUTOMATIC STATISTICS
+========================================================= */
+
+function updateStatistics(){
+
+
+    const materials =
+    Object.values(
+        materialData
+    );
+
+
+    /* TOTAL MATERIAL */
+
+
+    const totalMaterialCount =
+    document.getElementById(
+        "totalMaterialCount"
+    );
+
+
+    if(totalMaterialCount){
+
+        totalMaterialCount.innerText =
+        materials.length;
+
+    }
+
+
+
+    /* TOTAL PDF */
+
+
+    const pdfCount =
+    materials.filter(
+        function(material){
+
+            return (
+                material.typeKey ===
+                "pdf"
+            );
+
+        }
+    ).length;
+
+
+    const totalPdfCount =
+    document.getElementById(
+        "totalPdfCount"
+    );
+
+
+    if(totalPdfCount){
+
+        totalPdfCount.innerText =
+        pdfCount;
+
+    }
+
+
+
+    /* SUBJECT COUNT */
+
+
+    const uniqueSubjects =
+    new Set(
+        materials.map(
+            function(material){
+
+                return material.subjectKey;
+
+            }
+        )
+    );
+
+
+    const subjectCount =
+    document.getElementById(
+        "materialSubjectCount"
+    );
+
+
+    if(subjectCount){
+
+        subjectCount.innerText =
+        uniqueSubjects.size;
+
+    }
+
+
+
+    /* DOWNLOAD COUNT */
+
+
+    const totalDownloads =
+    materials.reduce(
+        function(total,material){
+
+            return (
+                total +
+                Number(
+                    material.downloads
+                    ||
+                    0
+                )
+            );
+
+        },
+        0
+    );
+
+
+    const downloadCount =
+    document.getElementById(
+        "totalDownloadCount"
+    );
+
+
+    if(downloadCount){
+
+        downloadCount.innerText =
+        totalDownloads;
+
+    }
+
+
+}
+
+
+
+/* =========================================================
+                    DARK / LIGHT MODE
+========================================================= */
+
+const themeToggle =
+document.getElementById(
+"themeToggle"
+);
+
+
+function applyTeacherTheme(
+theme
+){
+
+
+    if(
+        theme ===
+        "dark"
+    ){
+
+        document.body.classList.add(
+            "dark"
+        );
+
+    }
+
+    else{
+
+        document.body.classList.remove(
+            "dark"
+        );
+
+    }
+
+
+    if(themeToggle){
+
+
+        const icon =
+        themeToggle.querySelector(
+            "i"
+        );
+
+
+        if(icon){
+
+
+            if(
+                theme ===
+                "dark"
+            ){
+
+                icon.className =
+                "fa-solid fa-sun";
+
+            }
+
+            else{
+
+                icon.className =
+                "fa-solid fa-moon";
+
+            }
+
+
+        }
+
+
+        themeToggle.title =
+        theme ===
+        "dark"
+        ?
+        "Switch to Light Mode"
+        :
+        "Switch to Dark Mode";
+
+
+    }
+
+
+    localStorage.setItem(
+        "teacherTheme",
+        theme
+    );
+
+
+}
+
+
+
+/* =========================================================
+                    LOAD SAVED THEME
+========================================================= */
+
+const savedTeacherTheme =
+localStorage.getItem(
+    "teacherTheme"
+);
+
+
+if(
+    savedTeacherTheme ===
+    "dark"
+){
+
+    applyTeacherTheme(
+        "dark"
+    );
+
+}
+
+else{
+
+    applyTeacherTheme(
+        "light"
+    );
+
+}
+
+
+
+/* =========================================================
+                    THEME TOGGLE
+========================================================= */
+
+if(themeToggle){
+
+    themeToggle.addEventListener(
+        "click",
+        function(event){
+
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            const isDark =
+            document.body
+            .classList
+            .contains(
+                "dark"
+            );
+
+
+            applyTeacherTheme(
+                isDark
+                ?
+                "light"
+                :
+                "dark"
+            );
+
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+                    MOBILE SIDEBAR
+========================================================= */
+
+const mobileMenuBtn =
+document.getElementById(
+"mobileMenuBtn"
+);
+
+
+const teacherSidebar =
+document.getElementById(
+"teacherSidebar"
+);
+
+
+const sidebarOverlay =
+document.getElementById(
+"sidebarOverlay"
+);
+
+
+
+function openSidebar(){
+
+
+    if(teacherSidebar){
+
+        teacherSidebar.classList.add(
+            "show"
+        );
+
+    }
+
+
+    if(sidebarOverlay){
+
+        sidebarOverlay.classList.add(
+            "show"
+        );
+
+    }
+
+
+}
+
+
+
+function closeSidebar(){
+
+
+    if(teacherSidebar){
+
+        teacherSidebar.classList.remove(
+            "show"
+        );
+
+    }
+
+
+    if(sidebarOverlay){
+
+        sidebarOverlay.classList.remove(
+            "show"
+        );
+
+    }
+
+
+}
+
+
+
+/* =========================================================
+                    MENU BUTTON
+========================================================= */
+
+if(mobileMenuBtn){
+
+    mobileMenuBtn.addEventListener(
+        "click",
+        function(event){
+
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            if(
+                teacherSidebar
+                &&
+                teacherSidebar.classList
+                .contains(
+                    "show"
+                )
+            ){
+
+                closeSidebar();
+
+            }
+
+            else{
+
+                openSidebar();
+
+            }
+
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+                    OVERLAY CLICK
+========================================================= */
+
+if(sidebarOverlay){
+
+    sidebarOverlay.addEventListener(
+        "click",
+        closeSidebar
+    );
+
+}
+
+
+
+/* =========================================================
+                SIDEBAR MENU CLICK MOBILE
+========================================================= */
+
+if(teacherSidebar){
+
+
+    const sidebarLinks =
+    teacherSidebar.querySelectorAll(
+        "a"
+    );
+
+
+    sidebarLinks.forEach(
+        function(link){
+
+
+            link.addEventListener(
+                "click",
+                function(){
+
+
+                    if(
+                        window.innerWidth <=
+                        992
+                    ){
+
+                        closeSidebar();
+
+                    }
+
+
+                }
+            );
+
+
+        }
+    );
+
+
+}
+
+
+
+/* =========================================================
+                    ESC CLOSE SIDEBAR
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+
+        if(
+            event.key ===
+            "Escape"
+        ){
+
+            closeSidebar();
+
+        }
+
+
+    }
+);
+
+
+
+/* =========================================================
+                    WINDOW RESIZE
+========================================================= */
+
+window.addEventListener(
+    "resize",
+    function(){
+
+
+        if(
+            window.innerWidth >
+            992
+        ){
+
+            closeSidebar();
+
+        }
+
+
+    }
+);
+
+
+
+/* =========================================================
+                    INITIAL LOAD
+========================================================= */
+
+updateStatistics();
+
+filterMaterials();
+
+
+});
+
+</script>
+
+
+
+<!-- =========================================================
+            FINAL DARK MODE + SIDEBAR FIX
+========================================================= -->
+
+<style>
+
+
+/* =========================================================
+                DARK MODE SIDEBAR
+========================================================= */
+
+body.dark .teacher-sidebar{
+
+    background:
+        linear-gradient(
+            180deg,
+            #080d1b 0%,
+            #0d1426 48%,
+            #111827 100%
+        );
+
+    border-right:
+        1px solid #253044;
+
+    box-shadow:
+        8px 0 35px
+        rgba(0,0,0,.30);
+
+}
+
+
+body.dark
+.teacher-sidebar-brand{
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.06);
+
+}
+
+
+body.dark
+.teacher-sidebar-brand img{
+
+    background:#ffffff;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.35);
+
+}
+
+
+body.dark
+.teacher-sidebar-menu a{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark
+.teacher-sidebar-menu a:hover{
+
+    background:
+        rgba(139,92,246,.14);
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.teacher-sidebar-menu a.active{
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(108,76,255,.32),
+            rgba(139,92,246,.18)
+        );
+
+    color:#ffffff;
+
+    box-shadow:
+        inset 3px 0 0
+        #8b5cf6;
+
+}
+
+
+body.dark
+.sidebar-section-title{
+
+    color:#64748b;
+
+}
+
+
+
+/* =========================================================
+                    DARK MAIN CONTENT
+========================================================= */
+
+body.dark
+.material-page-header,
+body.dark
+.material-stat-card,
+body.dark
+.material-content-card,
+body.dark
+.study-material-card{
+
+    background:#111827;
+
+    color:#f8fafc;
+
+    border-color:#273244;
+
+}
+
+
+body.dark
+.material-page-header p,
+body.dark
+.material-stat-info p,
+body.dark
+.material-card-header p,
+body.dark
+.material-description,
+body.dark
+.material-download-info{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.material-card-header h4{
+
+    color:#c4b5fd;
+
+}
+
+
+
+/* =========================================================
+                    DARK MATERIAL META
+========================================================= */
+
+body.dark
+.material-meta-box{
+
+    background:#1f2937;
+
+}
+
+
+body.dark
+.material-meta-box small{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.material-meta-box strong{
+
+    color:#f8fafc;
+
+}
+
+
+
+/* =========================================================
+                    DARK INPUTS
+========================================================= */
+
+body.dark
+.material-search input,
+body.dark
+.material-filter,
+body.dark
+.material-form-control{
+
+    background:#1f2937;
+
+    color:#ffffff;
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.material-search input::placeholder,
+body.dark
+.material-form-control::placeholder{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.material-filter option,
+body.dark
+.material-form-control option{
+
+    background:#1f2937;
+
+    color:#ffffff;
+
+}
+
+
+
+/* =========================================================
+                    DARK UPLOAD AREA
+========================================================= */
+
+body.dark
+.material-upload-area{
+
+    background:#172033;
+
+    border-color:#475569;
+
+}
+
+
+body.dark
+.material-upload-area:hover,
+body.dark
+.material-upload-area.dragging{
+
+    background:#1e293b;
+
+    border-color:#8b5cf6;
+
+}
+
+
+body.dark
+.selected-material-file{
+
+    background:#1f2937;
+
+    border-color:#374151;
+
+}
+
+
+
+/* =========================================================
+                    DARK DROPDOWN
+========================================================= */
+
+body.dark
+.dropdown-menu{
+
+    background:#111827;
+
+    border:
+        1px solid #374151;
+
+}
+
+
+body.dark
+.dropdown-menu .dropdown-item{
+
+    color:#e5e7eb;
+
+}
+
+
+body.dark
+.dropdown-menu .dropdown-item:hover{
+
+    background:#1f2937;
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark
+.dropdown-divider{
+
+    border-color:#374151;
+
+}
+
+
+
+/* =========================================================
+                    DARK MODAL
+========================================================= */
+
+body.dark
+.modal-content{
+
+    background:#111827;
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.modal-header,
+body.dark
+.modal-footer{
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.modal .text-muted{
+
+    color:#94a3b8 !important;
+
+}
+
+
+body.dark
+.btn-close{
+
+    filter:invert(1);
+
+}
+
+
+body.dark
+.material-preview-box{
+
+    background:#1f2937;
+
+}
+
+
+body.dark
+.material-detail-row{
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.material-detail-row span{
+
+    color:#94a3b8;
+
+}
+
+
+
+/* =========================================================
+                    DARK NAVBAR
+========================================================= */
+
+body.dark
+.teacher-navbar{
+
+    background:#111827;
+
+    border-bottom:
+        1px solid #263244;
+
+}
+
+
+body.dark
+.navbar-title h4{
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.nav-icon-btn,
+body.dark
+.mobile-menu-btn{
+
+    background:#1f2937;
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark
+.teacher-profile:hover{
+
+    background:#1f2937;
+
+}
+
+
+body.dark
+.teacher-profile-info strong{
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.teacher-profile-info small{
+
+    color:#94a3b8;
+
+}
+
+
+
+/* =========================================================
+                    DARK FOOTER
+========================================================= */
+
+body.dark
+.footer{
+
+    color:#64748b;
+
+}
+
+
+
+/* =========================================================
+                SMOOTH THEME TRANSITION
+========================================================= */
+
+.teacher-sidebar,
+.teacher-navbar,
+.material-page-header,
+.material-stat-card,
+.material-content-card,
+.study-material-card,
+.material-meta-box,
+.material-search input,
+.material-filter,
+.material-form-control,
+.modal-content{
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+
+}
+
+
+</style>
+
+
+</body>
+
+</html>

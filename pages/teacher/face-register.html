@@ -1,0 +1,4777 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Teacher Face Registration | FMPS
+</title>
+
+
+<!-- =========================================================
+                        BOOTSTRAP
+========================================================= -->
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<!-- =========================================================
+                        FONT AWESOME
+========================================================= -->
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+<!-- =========================================================
+                        GOOGLE FONT
+========================================================= -->
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+
+<style>
+
+/* =========================================================
+                        GLOBAL
+========================================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+
+    margin:0;
+
+    font-family:'Poppins',sans-serif;
+
+    background:
+    linear-gradient(
+        135deg,
+        #f7f5ff 0%,
+        #eef5ff 50%,
+        #f8f9fc 100%
+    );
+
+    color:#1f2937;
+
+    min-height:100vh;
+
+}
+
+
+/* =========================================================
+                        NAVBAR
+========================================================= */
+
+.face-register-navbar{
+
+    background:#ffffff;
+
+    padding:15px 0;
+
+    box-shadow:
+    0 3px 15px rgba(0,0,0,.07);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+}
+
+
+.face-brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+}
+
+
+.face-brand img{
+
+    width:55px;
+
+    height:55px;
+
+    object-fit:contain;
+
+}
+
+
+.face-brand h5{
+
+    margin:0;
+
+    color:#6c4cff;
+
+    font-size:16px;
+
+    font-weight:800;
+
+}
+
+
+.face-brand small{
+
+    color:#6b7280;
+
+    font-size:12px;
+
+}
+
+
+/* =========================================================
+                    THEME BUTTON
+========================================================= */
+
+.theme-btn{
+
+    width:44px;
+
+    height:44px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#f2efff;
+
+    color:#6c4cff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    transition:.3s;
+
+}
+
+
+.theme-btn:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* =========================================================
+                        PAGE
+========================================================= */
+
+.face-register-page{
+
+    padding:35px 0;
+
+    min-height:
+    calc(100vh - 150px);
+
+}
+
+
+/* =========================================================
+                        PAGE HEADER
+========================================================= */
+
+.face-register-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:22px 25px;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.06);
+
+    margin-bottom:25px;
+
+}
+
+
+.face-register-header h2{
+
+    font-weight:800;
+
+    margin-bottom:5px;
+
+}
+
+
+.face-register-header p{
+
+    margin:0;
+
+    color:#6b7280;
+
+}
+
+
+/* =========================================================
+                        MAIN GRID
+========================================================= */
+
+.face-register-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1.5fr 1fr;
+
+    gap:25px;
+
+    align-items:start;
+
+}
+
+
+/* =========================================================
+                        COMMON CARD
+========================================================= */
+
+.register-card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.08);
+
+    margin-bottom:25px;
+
+}
+
+
+.register-card h4{
+
+    font-weight:700;
+
+    color:#6c4cff;
+
+    margin-bottom:20px;
+
+}
+
+
+/* =========================================================
+                    TEACHER FORM
+========================================================= */
+
+.form-label{
+
+    font-weight:600;
+
+    font-size:14px;
+
+}
+
+
+.form-control,
+.form-select{
+
+    min-height:48px;
+
+    border-radius:12px;
+
+    border:1px solid #e5e7eb;
+
+    padding-left:15px;
+
+}
+
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:#6c4cff;
+
+    box-shadow:
+    0 0 0 .2rem
+    rgba(108,76,255,.12);
+
+}
+
+
+/* =========================================================
+                        CAMERA
+========================================================= */
+
+.face-camera{
+
+    position:relative;
+
+    height:470px;
+
+    background:#111827;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                        VIDEO
+========================================================= */
+
+#registerVideo{
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:none;
+
+    transform:scaleX(-1);
+
+}
+
+
+/* =========================================================
+                        CANVAS
+========================================================= */
+
+#registerCanvas{
+
+    display:none;
+
+}
+
+
+/* =========================================================
+                        PLACEHOLDER
+========================================================= */
+
+.camera-placeholder{
+
+    text-align:center;
+
+    padding:30px;
+
+}
+
+
+.camera-placeholder i{
+
+    font-size:85px;
+
+    color:#8b5cf6;
+
+    margin-bottom:20px;
+
+}
+
+
+.camera-placeholder h3{
+
+    font-weight:700;
+
+}
+
+
+.camera-placeholder p{
+
+    color:#cbd5e1;
+
+    max-width:500px;
+
+    margin:auto;
+
+}
+
+
+/* =========================================================
+                    FACE GUIDE
+========================================================= */
+
+.face-guide{
+
+    position:absolute;
+
+    width:235px;
+
+    height:290px;
+
+    border:
+    3px solid #22c55e;
+
+    border-radius:45%;
+
+    display:none;
+
+    z-index:5;
+
+    box-shadow:
+    0 0 25px
+    rgba(34,197,94,.6);
+
+    animation:
+    faceGuidePulse
+    1.6s infinite;
+
+}
+
+
+@keyframes faceGuidePulse{
+
+    0%,
+    100%{
+
+        box-shadow:
+        0 0 15px
+        rgba(34,197,94,.4);
+
+    }
+
+    50%{
+
+        box-shadow:
+        0 0 38px
+        rgba(34,197,94,.9);
+
+    }
+
+}
+
+
+/* =========================================================
+                    SCANNER LINE
+========================================================= */
+
+.scan-line{
+
+    position:absolute;
+
+    left:12%;
+
+    right:12%;
+
+    height:3px;
+
+    background:#22c55e;
+
+    box-shadow:
+    0 0 15px #22c55e;
+
+    top:15%;
+
+    z-index:6;
+
+    display:none;
+
+    animation:
+    scanMove
+    2s linear infinite;
+
+}
+
+
+@keyframes scanMove{
+
+    0%{
+
+        top:15%;
+
+    }
+
+    50%{
+
+        top:82%;
+
+    }
+
+    100%{
+
+        top:15%;
+
+    }
+
+}
+
+
+/* =========================================================
+                        LIVE BADGE
+========================================================= */
+
+.camera-live-badge{
+
+    position:absolute;
+
+    top:18px;
+
+    left:18px;
+
+    z-index:10;
+
+    display:none;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:
+    7px 12px;
+
+    border-radius:20px;
+
+    background:
+    rgba(220,38,38,.9);
+
+    color:#ffffff;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+
+.live-dot{
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:#ffffff;
+
+    animation:
+    liveBlink
+    1s infinite;
+
+}
+
+
+@keyframes liveBlink{
+
+    50%{
+
+        opacity:.3;
+
+    }
+
+}
+
+
+/* =========================================================
+                    CAMERA MESSAGE
+========================================================= */
+
+.camera-message{
+
+    position:absolute;
+
+    bottom:18px;
+
+    left:50%;
+
+    transform:
+    translateX(-50%);
+
+    z-index:10;
+
+    background:
+    rgba(17,24,39,.80);
+
+    color:#ffffff;
+
+    padding:
+    9px 16px;
+
+    border-radius:30px;
+
+    font-size:12px;
+
+    display:none;
+
+    white-space:nowrap;
+
+}
+
+
+/* =========================================================
+                    CAMERA BUTTONS
+========================================================= */
+
+.camera-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-top:20px;
+
+}
+
+
+.camera-buttons .btn{
+
+    min-width:145px;
+
+    padding:
+    11px 18px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+}
+
+
+/* =========================================================
+                    CAPTURED PREVIEW
+========================================================= */
+
+.captured-preview{
+
+    display:none;
+
+    margin-top:20px;
+
+}
+
+
+.captured-preview h6{
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+}
+
+
+.captured-images{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:12px;
+
+}
+
+
+.captured-image-box{
+
+    position:relative;
+
+    height:130px;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    border:
+    2px solid #e5e7eb;
+
+    background:#f8fafc;
+
+}
+
+
+.captured-image-box img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+
+.capture-number{
+
+    position:absolute;
+
+    top:7px;
+
+    right:7px;
+
+    width:28px;
+
+    height:28px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+
+/* =========================================================
+                    REGISTRATION STATUS
+========================================================= */
+
+.status-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:
+    14px 0;
+
+    border-bottom:
+    1px solid #eeeeee;
+
+}
+
+
+.status-row:last-child{
+
+    border-bottom:none;
+
+}
+
+
+.status-row span:first-child{
+
+    font-weight:600;
+
+}
+
+
+/* =========================================================
+                    PROGRESS SECTION
+========================================================= */
+
+.registration-progress{
+
+    margin-top:20px;
+
+}
+
+
+.registration-progress .progress{
+
+    height:11px;
+
+    border-radius:20px;
+
+}
+
+
+/* =========================================================
+                    SAMPLE COUNTER
+========================================================= */
+
+.sample-counter{
+
+    text-align:center;
+
+    padding:22px;
+
+    background:
+    rgba(108,76,255,.06);
+
+    border:
+    1px solid
+    rgba(108,76,255,.15);
+
+    border-radius:15px;
+
+}
+
+
+.sample-counter h2{
+
+    font-size:38px;
+
+    font-weight:800;
+
+    color:#6c4cff;
+
+    margin-bottom:0;
+
+}
+
+
+.sample-counter p{
+
+    margin:0;
+
+    color:#6b7280;
+
+}
+
+
+/* =========================================================
+                    REGISTRATION INFO
+========================================================= */
+
+.registration-info{
+
+    background:
+    rgba(108,76,255,.06);
+
+    border:
+    1px solid
+    rgba(108,76,255,.15);
+
+    border-radius:15px;
+
+    padding:18px;
+
+}
+
+
+.registration-info i{
+
+    color:#6c4cff;
+
+}
+
+
+/* =========================================================
+                    AI QUALITY BOX
+========================================================= */
+
+.ai-quality-box{
+
+    padding:18px;
+
+    border-radius:15px;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(108,76,255,.08),
+        rgba(59,130,246,.08)
+    );
+
+    border:
+    1px solid
+    rgba(108,76,255,.15);
+
+}
+
+
+.ai-quality-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:
+    10px 0;
+
+    border-bottom:
+    1px solid
+    rgba(0,0,0,.06);
+
+}
+
+
+.ai-quality-item:last-child{
+
+    border-bottom:none;
+
+}
+
+
+/* =========================================================
+                    REGISTER BUTTON
+========================================================= */
+
+.final-register-btn{
+
+    padding:13px;
+
+    border-radius:14px;
+
+    font-weight:700;
+
+}
+
+
+/* =========================================================
+                        FOOTER
+========================================================= */
+
+.footer{
+
+    text-align:center;
+
+    padding:22px;
+
+    color:#6b7280;
+
+    font-size:13px;
+
+}
+
+
+/* =========================================================
+                        DARK MODE
+========================================================= */
+
+body.dark{
+
+    background:
+    linear-gradient(
+        135deg,
+        #080d18,
+        #0f172a,
+        #111827
+    );
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.face-register-navbar{
+
+    background:#111827;
+
+    border-bottom:
+    1px solid #263244;
+
+}
+
+
+body.dark
+.face-brand h5{
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.face-brand small{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.theme-btn{
+
+    background:#1f2937;
+
+    color:#facc15;
+
+}
+
+
+body.dark
+.face-register-header,
+body.dark
+.register-card{
+
+    background:#111827;
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.face-register-header p{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.register-card h4{
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.form-control,
+body.dark
+.form-select{
+
+    background:#1f2937;
+
+    color:#ffffff;
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.form-control::placeholder{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.status-row{
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.sample-counter,
+body.dark
+.registration-info,
+body.dark
+.ai-quality-box{
+
+    background:#1f2937;
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.sample-counter p{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.captured-image-box{
+
+    background:#1f2937;
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.text-muted{
+
+    color:#94a3b8 !important;
+
+}
+
+
+body.dark
+.modal-content{
+
+    background:#111827;
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.footer{
+
+    color:#94a3b8;
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE
+========================================================= */
+
+@media(max-width:992px){
+
+    .face-register-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+@media(max-width:576px){
+
+    .face-camera{
+
+        height:360px;
+
+    }
+
+
+    .captured-images{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .captured-image-box{
+
+        height:220px;
+
+    }
+
+
+    .register-card{
+
+        padding:18px;
+
+    }
+
+
+    .face-brand h5{
+
+        font-size:12px;
+
+    }
+
+
+    .face-brand small{
+
+        display:none;
+
+    }
+
+
+    .face-brand img{
+
+        width:45px;
+
+        height:45px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+                        NAVBAR
+========================================================= -->
+
+<nav class="face-register-navbar">
+
+<div class="container-fluid px-4 px-lg-5">
+
+<div class="d-flex justify-content-between align-items-center">
+
+
+<!-- ================= BRAND ================= -->
+
+<a
+    href="../../index.html"
+    class="face-brand text-decoration-none">
+
+
+<img
+    src="../../images/logo.png"
+    alt="FMPS Logo">
+
+
+<div>
+
+<h5>
+
+    FACULTY MANAGEMENT & PRODUCTIVITY SYSTEM
+
+</h5>
+
+
+<small>
+
+    Patna Women's College (Autonomous)
+
+</small>
+
+</div>
+
+</a>
+
+
+<!-- ================= RIGHT SIDE ================= -->
+
+<div class="d-flex align-items-center gap-2">
+
+
+<button
+    type="button"
+    id="themeToggle"
+    class="theme-btn"
+    title="Dark / Light Mode">
+
+    <i class="fa-solid fa-moon"></i>
+
+</button>
+
+
+<a
+    href="teacher-login.html"
+    class="btn btn-outline-primary rounded-pill px-4">
+
+    <i class="fa-solid fa-arrow-left me-2"></i>
+
+    Back to Login
+
+</a>
+
+
+</div>
+
+</div>
+
+</div>
+
+</nav>
+
+
+<!-- =========================================================
+                        MAIN PAGE
+========================================================= -->
+
+<main class="face-register-page">
+
+<div class="container-fluid px-4 px-lg-5">
+
+
+<!-- =========================================================
+                        PAGE HEADER
+========================================================= -->
+
+<div class="face-register-header">
+
+
+<div>
+
+<h2>
+
+    <i
+        class="fa-solid fa-user-plus me-2"
+        style="color:#6c4cff;">
+    </i>
+
+    Teacher Face Registration
+
+</h2>
+
+
+<p>
+
+    Register your face securely for
+    AI-powered Teacher authentication.
+
+</p>
+
+</div>
+
+
+<div class="d-flex gap-2 flex-wrap">
+
+
+<a
+    href="face-login.html"
+    class="btn btn-outline-primary">
+
+    <i class="fa-solid fa-face-viewfinder me-2"></i>
+
+    Face Login
+
+</a>
+
+
+<a
+    href="teacher-login.html"
+    class="btn btn-primary">
+
+    <i class="fa-solid fa-key me-2"></i>
+
+    Manual Login
+
+</a>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                        MAIN GRID
+========================================================= -->
+
+<div class="face-register-grid">
+
+
+<!-- =========================================================
+                        LEFT COLUMN
+========================================================= -->
+
+<div>
+
+
+<!-- =========================================================
+                    TEACHER INFORMATION
+========================================================= -->
+
+<section class="register-card">
+
+
+<h4>
+
+    <i class="fa-solid fa-id-card me-2"></i>
+
+    Teacher Information
+
+</h4>
+
+
+<div class="row g-3">
+
+
+<div class="col-md-6">
+
+<label class="form-label">
+
+    Teacher ID
+
+</label>
+
+
+<input
+    type="text"
+    id="teacherId"
+    class="form-control"
+    placeholder="e.g. TCH001">
+
+</div>
+
+
+<div class="col-md-6">
+
+<label class="form-label">
+
+    Full Name
+
+</label>
+
+
+<input
+    type="text"
+    id="teacherName"
+    class="form-control"
+    placeholder="Enter teacher name">
+
+</div>
+
+
+<div class="col-md-6">
+
+<label class="form-label">
+
+    Email Address
+
+</label>
+
+
+<input
+    type="email"
+    id="teacherEmail"
+    class="form-control"
+    placeholder="teacher@college.edu">
+
+</div>
+
+
+<div class="col-md-6">
+
+<label class="form-label">
+
+    Department
+
+</label>
+
+
+<select
+    id="teacherDepartment"
+    class="form-select">
+
+
+<option value="">
+
+    Select Department
+
+</option>
+
+
+<option value="Computer Science">
+
+    Computer Science
+
+</option>
+
+
+<option value="Information Technology">
+
+    Information Technology
+
+</option>
+
+
+<option value="Commerce">
+
+    Commerce
+
+</option>
+
+
+<option value="Management">
+
+    Management
+
+</option>
+
+
+<option value="English">
+
+    English
+
+</option>
+
+
+<option value="Mathematics">
+
+    Mathematics
+
+</option>
+
+
+<option value="Physics">
+
+    Physics
+
+</option>
+
+
+<option value="Chemistry">
+
+    Chemistry
+
+</option>
+
+
+</select>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+                    CAMERA REGISTRATION
+========================================================= -->
+
+<section class="register-card">
+
+
+<h4>
+
+    <i class="fa-solid fa-camera me-2"></i>
+
+    Face Capture
+
+</h4>
+
+
+<div
+    id="faceCamera"
+    class="face-camera">
+
+
+<!-- ================= VIDEO ================= -->
+
+<video
+    id="registerVideo"
+    autoplay
+    playsinline>
+</video>
+
+
+<!-- ================= CANVAS ================= -->
+
+<canvas
+    id="registerCanvas">
+</canvas>
+
+
+<!-- ================= PLACEHOLDER ================= -->
+
+<div
+    id="cameraPlaceholder"
+    class="camera-placeholder">
+
+
+<i class="fa-solid fa-face-smile"></i>
+
+
+<h3>
+
+    Camera Ready
+
+</h3>
+
+
+<p>
+
+    Start your camera and position your
+    face inside the green recognition frame.
+
+</p>
+
+
+</div>
+
+
+<!-- ================= FACE GUIDE ================= -->
+
+<div
+    id="faceGuide"
+    class="face-guide">
+</div>
+
+
+<!-- ================= SCAN LINE ================= -->
+
+<div
+    id="scanLine"
+    class="scan-line">
+</div>
+
+
+<!-- ================= LIVE ================= -->
+
+<div
+    id="cameraLiveBadge"
+    class="camera-live-badge">
+
+<span class="live-dot"></span>
+
+LIVE
+
+</div>
+
+
+<!-- ================= MESSAGE ================= -->
+
+<div
+    id="cameraMessage"
+    class="camera-message">
+
+    Position your face inside the frame
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    CAMERA BUTTONS
+========================================================= -->
+
+<div class="camera-buttons">
+
+
+<button
+    type="button"
+    id="startCameraBtn"
+    class="btn btn-success">
+
+    <i class="fa-solid fa-video me-2"></i>
+
+    Start Camera
+
+</button>
+
+
+<button
+    type="button"
+    id="captureFaceBtn"
+    class="btn btn-primary"
+    disabled>
+
+    <i class="fa-solid fa-camera me-2"></i>
+
+    Capture Face
+
+</button>
+
+
+<button
+    type="button"
+    id="retakeBtn"
+    class="btn btn-warning"
+    disabled>
+
+    <i class="fa-solid fa-rotate-right me-2"></i>
+
+    Retake
+
+</button>
+
+
+<button
+    type="button"
+    id="stopCameraBtn"
+    class="btn btn-danger"
+    disabled>
+
+    <i class="fa-solid fa-video-slash me-2"></i>
+
+    Stop Camera
+
+</button>
+
+
+</div>
+
+
+<!-- =========================================================
+                    CAPTURED SAMPLES
+========================================================= -->
+
+<div
+    id="capturedPreview"
+    class="captured-preview">
+
+
+<h6>
+
+    <i class="fa-solid fa-images me-2"></i>
+
+    Captured Face Samples
+
+</h6>
+
+
+<div class="captured-images">
+
+
+<div class="captured-image-box">
+
+<img
+    id="sampleImage1"
+    alt="Face Sample 1">
+
+<span class="capture-number">
+
+    1
+
+</span>
+
+</div>
+
+
+<div class="captured-image-box">
+
+<img
+    id="sampleImage2"
+    alt="Face Sample 2">
+
+<span class="capture-number">
+
+    2
+
+</span>
+
+</div>
+
+
+<div class="captured-image-box">
+
+<img
+    id="sampleImage3"
+    alt="Face Sample 3">
+
+<span class="capture-number">
+
+    3
+
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    REGISTRATION GUIDELINES
+========================================================= -->
+
+<section class="register-card">
+
+
+<h4>
+
+    <i class="fa-solid fa-circle-info me-2"></i>
+
+    Face Registration Guidelines
+
+</h4>
+
+
+<div class="registration-info">
+
+
+<div class="d-flex gap-3 mb-3">
+
+<i class="fa-solid fa-lightbulb mt-1"></i>
+
+<div>
+
+<strong>
+
+    Good Lighting
+
+</strong>
+
+<p class="text-muted mb-0">
+
+    Make sure your face is clearly visible
+    and properly illuminated.
+
+</p>
+
+</div>
+
+</div>
+
+
+<hr>
+
+
+<div class="d-flex gap-3 mb-3">
+
+<i class="fa-solid fa-face-smile mt-1"></i>
+
+<div>
+
+<strong>
+
+    Look Straight
+
+</strong>
+
+<p class="text-muted mb-0">
+
+    Keep your face centered and look
+    directly toward the camera.
+
+</p>
+
+</div>
+
+</div>
+
+
+<hr>
+
+
+<div class="d-flex gap-3">
+
+<i class="fa-solid fa-glasses mt-1"></i>
+
+<div>
+
+<strong>
+
+    Clear Face
+
+</strong>
+
+<p class="text-muted mb-0">
+
+    Remove masks, dark glasses or anything
+    covering important facial features.
+
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+</div>
+
+
+<!-- =========================================================
+                        RIGHT COLUMN
+========================================================= -->
+
+<div>
+
+
+<!-- =========================================================
+                    REGISTRATION STATUS
+========================================================= -->
+
+<section class="register-card">
+
+
+<h4>
+
+    <i class="fa-solid fa-microchip me-2"></i>
+
+    Registration Status
+
+</h4>
+
+
+<div class="status-row">
+
+<span>
+
+    Camera
+
+</span>
+
+<span
+    id="cameraStatus"
+    class="badge bg-secondary">
+
+    Offline
+
+</span>
+
+</div>
+
+
+<div class="status-row">
+
+<span>
+
+    Face Detection
+
+</span>
+
+<span
+    id="faceDetectionStatus"
+    class="badge bg-warning text-dark">
+
+    Waiting...
+
+</span>
+
+</div>
+
+
+<div class="status-row">
+
+<span>
+
+    Image Quality
+
+</span>
+
+<span
+    id="imageQualityStatus"
+    class="badge bg-secondary">
+
+    Pending
+
+</span>
+
+</div>
+
+
+<div class="status-row">
+
+<span>
+
+    Face Samples
+
+</span>
+
+<span
+    id="sampleStatus"
+    class="badge bg-secondary">
+
+    0 / 3
+
+</span>
+
+</div>
+
+
+<div class="status-row">
+
+<span>
+
+    Registration
+
+</span>
+
+<span
+    id="registrationStatus"
+    class="badge bg-danger">
+
+    Not Registered
+
+</span>
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    SAMPLE COUNTER
+========================================================= -->
+
+<section class="register-card">
+
+
+<h4>
+
+    <i class="fa-solid fa-images me-2"></i>
+
+    Face Samples
+
+</h4>
+
+
+<div class="sample-counter">
+
+
+<h2>
+
+<span id="sampleCount">
+
+    0
+
+</span>
+
+/ 3
+
+</h2>
+
+
+<p>
+
+    Capture three clear face samples
+
+</p>
+
+
+</div>
+
+
+<div class="registration-progress">
+
+
+<div class="d-flex justify-content-between mb-2">
+
+<span>
+
+    Registration Progress
+
+</span>
+
+<strong
+    id="registrationProgressText">
+
+    0%
+
+</strong>
+
+</div>
+
+
+<div class="progress">
+
+<div
+    id="registrationProgressBar"
+    class="progress-bar"
+    style="width:0%;">
+</div>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    AI QUALITY CHECK
+========================================================= -->
+
+<section class="register-card">
+
+
+<h4>
+
+    <i class="fa-solid fa-wand-magic-sparkles me-2"></i>
+
+    AI Quality Check
+
+</h4>
+
+
+<div class="ai-quality-box">
+
+
+<div class="ai-quality-item">
+
+<span>
+
+    Face Position
+
+</span>
+
+<strong
+    id="facePositionQuality"
+    class="text-secondary">
+
+    Waiting
+
+</strong>
+
+</div>
+
+
+<div class="ai-quality-item">
+
+<span>
+
+    Lighting
+
+</span>
+
+<strong
+    id="lightingQuality"
+    class="text-secondary">
+
+    Waiting
+
+</strong>
+
+</div>
+
+
+<div class="ai-quality-item">
+
+<span>
+
+    Face Clarity
+
+</span>
+
+<strong
+    id="clarityQuality"
+    class="text-secondary">
+
+    Waiting
+
+</strong>
+
+</div>
+
+
+<div class="ai-quality-item">
+
+<span>
+
+    Overall Quality
+
+</span>
+
+<strong
+    id="overallQuality"
+    class="text-secondary">
+
+    Pending
+
+</strong>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    REGISTER FACE
+========================================================= -->
+
+<section class="register-card">
+
+
+<h4>
+
+    <i class="fa-solid fa-user-check me-2"></i>
+
+    Complete Registration
+
+</h4>
+
+
+<p class="text-muted">
+
+    After capturing all three face samples,
+    register your biometric face profile.
+
+</p>
+
+
+<div class="d-grid">
+
+
+<button
+    type="button"
+    id="registerFaceBtn"
+    class="btn btn-primary final-register-btn"
+    disabled>
+
+    <i class="fa-solid fa-face-viewfinder me-2"></i>
+
+    Register My Face
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+        PART 2 WILL CONTINUE FROM HERE
+========================================================= -->
+<!-- =========================================================
+                    REGISTRATION SUCCESS MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="registrationSuccessModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content border-0 rounded-4">
+
+
+<div class="modal-header bg-success text-white">
+
+<h5 class="modal-title">
+
+    <i class="fa-solid fa-circle-check me-2"></i>
+
+    Face Registration Successful
+
+</h5>
+
+
+<button
+    type="button"
+    class="btn-close btn-close-white"
+    data-bs-dismiss="modal">
+</button>
+
+</div>
+
+
+<div class="modal-body text-center p-4">
+
+
+<div
+    class="mx-auto mb-3 d-flex
+    justify-content-center
+    align-items-center
+    rounded-circle"
+    style="
+    width:90px;
+    height:90px;
+    background:rgba(34,197,94,.12);
+    color:#16a34a;
+    font-size:42px;">
+
+    <i class="fa-solid fa-face-smile"></i>
+
+</div>
+
+
+<h4 class="fw-bold">
+
+    Face Registered Successfully!
+
+</h4>
+
+
+<p class="text-muted">
+
+    Your face samples have been successfully
+    registered in the Faculty Management &
+    Productivity System.
+
+</p>
+
+
+<div class="card border-0 bg-light mt-4">
+
+<div class="card-body text-start">
+
+<div class="row">
+
+
+<div class="col-6 mb-3">
+
+<small class="text-muted">
+
+    Teacher Name
+
+</small>
+
+<h6
+    id="successTeacherName"
+    class="fw-bold mb-0">
+
+    --
+
+</h6>
+
+</div>
+
+
+<div class="col-6 mb-3">
+
+<small class="text-muted">
+
+    Teacher ID
+
+</small>
+
+<h6
+    id="successTeacherId"
+    class="fw-bold mb-0">
+
+    --
+
+</h6>
+
+</div>
+
+
+<div class="col-6">
+
+<small class="text-muted">
+
+    Department
+
+</small>
+
+<h6
+    id="successDepartment"
+    class="fw-bold mb-0">
+
+    --
+
+</h6>
+
+</div>
+
+
+<div class="col-6">
+
+<small class="text-muted">
+
+    Samples
+
+</small>
+
+<h6 class="fw-bold text-success mb-0">
+
+    3 / 3 Registered
+
+</h6>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="alert alert-success mt-4 mb-0">
+
+    <i class="fa-solid fa-shield-halved me-2"></i>
+
+    You can now use AI Face Login
+    to access your Teacher account.
+
+</div>
+
+
+</div>
+
+
+<div class="modal-footer justify-content-center">
+
+
+<a
+    href="face-login.html"
+    class="btn btn-success px-4">
+
+    <i class="fa-solid fa-face-viewfinder me-2"></i>
+
+    Go to Face Login
+
+</a>
+
+
+<a
+    href="teacher-login.html"
+    class="btn btn-outline-primary px-4">
+
+    <i class="fa-solid fa-key me-2"></i>
+
+    Manual Login
+
+</a>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    FORM ERROR MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="formErrorModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content border-0 rounded-4">
+
+
+<div class="modal-header bg-danger text-white">
+
+<h5 class="modal-title">
+
+    <i class="fa-solid fa-triangle-exclamation me-2"></i>
+
+    Information Required
+
+</h5>
+
+
+<button
+    type="button"
+    class="btn-close btn-close-white"
+    data-bs-dismiss="modal">
+</button>
+
+</div>
+
+
+<div class="modal-body text-center p-4">
+
+
+<i
+    class="fa-solid fa-file-circle-exclamation
+    fa-4x text-danger mb-3">
+</i>
+
+
+<h4 class="fw-bold">
+
+    Complete Teacher Information
+
+</h4>
+
+
+<p
+    id="formErrorMessage"
+    class="text-muted">
+
+    Please complete all required fields.
+
+</p>
+
+
+</div>
+
+
+<div class="modal-footer justify-content-center">
+
+<button
+    type="button"
+    class="btn btn-danger px-4"
+    data-bs-dismiss="modal">
+
+    <i class="fa-solid fa-check me-2"></i>
+
+    Okay
+
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    CAMERA ERROR MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="cameraErrorModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content border-0 rounded-4">
+
+
+<div class="modal-header bg-danger text-white">
+
+<h5 class="modal-title">
+
+    <i class="fa-solid fa-camera-rotate me-2"></i>
+
+    Camera Error
+
+</h5>
+
+
+<button
+    type="button"
+    class="btn-close btn-close-white"
+    data-bs-dismiss="modal">
+</button>
+
+</div>
+
+
+<div class="modal-body text-center p-4">
+
+
+<i
+    class="fa-solid fa-video-slash
+    fa-4x text-danger mb-3">
+</i>
+
+
+<h4 class="fw-bold">
+
+    Unable to Access Camera
+
+</h4>
+
+
+<p
+    id="cameraErrorMessage"
+    class="text-muted">
+
+    Camera access could not be started.
+
+</p>
+
+
+<div class="alert alert-warning">
+
+    <i class="fa-solid fa-lightbulb me-2"></i>
+
+    Please allow camera permission in your browser
+    and try again.
+
+</div>
+
+
+</div>
+
+
+<div class="modal-footer justify-content-center">
+
+<button
+    type="button"
+    class="btn btn-danger"
+    data-bs-dismiss="modal">
+
+    Close
+
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                INSUFFICIENT SAMPLES MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="sampleErrorModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content border-0 rounded-4">
+
+
+<div class="modal-header bg-warning">
+
+<h5 class="modal-title">
+
+    <i class="fa-solid fa-images me-2"></i>
+
+    More Face Samples Required
+
+</h5>
+
+
+<button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal">
+</button>
+
+</div>
+
+
+<div class="modal-body text-center p-4">
+
+
+<i
+    class="fa-solid fa-face-smile-beam
+    fa-4x text-warning mb-3">
+</i>
+
+
+<h4 class="fw-bold">
+
+    Capture All 3 Samples
+
+</h4>
+
+
+<p class="text-muted">
+
+    Three clear face samples are required
+    before registration can be completed.
+
+</p>
+
+
+<div class="alert alert-info">
+
+    <strong id="sampleModalCount">
+
+        0 / 3
+
+    </strong>
+
+    face samples currently captured.
+
+</div>
+
+
+</div>
+
+
+<div class="modal-footer justify-content-center">
+
+<button
+    type="button"
+    class="btn btn-warning px-4"
+    data-bs-dismiss="modal">
+
+    <i class="fa-solid fa-camera me-2"></i>
+
+    Continue Capture
+
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                ALREADY REGISTERED MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="alreadyRegisteredModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content border-0 rounded-4">
+
+
+<div class="modal-header bg-primary text-white">
+
+<h5 class="modal-title">
+
+    <i class="fa-solid fa-circle-info me-2"></i>
+
+    Face Already Registered
+
+</h5>
+
+
+<button
+    type="button"
+    class="btn-close btn-close-white"
+    data-bs-dismiss="modal">
+</button>
+
+</div>
+
+
+<div class="modal-body text-center p-4">
+
+
+<i
+    class="fa-solid fa-user-check
+    fa-4x text-primary mb-3">
+</i>
+
+
+<h4 class="fw-bold">
+
+    Registration Already Exists
+
+</h4>
+
+
+<p class="text-muted">
+
+    A face profile is already registered
+    for this Teacher ID.
+
+</p>
+
+
+<div class="alert alert-primary">
+
+    If you want to update the registered
+    face profile, contact the administrator.
+
+</div>
+
+
+</div>
+
+
+<div class="modal-footer justify-content-center">
+
+
+<a
+    href="face-login.html"
+    class="btn btn-primary">
+
+    <i class="fa-solid fa-face-viewfinder me-2"></i>
+
+    Face Login
+
+</a>
+
+
+<button
+    type="button"
+    class="btn btn-outline-secondary"
+    data-bs-dismiss="modal">
+
+    Close
+
+</button>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                        FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+    © 2026 Faculty Management & Productivity System |
+    Teacher Face Registration
+
+</footer>
+
+
+</div>
+
+</main>
+
+
+<!-- =========================================================
+                    BOOTSTRAP JS
+========================================================= -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- =========================================================
+                FACE REGISTRATION JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+
+/* =========================================================
+                        ELEMENTS
+========================================================= */
+
+const registerVideo =
+document.getElementById(
+    "registerVideo"
+);
+
+
+const registerCanvas =
+document.getElementById(
+    "registerCanvas"
+);
+
+
+const cameraPlaceholder =
+document.getElementById(
+    "cameraPlaceholder"
+);
+
+
+const faceGuide =
+document.getElementById(
+    "faceGuide"
+);
+
+
+const scanLine =
+document.getElementById(
+    "scanLine"
+);
+
+
+const cameraLiveBadge =
+document.getElementById(
+    "cameraLiveBadge"
+);
+
+
+const cameraMessage =
+document.getElementById(
+    "cameraMessage"
+);
+
+
+/* =========================================================
+                        BUTTONS
+========================================================= */
+
+const startCameraBtn =
+document.getElementById(
+    "startCameraBtn"
+);
+
+
+const captureFaceBtn =
+document.getElementById(
+    "captureFaceBtn"
+);
+
+
+const retakeBtn =
+document.getElementById(
+    "retakeBtn"
+);
+
+
+const stopCameraBtn =
+document.getElementById(
+    "stopCameraBtn"
+);
+
+
+const registerFaceBtn =
+document.getElementById(
+    "registerFaceBtn"
+);
+
+
+/* =========================================================
+                    FORM ELEMENTS
+========================================================= */
+
+const teacherId =
+document.getElementById(
+    "teacherId"
+);
+
+
+const teacherName =
+document.getElementById(
+    "teacherName"
+);
+
+
+const teacherEmail =
+document.getElementById(
+    "teacherEmail"
+);
+
+
+const teacherDepartment =
+document.getElementById(
+    "teacherDepartment"
+);
+
+
+/* =========================================================
+                    STATUS ELEMENTS
+========================================================= */
+
+const cameraStatus =
+document.getElementById(
+    "cameraStatus"
+);
+
+
+const faceDetectionStatus =
+document.getElementById(
+    "faceDetectionStatus"
+);
+
+
+const imageQualityStatus =
+document.getElementById(
+    "imageQualityStatus"
+);
+
+
+const sampleStatus =
+document.getElementById(
+    "sampleStatus"
+);
+
+
+const registrationStatus =
+document.getElementById(
+    "registrationStatus"
+);
+
+
+/* =========================================================
+                    SAMPLE ELEMENTS
+========================================================= */
+
+const sampleCount =
+document.getElementById(
+    "sampleCount"
+);
+
+
+const capturedPreview =
+document.getElementById(
+    "capturedPreview"
+);
+
+
+const sampleImage1 =
+document.getElementById(
+    "sampleImage1"
+);
+
+
+const sampleImage2 =
+document.getElementById(
+    "sampleImage2"
+);
+
+
+const sampleImage3 =
+document.getElementById(
+    "sampleImage3"
+);
+
+
+const sampleImages = [
+
+    sampleImage1,
+
+    sampleImage2,
+
+    sampleImage3
+
+];
+
+
+/* =========================================================
+                    PROGRESS
+========================================================= */
+
+const registrationProgressText =
+document.getElementById(
+    "registrationProgressText"
+);
+
+
+const registrationProgressBar =
+document.getElementById(
+    "registrationProgressBar"
+);
+
+
+/* =========================================================
+                    AI QUALITY
+========================================================= */
+
+const facePositionQuality =
+document.getElementById(
+    "facePositionQuality"
+);
+
+
+const lightingQuality =
+document.getElementById(
+    "lightingQuality"
+);
+
+
+const clarityQuality =
+document.getElementById(
+    "clarityQuality"
+);
+
+
+const overallQuality =
+document.getElementById(
+    "overallQuality"
+);
+
+
+/* =========================================================
+                        VARIABLES
+========================================================= */
+
+let cameraStream =
+null;
+
+
+let cameraStarted =
+false;
+
+
+let isCapturing =
+false;
+
+
+let capturedSamples =
+[];
+
+
+const REQUIRED_SAMPLES =
+3;
+
+
+/* =========================================================
+                    FORM VALIDATION
+========================================================= */
+
+function validateTeacherInformation(){
+
+
+const id =
+teacherId.value.trim();
+
+
+const name =
+teacherName.value.trim();
+
+
+const email =
+teacherEmail.value.trim();
+
+
+const department =
+teacherDepartment.value.trim();
+
+
+if(!id){
+
+
+    showFormError(
+        "Please enter your Teacher ID."
+    );
+
+
+    teacherId.focus();
+
+
+    return false;
+
+}
+
+
+if(!name){
+
+
+    showFormError(
+        "Please enter your full name."
+    );
+
+
+    teacherName.focus();
+
+
+    return false;
+
+}
+
+
+if(!email){
+
+
+    showFormError(
+        "Please enter your email address."
+    );
+
+
+    teacherEmail.focus();
+
+
+    return false;
+
+}
+
+
+const emailPattern =
+/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+if(!emailPattern.test(email)){
+
+
+    showFormError(
+        "Please enter a valid email address."
+    );
+
+
+    teacherEmail.focus();
+
+
+    return false;
+
+}
+
+
+if(!department){
+
+
+    showFormError(
+        "Please select your department."
+    );
+
+
+    teacherDepartment.focus();
+
+
+    return false;
+
+}
+
+
+return true;
+
+
+}
+
+
+/* =========================================================
+                    FORM ERROR
+========================================================= */
+
+function showFormError(message){
+
+
+document.getElementById(
+    "formErrorMessage"
+).innerText =
+message;
+
+
+const modal =
+new bootstrap.Modal(
+    document.getElementById(
+        "formErrorModal"
+    )
+);
+
+
+modal.show();
+
+
+}
+
+
+/* =========================================================
+                    CAMERA ERROR
+========================================================= */
+
+function showCameraError(message){
+
+
+document.getElementById(
+    "cameraErrorMessage"
+).innerText =
+message;
+
+
+const modal =
+new bootstrap.Modal(
+    document.getElementById(
+        "cameraErrorModal"
+    )
+);
+
+
+modal.show();
+
+
+}
+
+
+/* =========================================================
+                    START CAMERA
+========================================================= */
+
+async function startCamera(){
+
+
+/*
+Teacher information pehle bharna compulsory rakha hai.
+*/
+
+if(!validateTeacherInformation()){
+
+    return;
+
+}
+
+
+try{
+
+
+if(
+    !navigator.mediaDevices ||
+    !navigator.mediaDevices.getUserMedia
+){
+
+
+    showCameraError(
+        "Your browser does not support camera access."
+    );
+
+
+    return;
+
+}
+
+
+/* =========================================================
+                REQUEST CAMERA PERMISSION
+========================================================= */
+
+cameraStream =
+await navigator.mediaDevices.getUserMedia({
+
+    video:{
+
+        facingMode:"user",
+
+        width:{
+            ideal:1280
+        },
+
+        height:{
+            ideal:720
+        }
+
+    },
+
+    audio:false
+
+});
+
+
+/* =========================================================
+                        VIDEO
+========================================================= */
+
+registerVideo.srcObject =
+cameraStream;
+
+
+await registerVideo.play();
+
+
+registerVideo.style.display =
+"block";
+
+
+cameraPlaceholder.style.display =
+"none";
+
+
+faceGuide.style.display =
+"block";
+
+
+cameraLiveBadge.style.display =
+"flex";
+
+
+cameraMessage.style.display =
+"block";
+
+
+cameraStarted =
+true;
+
+
+/* =========================================================
+                        BUTTONS
+========================================================= */
+
+startCameraBtn.disabled =
+true;
+
+
+captureFaceBtn.disabled =
+false;
+
+
+retakeBtn.disabled =
+capturedSamples.length === 0;
+
+
+stopCameraBtn.disabled =
+false;
+
+
+/* =========================================================
+                        STATUS
+========================================================= */
+
+cameraStatus.innerText =
+"Online";
+
+
+cameraStatus.className =
+"badge bg-success";
+
+
+faceDetectionStatus.innerText =
+"Face Ready";
+
+
+faceDetectionStatus.className =
+"badge bg-info text-dark";
+
+
+imageQualityStatus.innerText =
+"Checking...";
+
+
+imageQualityStatus.className =
+"badge bg-warning text-dark";
+
+
+/* =========================================================
+                    AI QUALITY DEMO
+========================================================= */
+
+setTimeout(
+function(){
+
+
+if(!cameraStarted){
+
+    return;
+
+}
+
+
+facePositionQuality.innerText =
+"Good";
+
+
+facePositionQuality.className =
+"text-success";
+
+
+lightingQuality.innerText =
+"Good";
+
+
+lightingQuality.className =
+"text-success";
+
+
+clarityQuality.innerText =
+"Clear";
+
+
+clarityQuality.className =
+"text-success";
+
+
+overallQuality.innerText =
+"Excellent";
+
+
+overallQuality.className =
+"text-success";
+
+
+imageQualityStatus.innerText =
+"Good";
+
+
+imageQualityStatus.className =
+"badge bg-success";
+
+
+cameraMessage.innerText =
+"Face detected • Ready to capture";
+
+
+},
+1000
+);
+
+
+}
+
+catch(error){
+
+
+console.error(
+    "Camera Error:",
+    error
+);
+
+
+cameraStatus.innerText =
+"Permission Denied";
+
+
+cameraStatus.className =
+"badge bg-danger";
+
+
+showCameraError(
+    "Camera permission was denied. Please allow camera access in Chrome and try again."
+);
+
+
+}
+
+
+}
+
+
+/* =========================================================
+                    START CAMERA BUTTON
+========================================================= */
+
+startCameraBtn.addEventListener(
+"click",
+startCamera
+);
+
+
+/* =========================================================
+                    CAPTURE IMAGE
+========================================================= */
+
+function captureImage(){
+
+
+if(
+    !registerVideo.videoWidth ||
+    !registerVideo.videoHeight
+){
+
+    return null;
+
+}
+
+
+registerCanvas.width =
+registerVideo.videoWidth;
+
+
+registerCanvas.height =
+registerVideo.videoHeight;
+
+
+const context =
+registerCanvas.getContext(
+    "2d"
+);
+
+
+/*
+Mirror canvas so captured image matches preview.
+*/
+
+context.save();
+
+
+context.translate(
+    registerCanvas.width,
+    0
+);
+
+
+context.scale(
+    -1,
+    1
+);
+
+
+context.drawImage(
+
+    registerVideo,
+
+    0,
+    0,
+
+    registerCanvas.width,
+    registerCanvas.height
+
+);
+
+
+context.restore();
+
+
+return registerCanvas.toDataURL(
+    "image/jpeg",
+    0.90
+);
+
+
+}
+
+
+/* =========================================================
+                    CAPTURE FACE
+========================================================= */
+
+captureFaceBtn.addEventListener(
+"click",
+function(){
+
+
+if(!cameraStarted){
+
+
+    showCameraError(
+        "Please start the camera first."
+    );
+
+
+    return;
+
+}
+
+
+if(isCapturing){
+
+    return;
+
+}
+
+
+if(
+    capturedSamples.length >=
+    REQUIRED_SAMPLES
+){
+
+    return;
+
+}
+
+
+isCapturing =
+true;
+
+
+captureFaceBtn.disabled =
+true;
+
+
+scanLine.style.display =
+"block";
+
+
+cameraMessage.innerText =
+"AI analyzing face...";
+
+
+faceDetectionStatus.innerText =
+"Scanning...";
+
+
+faceDetectionStatus.className =
+"badge bg-primary";
+
+
+imageQualityStatus.innerText =
+"Analyzing...";
+
+
+imageQualityStatus.className =
+"badge bg-warning text-dark";
+
+
+/* =========================================================
+                    AI SCAN DEMO
+========================================================= */
+
+setTimeout(
+function(){
+
+
+const image =
+captureImage();
+
+
+scanLine.style.display =
+"none";
+
+
+if(!image){
+
+
+    isCapturing =
+    false;
+
+
+    captureFaceBtn.disabled =
+    false;
+
+
+    showCameraError(
+        "Unable to capture face image. Please try again."
+    );
+
+
+    return;
+
+}
+
+
+/* =========================================================
+                    ADD SAMPLE
+========================================================= */
+
+capturedSamples.push(
+    image
+);
+
+
+const sampleIndex =
+capturedSamples.length - 1;
+
+
+sampleImages[
+    sampleIndex
+].src =
+image;
+
+
+capturedPreview.style.display =
+"block";
+
+
+/* =========================================================
+                    STATUS
+========================================================= */
+
+faceDetectionStatus.innerText =
+"Face Detected";
+
+
+faceDetectionStatus.className =
+"badge bg-success";
+
+
+imageQualityStatus.innerText =
+"Excellent";
+
+
+imageQualityStatus.className =
+"badge bg-success";
+
+
+cameraMessage.innerText =
+"Sample " +
+capturedSamples.length +
+" captured successfully";
+
+
+/* =========================================================
+                    QUALITY
+========================================================= */
+
+facePositionQuality.innerText =
+"Good";
+
+
+facePositionQuality.className =
+"text-success";
+
+
+lightingQuality.innerText =
+"Good";
+
+
+lightingQuality.className =
+"text-success";
+
+
+clarityQuality.innerText =
+"Clear";
+
+
+clarityQuality.className =
+"text-success";
+
+
+overallQuality.innerText =
+"Excellent";
+
+
+overallQuality.className =
+"text-success";
+
+
+/* =========================================================
+                    UPDATE UI
+========================================================= */
+
+updateSampleUI();
+
+
+retakeBtn.disabled =
+false;
+
+
+isCapturing =
+false;
+
+
+if(
+    capturedSamples.length <
+    REQUIRED_SAMPLES
+){
+
+
+    captureFaceBtn.disabled =
+    false;
+
+
+    setTimeout(
+    function(){
+
+
+        cameraMessage.innerText =
+        "Change face angle slightly and capture next sample";
+
+
+    },
+    1200
+    );
+
+
+}
+
+else{
+
+
+    captureFaceBtn.disabled =
+    true;
+
+
+    cameraMessage.innerText =
+    "All face samples captured";
+
+
+    registrationStatus.innerText =
+    "Ready to Register";
+
+
+    registrationStatus.className =
+    "badge bg-primary";
+
+
+    registerFaceBtn.disabled =
+    false;
+
+
+}
+
+
+},
+1200
+);
+
+
+}
+);
+
+
+/* =========================================================
+                    UPDATE SAMPLE UI
+========================================================= */
+
+function updateSampleUI(){
+
+
+const total =
+capturedSamples.length;
+
+
+sampleCount.innerText =
+total;
+
+
+sampleStatus.innerText =
+total +
+" / " +
+REQUIRED_SAMPLES;
+
+
+/* =========================================================
+                    PROGRESS
+========================================================= */
+
+const progress =
+Math.round(
+    (
+        total /
+        REQUIRED_SAMPLES
+    ) * 100
+);
+
+
+registrationProgressText.innerText =
+progress + "%";
+
+
+registrationProgressBar.style.width =
+progress + "%";
+
+
+if(progress < 40){
+
+
+    registrationProgressBar.className =
+    "progress-bar bg-danger";
+
+
+}
+
+else if(progress < 100){
+
+
+    registrationProgressBar.className =
+    "progress-bar bg-warning";
+
+
+}
+
+else{
+
+
+    registrationProgressBar.className =
+    "progress-bar bg-success";
+
+
+}
+
+
+/* =========================================================
+                    SAMPLE STATUS
+========================================================= */
+
+if(total === 0){
+
+
+    sampleStatus.className =
+    "badge bg-secondary";
+
+
+}
+
+else if(
+    total <
+    REQUIRED_SAMPLES
+){
+
+
+    sampleStatus.className =
+    "badge bg-warning text-dark";
+
+
+}
+
+else{
+
+
+    sampleStatus.className =
+    "badge bg-success";
+
+
+}
+
+
+}
+
+
+/* =========================================================
+                    RETAKE LAST SAMPLE
+========================================================= */
+
+retakeBtn.addEventListener(
+"click",
+function(){
+
+
+if(
+    capturedSamples.length ===
+    0
+){
+
+    return;
+
+}
+
+
+/* Remove latest image */
+
+capturedSamples.pop();
+
+
+/* Reset preview images */
+
+sampleImages.forEach(
+function(imageElement,index){
+
+
+if(
+    capturedSamples[index]
+){
+
+
+    imageElement.src =
+    capturedSamples[index];
+
+
+}
+
+else{
+
+
+    imageElement.removeAttribute(
+        "src"
+    );
+
+
+}
+
+
+}
+);
+
+
+updateSampleUI();
+
+
+registrationStatus.innerText =
+"Not Registered";
+
+
+registrationStatus.className =
+"badge bg-danger";
+
+
+registerFaceBtn.disabled =
+true;
+
+
+if(cameraStarted){
+
+
+    captureFaceBtn.disabled =
+    false;
+
+
+    cameraMessage.innerText =
+    "Capture replacement face sample";
+
+
+}
+
+
+if(
+    capturedSamples.length ===
+    0
+){
+
+
+    retakeBtn.disabled =
+    true;
+
+
+    capturedPreview.style.display =
+    "none";
+
+
+}
+
+
+}
+);
+
+
+/* =========================================================
+                    STOP CAMERA
+========================================================= */
+
+function stopCamera(){
+
+
+if(cameraStream){
+
+
+    cameraStream
+    .getTracks()
+    .forEach(
+        function(track){
+
+
+            track.stop();
+
+
+        }
+    );
+
+
+}
+
+
+cameraStream =
+null;
+
+
+registerVideo.srcObject =
+null;
+
+
+registerVideo.style.display =
+"none";
+
+
+cameraPlaceholder.style.display =
+"block";
+
+
+faceGuide.style.display =
+"none";
+
+
+scanLine.style.display =
+"none";
+
+
+cameraLiveBadge.style.display =
+"none";
+
+
+cameraMessage.style.display =
+"none";
+
+
+cameraStarted =
+false;
+
+
+isCapturing =
+false;
+
+
+/* =========================================================
+                        BUTTONS
+========================================================= */
+
+startCameraBtn.disabled =
+false;
+
+
+captureFaceBtn.disabled =
+true;
+
+
+stopCameraBtn.disabled =
+true;
+
+
+retakeBtn.disabled =
+capturedSamples.length === 0;
+
+
+/* =========================================================
+                        STATUS
+========================================================= */
+
+cameraStatus.innerText =
+"Offline";
+
+
+cameraStatus.className =
+"badge bg-secondary";
+
+
+faceDetectionStatus.innerText =
+"Waiting...";
+
+
+faceDetectionStatus.className =
+"badge bg-warning text-dark";
+
+
+}
+
+
+/* =========================================================
+                    STOP CAMERA BUTTON
+========================================================= */
+
+stopCameraBtn.addEventListener(
+"click",
+stopCamera
+);
+
+
+/* =========================================================
+                    REGISTER FACE
+========================================================= */
+
+registerFaceBtn.addEventListener(
+"click",
+function(){
+
+
+if(!validateTeacherInformation()){
+
+    return;
+
+}
+
+
+/* =========================================================
+                    CHECK SAMPLES
+========================================================= */
+
+if(
+    capturedSamples.length <
+    REQUIRED_SAMPLES
+){
+
+
+    document.getElementById(
+        "sampleModalCount"
+    ).innerText =
+    capturedSamples.length +
+    " / " +
+    REQUIRED_SAMPLES;
+
+
+    const modal =
+    new bootstrap.Modal(
+        document.getElementById(
+            "sampleErrorModal"
+        )
+    );
+
+
+    modal.show();
+
+
+    return;
+
+}
+
+
+/* =========================================================
+                    REGISTERING UI
+========================================================= */
+
+registerFaceBtn.disabled =
+true;
+
+
+registerFaceBtn.innerHTML =
+
+`
+<span
+class="spinner-border spinner-border-sm me-2">
+</span>
+
+Registering Face...
+`;
+
+
+registrationStatus.innerText =
+"Processing...";
+
+
+registrationStatus.className =
+"badge bg-warning text-dark";
+
+
+/* =========================================================
+                FRONTEND DEMO REGISTRATION
+========================================================= */
+
+/*
+
+IMPORTANT:
+
+Ye frontend demonstration hai.
+
+Abhi actual face samples database / CNN model
+me save nahi ho rahe.
+
+Backend connect karne ke baad is setTimeout ko
+API call se replace karna hai.
+
+*/
+
+
+setTimeout(
+function(){
+
+
+/* =========================================================
+                    SUCCESS STATUS
+========================================================= */
+
+registrationStatus.innerText =
+"Registered";
+
+
+registrationStatus.className =
+"badge bg-success";
+
+
+registrationProgressText.innerText =
+"100%";
+
+
+registrationProgressBar.style.width =
+"100%";
+
+
+registrationProgressBar.className =
+"progress-bar bg-success";
+
+
+/* =========================================================
+                    MODAL DATA
+========================================================= */
+
+document.getElementById(
+    "successTeacherName"
+).innerText =
+teacherName.value.trim();
+
+
+document.getElementById(
+    "successTeacherId"
+).innerText =
+teacherId.value.trim();
+
+
+document.getElementById(
+    "successDepartment"
+).innerText =
+teacherDepartment.value;
+
+
+/* =========================================================
+                    STOP CAMERA
+========================================================= */
+
+stopCamera();
+
+
+/* =========================================================
+                    SUCCESS MODAL
+========================================================= */
+
+const modal =
+new bootstrap.Modal(
+    document.getElementById(
+        "registrationSuccessModal"
+    )
+);
+
+
+modal.show();
+
+
+/* =========================================================
+                    BUTTON RESET
+========================================================= */
+
+registerFaceBtn.innerHTML =
+
+`
+<i class="fa-solid fa-circle-check me-2"></i>
+
+Face Registered
+`;
+
+
+registerFaceBtn.disabled =
+true;
+
+
+},
+1800
+);
+
+
+}
+);
+
+
+/* =========================================================
+                    DARK MODE
+========================================================= */
+
+const themeToggle =
+document.getElementById(
+    "themeToggle"
+);
+
+
+/* =========================================================
+                    LOAD SAVED THEME
+========================================================= */
+
+const savedTheme =
+localStorage.getItem(
+    "teacherFaceRegisterTheme"
+);
+
+
+if(
+    savedTheme ===
+    "dark"
+){
+
+
+    document.body.classList.add(
+        "dark"
+    );
+
+
+}
+
+
+updateThemeIcon();
+
+
+/* =========================================================
+                    THEME CLICK
+========================================================= */
+
+themeToggle.addEventListener(
+"click",
+function(){
+
+
+document.body.classList.toggle(
+    "dark"
+);
+
+
+const darkMode =
+document.body.classList.contains(
+    "dark"
+);
+
+
+localStorage.setItem(
+
+    "teacherFaceRegisterTheme",
+
+    darkMode
+    ? "dark"
+    : "light"
+
+);
+
+
+updateThemeIcon();
+
+
+}
+);
+
+
+/* =========================================================
+                    UPDATE THEME ICON
+========================================================= */
+
+function updateThemeIcon(){
+
+
+const icon =
+themeToggle.querySelector(
+    "i"
+);
+
+
+if(
+    document.body.classList.contains(
+        "dark"
+    )
+){
+
+
+    icon.className =
+    "fa-solid fa-sun";
+
+
+}
+
+else{
+
+
+    icon.className =
+    "fa-solid fa-moon";
+
+
+}
+
+
+}
+
+
+/* =========================================================
+                ACTUAL BACKEND FUNCTION
+========================================================= */
+
+/*
+
+Jab Python / FastAPI / Flask backend ready ho,
+tab frontend demo registration ko remove karke
+ye function use karna hai.
+
+*/
+
+
+async function registerFaceWithBackend(){
+
+
+try{
+
+
+const payload = {
+
+    teacherId:
+    teacherId.value.trim(),
+
+    name:
+    teacherName.value.trim(),
+
+    email:
+    teacherEmail.value.trim(),
+
+    department:
+    teacherDepartment.value,
+
+    role:
+    "Teacher",
+
+    faceSamples:
+    capturedSamples
+
+};
+
+
+/* =========================================================
+                    API REQUEST
+========================================================= */
+
+const response =
+await fetch(
+"/api/teacher/face-register",
+{
+
+    method:"POST",
+
+    headers:{
+
+        "Content-Type":
+        "application/json"
+
+    },
+
+    credentials:"include",
+
+    body:
+    JSON.stringify(
+        payload
+    )
+
+}
+);
+
+
+/* =========================================================
+                    RESPONSE
+========================================================= */
+
+const data =
+await response.json();
+
+
+/* =========================================================
+                ALREADY REGISTERED
+========================================================= */
+
+if(
+    response.status === 409 ||
+    data.alreadyRegistered === true
+){
+
+
+    const modal =
+    new bootstrap.Modal(
+        document.getElementById(
+            "alreadyRegisteredModal"
+        )
+    );
+
+
+    modal.show();
+
+
+    return;
+
+}
+
+
+/* =========================================================
+                    API ERROR
+========================================================= */
+
+if(!response.ok){
+
+
+    showFormError(
+        data.message ||
+        "Unable to register face."
+    );
+
+
+    return;
+
+}
+
+
+/* =========================================================
+                    SUCCESS
+========================================================= */
+
+registrationStatus.innerText =
+"Registered";
+
+
+registrationStatus.className =
+"badge bg-success";
+
+
+document.getElementById(
+    "successTeacherName"
+).innerText =
+data.name ||
+teacherName.value.trim();
+
+
+document.getElementById(
+    "successTeacherId"
+).innerText =
+data.teacherId ||
+teacherId.value.trim();
+
+
+document.getElementById(
+    "successDepartment"
+).innerText =
+data.department ||
+teacherDepartment.value;
+
+
+stopCamera();
+
+
+const modal =
+new bootstrap.Modal(
+    document.getElementById(
+        "registrationSuccessModal"
+    )
+);
+
+
+modal.show();
+
+
+}
+
+catch(error){
+
+
+console.error(
+    "Face Registration Error:",
+    error
+);
+
+
+showFormError(
+    "Unable to connect to the Face Recognition Server."
+);
+
+
+}
+
+
+}
+
+
+
+
+/* =========================================================
+                STOP CAMERA ON PAGE CLOSE
+========================================================= */
+
+window.addEventListener(
+"beforeunload",
+function(){
+
+
+if(cameraStream){
+
+
+    cameraStream
+    .getTracks()
+    .forEach(
+        function(track){
+
+
+            track.stop();
+
+
+        }
+    );
+
+
+}
+
+
+}
+);
+
+
+/* =========================================================
+                    INITIAL UI
+========================================================= */
+
+updateSampleUI();
+
+
+});
+
+</script>
+
+
+</body>
+
+</html>

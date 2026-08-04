@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add Recruiter | Faculty Management System</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="../../css/admin-dashboard.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- Sidebar -->
+
+<aside class="sidebar">
+
+<div class="logo-box">
+
+<img src="../../images/logo.png" alt="College Logo">
+
+<h3>PATNA</h3>
+
+<h2>WOMEN'S COLLEGE</h2>
+
+<span>(AUTONOMOUS)</span>
+
+</div>
+
+<ul class="menu">
+
+<li>
+<a href="admin-dashboard.html">
+<i class="fa-solid fa-house"></i>
+<span>Dashboard</span>
+</a>
+</li>
+
+<li>
+<a href="teacher-list.html">
+<i class="fa-solid fa-user-tie"></i>
+<span>Teachers</span>
+</a>
+</li>
+
+<li>
+<a href="hod-list.html">
+<i class="fa-solid fa-building-user"></i>
+<span>HOD</span>
+</a>
+</li>
+
+<li>
+<a href="student-list.html">
+<i class="fa-solid fa-user-graduate"></i>
+<span>Students</span>
+</a>
+</li>
+
+<li class="active">
+<a href="recruiter-list.html">
+<i class="fa-solid fa-building"></i>
+<span>Recruiters</span>
+</a>
+</li>
+
+<li>
+<a href="attendance.html">
+<i class="fa-solid fa-calendar-check"></i>
+<span>Attendance</span>
+</a>
+</li>
+
+<li>
+<a href="analytics.html">
+<i class="fa-solid fa-chart-line"></i>
+<span>Analytics</span>
+</a>
+</li>
+
+<li>
+<a href="reports.html">
+<i class="fa-solid fa-file-lines"></i>
+<span>Reports</span>
+</a>
+</li>
+
+<li>
+<a href="notice-board.html">
+<i class="fa-solid fa-bullhorn"></i>
+<span>Notice Board</span>
+</a>
+</li>
+
+<li>
+<a href="academic-calendar.html">
+<i class="fa-solid fa-calendar-days"></i>
+<span>Academic Calendar</span>
+</a>
+</li>
+
+</ul>
+
+<div class="sidebar-bottom">
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+<span>Settings</span>
+
+</a>
+
+<a href="admin-login.html" class="logout-btn">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+<span>Logout</span>
+
+</a>
+
+</div>
+
+</aside>
+
+<!-- Main Content -->
+
+<main class="main-content">
+
+<div class="topbar">
+
+<div>
+
+<h2>Add Recruiter</h2>
+
+<p>Dashboard / Recruiters / Add Recruiter</p>
+
+</div>
+<div class="topbar-actions">
+
+    <button id="themeToggle" class="theme-toggle-btn">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
+</div>
+</div>
+
+<div class="chart-card">
+
+<h3 class="mb-4">
+
+<i class="fa-solid fa-building-circle-check"></i>
+
+Add New Recruiter
+
+</h3>
+
+<form id="recruiterForm">
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+
+<label class="form-label">Recruiter ID</label>
+
+<input
+type="text"
+class="form-control"
+placeholder="REC001"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Company Name</label>
+
+<input
+type="text"
+class="form-control"
+placeholder="Enter Company Name"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">HR Name</label>
+
+<input
+type="text"
+class="form-control"
+placeholder="Enter HR Name"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Email</label>
+
+<input
+type="email"
+class="form-control"
+placeholder="company@email.com"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Mobile Number</label>
+
+<input
+type="tel"
+class="form-control"
+placeholder="9876543210"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Company Website</label>
+
+<input
+type="url"
+class="form-control"
+placeholder="https://company.com">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Industry Type</label>
+
+<select class="form-select" required>
+
+<option value="">Select Industry</option>
+
+<option>Information Technology</option>
+<option>Software Development</option>
+<option>Banking & Finance</option>
+<option>Healthcare</option>
+<option>Education</option>
+<option>Manufacturing</option>
+<option>E-Commerce</option>
+<option>Telecommunication</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Company Size</label>
+
+<select class="form-select" required>
+
+<option value="">Select Company Size</option>
+
+<option>1-50 Employees</option>
+<option>51-200 Employees</option>
+<option>201-500 Employees</option>
+<option>500+ Employees</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Hiring Role</label>
+
+<input
+type="text"
+class="form-control"
+placeholder="Software Engineer">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Package Offered (CTC)</label>
+
+<input
+type="text"
+class="form-control"
+placeholder="₹6 LPA">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Hiring Date</label>
+
+<input
+type="date"
+class="form-control">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Account Status</label>
+
+<select class="form-select">
+
+<option selected>Active</option>
+<option>Inactive</option>
+
+</select>
+
+</div>
+
+<div class="col-md-12 mb-3">
+
+<label class="form-label">Company Address</label>
+
+<textarea
+class="form-control"
+rows="3"
+placeholder="Enter Company Address"></textarea>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Username</label>
+
+<input
+type="text"
+class="form-control"
+placeholder="recruiter01"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Password</label>
+
+<input
+type="password"
+class="form-control"
+placeholder="********"
+required>
+
+</div>
+
+<div class="col-md-12 mb-4">
+
+<label class="form-label">Upload Company Logo</label>
+
+<input
+type="file"
+class="form-control"
+accept="image/*">
+
+</div>
+
+<div class="col-12 mt-3">
+
+<button
+type="submit"
+class="btn btn-primary px-4">
+
+<i class="fa-solid fa-floppy-disk"></i>
+
+Save Recruiter
+
+</button>
+
+<button
+type="reset"
+class="btn btn-warning px-4 ms-2">
+
+<i class="fa-solid fa-rotate"></i>
+
+Reset
+
+</button>
+
+<a
+href="recruiter-list.html"
+class="btn btn-secondary px-4 ms-2">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Back
+
+</a>
+
+</div>
+
+</div>
+
+</form>
+
+</div>
+
+</main>
+
+</div>
+
+<!-- ================= Success Modal ================= -->
+
+<div class="modal fade"
+     id="successModal"
+     tabindex="-1"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header bg-success text-white">
+
+                <h5 class="modal-title">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Recruiter Added Successfully
+
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body text-center">
+
+                <i class="fa-solid fa-circle-check text-success"
+                   style="font-size:70px;"></i>
+
+                <h4 class="mt-3">
+
+                    Recruiter Record Saved Successfully
+
+                </h4>
+
+                <p>
+
+                    The recruiter has been added successfully to the
+                    Faculty Management System.
+
+                </p>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <a href="recruiter-list.html"
+                   class="btn btn-success">
+
+                    <i class="fa-solid fa-list"></i>
+
+                    View Recruiter List
+
+                </a>
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+
+                    Close
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= Bootstrap JS ================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../js/dashboard.js"></script>
+<!-- ================= JavaScript ================= -->
+
+<script>
+
+const form = document.getElementById("recruiterForm");
+
+if(form){
+
+    form.addEventListener("submit", function(e){
+
+        e.preventDefault();
+
+        const modal = new bootstrap.Modal(
+            document.getElementById("successModal")
+        );
+
+        modal.show();
+
+        form.reset();
+
+    });
+
+}
+
+</script>
+
+</body>
+
+</html>

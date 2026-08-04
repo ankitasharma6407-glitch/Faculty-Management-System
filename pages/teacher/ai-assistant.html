@@ -1,0 +1,5066 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+AI Assistant | Teacher Panel
+</title>
+
+
+<!-- =========================================================
+                        BOOTSTRAP
+========================================================= -->
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<!-- =========================================================
+                        FONT AWESOME
+========================================================= -->
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+<!-- =========================================================
+                        GOOGLE FONT
+========================================================= -->
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+
+<!-- =========================================================
+                    TEACHER DASHBOARD CSS
+========================================================= -->
+
+<link
+rel="stylesheet"
+href="../../css/teacher-dashboard.css">
+
+
+<style>
+/* =========================================================
+              PREMIUM TOP NAVBAR - AI ASSISTANT
+========================================================= */
+
+
+/* =========================================================
+                    TOP NAVBAR
+========================================================= */
+
+.top-navbar{
+
+    min-height:76px;
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:12px 18px;
+
+    margin-bottom:25px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,.06);
+
+    position:relative;
+
+    z-index:1000;
+
+}
+
+
+/* =========================================================
+                    NAVBAR LEFT
+========================================================= */
+
+.navbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    min-width:0;
+
+}
+
+
+/* =========================================================
+                    MOBILE MENU BUTTON
+========================================================= */
+
+.mobile-menu-btn{
+
+    width:42px;
+
+    height:42px;
+
+    min-width:42px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:
+        rgba(108,76,255,.10);
+
+    color:#6c4cff;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.mobile-menu-btn:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                    NAVBAR HEADING
+========================================================= */
+
+.navbar-heading{
+
+    min-width:0;
+
+}
+
+
+.navbar-heading h3{
+
+    margin:0;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#111827;
+
+}
+
+
+.navbar-heading p{
+
+    margin:3px 0 0;
+
+    color:#9ca3af;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                    NAVBAR RIGHT
+========================================================= */
+
+.top-right{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-end;
+
+    gap:10px;
+
+    margin-left:auto;
+
+}
+
+
+/* =========================================================
+                    SEARCH BOX
+========================================================= */
+
+.navbar-search{
+
+    width:250px;
+
+    height:44px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:0 14px;
+
+    background:#f6f7fb;
+
+    border:
+        1px solid
+        #eceef5;
+
+    border-radius:12px;
+
+    transition:.25s;
+
+}
+
+
+.navbar-search:focus-within{
+
+    background:#ffffff;
+
+    border-color:#6c4cff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(108,76,255,.10);
+
+}
+
+
+.navbar-search i{
+
+    color:#9ca3af;
+
+    font-size:14px;
+
+}
+
+
+.navbar-search input{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    color:#111827;
+
+    font-size:12px;
+
+}
+
+
+.navbar-search input::placeholder{
+
+    color:#9ca3af;
+
+}
+
+
+/* =========================================================
+                    NAVBAR ICON BUTTON
+========================================================= */
+
+.navbar-icon-btn{
+
+    position:relative;
+
+    width:44px;
+
+    height:44px;
+
+    min-width:44px;
+
+    border:none;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#f6f7fb;
+
+    color:#4b5563;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.navbar-icon-btn:hover{
+
+    background:
+        rgba(108,76,255,.10);
+
+    color:#6c4cff;
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+/* =========================================================
+                    NOTIFICATION BADGE
+========================================================= */
+
+.navbar-badge{
+
+    position:absolute;
+
+    top:-5px;
+
+    right:-5px;
+
+    min-width:18px;
+
+    height:18px;
+
+    padding:0 5px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#ef4444;
+
+    color:#ffffff;
+
+    border:
+        2px solid
+        #ffffff;
+
+    border-radius:20px;
+
+    font-size:9px;
+
+    font-weight:700;
+
+}
+
+
+/* =========================================================
+                    TEACHER PROFILE BUTTON
+========================================================= */
+
+.teacher-profile-btn{
+
+    border:none;
+
+    outline:none;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    min-height:48px;
+
+    padding:
+        5px 10px 5px 6px;
+
+    background:#f6f7fb;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.teacher-profile-btn:hover{
+
+    background:
+        rgba(108,76,255,.08);
+
+}
+
+
+.teacher-profile-btn img{
+
+    width:37px;
+
+    height:37px;
+
+    min-width:37px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:
+        2px solid
+        rgba(108,76,255,.25);
+
+}
+
+
+/* =========================================================
+                    PROFILE INFORMATION
+========================================================= */
+
+.teacher-profile-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    line-height:1.25;
+
+}
+
+
+.teacher-profile-info strong{
+
+    font-size:12px;
+
+    font-weight:700;
+
+    color:#111827;
+
+}
+
+
+.teacher-profile-info small{
+
+    font-size:9px;
+
+    color:#9ca3af;
+
+}
+
+
+.profile-arrow{
+
+    font-size:10px;
+
+    color:#9ca3af;
+
+    margin-left:3px;
+
+}
+
+
+/* =========================================================
+                    COMMON DROPDOWN
+========================================================= */
+
+.top-navbar .dropdown-menu{
+
+    border:none;
+
+    border-radius:16px;
+
+    padding:8px;
+
+    margin-top:
+        10px !important;
+
+    box-shadow:
+        0 15px 45px
+        rgba(15,23,42,.15);
+
+    z-index:9999;
+
+}
+
+
+/* =========================================================
+                    NOTIFICATION MENU
+========================================================= */
+
+.notification-menu{
+
+    width:350px;
+
+    max-width:
+        calc(100vw - 25px);
+
+}
+
+
+/* =========================================================
+                    NOTIFICATION HEADER
+========================================================= */
+
+.notification-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    padding:
+        10px 10px 13px;
+
+    border-bottom:
+        1px solid
+        #eeeeee;
+
+}
+
+
+.notification-header h6{
+
+    margin:0;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    color:#111827;
+
+}
+
+
+.notification-header small{
+
+    display:block;
+
+    margin-top:2px;
+
+    color:#9ca3af;
+
+    font-size:10px;
+
+}
+
+
+.notification-new-badge{
+
+    padding:4px 8px;
+
+    background:
+        rgba(108,76,255,.10);
+
+    color:#6c4cff;
+
+    border-radius:20px;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    white-space:nowrap;
+
+}
+
+
+/* =========================================================
+                    NOTIFICATION ITEM
+========================================================= */
+
+.notification-item{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:11px;
+
+    padding:11px 9px;
+
+    border-radius:11px;
+
+    color:inherit;
+
+    text-decoration:none;
+
+    transition:.2s;
+
+}
+
+
+.notification-item:hover{
+
+    background:#f7f5ff;
+
+}
+
+
+/* =========================================================
+                NOTIFICATION ITEM ICON
+========================================================= */
+
+.notification-item-icon{
+
+    width:38px;
+
+    height:38px;
+
+    min-width:38px;
+
+    border-radius:11px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:14px;
+
+}
+
+
+.notification-item-icon.purple{
+
+    background:
+        rgba(108,76,255,.10);
+
+    color:#6c4cff;
+
+}
+
+
+.notification-item-icon.blue{
+
+    background:
+        rgba(59,130,246,.10);
+
+    color:#3b82f6;
+
+}
+
+
+.notification-item-icon.green{
+
+    background:
+        rgba(34,197,94,.10);
+
+    color:#22c55e;
+
+}
+
+
+.notification-item-icon.orange{
+
+    background:
+        rgba(245,158,11,.12);
+
+    color:#f59e0b;
+
+}
+
+
+/* =========================================================
+                NOTIFICATION CONTENT
+========================================================= */
+
+.notification-item-content{
+
+    flex:1;
+
+    min-width:0;
+
+}
+
+
+.notification-item-content strong{
+
+    display:block;
+
+    color:#111827;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+
+.notification-item-content span{
+
+    display:block;
+
+    margin-top:2px;
+
+    color:#6b7280;
+
+    font-size:10px;
+
+    line-height:1.4;
+
+}
+
+
+.notification-item-content small{
+
+    display:block;
+
+    margin-top:4px;
+
+    color:#9ca3af;
+
+    font-size:9px;
+
+}
+
+
+/* =========================================================
+                VIEW ALL NOTIFICATIONS
+========================================================= */
+
+.view-all-notifications{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:7px;
+
+    padding:11px;
+
+    margin-top:3px;
+
+    border-top:
+        1px solid
+        #eeeeee;
+
+    color:#6c4cff;
+
+    text-decoration:none;
+
+    font-size:10px;
+
+    font-weight:700;
+
+}
+
+
+.view-all-notifications:hover{
+
+    color:#5638e8;
+
+}
+
+
+/* =========================================================
+                    PROFILE MENU
+========================================================= */
+
+.profile-menu{
+
+    width:230px;
+
+}
+
+
+/* =========================================================
+                    PROFILE MENU HEADER
+========================================================= */
+
+.profile-menu-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:8px;
+
+}
+
+
+.profile-menu-header img{
+
+    width:42px;
+
+    height:42px;
+
+    min-width:42px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:
+        2px solid
+        rgba(108,76,255,.20);
+
+}
+
+
+.profile-menu-header div{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+.profile-menu-header strong{
+
+    font-size:12px;
+
+    font-weight:700;
+
+    color:#111827;
+
+}
+
+
+.profile-menu-header small{
+
+    font-size:9px;
+
+    color:#9ca3af;
+
+}
+
+
+/* =========================================================
+                    PROFILE MENU ITEM
+========================================================= */
+
+.profile-menu .dropdown-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:9px 10px;
+
+    border-radius:9px;
+
+    font-size:11px;
+
+    font-weight:500;
+
+    transition:.2s;
+
+}
+
+
+.profile-menu .dropdown-item i{
+
+    width:17px;
+
+    color:#6b7280;
+
+}
+
+
+.profile-menu .dropdown-item:hover{
+
+    background:#f7f5ff;
+
+    color:#6c4cff;
+
+}
+
+
+.profile-menu .dropdown-item:hover i{
+
+    color:#6c4cff;
+
+}
+
+
+/* =========================================================
+                    LOGOUT
+========================================================= */
+
+.profile-menu .logout-item{
+
+    color:#ef4444;
+
+}
+
+
+.profile-menu .logout-item i{
+
+    color:#ef4444;
+
+}
+
+
+.profile-menu .logout-item:hover{
+
+    background:#fff1f2;
+
+    color:#dc2626;
+
+}
+
+
+.profile-menu .logout-item:hover i{
+
+    color:#dc2626;
+
+}
+
+
+/* =========================================================
+                AI PREMIUM IMPROVEMENTS
+========================================================= */
+
+.ai-card{
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+}
+
+
+/* =========================================================
+                    CHAT SCROLLBAR
+========================================================= */
+
+.ai-chat-body::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+
+.ai-chat-body::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+
+.ai-chat-body::-webkit-scrollbar-thumb{
+
+    background:#d8d2ff;
+
+    border-radius:20px;
+
+}
+
+
+.ai-chat-body::-webkit-scrollbar-thumb:hover{
+
+    background:#b9adff;
+
+}
+
+
+/* =========================================================
+                    AI AVATAR STATUS
+========================================================= */
+
+.ai-avatar{
+
+    position:relative;
+
+}
+
+
+.ai-avatar::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:12px;
+
+    height:12px;
+
+    right:-3px;
+
+    bottom:-3px;
+
+    background:#22c55e;
+
+    border:
+        3px solid
+        #ffffff;
+
+    border-radius:50%;
+
+}
+
+
+/* =========================================================
+                    MESSAGE BUBBLES
+========================================================= */
+
+.ai-message-row.bot
+.ai-message-bubble{
+
+    border-radius:
+        5px 18px 18px 18px;
+
+}
+
+
+.ai-message-row.user
+.ai-message-bubble{
+
+    border-radius:
+        18px 5px 18px 18px;
+
+}
+
+
+/* =========================================================
+                    CLEAR CHAT BUTTON
+========================================================= */
+
+#clearChatBtn{
+
+    border-radius:11px;
+
+    font-weight:600;
+
+    padding:9px 16px;
+
+}
+
+
+/* =========================================================
+                    FEATURE ICON COLORS
+========================================================= */
+
+.ai-feature-card:nth-child(1)
+.ai-feature-icon{
+
+    background:#ede9fe;
+
+    color:#7c3aed;
+
+}
+
+
+.ai-feature-card:nth-child(2)
+.ai-feature-icon{
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+}
+
+
+.ai-feature-card:nth-child(3)
+.ai-feature-icon{
+
+    background:#dcfce7;
+
+    color:#16a34a;
+
+}
+
+
+.ai-feature-card:nth-child(4)
+.ai-feature-icon{
+
+    background:#fef3c7;
+
+    color:#d97706;
+
+}
+
+
+/* =========================================================
+                    SEND BUTTON DISABLED
+========================================================= */
+
+.ai-send-btn:disabled{
+
+    opacity:.55;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+}
+
+
+/* =========================================================
+                DARK MODE - PREMIUM NAVBAR
+========================================================= */
+
+body.dark .top-navbar{
+
+    background:#1f1f1f;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .navbar-heading h3{
+
+    color:#ffffff;
+
+}
+
+
+body.dark .navbar-heading p{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .navbar-search{
+
+    background:#292929;
+
+    border-color:#3b3b3b;
+
+}
+
+
+body.dark .navbar-search:focus-within{
+
+    border-color:#6c4cff;
+
+}
+
+
+body.dark .navbar-search input{
+
+    color:#ffffff;
+
+}
+
+
+body.dark .navbar-search input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .navbar-icon-btn{
+
+    background:#292929;
+
+    color:#e5e7eb;
+
+}
+
+
+body.dark .navbar-icon-btn:hover{
+
+    background:#333333;
+
+    color:#a78bfa;
+
+}
+
+
+body.dark .teacher-profile-btn{
+
+    background:#292929;
+
+}
+
+
+body.dark .teacher-profile-btn:hover{
+
+    background:#333333;
+
+}
+
+
+body.dark .teacher-profile-info strong{
+
+    color:#ffffff;
+
+}
+
+
+body.dark .teacher-profile-info small{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .navbar-badge{
+
+    border-color:#1f1f1f;
+
+}
+
+
+/* =========================================================
+                DARK MODE DROPDOWNS
+========================================================= */
+
+body.dark
+.top-navbar
+.dropdown-menu{
+
+    background:#252525;
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.notification-header{
+
+    border-color:#3b3b3b;
+
+}
+
+
+body.dark
+.notification-header h6{
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.notification-item:hover{
+
+    background:#303030;
+
+}
+
+
+body.dark
+.notification-item-content strong{
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.notification-item-content span{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark
+.view-all-notifications{
+
+    border-color:#3b3b3b;
+
+}
+
+
+body.dark
+.profile-menu-header strong{
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.profile-menu .dropdown-item{
+
+    color:#e5e7eb;
+
+}
+
+
+body.dark
+.profile-menu .dropdown-item:hover{
+
+    background:#303030;
+
+    color:#a78bfa;
+
+}
+
+
+body.dark
+.profile-menu .dropdown-divider{
+
+    border-color:#444444;
+
+}
+
+
+body.dark
+.ai-avatar::after{
+
+    border-color:#1f1f1f;
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE NAVBAR
+========================================================= */
+
+@media(max-width:992px){
+
+    .navbar-search{
+
+        width:200px;
+
+    }
+
+}
+
+
+/* =========================================================
+                    TABLET / MOBILE
+========================================================= */
+
+@media(max-width:768px){
+
+    .top-navbar{
+
+        min-height:65px;
+
+        padding:10px 12px;
+
+        gap:10px;
+
+    }
+
+
+    .mobile-menu-btn{
+
+        display:flex;
+
+    }
+
+
+    .navbar-heading p{
+
+        display:none;
+
+    }
+
+
+    .navbar-heading h3{
+
+        font-size:17px;
+
+    }
+
+
+    .navbar-search{
+
+        display:none;
+
+    }
+
+
+    .teacher-profile-info{
+
+        display:none;
+
+    }
+
+
+    .teacher-profile-btn{
+
+        min-height:auto;
+
+        padding:3px;
+
+        background:transparent;
+
+    }
+
+
+    .profile-arrow{
+
+        display:none;
+
+    }
+
+}
+
+
+/* =========================================================
+                    SMALL MOBILE
+========================================================= */
+
+@media(max-width:480px){
+
+    .top-navbar{
+
+        border-radius:14px;
+
+        padding:9px 10px;
+
+    }
+
+
+    .navbar-left{
+
+        gap:8px;
+
+    }
+
+
+    .navbar-heading h3{
+
+        font-size:15px;
+
+    }
+
+
+    .top-right{
+
+        gap:6px;
+
+    }
+
+
+    .mobile-menu-btn{
+
+        width:38px;
+
+        height:38px;
+
+        min-width:38px;
+
+        font-size:15px;
+
+    }
+
+
+    .navbar-icon-btn{
+
+        width:39px;
+
+        height:39px;
+
+        min-width:39px;
+
+        font-size:15px;
+
+    }
+
+
+    .teacher-profile-btn img{
+
+        width:35px;
+
+        height:35px;
+
+        min-width:35px;
+
+    }
+
+
+    .notification-menu{
+
+        width:310px;
+
+    }
+
+}
+/* =========================================================
+                    AI ASSISTANT PAGE
+========================================================= */
+
+.ai-page-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+margin-bottom:25px;
+
+}
+
+
+.ai-page-header h2{
+
+font-weight:800;
+
+margin-bottom:5px;
+
+}
+
+
+.ai-page-header p{
+
+margin:0;
+
+color:#6b7280;
+
+}
+
+
+/* =========================================================
+                    AI MAIN GRID
+========================================================= */
+
+.ai-main-grid{
+
+display:grid;
+
+grid-template-columns:1.7fr .8fr;
+
+gap:25px;
+
+align-items:start;
+
+}
+
+
+/* =========================================================
+                    COMMON CARD
+========================================================= */
+
+.ai-card{
+
+background:#ffffff;
+
+border-radius:20px;
+
+box-shadow:0 8px 25px rgba(0,0,0,.07);
+
+border:1px solid rgba(108,76,255,.08);
+
+overflow:hidden;
+
+margin-bottom:25px;
+
+}
+
+
+.ai-card-header{
+
+padding:20px 22px;
+
+border-bottom:1px solid #eeeeee;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+gap:15px;
+
+}
+
+
+.ai-card-header h4{
+
+margin:0;
+
+font-size:18px;
+
+font-weight:700;
+
+color:#6c4cff;
+
+}
+
+
+/* =========================================================
+                    AI HEADER
+========================================================= */
+
+.ai-assistant-profile{
+
+display:flex;
+
+align-items:center;
+
+gap:13px;
+
+}
+
+
+.ai-avatar{
+
+width:52px;
+
+height:52px;
+
+border-radius:16px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:23px;
+
+color:#ffffff;
+
+background:
+linear-gradient(
+135deg,
+#6c4cff,
+#8b5cf6,
+#ec4899
+);
+
+box-shadow:
+0 6px 18px rgba(108,76,255,.25);
+
+}
+
+
+.ai-assistant-profile h5{
+
+font-weight:700;
+
+margin:0;
+
+}
+
+
+.ai-assistant-profile small{
+
+color:#6b7280;
+
+}
+
+
+.ai-online{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:6px;
+
+font-size:12px;
+
+color:#16a34a;
+
+}
+
+
+.ai-online-dot{
+
+width:8px;
+
+height:8px;
+
+border-radius:50%;
+
+background:#22c55e;
+
+}
+
+
+/* =========================================================
+                    CHAT AREA
+========================================================= */
+
+.ai-chat-body{
+
+height:520px;
+
+overflow-y:auto;
+
+padding:25px;
+
+background:
+linear-gradient(
+180deg,
+rgba(108,76,255,.025),
+rgba(59,130,246,.025)
+);
+
+scroll-behavior:smooth;
+
+}
+
+
+/* =========================================================
+                    MESSAGE ROW
+========================================================= */
+
+.ai-message-row{
+
+display:flex;
+
+gap:12px;
+
+margin-bottom:22px;
+
+align-items:flex-start;
+
+}
+
+
+.ai-message-row.user{
+
+justify-content:flex-end;
+
+}
+
+
+.ai-message-icon{
+
+width:38px;
+
+height:38px;
+
+min-width:38px;
+
+border-radius:12px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:16px;
+
+}
+
+
+.ai-message-row.bot
+.ai-message-icon{
+
+background:
+linear-gradient(
+135deg,
+#6c4cff,
+#8b5cf6
+);
+
+color:#ffffff;
+
+}
+
+
+.ai-message-row.user
+.ai-message-icon{
+
+background:#e8e4ff;
+
+color:#6c4cff;
+
+order:2;
+
+}
+
+
+/* =========================================================
+                    MESSAGE BUBBLE
+========================================================= */
+
+.ai-message-content{
+
+max-width:75%;
+
+}
+
+
+.ai-message-name{
+
+font-size:12px;
+
+font-weight:600;
+
+margin-bottom:5px;
+
+color:#6b7280;
+
+}
+
+
+.ai-message-row.user
+.ai-message-name{
+
+text-align:right;
+
+}
+
+
+.ai-message-bubble{
+
+padding:14px 17px;
+
+border-radius:18px;
+
+line-height:1.6;
+
+font-size:14px;
+
+}
+
+
+.ai-message-row.bot
+.ai-message-bubble{
+
+background:#ffffff;
+
+border:1px solid #eeeeee;
+
+border-top-left-radius:5px;
+
+box-shadow:0 4px 12px rgba(0,0,0,.04);
+
+}
+
+
+.ai-message-row.user
+.ai-message-bubble{
+
+background:
+linear-gradient(
+135deg,
+#6c4cff,
+#7c5cff
+);
+
+color:#ffffff;
+
+border-top-right-radius:5px;
+
+box-shadow:
+0 5px 15px rgba(108,76,255,.20);
+
+}
+
+
+/* =========================================================
+                    AI RESPONSE LIST
+========================================================= */
+
+.ai-message-bubble ul{
+
+padding-left:20px;
+
+margin-top:10px;
+
+margin-bottom:5px;
+
+}
+
+
+.ai-message-bubble li{
+
+margin-bottom:6px;
+
+}
+
+
+/* =========================================================
+                    TYPING INDICATOR
+========================================================= */
+
+.ai-typing{
+
+display:none;
+
+align-items:center;
+
+gap:5px;
+
+padding:14px 18px;
+
+background:#ffffff;
+
+border:1px solid #eeeeee;
+
+border-radius:18px;
+
+width:max-content;
+
+margin-bottom:20px;
+
+}
+
+
+.ai-typing span{
+
+width:7px;
+
+height:7px;
+
+background:#8b5cf6;
+
+border-radius:50%;
+
+animation:
+aiTyping 1.2s infinite;
+
+}
+
+
+.ai-typing span:nth-child(2){
+
+animation-delay:.2s;
+
+}
+
+
+.ai-typing span:nth-child(3){
+
+animation-delay:.4s;
+
+}
+
+
+@keyframes aiTyping{
+
+0%,
+60%,
+100%{
+
+transform:translateY(0);
+
+opacity:.5;
+
+}
+
+30%{
+
+transform:translateY(-6px);
+
+opacity:1;
+
+}
+
+}
+
+
+/* =========================================================
+                    CHAT INPUT
+========================================================= */
+
+.ai-chat-input-area{
+
+padding:18px 20px;
+
+border-top:1px solid #eeeeee;
+
+background:#ffffff;
+
+}
+
+
+.ai-input-wrapper{
+
+display:flex;
+
+align-items:flex-end;
+
+gap:10px;
+
+background:#f8f7ff;
+
+border:1px solid #ded9ff;
+
+border-radius:18px;
+
+padding:9px 10px 9px 16px;
+
+transition:.3s;
+
+}
+
+
+.ai-input-wrapper:focus-within{
+
+border-color:#6c4cff;
+
+box-shadow:
+0 0 0 4px rgba(108,76,255,.08);
+
+}
+
+
+#aiMessageInput{
+
+border:none;
+
+outline:none;
+
+resize:none;
+
+background:transparent;
+
+width:100%;
+
+max-height:120px;
+
+min-height:42px;
+
+padding:9px 3px;
+
+font-size:14px;
+
+}
+
+
+.ai-input-btn{
+
+width:43px;
+
+height:43px;
+
+min-width:43px;
+
+border:none;
+
+border-radius:13px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+transition:.3s;
+
+}
+
+
+.ai-voice-btn{
+
+background:#ece9ff;
+
+color:#6c4cff;
+
+}
+
+
+.ai-voice-btn:hover{
+
+background:#ddd7ff;
+
+}
+
+
+.ai-send-btn{
+
+background:
+linear-gradient(
+135deg,
+#6c4cff,
+#8b5cf6
+);
+
+color:#ffffff;
+
+}
+
+
+.ai-send-btn:hover{
+
+transform:translateY(-2px);
+
+box-shadow:
+0 5px 15px rgba(108,76,255,.25);
+
+}
+
+
+.ai-disclaimer{
+
+font-size:11px;
+
+text-align:center;
+
+color:#9ca3af;
+
+margin-top:10px;
+
+}
+
+
+/* =========================================================
+                    QUICK QUESTIONS
+========================================================= */
+
+.ai-quick-question{
+
+width:100%;
+
+border:1px solid #e5e7eb;
+
+background:#ffffff;
+
+border-radius:14px;
+
+padding:13px 15px;
+
+text-align:left;
+
+font-size:13px;
+
+font-weight:500;
+
+margin-bottom:10px;
+
+transition:.3s;
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+}
+
+
+.ai-quick-question i{
+
+color:#6c4cff;
+
+}
+
+
+.ai-quick-question:hover{
+
+border-color:#6c4cff;
+
+background:#f8f7ff;
+
+transform:translateX(3px);
+
+}
+
+
+/* =========================================================
+                    AI TOOL CARD
+========================================================= */
+
+.ai-tool{
+
+padding:15px;
+
+border:1px solid #eeeeee;
+
+border-radius:15px;
+
+margin-bottom:12px;
+
+cursor:pointer;
+
+transition:.3s;
+
+display:flex;
+
+align-items:center;
+
+gap:13px;
+
+}
+
+
+.ai-tool:hover{
+
+border-color:#6c4cff;
+
+background:#f8f7ff;
+
+transform:translateY(-2px);
+
+}
+
+
+.ai-tool-icon{
+
+width:43px;
+
+height:43px;
+
+min-width:43px;
+
+border-radius:12px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:17px;
+
+}
+
+
+.ai-tool:nth-child(1)
+.ai-tool-icon{
+
+background:#ede9fe;
+
+color:#7c3aed;
+
+}
+
+
+.ai-tool:nth-child(2)
+.ai-tool-icon{
+
+background:#dbeafe;
+
+color:#2563eb;
+
+}
+
+
+.ai-tool:nth-child(3)
+.ai-tool-icon{
+
+background:#dcfce7;
+
+color:#16a34a;
+
+}
+
+
+.ai-tool:nth-child(4)
+.ai-tool-icon{
+
+background:#fef3c7;
+
+color:#d97706;
+
+}
+
+
+.ai-tool:nth-child(5)
+.ai-tool-icon{
+
+background:#fce7f3;
+
+color:#db2777;
+
+}
+
+
+.ai-tool h6{
+
+margin:0 0 3px;
+
+font-size:14px;
+
+font-weight:700;
+
+}
+
+
+.ai-tool p{
+
+margin:0;
+
+font-size:11px;
+
+color:#6b7280;
+
+}
+
+
+/* =========================================================
+                    AI INFO BOX
+========================================================= */
+
+.ai-info-box{
+
+padding:16px;
+
+border-radius:15px;
+
+background:
+linear-gradient(
+135deg,
+rgba(108,76,255,.08),
+rgba(59,130,246,.06)
+);
+
+border:
+1px solid rgba(108,76,255,.15);
+
+font-size:13px;
+
+}
+
+
+.ai-info-box i{
+
+color:#6c4cff;
+
+}
+
+
+/* =========================================================
+                    FEATURE CARDS
+========================================================= */
+
+.ai-feature-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:18px;
+
+margin-bottom:25px;
+
+}
+
+
+.ai-feature-card{
+
+background:#ffffff;
+
+padding:20px;
+
+border-radius:18px;
+
+box-shadow:
+0 6px 20px rgba(0,0,0,.06);
+
+border:1px solid #eeeeee;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+
+.ai-feature-card:hover{
+
+transform:translateY(-5px);
+
+border-color:#c7bfff;
+
+box-shadow:
+0 10px 25px rgba(108,76,255,.12);
+
+}
+
+
+.ai-feature-icon{
+
+width:48px;
+
+height:48px;
+
+border-radius:14px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:20px;
+
+margin-bottom:14px;
+
+background:#ede9fe;
+
+color:#6c4cff;
+
+}
+
+
+.ai-feature-card h5{
+
+font-size:15px;
+
+font-weight:700;
+
+}
+
+
+.ai-feature-card p{
+
+font-size:12px;
+
+color:#6b7280;
+
+margin:0;
+
+}
+
+
+/* =========================================================
+                    DARK MODE
+========================================================= */
+
+body.dark .ai-page-header p{
+
+color:#94a3b8;
+
+}
+
+
+body.dark .ai-card,
+body.dark .ai-feature-card{
+
+background:#1f1f1f;
+
+color:#ffffff;
+
+border-color:#343434;
+
+}
+
+
+body.dark .ai-card-header{
+
+border-color:#3a3a3a;
+
+}
+
+
+body.dark .ai-card-header h4{
+
+color:#ffffff;
+
+}
+
+
+body.dark .ai-assistant-profile small{
+
+color:#94a3b8;
+
+}
+
+
+body.dark .ai-chat-body{
+
+background:#171717;
+
+}
+
+
+body.dark .ai-message-row.bot
+.ai-message-bubble{
+
+background:#292929;
+
+border-color:#3a3a3a;
+
+color:#ffffff;
+
+}
+
+
+body.dark .ai-message-name{
+
+color:#94a3b8;
+
+}
+
+
+body.dark .ai-chat-input-area{
+
+background:#1f1f1f;
+
+border-color:#3a3a3a;
+
+}
+
+
+body.dark .ai-input-wrapper{
+
+background:#292929;
+
+border-color:#444444;
+
+}
+
+
+body.dark #aiMessageInput{
+
+color:#ffffff;
+
+}
+
+
+body.dark #aiMessageInput::placeholder{
+
+color:#9ca3af;
+
+}
+
+
+body.dark .ai-quick-question{
+
+background:#292929;
+
+border-color:#444444;
+
+color:#ffffff;
+
+}
+
+
+body.dark .ai-quick-question:hover{
+
+background:#333333;
+
+border-color:#6c4cff;
+
+}
+
+
+body.dark .ai-tool{
+
+border-color:#444444;
+
+}
+
+
+body.dark .ai-tool:hover{
+
+background:#292929;
+
+}
+
+
+body.dark .ai-tool p,
+body.dark .ai-feature-card p{
+
+color:#94a3b8;
+
+}
+
+
+body.dark .ai-info-box{
+
+background:#292929;
+
+border-color:#444444;
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE
+========================================================= */
+
+@media(max-width:1100px){
+
+.ai-feature-grid{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+}
+
+
+@media(max-width:992px){
+
+.ai-main-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+
+@media(max-width:576px){
+
+.ai-chat-body{
+
+height:450px;
+
+padding:16px;
+
+}
+
+
+.ai-message-content{
+
+max-width:88%;
+
+}
+
+
+.ai-feature-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+.ai-page-header{
+
+align-items:flex-start;
+
+}
+
+
+.ai-card-header{
+
+padding:16px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="wrapper">
+
+
+<!-- =========================================================
+                        SIDEBAR
+========================================================= -->
+
+<aside class="sidebar">
+
+
+<div class="logo">
+
+<img
+src="../../images/logo.png"
+alt="Logo">
+
+<h3>
+Teacher Panel
+</h3>
+
+</div>
+
+
+<ul class="menu">
+
+
+<li>
+
+<a href="teacher-dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+Dashboard
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="profile.html">
+
+<i class="fa-solid fa-user"></i>
+
+My Profile
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="my-classes.html">
+
+<i class="fa-solid fa-chalkboard-user"></i>
+
+My Classes
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="timetable.html">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+Timetable
+
+</a>
+
+</li>
+
+
+
+
+<li>
+
+<a href="face-attendance.html">
+
+<i class="fa-solid fa-face-smile"></i>
+
+Face Attendance
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="attendance-report.html">
+
+<i class="fa-solid fa-clipboard-user"></i>
+
+Attendance Report
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="assignments.html">
+
+<i class="fa-solid fa-file-pen"></i>
+
+Assignments
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="study-material.html">
+
+<i class="fa-solid fa-book-open"></i>
+
+Study Material
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="leave-request.html">
+
+<i class="fa-solid fa-file-circle-check"></i>
+
+Leave Request
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="notice.html">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+Notice Board
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="academic-calendar.html">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+Academic Calendar
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+href="ai-assistant.html"
+class="active">
+
+<i class="fa-solid fa-robot"></i>
+
+AI Assistant
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="teacher-login.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+</aside>
+
+
+<!-- =========================================================
+                    MAIN CONTENT
+========================================================= -->
+
+<main class="main-content">
+
+<!-- =========================================================
+                    PREMIUM TOP NAVBAR
+========================================================= -->
+
+<nav class="top-navbar">
+
+    <!-- LEFT -->
+    <div class="navbar-left">
+
+        <button
+            type="button"
+            class="mobile-menu-btn"
+            id="mobileMenuBtn">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+
+        <div class="navbar-heading">
+
+            <h3>
+                AI Assistant
+            </h3>
+
+            <p>
+                Smart teaching support powered by AI
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT -->
+    <div class="top-right">
+
+
+        <!-- SEARCH -->
+
+        <div class="navbar-search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="searchBox"
+                placeholder="Search AI tools...">
+
+        </div>
+
+
+        <!-- THEME -->
+
+        <button
+            type="button"
+            id="themeToggle"
+            class="navbar-icon-btn"
+            title="Dark / Light Mode">
+
+            <i class="fa-solid fa-moon"></i>
+
+        </button>
+
+
+        <!-- NOTIFICATION -->
+
+        <div class="dropdown">
+
+            <button
+                type="button"
+                class="navbar-icon-btn position-relative"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+
+                <i class="fa-regular fa-bell"></i>
+
+                <span
+                    class="navbar-badge"
+                    id="notificationCount">
+
+                    4
+
+                </span>
+
+            </button>
+
+
+            <ul
+                class="dropdown-menu dropdown-menu-end notification-menu">
+
+
+                <li>
+
+                    <div class="notification-header">
+
+                        <div>
+
+                            <h6>
+                                Notifications
+                            </h6>
+
+                            <small>
+                                You have 4 new updates
+                            </small>
+
+                        </div>
+
+                        <span class="notification-new-badge">
+                            4 New
+                        </span>
+
+                    </div>
+
+                </li>
+
+
+                <!-- Notification 1 -->
+
+                <li>
+
+                    <a
+                        class="notification-item"
+                        href="notice-board.html">
+
+                        <div class="notification-item-icon purple">
+
+                            <i class="fa-solid fa-bullhorn"></i>
+
+                        </div>
+
+                        <div class="notification-item-content">
+
+                            <strong>
+                                Faculty Meeting
+                            </strong>
+
+                            <span>
+                                Faculty meeting scheduled tomorrow
+                            </span>
+
+                            <small>
+                                10 minutes ago
+                            </small>
+
+                        </div>
+
+                    </a>
+
+                </li>
+
+
+                <!-- Notification 2 -->
+
+                <li>
+
+                    <a
+                        class="notification-item"
+                        href="assignments.html">
+
+                        <div class="notification-item-icon blue">
+
+                            <i class="fa-solid fa-file-lines"></i>
+
+                        </div>
+
+                        <div class="notification-item-content">
+
+                            <strong>
+                                Assignment Updated
+                            </strong>
+
+                            <span>
+                                Assignment submission details updated
+                            </span>
+
+                            <small>
+                                35 minutes ago
+                            </small>
+
+                        </div>
+
+                    </a>
+
+                </li>
+
+
+                <!-- Notification 3 -->
+
+                <li>
+
+                    <a
+                        class="notification-item"
+                        href="attendance-report.html">
+
+                        <div class="notification-item-icon green">
+
+                            <i class="fa-solid fa-user-check"></i>
+
+                        </div>
+
+                        <div class="notification-item-content">
+
+                            <strong>
+                                Attendance Updated
+                            </strong>
+
+                            <span>
+                                Latest attendance records available
+                            </span>
+
+                            <small>
+                                1 hour ago
+                            </small>
+
+                        </div>
+
+                    </a>
+
+                </li>
+
+
+                <!-- Notification 4 -->
+
+                <li>
+
+                    <a
+                        class="notification-item"
+                        href="academic-calendar.html">
+
+                        <div class="notification-item-icon orange">
+
+                            <i class="fa-solid fa-calendar-days"></i>
+
+                        </div>
+
+                        <div class="notification-item-content">
+
+                            <strong>
+                                Calendar Updated
+                            </strong>
+
+                            <span>
+                                New academic event has been added
+                            </span>
+
+                            <small>
+                                2 hours ago
+                            </small>
+
+                        </div>
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a
+                        href="notice-board.html"
+                        class="view-all-notifications">
+
+                        View All Notifications
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- PROFILE -->
+
+        <div class="dropdown">
+
+            <button
+                type="button"
+                class="teacher-profile-btn"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+
+
+                <img
+                    src="../../images/default-profile.png"
+                    alt="Teacher">
+
+
+                <div class="teacher-profile-info">
+
+                    <strong>
+                        Teacher
+                    </strong>
+
+                    <small>
+                        Faculty Member
+                    </small>
+
+                </div>
+
+
+                <i
+                    class="fa-solid fa-chevron-down profile-arrow">
+                </i>
+
+            </button>
+
+
+            <ul
+                class="dropdown-menu dropdown-menu-end profile-menu">
+
+
+                <li>
+
+                    <div class="profile-menu-header">
+
+                        <img
+                            src="../../images/default-profile.png"
+                            alt="Teacher">
+
+                        <div>
+
+                            <strong>
+                                Teacher
+                            </strong>
+
+                            <small>
+                                Faculty Member
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </li>
+
+
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+
+
+                <li>
+
+                    <a
+                        class="dropdown-item"
+                        href="my-profile.html">
+
+                        <i class="fa-regular fa-user"></i>
+
+                        My Profile
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a
+                        class="dropdown-item"
+                        href="settings.html">
+
+                        <i class="fa-solid fa-gear"></i>
+
+                        Settings
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a
+                        class="dropdown-item"
+                        href="change-password.html">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        Change Password
+
+                    </a>
+
+                </li>
+
+
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+
+
+                <li>
+
+                    <a
+                        class="dropdown-item logout-item"
+                        href="teacher-login.html">
+
+                        <i class="fa-solid fa-right-from-bracket"></i>
+
+                        Logout
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+<!-- =========================================================
+                    PAGE HEADER
+========================================================= -->
+
+<div class="ai-page-header">
+
+
+<div>
+
+
+<h2>
+
+<i
+class="fa-solid fa-robot me-2"
+style="color:#6c4cff;">
+</i>
+
+AI Teaching Assistant
+
+</h2>
+
+
+<p>
+
+Your intelligent assistant for teaching,
+attendance, assignments and academic work.
+
+</p>
+
+
+</div>
+
+
+<button
+type="button"
+id="clearChatBtn"
+class="btn btn-outline-danger">
+
+<i class="fa-solid fa-trash me-2"></i>
+
+Clear Chat
+
+</button>
+
+
+</div>
+
+
+<!-- =========================================================
+                    QUICK AI FEATURES
+========================================================= -->
+
+<div class="ai-feature-grid">
+
+
+<div
+class="ai-feature-card"
+data-prompt="Create a lesson plan for today's class.">
+
+
+<div class="ai-feature-icon">
+
+<i class="fa-solid fa-list-check"></i>
+
+</div>
+
+
+<h5>
+
+Lesson Planner
+
+</h5>
+
+
+<p>
+
+Generate structured lesson plans
+for your classes.
+
+</p>
+
+</div>
+
+
+<div
+class="ai-feature-card"
+data-prompt="Generate 10 quiz questions for my students.">
+
+
+<div class="ai-feature-icon">
+
+<i class="fa-solid fa-circle-question"></i>
+
+</div>
+
+
+<h5>
+
+Quiz Generator
+
+</h5>
+
+
+<p>
+
+Create questions and quizzes
+for students.
+
+</p>
+
+</div>
+
+
+<div
+class="ai-feature-card"
+data-prompt="Analyze my class attendance and suggest improvements.">
+
+
+<div class="ai-feature-icon">
+
+<i class="fa-solid fa-chart-line"></i>
+
+</div>
+
+
+<h5>
+
+Attendance Insights
+
+</h5>
+
+
+<p>
+
+Get AI suggestions from
+attendance patterns.
+
+</p>
+
+</div>
+
+
+<div
+class="ai-feature-card"
+data-prompt="Help me create an assignment for my class.">
+
+
+<div class="ai-feature-icon">
+
+<i class="fa-solid fa-file-pen"></i>
+
+</div>
+
+
+<h5>
+
+Assignment Creator
+
+</h5>
+
+
+<p>
+
+Generate assignment ideas,
+questions and instructions.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    MAIN AI GRID
+========================================================= -->
+
+<div class="ai-main-grid">
+
+
+<!-- =========================================================
+                    LEFT - CHAT
+========================================================= -->
+
+<section class="ai-card">
+
+
+<!-- CHAT HEADER -->
+
+<div class="ai-card-header">
+
+
+<div class="ai-assistant-profile">
+
+
+<div class="ai-avatar">
+
+<i class="fa-solid fa-robot"></i>
+
+</div>
+
+
+<div>
+
+<h5>
+
+FMPS AI Assistant
+
+</h5>
+
+
+<div class="ai-online">
+
+<span class="ai-online-dot"></span>
+
+AI Assistant Online
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<span
+class="badge rounded-pill text-bg-primary">
+
+<i class="fa-solid fa-wand-magic-sparkles me-1"></i>
+
+AI Powered
+
+</span>
+
+
+</div>
+
+
+<!-- =========================================================
+                        CHAT BODY
+========================================================= -->
+
+<div
+class="ai-chat-body"
+id="aiChatBody">
+
+
+<!-- AI WELCOME MESSAGE -->
+
+<div class="ai-message-row bot">
+
+
+<div class="ai-message-icon">
+
+<i class="fa-solid fa-robot"></i>
+
+</div>
+
+
+<div class="ai-message-content">
+
+
+<div class="ai-message-name">
+
+FMPS AI Assistant
+
+</div>
+
+
+<div class="ai-message-bubble">
+
+Hello Teacher! 👋
+
+<br><br>
+
+I'm your AI Teaching Assistant.
+
+I can help you with:
+
+<ul>
+
+<li>
+Lesson planning
+</li>
+
+<li>
+Quiz and question generation
+</li>
+
+<li>
+Assignment creation
+</li>
+
+<li>
+Attendance analysis
+</li>
+
+<li>
+Teaching suggestions
+</li>
+
+<li>
+Academic planning
+</li>
+
+</ul>
+
+What would you like help with today?
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    TYPING INDICATOR
+========================================================= -->
+
+<div
+class="ai-message-row bot"
+id="typingMessage"
+style="display:none;">
+
+
+<div class="ai-message-icon">
+
+<i class="fa-solid fa-robot"></i>
+
+</div>
+
+
+<div>
+
+
+<div class="ai-message-name">
+
+FMPS AI Assistant
+
+</div>
+
+
+<div
+class="ai-typing"
+id="aiTyping">
+
+<span></span>
+
+<span></span>
+
+<span></span>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    CHAT INPUT
+========================================================= -->
+
+<div class="ai-chat-input-area">
+
+
+<div class="ai-input-wrapper">
+
+
+<textarea
+id="aiMessageInput"
+rows="1"
+placeholder="Ask AI anything about your teaching work...">
+</textarea>
+
+
+<button
+type="button"
+id="voiceInputBtn"
+class="ai-input-btn ai-voice-btn"
+title="Voice Input">
+
+<i class="fa-solid fa-microphone"></i>
+
+</button>
+
+
+<button
+type="button"
+id="sendAiMessageBtn"
+class="ai-input-btn ai-send-btn"
+title="Send Message">
+
+<i class="fa-solid fa-paper-plane"></i>
+
+</button>
+
+
+</div>
+
+
+<div class="ai-disclaimer">
+
+AI-generated information may require teacher verification
+before academic use.
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    RIGHT COLUMN
+========================================================= -->
+
+<div>
+
+
+<!-- =========================================================
+                    SUGGESTED QUESTIONS
+========================================================= -->
+
+<section class="ai-card">
+
+
+<div class="ai-card-header">
+
+<h4>
+
+<i class="fa-solid fa-lightbulb me-2"></i>
+
+Ask AI
+
+</h4>
+
+</div>
+
+
+<div class="p-3">
+
+
+<button
+class="ai-quick-question"
+data-question="Create a lesson plan for Data Structures.">
+
+<i class="fa-solid fa-book"></i>
+
+Create a lesson plan
+
+</button>
+
+
+<button
+class="ai-quick-question"
+data-question="Generate 10 multiple choice questions on Java.">
+
+<i class="fa-solid fa-circle-question"></i>
+
+Generate quiz questions
+
+</button>
+
+
+<button
+class="ai-quick-question"
+data-question="How can I improve student attendance?">
+
+<i class="fa-solid fa-user-check"></i>
+
+Improve attendance
+
+</button>
+
+
+<button
+class="ai-quick-question"
+data-question="Create an assignment on Database Management System.">
+
+<i class="fa-solid fa-file-pen"></i>
+
+Create an assignment
+
+</button>
+
+
+<button
+class="ai-quick-question"
+data-question="Suggest interactive classroom activities.">
+
+<i class="fa-solid fa-people-group"></i>
+
+Classroom activities
+
+</button>
+
+
+<button
+class="ai-quick-question"
+data-question="Give me ideas for student project topics.">
+
+<i class="fa-solid fa-diagram-project"></i>
+
+Project ideas
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    AI TOOLS
+========================================================= -->
+
+<section class="ai-card">
+
+
+<div class="ai-card-header">
+
+<h4>
+
+<i class="fa-solid fa-wand-magic-sparkles me-2"></i>
+
+AI Smart Tools
+
+</h4>
+
+</div>
+
+
+<div class="p-3">
+
+
+<div
+class="ai-tool"
+data-prompt="Generate a professional lesson plan.">
+
+
+<div class="ai-tool-icon">
+
+<i class="fa-solid fa-book-open-reader"></i>
+
+</div>
+
+
+<div>
+
+<h6>
+
+Smart Lesson Plan
+
+</h6>
+
+<p>
+
+Create class lesson plans.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div
+class="ai-tool"
+data-prompt="Generate exam questions for my students.">
+
+
+<div class="ai-tool-icon">
+
+<i class="fa-solid fa-file-circle-question"></i>
+
+</div>
+
+
+<div>
+
+<h6>
+
+Question Generator
+
+</h6>
+
+<p>
+
+Generate exam questions.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div
+class="ai-tool"
+data-prompt="Analyze attendance performance.">
+
+
+<div class="ai-tool-icon">
+
+<i class="fa-solid fa-chart-column"></i>
+
+</div>
+
+
+<div>
+
+<h6>
+
+Attendance Analyzer
+
+</h6>
+
+<p>
+
+Analyze attendance trends.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div
+class="ai-tool"
+data-prompt="Create a student performance improvement plan.">
+
+
+<div class="ai-tool-icon">
+
+<i class="fa-solid fa-arrow-trend-up"></i>
+
+</div>
+
+
+<div>
+
+<h6>
+
+Performance Insights
+
+</h6>
+
+<p>
+
+Improve student performance.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div
+class="ai-tool"
+data-prompt="Create study material for my class.">
+
+
+<div class="ai-tool-icon">
+
+<i class="fa-solid fa-file-lines"></i>
+
+</div>
+
+
+<div>
+
+<h6>
+
+Study Material AI
+
+</h6>
+
+<p>
+
+Generate study notes.
+
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    AI INFORMATION
+========================================================= -->
+
+<section class="ai-card">
+
+
+<div class="p-3">
+
+
+<div class="ai-info-box">
+
+
+<i class="fa-solid fa-shield-halved me-2"></i>
+
+
+<strong>
+
+Responsible AI Use
+
+</strong>
+
+
+<p class="mb-0 mt-2">
+
+Always review AI-generated academic content
+before sharing it with students.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                        FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+© 2026 Faculty Management & Productivity System |
+Teacher AI Assistant
+
+</footer>
+
+
+</main>
+
+</div>
+
+
+<!-- =========================================================
+                    BOOTSTRAP JS
+========================================================= -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- =========================================================
+                    TEACHER COMMON JS
+========================================================= -->
+
+<script src="../../js/teacher-dashboard.js"></script>
+
+
+<!-- =========================================================
+                    AI ASSISTANT JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+
+/* =========================================================
+                        ELEMENTS
+========================================================= */
+
+const aiChatBody =
+document.getElementById(
+"aiChatBody"
+);
+
+
+const aiMessageInput =
+document.getElementById(
+"aiMessageInput"
+);
+
+
+const sendAiMessageBtn =
+document.getElementById(
+"sendAiMessageBtn"
+);
+
+
+const voiceInputBtn =
+document.getElementById(
+"voiceInputBtn"
+);
+
+
+const clearChatBtn =
+document.getElementById(
+"clearChatBtn"
+);
+
+
+const typingMessage =
+document.getElementById(
+"typingMessage"
+);
+
+
+const aiTyping =
+document.getElementById(
+"aiTyping"
+);
+
+
+/* =========================================================
+                    SEND MESSAGE
+========================================================= */
+
+function sendMessage(){
+
+
+const message =
+aiMessageInput.value.trim();
+
+
+if(message === ""){
+
+return;
+
+}
+
+
+addUserMessage(
+message
+);
+
+
+aiMessageInput.value =
+"";
+
+
+aiMessageInput.style.height =
+"auto";
+
+
+showTyping();
+
+
+setTimeout(
+function(){
+
+
+hideTyping();
+
+
+const response =
+generateAIResponse(
+message
+);
+
+
+addAIMessage(
+response
+);
+
+
+},
+1200
+);
+
+
+}
+
+
+/* =========================================================
+                    USER MESSAGE
+========================================================= */
+
+function addUserMessage(
+message
+){
+
+
+const row =
+document.createElement(
+"div"
+);
+
+
+row.className =
+"ai-message-row user";
+
+
+row.innerHTML = `
+
+<div class="ai-message-content">
+
+<div class="ai-message-name">
+
+You
+
+</div>
+
+<div class="ai-message-bubble"></div>
+
+</div>
+
+<div class="ai-message-icon">
+
+<i class="fa-solid fa-user"></i>
+
+</div>
+
+`;
+
+
+row.querySelector(
+".ai-message-bubble"
+).textContent =
+message;
+
+
+aiChatBody.insertBefore(
+row,
+typingMessage
+);
+
+
+scrollChat();
+
+}
+
+
+/* =========================================================
+                    AI MESSAGE
+========================================================= */
+
+function addAIMessage(
+message
+){
+
+
+const row =
+document.createElement(
+"div"
+);
+
+
+row.className =
+"ai-message-row bot";
+
+
+row.innerHTML = `
+
+<div class="ai-message-icon">
+
+<i class="fa-solid fa-robot"></i>
+
+</div>
+
+<div class="ai-message-content">
+
+<div class="ai-message-name">
+
+FMPS AI Assistant
+
+</div>
+
+<div class="ai-message-bubble"></div>
+
+</div>
+
+`;
+
+
+row.querySelector(
+".ai-message-bubble"
+).innerHTML =
+message;
+
+
+aiChatBody.insertBefore(
+row,
+typingMessage
+);
+
+
+scrollChat();
+
+}
+
+
+/* =========================================================
+                    TYPING
+========================================================= */
+
+function showTyping(){
+
+
+typingMessage.style.display =
+"flex";
+
+
+aiTyping.style.display =
+"flex";
+
+
+scrollChat();
+
+}
+
+
+function hideTyping(){
+
+
+typingMessage.style.display =
+"none";
+
+
+aiTyping.style.display =
+"none";
+
+}
+
+
+/* =========================================================
+                    SCROLL
+========================================================= */
+
+function scrollChat(){
+
+
+aiChatBody.scrollTop =
+aiChatBody.scrollHeight;
+
+}
+
+
+/* =========================================================
+                    DEMO AI RESPONSE
+========================================================= */
+
+function generateAIResponse(
+message
+){
+
+
+const text =
+message.toLowerCase();
+
+
+/* LESSON PLAN */
+
+if(
+text.includes("lesson") ||
+text.includes("plan")
+){
+
+return `
+
+<strong>Here's a suggested lesson plan:</strong>
+
+<ul>
+
+<li>
+<strong>Introduction:</strong>
+5-10 minutes overview of the topic.
+</li>
+
+<li>
+<strong>Concept Explanation:</strong>
+Explain the main concepts using examples.
+</li>
+
+<li>
+<strong>Interactive Activity:</strong>
+Give students a practical classroom activity.
+</li>
+
+<li>
+<strong>Practice:</strong>
+Provide 3-5 questions.
+</li>
+
+<li>
+<strong>Assessment:</strong>
+Conduct a short quiz.
+</li>
+
+<li>
+<strong>Homework:</strong>
+Assign one practical task.
+</li>
+
+</ul>
+
+You can tell me the
+<strong>subject, topic and class</strong>
+and I can make this lesson plan more specific.
+
+`;
+
+}
+
+
+/* QUIZ */
+
+if(
+text.includes("quiz") ||
+text.includes("question") ||
+text.includes("mcq")
+){
+
+return `
+
+<strong>Sure! I can generate a quiz.</strong>
+
+<br><br>
+
+Please provide:
+
+<ul>
+
+<li>Subject name</li>
+
+<li>Topic</li>
+
+<li>Number of questions</li>
+
+<li>Difficulty level</li>
+
+<li>MCQ / Short Answer / Descriptive</li>
+
+</ul>
+
+For example:
+
+<br>
+
+<em>
+"Generate 10 MCQs on Java OOP at medium difficulty."
+</em>
+
+`;
+
+}
+
+
+/* ATTENDANCE */
+
+if(
+text.includes("attendance")
+){
+
+return `
+
+<strong>AI Attendance Insights</strong>
+
+<ul>
+
+<li>
+Identify students with attendance below 75%.
+</li>
+
+<li>
+Track repeated absence patterns.
+</li>
+
+<li>
+Send early reminders to students.
+</li>
+
+<li>
+Compare attendance with academic performance.
+</li>
+
+<li>
+Conduct follow-up sessions for frequently absent students.
+</li>
+
+</ul>
+
+Once the backend is connected,
+I can analyze the actual attendance records
+stored in FMPS.
+
+`;
+
+}
+
+
+/* ASSIGNMENT */
+
+if(
+text.includes("assignment")
+){
+
+return `
+
+<strong>Assignment Generator</strong>
+
+<br><br>
+
+I can create an assignment containing:
+
+<ul>
+
+<li>Assignment title</li>
+
+<li>Learning objectives</li>
+
+<li>5-10 questions</li>
+
+<li>Practical tasks</li>
+
+<li>Submission instructions</li>
+
+<li>Evaluation criteria</li>
+
+</ul>
+
+Tell me the
+<strong>subject and topic</strong>
+to generate the complete assignment.
+
+`;
+
+}
+
+
+/* PROJECT */
+
+if(
+text.includes("project")
+){
+
+return `
+
+<strong>Student Project Ideas</strong>
+
+<ul>
+
+<li>AI-based Attendance System</li>
+
+<li>Smart College Management System</li>
+
+<li>Student Performance Prediction</li>
+
+<li>Online Examination Portal</li>
+
+<li>Library Management System</li>
+
+<li>AI Academic Assistant</li>
+
+</ul>
+
+I can also generate
+<strong>project objectives, modules, technology stack and architecture</strong>.
+
+`;
+
+}
+
+
+/* STUDY MATERIAL */
+
+if(
+text.includes("study") ||
+text.includes("notes") ||
+text.includes("material")
+){
+
+return `
+
+I can help create structured study material.
+
+<br><br>
+
+The material can include:
+
+<ul>
+
+<li>Topic explanation</li>
+
+<li>Important definitions</li>
+
+<li>Examples</li>
+
+<li>Key points</li>
+
+<li>Revision notes</li>
+
+<li>Practice questions</li>
+
+</ul>
+
+Enter the topic you want to prepare.
+
+`;
+
+}
+
+
+/* DEFAULT */
+
+return `
+
+I understand your request.
+
+<br><br>
+
+As your FMPS AI Teaching Assistant,
+I can help with:
+
+<ul>
+
+<li>Lesson planning</li>
+
+<li>Assignments</li>
+
+<li>Quiz generation</li>
+
+<li>Attendance insights</li>
+
+<li>Student performance</li>
+
+<li>Study material</li>
+
+<li>Academic planning</li>
+
+</ul>
+
+Please provide a little more detail
+about what you want me to generate.
+
+`;
+
+}
+
+
+/* =========================================================
+                    SEND BUTTON
+========================================================= */
+
+sendAiMessageBtn.addEventListener(
+"click",
+sendMessage
+);
+
+
+/* =========================================================
+                    ENTER KEY
+========================================================= */
+
+aiMessageInput.addEventListener(
+"keydown",
+function(event){
+
+
+if(
+event.key === "Enter" &&
+!event.shiftKey
+){
+
+event.preventDefault();
+
+sendMessage();
+
+}
+
+
+}
+);
+
+
+/* =========================================================
+                    AUTO TEXTAREA HEIGHT
+========================================================= */
+
+aiMessageInput.addEventListener(
+"input",
+function(){
+
+
+this.style.height =
+"auto";
+
+
+this.style.height =
+Math.min(
+this.scrollHeight,
+120
+) + "px";
+
+
+}
+);
+
+
+/* =========================================================
+                    QUICK QUESTIONS
+========================================================= */
+
+document
+.querySelectorAll(
+".ai-quick-question"
+)
+.forEach(
+function(button){
+
+
+button.addEventListener(
+"click",
+function(){
+
+
+aiMessageInput.value =
+this.dataset.question;
+
+
+sendMessage();
+
+
+}
+);
+
+
+}
+);
+
+
+/* =========================================================
+                    FEATURE CARDS
+========================================================= */
+
+document
+.querySelectorAll(
+".ai-feature-card"
+)
+.forEach(
+function(card){
+
+
+card.addEventListener(
+"click",
+function(){
+
+
+aiMessageInput.value =
+this.dataset.prompt;
+
+
+sendMessage();
+
+
+}
+);
+
+
+}
+);
+
+
+/* =========================================================
+                    AI TOOLS
+========================================================= */
+
+document
+.querySelectorAll(
+".ai-tool"
+)
+.forEach(
+function(tool){
+
+
+tool.addEventListener(
+"click",
+function(){
+
+
+aiMessageInput.value =
+this.dataset.prompt;
+
+
+sendMessage();
+
+
+}
+);
+
+
+}
+);
+
+
+/* =========================================================
+                    CLEAR CHAT
+========================================================= */
+
+clearChatBtn.addEventListener(
+"click",
+function(){
+
+
+const messages =
+aiChatBody.querySelectorAll(
+".ai-message-row"
+);
+
+
+messages.forEach(
+function(message,index){
+
+
+/*
+Keep first welcome message
+and typing indicator.
+*/
+
+if(
+index !== 0 &&
+message.id !==
+"typingMessage"
+){
+
+message.remove();
+
+}
+
+
+}
+);
+
+
+addAIMessage(
+
+"Chat cleared successfully. 😊<br><br>How can I help you with your teaching work?"
+
+);
+
+
+}
+);
+
+
+/* =========================================================
+                    VOICE INPUT
+========================================================= */
+
+voiceInputBtn.addEventListener(
+"click",
+function(){
+
+
+const SpeechRecognition =
+window.SpeechRecognition ||
+window.webkitSpeechRecognition;
+
+
+if(!SpeechRecognition){
+
+alert(
+"Voice recognition is not supported in this browser."
+);
+
+return;
+
+}
+
+
+const recognition =
+new SpeechRecognition();
+
+
+recognition.lang =
+"en-IN";
+
+
+recognition.interimResults =
+false;
+
+
+recognition.maxAlternatives =
+1;
+
+
+voiceInputBtn.innerHTML =
+'<i class="fa-solid fa-microphone-lines"></i>';
+
+
+recognition.start();
+
+
+recognition.onresult =
+function(event){
+
+
+const transcript =
+event.results[0][0]
+.transcript;
+
+
+aiMessageInput.value =
+transcript;
+
+
+voiceInputBtn.innerHTML =
+'<i class="fa-solid fa-microphone"></i>';
+
+
+};
+
+
+recognition.onerror =
+function(){
+
+
+voiceInputBtn.innerHTML =
+'<i class="fa-solid fa-microphone"></i>';
+
+
+};
+
+
+recognition.onend =
+function(){
+
+
+voiceInputBtn.innerHTML =
+'<i class="fa-solid fa-microphone"></i>';
+
+
+};
+
+
+}
+);
+
+
+/* =========================================================
+                    SEARCH
+========================================================= */
+
+const searchBox =
+document.getElementById(
+"searchBox"
+);
+
+
+if(searchBox){
+
+
+searchBox.addEventListener(
+"input",
+function(){
+
+
+const value =
+this.value
+.toLowerCase()
+.trim();
+
+
+const tools =
+document.querySelectorAll(
+".ai-tool"
+);
+
+
+const questions =
+document.querySelectorAll(
+".ai-quick-question"
+);
+
+
+tools.forEach(
+function(tool){
+
+
+tool.style.display =
+tool.innerText
+.toLowerCase()
+.includes(value)
+?
+"flex"
+:
+"none";
+
+
+}
+);
+
+
+questions.forEach(
+function(question){
+
+
+question.style.display =
+question.innerText
+.toLowerCase()
+.includes(value)
+?
+"flex"
+:
+"none";
+
+
+}
+);
+
+
+}
+);
+
+
+}
+
+
+/* =========================================================
+                    INITIAL SCROLL
+========================================================= */
+
+scrollChat();
+
+
+});
+
+</script>
+
+
+</body>
+
+</html>

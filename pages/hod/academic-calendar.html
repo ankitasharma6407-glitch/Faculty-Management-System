@@ -1,0 +1,3913 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Academic Calendar | HOD Panel
+</title>
+
+
+<!-- ================= Bootstrap ================= -->
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<!-- ================= Font Awesome ================= -->
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+<!-- ================= Google Font ================= -->
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+
+<!-- ================= Full Calendar ================= -->
+
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
+
+
+<!-- ================= HOD CSS ================= -->
+
+<link
+rel="stylesheet"
+href="../../css/hod-dashboard.css">
+
+
+<style>
+
+/* =========================================================
+                ACADEMIC CALENDAR PAGE
+========================================================= */
+
+.calendar-page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:25px;
+
+}
+
+
+.calendar-page-header h2{
+
+    font-weight:800;
+
+    margin-bottom:5px;
+
+}
+
+
+.calendar-page-header p{
+
+    color:#6b7280;
+
+    margin:0;
+
+}
+
+
+.calendar-page-header .btn{
+
+    border-radius:12px;
+
+    padding:11px 20px;
+
+    font-weight:600;
+
+}
+
+
+/* =========================================================
+                    SUMMARY CARDS
+========================================================= */
+
+.calendar-stats{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(200px,1fr));
+
+    gap:20px;
+
+    margin-bottom:25px;
+
+}
+
+
+.calendar-stat-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    box-shadow:
+    0 6px 20px rgba(0,0,0,.07);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    transition:.3s;
+
+}
+
+
+.calendar-stat-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+
+.calendar-stat-icon{
+
+    width:58px;
+
+    height:58px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:24px;
+
+}
+
+
+.calendar-stat-icon.purple{
+
+    background:rgba(108,76,255,.12);
+
+    color:#6c4cff;
+
+}
+
+
+.calendar-stat-icon.green{
+
+    background:rgba(34,197,94,.12);
+
+    color:#22c55e;
+
+}
+
+
+.calendar-stat-icon.orange{
+
+    background:rgba(245,158,11,.15);
+
+    color:#f59e0b;
+
+}
+
+
+.calendar-stat-icon.red{
+
+    background:rgba(239,68,68,.12);
+
+    color:#ef4444;
+
+}
+
+
+.calendar-stat-card h3{
+
+    margin:0;
+
+    font-size:27px;
+
+    font-weight:800;
+
+}
+
+
+.calendar-stat-card p{
+
+    margin:3px 0 0;
+
+    color:#6b7280;
+
+    font-size:14px;
+
+}
+
+
+/* =========================================================
+                    MAIN CALENDAR GRID
+========================================================= */
+
+.calendar-layout{
+
+    display:grid;
+
+    grid-template-columns:
+    minmax(0,2fr) 340px;
+
+    gap:22px;
+
+    align-items:start;
+
+}
+
+
+.calendar-main-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:
+    0 6px 20px rgba(0,0,0,.07);
+
+}
+
+
+.calendar-side-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    box-shadow:
+    0 6px 20px rgba(0,0,0,.07);
+
+    margin-bottom:20px;
+
+}
+
+
+.calendar-main-card h4,
+.calendar-side-card h4{
+
+    font-weight:700;
+
+    color:#6c4cff;
+
+    margin-bottom:20px;
+
+}
+
+
+/* =========================================================
+                    FULL CALENDAR
+========================================================= */
+
+#academicCalendar{
+
+    min-height:650px;
+
+}
+
+
+.fc .fc-toolbar-title{
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+
+.fc .fc-button{
+
+    background:#6c4cff !important;
+
+    border-color:#6c4cff !important;
+
+    border-radius:8px !important;
+
+    box-shadow:none !important;
+
+}
+
+
+.fc .fc-button:hover{
+
+    background:#5838e8 !important;
+
+    border-color:#5838e8 !important;
+
+}
+
+
+.fc .fc-button-active{
+
+    background:#4f2ed7 !important;
+
+}
+
+
+.fc-event{
+
+    cursor:pointer;
+
+    border-radius:6px;
+
+    padding:2px 4px;
+
+}
+
+
+/* =========================================================
+                    EVENT CATEGORY
+========================================================= */
+
+.event-category{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:12px 0;
+
+    border-bottom:1px solid #eeeeee;
+
+}
+
+
+.event-category:last-child{
+
+    border-bottom:none;
+
+}
+
+
+.category-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.category-dot{
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+}
+
+
+.dot-academic{
+
+    background:#6c4cff;
+
+}
+
+
+.dot-exam{
+
+    background:#ef4444;
+
+}
+
+
+.dot-meeting{
+
+    background:#2563eb;
+
+}
+
+
+.dot-holiday{
+
+    background:#22c55e;
+
+}
+
+
+.dot-deadline{
+
+    background:#f59e0b;
+
+}
+
+
+/* =========================================================
+                    UPCOMING EVENTS
+========================================================= */
+
+.upcoming-event{
+
+    padding:14px;
+
+    border-radius:13px;
+
+    background:#f8f9fc;
+
+    margin-bottom:12px;
+
+    border-left:4px solid #6c4cff;
+
+    transition:.3s;
+
+}
+
+
+.upcoming-event:hover{
+
+    transform:translateX(4px);
+
+}
+
+
+.upcoming-event h6{
+
+    font-weight:700;
+
+    margin-bottom:5px;
+
+}
+
+
+.upcoming-event p{
+
+    font-size:13px;
+
+    color:#6b7280;
+
+    margin:0;
+
+}
+
+
+.upcoming-event .event-date{
+
+    font-size:12px;
+
+    font-weight:600;
+
+    color:#6c4cff;
+
+    margin-top:7px;
+
+}
+
+
+/* =========================================================
+                    MODAL
+========================================================= */
+
+.event-modal-icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(108,76,255,.12);
+
+    color:#6c4cff;
+
+    font-size:30px;
+
+}
+
+
+/* =========================================================
+                    DARK MODE
+========================================================= */
+
+body.dark .calendar-page-header p{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark .calendar-stat-card,
+body.dark .calendar-main-card,
+body.dark .calendar-side-card{
+
+    background:#1f1f1f;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .calendar-stat-card p{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark .calendar-main-card h4,
+body.dark .calendar-side-card h4{
+
+    color:#ffffff;
+
+}
+
+
+body.dark .event-category{
+
+    border-color:#3f3f46;
+
+}
+
+
+body.dark .upcoming-event{
+
+    background:#292929;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .upcoming-event p{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark .fc{
+
+    color:#ffffff;
+
+}
+
+
+body.dark .fc-theme-standard td,
+body.dark .fc-theme-standard th,
+body.dark .fc-theme-standard .fc-scrollgrid{
+
+    border-color:#444444;
+
+}
+
+
+body.dark .fc .fc-daygrid-day-number,
+body.dark .fc .fc-col-header-cell-cushion{
+
+    color:#ffffff;
+
+    text-decoration:none;
+
+}
+
+
+body.dark .fc-day-today{
+
+    background:
+    rgba(108,76,255,.15) !important;
+
+}
+
+
+body.dark .modal-content{
+
+    background:#1f1f1f;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .modal-content .form-control,
+body.dark .modal-content .form-select{
+
+    background:#292929;
+
+    border-color:#444;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .modal-content .form-control::placeholder{
+
+    color:#999;
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE
+========================================================= */
+
+@media(max-width:1200px){
+
+    .calendar-layout{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+@media(max-width:768px){
+
+    .calendar-main-card{
+
+        padding:15px;
+
+    }
+
+
+    #academicCalendar{
+
+        min-height:550px;
+
+    }
+
+
+    .fc .fc-toolbar{
+
+        flex-direction:column;
+
+        gap:12px;
+
+    }
+
+
+    .calendar-page-header{
+
+        align-items:flex-start;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="wrapper">
+
+
+<!-- =========================================================
+                        SIDEBAR
+========================================================= -->
+
+<aside class="sidebar">
+
+
+<div class="logo">
+
+<img
+src="../../images/logo.png"
+alt="Logo">
+
+<h3>HOD Panel</h3>
+
+</div>
+
+<ul class="menu">
+
+    <!-- Dashboard -->
+    <li>
+        <a href="hod-dashboard.html">
+            <i class="fa-solid fa-house"></i>
+            Dashboard
+        </a>
+    </li>
+
+    <!-- Teachers -->
+    <li>
+        <a href="teacher-list.html">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            Teachers
+        </a>
+    </li>
+
+    <!-- Students -->
+    <li>
+        <a href="student-list.html">
+            <i class="fa-solid fa-user-graduate"></i>
+            Students
+        </a>
+    </li>
+
+    <!-- Timetable -->
+    <li>
+        <a href="timetable.html">
+            <i class="fa-solid fa-table-list"></i>
+            Timetable
+        </a>
+    </li>
+
+    <!-- Academic Calendar -->
+    <li class="active">
+        <a href="academic-calendar.html">
+            <i class="fa-solid fa-calendar-days"></i>
+            Academic Calendar
+        </a>
+    </li>
+
+    <!-- Attendance Report -->
+    <li>
+        <a href="attendance-report.html">
+            <i class="fa-solid fa-clipboard-check"></i>
+            Attendance Report
+        </a>
+    </li>
+
+    <!-- Analytics -->
+    <li>
+        <a href="analytics.html">
+            <i class="fa-solid fa-chart-pie"></i>
+            Analytics
+        </a>
+    </li>
+
+    <!-- Face Attendance -->
+    <li>
+        <a href="face-attendance.html">
+            <i class="fa-solid fa-camera"></i>
+            Face Attendance
+        </a>
+    </li>
+
+    <!-- Face Registration -->
+    <li>
+        <a href="face-register.html">
+            <i class="fa-solid fa-face-smile"></i>
+            Face Registration
+        </a>
+    </li>
+
+    <!-- Leave Requests -->
+    <li>
+        <a href="leave-requests.html">
+            <i class="fa-solid fa-file-circle-check"></i>
+            Leave Requests
+        </a>
+    </li>
+
+    <!-- Reports -->
+    <li>
+        <a href="reports.html">
+            <i class="fa-solid fa-chart-line"></i>
+            Reports
+        </a>
+    </li>
+
+    <!-- Notice Board -->
+    <li>
+        <a href="notice-board.html">
+            <i class="fa-solid fa-bullhorn"></i>
+            Notice Board
+        </a>
+    </li>
+
+    <!-- Notifications -->
+    <li>
+        <a href="notification.html">
+            <i class="fa-solid fa-bell"></i>
+            Notifications
+        </a>
+    </li>
+
+    <!-- Profile -->
+    <li>
+        <a href="profile.html">
+            <i class="fa-solid fa-user"></i>
+            Profile
+        </a>
+    </li>
+
+    <!-- Settings -->
+    <li>
+        <a href="settings.html">
+            <i class="fa-solid fa-gear"></i>
+            Settings
+        </a>
+    </li>
+
+    <!-- Logout -->
+    <li>
+        <a href="hod-login.html">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </a>
+    </li>
+
+</ul>
+
+</aside>
+
+
+<!-- =========================================================
+                        MAIN CONTENT
+========================================================= -->
+
+<main class="main-content">
+
+
+<!-- =========================================================
+                        TOP NAVBAR
+========================================================= -->
+
+<nav class="top-navbar">
+
+
+<h3>
+
+Academic Calendar
+
+</h3>
+
+
+<div class="top-right">
+
+
+<!-- Search -->
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="searchBox"
+placeholder="Search...">
+
+</div>
+
+
+<!-- Dark Mode -->
+
+<button
+id="themeToggle"
+class="icon-btn"
+type="button"
+title="Dark / Light Mode">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+
+<!-- Notification -->
+
+<div class="dropdown">
+
+
+<button
+class="icon-btn position-relative"
+data-bs-toggle="dropdown">
+
+<i class="fa-regular fa-bell"></i>
+
+<span
+class="badge-count"
+id="notificationCount">
+
+4
+
+</span>
+
+</button>
+
+
+<ul
+class="dropdown-menu dropdown-menu-end notification-menu">
+
+
+<li class="dropdown-header">
+
+Notifications
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="#">
+
+📢 Faculty Meeting Tomorrow
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="#">
+
+📄 Leave Request Pending
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="#">
+
+📅 Semester Examination Scheduled
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="#">
+
+🎉 Result Uploaded
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+<!-- Profile -->
+
+<div class="dropdown">
+
+
+<div
+class="profile"
+data-bs-toggle="dropdown">
+
+<img
+src="https://i.pravatar.cc/50?img=12"
+alt="HOD">
+
+<span>
+
+Welcome, HOD
+
+</span>
+
+<i class="fa-solid fa-angle-down"></i>
+
+</div>
+
+
+<ul
+class="dropdown-menu dropdown-menu-end profile-menu">
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="profile.html">
+
+<i class="fa-solid fa-user"></i>
+
+My Profile
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="change-password.html">
+
+<i class="fa-solid fa-lock"></i>
+
+Change Password
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
+
+</a>
+
+</li>
+
+
+<li>
+
+<hr class="dropdown-divider">
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item text-danger"
+href="hod-login.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+</div>
+
+
+</nav>
+
+
+<!-- =========================================================
+                    PAGE HEADER
+========================================================= -->
+
+<div class="calendar-page-header">
+
+
+<div>
+
+<h2>
+
+<i
+class="fa-solid fa-calendar-days"
+style="color:#6c4cff;">
+</i>
+
+Academic Calendar
+
+</h2>
+
+
+<p>
+
+Manage academic events, examinations,
+meetings, holidays and important deadlines.
+
+</p>
+
+</div>
+
+
+<div class="d-flex gap-2 flex-wrap">
+
+
+<button
+type="button"
+class="btn btn-outline-primary"
+id="todayCalendarBtn">
+
+<i class="fa-solid fa-calendar-day me-2"></i>
+
+Today
+
+</button>
+
+
+<button
+type="button"
+class="btn btn-primary"
+data-bs-toggle="modal"
+data-bs-target="#addEventModal">
+
+<i class="fa-solid fa-plus me-2"></i>
+
+Add Event
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    SUMMARY CARDS
+========================================================= -->
+
+<section class="calendar-stats">
+
+
+<!-- Total Events -->
+
+<div class="calendar-stat-card">
+
+
+<div class="calendar-stat-icon purple">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+</div>
+
+
+<div>
+
+<h3 id="totalEvents">
+
+12
+
+</h3>
+
+<p>
+
+Total Events
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- Upcoming -->
+
+<div class="calendar-stat-card">
+
+
+<div class="calendar-stat-icon green">
+
+<i class="fa-solid fa-clock"></i>
+
+</div>
+
+
+<div>
+
+<h3 id="upcomingEvents">
+
+5
+
+</h3>
+
+<p>
+
+Upcoming Events
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- Exams -->
+
+<div class="calendar-stat-card">
+
+
+<div class="calendar-stat-icon red">
+
+<i class="fa-solid fa-file-pen"></i>
+
+</div>
+
+
+<div>
+
+<h3 id="examEvents">
+
+3
+
+</h3>
+
+<p>
+
+Examinations
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- Holidays -->
+
+<div class="calendar-stat-card">
+
+
+<div class="calendar-stat-icon orange">
+
+<i class="fa-solid fa-umbrella-beach"></i>
+
+</div>
+
+
+<div>
+
+<h3 id="holidayEvents">
+
+4
+
+</h3>
+
+<p>
+
+Holidays
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                MAIN CALENDAR AREA START
+========================================================= -->
+
+<section class="calendar-layout">
+
+
+<!-- ================= LEFT CALENDAR ================= -->
+
+<div class="calendar-main-card">
+
+
+<div
+class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+
+
+<h4 class="mb-0">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+Department Academic Calendar
+
+</h4>
+
+
+<select
+id="eventTypeFilter"
+class="form-select"
+style="width:200px;">
+
+
+<option value="all">
+
+All Events
+
+</option>
+
+
+<option value="academic">
+
+Academic
+
+</option>
+
+
+<option value="exam">
+
+Examination
+
+</option>
+
+
+<option value="meeting">
+
+Meeting
+
+</option>
+
+
+<option value="holiday">
+
+Holiday
+
+</option>
+
+
+<option value="deadline">
+
+Deadline
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+<div id="academicCalendar"></div>
+
+
+</div>
+
+
+<!-- ================= RIGHT PANEL ================= -->
+
+<div>
+
+
+<!-- Event Categories -->
+
+<div class="calendar-side-card">
+
+
+<h4>
+
+<i class="fa-solid fa-tags"></i>
+
+Event Categories
+
+</h4>
+
+
+<div class="event-category">
+
+
+<div class="category-left">
+
+<span
+class="category-dot dot-academic">
+</span>
+
+Academic
+
+</div>
+
+
+<span class="badge bg-primary">
+
+4
+
+</span>
+
+
+</div>
+
+
+<div class="event-category">
+
+
+<div class="category-left">
+
+<span
+class="category-dot dot-exam">
+</span>
+
+Examination
+
+</div>
+
+
+<span class="badge bg-danger">
+
+3
+
+</span>
+
+
+</div>
+
+
+<div class="event-category">
+
+
+<div class="category-left">
+
+<span
+class="category-dot dot-meeting">
+</span>
+
+Meeting
+
+</div>
+
+
+<span class="badge bg-info">
+
+2
+
+</span>
+
+
+</div>
+
+
+<div class="event-category">
+
+
+<div class="category-left">
+
+<span
+class="category-dot dot-holiday">
+</span>
+
+Holiday
+
+</div>
+
+
+<span class="badge bg-success">
+
+4
+
+</span>
+
+
+</div>
+
+
+<div class="event-category">
+
+
+<div class="category-left">
+
+<span
+class="category-dot dot-deadline">
+</span>
+
+Deadline
+
+</div>
+
+
+<span class="badge bg-warning text-dark">
+
+2
+
+</span>
+
+
+</div>
+
+
+</div>
+
+
+<!-- Upcoming Events -->
+
+<div class="calendar-side-card">
+
+
+<h4>
+
+<i class="fa-solid fa-clock"></i>
+
+Upcoming Events
+
+</h4>
+
+
+<div id="upcomingEventsList">
+
+
+<div class="upcoming-event">
+
+<h6>
+
+Faculty Meeting
+
+</h6>
+
+<p>
+
+Department faculty meeting.
+
+</p>
+
+<div class="event-date">
+
+<i class="fa-solid fa-calendar"></i>
+
+04 August 2026
+
+</div>
+
+</div>
+
+
+<div class="upcoming-event">
+
+<h6>
+
+Internal Examination
+
+</h6>
+
+<p>
+
+Semester internal examination begins.
+
+</p>
+
+<div class="event-date">
+
+<i class="fa-solid fa-calendar"></i>
+
+10 August 2026
+
+</div>
+
+</div>
+
+
+<div class="upcoming-event">
+
+<h6>
+
+Assignment Submission
+
+</h6>
+
+<p>
+
+Final assignment submission deadline.
+
+</p>
+
+<div class="event-date">
+
+<i class="fa-solid fa-calendar"></i>
+
+17 August 2026
+
+</div>
+
+</div>
+
+
+<div class="upcoming-event">
+
+<h6>
+
+Independence Day Holiday
+
+</h6>
+
+<p>
+
+College holiday.
+
+</p>
+
+<div class="event-date">
+
+<i class="fa-solid fa-calendar"></i>
+
+15 August 2026
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+<!-- =========================================================
+                    PART 2 START
+========================================================= -->
+
+
+<!-- =========================================================
+                    ADD EVENT MODAL
+========================================================= -->
+
+<div
+class="modal fade"
+id="addEventModal"
+tabindex="-1"
+aria-hidden="true">
+
+<div class="modal-dialog modal-dialog-centered modal-lg">
+
+<div class="modal-content border-0 rounded-4">
+
+
+<!-- Modal Header -->
+
+<div class="modal-header bg-primary text-white">
+
+<h5 class="modal-title">
+
+<i class="fa-solid fa-calendar-plus me-2"></i>
+
+Add Academic Event
+
+</h5>
+
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+
+<!-- Modal Body -->
+
+<div class="modal-body p-4">
+
+
+<form id="addEventForm">
+
+
+<div class="row">
+
+
+<!-- Event Title -->
+
+<div class="col-md-8 mb-3">
+
+<label class="form-label fw-semibold">
+
+Event Title
+
+</label>
+
+
+<input
+type="text"
+id="eventTitle"
+class="form-control"
+placeholder="Enter Event Title"
+required>
+
+</div>
+
+
+<!-- Event Type -->
+
+<div class="col-md-4 mb-3">
+
+<label class="form-label fw-semibold">
+
+Event Type
+
+</label>
+
+
+<select
+id="eventType"
+class="form-select"
+required>
+
+<option value="">
+
+Select Type
+
+</option>
+
+<option value="academic">
+
+Academic
+
+</option>
+
+<option value="exam">
+
+Examination
+
+</option>
+
+<option value="meeting">
+
+Meeting
+
+</option>
+
+<option value="holiday">
+
+Holiday
+
+</option>
+
+<option value="deadline">
+
+Deadline
+
+</option>
+
+</select>
+
+</div>
+
+
+<!-- Start Date -->
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Start Date
+
+</label>
+
+
+<input
+type="date"
+id="eventStartDate"
+class="form-control"
+required>
+
+</div>
+
+
+<!-- End Date -->
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+End Date
+
+</label>
+
+
+<input
+type="date"
+id="eventEndDate"
+class="form-control">
+
+</div>
+
+
+<!-- Start Time -->
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Start Time
+
+</label>
+
+
+<input
+type="time"
+id="eventStartTime"
+class="form-control">
+
+</div>
+
+
+<!-- End Time -->
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+End Time
+
+</label>
+
+
+<input
+type="time"
+id="eventEndTime"
+class="form-control">
+
+</div>
+
+
+<!-- Venue -->
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Venue
+
+</label>
+
+
+<input
+type="text"
+id="eventVenue"
+class="form-control"
+placeholder="Enter Venue">
+
+</div>
+
+
+<!-- Department -->
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Department
+
+</label>
+
+
+<select
+id="eventDepartment"
+class="form-select">
+
+<option value="Computer Science">
+
+Computer Science
+
+</option>
+
+<option value="Mathematics">
+
+Mathematics
+
+</option>
+
+<option value="Commerce">
+
+Commerce
+
+</option>
+
+<option value="Physics">
+
+Physics
+
+</option>
+
+<option value="Chemistry">
+
+Chemistry
+
+</option>
+
+<option value="English">
+
+English
+
+</option>
+
+</select>
+
+</div>
+
+
+<!-- Description -->
+
+<div class="col-12 mb-3">
+
+<label class="form-label fw-semibold">
+
+Description
+
+</label>
+
+
+<textarea
+id="eventDescription"
+class="form-control"
+rows="4"
+placeholder="Enter Event Description">
+</textarea>
+
+</div>
+
+
+<!-- Notification -->
+
+<div class="col-12 mb-3">
+
+<div class="form-check">
+
+<input
+class="form-check-input"
+type="checkbox"
+id="sendNotification"
+checked>
+
+
+<label
+class="form-check-label"
+for="sendNotification">
+
+Send notification to teachers and students
+
+</label>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- Buttons -->
+
+<div class="d-flex justify-content-end gap-2 mt-3">
+
+
+<button
+type="button"
+class="btn btn-outline-secondary"
+data-bs-dismiss="modal">
+
+<i class="fa-solid fa-xmark me-1"></i>
+
+Cancel
+
+</button>
+
+
+<button
+type="submit"
+class="btn btn-primary">
+
+<i class="fa-solid fa-calendar-plus me-1"></i>
+
+Add Event
+
+</button>
+
+
+</div>
+
+
+</form>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    EVENT DETAILS MODAL
+========================================================= -->
+
+<div
+class="modal fade"
+id="eventDetailsModal"
+tabindex="-1"
+aria-hidden="true">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content border-0 rounded-4">
+
+
+<!-- Header -->
+
+<div class="modal-header">
+
+<h5 class="modal-title">
+
+<i class="fa-solid fa-calendar-check me-2"></i>
+
+Event Details
+
+</h5>
+
+
+<button
+type="button"
+class="btn-close"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+
+<!-- Body -->
+
+<div class="modal-body p-4">
+
+
+<div class="event-modal-icon mb-3">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+</div>
+
+
+<div class="text-center mb-4">
+
+<h4
+id="detailsEventTitle"
+class="fw-bold">
+
+Event Title
+
+</h4>
+
+
+<span
+id="detailsEventType"
+class="badge bg-primary">
+
+Academic
+
+</span>
+
+</div>
+
+
+<div class="border rounded-3 p-3">
+
+
+<p>
+
+<i class="fa-solid fa-calendar text-primary me-2"></i>
+
+<strong>Date:</strong>
+
+<span id="detailsEventDate">
+
+--
+
+</span>
+
+</p>
+
+
+<p>
+
+<i class="fa-solid fa-clock text-success me-2"></i>
+
+<strong>Time:</strong>
+
+<span id="detailsEventTime">
+
+--
+
+</span>
+
+</p>
+
+
+<p>
+
+<i class="fa-solid fa-location-dot text-danger me-2"></i>
+
+<strong>Venue:</strong>
+
+<span id="detailsEventVenue">
+
+--
+
+</span>
+
+</p>
+
+
+<p>
+
+<i class="fa-solid fa-building text-warning me-2"></i>
+
+<strong>Department:</strong>
+
+<span id="detailsEventDepartment">
+
+--
+
+</span>
+
+</p>
+
+
+<p class="mb-0">
+
+<i class="fa-solid fa-align-left text-info me-2"></i>
+
+<strong>Description:</strong>
+
+<span id="detailsEventDescription">
+
+--
+
+</span>
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+<!-- Footer -->
+
+<div class="modal-footer">
+
+
+<button
+type="button"
+id="deleteEventBtn"
+class="btn btn-danger">
+
+<i class="fa-solid fa-trash me-1"></i>
+
+Delete
+
+</button>
+
+
+<button
+type="button"
+class="btn btn-secondary"
+data-bs-dismiss="modal">
+
+Close
+
+</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                        FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+© 2026 Faculty Management & Productivity System |
+Head of Department Academic Calendar
+
+</footer>
+
+
+</main>
+
+</div>
+
+
+<!-- =========================================================
+                        JAVASCRIPT LIBRARIES
+========================================================= -->
+
+
+<!-- Bootstrap -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- Full Calendar -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js">
+</script>
+
+
+<!-- HOD Common JS -->
+
+<script src="../../js/hod-dashboard.js"></script>
+
+
+<!-- =========================================================
+                    ACADEMIC CALENDAR SCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+/* =========================================================
+                    ELEMENTS
+========================================================= */
+
+const calendarElement =
+document.getElementById("academicCalendar");
+
+const addEventForm =
+document.getElementById("addEventForm");
+
+const eventTypeFilter =
+document.getElementById("eventTypeFilter");
+
+const todayCalendarBtn =
+document.getElementById("todayCalendarBtn");
+
+const totalEventsElement =
+document.getElementById("totalEvents");
+
+const upcomingEventsElement =
+document.getElementById("upcomingEvents");
+
+const examEventsElement =
+document.getElementById("examEvents");
+
+const holidayEventsElement =
+document.getElementById("holidayEvents");
+
+const upcomingEventsList =
+document.getElementById("upcomingEventsList");
+
+let selectedEvent = null;
+
+
+/* =========================================================
+                    EVENT COLORS
+========================================================= */
+
+function getEventColor(type){
+
+switch(type){
+
+case "academic":
+
+return "#6c4cff";
+
+
+case "exam":
+
+return "#ef4444";
+
+
+case "meeting":
+
+return "#2563eb";
+
+
+case "holiday":
+
+return "#22c55e";
+
+
+case "deadline":
+
+return "#f59e0b";
+
+
+default:
+
+return "#6c4cff";
+
+}
+
+}
+
+
+/* =========================================================
+                    DEMO EVENTS
+========================================================= */
+
+const academicEvents = [
+
+{
+
+id:"1",
+
+title:"Semester Classes Begin",
+
+start:"2026-08-03",
+
+type:"academic",
+
+venue:"Department Classrooms",
+
+department:"Computer Science",
+
+description:"Regular semester classes begin for all students."
+
+},
+
+
+{
+
+id:"2",
+
+title:"Faculty Meeting",
+
+start:"2026-08-04T11:00:00",
+
+end:"2026-08-04T12:30:00",
+
+type:"meeting",
+
+venue:"Conference Hall",
+
+department:"Computer Science",
+
+description:"Monthly department faculty meeting."
+
+},
+
+
+{
+
+id:"3",
+
+title:"Internal Examination",
+
+start:"2026-08-10",
+
+end:"2026-08-14",
+
+type:"exam",
+
+venue:"Academic Block",
+
+department:"Computer Science",
+
+description:"First internal examination for the current semester."
+
+},
+
+
+{
+
+id:"4",
+
+title:"Independence Day Holiday",
+
+start:"2026-08-15",
+
+type:"holiday",
+
+venue:"College",
+
+department:"Computer Science",
+
+description:"College closed on account of Independence Day."
+
+},
+
+
+{
+
+id:"5",
+
+title:"Assignment Submission",
+
+start:"2026-08-17",
+
+type:"deadline",
+
+venue:"Department",
+
+department:"Computer Science",
+
+description:"Last date for assignment submission."
+
+},
+
+
+{
+
+id:"6",
+
+title:"Project Review",
+
+start:"2026-08-20T10:00:00",
+
+end:"2026-08-20T02:00:00",
+
+type:"academic",
+
+venue:"Computer Lab",
+
+department:"Computer Science",
+
+description:"Student project progress review."
+
+},
+
+
+{
+
+id:"7",
+
+title:"Department Seminar",
+
+start:"2026-08-22T12:00:00",
+
+type:"academic",
+
+venue:"Seminar Hall",
+
+department:"Computer Science",
+
+description:"Technical seminar for students and faculty."
+
+},
+
+
+{
+
+id:"8",
+
+title:"Parents Teacher Meeting",
+
+start:"2026-08-25T10:00:00",
+
+type:"meeting",
+
+venue:"Department",
+
+department:"Computer Science",
+
+description:"Parent teacher interaction meeting."
+
+},
+
+
+{
+
+id:"9",
+
+title:"Mid Semester Result",
+
+start:"2026-08-28",
+
+type:"academic",
+
+venue:"Online Portal",
+
+department:"Computer Science",
+
+description:"Internal examination result publication."
+
+},
+
+
+{
+
+id:"10",
+
+title:"Fee Submission Deadline",
+
+start:"2026-08-30",
+
+type:"deadline",
+
+venue:"Accounts Section",
+
+department:"Computer Science",
+
+description:"Last date for semester fee submission."
+
+},
+
+
+{
+
+id:"11",
+
+title:"Teachers Day Program",
+
+start:"2026-09-05",
+
+type:"academic",
+
+venue:"College Auditorium",
+
+department:"Computer Science",
+
+description:"Teachers Day celebration."
+
+},
+
+
+{
+
+id:"12",
+
+title:"Semester Examination",
+
+start:"2026-11-20",
+
+end:"2026-12-05",
+
+type:"exam",
+
+venue:"Examination Hall",
+
+department:"Computer Science",
+
+description:"End semester university examination."
+
+}
+
+];
+
+
+/* =========================================================
+                PREPARE EVENTS FOR CALENDAR
+========================================================= */
+
+academicEvents.forEach(function(event){
+
+event.backgroundColor =
+getEventColor(event.type);
+
+event.borderColor =
+getEventColor(event.type);
+
+});
+
+
+/* =========================================================
+                    FULL CALENDAR
+========================================================= */
+
+const calendar =
+new FullCalendar.Calendar(
+calendarElement,
+{
+
+initialView:"dayGridMonth",
+
+initialDate:"2026-08-01",
+
+height:"auto",
+
+headerToolbar:{
+
+left:"prev,next today",
+
+center:"title",
+
+right:"dayGridMonth,timeGridWeek,listMonth"
+
+},
+
+buttonText:{
+
+today:"Today",
+
+month:"Month",
+
+week:"Week",
+
+list:"List"
+
+},
+
+events:academicEvents,
+
+
+/* =========================================================
+                    EVENT CLICK
+========================================================= */
+
+eventClick:function(info){
+
+selectedEvent =
+info.event;
+
+
+const event =
+info.event;
+
+
+document.getElementById(
+"detailsEventTitle"
+).innerText =
+event.title;
+
+
+const type =
+event.extendedProps.type || "academic";
+
+
+const typeElement =
+document.getElementById(
+"detailsEventType"
+);
+
+
+typeElement.innerText =
+formatEventType(type);
+
+
+typeElement.className =
+"badge " +
+getBadgeClass(type);
+
+
+/* ================= Date ================= */
+
+let dateText = "--";
+
+
+if(event.start){
+
+dateText =
+formatDate(event.start);
+
+}
+
+
+if(event.end){
+
+dateText +=
+" - " +
+formatDate(event.end);
+
+}
+
+
+document.getElementById(
+"detailsEventDate"
+).innerText =
+dateText;
+
+
+/* ================= Time ================= */
+
+let timeText =
+"All Day";
+
+
+if(
+event.start &&
+!event.allDay
+){
+
+timeText =
+event.start.toLocaleTimeString(
+[],
+{
+hour:"2-digit",
+minute:"2-digit"
+}
+);
+
+}
+
+
+if(
+event.end &&
+!event.allDay
+){
+
+timeText +=
+" - " +
+event.end.toLocaleTimeString(
+[],
+{
+hour:"2-digit",
+minute:"2-digit"
+}
+);
+
+}
+
+
+document.getElementById(
+"detailsEventTime"
+).innerText =
+timeText;
+
+
+/* ================= Venue ================= */
+
+document.getElementById(
+"detailsEventVenue"
+).innerText =
+
+event.extendedProps.venue
+|| "Not specified";
+
+
+/* ================= Department ================= */
+
+document.getElementById(
+"detailsEventDepartment"
+).innerText =
+
+event.extendedProps.department
+|| "Not specified";
+
+
+/* ================= Description ================= */
+
+document.getElementById(
+"detailsEventDescription"
+).innerText =
+
+event.extendedProps.description
+|| "No description available";
+
+
+/* ================= Show Modal ================= */
+
+const detailsModal =
+new bootstrap.Modal(
+document.getElementById(
+"eventDetailsModal"
+)
+);
+
+
+detailsModal.show();
+
+}
+
+}
+);
+
+
+calendar.render();
+
+
+/* =========================================================
+                    FORMAT EVENT TYPE
+========================================================= */
+
+function formatEventType(type){
+
+switch(type){
+
+case "academic":
+
+return "Academic";
+
+
+case "exam":
+
+return "Examination";
+
+
+case "meeting":
+
+return "Meeting";
+
+
+case "holiday":
+
+return "Holiday";
+
+
+case "deadline":
+
+return "Deadline";
+
+
+default:
+
+return "Event";
+
+}
+
+}
+
+
+/* =========================================================
+                    BADGE CLASS
+========================================================= */
+
+function getBadgeClass(type){
+
+switch(type){
+
+case "academic":
+
+return "bg-primary";
+
+
+case "exam":
+
+return "bg-danger";
+
+
+case "meeting":
+
+return "bg-info";
+
+
+case "holiday":
+
+return "bg-success";
+
+
+case "deadline":
+
+return "bg-warning text-dark";
+
+
+default:
+
+return "bg-secondary";
+
+}
+
+}
+
+
+/* =========================================================
+                    FORMAT DATE
+========================================================= */
+
+function formatDate(date){
+
+return date.toLocaleDateString(
+"en-IN",
+{
+
+day:"2-digit",
+
+month:"short",
+
+year:"numeric"
+
+}
+);
+
+}
+
+
+/* =========================================================
+                    ADD NEW EVENT
+========================================================= */
+
+if(addEventForm){
+
+addEventForm.addEventListener(
+"submit",
+function(e){
+
+e.preventDefault();
+
+
+const title =
+document.getElementById(
+"eventTitle"
+).value.trim();
+
+
+const type =
+document.getElementById(
+"eventType"
+).value;
+
+
+const startDate =
+document.getElementById(
+"eventStartDate"
+).value;
+
+
+const endDate =
+document.getElementById(
+"eventEndDate"
+).value;
+
+
+const startTime =
+document.getElementById(
+"eventStartTime"
+).value;
+
+
+const endTime =
+document.getElementById(
+"eventEndTime"
+).value;
+
+
+const venue =
+document.getElementById(
+"eventVenue"
+).value.trim();
+
+
+const department =
+document.getElementById(
+"eventDepartment"
+).value;
+
+
+const description =
+document.getElementById(
+"eventDescription"
+).value.trim();
+
+
+const sendNotification =
+document.getElementById(
+"sendNotification"
+).checked;
+
+
+/* ================= Validation ================= */
+
+if(
+!title ||
+!type ||
+!startDate
+){
+
+alert(
+"Please enter Event Title, Event Type and Start Date."
+);
+
+return;
+
+}
+
+
+if(
+endDate &&
+new Date(endDate) <
+new Date(startDate)
+){
+
+alert(
+"End Date cannot be before Start Date."
+);
+
+return;
+
+}
+
+
+/* =========================================================
+                CREATE START DATE
+========================================================= */
+
+let startValue =
+startDate;
+
+
+if(startTime){
+
+startValue +=
+"T" +
+startTime +
+":00";
+
+}
+
+
+/* =========================================================
+                CREATE END DATE
+========================================================= */
+
+let endValue = null;
+
+
+if(endDate){
+
+endValue =
+endDate;
+
+
+if(endTime){
+
+endValue +=
+"T" +
+endTime +
+":00";
+
+}
+
+}
+
+
+/* =========================================================
+                CREATE EVENT OBJECT
+========================================================= */
+
+const newEvent = {
+
+id:
+Date.now().toString(),
+
+title:title,
+
+start:startValue,
+
+type:type,
+
+venue:
+venue || "Not specified",
+
+department:department,
+
+description:
+description ||
+"No description available.",
+
+backgroundColor:
+getEventColor(type),
+
+borderColor:
+getEventColor(type)
+
+};
+
+
+if(endValue){
+
+newEvent.end =
+endValue;
+
+}
+
+
+/* =========================================================
+                ADD EVENT TO CALENDAR
+========================================================= */
+
+calendar.addEvent(
+newEvent
+);
+
+
+/* =========================================================
+                    RESET FORM
+========================================================= */
+
+addEventForm.reset();
+
+
+/* =========================================================
+                    CLOSE MODAL
+========================================================= */
+
+const modalElement =
+document.getElementById(
+"addEventModal"
+);
+
+
+const modalInstance =
+bootstrap.Modal.getInstance(
+modalElement
+);
+
+
+if(modalInstance){
+
+modalInstance.hide();
+
+}
+
+
+/* =========================================================
+                    UPDATE COUNTS
+========================================================= */
+
+updateStatistics();
+
+updateUpcomingEvents();
+
+
+if(sendNotification){
+
+alert(
+"Event added successfully!\n\nNotification will be sent to teachers and students after backend integration."
+);
+
+}
+
+else{
+
+alert(
+"Event added successfully!"
+);
+
+}
+
+
+/*
+=========================================================
+BACKEND INTEGRATION
+
+Backend banne ke baad yahan:
+
+fetch("/api/hod/calendar/events",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify(newEvent)
+
+});
+
+=========================================================
+*/
+
+
+}
+);
+
+}
+
+
+/* =========================================================
+                    DELETE EVENT
+========================================================= */
+
+const deleteEventBtn =
+document.getElementById(
+"deleteEventBtn"
+);
+
+
+if(deleteEventBtn){
+
+deleteEventBtn.addEventListener(
+"click",
+function(){
+
+if(!selectedEvent){
+
+return;
+
+}
+
+
+const confirmDelete =
+confirm(
+"Are you sure you want to delete this event?"
+);
+
+
+if(!confirmDelete){
+
+return;
+
+}
+
+
+const eventId =
+selectedEvent.id;
+
+
+/*
+=========================================================
+BACKEND:
+
+fetch(
+"/api/hod/calendar/events/" + eventId,
+{
+method:"DELETE"
+}
+);
+
+=========================================================
+*/
+
+
+selectedEvent.remove();
+
+
+selectedEvent = null;
+
+
+const modalElement =
+document.getElementById(
+"eventDetailsModal"
+);
+
+
+const modal =
+bootstrap.Modal.getInstance(
+modalElement
+);
+
+
+if(modal){
+
+modal.hide();
+
+}
+
+
+updateStatistics();
+
+updateUpcomingEvents();
+
+
+alert(
+"Event deleted successfully."
+);
+
+}
+);
+
+}
+
+
+/* =========================================================
+                    EVENT FILTER
+========================================================= */
+
+if(eventTypeFilter){
+
+eventTypeFilter.addEventListener(
+"change",
+function(){
+
+const selectedType =
+this.value;
+
+
+calendar.getEvents().forEach(
+function(event){
+
+const eventType =
+event.extendedProps.type;
+
+
+if(
+selectedType === "all" ||
+eventType === selectedType
+){
+
+event.setProp(
+"display",
+"auto"
+);
+
+}
+
+else{
+
+event.setProp(
+"display",
+"none"
+);
+
+}
+
+}
+);
+
+}
+);
+
+}
+
+
+/* =========================================================
+                    TODAY BUTTON
+========================================================= */
+
+if(todayCalendarBtn){
+
+todayCalendarBtn.addEventListener(
+"click",
+function(){
+
+calendar.today();
+
+}
+);
+
+}
+
+
+/* =========================================================
+                    UPDATE STATISTICS
+========================================================= */
+
+function updateStatistics(){
+
+const events =
+calendar.getEvents();
+
+
+/* Total */
+
+if(totalEventsElement){
+
+totalEventsElement.innerText =
+events.length;
+
+}
+
+
+/* Examination */
+
+const exams =
+events.filter(
+function(event){
+
+return (
+event.extendedProps.type
+=== "exam"
+);
+
+}
+);
+
+
+if(examEventsElement){
+
+examEventsElement.innerText =
+exams.length;
+
+}
+
+
+/* Holidays */
+
+const holidays =
+events.filter(
+function(event){
+
+return (
+event.extendedProps.type
+=== "holiday"
+);
+
+}
+);
+
+
+if(holidayEventsElement){
+
+holidayEventsElement.innerText =
+holidays.length;
+
+}
+
+
+/* Upcoming */
+
+const today =
+new Date();
+
+
+today.setHours(
+0,
+0,
+0,
+0
+);
+
+
+const upcoming =
+events.filter(
+function(event){
+
+return (
+event.start &&
+event.start >= today
+);
+
+}
+);
+
+
+if(upcomingEventsElement){
+
+upcomingEventsElement.innerText =
+upcoming.length;
+
+}
+
+}
+
+
+/* =========================================================
+                    UPCOMING EVENT LIST
+========================================================= */
+
+function updateUpcomingEvents(){
+
+if(!upcomingEventsList){
+
+return;
+
+}
+
+
+const today =
+new Date();
+
+
+today.setHours(
+0,
+0,
+0,
+0
+);
+
+
+let events =
+calendar.getEvents();
+
+
+events =
+events.filter(
+function(event){
+
+return (
+event.start &&
+event.start >= today
+);
+
+}
+);
+
+
+/* Sort by date */
+
+events.sort(
+function(a,b){
+
+return (
+a.start -
+b.start
+);
+
+}
+);
+
+
+/* Show only next 5 */
+
+events =
+events.slice(
+0,
+5
+);
+
+
+upcomingEventsList.innerHTML =
+"";
+
+
+if(events.length === 0){
+
+upcomingEventsList.innerHTML =
+
+`
+
+<div class="text-center py-4">
+
+<i
+class="fa-solid fa-calendar-xmark
+fa-3x text-muted mb-3">
+</i>
+
+<p class="text-muted mb-0">
+
+No upcoming events.
+
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+events.forEach(
+function(event){
+
+const type =
+event.extendedProps.type;
+
+
+const color =
+getEventColor(type);
+
+
+const eventBox =
+document.createElement(
+"div"
+);
+
+
+eventBox.className =
+"upcoming-event";
+
+
+eventBox.style.borderLeftColor =
+color;
+
+
+eventBox.innerHTML =
+
+`
+
+<h6>
+
+${event.title}
+
+</h6>
+
+<p>
+
+${event.extendedProps.description ||
+"No description available."}
+
+</p>
+
+<div class="event-date">
+
+<i class="fa-solid fa-calendar me-1"></i>
+
+${formatDate(event.start)}
+
+</div>
+
+`;
+
+
+eventBox.addEventListener(
+"click",
+function(){
+
+calendar.gotoDate(
+event.start
+);
+
+}
+);
+
+
+upcomingEventsList.appendChild(
+eventBox
+);
+
+}
+);
+
+}
+
+
+/* =========================================================
+                    SEARCH CALENDAR EVENTS
+========================================================= */
+
+const searchBox =
+document.getElementById(
+"searchBox"
+);
+
+
+if(searchBox){
+
+searchBox.addEventListener(
+"keyup",
+function(){
+
+const searchValue =
+this.value
+.toLowerCase()
+.trim();
+
+
+calendar.getEvents().forEach(
+function(event){
+
+const title =
+event.title
+.toLowerCase();
+
+
+const description =
+(
+event.extendedProps.description ||
+""
+)
+.toLowerCase();
+
+
+const venue =
+(
+event.extendedProps.venue ||
+""
+)
+.toLowerCase();
+
+
+const department =
+(
+event.extendedProps.department ||
+""
+)
+.toLowerCase();
+
+
+const match =
+title.includes(searchValue) ||
+
+description.includes(searchValue) ||
+
+venue.includes(searchValue) ||
+
+department.includes(searchValue);
+
+
+event.setProp(
+"display",
+match
+? "auto"
+: "none"
+);
+
+}
+);
+
+}
+);
+
+}
+
+
+/* =========================================================
+                    INITIAL VALUES
+========================================================= */
+
+updateStatistics();
+
+updateUpcomingEvents();
+
+
+/* =========================================================
+                    BACKEND READY
+========================================================= */
+
+/*
+
+Actual backend banne ke baad demo events ko
+remove karke API se calendar data load karna:
+
+
+async function loadCalendarEvents(){
+
+try{
+
+const response =
+await fetch(
+"/api/hod/calendar/events"
+);
+
+
+if(!response.ok){
+
+throw new Error(
+"Unable to load calendar events."
+);
+
+}
+
+
+const events =
+await response.json();
+
+
+events.forEach(
+function(event){
+
+event.backgroundColor =
+getEventColor(
+event.type
+);
+
+event.borderColor =
+getEventColor(
+event.type
+);
+
+
+calendar.addEvent(
+event
+);
+
+}
+);
+
+
+updateStatistics();
+
+updateUpcomingEvents();
+
+
+}
+
+catch(error){
+
+console.error(
+"Calendar Error:",
+error
+);
+
+}
+
+}
+
+
+loadCalendarEvents();
+
+*/
+
+
+}
+);
+
+</script>
+
+
+<!-- =========================================================
+                    CALENDAR PRINT CSS
+========================================================= -->
+
+<style>
+
+@media print{
+
+
+.sidebar{
+
+display:none !important;
+
+}
+
+
+.main-content{
+
+margin-left:0 !important;
+
+padding:10px !important;
+
+}
+
+
+.top-navbar{
+
+display:none !important;
+
+}
+
+
+.calendar-page-header .btn{
+
+display:none !important;
+
+}
+
+
+.calendar-side-card{
+
+display:none !important;
+
+}
+
+
+.calendar-layout{
+
+display:block !important;
+
+}
+
+
+.calendar-main-card{
+
+box-shadow:none !important;
+
+border:1px solid #ddd;
+
+}
+
+
+body,
+body.dark{
+
+background:#ffffff !important;
+
+color:#000000 !important;
+
+}
+
+
+.fc{
+
+color:#000000 !important;
+
+}
+
+
+.footer{
+
+color:#000000 !important;
+
+}
+
+
+}
+
+</style>
+
+
+</body>
+
+</html>

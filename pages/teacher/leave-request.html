@@ -1,0 +1,6063 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>
+    Leave Request | Teacher Panel
+</title>
+
+
+<!-- =========================================================
+                        BOOTSTRAP
+========================================================= -->
+
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+
+
+<!-- =========================================================
+                        FONT AWESOME
+========================================================= -->
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+<!-- =========================================================
+                        GOOGLE FONT
+========================================================= -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+
+<style>
+
+/* =========================================================
+                        GLOBAL
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:
+    linear-gradient(
+        135deg,
+        #f7f5ff 0%,
+        #eef5ff 50%,
+        #f8f9fc 100%
+    );
+
+    color:#1f2937;
+
+    min-height:100vh;
+
+}
+
+
+/* =========================================================
+                        LAYOUT
+========================================================= */
+
+.teacher-layout{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+
+/* =========================================================
+                        SIDEBAR
+========================================================= */
+
+.teacher-sidebar{
+
+    width:270px;
+
+    min-height:100vh;
+
+    position:fixed;
+
+    left:0;
+    top:0;
+
+    z-index:1000;
+
+    overflow-y:auto;
+
+    background:
+    linear-gradient(
+        180deg,
+        #263ee8 0%,
+        #6848dd 48%,
+        #9b6ad8 100%
+    );
+
+    color:#ffffff;
+
+    padding:25px 18px;
+
+    box-shadow:
+    5px 0 25px rgba(0,0,0,.10);
+
+}
+
+
+/* =========================================================
+                        LOGO
+========================================================= */
+
+.teacher-logo{
+
+    text-align:center;
+
+    margin-bottom:28px;
+
+}
+
+
+.teacher-logo img{
+
+    width:80px;
+    height:80px;
+
+    object-fit:contain;
+
+    border-radius:50%;
+
+    background:#ffffff;
+
+    padding:5px;
+
+    margin-bottom:10px;
+
+}
+
+
+.teacher-logo h3{
+
+    margin:0;
+
+    font-size:26px;
+
+    font-weight:800;
+
+}
+
+
+.teacher-logo p{
+
+    margin:4px 0 0;
+
+    font-size:13px;
+
+    opacity:.85;
+
+}
+
+
+/* =========================================================
+                    SIDEBAR NAVIGATION
+========================================================= */
+
+.teacher-menu{
+
+    list-style:none;
+
+    padding:0;
+    margin:0;
+
+}
+
+
+.teacher-menu li{
+
+    margin-bottom:7px;
+
+}
+
+
+.teacher-menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    color:rgba(255,255,255,.90);
+
+    text-decoration:none;
+
+    padding:12px 15px;
+
+    border-radius:12px;
+
+    font-size:14px;
+
+    font-weight:500;
+
+    transition:.3s;
+
+}
+
+
+.teacher-menu a i{
+
+    width:22px;
+
+    text-align:center;
+
+    font-size:16px;
+
+}
+
+
+.teacher-menu a:hover{
+
+    background:rgba(255,255,255,.16);
+
+    color:#ffffff;
+
+    transform:translateX(4px);
+
+}
+
+
+.teacher-menu a.active{
+
+    background:rgba(255,255,255,.22);
+
+    color:#ffffff;
+
+    box-shadow:
+    0 6px 18px rgba(0,0,0,.10);
+
+}
+
+
+/* =========================================================
+                    MENU SECTION
+========================================================= */
+
+.menu-title{
+
+    color:rgba(255,255,255,.55);
+
+    font-size:11px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    padding:16px 15px 8px;
+
+    font-weight:700;
+
+}
+
+
+/* =========================================================
+                        MAIN
+========================================================= */
+
+.teacher-main{
+
+    margin-left:270px;
+
+    width:calc(100% - 270px);
+
+    min-height:100vh;
+
+    padding:25px;
+
+}
+
+
+/* =========================================================
+                        TOPBAR
+========================================================= */
+
+.teacher-topbar{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:16px 20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.06);
+
+    margin-bottom:25px;
+
+}
+
+
+.topbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+.mobile-menu-btn{
+
+    width:42px;
+    height:42px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#f1efff;
+
+    color:#6c4cff;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:18px;
+
+}
+
+
+.teacher-topbar h4{
+
+    margin:0;
+
+    font-weight:700;
+
+}
+
+
+.teacher-topbar small{
+
+    color:#6b7280;
+
+}
+
+
+.topbar-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.topbar-icon-btn{
+
+    width:42px;
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#f2efff;
+
+    color:#6c4cff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.topbar-icon-btn:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+}
+
+
+.teacher-avatar{
+
+    width:44px;
+    height:44px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:2px solid #6c4cff;
+
+}
+
+
+/* =========================================================
+                    PAGE HEADER
+========================================================= */
+
+.leave-header{
+
+    padding:28px;
+
+    border-radius:22px;
+
+    margin-bottom:25px;
+
+    color:#ffffff;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        135deg,
+        #6c4cff,
+        #536dfe,
+        #3b82f6
+    );
+
+    box-shadow:
+    0 12px 30px rgba(83,109,254,.22);
+
+}
+
+
+.leave-header::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+    height:220px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.10);
+
+    right:-70px;
+    top:-80px;
+
+}
+
+
+.leave-header-content{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+.leave-header-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:7px 14px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.17);
+
+    font-size:12px;
+
+    font-weight:600;
+
+    margin-bottom:14px;
+
+}
+
+
+.leave-header h2{
+
+    font-weight:800;
+
+    margin-bottom:8px;
+
+}
+
+
+.leave-header p{
+
+    max-width:720px;
+
+    margin:0;
+
+    opacity:.90;
+
+}
+
+
+/* =========================================================
+                    STAT CARDS
+========================================================= */
+
+.leave-stats{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:18px;
+
+    margin-bottom:25px;
+
+}
+
+
+.leave-stat-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.06);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    transition:.3s;
+
+}
+
+
+.leave-stat-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 12px 30px rgba(0,0,0,.10);
+
+}
+
+
+.leave-stat-icon{
+
+    width:55px;
+    height:55px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:22px;
+
+}
+
+
+.leave-stat-icon.total{
+
+    color:#6c4cff;
+
+    background:rgba(108,76,255,.12);
+
+}
+
+
+.leave-stat-icon.used{
+
+    color:#f59e0b;
+
+    background:rgba(245,158,11,.13);
+
+}
+
+
+.leave-stat-icon.remaining{
+
+    color:#16a34a;
+
+    background:rgba(34,197,94,.12);
+
+}
+
+
+.leave-stat-icon.pending{
+
+    color:#2563eb;
+
+    background:rgba(37,99,235,.12);
+
+}
+
+
+.leave-stat-info small{
+
+    color:#6b7280;
+
+    display:block;
+
+    margin-bottom:3px;
+
+}
+
+
+.leave-stat-info strong{
+
+    font-size:25px;
+
+    font-weight:800;
+
+}
+
+
+/* =========================================================
+                        MAIN GRID
+========================================================= */
+
+.leave-main-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1.15fr .85fr;
+
+    gap:25px;
+
+    align-items:start;
+
+}
+
+
+/* =========================================================
+                    COMMON CARD
+========================================================= */
+
+.leave-card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:24px;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.06);
+
+    margin-bottom:25px;
+
+}
+
+
+.leave-card-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:22px;
+
+}
+
+
+.leave-card-title h4{
+
+    margin:0;
+
+    font-weight:700;
+
+    color:#6c4cff;
+
+}
+
+
+.leave-card-title p{
+
+    margin:4px 0 0;
+
+    color:#6b7280;
+
+    font-size:13px;
+
+}
+
+
+/* =========================================================
+                    FORM
+========================================================= */
+
+.form-label{
+
+    font-size:13px;
+
+    font-weight:600;
+
+    margin-bottom:7px;
+
+}
+
+
+.form-control,
+.form-select{
+
+    border:1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    min-height:48px;
+
+    font-size:14px;
+
+    padding-left:14px;
+
+    box-shadow:none !important;
+
+}
+
+
+textarea.form-control{
+
+    min-height:120px;
+
+    resize:none;
+
+    padding-top:13px;
+
+}
+
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:#6c4cff;
+
+}
+
+
+.form-hint{
+
+    font-size:11px;
+
+    color:#9ca3af;
+
+    margin-top:6px;
+
+}
+
+
+/* =========================================================
+                    LEAVE TYPE
+========================================================= */
+
+.leave-type-options{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:12px;
+
+}
+
+
+.leave-type-option{
+
+    position:relative;
+
+}
+
+
+.leave-type-option input{
+
+    position:absolute;
+
+    opacity:0;
+
+}
+
+
+.leave-type-label{
+
+    border:1px solid #e5e7eb;
+
+    border-radius:14px;
+
+    padding:15px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    transition:.3s;
+
+    height:100%;
+
+}
+
+
+.leave-type-label:hover{
+
+    border-color:#6c4cff;
+
+    background:#faf9ff;
+
+}
+
+
+.leave-type-option
+input:checked +
+.leave-type-label{
+
+    border-color:#6c4cff;
+
+    background:rgba(108,76,255,.08);
+
+    box-shadow:
+    0 0 0 2px rgba(108,76,255,.08);
+
+}
+
+
+.leave-type-icon{
+
+    width:42px;
+    height:42px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-shrink:0;
+
+    color:#6c4cff;
+
+    background:rgba(108,76,255,.10);
+
+}
+
+
+.leave-type-label strong{
+
+    font-size:13px;
+
+    display:block;
+
+}
+
+
+.leave-type-label small{
+
+    color:#6b7280;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                    DATE SUMMARY
+========================================================= */
+
+.leave-date-summary{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:12px;
+
+    margin-top:18px;
+
+}
+
+
+.leave-summary-box{
+
+    border-radius:13px;
+
+    padding:13px;
+
+    background:#f8f7ff;
+
+    border:1px solid #ebe8ff;
+
+}
+
+
+.leave-summary-box small{
+
+    display:block;
+
+    color:#6b7280;
+
+    margin-bottom:4px;
+
+    font-size:11px;
+
+}
+
+
+.leave-summary-box strong{
+
+    font-size:13px;
+
+}
+
+
+/* =========================================================
+                    UPLOAD
+========================================================= */
+
+.leave-upload{
+
+    border:2px dashed #d8d3ff;
+
+    border-radius:15px;
+
+    padding:22px;
+
+    text-align:center;
+
+    background:#faf9ff;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.leave-upload:hover{
+
+    border-color:#6c4cff;
+
+}
+
+
+.leave-upload i{
+
+    font-size:28px;
+
+    color:#6c4cff;
+
+    margin-bottom:8px;
+
+}
+
+
+.leave-upload strong{
+
+    display:block;
+
+    font-size:13px;
+
+}
+
+
+.leave-upload small{
+
+    color:#6b7280;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                    LEAVE BALANCE
+========================================================= */
+
+.balance-item{
+
+    margin-bottom:20px;
+
+}
+
+
+.balance-item:last-child{
+
+    margin-bottom:0;
+
+}
+
+
+.balance-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:7px;
+
+}
+
+
+.balance-header span{
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+
+.balance-header small{
+
+    color:#6b7280;
+
+}
+
+
+.balance-item .progress{
+
+    height:9px;
+
+    border-radius:20px;
+
+    background:#eef0f5;
+
+}
+
+
+/* =========================================================
+                    APPROVAL FLOW
+========================================================= */
+
+.approval-step{
+
+    display:flex;
+
+    gap:14px;
+
+    position:relative;
+
+    padding-bottom:22px;
+
+}
+
+
+.approval-step:last-child{
+
+    padding-bottom:0;
+
+}
+
+
+.approval-step:not(:last-child)::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:2px;
+
+    height:calc(100% - 38px);
+
+    background:#e5e7eb;
+
+    left:19px;
+
+    top:42px;
+
+}
+
+
+.approval-icon{
+
+    width:40px;
+    height:40px;
+
+    border-radius:50%;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#f2efff;
+
+    color:#6c4cff;
+
+    z-index:2;
+
+}
+
+
+.approval-content strong{
+
+    font-size:13px;
+
+}
+
+
+.approval-content p{
+
+    margin:3px 0 0;
+
+    font-size:11px;
+
+    color:#6b7280;
+
+}
+
+
+/* =========================================================
+                    REQUEST HISTORY
+========================================================= */
+
+.leave-history-card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:24px;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.06);
+
+    margin-bottom:25px;
+
+}
+
+
+.leave-table-wrapper{
+
+    overflow-x:auto;
+
+}
+
+
+.leave-table{
+
+    width:100%;
+
+    min-width:900px;
+
+    border-collapse:separate;
+
+    border-spacing:0 9px;
+
+}
+
+
+.leave-table thead th{
+
+    color:#6b7280;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    padding:10px 14px;
+
+    border:none;
+
+}
+
+
+.leave-table tbody tr{
+
+    background:#fafafa;
+
+}
+
+
+.leave-table tbody td{
+
+    padding:14px;
+
+    vertical-align:middle;
+
+    font-size:13px;
+
+    border:none;
+
+}
+
+
+.leave-table tbody td:first-child{
+
+    border-radius:12px 0 0 12px;
+
+}
+
+
+.leave-table tbody td:last-child{
+
+    border-radius:0 12px 12px 0;
+
+}
+
+
+/* =========================================================
+                    STATUS BADGES
+========================================================= */
+
+.leave-status{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    padding:6px 10px;
+
+    border-radius:30px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+}
+
+
+.leave-status.pending{
+
+    color:#b45309;
+
+    background:#fef3c7;
+
+}
+
+
+.leave-status.approved{
+
+    color:#15803d;
+
+    background:#dcfce7;
+
+}
+
+
+.leave-status.rejected{
+
+    color:#b91c1c;
+
+    background:#fee2e2;
+
+}
+
+
+.leave-status.cancelled{
+
+    color:#475569;
+
+    background:#e2e8f0;
+
+}
+
+
+/* =========================================================
+                    ACTION BUTTON
+========================================================= */
+
+.table-action-btn{
+
+    width:34px;
+    height:34px;
+
+    border:none;
+
+    border-radius:9px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-right:4px;
+
+    transition:.3s;
+
+}
+
+
+.table-action-btn.view{
+
+    color:#2563eb;
+
+    background:#dbeafe;
+
+}
+
+
+.table-action-btn.cancel{
+
+    color:#dc2626;
+
+    background:#fee2e2;
+
+}
+
+
+.table-action-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+
+/* =========================================================
+                    FOOTER
+========================================================= */
+
+.footer{
+
+    text-align:center;
+
+    padding:15px 5px 5px;
+
+    color:#6b7280;
+
+    font-size:12px;
+
+}
+
+/* =========================================================
+                 PREMIUM LIGHT / DARK MODE
+========================================================= */
+
+/* Smooth theme transition */
+
+body,
+.teacher-sidebar,
+.teacher-main,
+.teacher-topbar,
+.leave-header,
+.leave-stat-card,
+.leave-card,
+.leave-history-card,
+.leave-type-label,
+.leave-summary-box,
+.leave-upload,
+.form-control,
+.form-select,
+.progress,
+.modal-content,
+.alert,
+.leave-table tbody tr,
+.leave-table tbody td {
+
+    transition:
+        background .30s ease,
+        background-color .30s ease,
+        color .30s ease,
+        border-color .30s ease,
+        box-shadow .30s ease;
+}
+
+
+/* =========================================================
+                        LIGHT MODE
+========================================================= */
+
+body:not(.dark){
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7f5ff 0%,
+            #eef5ff 50%,
+            #f8f9fc 100%
+        );
+
+    color:#1f2937;
+}
+
+
+body:not(.dark) .teacher-sidebar{
+
+    background:
+        linear-gradient(
+            180deg,
+            #263ee8 0%,
+            #6848dd 48%,
+            #9b6ad8 100%
+        );
+
+    color:#ffffff;
+}
+
+
+body:not(.dark) .teacher-topbar,
+body:not(.dark) .leave-stat-card,
+body:not(.dark) .leave-card,
+body:not(.dark) .leave-history-card{
+
+    background:#ffffff;
+
+    color:#1f2937;
+
+    border-color:transparent;
+}
+
+
+body:not(.dark) .leave-header{
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c4cff,
+            #536dfe,
+            #3b82f6
+        );
+
+    color:#ffffff;
+}
+
+
+body:not(.dark) .form-control,
+body:not(.dark) .form-select{
+
+    background:#ffffff;
+
+    color:#1f2937;
+
+    border-color:#e5e7eb;
+}
+
+
+body:not(.dark) .leave-type-label{
+
+    background:#ffffff;
+
+    color:#1f2937;
+
+    border-color:#e5e7eb;
+}
+
+
+body:not(.dark) .leave-summary-box{
+
+    background:#f8f7ff;
+
+    border-color:#ebe8ff;
+}
+
+
+body:not(.dark) .leave-upload{
+
+    background:#faf9ff;
+
+    border-color:#d8d3ff;
+}
+
+
+body:not(.dark) .leave-table tbody tr,
+body:not(.dark) .leave-table tbody td{
+
+    background:#fafafa;
+
+    color:#1f2937;
+}
+
+
+/* =========================================================
+                        DARK BODY
+========================================================= */
+
+body.dark{
+
+    background:
+        linear-gradient(
+            135deg,
+            #050914 0%,
+            #08101f 45%,
+            #0b1220 100%
+        ) !important;
+
+    color:#f8fafc;
+}
+
+
+/* =========================================================
+                    DARK SIDEBAR
+========================================================= */
+
+body.dark .teacher-sidebar{
+
+    background:
+        linear-gradient(
+            180deg,
+            #070d18 0%,
+            #0b1324 45%,
+            #101827 100%
+        ) !important;
+
+    color:#ffffff;
+
+    border-right:
+        1px solid #1e293b;
+
+    box-shadow:
+        8px 0 35px
+        rgba(0,0,0,.30);
+}
+
+
+body.dark .teacher-logo img{
+
+    background:#111827;
+
+    border:
+        1px solid #334155;
+}
+
+
+body.dark .teacher-menu a{
+
+    color:#cbd5e1;
+}
+
+
+body.dark .teacher-menu a:hover{
+
+    background:#172033;
+
+    color:#ffffff;
+}
+
+
+body.dark .teacher-menu a.active{
+
+    background:
+        linear-gradient(
+            135deg,
+            #1d4ed8,
+            #4338ca
+        );
+
+    color:#ffffff;
+
+    box-shadow:
+        0 7px 20px
+        rgba(37,99,235,.22);
+}
+
+
+body.dark .menu-title{
+
+    color:#64748b;
+}
+
+
+/* =========================================================
+                    DARK MAIN CONTENT
+========================================================= */
+
+body.dark .teacher-main{
+
+    background:transparent;
+}
+
+
+/* =========================================================
+                    DARK TOPBAR
+========================================================= */
+
+body.dark .teacher-topbar{
+
+    background:
+        linear-gradient(
+            135deg,
+            #0b1220,
+            #111827
+        ) !important;
+
+    color:#f8fafc;
+
+    border:
+        1px solid #1f2a3d;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.22);
+}
+
+
+body.dark .teacher-topbar h4{
+
+    color:#f8fafc;
+}
+
+
+body.dark .teacher-topbar small{
+
+    color:#94a3b8;
+}
+
+
+body.dark .topbar-icon-btn{
+
+    background:#172033;
+
+    color:#93c5fd;
+
+    border:
+        1px solid #263244;
+}
+
+
+body.dark .topbar-icon-btn:hover{
+
+    background:#2563eb;
+
+    color:#ffffff;
+
+    border-color:#2563eb;
+}
+
+
+body.dark .teacher-avatar{
+
+    border-color:#60a5fa;
+}
+
+
+/* =========================================================
+          MANAGE YOUR LEAVE REQUEST - DARK HERO
+========================================================= */
+
+body.dark .leave-header{
+
+    background:
+        linear-gradient(
+            135deg,
+            #0b1220 0%,
+            #111c31 45%,
+            #172554 100%
+        ) !important;
+
+    color:#ffffff;
+
+    border:
+        1px solid #263b63;
+
+    box-shadow:
+        0 14px 35px
+        rgba(0,0,0,.30);
+}
+
+
+body.dark .leave-header::after{
+
+    background:
+        rgba(59,130,246,.10);
+}
+
+
+body.dark .leave-header-badge{
+
+    background:
+        rgba(59,130,246,.12);
+
+    border:
+        1px solid
+        rgba(96,165,250,.20);
+
+    color:#bfdbfe;
+}
+
+
+body.dark .leave-header h2{
+
+    color:#f8fafc;
+}
+
+
+body.dark .leave-header p{
+
+    color:#cbd5e1;
+
+    opacity:1;
+}
+
+
+/* =========================================================
+                    DARK STAT CARDS
+========================================================= */
+
+body.dark .leave-stat-card{
+
+    background:
+        linear-gradient(
+            145deg,
+            #101827,
+            #111c2e
+        ) !important;
+
+    color:#f8fafc;
+
+    border:
+        1px solid #263244;
+
+    box-shadow:
+        0 10px 28px
+        rgba(0,0,0,.20);
+}
+
+
+body.dark .leave-stat-card:hover{
+
+    border-color:#334b70;
+
+    box-shadow:
+        0 14px 35px
+        rgba(0,0,0,.30);
+}
+
+
+body.dark .leave-stat-info strong{
+
+    color:#f8fafc;
+}
+
+
+body.dark .leave-stat-info small{
+
+    color:#94a3b8;
+}
+
+
+/* =========================================================
+                    DARK COMMON CARDS
+========================================================= */
+
+body.dark .leave-card,
+body.dark .leave-history-card{
+
+    background:
+        linear-gradient(
+            145deg,
+            #0d1626,
+            #111827
+        ) !important;
+
+    color:#f8fafc;
+
+    border:
+        1px solid #263244;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.22);
+}
+
+
+body.dark .leave-card-title h4{
+
+    color:#60a5fa;
+}
+
+
+body.dark .leave-card-title p{
+
+    color:#94a3b8;
+}
+
+
+/* =========================================================
+                    DARK FORM
+========================================================= */
+
+body.dark .form-label{
+
+    color:#e2e8f0;
+}
+
+
+body.dark .form-control,
+body.dark .form-select{
+
+    background:#172033 !important;
+
+    color:#f8fafc !important;
+
+    border-color:#334155 !important;
+}
+
+
+body.dark .form-control:hover,
+body.dark .form-select:hover{
+
+    border-color:#475569 !important;
+}
+
+
+body.dark .form-control:focus,
+body.dark .form-select:focus{
+
+    background:#192438 !important;
+
+    border-color:#3b82f6 !important;
+
+    color:#ffffff !important;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(59,130,246,.12)
+        !important;
+}
+
+
+body.dark .form-control::placeholder{
+
+    color:#64748b !important;
+}
+
+
+body.dark .form-select option{
+
+    background:#111827;
+
+    color:#ffffff;
+}
+
+
+/* Date calendar icon */
+
+body.dark input[type="date"]{
+
+    color-scheme:dark;
+}
+
+
+/* =========================================================
+                    DARK LEAVE TYPES
+========================================================= */
+
+body.dark .leave-type-label{
+
+    background:#172033 !important;
+
+    color:#e2e8f0;
+
+    border-color:#334155;
+}
+
+
+body.dark .leave-type-label:hover{
+
+    background:#1d2940 !important;
+
+    border-color:#3b82f6;
+}
+
+
+body.dark
+.leave-type-option
+input:checked +
+.leave-type-label{
+
+    background:
+        linear-gradient(
+            135deg,
+            #172554,
+            #1e293b
+        ) !important;
+
+    border-color:#3b82f6;
+
+    box-shadow:
+        0 0 0 2px
+        rgba(59,130,246,.12);
+}
+
+
+body.dark .leave-type-icon{
+
+    background:
+        rgba(59,130,246,.12);
+
+    color:#60a5fa;
+}
+
+
+body.dark .leave-type-label small{
+
+    color:#94a3b8;
+}
+
+
+/* =========================================================
+                    DARK DATE SUMMARY
+========================================================= */
+
+body.dark .leave-summary-box{
+
+    background:#172033 !important;
+
+    border-color:#334155;
+
+    color:#f8fafc;
+}
+
+
+body.dark .leave-summary-box small{
+
+    color:#94a3b8;
+}
+
+
+body.dark .leave-summary-box strong{
+
+    color:#e2e8f0;
+}
+
+
+/* =========================================================
+                    DARK UPLOAD
+========================================================= */
+
+body.dark .leave-upload{
+
+    background:#121d30 !important;
+
+    border-color:#334b70;
+
+    color:#e2e8f0;
+}
+
+
+body.dark .leave-upload:hover{
+
+    background:#17243a !important;
+
+    border-color:#3b82f6;
+}
+
+
+body.dark .leave-upload i{
+
+    color:#60a5fa;
+}
+
+
+body.dark .leave-upload small,
+body.dark .form-hint{
+
+    color:#94a3b8;
+}
+
+
+/* =========================================================
+                    CHECKBOX
+========================================================= */
+
+body.dark .form-check-label{
+
+    color:#cbd5e1;
+}
+
+
+body.dark .form-check-input{
+
+    background-color:#172033;
+
+    border-color:#475569;
+}
+
+
+body.dark .form-check-input:checked{
+
+    background-color:#2563eb;
+
+    border-color:#2563eb;
+}
+
+
+/* =========================================================
+                    DARK LEAVE BALANCE
+========================================================= */
+
+body.dark .balance-header span{
+
+    color:#e2e8f0;
+}
+
+
+body.dark .balance-header small{
+
+    color:#94a3b8;
+}
+
+
+body.dark .balance-item .progress{
+
+    background:#263244;
+}
+
+
+/* =========================================================
+                    DARK APPROVAL PROCESS
+========================================================= */
+
+body.dark .approval-icon{
+
+    background:#172554;
+
+    color:#60a5fa;
+
+    border:
+        1px solid #263b63;
+}
+
+
+body.dark .approval-content strong{
+
+    color:#e2e8f0;
+}
+
+
+body.dark .approval-content p{
+
+    color:#94a3b8;
+}
+
+
+body.dark
+.approval-step:not(:last-child)::after{
+
+    background:#334155;
+}
+
+
+/* =========================================================
+                    DARK ALERTS
+========================================================= */
+
+body.dark .alert-primary{
+
+    background:
+        rgba(37,99,235,.12);
+
+    border-color:
+        rgba(59,130,246,.25);
+
+    color:#bfdbfe;
+}
+
+
+body.dark .alert-warning{
+
+    background:
+        rgba(245,158,11,.10);
+
+    border-color:
+        rgba(245,158,11,.25);
+
+    color:#fde68a;
+}
+
+
+body.dark .alert-success{
+
+    background:
+        rgba(34,197,94,.10);
+
+    border-color:
+        rgba(34,197,94,.25);
+
+    color:#bbf7d0;
+}
+
+
+/* =========================================================
+                    DARK HISTORY TABLE
+========================================================= */
+
+body.dark .leave-table tbody tr{
+
+    background:#172033 !important;
+}
+
+
+body.dark .leave-table tbody td{
+
+    background:#172033 !important;
+
+    color:#e2e8f0;
+}
+
+
+body.dark .leave-table tbody tr:hover td{
+
+    background:#1d2940 !important;
+}
+
+
+body.dark .leave-table thead th{
+
+    color:#94a3b8;
+}
+
+
+body.dark .leave-table .text-muted{
+
+    color:#94a3b8 !important;
+}
+
+
+/* =========================================================
+                    DARK BUTTONS
+========================================================= */
+
+body.dark .btn-outline-secondary{
+
+    color:#cbd5e1;
+
+    border-color:#475569;
+}
+
+
+body.dark .btn-outline-secondary:hover{
+
+    background:#334155;
+
+    border-color:#475569;
+
+    color:#ffffff;
+}
+
+
+/* =========================================================
+                    DARK MODALS
+========================================================= */
+
+body.dark .modal-content{
+
+    background:#111827 !important;
+
+    color:#f8fafc;
+
+    border:
+        1px solid #334155 !important;
+}
+
+
+body.dark .modal-header,
+body.dark .modal-footer{
+
+    border-color:#263244;
+}
+
+
+body.dark .modal-content .text-muted{
+
+    color:#94a3b8 !important;
+}
+
+
+body.dark .modal-content hr{
+
+    border-color:#334155;
+
+    opacity:1;
+}
+
+
+body.dark .btn-close{
+
+    filter:
+        invert(1)
+        grayscale(100%)
+        brightness(200%);
+}
+
+
+/* Success modal inner box */
+
+body.dark #leaveSuccessModal
+.modal-body .rounded-3{
+
+    background:#172033 !important;
+}
+
+
+/* =========================================================
+                    DARK FOOTER
+========================================================= */
+
+body.dark .footer{
+
+    color:#64748b;
+}
+
+
+/* =========================================================
+                    RESPONSIVE
+========================================================= */
+
+@media(max-width:1200px){
+
+    .leave-stats{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+}
+
+
+@media(max-width:992px){
+
+    .teacher-sidebar{
+
+        transform:translateX(-100%);
+
+        transition:.3s;
+
+    }
+
+
+    .teacher-sidebar.show{
+
+        transform:translateX(0);
+
+    }
+
+
+    .teacher-main{
+
+        margin-left:0;
+
+        width:100%;
+
+    }
+
+
+    .mobile-menu-btn{
+
+        display:flex;
+
+    }
+
+
+    .leave-main-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+@media(max-width:576px){
+
+    .teacher-main{
+
+        padding:15px;
+
+    }
+
+
+    .leave-stats{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .leave-type-options{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .leave-date-summary{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .teacher-topbar{
+
+        padding:13px;
+
+    }
+
+
+    .topbar-user-text{
+
+        display:none;
+
+    }
+
+
+    .leave-header{
+
+        padding:22px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="teacher-layout">
+
+
+<!-- =========================================================
+                        SIDEBAR
+========================================================= -->
+
+<aside
+    class="teacher-sidebar"
+    id="teacherSidebar">
+
+
+<div class="teacher-logo">
+
+    <img
+        src="../../images/logo.png"
+        alt="FMPS Logo">
+
+    <h3>
+        FMPS
+    </h3>
+
+    <p>
+        Teacher Panel
+    </p>
+
+</div>
+
+
+<ul class="teacher-menu">
+
+
+<li>
+
+<a href="teacher-dashboard.html">
+
+    <i class="fa-solid fa-house"></i>
+
+    Dashboard
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="timetable.html">
+
+    <i class="fa-solid fa-calendar-days"></i>
+
+    Timetable
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="attendance.html">
+
+    <i class="fa-solid fa-user-check"></i>
+
+    Attendance
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="my-classes.html">
+
+    <i class="fa-solid fa-book-open"></i>
+
+    My Classes
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="assignments.html">
+
+    <i class="fa-solid fa-file-lines"></i>
+
+    Assignments
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="performance.html">
+
+    <i class="fa-solid fa-chart-line"></i>
+
+    Performance
+
+</a>
+
+</li>
+
+
+<div class="menu-title">
+    AI SMART FEATURES
+</div>
+
+
+<li>
+
+<a href="face-attendance.html">
+
+    <i class="fa-solid fa-camera"></i>
+
+    Face Attendance
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="student-performance-ai.html">
+
+    <i class="fa-solid fa-brain"></i>
+
+    Student Performance AI
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="ai-assistant.html">
+
+    <i class="fa-solid fa-robot"></i>
+
+    AI Assistant
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="smart-report.html">
+
+    <i class="fa-solid fa-chart-pie"></i>
+
+    Smart Report
+
+</a>
+
+</li>
+
+
+<div class="menu-title">
+    ACADEMIC
+</div>
+
+
+<li>
+
+<a href="academic-calendar.html">
+
+    <i class="fa-solid fa-calendar"></i>
+
+    Academic Calendar
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="notices.html">
+
+    <i class="fa-solid fa-bullhorn"></i>
+
+    Notices
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+    href="leave-request.html"
+    class="active">
+
+    <i class="fa-solid fa-person-walking-arrow-right"></i>
+
+    Leave Request
+
+</a>
+
+</li>
+
+
+<div class="menu-title">
+    ACCOUNT
+</div>
+
+
+<li>
+
+<a href="profile.html">
+
+    <i class="fa-solid fa-user"></i>
+
+    Profile
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="settings.html">
+
+    <i class="fa-solid fa-gear"></i>
+
+    Settings
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="change-password.html">
+
+    <i class="fa-solid fa-lock"></i>
+
+    Change Password
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="teacher-login.html">
+
+    <i class="fa-solid fa-right-from-bracket"></i>
+
+    Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+</aside>
+
+
+<!-- =========================================================
+                        MAIN
+========================================================= -->
+
+<main class="teacher-main">
+
+
+<!-- =========================================================
+                        TOPBAR
+========================================================= -->
+
+<header class="teacher-topbar">
+
+
+<div class="topbar-left">
+
+
+<button
+    type="button"
+    id="mobileMenuBtn"
+    class="mobile-menu-btn">
+
+    <i class="fa-solid fa-bars"></i>
+
+</button>
+
+
+<div>
+
+    <h4>
+        Leave Management
+    </h4>
+
+    <small>
+        Apply and track your leave requests
+    </small>
+
+</div>
+
+
+</div>
+
+
+<div class="topbar-actions">
+
+
+<button
+    type="button"
+    id="themeToggle"
+    class="topbar-icon-btn"
+    title="Dark / Light Mode">
+
+    <i class="fa-solid fa-moon"></i>
+
+</button>
+
+
+<button
+    type="button"
+    class="topbar-icon-btn"
+    title="Notifications">
+
+    <i class="fa-regular fa-bell"></i>
+
+</button>
+
+
+<div class="d-flex align-items-center gap-2">
+
+    <img
+        src="../../images/default-profile.png"
+        alt="Teacher"
+        class="teacher-avatar">
+
+    <div class="topbar-user-text">
+
+        <strong
+            class="d-block"
+            style="font-size:13px;">
+
+            Teacher
+
+        </strong>
+
+        <small>
+            Faculty Member
+        </small>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</header>
+
+
+<!-- =========================================================
+                    PAGE HEADER
+========================================================= -->
+
+<section class="leave-header">
+
+
+<div class="leave-header-content">
+
+
+<div class="leave-header-badge">
+
+    <i class="fa-solid fa-calendar-check"></i>
+
+    TEACHER LEAVE MANAGEMENT
+
+</div>
+
+
+<h2>
+
+    Manage Your Leave Requests
+
+</h2>
+
+
+<p>
+
+    Apply for leave, check your available leave balance,
+    monitor approval status and review previous requests
+    from one place.
+
+</p>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+                    LEAVE STATISTICS
+========================================================= -->
+
+<section class="leave-stats">
+
+
+<div class="leave-stat-card">
+
+    <div class="leave-stat-icon total">
+
+        <i class="fa-solid fa-calendar-days"></i>
+
+    </div>
+
+    <div class="leave-stat-info">
+
+        <small>
+            Total Leave
+        </small>
+
+        <strong>
+            24
+        </strong>
+
+    </div>
+
+</div>
+
+
+<div class="leave-stat-card">
+
+    <div class="leave-stat-icon used">
+
+        <i class="fa-solid fa-calendar-minus"></i>
+
+    </div>
+
+    <div class="leave-stat-info">
+
+        <small>
+            Leave Used
+        </small>
+
+        <strong id="usedLeaveCount">
+            7
+        </strong>
+
+    </div>
+
+</div>
+
+
+<div class="leave-stat-card">
+
+    <div class="leave-stat-icon remaining">
+
+        <i class="fa-solid fa-calendar-check"></i>
+
+    </div>
+
+    <div class="leave-stat-info">
+
+        <small>
+            Remaining
+        </small>
+
+        <strong id="remainingLeaveCount">
+            17
+        </strong>
+
+    </div>
+
+</div>
+
+
+<div class="leave-stat-card">
+
+    <div class="leave-stat-icon pending">
+
+        <i class="fa-solid fa-clock"></i>
+
+    </div>
+
+    <div class="leave-stat-info">
+
+        <small>
+            Pending Requests
+        </small>
+
+        <strong id="pendingLeaveCount">
+            1
+        </strong>
+
+    </div>
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    MAIN GRID
+========================================================= -->
+
+<div class="leave-main-grid">
+
+
+<!-- =========================================================
+                    LEFT COLUMN
+========================================================= -->
+
+<div>
+
+
+<section class="leave-card">
+
+
+<div class="leave-card-title">
+
+<div>
+
+<h4>
+
+    <i class="fa-solid fa-file-circle-plus me-2"></i>
+
+    Apply for Leave
+
+</h4>
+
+<p>
+
+    Complete the form to submit a new leave request.
+
+</p>
+
+</div>
+
+</div>
+
+
+<form id="leaveRequestForm">
+
+
+<!-- =========================================================
+                    LEAVE TYPE
+========================================================= -->
+
+<div class="mb-4">
+
+
+<label class="form-label">
+
+    Select Leave Type
+    <span class="text-danger">*</span>
+
+</label>
+
+
+<div class="leave-type-options">
+
+
+<div class="leave-type-option">
+
+<input
+    type="radio"
+    name="leaveType"
+    id="casualLeave"
+    value="Casual Leave">
+
+
+<label
+    for="casualLeave"
+    class="leave-type-label">
+
+
+<div class="leave-type-icon">
+
+    <i class="fa-solid fa-mug-hot"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+    Casual Leave
+</strong>
+
+<small>
+    8 days available
+</small>
+
+</div>
+
+
+</label>
+
+</div>
+
+
+<div class="leave-type-option">
+
+<input
+    type="radio"
+    name="leaveType"
+    id="medicalLeave"
+    value="Medical Leave">
+
+
+<label
+    for="medicalLeave"
+    class="leave-type-label">
+
+
+<div class="leave-type-icon">
+
+    <i class="fa-solid fa-kit-medical"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+    Medical Leave
+</strong>
+
+<small>
+    6 days available
+</small>
+
+</div>
+
+
+</label>
+
+</div>
+
+
+<div class="leave-type-option">
+
+<input
+    type="radio"
+    name="leaveType"
+    id="earnedLeave"
+    value="Earned Leave">
+
+
+<label
+    for="earnedLeave"
+    class="leave-type-label">
+
+
+<div class="leave-type-icon">
+
+    <i class="fa-solid fa-umbrella-beach"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+    Earned Leave
+</strong>
+
+<small>
+    3 days available
+</small>
+
+</div>
+
+
+</label>
+
+</div>
+
+
+<div class="leave-type-option">
+
+<input
+    type="radio"
+    name="leaveType"
+    id="otherLeave"
+    value="Other">
+
+
+<label
+    for="otherLeave"
+    class="leave-type-label">
+
+
+<div class="leave-type-icon">
+
+    <i class="fa-solid fa-ellipsis"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+    Other
+</strong>
+
+<small>
+    Special request
+</small>
+
+</div>
+
+
+</label>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                        DATES
+========================================================= -->
+
+<div class="row g-3">
+
+
+<div class="col-md-6">
+
+<label
+    for="leaveStartDate"
+    class="form-label">
+
+    From Date
+    <span class="text-danger">*</span>
+
+</label>
+
+
+<input
+    type="date"
+    id="leaveStartDate"
+    class="form-control"
+    required>
+
+</div>
+
+
+<div class="col-md-6">
+
+<label
+    for="leaveEndDate"
+    class="form-label">
+
+    To Date
+    <span class="text-danger">*</span>
+
+</label>
+
+
+<input
+    type="date"
+    id="leaveEndDate"
+    class="form-control"
+    required>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    DATE SUMMARY
+========================================================= -->
+
+<div class="leave-date-summary">
+
+
+<div class="leave-summary-box">
+
+<small>
+    Start Date
+</small>
+
+<strong id="summaryStartDate">
+    --
+</strong>
+
+</div>
+
+
+<div class="leave-summary-box">
+
+<small>
+    End Date
+</small>
+
+<strong id="summaryEndDate">
+    --
+</strong>
+
+</div>
+
+
+<div class="leave-summary-box">
+
+<small>
+    Total Days
+</small>
+
+<strong id="summaryTotalDays">
+    0 Days
+</strong>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                        REASON
+========================================================= -->
+
+<div class="mt-4">
+
+
+<label
+    for="leaveReason"
+    class="form-label">
+
+    Reason for Leave
+    <span class="text-danger">*</span>
+
+</label>
+
+
+<textarea
+    id="leaveReason"
+    class="form-control"
+    maxlength="500"
+    placeholder="Explain the reason for your leave request..."
+    required></textarea>
+
+
+<div
+    class="d-flex justify-content-between form-hint">
+
+<span>
+
+    Please provide a clear reason.
+
+</span>
+
+<span id="reasonCharacterCount">
+
+    0 / 500
+
+</span>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    CONTACT DURING LEAVE
+========================================================= -->
+
+<div class="row g-3 mt-1">
+
+
+<div class="col-md-6">
+
+<label
+    for="contactNumber"
+    class="form-label">
+
+    Contact Number
+
+</label>
+
+
+<input
+    type="tel"
+    id="contactNumber"
+    class="form-control"
+    placeholder="+91 XXXXX XXXXX">
+
+</div>
+
+
+<div class="col-md-6">
+
+<label
+    for="alternateEmail"
+    class="form-label">
+
+    Alternate Email
+
+</label>
+
+
+<input
+    type="email"
+    id="alternateEmail"
+    class="form-control"
+    placeholder="example@email.com">
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    DOCUMENT UPLOAD
+========================================================= -->
+
+<div class="mt-4">
+
+
+<label class="form-label">
+
+    Supporting Document
+
+</label>
+
+
+<label
+    for="leaveDocument"
+    class="leave-upload"
+    id="leaveUploadBox">
+
+
+<i class="fa-solid fa-cloud-arrow-up"></i>
+
+
+<strong id="uploadFileName">
+
+    Upload Supporting Document
+
+</strong>
+
+
+<small>
+
+    PDF, JPG or PNG • Maximum 5 MB
+
+</small>
+
+
+</label>
+
+
+<input
+    type="file"
+    id="leaveDocument"
+    accept=".pdf,.jpg,.jpeg,.png"
+    hidden>
+
+
+<div class="form-hint">
+
+    Medical certificate is recommended for
+    medical leave.
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    RESPONSIBILITY
+========================================================= -->
+
+<div class="mt-4">
+
+
+<label
+    for="responsibilityNote"
+    class="form-label">
+
+    Class / Work Arrangement
+
+</label>
+
+
+<textarea
+    id="responsibilityNote"
+    class="form-control"
+    placeholder="Mention class adjustment or substitute faculty details..."></textarea>
+
+
+</div>
+
+
+<!-- =========================================================
+                        CHECKBOX
+========================================================= -->
+
+<div class="form-check mt-4">
+
+
+<input
+    class="form-check-input"
+    type="checkbox"
+    id="leaveDeclaration">
+
+
+<label
+    class="form-check-label"
+    for="leaveDeclaration"
+    style="font-size:13px;">
+
+    I confirm that the information provided
+    in this leave request is correct.
+
+</label>
+
+
+</div>
+
+
+<!-- =========================================================
+                    SUBMIT BUTTONS
+========================================================= -->
+
+<div class="d-flex gap-2 flex-wrap mt-4">
+
+
+<button
+    type="submit"
+    class="btn btn-primary px-4"
+    id="submitLeaveBtn">
+
+    <i class="fa-solid fa-paper-plane me-2"></i>
+
+    Submit Leave Request
+
+</button>
+
+
+<button
+    type="reset"
+    class="btn btn-outline-secondary px-4"
+    id="resetLeaveBtn">
+
+    <i class="fa-solid fa-rotate-left me-2"></i>
+
+    Reset
+
+</button>
+
+
+</div>
+
+
+</form>
+
+</section>
+
+
+</div>
+
+
+<!-- =========================================================
+                    RIGHT COLUMN
+========================================================= -->
+
+<div>
+
+
+<!-- =========================================================
+                    LEAVE BALANCE
+========================================================= -->
+
+<section class="leave-card">
+
+
+<div class="leave-card-title">
+
+<div>
+
+<h4>
+
+    <i class="fa-solid fa-chart-pie me-2"></i>
+
+    Leave Balance
+
+</h4>
+
+<p>
+    Academic session 2026 - 2027
+</p>
+
+</div>
+
+</div>
+
+
+<div class="balance-item">
+
+
+<div class="balance-header">
+
+<span>
+    Casual Leave
+</span>
+
+<small>
+    8 / 10 remaining
+</small>
+
+</div>
+
+
+<div class="progress">
+
+<div
+    class="progress-bar bg-primary"
+    style="width:80%;">
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="balance-item">
+
+
+<div class="balance-header">
+
+<span>
+    Medical Leave
+</span>
+
+<small>
+    6 / 8 remaining
+</small>
+
+</div>
+
+
+<div class="progress">
+
+<div
+    class="progress-bar bg-success"
+    style="width:75%;">
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="balance-item">
+
+
+<div class="balance-header">
+
+<span>
+    Earned Leave
+</span>
+
+<small>
+    3 / 6 remaining
+</small>
+
+</div>
+
+
+<div class="progress">
+
+<div
+    class="progress-bar bg-warning"
+    style="width:50%;">
+</div>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    APPROVAL PROCESS
+========================================================= -->
+
+<section class="leave-card">
+
+
+<div class="leave-card-title">
+
+<div>
+
+<h4>
+
+    <i class="fa-solid fa-route me-2"></i>
+
+    Approval Process
+
+</h4>
+
+<p>
+    How your request will be processed
+</p>
+
+</div>
+
+</div>
+
+
+<div class="approval-step">
+
+
+<div class="approval-icon">
+
+    <i class="fa-solid fa-paper-plane"></i>
+
+</div>
+
+
+<div class="approval-content">
+
+<strong>
+    1. Submit Request
+</strong>
+
+<p>
+
+    Complete the leave form and submit
+    it for approval.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="approval-step">
+
+
+<div class="approval-icon">
+
+    <i class="fa-solid fa-user-tie"></i>
+
+</div>
+
+
+<div class="approval-content">
+
+<strong>
+    2. HOD Review
+</strong>
+
+<p>
+
+    Your Head of Department reviews
+    the leave request.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="approval-step">
+
+
+<div class="approval-icon">
+
+    <i class="fa-solid fa-circle-check"></i>
+
+</div>
+
+
+<div class="approval-content">
+
+<strong>
+    3. Final Decision
+</strong>
+
+<p>
+
+    You receive approval or rejection
+    notification.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    LEAVE POLICY
+========================================================= -->
+
+<section class="leave-card">
+
+
+<div class="leave-card-title">
+
+<h4>
+
+    <i class="fa-solid fa-circle-info me-2"></i>
+
+    Leave Guidelines
+
+</h4>
+
+</div>
+
+
+<div class="alert alert-primary mb-3">
+
+<i class="fa-solid fa-clock me-2"></i>
+
+Apply for planned leave in advance whenever possible.
+
+</div>
+
+
+<div class="alert alert-warning mb-3">
+
+<i class="fa-solid fa-file-medical me-2"></i>
+
+Medical leave may require supporting documentation.
+
+</div>
+
+
+<div class="alert alert-success mb-0">
+
+<i class="fa-solid fa-bell me-2"></i>
+
+You will be notified after the HOD takes action.
+
+</div>
+
+
+</section>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                PART 2 CONTINUES HERE
+========================================================= -->
+
+<!-- =========================================================
+                    LEAVE REQUEST HISTORY
+========================================================= -->
+
+<section class="leave-history-card">
+
+
+<div class="leave-card-title">
+
+<div>
+
+<h4>
+
+    <i class="fa-solid fa-clock-rotate-left me-2"></i>
+
+    Leave Request History
+
+</h4>
+
+<p>
+    Track all your submitted leave requests
+</p>
+
+</div>
+
+
+<div>
+
+<select
+    class="form-select"
+    id="leaveStatusFilter"
+    style="min-width:150px;">
+
+    <option value="all">
+        All Requests
+    </option>
+
+    <option value="pending">
+        Pending
+    </option>
+
+    <option value="approved">
+        Approved
+    </option>
+
+    <option value="rejected">
+        Rejected
+    </option>
+
+    <option value="cancelled">
+        Cancelled
+    </option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div class="leave-table-wrapper">
+
+
+<table class="leave-table">
+
+
+<thead>
+
+<tr>
+
+<th>
+    Request ID
+</th>
+
+<th>
+    Leave Type
+</th>
+
+<th>
+    Duration
+</th>
+
+<th>
+    Days
+</th>
+
+<th>
+    Applied On
+</th>
+
+<th>
+    Status
+</th>
+
+<th>
+    Action
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="leaveHistoryBody">
+
+
+<!-- =========================================================
+                    REQUEST 1
+========================================================= -->
+
+<tr data-status="pending">
+
+<td>
+
+<strong>
+    #LV-2026-004
+</strong>
+
+</td>
+
+
+<td>
+
+<i
+    class="fa-solid fa-mug-hot me-2"
+    style="color:#6c4cff;">
+</i>
+
+Casual Leave
+
+</td>
+
+
+<td>
+
+03 Aug 2026
+<br>
+
+<small class="text-muted">
+    to 04 Aug 2026
+</small>
+
+</td>
+
+
+<td>
+    2
+</td>
+
+
+<td>
+    01 Aug 2026
+</td>
+
+
+<td>
+
+<span class="leave-status pending">
+
+    <i class="fa-solid fa-clock"></i>
+
+    Pending
+
+</span>
+
+</td>
+
+
+<td>
+
+<button
+    type="button"
+    class="table-action-btn view"
+    title="View Details"
+    onclick="viewLeaveRequest('LV-2026-004')">
+
+    <i class="fa-solid fa-eye"></i>
+
+</button>
+
+
+<button
+    type="button"
+    class="table-action-btn cancel"
+    title="Cancel Request"
+    onclick="openCancelLeaveModal('LV-2026-004')">
+
+    <i class="fa-solid fa-xmark"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+
+<!-- =========================================================
+                    REQUEST 2
+========================================================= -->
+
+<tr data-status="approved">
+
+<td>
+
+<strong>
+    #LV-2026-003
+</strong>
+
+</td>
+
+
+<td>
+
+<i
+    class="fa-solid fa-kit-medical me-2"
+    style="color:#16a34a;">
+</i>
+
+Medical Leave
+
+</td>
+
+
+<td>
+
+20 Jul 2026
+<br>
+
+<small class="text-muted">
+    to 22 Jul 2026
+</small>
+
+</td>
+
+
+<td>
+    3
+</td>
+
+
+<td>
+    19 Jul 2026
+</td>
+
+
+<td>
+
+<span class="leave-status approved">
+
+    <i class="fa-solid fa-circle-check"></i>
+
+    Approved
+
+</span>
+
+</td>
+
+
+<td>
+
+<button
+    type="button"
+    class="table-action-btn view"
+    title="View Details"
+    onclick="viewLeaveRequest('LV-2026-003')">
+
+    <i class="fa-solid fa-eye"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+
+<!-- =========================================================
+                    REQUEST 3
+========================================================= -->
+
+<tr data-status="rejected">
+
+<td>
+
+<strong>
+    #LV-2026-002
+</strong>
+
+</td>
+
+
+<td>
+
+<i
+    class="fa-solid fa-umbrella-beach me-2"
+    style="color:#f59e0b;">
+</i>
+
+Earned Leave
+
+</td>
+
+
+<td>
+
+10 Jul 2026
+<br>
+
+<small class="text-muted">
+    to 11 Jul 2026
+</small>
+
+</td>
+
+
+<td>
+    2
+</td>
+
+
+<td>
+    07 Jul 2026
+</td>
+
+
+<td>
+
+<span class="leave-status rejected">
+
+    <i class="fa-solid fa-circle-xmark"></i>
+
+    Rejected
+
+</span>
+
+</td>
+
+
+<td>
+
+<button
+    type="button"
+    class="table-action-btn view"
+    title="View Details"
+    onclick="viewLeaveRequest('LV-2026-002')">
+
+    <i class="fa-solid fa-eye"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+
+<!-- =========================================================
+                    REQUEST 4
+========================================================= -->
+
+<tr data-status="approved">
+
+<td>
+
+<strong>
+    #LV-2026-001
+</strong>
+
+</td>
+
+
+<td>
+
+<i
+    class="fa-solid fa-mug-hot me-2"
+    style="color:#6c4cff;">
+</i>
+
+Casual Leave
+
+</td>
+
+
+<td>
+
+02 Jul 2026
+<br>
+
+<small class="text-muted">
+    to 03 Jul 2026
+</small>
+
+</td>
+
+
+<td>
+    2
+</td>
+
+
+<td>
+    30 Jun 2026
+</td>
+
+
+<td>
+
+<span class="leave-status approved">
+
+    <i class="fa-solid fa-circle-check"></i>
+
+    Approved
+
+</span>
+
+</td>
+
+
+<td>
+
+<button
+    type="button"
+    class="table-action-btn view"
+    title="View Details"
+    onclick="viewLeaveRequest('LV-2026-001')">
+
+    <i class="fa-solid fa-eye"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+                        FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+    © 2026 Faculty Management & Productivity System |
+    Teacher Leave Management
+
+</footer>
+
+
+</main>
+
+</div>
+
+
+<!-- =========================================================
+                    LEAVE DETAILS MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="leaveDetailsModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+
+<div class="modal-dialog modal-dialog-centered">
+
+
+<div class="modal-content border-0 rounded-4">
+
+
+<div class="modal-header">
+
+
+<h5 class="modal-title fw-bold">
+
+<i
+    class="fa-solid fa-file-lines me-2"
+    style="color:#6c4cff;">
+</i>
+
+Leave Request Details
+
+</h5>
+
+
+<button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal">
+</button>
+
+
+</div>
+
+
+<div class="modal-body p-4">
+
+
+<div
+    class="text-center mb-4"
+    style="
+        width:70px;
+        height:70px;
+        margin:auto;
+        border-radius:50%;
+        background:rgba(108,76,255,.10);
+        color:#6c4cff;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:28px;
+    ">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+</div>
+
+
+<h4
+    class="text-center fw-bold"
+    id="detailRequestId">
+
+    #LV-2026-004
+
+</h4>
+
+
+<p
+    class="text-center text-muted"
+    id="detailLeaveStatus">
+
+    Pending
+
+</p>
+
+
+<hr>
+
+
+<div class="row g-3">
+
+
+<div class="col-6">
+
+<small class="text-muted">
+    Leave Type
+</small>
+
+<strong
+    class="d-block mt-1"
+    id="detailLeaveType">
+
+    Casual Leave
+
+</strong>
+
+</div>
+
+
+<div class="col-6">
+
+<small class="text-muted">
+    Total Days
+</small>
+
+<strong
+    class="d-block mt-1"
+    id="detailTotalDays">
+
+    2 Days
+
+</strong>
+
+</div>
+
+
+<div class="col-6">
+
+<small class="text-muted">
+    From Date
+</small>
+
+<strong
+    class="d-block mt-1"
+    id="detailStartDate">
+
+    03 August 2026
+
+</strong>
+
+</div>
+
+
+<div class="col-6">
+
+<small class="text-muted">
+    To Date
+</small>
+
+<strong
+    class="d-block mt-1"
+    id="detailEndDate">
+
+    04 August 2026
+
+</strong>
+
+</div>
+
+
+<div class="col-12 mt-4">
+
+<small class="text-muted">
+    Reason
+</small>
+
+<p
+    class="mt-2 mb-0"
+    id="detailReason">
+
+    Personal work requiring leave from college.
+
+</p>
+
+</div>
+
+
+<div class="col-12 mt-3">
+
+<small class="text-muted">
+    HOD Remark
+</small>
+
+<p
+    class="mt-2 mb-0"
+    id="detailRemark">
+
+    Request is currently under review.
+
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<div class="modal-footer justify-content-center">
+
+
+<button
+    type="button"
+    class="btn btn-primary px-4"
+    data-bs-dismiss="modal">
+
+<i class="fa-solid fa-check me-2"></i>
+
+Okay
+
+</button>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    CANCEL LEAVE MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="cancelLeaveModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+
+<div class="modal-dialog modal-dialog-centered">
+
+
+<div class="modal-content border-0 rounded-4">
+
+
+<div class="modal-body p-4 text-center">
+
+
+<div
+    style="
+        width:75px;
+        height:75px;
+        border-radius:50%;
+        background:#fee2e2;
+        color:#dc2626;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        margin:0 auto 18px;
+        font-size:30px;
+    ">
+
+<i class="fa-solid fa-triangle-exclamation"></i>
+
+</div>
+
+
+<h4 class="fw-bold">
+
+Cancel Leave Request?
+
+</h4>
+
+
+<p class="text-muted">
+
+Are you sure you want to cancel
+
+<strong id="cancelRequestId">
+    this request
+</strong>?
+
+</p>
+
+
+<p
+    class="text-muted"
+    style="font-size:13px;">
+
+This action will change the request status
+to cancelled.
+
+</p>
+
+
+<input
+    type="hidden"
+    id="cancelLeaveId">
+
+
+<div
+    class="d-flex justify-content-center gap-2 mt-4">
+
+
+<button
+    type="button"
+    class="btn btn-light px-4"
+    data-bs-dismiss="modal">
+
+Keep Request
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-danger px-4"
+    id="confirmCancelLeaveBtn">
+
+<i class="fa-solid fa-xmark me-2"></i>
+
+Cancel Leave
+
+</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    SUCCESS MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="leaveSuccessModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+
+<div class="modal-dialog modal-dialog-centered">
+
+
+<div class="modal-content border-0 rounded-4">
+
+
+<div class="modal-body p-4 text-center">
+
+
+<div
+    style="
+        width:80px;
+        height:80px;
+        border-radius:50%;
+        background:#dcfce7;
+        color:#16a34a;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        margin:0 auto 18px;
+        font-size:32px;
+    ">
+
+<i class="fa-solid fa-check"></i>
+
+</div>
+
+
+<h4 class="fw-bold">
+
+Leave Request Submitted!
+
+</h4>
+
+
+<p class="text-muted">
+
+Your leave request has been successfully
+submitted and sent to the HOD for approval.
+
+</p>
+
+
+<div
+    class="p-3 rounded-3 mt-3"
+    style="background:#f8f7ff;">
+
+<small class="text-muted d-block">
+
+Request ID
+
+</small>
+
+<strong
+    id="generatedRequestId"
+    style="color:#6c4cff;">
+
+#LV-2026-005
+
+</strong>
+
+</div>
+
+
+<button
+    type="button"
+    class="btn btn-primary px-4 mt-4"
+    data-bs-dismiss="modal">
+
+<i class="fa-solid fa-check me-2"></i>
+
+Done
+
+</button>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    BOOTSTRAP JS
+========================================================= -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- =========================================================
+                    COMMON TEACHER JS
+========================================================= -->
+
+<!-- <script src="../../js/teacher-dashboard.js"></script> -->
+
+
+<!-- =========================================================
+                    LEAVE REQUEST JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+/* =========================================================
+                        ELEMENTS
+========================================================= */
+
+const leaveForm =
+document.getElementById(
+    "leaveRequestForm"
+);
+
+
+const startDate =
+document.getElementById(
+    "leaveStartDate"
+);
+
+
+const endDate =
+document.getElementById(
+    "leaveEndDate"
+);
+
+
+const summaryStartDate =
+document.getElementById(
+    "summaryStartDate"
+);
+
+
+const summaryEndDate =
+document.getElementById(
+    "summaryEndDate"
+);
+
+
+const summaryTotalDays =
+document.getElementById(
+    "summaryTotalDays"
+);
+
+
+const leaveReason =
+document.getElementById(
+    "leaveReason"
+);
+
+
+const reasonCharacterCount =
+document.getElementById(
+    "reasonCharacterCount"
+);
+
+
+const leaveDocument =
+document.getElementById(
+    "leaveDocument"
+);
+
+
+const uploadFileName =
+document.getElementById(
+    "uploadFileName"
+);
+
+
+const statusFilter =
+document.getElementById(
+    "leaveStatusFilter"
+);
+
+
+const themeToggle =
+document.getElementById(
+    "themeToggle"
+);
+
+
+const mobileMenuBtn =
+document.getElementById(
+    "mobileMenuBtn"
+);
+
+
+const teacherSidebar =
+document.getElementById(
+    "teacherSidebar"
+);
+
+
+/* =========================================================
+                    MINIMUM DATE
+========================================================= */
+
+const today =
+new Date();
+
+
+const todayString =
+today.getFullYear()
++ "-"
++ String(
+    today.getMonth() + 1
+).padStart(2,"0")
++ "-"
++ String(
+    today.getDate()
+).padStart(2,"0");
+
+
+startDate.min =
+todayString;
+
+
+endDate.min =
+todayString;
+
+
+/* =========================================================
+                    FORMAT DATE
+========================================================= */
+
+function formatDate(
+    value
+){
+
+    if(!value){
+
+        return "--";
+
+    }
+
+
+    const parts =
+    value.split("-");
+
+
+    const date =
+    new Date(
+        Number(parts[0]),
+        Number(parts[1]) - 1,
+        Number(parts[2])
+    );
+
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+
+            day:"2-digit",
+
+            month:"short",
+
+            year:"numeric"
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+                    CALCULATE DAYS
+========================================================= */
+
+function calculateLeaveDays(){
+
+
+    const from =
+    startDate.value;
+
+
+    const to =
+    endDate.value;
+
+
+    summaryStartDate.innerText =
+    formatDate(from);
+
+
+    summaryEndDate.innerText =
+    formatDate(to);
+
+
+    if(
+        !from ||
+        !to
+    ){
+
+        summaryTotalDays.innerText =
+        "0 Days";
+
+        return 0;
+
+    }
+
+
+    const start =
+    new Date(
+        from + "T00:00:00"
+    );
+
+
+    const end =
+    new Date(
+        to + "T00:00:00"
+    );
+
+
+    if(
+        end <
+        start
+    ){
+
+        summaryTotalDays.innerText =
+        "Invalid";
+
+        return -1;
+
+    }
+
+
+    const difference =
+    end.getTime() -
+    start.getTime();
+
+
+    const totalDays =
+    Math.floor(
+        difference /
+        (1000 * 60 * 60 * 24)
+    ) + 1;
+
+
+    summaryTotalDays.innerText =
+    totalDays +
+    (
+        totalDays === 1
+        ? " Day"
+        : " Days"
+    );
+
+
+    return totalDays;
+
+}
+
+
+/* =========================================================
+                    START DATE CHANGE
+========================================================= */
+
+startDate.addEventListener(
+    "change",
+    function(){
+
+
+        endDate.min =
+        this.value ||
+        todayString;
+
+
+        if(
+            endDate.value &&
+            endDate.value <
+            this.value
+        ){
+
+            endDate.value =
+            this.value;
+
+        }
+
+
+        calculateLeaveDays();
+
+    }
+);
+
+
+/* =========================================================
+                    END DATE CHANGE
+========================================================= */
+
+endDate.addEventListener(
+    "change",
+    calculateLeaveDays
+);
+
+
+/* =========================================================
+                CHARACTER COUNTER
+========================================================= */
+
+leaveReason.addEventListener(
+    "input",
+    function(){
+
+        reasonCharacterCount.innerText =
+        this.value.length +
+        " / 500";
+
+    }
+);
+
+
+/* =========================================================
+                    FILE UPLOAD
+========================================================= */
+
+leaveDocument.addEventListener(
+    "change",
+    function(){
+
+
+        if(
+            this.files.length === 0
+        ){
+
+            uploadFileName.innerText =
+            "Upload Supporting Document";
+
+            return;
+
+        }
+
+
+        const file =
+        this.files[0];
+
+
+        const maxSize =
+        5 * 1024 * 1024;
+
+
+        const allowedTypes = [
+
+            "application/pdf",
+
+            "image/jpeg",
+
+            "image/png"
+
+        ];
+
+
+        if(
+            !allowedTypes.includes(
+                file.type
+            )
+        ){
+
+            alert(
+                "Only PDF, JPG and PNG files are allowed."
+            );
+
+
+            this.value = "";
+
+
+            uploadFileName.innerText =
+            "Upload Supporting Document";
+
+
+            return;
+
+        }
+
+
+        if(
+            file.size >
+            maxSize
+        ){
+
+            alert(
+                "File size must be less than 5 MB."
+            );
+
+
+            this.value = "";
+
+
+            uploadFileName.innerText =
+            "Upload Supporting Document";
+
+
+            return;
+
+        }
+
+
+        uploadFileName.innerText =
+        file.name;
+
+    }
+);
+
+
+/* =========================================================
+                    FORM SUBMIT
+========================================================= */
+
+leaveForm.addEventListener(
+    "submit",
+    function(event){
+
+
+        event.preventDefault();
+
+
+        const selectedLeave =
+        document.querySelector(
+            'input[name="leaveType"]:checked'
+        );
+
+
+        if(
+            !selectedLeave
+        ){
+
+            alert(
+                "Please select a leave type."
+            );
+
+            return;
+
+        }
+
+
+        if(
+            !startDate.value ||
+            !endDate.value
+        ){
+
+            alert(
+                "Please select leave dates."
+            );
+
+            return;
+
+        }
+
+
+        const totalDays =
+        calculateLeaveDays();
+
+
+        if(
+            totalDays <= 0
+        ){
+
+            alert(
+                "Please select valid leave dates."
+            );
+
+            return;
+
+        }
+
+
+        if(
+            leaveReason.value
+            .trim()
+            .length <
+            10
+        ){
+
+            alert(
+                "Please enter a proper reason for leave."
+            );
+
+            return;
+
+        }
+
+
+        const declaration =
+        document.getElementById(
+            "leaveDeclaration"
+        );
+
+
+        if(
+            !declaration.checked
+        ){
+
+            alert(
+                "Please confirm the declaration."
+            );
+
+            return;
+
+        }
+
+
+        /* =================================================
+                    GENERATE REQUEST ID
+        ================================================= */
+
+        const requestNumber =
+        Math.floor(
+            Math.random() * 9000
+        ) + 1000;
+
+
+        const requestId =
+        "#LV-2026-" +
+        requestNumber;
+
+
+        document.getElementById(
+            "generatedRequestId"
+        ).innerText =
+        requestId;
+
+
+        /* =================================================
+                    ADD REQUEST TO TABLE
+        ================================================= */
+
+        addLeaveToHistory(
+            requestId,
+            selectedLeave.value,
+            startDate.value,
+            endDate.value,
+            totalDays
+        );
+
+
+        /* =================================================
+                    UPDATE PENDING COUNT
+        ================================================= */
+
+        const pendingCount =
+        document.getElementById(
+            "pendingLeaveCount"
+        );
+
+
+        pendingCount.innerText =
+        Number(
+            pendingCount.innerText
+        ) + 1;
+
+
+        /* =================================================
+                        SUCCESS MODAL
+        ================================================= */
+
+        const successModal =
+        new bootstrap.Modal(
+            document.getElementById(
+                "leaveSuccessModal"
+            )
+        );
+
+
+        successModal.show();
+
+
+        /* =================================================
+                        RESET FORM
+        ================================================= */
+
+        leaveForm.reset();
+
+
+        summaryStartDate.innerText =
+        "--";
+
+
+        summaryEndDate.innerText =
+        "--";
+
+
+        summaryTotalDays.innerText =
+        "0 Days";
+
+
+        reasonCharacterCount.innerText =
+        "0 / 500";
+
+
+        uploadFileName.innerText =
+        "Upload Supporting Document";
+
+
+    }
+);
+
+
+/* =========================================================
+                ADD NEW LEAVE TO HISTORY
+========================================================= */
+
+function addLeaveToHistory(
+    requestId,
+    leaveType,
+    fromDate,
+    toDate,
+    totalDays
+){
+
+
+    const tbody =
+    document.getElementById(
+        "leaveHistoryBody"
+    );
+
+
+    const row =
+    document.createElement(
+        "tr"
+    );
+
+
+    row.dataset.status =
+    "pending";
+
+
+    const appliedDate =
+    new Date()
+    .toLocaleDateString(
+        "en-IN",
+        {
+
+            day:"2-digit",
+
+            month:"short",
+
+            year:"numeric"
+
+        }
+    );
+
+
+    row.innerHTML = `
+
+        <td>
+
+            <strong>
+                ${requestId}
+            </strong>
+
+        </td>
+
+
+        <td>
+
+            <i
+                class="fa-solid fa-calendar-day me-2"
+                style="color:#6c4cff;">
+            </i>
+
+            ${leaveType}
+
+        </td>
+
+
+        <td>
+
+            ${formatDate(fromDate)}
+
+            <br>
+
+            <small class="text-muted">
+
+                to ${formatDate(toDate)}
+
+            </small>
+
+        </td>
+
+
+        <td>
+
+            ${totalDays}
+
+        </td>
+
+
+        <td>
+
+            ${appliedDate}
+
+        </td>
+
+
+        <td>
+
+            <span class="leave-status pending">
+
+                <i class="fa-solid fa-clock"></i>
+
+                Pending
+
+            </span>
+
+        </td>
+
+
+        <td>
+
+            <button
+                type="button"
+                class="table-action-btn view"
+                title="View Details">
+
+                <i class="fa-solid fa-eye"></i>
+
+            </button>
+
+
+            <button
+                type="button"
+                class="table-action-btn cancel"
+                title="Cancel Request">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </td>
+
+    `;
+
+
+    tbody.insertBefore(
+        row,
+        tbody.firstChild
+    );
+
+
+    const viewButton =
+    row.querySelector(
+        ".view"
+    );
+
+
+    const cancelButton =
+    row.querySelector(
+        ".cancel"
+    );
+
+
+    viewButton.addEventListener(
+        "click",
+        function(){
+
+            showDynamicLeaveDetails(
+                requestId,
+                leaveType,
+                fromDate,
+                toDate,
+                totalDays
+            );
+
+        }
+    );
+
+
+    cancelButton.addEventListener(
+        "click",
+        function(){
+
+            openCancelLeaveModal(
+                requestId.replace(
+                    "#",
+                    ""
+                )
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+                DYNAMIC LEAVE DETAILS
+========================================================= */
+
+function showDynamicLeaveDetails(
+    id,
+    type,
+    start,
+    end,
+    days
+){
+
+
+    document.getElementById(
+        "detailRequestId"
+    ).innerText =
+    id;
+
+
+    document.getElementById(
+        "detailLeaveType"
+    ).innerText =
+    type;
+
+
+    document.getElementById(
+        "detailStartDate"
+    ).innerText =
+    formatDate(start);
+
+
+    document.getElementById(
+        "detailEndDate"
+    ).innerText =
+    formatDate(end);
+
+
+    document.getElementById(
+        "detailTotalDays"
+    ).innerText =
+    days +
+    (
+        days === 1
+        ? " Day"
+        : " Days"
+    );
+
+
+    document.getElementById(
+        "detailLeaveStatus"
+    ).innerText =
+    "Pending";
+
+
+    document.getElementById(
+        "detailReason"
+    ).innerText =
+    leaveReason.value ||
+    "Leave request submitted by faculty member.";
+
+
+    document.getElementById(
+        "detailRemark"
+    ).innerText =
+    "Request is currently under review.";
+
+
+    const modal =
+    new bootstrap.Modal(
+        document.getElementById(
+            "leaveDetailsModal"
+        )
+    );
+
+
+    modal.show();
+
+}
+
+
+/* =========================================================
+                    STATUS FILTER
+========================================================= */
+
+statusFilter.addEventListener(
+    "change",
+    function(){
+
+
+        const selectedStatus =
+        this.value;
+
+
+        const rows =
+        document.querySelectorAll(
+            "#leaveHistoryBody tr"
+        );
+
+
+        rows.forEach(
+            function(row){
+
+
+                if(
+                    selectedStatus ===
+                    "all" ||
+                    row.dataset.status ===
+                    selectedStatus
+                ){
+
+                    row.style.display =
+                    "table-row";
+
+                }
+
+                else{
+
+                    row.style.display =
+                    "none";
+
+                }
+
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+                LIGHT / DARK THEME SYSTEM
+========================================================= */
+
+const themeButton =
+document.getElementById("themeToggle");
+
+
+function setTheme(theme){
+
+    const icon =
+    themeButton.querySelector("i");
+
+    if(theme === "dark"){
+
+        document.body.classList.add("dark");
+
+        icon.className =
+        "fa-solid fa-sun";
+
+    }
+    else{
+
+        document.body.classList.remove("dark");
+
+        icon.className =
+        "fa-solid fa-moon";
+
+    }
+
+    localStorage.setItem(
+        "teacherTheme",
+        theme
+    );
+}
+
+
+/* =========================================================
+                    LOAD THEME
+========================================================= */
+
+const savedTheme =
+localStorage.getItem("teacherTheme");
+
+
+if(savedTheme === "dark"){
+
+    setTheme("dark");
+
+}
+else{
+
+    setTheme("light");
+
+}
+
+
+/* =========================================================
+                    TOGGLE THEME
+========================================================= */
+
+themeButton.onclick =
+function(){
+
+    if(
+        document.body.classList.contains("dark")
+    ){
+
+        setTheme("light");
+
+    }
+    else{
+
+        setTheme("dark");
+
+    }
+
+};
+/* =========================================================
+                    EXISTING LEAVE DATA
+========================================================= */
+
+const leaveRequestData = {
+
+
+    "LV-2026-004":{
+
+        type:"Casual Leave",
+
+        start:"03 August 2026",
+
+        end:"04 August 2026",
+
+        days:"2 Days",
+
+        status:"Pending",
+
+        reason:
+        "Personal work requiring leave from college.",
+
+        remark:
+        "Request is currently under review."
+
+    },
+
+
+    "LV-2026-003":{
+
+        type:"Medical Leave",
+
+        start:"20 July 2026",
+
+        end:"22 July 2026",
+
+        days:"3 Days",
+
+        status:"Approved",
+
+        reason:
+        "Medical leave due to health-related reasons.",
+
+        remark:
+        "Approved by Head of Department."
+
+    },
+
+
+    "LV-2026-002":{
+
+        type:"Earned Leave",
+
+        start:"10 July 2026",
+
+        end:"11 July 2026",
+
+        days:"2 Days",
+
+        status:"Rejected",
+
+        reason:
+        "Personal work outside the city.",
+
+        remark:
+        "Leave could not be approved due to academic schedule."
+
+    },
+
+
+    "LV-2026-001":{
+
+        type:"Casual Leave",
+
+        start:"02 July 2026",
+
+        end:"03 July 2026",
+
+        days:"2 Days",
+
+        status:"Approved",
+
+        reason:
+        "Personal family work.",
+
+        remark:
+        "Approved by Head of Department."
+
+    }
+
+
+};
+
+
+/* =========================================================
+                VIEW EXISTING REQUEST
+========================================================= */
+
+function viewLeaveRequest(
+    requestId
+){
+
+
+    const data =
+    leaveRequestData[
+        requestId
+    ];
+
+
+    if(!data){
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "detailRequestId"
+    ).innerText =
+    "#" + requestId;
+
+
+    document.getElementById(
+        "detailLeaveType"
+    ).innerText =
+    data.type;
+
+
+    document.getElementById(
+        "detailStartDate"
+    ).innerText =
+    data.start;
+
+
+    document.getElementById(
+        "detailEndDate"
+    ).innerText =
+    data.end;
+
+
+    document.getElementById(
+        "detailTotalDays"
+    ).innerText =
+    data.days;
+
+
+    document.getElementById(
+        "detailLeaveStatus"
+    ).innerText =
+    data.status;
+
+
+    document.getElementById(
+        "detailReason"
+    ).innerText =
+    data.reason;
+
+
+    document.getElementById(
+        "detailRemark"
+    ).innerText =
+    data.remark;
+
+
+    const modal =
+    new bootstrap.Modal(
+        document.getElementById(
+            "leaveDetailsModal"
+        )
+    );
+
+
+    modal.show();
+
+}
+
+
+/* =========================================================
+                OPEN CANCEL MODAL
+========================================================= */
+
+function openCancelLeaveModal(
+    requestId
+){
+
+
+    document.getElementById(
+        "cancelLeaveId"
+    ).value =
+    requestId;
+
+
+    document.getElementById(
+        "cancelRequestId"
+    ).innerText =
+    "#" + requestId;
+
+
+    const modal =
+    new bootstrap.Modal(
+        document.getElementById(
+            "cancelLeaveModal"
+        )
+    );
+
+
+    modal.show();
+
+}
+
+
+/* =========================================================
+                CONFIRM CANCEL REQUEST
+========================================================= */
+
+document.getElementById(
+    "confirmCancelLeaveBtn"
+)
+.addEventListener(
+    "click",
+    function(){
+
+
+        const requestId =
+        document.getElementById(
+            "cancelLeaveId"
+        ).value;
+
+
+        const rows =
+        document.querySelectorAll(
+            "#leaveHistoryBody tr"
+        );
+
+
+        rows.forEach(
+            function(row){
+
+
+                const firstCell =
+                row.querySelector(
+                    "td strong"
+                );
+
+
+                if(
+                    firstCell &&
+                    firstCell.innerText
+                    .replace("#","") ===
+                    requestId
+                ){
+
+
+                    row.dataset.status =
+                    "cancelled";
+
+
+                    const statusCell =
+                    row.children[5];
+
+
+                    statusCell.innerHTML = `
+
+                        <span
+                            class="leave-status cancelled">
+
+                            <i class="fa-solid fa-ban"></i>
+
+                            Cancelled
+
+                        </span>
+
+                    `;
+
+
+                    const cancelButton =
+                    row.querySelector(
+                        ".cancel"
+                    );
+
+
+                    if(cancelButton){
+
+                        cancelButton.remove();
+
+                    }
+
+
+                    const pendingCount =
+                    document.getElementById(
+                        "pendingLeaveCount"
+                    );
+
+
+                    const currentPending =
+                    Number(
+                        pendingCount.innerText
+                    );
+
+
+                    if(
+                        currentPending >
+                        0
+                    ){
+
+                        pendingCount.innerText =
+                        currentPending - 1;
+
+                    }
+
+
+                }
+
+
+            }
+        );
+
+
+        const cancelModalElement =
+        document.getElementById(
+            "cancelLeaveModal"
+        );
+
+
+        const cancelModal =
+        bootstrap.Modal.getInstance(
+            cancelModalElement
+        );
+
+
+        if(cancelModal){
+
+            cancelModal.hide();
+
+        }
+
+
+    }
+);
+
+
+/* =========================================================
+                    RESET BUTTON
+========================================================= */
+
+document.getElementById(
+    "resetLeaveBtn"
+)
+.addEventListener(
+    "click",
+    function(){
+
+
+        setTimeout(
+            function(){
+
+
+                document.getElementById(
+                    "summaryStartDate"
+                ).innerText =
+                "--";
+
+
+                document.getElementById(
+                    "summaryEndDate"
+                ).innerText =
+                "--";
+
+
+                document.getElementById(
+                    "summaryTotalDays"
+                ).innerText =
+                "0 Days";
+
+
+                document.getElementById(
+                    "reasonCharacterCount"
+                ).innerText =
+                "0 / 500";
+
+
+                document.getElementById(
+                    "uploadFileName"
+                ).innerText =
+                "Upload Supporting Document";
+
+
+            },
+            0
+        );
+
+
+    }
+);
+    });
+
+</script>
+
+
+</body>
+
+</html>

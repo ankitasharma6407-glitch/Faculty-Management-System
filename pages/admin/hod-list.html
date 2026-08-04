@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HOD List | Faculty Management System</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../css/admin-dashboard.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- ================= Sidebar ================= -->
+
+<aside class="sidebar">
+
+<div class="logo-box">
+
+<img src="../../images/logo.png" alt="College Logo">
+
+<h3>PATNA</h3>
+
+<h2>WOMEN'S COLLEGE</h2>
+
+<span>(AUTONOMOUS)</span>
+
+</div>
+
+<ul class="menu">
+
+<li>
+<a href="admin-dashboard.html">
+<i class="fa-solid fa-house"></i>
+<span>Dashboard</span>
+</a>
+</li>
+
+<li>
+<a href="teacher-list.html">
+<i class="fa-solid fa-user-tie"></i>
+<span>Teachers</span>
+</a>
+</li>
+
+<li class="active">
+<a href="hod-list.html">
+<i class="fa-solid fa-building-user"></i>
+<span>HOD List</span>
+</a>
+</li>
+
+<li>
+<a href="student-list.html">
+<i class="fa-solid fa-user-graduate"></i>
+<span>Students</span>
+</a>
+</li>
+
+<li>
+<a href="recruiter-list.html">
+<i class="fa-solid fa-building"></i>
+<span>Recruiters</span>
+</a>
+</li>
+
+<li>
+<a href="attendance-report.html">
+<i class="fa-solid fa-file-lines"></i>
+<span>Attendance Report</span>
+</a>
+</li>
+
+<li>
+<a href="analytics.html">
+<i class="fa-solid fa-chart-line"></i>
+<span>Analytics</span>
+</a>
+</li>
+
+<li>
+<a href="academic-calendar.html">
+<i class="fa-solid fa-calendar-days"></i>
+<span>Academic Calendar</span>
+</a>
+</li>
+
+<li>
+<a href="settings.html">
+<i class="fa-solid fa-gear"></i>
+<span>Settings</span>
+</a>
+</li>
+
+</ul>
+
+<div class="sidebar-bottom">
+
+<a href="admin-login.html" class="logout-btn">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+<span>Logout</span>
+
+</a>
+
+</div>
+
+</aside>
+
+<!-- ================= Main Content ================= -->
+
+<main class="main-content">
+
+<div class="topbar">
+
+<div>
+
+<h2>HOD Management</h2>
+
+<p>Dashboard / HOD List</p>
+
+</div>
+<div class="topbar-actions">
+
+    <button id="themeToggle" class="theme-toggle-btn">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
+</div>
+</div>
+
+<!-- ================= Header ================= -->
+
+<div class="chart-card mt-4">
+
+<div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+
+<h3>
+
+<i class="fa-solid fa-building-user"></i>
+
+Head of Department List
+
+</h3>
+
+<a href="add-hod.html" class="btn btn-primary">
+
+<i class="fa-solid fa-plus"></i>
+
+Add HOD
+
+</a>
+
+</div>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="input-group">
+
+<span class="input-group-text">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+</span>
+
+<input
+type="text"
+id="searchHod"
+class="form-control"
+placeholder="Search by Name, ID, Department or Email">
+
+</div>
+
+</div>
+
+<div class="col-md-6 text-md-end mt-3 mt-md-0">
+
+<button id="excelBtn" class="btn btn-success me-2">
+
+<i class="fa-solid fa-file-excel"></i>
+
+Export Excel
+
+</button>
+
+<button id="pdfBtn" class="btn btn-danger">
+
+<i class="fa-solid fa-file-pdf"></i>
+
+Export PDF
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= HOD Table Starts Below ================= -->
+
+<div class="chart-card">
+
+<div class="table-responsive">
+
+<table id="hodTable" class="table table-hover table-bordered align-middle text-center">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>Photo</th>
+<th>HOD ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>Mobile</th>
+<th>Department</th>
+<th>Joining Date</th>
+<th>Status</th>
+<th width="180">Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="hodTable">
+
+<tr>
+
+<td>
+
+<img
+src="../../images/default-profile.png"
+class="rounded-circle"
+width="55"
+height="55"
+alt="HOD">
+
+</td>
+
+<td>HOD001</td>
+
+<td>Dr. Priya Sharma</td>
+
+<td>priya@college.edu</td>
+
+<td>9876543210</td>
+
+<td>Computer Science</td>
+
+<td>15-07-2022</td>
+
+<td>
+
+<span class="badge bg-success">
+
+Active
+
+</span>
+
+</td>
+
+<td>
+
+<a href="view-hod.html" class="btn btn-info btn-sm">
+
+<i class="fa-solid fa-eye"></i>
+
+</a>
+
+<a href="edit-hod.html" class="btn btn-warning btn-sm">
+
+<i class="fa-solid fa-pen"></i>
+
+</a>
+
+<button
+class="btn btn-danger btn-sm deleteBtn">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<img
+src="../../images/default-profile.png"
+class="rounded-circle"
+width="55"
+height="55">
+
+</td>
+
+<td>HOD002</td>
+
+<td>Dr. Amit Kumar</td>
+
+<td>amit@college.edu</td>
+
+<td>9876501234</td>
+
+<td>Mathematics</td>
+
+<td>20-01-2021</td>
+
+<td>
+
+<span class="badge bg-success">
+
+Active
+
+</span>
+
+</td>
+
+<td>
+
+<a href="view-hod.html" class="btn btn-info btn-sm">
+
+<i class="fa-solid fa-eye"></i>
+
+</a>
+
+<a href="edit-hod.html" class="btn btn-warning btn-sm">
+
+<i class="fa-solid fa-pen"></i>
+
+</a>
+
+<button
+class="btn btn-danger btn-sm deleteBtn">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<img
+src="../../images/default-profile.png"
+class="rounded-circle"
+width="55"
+height="55">
+
+</td>
+
+<td>HOD003</td>
+
+<td>Dr. Neha Singh</td>
+
+<td>neha@college.edu</td>
+
+<td>9123456789</td>
+
+<td>Physics</td>
+
+<td>10-03-2023</td>
+
+<td>
+
+<span class="badge bg-secondary">
+
+Inactive
+
+</span>
+
+</td>
+
+<td>
+
+<a href="view-hod.html" class="btn btn-info btn-sm">
+
+<i class="fa-solid fa-eye"></i>
+
+</a>
+
+<a href="edit-hod.html" class="btn btn-warning btn-sm">
+
+<i class="fa-solid fa-pen"></i>
+
+</a>
+
+<button
+class="btn btn-danger btn-sm deleteBtn">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<img
+src="../../images/default-profile.png"
+class="rounded-circle"
+width="55"
+height="55">
+
+</td>
+
+<td>HOD004</td>
+
+<td>Dr. Rakesh Verma</td>
+
+<td>rakesh@college.edu</td>
+
+<td>9988776655</td>
+
+<td>Chemistry</td>
+
+<td>18-08-2020</td>
+
+<td>
+
+<span class="badge bg-success">
+
+Active
+
+</span>
+
+</td>
+
+<td>
+
+<a href="view-hod.html" class="btn btn-info btn-sm">
+
+<i class="fa-solid fa-eye"></i>
+
+</a>
+
+<a href="edit-hod.html" class="btn btn-warning btn-sm">
+
+<i class="fa-solid fa-pen"></i>
+
+</a>
+
+<button
+class="btn btn-danger btn-sm deleteBtn">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<img
+src="../../images/default-profile.png"
+class="rounded-circle"
+width="55"
+height="55">
+
+</td>
+
+<td>HOD005</td>
+
+<td>Dr. Anjali Gupta</td>
+
+<td>anjali@college.edu</td>
+
+<td>9011223344</td>
+
+<td>Commerce</td>
+
+<td>11-12-2021</td>
+
+<td>
+
+<span class="badge bg-success">
+
+Active
+
+</span>
+
+</td>
+
+<td>
+
+<a href="view-hod.html" class="btn btn-info btn-sm">
+
+<i class="fa-solid fa-eye"></i>
+
+</a>
+
+<a href="edit-hod.html" class="btn btn-warning btn-sm">
+
+<i class="fa-solid fa-pen"></i>
+
+</a>
+
+<button
+class="btn btn-danger btn-sm deleteBtn">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- ================= Pagination ================= -->
+
+<nav class="mt-4">
+
+<ul class="pagination justify-content-end">
+
+<li class="page-item disabled">
+
+<a class="page-link">Previous</a>
+
+</li>
+
+<li class="page-item active">
+
+<a class="page-link">1</a>
+
+</li>
+
+<li class="page-item">
+
+<a class="page-link">2</a>
+
+</li>
+
+<li class="page-item">
+
+<a class="page-link">3</a>
+
+</li>
+
+<li class="page-item">
+
+<a class="page-link">Next</a>
+
+</li>
+
+</ul>
+
+</nav>
+
+</div>
+
+<!-- ================= Delete Confirmation Modal ================= -->
+
+<div
+class="modal fade"
+id="deleteHodModal"
+tabindex="-1">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content">
+
+<div class="modal-header bg-danger text-white">
+
+<h5 class="modal-title">
+
+<i class="fa-solid fa-trash"></i>
+
+Delete HOD
+
+</h5>
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+
+</button>
+
+</div>
+
+<div class="modal-body text-center">
+
+<i class="fa-solid fa-triangle-exclamation fa-4x text-danger mb-3"></i>
+
+<h4>Are you sure?</h4>
+
+<p>
+
+Do you really want to delete this HOD? This action cannot be undone.
+
+</p>
+
+</div>
+
+<div class="modal-footer">
+
+<button
+type="button"
+class="btn btn-secondary"
+data-bs-dismiss="modal">
+
+Cancel
+
+</button>
+
+<button
+type="button"
+id="confirmDeleteBtn"
+class="btn btn-danger">
+
+Delete
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= Bootstrap JS ================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../js/dashboard.js"></script>
+<!-- ================= JavaScript ================= -->
+
+<script>
+
+// ================= Search HOD =================
+
+const searchHod = document.getElementById("searchHod");
+
+if(searchHod){
+
+searchHod.addEventListener("keyup", function(){
+
+const filter = this.value.toLowerCase();
+
+const rows = document.querySelectorAll("#hodTable tr");
+
+rows.forEach(function(row){
+
+const text = row.innerText.toLowerCase();
+
+row.style.display = text.includes(filter) ? "" : "none";
+
+});
+
+});
+
+}
+
+// ================= Delete HOD =================
+
+let selectedRow = null;
+
+const deleteButtons = document.querySelectorAll(".deleteBtn");
+
+deleteButtons.forEach(function(button){
+
+button.addEventListener("click", function(){
+
+selectedRow = this.closest("tr");
+
+const modal = new bootstrap.Modal(document.getElementById("deleteHodModal"));
+
+modal.show();
+
+});
+
+});
+
+// ================= Confirm Delete =================
+
+const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+
+if(confirmDeleteBtn){
+
+confirmDeleteBtn.addEventListener("click", function(){
+
+if(selectedRow){
+
+selectedRow.remove();
+
+}
+
+const modalElement = document.getElementById("deleteHodModal");
+
+const modal = bootstrap.Modal.getInstance(modalElement);
+
+if(modal){
+
+modal.hide();
+
+}
+
+alert("HOD deleted successfully! (Frontend Demo)");
+
+});
+// Export Excel
+document.getElementById("excelBtn").addEventListener("click", function () {
+
+    const table = document.getElementById("hodTable");
+
+    const workbook = XLSX.utils.table_to_book(table, {
+        sheet: "HOD List"
+    });
+
+    XLSX.writeFile(workbook, "HOD_List.xlsx");
+
+});
+
+// Export PDF
+document.getElementById("pdfBtn").addEventListener("click", function () {
+
+    const { jsPDF } = window.jspdf;
+
+    const pdf = new jsPDF();
+
+    pdf.autoTable({
+        html: "#hodTable"
+    });
+
+    pdf.save("HOD_List.pdf");
+
+});
+}
+
+</script>
+
+</main>
+
+</div>
+
+</body>
+
+</html>

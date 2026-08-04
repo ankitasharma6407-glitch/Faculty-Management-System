@@ -1,0 +1,6949 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>Students | Teacher Panel</title>
+
+
+<!-- =========================================================
+                        BOOTSTRAP CSS
+========================================================= -->
+
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+
+
+<!-- =========================================================
+                        FONT AWESOME
+========================================================= -->
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+<!-- =========================================================
+                        GOOGLE FONT
+========================================================= -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+
+<style>
+
+
+/* =========================================================
+                        GLOBAL
+========================================================= */
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+
+body{
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    background:#f5f7fb;
+
+    color:#1f2937;
+
+    min-height:100vh;
+
+    transition:
+        background .3s ease,
+        color .3s ease;
+
+}
+
+
+a{
+
+    text-decoration:none;
+
+}
+
+
+button,
+input,
+select{
+
+    font-family:inherit;
+
+}
+
+
+/* =========================================================
+                    MAIN LAYOUT
+========================================================= */
+
+.teacher-layout{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+
+/* =========================================================
+                        SIDEBAR
+========================================================= */
+
+.teacher-sidebar{
+
+    width:270px;
+
+    min-height:100vh;
+
+    background:
+        linear-gradient(
+            180deg,
+            #263bd8 0%,
+            #6747dc 52%,
+            #ad72dd 100%
+        );
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    bottom:0;
+
+    z-index:1200;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+
+    box-shadow:
+        8px 0 30px
+        rgba(76,58,180,.13);
+
+}
+
+
+/* =========================================================
+                    SIDEBAR SCROLLBAR
+========================================================= */
+
+.teacher-sidebar::-webkit-scrollbar{
+
+    width:5px;
+
+}
+
+
+.teacher-sidebar::-webkit-scrollbar-track{
+
+    background:
+        rgba(255,255,255,.05);
+
+}
+
+
+.teacher-sidebar::-webkit-scrollbar-thumb{
+
+    background:
+        rgba(255,255,255,.25);
+
+    border-radius:20px;
+
+}
+
+
+/* =========================================================
+                    SIDEBAR BRAND
+========================================================= */
+
+.teacher-sidebar-brand{
+
+    text-align:center;
+
+    padding:
+        27px 20px 20px;
+
+    color:#ffffff;
+
+}
+
+
+.teacher-sidebar-brand img{
+
+    width:82px;
+
+    height:82px;
+
+    object-fit:contain;
+
+    background:#ffffff;
+
+    padding:6px;
+
+    border-radius:50%;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.15);
+
+    margin-bottom:12px;
+
+}
+
+
+.teacher-sidebar-brand h3{
+
+    margin:0;
+
+    font-size:25px;
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+
+}
+
+
+.teacher-sidebar-brand p{
+
+    margin:
+        4px 0 0;
+
+    font-size:13px;
+
+    color:
+        rgba(255,255,255,.82);
+
+}
+
+
+/* =========================================================
+                    SIDEBAR MENU
+========================================================= */
+
+.teacher-sidebar-menu{
+
+    list-style:none;
+
+    padding:
+        15px 16px 30px;
+
+    margin:0;
+
+}
+
+
+.teacher-sidebar-menu li{
+
+    margin-bottom:7px;
+
+}
+
+
+.teacher-sidebar-menu a{
+
+    color:
+        rgba(255,255,255,.88);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:
+        13px 17px;
+
+    border-radius:13px;
+
+    font-size:14px;
+
+    font-weight:500;
+
+    transition:
+        background .25s ease,
+        color .25s ease,
+        transform .25s ease;
+
+}
+
+
+.teacher-sidebar-menu a i{
+
+    width:22px;
+
+    text-align:center;
+
+    font-size:16px;
+
+}
+
+
+.teacher-sidebar-menu a span{
+
+    flex:1;
+
+}
+
+
+.teacher-sidebar-menu a:hover{
+
+    background:
+        rgba(255,255,255,.16);
+
+    color:#ffffff;
+
+    transform:
+        translateX(4px);
+
+}
+
+
+.teacher-sidebar-menu a.active{
+
+    background:
+        rgba(255,255,255,.23);
+
+    color:#ffffff;
+
+    font-weight:700;
+
+    box-shadow:
+        0 6px 18px
+        rgba(0,0,0,.08);
+
+}
+
+
+/* =========================================================
+                    SIDEBAR SECTION TITLE
+========================================================= */
+
+.sidebar-section-title{
+
+    color:
+        rgba(255,255,255,.58);
+
+    font-size:10px;
+
+    font-weight:700;
+
+    letter-spacing:1.2px;
+
+    text-transform:uppercase;
+
+    padding:
+        18px 17px 7px;
+
+}
+
+
+/* =========================================================
+                    SIDEBAR OVERLAY
+========================================================= */
+
+.sidebar-overlay{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(15,23,42,.55);
+
+    z-index:1100;
+
+    backdrop-filter:
+        blur(2px);
+
+}
+
+
+.sidebar-overlay.show{
+
+    display:block;
+
+}
+
+
+/* =========================================================
+                        MAIN AREA
+========================================================= */
+
+.teacher-main{
+
+    margin-left:270px;
+
+    width:
+        calc(100% - 270px);
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+/* =========================================================
+                        NAVBAR
+========================================================= */
+
+.teacher-navbar{
+
+    min-height:78px;
+
+    background:#ffffff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding:
+        0 30px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    box-shadow:
+        0 3px 16px
+        rgba(0,0,0,.06);
+
+    transition:
+        background .3s ease,
+        border-color .3s ease;
+
+}
+
+
+/* =========================================================
+                    NAVBAR LEFT
+========================================================= */
+
+.navbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+.mobile-menu-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#f0edff;
+
+    color:#6c4cff;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.mobile-menu-btn:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+}
+
+
+.navbar-title h4{
+
+    margin:0;
+
+    color:#243c9e;
+
+    font-size:21px;
+
+    font-weight:800;
+
+}
+
+
+.navbar-title p{
+
+    margin:
+        2px 0 0;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                    NAVBAR RIGHT
+========================================================= */
+
+.navbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+}
+
+
+.nav-icon-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#f2efff;
+
+    color:#6c4cff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    position:relative;
+
+}
+
+
+.nav-icon-btn:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+                    NOTIFICATION DOT
+========================================================= */
+
+.notification-dot{
+
+    position:absolute;
+
+    top:7px;
+
+    right:7px;
+
+    width:8px;
+
+    height:8px;
+
+    background:#ef4444;
+
+    border-radius:50%;
+
+    border:
+        2px solid #ffffff;
+
+}
+
+
+/* =========================================================
+                    TEACHER PROFILE
+========================================================= */
+
+.teacher-profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-left:5px;
+
+    cursor:pointer;
+
+    padding:
+        5px 8px;
+
+    border-radius:14px;
+
+    transition:.25s;
+
+}
+
+
+.teacher-profile:hover{
+
+    background:#f8f7ff;
+
+}
+
+
+.teacher-profile img{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:
+        3px solid #ddd6fe;
+
+}
+
+
+.teacher-profile-info strong{
+
+    display:block;
+
+    font-size:13px;
+
+    color:#1f2937;
+
+}
+
+
+.teacher-profile-info small{
+
+    display:block;
+
+    color:#64748b;
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+                    PROFILE DROPDOWN
+========================================================= */
+
+.profile-dropdown-menu{
+
+    min-width:210px;
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:8px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.12);
+
+}
+
+
+.profile-dropdown-menu .dropdown-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    border-radius:10px;
+
+    padding:
+        10px 12px;
+
+    font-size:12px;
+
+}
+
+
+.profile-dropdown-menu .dropdown-item i{
+
+    width:18px;
+
+    text-align:center;
+
+    color:#6c4cff;
+
+}
+
+
+.profile-dropdown-menu .dropdown-item:hover{
+
+    background:#f3f0ff;
+
+    color:#6c4cff;
+
+}
+
+
+/* =========================================================
+                    PAGE CONTENT
+========================================================= */
+
+.teacher-content{
+
+    padding:
+        28px 30px 20px;
+
+    flex:1;
+
+}
+
+
+/* =========================================================
+                    STUDENT PAGE HEADER
+========================================================= */
+
+.students-page-header{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:#ffffff;
+
+    padding:
+        25px 27px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.055);
+
+    margin-bottom:24px;
+
+    transition:
+        background .3s ease,
+        color .3s ease;
+
+}
+
+
+.students-page-header::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:190px;
+
+    height:190px;
+
+    border-radius:50%;
+
+    right:-65px;
+
+    top:-90px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(108,76,255,.10),
+            rgba(139,92,246,.03)
+        );
+
+}
+
+
+.students-page-header-content{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+.students-page-label{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    color:#6c4cff;
+
+    background:#f0edff;
+
+    padding:
+        6px 11px;
+
+    border-radius:20px;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+    margin-bottom:10px;
+
+}
+
+
+.students-page-header h2{
+
+    margin:
+        0 0 5px;
+
+    font-weight:800;
+
+    font-size:25px;
+
+}
+
+
+.students-page-header h2 i{
+
+    color:#6c4cff;
+
+}
+
+
+.students-page-header p{
+
+    margin:0;
+
+    color:#64748b;
+
+    font-size:13px;
+
+}
+
+
+/* =========================================================
+                    HEADER BUTTON
+========================================================= */
+
+.view-classes-btn{
+
+    position:relative;
+
+    z-index:2;
+
+    border:none;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c4cff,
+            #8b5cf6
+        );
+
+    color:#ffffff;
+
+    border-radius:12px;
+
+    padding:
+        11px 18px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+
+.view-classes-btn:hover{
+
+    color:#ffffff;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(108,76,255,.25);
+
+}
+
+
+/* =========================================================
+                    STATISTICS GRID
+========================================================= */
+
+.student-stat-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
+
+    margin-bottom:25px;
+
+}
+
+
+/* =========================================================
+                    STUDENT STAT CARD
+========================================================= */
+
+.student-stat-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 7px 22px
+        rgba(0,0,0,.055);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        background .3s ease;
+
+}
+
+
+.student-stat-card:hover{
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.09);
+
+}
+
+
+.student-stat-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    right:-25px;
+
+    top:-25px;
+
+    background:
+        rgba(108,76,255,.035);
+
+}
+
+
+/* =========================================================
+                    STAT ICON
+========================================================= */
+
+.student-stat-icon{
+
+    width:55px;
+
+    height:55px;
+
+    min-width:55px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:22px;
+
+}
+
+
+.student-stat-icon.purple{
+
+    color:#6c4cff;
+
+    background:#ede9fe;
+
+}
+
+
+.student-stat-icon.blue{
+
+    color:#2563eb;
+
+    background:#dbeafe;
+
+}
+
+
+.student-stat-icon.orange{
+
+    color:#ea580c;
+
+    background:#ffedd5;
+
+}
+
+
+.student-stat-icon.green{
+
+    color:#16a34a;
+
+    background:#dcfce7;
+
+}
+
+
+.student-stat-info{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+.student-stat-info h3{
+
+    margin:0;
+
+    font-size:23px;
+
+    font-weight:800;
+
+}
+
+
+.student-stat-info p{
+
+    margin:
+        3px 0 0;
+
+    font-size:12px;
+
+    color:#64748b;
+
+}
+
+
+/* =========================================================
+                    STUDENTS CARD
+========================================================= */
+
+.students-card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:23px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.055);
+
+    transition:
+        background .3s ease,
+        color .3s ease;
+
+}
+
+
+/* =========================================================
+                    STUDENTS CARD HEADER
+========================================================= */
+
+.students-card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+
+}
+
+
+.students-card-header h4{
+
+    margin:0;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:#6c4cff;
+
+}
+
+
+.students-card-header p{
+
+    margin:
+        4px 0 0;
+
+    color:#64748b;
+
+    font-size:12px;
+
+}
+
+
+/* =========================================================
+                    STUDENT TOOLBAR
+========================================================= */
+
+.student-toolbar{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+
+/* =========================================================
+                    SEARCH BOX
+========================================================= */
+
+.student-search{
+
+    position:relative;
+
+}
+
+
+.student-search i{
+
+    position:absolute;
+
+    left:14px;
+
+    top:50%;
+
+    transform:
+        translateY(-50%);
+
+    color:#94a3b8;
+
+    pointer-events:none;
+
+}
+
+
+.student-search input{
+
+    width:250px;
+
+    height:43px;
+
+    padding:
+        0 15px 0 40px;
+
+    border:
+        1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    outline:none;
+
+    font-size:12px;
+
+    background:#ffffff;
+
+    color:#1f2937;
+
+    transition:.25s;
+
+}
+
+
+.student-search input:focus{
+
+    border-color:#8b5cf6;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139,92,246,.10);
+
+}
+
+
+/* =========================================================
+                    FILTER SELECT
+========================================================= */
+
+.student-filter{
+
+    min-width:155px;
+
+    height:43px;
+
+    border:
+        1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    padding:
+        0 12px;
+
+    font-size:12px;
+
+    outline:none;
+
+    background:#ffffff;
+
+    color:#1f2937;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.student-filter:focus{
+
+    border-color:#8b5cf6;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139,92,246,.10);
+
+}
+
+
+/* =========================================================
+                    STUDENT TABLE
+========================================================= */
+
+.student-table-wrapper{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    border-radius:15px;
+
+    border:
+        1px solid #edf0f5;
+
+}
+
+
+.student-table{
+
+    width:100%;
+
+    min-width:950px;
+
+    border-collapse:collapse;
+
+    margin:0;
+
+}
+
+
+.student-table thead{
+
+    background:#f8f7ff;
+
+}
+
+
+.student-table th{
+
+    padding:
+        14px 15px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    color:#64748b;
+
+    text-transform:uppercase;
+
+    letter-spacing:.3px;
+
+    white-space:nowrap;
+
+    border-bottom:
+        1px solid #e9e7f5;
+
+}
+
+
+.student-table td{
+
+    padding:
+        14px 15px;
+
+    vertical-align:middle;
+
+    border-bottom:
+        1px solid #f0f1f5;
+
+    font-size:12px;
+
+}
+
+
+.student-table tbody tr{
+
+    transition:.22s ease;
+
+}
+
+
+.student-table tbody tr:hover{
+
+    background:#faf9ff;
+
+}
+
+
+.student-table tbody tr:last-child td{
+
+    border-bottom:none;
+
+}
+
+
+/* =========================================================
+                    STUDENT INFORMATION
+========================================================= */
+
+.student-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+    min-width:190px;
+
+}
+
+
+.student-avatar{
+
+    width:42px;
+
+    height:42px;
+
+    min-width:42px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ede9fe,
+            #ddd6fe
+        );
+
+    color:#6c4cff;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    border:
+        2px solid #f5f3ff;
+
+}
+
+
+.student-name strong{
+
+    display:block;
+
+    color:#1f2937;
+
+    font-size:12px;
+
+    margin-bottom:2px;
+
+}
+
+
+.student-name small{
+
+    color:#94a3b8;
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+                    CLASS BADGE
+========================================================= */
+
+.student-class-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    padding:
+        6px 10px;
+
+    border-radius:20px;
+
+    background:#ede9fe;
+
+    color:#6c4cff;
+
+    font-size:10px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+}
+
+
+/* =========================================================
+                    ATTENDANCE
+========================================================= */
+
+.attendance-cell{
+
+    min-width:135px;
+
+}
+
+
+.attendance-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:6px;
+
+}
+
+
+.attendance-top span{
+
+    font-size:10px;
+
+    color:#64748b;
+
+}
+
+
+.attendance-top strong{
+
+    font-size:11px;
+
+}
+
+
+.attendance-progress{
+
+    width:100%;
+
+    height:6px;
+
+    border-radius:20px;
+
+    background:#e5e7eb;
+
+    overflow:hidden;
+
+}
+
+
+.attendance-progress-bar{
+
+    height:100%;
+
+    border-radius:20px;
+
+    transition:
+        width .4s ease;
+
+}
+
+
+.attendance-progress-bar.good{
+
+    background:#22c55e;
+
+}
+
+
+.attendance-progress-bar.average{
+
+    background:#f59e0b;
+
+}
+
+
+.attendance-progress-bar.low{
+
+    background:#ef4444;
+
+}
+
+
+/* =========================================================
+                    STATUS BADGES
+========================================================= */
+
+.student-status{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:5px;
+
+    padding:
+        6px 10px;
+
+    border-radius:20px;
+
+    font-size:10px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+}
+
+
+.student-status.active{
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+}
+
+
+.student-status.warning{
+
+    background:#fef3c7;
+
+    color:#b45309;
+
+}
+
+
+.student-status.low{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+
+/* =========================================================
+                    ACTION BUTTON
+========================================================= */
+
+.student-action-btn{
+
+    width:34px;
+
+    height:34px;
+
+    border:none;
+
+    border-radius:9px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    margin-right:4px;
+
+}
+
+
+.student-action-btn.view{
+
+    background:#ede9fe;
+
+    color:#6c4cff;
+
+}
+
+
+.student-action-btn.view:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+}
+
+
+.student-action-btn.attendance{
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+}
+
+
+.student-action-btn.attendance:hover{
+
+    background:#2563eb;
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                    NO RESULT
+========================================================= */
+
+.no-student-result{
+
+    display:none;
+
+    text-align:center;
+
+    padding:
+        50px 20px;
+
+}
+
+
+.no-student-result i{
+
+    font-size:55px;
+
+    color:#c4b5fd;
+
+    margin-bottom:15px;
+
+}
+
+
+.no-student-result h5{
+
+    font-weight:700;
+
+}
+
+
+.no-student-result p{
+
+    color:#64748b;
+
+    font-size:12px;
+
+}
+
+
+/* =========================================================
+                    STUDENT MODAL
+========================================================= */
+
+.student-modal-avatar{
+
+    width:85px;
+
+    height:85px;
+
+    margin:
+        0 auto 15px;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c4cff,
+            #8b5cf6
+        );
+
+    color:#ffffff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:26px;
+
+    font-weight:800;
+
+    box-shadow:
+        0 8px 20px
+        rgba(108,76,255,.22);
+
+}
+
+
+.student-detail-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:12px;
+
+    margin-top:20px;
+
+}
+
+
+.student-detail-box{
+
+    background:#f8f7ff;
+
+    padding:13px;
+
+    border-radius:12px;
+
+}
+
+
+.student-detail-box span{
+
+    display:block;
+
+    color:#64748b;
+
+    font-size:10px;
+
+    margin-bottom:4px;
+
+}
+
+
+.student-detail-box strong{
+
+    font-size:12px;
+
+}
+
+
+/* =========================================================
+                    FOOTER
+========================================================= */
+
+.footer{
+
+    text-align:center;
+
+    padding:
+        20px 10px 10px;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                COMPLETE DARK MODE SYSTEM
+========================================================= */
+
+body.dark{
+
+    background:#0b1120;
+
+    color:#f8fafc;
+
+}
+
+
+/* =========================================================
+                DARK MODE - SIDEBAR
+========================================================= */
+
+body.dark .teacher-sidebar{
+
+    background:
+        linear-gradient(
+            180deg,
+            #080d18 0%,
+            #0d1424 48%,
+            #111827 100%
+        );
+
+    border-right:
+        1px solid #253044;
+
+    box-shadow:
+        8px 0 30px
+        rgba(0,0,0,.32);
+
+}
+
+
+body.dark
+.teacher-sidebar-menu a{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark
+.teacher-sidebar-menu a:hover{
+
+    background:
+        rgba(139,92,246,.13);
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.teacher-sidebar-menu a.active{
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(108,76,255,.28),
+            rgba(139,92,246,.18)
+        );
+
+    color:#ffffff;
+
+    box-shadow:
+        inset 3px 0 0 #8b5cf6,
+        0 6px 18px rgba(0,0,0,.16);
+
+}
+
+
+body.dark
+.sidebar-section-title{
+
+    color:#64748b;
+
+}
+
+
+/* =========================================================
+                DARK MODE - NAVBAR
+========================================================= */
+
+body.dark .teacher-navbar{
+
+    background:#0f172a;
+
+    border-bottom:
+        1px solid #253044;
+
+    box-shadow:
+        0 3px 18px
+        rgba(0,0,0,.22);
+
+}
+
+
+body.dark .navbar-title h4{
+
+    color:#ffffff;
+
+}
+
+
+body.dark .navbar-title p{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.nav-icon-btn,
+body.dark
+.mobile-menu-btn{
+
+    background:#1e293b;
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark
+.nav-icon-btn:hover,
+body.dark
+.mobile-menu-btn:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .teacher-profile:hover{
+
+    background:#1e293b;
+
+}
+
+
+body.dark
+.teacher-profile-info strong{
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.teacher-profile-info small{
+
+    color:#94a3b8;
+
+}
+
+
+/* =========================================================
+                DARK MODE - DROPDOWN
+========================================================= */
+
+body.dark .profile-dropdown-menu{
+
+    background:#111827;
+
+    border:
+        1px solid #253044;
+
+}
+
+
+body.dark
+.profile-dropdown-menu
+.dropdown-item{
+
+    color:#e5e7eb;
+
+}
+
+
+body.dark
+.profile-dropdown-menu
+.dropdown-item:hover{
+
+    background:#1f2937;
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark
+.dropdown-divider{
+
+    border-color:#374151;
+
+}
+
+
+/* =========================================================
+                DARK MODE - HEADER
+========================================================= */
+
+body.dark .students-page-header{
+
+    background:#111827;
+
+    color:#ffffff;
+
+    border:
+        1px solid #1f2937;
+
+}
+
+
+body.dark
+.students-page-label{
+
+    background:
+        rgba(139,92,246,.14);
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark
+.students-page-header p{
+
+    color:#94a3b8;
+
+}
+
+
+/* =========================================================
+                DARK MODE - STATS
+========================================================= */
+
+body.dark
+.student-stat-card{
+
+    background:#111827;
+
+    color:#ffffff;
+
+    border:
+        1px solid #1f2937;
+
+}
+
+
+body.dark
+.student-stat-info p{
+
+    color:#94a3b8;
+
+}
+
+
+/* =========================================================
+                DARK MODE - MAIN CARD
+========================================================= */
+
+body.dark
+.students-card{
+
+    background:#111827;
+
+    color:#ffffff;
+
+    border:
+        1px solid #1f2937;
+
+}
+
+
+body.dark
+.students-card-header h4{
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark
+.students-card-header p{
+
+    color:#94a3b8;
+
+}
+
+
+/* =========================================================
+                DARK MODE - INPUTS
+========================================================= */
+
+body.dark
+.student-search input,
+body.dark
+.student-filter{
+
+    background:#1e293b;
+
+    color:#ffffff;
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.student-search input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.student-filter option{
+
+    background:#1e293b;
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                DARK MODE - TABLE
+========================================================= */
+
+body.dark
+.student-table-wrapper{
+
+    border-color:#293548;
+
+}
+
+
+body.dark
+.student-table thead{
+
+    background:#1e293b;
+
+}
+
+
+body.dark
+.student-table th{
+
+    color:#c4b5fd;
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.student-table td{
+
+    color:#e5e7eb;
+
+    border-color:#253044;
+
+}
+
+
+body.dark
+.student-table tbody tr:hover{
+
+    background:#172033;
+
+}
+
+
+body.dark
+.student-name strong{
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.student-name small{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.student-class-badge{
+
+    background:
+        rgba(139,92,246,.15);
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark
+.attendance-top span{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.attendance-progress{
+
+    background:#374151;
+
+}
+
+
+/* =========================================================
+                DARK MODE - MODAL
+========================================================= */
+
+body.dark .modal-content{
+
+    background:#111827;
+
+    color:#ffffff;
+
+    border:
+        1px solid #253044 !important;
+
+}
+
+
+body.dark
+.modal-header,
+body.dark
+.modal-footer{
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.student-detail-box{
+
+    background:#1e293b;
+
+}
+
+
+body.dark
+.student-detail-box span{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .btn-close{
+
+    filter:invert(1);
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE
+========================================================= */
+
+@media(max-width:1200px){
+
+    .student-stat-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+}
+
+
+@media(max-width:992px){
+
+    .teacher-sidebar{
+
+        transform:
+            translateX(-100%);
+
+    }
+
+
+    .teacher-sidebar.show{
+
+        transform:
+            translateX(0);
+
+    }
+
+
+    .teacher-main{
+
+        margin-left:0;
+
+        width:100%;
+
+    }
+
+
+    .mobile-menu-btn{
+
+        display:flex;
+
+    }
+
+}
+
+
+@media(min-width:993px){
+
+    .sidebar-overlay{
+
+        display:none !important;
+
+    }
+
+}
+
+
+@media(max-width:768px){
+
+    .teacher-navbar{
+
+        padding:
+            0 17px;
+
+    }
+
+
+    .teacher-content{
+
+        padding:
+            20px 16px;
+
+    }
+
+
+    .teacher-profile-info{
+
+        display:none;
+
+    }
+
+
+    .navbar-title p{
+
+        display:none;
+
+    }
+
+
+    .student-toolbar{
+
+        width:100%;
+
+    }
+
+
+    .student-search{
+
+        width:100%;
+
+    }
+
+
+    .student-search input{
+
+        width:100%;
+
+    }
+
+
+    .student-filter{
+
+        flex:1;
+
+        min-width:
+            calc(50% - 5px);
+
+    }
+
+
+    .students-card-header{
+
+        align-items:flex-start;
+
+    }
+
+}
+
+
+@media(max-width:576px){
+
+    .student-stat-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .students-page-header{
+
+        padding:18px;
+
+    }
+
+
+    .students-page-header h2{
+
+        font-size:21px;
+
+    }
+
+
+    .view-classes-btn{
+
+        width:100%;
+
+    }
+
+
+    .students-card{
+
+        padding:16px;
+
+    }
+
+
+    .student-filter{
+
+        width:100%;
+
+        min-width:100%;
+
+    }
+
+
+    .student-detail-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .navbar-title h4{
+
+        font-size:18px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<!-- =========================================================
+                    TEACHER LAYOUT
+========================================================= -->
+
+<div class="teacher-layout">
+
+
+<!-- =========================================================
+                    MOBILE SIDEBAR OVERLAY
+========================================================= -->
+
+<div
+    class="sidebar-overlay"
+    id="sidebarOverlay">
+</div>
+
+
+<!-- =========================================================
+                        SIDEBAR
+========================================================= -->
+
+<aside
+    class="teacher-sidebar"
+    id="teacherSidebar">
+
+
+<!-- =========================================================
+                    SIDEBAR BRAND
+========================================================= -->
+
+<div class="teacher-sidebar-brand">
+
+<img
+    src="../../images/logo.png"
+    alt="FMPS Logo">
+
+<h3>
+    FMPS
+</h3>
+
+<p>
+    Teacher Panel
+</p>
+
+</div>
+
+
+<!-- =========================================================
+                    SIDEBAR MENU
+========================================================= -->
+
+<ul class="teacher-sidebar-menu">
+
+
+<!-- DASHBOARD -->
+
+<li>
+
+<a href="teacher-dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+<span>
+    Dashboard
+</span>
+
+</a>
+
+</li>
+
+
+<!-- TIMETABLE -->
+
+<li>
+
+<a href="timetable.html">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+<span>
+    Timetable
+</span>
+
+</a>
+
+</li>
+
+
+<!-- ATTENDANCE -->
+
+<li>
+
+<a href="attendance.html">
+
+<i class="fa-solid fa-user-check"></i>
+
+<span>
+    Attendance
+</span>
+
+</a>
+
+</li>
+
+
+<!-- MY CLASSES -->
+
+<li>
+
+<a href="my-classes.html">
+
+<i class="fa-solid fa-book-open"></i>
+
+<span>
+    My Classes
+</span>
+
+</a>
+
+</li>
+
+
+<!-- STUDENTS -->
+
+<li>
+
+<a
+    href="students.html"
+    class="active">
+
+<i class="fa-solid fa-users"></i>
+
+<span>
+    Students
+</span>
+
+</a>
+
+</li>
+
+
+<!-- ASSIGNMENTS -->
+
+<li>
+
+<a href="assignments.html">
+
+<i class="fa-solid fa-file-lines"></i>
+
+<span>
+    Assignments
+</span>
+
+</a>
+
+</li>
+
+
+<!-- PERFORMANCE -->
+
+<li>
+
+<a href="performance.html">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<span>
+    Performance
+</span>
+
+</a>
+
+</li>
+
+
+
+<!-- =========================================================
+                    ACADEMIC TOOLS
+========================================================= -->
+
+<div class="sidebar-section-title">
+
+Academic Tools
+
+</div>
+
+
+<!-- ACADEMIC CALENDAR -->
+
+<li>
+
+<a href="academic-calendar.html">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+<span>
+    Academic Calendar
+</span>
+
+</a>
+
+</li>
+
+
+<!-- NOTICES -->
+
+<li>
+
+<a href="notices.html">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+<span>
+    Notices
+</span>
+
+</a>
+
+</li>
+
+
+<!-- LEAVE REQUEST -->
+
+<li>
+
+<a href="leave-request.html">
+
+<i class="fa-solid fa-calendar-minus"></i>
+
+<span>
+    Leave Request
+</span>
+
+</a>
+
+</li>
+
+
+
+<!-- =========================================================
+                    AI SMART FEATURES
+========================================================= -->
+
+<div class="sidebar-section-title">
+
+AI Smart Features
+
+</div>
+
+
+<!-- FACE ATTENDANCE -->
+
+<li>
+
+<a href="face-attendance.html">
+
+<i class="fa-solid fa-camera"></i>
+
+<span>
+    Face Attendance
+</span>
+
+</a>
+
+</li>
+
+
+<!-- STUDENT PERFORMANCE AI -->
+
+<li>
+
+<a href="student-performance-ai.html">
+
+<i class="fa-solid fa-brain"></i>
+
+<span>
+    Student Performance AI
+</span>
+
+</a>
+
+</li>
+
+
+<!-- SMART REPORT -->
+
+<li>
+
+<a href="smart-report.html">
+
+<i class="fa-solid fa-file-waveform"></i>
+
+<span>
+    Smart Reports
+</span>
+
+</a>
+
+</li>
+
+
+<!-- AI ASSISTANT -->
+
+<li>
+
+<a href="ai-assistant.html">
+
+<i class="fa-solid fa-robot"></i>
+
+<span>
+    AI Assistant
+</span>
+
+</a>
+
+</li>
+
+
+
+<!-- =========================================================
+                        ACCOUNT
+========================================================= -->
+
+<div class="sidebar-section-title">
+
+Account
+
+</div>
+
+
+<!-- PROFILE -->
+
+<li>
+
+<a href="profile.html">
+
+<i class="fa-solid fa-user"></i>
+
+<span>
+    Profile
+</span>
+
+</a>
+
+</li>
+
+
+<!-- SETTINGS -->
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+<span>
+    Settings
+</span>
+
+</a>
+
+</li>
+
+
+<!-- CHANGE PASSWORD -->
+
+<li>
+
+<a href="change-password.html">
+
+<i class="fa-solid fa-lock"></i>
+
+<span>
+    Change Password
+</span>
+
+</a>
+
+</li>
+
+
+<!-- LOGOUT -->
+
+<li>
+
+<a href="teacher-login.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+<span>
+    Logout
+</span>
+
+</a>
+
+</li>
+
+
+</ul>
+
+</aside>
+
+
+
+<!-- =========================================================
+                        MAIN AREA
+========================================================= -->
+
+<div class="teacher-main">
+
+
+<!-- =========================================================
+                        NAVBAR
+========================================================= -->
+
+<header class="teacher-navbar">
+
+
+<!-- =========================================================
+                        NAVBAR LEFT
+========================================================= -->
+
+<div class="navbar-left">
+
+
+<!-- MOBILE MENU BUTTON -->
+
+<button
+    type="button"
+    class="mobile-menu-btn"
+    id="mobileMenuBtn">
+
+<i class="fa-solid fa-bars"></i>
+
+</button>
+
+
+<!-- NAVBAR TITLE -->
+
+<div class="navbar-title">
+
+<h4>
+    Students
+</h4>
+
+<p>
+    Faculty Management & Productivity System
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                        NAVBAR RIGHT
+========================================================= -->
+
+<div class="navbar-right">
+
+
+<!-- =========================================================
+                    DARK / LIGHT MODE
+========================================================= -->
+
+<button
+    type="button"
+    class="nav-icon-btn"
+    id="themeToggle"
+    title="Switch to Dark Mode">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+
+
+<!-- =========================================================
+                        NOTIFICATIONS
+========================================================= -->
+
+<a
+    href="notices.html"
+    class="nav-icon-btn"
+    title="Notices">
+
+<i class="fa-solid fa-bell"></i>
+
+<span class="notification-dot"></span>
+
+</a>
+
+
+
+<!-- =========================================================
+                    PROFILE DROPDOWN
+========================================================= -->
+
+<div class="dropdown">
+
+
+<div
+    class="teacher-profile"
+    data-bs-toggle="dropdown"
+    aria-expanded="false">
+
+
+<img
+    src="../../images/default-profile.png"
+    alt="Teacher Profile">
+
+
+<div class="teacher-profile-info">
+
+<strong>
+    Teacher
+</strong>
+
+<small>
+    Faculty Member
+</small>
+
+</div>
+
+
+<i
+    class="fa-solid fa-angle-down"
+    style="
+        font-size:11px;
+        color:#64748b;">
+</i>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    PROFILE DROPDOWN MENU
+========================================================= -->
+
+<ul
+    class="dropdown-menu dropdown-menu-end profile-dropdown-menu">
+
+
+<!-- PROFILE -->
+
+<li>
+
+<a
+    class="dropdown-item"
+    href="profile.html">
+
+<i class="fa-solid fa-user"></i>
+
+My Profile
+
+</a>
+
+</li>
+
+
+<!-- CHANGE PASSWORD -->
+
+<li>
+
+<a
+    class="dropdown-item"
+    href="change-password.html">
+
+<i class="fa-solid fa-lock"></i>
+
+Change Password
+
+</a>
+
+</li>
+
+
+<!-- SETTINGS -->
+
+<li>
+
+<a
+    class="dropdown-item"
+    href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
+
+</a>
+
+</li>
+
+
+<li>
+
+<hr class="dropdown-divider">
+
+</li>
+
+
+<!-- LOGOUT -->
+
+<li>
+
+<a
+    class="dropdown-item text-danger"
+    href="teacher-login.html">
+
+<i
+    class="fa-solid fa-right-from-bracket"
+    style="color:#ef4444;">
+</i>
+
+Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+</div>
+
+</header>
+
+
+
+<!-- =========================================================
+                    PAGE CONTENT
+========================================================= -->
+
+<main class="teacher-content">
+
+
+<!-- =========================================================
+                    STUDENTS PAGE HEADER
+========================================================= -->
+
+<section class="students-page-header">
+
+
+<div class="students-page-header-content">
+
+
+<!-- LABEL -->
+
+<div class="students-page-label">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+Student Management
+
+</div>
+
+
+<!-- TITLE -->
+
+<h2>
+
+<i class="fa-solid fa-users me-2"></i>
+
+Manage Students
+
+</h2>
+
+
+<!-- DESCRIPTION -->
+
+<p>
+
+View students from your assigned classes,
+monitor attendance and access student details
+from one place.
+
+</p>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    VIEW CLASSES BUTTON
+========================================================= -->
+
+<a
+    href="my-classes.html"
+    class="view-classes-btn">
+
+<i class="fa-solid fa-book-open me-2"></i>
+
+View My Classes
+
+</a>
+
+
+</section>
+
+
+
+<!-- =========================================================
+                    STUDENT STATISTICS
+========================================================= -->
+
+<section class="student-stat-grid">
+
+
+<!-- =========================================================
+                    TOTAL STUDENTS
+========================================================= -->
+
+<div class="student-stat-card">
+
+
+<div class="student-stat-icon purple">
+
+<i class="fa-solid fa-users"></i>
+
+</div>
+
+
+<div class="student-stat-info">
+
+<h3 id="totalStudentsCount">
+    315
+</h3>
+
+<p>
+    Total Students
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    TOTAL CLASSES
+========================================================= -->
+
+<div class="student-stat-card">
+
+
+<div class="student-stat-icon blue">
+
+<i class="fa-solid fa-chalkboard"></i>
+
+</div>
+
+
+<div class="student-stat-info">
+
+<h3 id="totalClassesCount">
+    8
+</h3>
+
+<p>
+    Assigned Classes
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                LOW ATTENDANCE STUDENTS
+========================================================= -->
+
+<div class="student-stat-card">
+
+
+<div class="student-stat-icon orange">
+
+<i class="fa-solid fa-triangle-exclamation"></i>
+
+</div>
+
+
+<div class="student-stat-info">
+
+<h3 id="lowAttendanceCount">
+    28
+</h3>
+
+<p>
+    Low Attendance
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    AVERAGE ATTENDANCE
+========================================================= -->
+
+<div class="student-stat-card">
+
+
+<div class="student-stat-icon green">
+
+<i class="fa-solid fa-chart-line"></i>
+
+</div>
+
+
+<div class="student-stat-info">
+
+<h3 id="averageAttendance">
+    86%
+</h3>
+
+<p>
+    Avg. Attendance
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    STUDENTS MANAGEMENT CARD
+========================================================= -->
+
+<section class="students-card">
+
+
+<!-- =========================================================
+                    CARD HEADER
+========================================================= -->
+
+<div class="students-card-header">
+
+
+<div>
+
+<h4>
+
+<i class="fa-solid fa-user-graduate me-2"></i>
+
+All Students
+
+</h4>
+
+<p>
+    Search, filter and view students from your assigned classes.
+</p>
+
+</div>
+
+
+<!-- =========================================================
+                    SEARCH + FILTER TOOLBAR
+========================================================= -->
+
+<div class="student-toolbar">
+
+
+<!-- SEARCH -->
+
+<div class="student-search">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+    type="text"
+    id="studentSearchInput"
+    placeholder="Search name or roll number..."
+    autocomplete="off">
+
+</div>
+
+
+<!-- CLASS FILTER -->
+
+<select
+    class="student-filter"
+    id="classFilter">
+
+<option value="all">
+    All Classes
+</option>
+
+<option value="DSA">
+    Data Structures
+</option>
+
+<option value="DBMS">
+    Database Management System
+</option>
+
+<option value="PYTHON">
+    Python Programming
+</option>
+
+<option value="WEB">
+    Web Technology
+</option>
+
+<option value="JAVA">
+    Java Programming
+</option>
+
+<option value="SE">
+    Software Engineering
+</option>
+
+<option value="CN">
+    Computer Networks
+</option>
+
+<option value="AI">
+    Artificial Intelligence
+</option>
+
+</select>
+
+
+<!-- SEMESTER FILTER -->
+
+<select
+    class="student-filter"
+    id="semesterFilter">
+
+<option value="all">
+    All Semesters
+</option>
+
+<option value="2">
+    Semester II
+</option>
+
+<option value="3">
+    Semester III
+</option>
+
+<option value="4">
+    Semester IV
+</option>
+
+<option value="5">
+    Semester V
+</option>
+
+<option value="6">
+    Semester VI
+</option>
+
+</select>
+
+
+<!-- ATTENDANCE FILTER -->
+
+<select
+    class="student-filter"
+    id="attendanceFilter">
+
+<option value="all">
+    All Attendance
+</option>
+
+<option value="good">
+    Good (85%+)
+</option>
+
+<option value="average">
+    Average (75% - 84%)
+</option>
+
+<option value="low">
+    Low (Below 75%)
+</option>
+
+</select>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =========================================================
+                    STUDENT TABLE
+========================================================= -->
+
+<div class="student-table-wrapper">
+
+
+<table class="student-table">
+
+
+<thead>
+
+<tr>
+
+<th>
+    #
+</th>
+
+<th>
+    Student
+</th>
+
+<th>
+    Roll No.
+</th>
+
+<th>
+    Class
+</th>
+
+<th>
+    Semester
+</th>
+
+<th>
+    Attendance
+</th>
+
+<th>
+    Status
+</th>
+
+<th>
+    Action
+</th>
+
+</tr>
+
+</thead>
+
+
+
+<!-- =========================================================
+            STUDENTS JAVASCRIPT SE LOAD HONGE
+========================================================= -->
+
+<tbody id="studentTableBody">
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    NO STUDENT RESULT
+========================================================= -->
+
+<div
+    class="no-student-result"
+    id="noStudentResult">
+
+
+<i class="fa-solid fa-user-slash"></i>
+
+
+<h5>
+    No Students Found
+</h5>
+
+
+<p>
+    No student matches the selected search or filters.
+</p>
+
+
+<button
+    type="button"
+    class="btn btn-sm btn-outline-primary"
+    id="resetStudentFilterBtn">
+
+<i class="fa-solid fa-rotate-left me-1"></i>
+
+Reset Filters
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+                    QUICK ATTENDANCE SUMMARY
+========================================================= -->
+
+<section class="students-card">
+
+
+<div class="students-card-header">
+
+
+<div>
+
+<h4>
+
+<i class="fa-solid fa-chart-simple me-2"></i>
+
+Attendance Overview
+
+</h4>
+
+
+<p>
+    Quick overview of student attendance performance.
+</p>
+
+</div>
+
+
+<span
+    class="badge bg-primary px-3 py-2">
+
+<i class="fa-solid fa-users me-1"></i>
+
+Current Records
+
+</span>
+
+
+</div>
+
+
+
+<div class="row g-3">
+
+
+<!-- GOOD ATTENDANCE -->
+
+<div class="col-lg-4 col-md-6">
+
+<div
+    style="
+        background:#ecfdf5;
+        border:1px solid #bbf7d0;
+        border-radius:15px;
+        padding:18px;
+        height:100%;"
+    class="attendance-summary-box">
+
+
+<div
+    class="d-flex
+           align-items-center
+           justify-content-between
+           mb-3">
+
+
+<div
+    style="
+        width:45px;
+        height:45px;
+        border-radius:13px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:#dcfce7;
+        color:#16a34a;
+        font-size:19px;">
+
+<i class="fa-solid fa-circle-check"></i>
+
+</div>
+
+
+<strong
+    id="goodAttendanceSummary"
+    style="
+        font-size:23px;
+        color:#15803d;">
+
+0
+
+</strong>
+
+</div>
+
+
+<h6
+    style="
+        font-size:13px;
+        font-weight:700;
+        margin-bottom:4px;">
+
+Good Attendance
+
+</h6>
+
+
+<small
+    style="
+        color:#64748b;
+        font-size:10px;">
+
+Students having 85% or higher attendance.
+
+</small>
+
+
+</div>
+
+</div>
+
+
+
+<!-- AVERAGE ATTENDANCE -->
+
+<div class="col-lg-4 col-md-6">
+
+<div
+    style="
+        background:#fffbeb;
+        border:1px solid #fde68a;
+        border-radius:15px;
+        padding:18px;
+        height:100%;"
+    class="attendance-summary-box">
+
+
+<div
+    class="d-flex
+           align-items-center
+           justify-content-between
+           mb-3">
+
+
+<div
+    style="
+        width:45px;
+        height:45px;
+        border-radius:13px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:#fef3c7;
+        color:#d97706;
+        font-size:19px;">
+
+<i class="fa-solid fa-chart-line"></i>
+
+</div>
+
+
+<strong
+    id="averageAttendanceSummary"
+    style="
+        font-size:23px;
+        color:#b45309;">
+
+0
+
+</strong>
+
+</div>
+
+
+<h6
+    style="
+        font-size:13px;
+        font-weight:700;
+        margin-bottom:4px;">
+
+Average Attendance
+
+</h6>
+
+
+<small
+    style="
+        color:#64748b;
+        font-size:10px;">
+
+Students having attendance between 75% and 84%.
+
+</small>
+
+
+</div>
+
+</div>
+
+
+
+<!-- LOW ATTENDANCE -->
+
+<div class="col-lg-4 col-md-6">
+
+<div
+    style="
+        background:#fef2f2;
+        border:1px solid #fecaca;
+        border-radius:15px;
+        padding:18px;
+        height:100%;"
+    class="attendance-summary-box">
+
+
+<div
+    class="d-flex
+           align-items-center
+           justify-content-between
+           mb-3">
+
+
+<div
+    style="
+        width:45px;
+        height:45px;
+        border-radius:13px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:#fee2e2;
+        color:#dc2626;
+        font-size:19px;">
+
+<i class="fa-solid fa-triangle-exclamation"></i>
+
+</div>
+
+
+<strong
+    id="lowAttendanceSummary"
+    style="
+        font-size:23px;
+        color:#dc2626;">
+
+0
+
+</strong>
+
+</div>
+
+
+<h6
+    style="
+        font-size:13px;
+        font-weight:700;
+        margin-bottom:4px;">
+
+Low Attendance
+
+</h6>
+
+
+<small
+    style="
+        color:#64748b;
+        font-size:10px;">
+
+Students having attendance below 75%.
+
+</small>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+                        FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+© 2026 Faculty Management & Productivity System |
+Teacher Panel
+
+</footer>
+
+
+</main>
+
+
+<!-- =========================================================
+                    TEACHER MAIN END
+========================================================= -->
+
+</div>
+
+
+<!-- =========================================================
+                    TEACHER LAYOUT END
+========================================================= -->
+
+</div>
+
+
+
+<!-- =========================================================
+                    STUDENT DETAILS MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="studentDetailsModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+
+<div
+    class="modal-dialog
+           modal-dialog-centered
+           modal-lg">
+
+
+<div
+    class="modal-content
+           border-0
+           rounded-4">
+
+
+<!-- =========================================================
+                    MODAL HEADER
+========================================================= -->
+
+<div class="modal-header">
+
+
+<h5 class="modal-title fw-bold">
+
+<i
+    class="fa-solid fa-user-graduate me-2"
+    style="color:#6c4cff;">
+</i>
+
+Student Details
+
+</h5>
+
+
+<button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal"
+    aria-label="Close">
+</button>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    MODAL BODY
+========================================================= -->
+
+<div class="modal-body p-4">
+
+
+<!-- STUDENT AVATAR -->
+
+<div
+    class="student-modal-avatar"
+    id="studentModalAvatar">
+
+ST
+
+</div>
+
+
+<!-- STUDENT NAME -->
+
+<h4
+    class="text-center fw-bold mb-1"
+    id="studentModalName">
+
+Student Name
+
+</h4>
+
+
+<!-- STUDENT SUBTITLE -->
+
+<p
+    class="text-center text-muted mb-0"
+    id="studentModalSubtitle">
+
+Class Information
+
+</p>
+
+
+
+<!-- =========================================================
+                    STUDENT DETAILS GRID
+========================================================= -->
+
+<div class="student-detail-grid">
+
+
+<!-- ROLL NUMBER -->
+
+<div class="student-detail-box">
+
+<span>
+
+<i class="fa-solid fa-id-card me-1"></i>
+
+Roll Number
+
+</span>
+
+<strong id="studentModalRoll">
+
+--
+
+</strong>
+
+</div>
+
+
+
+<!-- CLASS -->
+
+<div class="student-detail-box">
+
+<span>
+
+<i class="fa-solid fa-book-open me-1"></i>
+
+Class
+
+</span>
+
+<strong id="studentModalClass">
+
+--
+
+</strong>
+
+</div>
+
+
+
+<!-- SEMESTER -->
+
+<div class="student-detail-box">
+
+<span>
+
+<i class="fa-solid fa-graduation-cap me-1"></i>
+
+Semester
+
+</span>
+
+<strong id="studentModalSemester">
+
+--
+
+</strong>
+
+</div>
+
+
+
+<!-- SECTION -->
+
+<div class="student-detail-box">
+
+<span>
+
+<i class="fa-solid fa-layer-group me-1"></i>
+
+Section
+
+</span>
+
+<strong id="studentModalSection">
+
+--
+
+</strong>
+
+</div>
+
+
+
+<!-- EMAIL -->
+
+<div class="student-detail-box">
+
+<span>
+
+<i class="fa-solid fa-envelope me-1"></i>
+
+Email
+
+</span>
+
+<strong id="studentModalEmail">
+
+--
+
+</strong>
+
+</div>
+
+
+
+<!-- PHONE -->
+
+<div class="student-detail-box">
+
+<span>
+
+<i class="fa-solid fa-phone me-1"></i>
+
+Phone
+
+</span>
+
+<strong id="studentModalPhone">
+
+--
+
+</strong>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    ATTENDANCE SECTION
+========================================================= -->
+
+<div
+    style="
+        margin-top:20px;
+        padding:17px;
+        border-radius:14px;
+        background:#f8f7ff;"
+    class="modal-attendance-box">
+
+
+<div
+    class="d-flex
+           justify-content-between
+           align-items-center
+           mb-2">
+
+
+<div>
+
+<strong
+    style="
+        display:block;
+        font-size:13px;">
+
+Attendance Performance
+
+</strong>
+
+
+<small
+    class="text-muted"
+    style="font-size:10px;">
+
+Overall attendance percentage
+
+</small>
+
+</div>
+
+
+<strong
+    id="studentModalAttendance"
+    style="
+        color:#6c4cff;
+        font-size:19px;">
+
+0%
+
+</strong>
+
+
+</div>
+
+
+
+<div
+    class="progress"
+    style="
+        height:8px;
+        border-radius:20px;">
+
+
+<div
+    class="progress-bar"
+    id="studentModalAttendanceBar"
+    role="progressbar"
+    style="width:0%;">
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    ATTENDANCE STATUS
+========================================================= -->
+
+<div
+    class="text-center"
+    style="margin-top:17px;">
+
+
+<span
+    class="student-status active"
+    id="studentModalStatus">
+
+<i class="fa-solid fa-circle-check"></i>
+
+Good Attendance
+
+</span>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    MODAL FOOTER
+========================================================= -->
+
+<div
+    class="modal-footer
+           justify-content-center">
+
+
+<button
+    type="button"
+    class="btn btn-outline-secondary px-4"
+    data-bs-dismiss="modal">
+
+<i class="fa-solid fa-xmark me-1"></i>
+
+Close
+
+</button>
+
+
+<button
+    type="button"
+    class="btn btn-primary px-4"
+    id="studentAttendanceBtn">
+
+<i class="fa-solid fa-calendar-check me-2"></i>
+
+Attendance
+
+</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================================================
+                DARK MODE EXTRA FIXES
+========================================================= -->
+
+<style>
+
+
+/* ATTENDANCE SUMMARY DARK MODE */
+
+body.dark
+.attendance-summary-box{
+
+    background:#1e293b !important;
+
+    border-color:#374151 !important;
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.attendance-summary-box h6{
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.attendance-summary-box small{
+
+    color:#94a3b8 !important;
+
+}
+
+
+/* =========================================================
+                    MODAL DARK MODE
+========================================================= */
+
+body.dark
+.modal-attendance-box{
+
+    background:#1e293b !important;
+
+}
+
+
+body.dark
+.modal-attendance-box strong{
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.modal-attendance-box
+#studentModalAttendance{
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark
+.modal-content
+.text-muted{
+
+    color:#94a3b8 !important;
+
+}
+
+
+/* =========================================================
+                STUDENT TABLE SCROLLBAR
+========================================================= */
+
+.student-table-wrapper::-webkit-scrollbar{
+
+    height:7px;
+
+}
+
+
+.student-table-wrapper::-webkit-scrollbar-track{
+
+    background:#f1f5f9;
+
+}
+
+
+.student-table-wrapper::-webkit-scrollbar-thumb{
+
+    background:#c4b5fd;
+
+    border-radius:20px;
+
+}
+
+
+body.dark
+.student-table-wrapper::-webkit-scrollbar-track{
+
+    background:#1e293b;
+
+}
+
+
+body.dark
+.student-table-wrapper::-webkit-scrollbar-thumb{
+
+    background:#6366f1;
+
+}
+
+
+/* =========================================================
+                    MOBILE TABLE
+========================================================= */
+
+@media(max-width:576px){
+
+    .student-table th,
+    .student-table td{
+
+        padding:
+            12px 10px;
+
+    }
+
+
+    .student-modal-avatar{
+
+        width:70px;
+
+        height:70px;
+
+        font-size:21px;
+
+    }
+
+
+    #studentModalName{
+
+        font-size:19px;
+
+    }
+
+}
+
+</style>
+
+
+
+<!-- =========================================================
+                    BOOTSTRAP JAVASCRIPT
+========================================================= -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- =========================================================
+                    STUDENTS PAGE JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+
+/* =========================================================
+                    STUDENT DATA
+========================================================= */
+
+const studentsData = [
+
+{
+    id:1,
+    name:"Aarav Sharma",
+    roll:"BCA26001",
+    classKey:"DSA",
+    className:"Data Structures",
+    semester:"3",
+    semesterText:"Semester III",
+    section:"Section A",
+    attendance:92,
+    email:"aarav.sharma@fmps.edu",
+    phone:"+91 98765 10001"
+},
+
+{
+    id:2,
+    name:"Aditi Singh",
+    roll:"BCA26002",
+    classKey:"DSA",
+    className:"Data Structures",
+    semester:"3",
+    semesterText:"Semester III",
+    section:"Section A",
+    attendance:88,
+    email:"aditi.singh@fmps.edu",
+    phone:"+91 98765 10002"
+},
+
+{
+    id:3,
+    name:"Aditya Kumar",
+    roll:"BCA26003",
+    classKey:"DSA",
+    className:"Data Structures",
+    semester:"3",
+    semesterText:"Semester III",
+    section:"Section A",
+    attendance:76,
+    email:"aditya.kumar@fmps.edu",
+    phone:"+91 98765 10003"
+},
+
+{
+    id:4,
+    name:"Ananya Gupta",
+    roll:"BCA26004",
+    classKey:"DSA",
+    className:"Data Structures",
+    semester:"3",
+    semesterText:"Semester III",
+    section:"Section A",
+    attendance:95,
+    email:"ananya.gupta@fmps.edu",
+    phone:"+91 98765 10004"
+},
+
+{
+    id:5,
+    name:"Ayush Raj",
+    roll:"BCA26005",
+    classKey:"DSA",
+    className:"Data Structures",
+    semester:"3",
+    semesterText:"Semester III",
+    section:"Section A",
+    attendance:71,
+    email:"ayush.raj@fmps.edu",
+    phone:"+91 98765 10005"
+},
+
+
+/* =========================================================
+                        DBMS
+========================================================= */
+
+{
+    id:6,
+    name:"Riya Singh",
+    roll:"BCA25001",
+    classKey:"DBMS",
+    className:"Database Management System",
+    semester:"5",
+    semesterText:"Semester V",
+    section:"Section A",
+    attendance:94,
+    email:"riya.singh@fmps.edu",
+    phone:"+91 98765 20001"
+},
+
+{
+    id:7,
+    name:"Aryan Kumar",
+    roll:"BCA25002",
+    classKey:"DBMS",
+    className:"Database Management System",
+    semester:"5",
+    semesterText:"Semester V",
+    section:"Section A",
+    attendance:81,
+    email:"aryan.kumar@fmps.edu",
+    phone:"+91 98765 20002"
+},
+
+{
+    id:8,
+    name:"Sakshi Gupta",
+    roll:"BCA25003",
+    classKey:"DBMS",
+    className:"Database Management System",
+    semester:"5",
+    semesterText:"Semester V",
+    section:"Section A",
+    attendance:73,
+    email:"sakshi.gupta@fmps.edu",
+    phone:"+91 98765 20003"
+},
+
+{
+    id:9,
+    name:"Mohit Raj",
+    roll:"BCA25004",
+    classKey:"DBMS",
+    className:"Database Management System",
+    semester:"5",
+    semesterText:"Semester V",
+    section:"Section A",
+    attendance:89,
+    email:"mohit.raj@fmps.edu",
+    phone:"+91 98765 20004"
+},
+
+{
+    id:10,
+    name:"Simran Kumari",
+    roll:"BCA25005",
+    classKey:"DBMS",
+    className:"Database Management System",
+    semester:"5",
+    semesterText:"Semester V",
+    section:"Section A",
+    attendance:96,
+    email:"simran.kumari@fmps.edu",
+    phone:"+91 98765 20005"
+},
+
+
+/* =========================================================
+                    PYTHON PROGRAMMING
+========================================================= */
+
+{
+    id:11,
+    name:"Arjun Singh",
+    roll:"BCA22001",
+    classKey:"PYTHON",
+    className:"Python Programming",
+    semester:"2",
+    semesterText:"Semester II",
+    section:"Section B",
+    attendance:90,
+    email:"arjun.singh@fmps.edu",
+    phone:"+91 98765 30001"
+},
+
+{
+    id:12,
+    name:"Sneha Kumari",
+    roll:"BCA22002",
+    classKey:"PYTHON",
+    className:"Python Programming",
+    semester:"2",
+    semesterText:"Semester II",
+    section:"Section B",
+    attendance:87,
+    email:"sneha.kumari@fmps.edu",
+    phone:"+91 98765 30002"
+},
+
+{
+    id:13,
+    name:"Rohan Gupta",
+    roll:"BCA22003",
+    classKey:"PYTHON",
+    className:"Python Programming",
+    semester:"2",
+    semesterText:"Semester II",
+    section:"Section B",
+    attendance:74,
+    email:"rohan.gupta@fmps.edu",
+    phone:"+91 98765 30003"
+},
+
+{
+    id:14,
+    name:"Pooja Sharma",
+    roll:"BCA22004",
+    classKey:"PYTHON",
+    className:"Python Programming",
+    semester:"2",
+    semesterText:"Semester II",
+    section:"Section B",
+    attendance:93,
+    email:"pooja.sharma@fmps.edu",
+    phone:"+91 98765 30004"
+},
+
+{
+    id:15,
+    name:"Aman Raj",
+    roll:"BCA22005",
+    classKey:"PYTHON",
+    className:"Python Programming",
+    semester:"2",
+    semesterText:"Semester II",
+    section:"Section B",
+    attendance:81,
+    email:"aman.raj@fmps.edu",
+    phone:"+91 98765 30005"
+},
+
+
+/* =========================================================
+                    WEB TECHNOLOGY
+========================================================= */
+
+{
+    id:16,
+    name:"Ankit Kumar",
+    roll:"BCA24001",
+    classKey:"WEB",
+    className:"Web Technology",
+    semester:"4",
+    semesterText:"Semester IV",
+    section:"Section A",
+    attendance:91,
+    email:"ankit.kumar@fmps.edu",
+    phone:"+91 98765 40001"
+},
+
+{
+    id:17,
+    name:"Khushi Singh",
+    roll:"BCA24002",
+    classKey:"WEB",
+    className:"Web Technology",
+    semester:"4",
+    semesterText:"Semester IV",
+    section:"Section A",
+    attendance:86,
+    email:"khushi.singh@fmps.edu",
+    phone:"+91 98765 40002"
+},
+
+{
+    id:18,
+    name:"Vishal Raj",
+    roll:"BCA24003",
+    classKey:"WEB",
+    className:"Web Technology",
+    semester:"4",
+    semesterText:"Semester IV",
+    section:"Section A",
+    attendance:72,
+    email:"vishal.raj@fmps.edu",
+    phone:"+91 98765 40003"
+},
+
+{
+    id:19,
+    name:"Muskan Gupta",
+    roll:"BCA24004",
+    classKey:"WEB",
+    className:"Web Technology",
+    semester:"4",
+    semesterText:"Semester IV",
+    section:"Section A",
+    attendance:95,
+    email:"muskan.gupta@fmps.edu",
+    phone:"+91 98765 40004"
+},
+
+{
+    id:20,
+    name:"Deepak Kumar",
+    roll:"BCA24005",
+    classKey:"WEB",
+    className:"Web Technology",
+    semester:"4",
+    semesterText:"Semester IV",
+    section:"Section A",
+    attendance:79,
+    email:"deepak.kumar@fmps.edu",
+    phone:"+91 98765 40005"
+},
+
+
+/* =========================================================
+                    JAVA PROGRAMMING
+========================================================= */
+
+{
+    id:21,
+    name:"Akash Singh",
+    roll:"BCA24101",
+    classKey:"JAVA",
+    className:"Java Programming",
+    semester:"4",
+    semesterText:"Semester IV",
+    section:"Section B",
+    attendance:84,
+    email:"akash.singh@fmps.edu",
+    phone:"+91 98765 50001"
+},
+
+{
+    id:22,
+    name:"Anjali Kumari",
+    roll:"BCA24102",
+    classKey:"JAVA",
+    className:"Java Programming",
+    semester:"4",
+    semesterText:"Semester IV",
+    section:"Section B",
+    attendance:92,
+    email:"anjali.kumari@fmps.edu",
+    phone:"+91 98765 50002"
+},
+
+{
+    id:23,
+    name:"Harsh Raj",
+    roll:"BCA24103",
+    classKey:"JAVA",
+    className:"Java Programming",
+    semester:"4",
+    semesterText:"Semester IV",
+    section:"Section B",
+    attendance:70,
+    email:"harsh.raj@fmps.edu",
+    phone:"+91 98765 50003"
+},
+
+{
+    id:24,
+    name:"Megha Gupta",
+    roll:"BCA24104",
+    classKey:"JAVA",
+    className:"Java Programming",
+    semester:"4",
+    semesterText:"Semester IV",
+    section:"Section B",
+    attendance:89,
+    email:"megha.gupta@fmps.edu",
+    phone:"+91 98765 50004"
+},
+
+{
+    id:25,
+    name:"Saurabh Kumar",
+    roll:"BCA24105",
+    classKey:"JAVA",
+    className:"Java Programming",
+    semester:"4",
+    semesterText:"Semester IV",
+    section:"Section B",
+    attendance:77,
+    email:"saurabh.kumar@fmps.edu",
+    phone:"+91 98765 50005"
+},
+
+
+/* =========================================================
+                    SOFTWARE ENGINEERING
+========================================================= */
+
+{
+    id:26,
+    name:"Abhishek Kumar",
+    roll:"BCA26011",
+    classKey:"SE",
+    className:"Software Engineering",
+    semester:"6",
+    semesterText:"Semester VI",
+    section:"Section A",
+    attendance:87,
+    email:"abhishek.kumar@fmps.edu",
+    phone:"+91 98765 60001"
+},
+
+{
+    id:27,
+    name:"Kajal Singh",
+    roll:"BCA26012",
+    classKey:"SE",
+    className:"Software Engineering",
+    semester:"6",
+    semesterText:"Semester VI",
+    section:"Section A",
+    attendance:91,
+    email:"kajal.singh@fmps.edu",
+    phone:"+91 98765 60002"
+},
+
+{
+    id:28,
+    name:"Manish Raj",
+    roll:"BCA26013",
+    classKey:"SE",
+    className:"Software Engineering",
+    semester:"6",
+    semesterText:"Semester VI",
+    section:"Section A",
+    attendance:73,
+    email:"manish.raj@fmps.edu",
+    phone:"+91 98765 60003"
+},
+
+{
+    id:29,
+    name:"Nandini Gupta",
+    roll:"BCA26014",
+    classKey:"SE",
+    className:"Software Engineering",
+    semester:"6",
+    semesterText:"Semester VI",
+    section:"Section A",
+    attendance:85,
+    email:"nandini.gupta@fmps.edu",
+    phone:"+91 98765 60004"
+},
+
+{
+    id:30,
+    name:"Prakash Kumar",
+    roll:"BCA26015",
+    classKey:"SE",
+    className:"Software Engineering",
+    semester:"6",
+    semesterText:"Semester VI",
+    section:"Section A",
+    attendance:94,
+    email:"prakash.kumar@fmps.edu",
+    phone:"+91 98765 60005"
+},
+
+
+/* =========================================================
+                    COMPUTER NETWORKS
+========================================================= */
+
+{
+    id:31,
+    name:"Dev Kumar",
+    roll:"BCA25101",
+    classKey:"CN",
+    className:"Computer Networks",
+    semester:"5",
+    semesterText:"Semester V",
+    section:"Section B",
+    attendance:88,
+    email:"dev.kumar@fmps.edu",
+    phone:"+91 98765 70001"
+},
+
+{
+    id:32,
+    name:"Divya Singh",
+    roll:"BCA25102",
+    classKey:"CN",
+    className:"Computer Networks",
+    semester:"5",
+    semesterText:"Semester V",
+    section:"Section B",
+    attendance:93,
+    email:"divya.singh@fmps.edu",
+    phone:"+91 98765 70002"
+},
+
+{
+    id:33,
+    name:"Gaurav Raj",
+    roll:"BCA25103",
+    classKey:"CN",
+    className:"Computer Networks",
+    semester:"5",
+    semesterText:"Semester V",
+    section:"Section B",
+    attendance:71,
+    email:"gaurav.raj@fmps.edu",
+    phone:"+91 98765 70003"
+},
+
+{
+    id:34,
+    name:"Jyoti Gupta",
+    roll:"BCA25104",
+    classKey:"CN",
+    className:"Computer Networks",
+    semester:"5",
+    semesterText:"Semester V",
+    section:"Section B",
+    attendance:82,
+    email:"jyoti.gupta@fmps.edu",
+    phone:"+91 98765 70004"
+},
+
+{
+    id:35,
+    name:"Payal Verma",
+    roll:"BCA25106",
+    classKey:"CN",
+    className:"Computer Networks",
+    semester:"5",
+    semesterText:"Semester V",
+    section:"Section B",
+    attendance:90,
+    email:"payal.verma@fmps.edu",
+    phone:"+91 98765 70005"
+},
+
+
+/* =========================================================
+                    ARTIFICIAL INTELLIGENCE
+========================================================= */
+
+{
+    id:36,
+    name:"Ayesha Khan",
+    roll:"BCA26101",
+    classKey:"AI",
+    className:"Artificial Intelligence",
+    semester:"6",
+    semesterText:"Semester VI",
+    section:"Section B",
+    attendance:95,
+    email:"ayesha.khan@fmps.edu",
+    phone:"+91 98765 80001"
+},
+
+{
+    id:37,
+    name:"Harshit Kumar",
+    roll:"BCA26102",
+    classKey:"AI",
+    className:"Artificial Intelligence",
+    semester:"6",
+    semesterText:"Semester VI",
+    section:"Section B",
+    attendance:82,
+    email:"harshit.kumar@fmps.edu",
+    phone:"+91 98765 80002"
+},
+
+{
+    id:38,
+    name:"Isha Singh",
+    roll:"BCA26103",
+    classKey:"AI",
+    className:"Artificial Intelligence",
+    semester:"6",
+    semesterText:"Semester VI",
+    section:"Section B",
+    attendance:89,
+    email:"isha.singh@fmps.edu",
+    phone:"+91 98765 80003"
+},
+
+{
+    id:39,
+    name:"Krishna Raj",
+    roll:"BCA26104",
+    classKey:"AI",
+    className:"Artificial Intelligence",
+    semester:"6",
+    semesterText:"Semester VI",
+    section:"Section B",
+    attendance:72,
+    email:"krishna.raj@fmps.edu",
+    phone:"+91 98765 80004"
+},
+
+{
+    id:40,
+    name:"Mehak Gupta",
+    roll:"BCA26105",
+    classKey:"AI",
+    className:"Artificial Intelligence",
+    semester:"6",
+    semesterText:"Semester VI",
+    section:"Section B",
+    attendance:91,
+    email:"mehak.gupta@fmps.edu",
+    phone:"+91 98765 80005"
+}
+
+];
+
+
+
+/* =========================================================
+                    ELEMENTS
+========================================================= */
+
+const studentTableBody =
+document.getElementById(
+"studentTableBody"
+);
+
+
+const studentSearchInput =
+document.getElementById(
+"studentSearchInput"
+);
+
+
+const classFilter =
+document.getElementById(
+"classFilter"
+);
+
+
+const semesterFilter =
+document.getElementById(
+"semesterFilter"
+);
+
+
+const attendanceFilter =
+document.getElementById(
+"attendanceFilter"
+);
+
+
+const noStudentResult =
+document.getElementById(
+"noStudentResult"
+);
+
+
+const resetStudentFilterBtn =
+document.getElementById(
+"resetStudentFilterBtn"
+);
+
+
+
+/* =========================================================
+                    GET INITIALS
+========================================================= */
+
+function getInitials(name){
+
+return name
+.split(" ")
+.map(function(word){
+
+    return word.charAt(0);
+
+})
+.slice(0,2)
+.join("")
+.toUpperCase();
+
+}
+
+
+
+/* =========================================================
+                    ATTENDANCE STATUS
+========================================================= */
+
+function getAttendanceStatus(
+attendance
+){
+
+if(attendance >= 85){
+
+return {
+    text:"Good",
+    className:"good",
+    badge:"bg-success",
+    progress:"bg-success",
+    icon:"fa-circle-check"
+};
+
+}
+
+
+if(attendance >= 75){
+
+return {
+    text:"Average",
+    className:"average",
+    badge:"bg-warning text-dark",
+    progress:"bg-warning",
+    icon:"fa-chart-line"
+};
+
+}
+
+
+return {
+    text:"Low",
+    className:"low",
+    badge:"bg-danger",
+    progress:"bg-danger",
+    icon:"fa-triangle-exclamation"
+};
+
+}
+
+
+
+/* =========================================================
+                    RENDER STUDENTS
+========================================================= */
+
+function renderStudents(
+students
+){
+
+if(!studentTableBody){
+
+return;
+
+}
+
+
+studentTableBody.innerHTML =
+"";
+
+
+if(students.length === 0){
+
+if(noStudentResult){
+
+noStudentResult.style.display =
+"block";
+
+}
+
+return;
+
+}
+
+
+if(noStudentResult){
+
+noStudentResult.style.display =
+"none";
+
+}
+
+
+students.forEach(
+function(student,index){
+
+
+const initials =
+getInitials(
+student.name
+);
+
+
+const status =
+getAttendanceStatus(
+student.attendance
+);
+
+
+const row =
+document.createElement(
+"tr"
+);
+
+
+row.innerHTML = `
+
+<td>
+
+<strong class="student-number">
+
+${index + 1}
+
+</strong>
+
+</td>
+
+
+<td>
+
+<div class="student-name-cell">
+
+
+<div class="student-avatar">
+
+${initials}
+
+</div>
+
+
+<div>
+
+<strong>
+
+${student.name}
+
+</strong>
+
+<small>
+
+${student.email}
+
+</small>
+
+</div>
+
+
+</div>
+
+</td>
+
+
+<td>
+
+<span class="student-roll">
+
+${student.roll}
+
+</span>
+
+</td>
+
+
+<td>
+
+<div class="student-class-info">
+
+<strong>
+
+${student.className}
+
+</strong>
+
+<small>
+
+${student.section}
+
+</small>
+
+</div>
+
+</td>
+
+
+<td>
+
+<span class="semester-badge">
+
+${student.semesterText}
+
+</span>
+
+</td>
+
+
+<td>
+
+<div class="student-attendance-cell">
+
+
+<div class="student-attendance-top">
+
+<strong>
+
+${student.attendance}%
+
+</strong>
+
+</div>
+
+
+<div class="progress">
+
+<div
+    class="progress-bar ${status.progress}"
+    role="progressbar"
+    style="width:${student.attendance}%"
+    aria-valuenow="${student.attendance}"
+    aria-valuemin="0"
+    aria-valuemax="100">
+</div>
+
+</div>
+
+
+</div>
+
+</td>
+
+
+<td>
+
+<span
+    class="badge ${status.badge}">
+
+<i
+    class="fa-solid ${status.icon} me-1">
+</i>
+
+${status.text}
+
+</span>
+
+</td>
+
+
+<td>
+
+<button
+    type="button"
+    class="student-view-btn"
+    onclick="openStudentDetails(${student.id})">
+
+<i class="fa-solid fa-eye"></i>
+
+View
+
+</button>
+
+</td>
+
+`;
+
+
+studentTableBody.appendChild(
+row
+);
+
+
+}
+);
+
+}
+
+
+
+/* =========================================================
+                    FILTER STUDENTS
+========================================================= */
+
+function filterStudents(){
+
+
+const searchValue =
+studentSearchInput
+?
+studentSearchInput.value
+.toLowerCase()
+.trim()
+:
+"";
+
+
+const selectedClass =
+classFilter
+?
+classFilter.value
+:
+"all";
+
+
+const selectedSemester =
+semesterFilter
+?
+semesterFilter.value
+:
+"all";
+
+
+const selectedAttendance =
+attendanceFilter
+?
+attendanceFilter.value
+:
+"all";
+
+
+const filtered =
+studentsData.filter(
+function(student){
+
+
+const searchText =
+(
+student.name +
+" " +
+student.roll +
+" " +
+student.className +
+" " +
+student.email
+)
+.toLowerCase();
+
+
+const matchesSearch =
+searchText.includes(
+searchValue
+);
+
+
+const matchesClass =
+selectedClass === "all"
+||
+student.classKey === selectedClass;
+
+
+const matchesSemester =
+selectedSemester === "all"
+||
+student.semester === selectedSemester;
+
+
+let matchesAttendance =
+true;
+
+
+if(
+selectedAttendance ===
+"good"
+){
+
+matchesAttendance =
+student.attendance >= 85;
+
+}
+
+
+else if(
+selectedAttendance ===
+"average"
+){
+
+matchesAttendance =
+student.attendance >= 75
+&&
+student.attendance < 85;
+
+}
+
+
+else if(
+selectedAttendance ===
+"low"
+){
+
+matchesAttendance =
+student.attendance < 75;
+
+}
+
+
+return (
+matchesSearch &&
+matchesClass &&
+matchesSemester &&
+matchesAttendance
+);
+
+
+}
+);
+
+
+renderStudents(
+filtered
+);
+
+
+}
+
+
+
+/* =========================================================
+                    SEARCH EVENT
+========================================================= */
+
+if(studentSearchInput){
+
+studentSearchInput.addEventListener(
+"input",
+filterStudents
+);
+
+}
+
+
+
+/* =========================================================
+                    CLASS FILTER EVENT
+========================================================= */
+
+if(classFilter){
+
+classFilter.addEventListener(
+"change",
+filterStudents
+);
+
+}
+
+
+
+/* =========================================================
+                    SEMESTER FILTER EVENT
+========================================================= */
+
+if(semesterFilter){
+
+semesterFilter.addEventListener(
+"change",
+filterStudents
+);
+
+}
+
+
+
+/* =========================================================
+                ATTENDANCE FILTER EVENT
+========================================================= */
+
+if(attendanceFilter){
+
+attendanceFilter.addEventListener(
+"change",
+filterStudents
+);
+
+}
+
+
+
+/* =========================================================
+                    RESET FILTERS
+========================================================= */
+
+if(resetStudentFilterBtn){
+
+resetStudentFilterBtn.addEventListener(
+"click",
+function(){
+
+
+if(studentSearchInput){
+
+studentSearchInput.value =
+"";
+
+}
+
+
+if(classFilter){
+
+classFilter.value =
+"all";
+
+}
+
+
+if(semesterFilter){
+
+semesterFilter.value =
+"all";
+
+}
+
+
+if(attendanceFilter){
+
+attendanceFilter.value =
+"all";
+
+}
+
+
+filterStudents();
+
+
+}
+);
+
+}
+
+
+
+/* =========================================================
+            URL CLASS FILTER FROM MY CLASSES
+
+Example:
+
+students.html?class=DSA
+students.html?class=DBMS
+========================================================= */
+
+function loadClassFromURL(){
+
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+
+const classKey =
+params.get(
+"class"
+);
+
+
+if(
+classKey &&
+classFilter
+){
+
+const normalizedClassKey =
+classKey
+.toUpperCase()
+.trim();
+
+
+const validClass =
+Array.from(
+classFilter.options
+)
+.some(
+function(option){
+
+return option.value ===
+normalizedClassKey;
+
+}
+);
+
+
+if(validClass){
+
+classFilter.value =
+normalizedClassKey;
+
+}
+
+}
+
+
+}
+
+
+
+/* =========================================================
+                    OPEN STUDENT DETAILS
+========================================================= */
+
+window.openStudentDetails =
+function(studentId){
+
+
+const student =
+studentsData.find(
+function(item){
+
+return item.id ===
+studentId;
+
+}
+);
+
+
+if(!student){
+
+console.error(
+"Student not found:",
+studentId
+);
+
+return;
+
+}
+
+
+const initials =
+getInitials(
+student.name
+);
+
+
+const status =
+getAttendanceStatus(
+student.attendance
+);
+
+
+
+/* AVATAR */
+
+document.getElementById(
+"studentModalAvatar"
+).innerText =
+initials;
+
+
+
+/* NAME */
+
+document.getElementById(
+"studentModalName"
+).innerText =
+student.name;
+
+
+
+/* SUBTITLE */
+
+document.getElementById(
+"studentModalSubtitle"
+).innerText =
+student.className +
+" • " +
+student.semesterText +
+" • " +
+student.section;
+
+
+
+/* ROLL */
+
+document.getElementById(
+"studentModalRoll"
+).innerText =
+student.roll;
+
+
+
+/* CLASS */
+
+document.getElementById(
+"studentModalClass"
+).innerText =
+student.className;
+
+
+
+/* SEMESTER */
+
+document.getElementById(
+"studentModalSemester"
+).innerText =
+student.semesterText;
+
+
+
+/* SECTION */
+
+document.getElementById(
+"studentModalSection"
+).innerText =
+student.section;
+
+
+
+/* EMAIL */
+
+document.getElementById(
+"studentModalEmail"
+).innerText =
+student.email;
+
+
+
+/* PHONE */
+
+document.getElementById(
+"studentModalPhone"
+).innerText =
+student.phone;
+
+
+
+/* ATTENDANCE */
+
+document.getElementById(
+"studentModalAttendance"
+).innerText =
+student.attendance +
+"%";
+
+
+
+/* PROGRESS BAR */
+
+const attendanceBar =
+document.getElementById(
+"studentModalAttendanceBar"
+);
+
+
+attendanceBar.style.width =
+student.attendance +
+"%";
+
+
+attendanceBar.className =
+"progress-bar " +
+status.progress;
+
+
+
+/* STATUS */
+
+const modalStatus =
+document.getElementById(
+"studentModalStatus"
+);
+
+
+modalStatus.className =
+"student-status " +
+status.className;
+
+
+modalStatus.innerHTML = `
+
+<i
+    class="fa-solid ${status.icon}">
+</i>
+
+${status.text} Attendance
+
+`;
+
+
+
+/* ATTENDANCE BUTTON */
+
+const attendanceButton =
+document.getElementById(
+"studentAttendanceBtn"
+);
+
+
+if(attendanceButton){
+
+attendanceButton.onclick =
+function(){
+
+window.location.href =
+"attendance.html?student=" +
+encodeURIComponent(
+student.roll
+);
+
+};
+
+}
+
+
+
+/* OPEN MODAL */
+
+const modalElement =
+document.getElementById(
+"studentDetailsModal"
+);
+
+
+const modal =
+bootstrap.Modal.getOrCreateInstance(
+modalElement
+);
+
+
+modal.show();
+
+
+};
+
+
+
+/* =========================================================
+                AUTOMATIC STATISTICS
+========================================================= */
+
+function updateStatistics(){
+
+
+const totalStudents =
+studentsData.length;
+
+
+const classKeys =
+new Set(
+studentsData.map(
+function(student){
+
+return student.classKey;
+
+}
+)
+);
+
+
+const lowStudents =
+studentsData.filter(
+function(student){
+
+return student.attendance < 75;
+
+}
+).length;
+
+
+const goodStudents =
+studentsData.filter(
+function(student){
+
+return student.attendance >= 85;
+
+}
+).length;
+
+
+const averageStudents =
+studentsData.filter(
+function(student){
+
+return (
+student.attendance >= 75
+&&
+student.attendance < 85
+);
+
+}
+).length;
+
+
+
+/* =========================================================
+                    AVERAGE ATTENDANCE
+========================================================= */
+
+const totalAttendance =
+studentsData.reduce(
+function(total,student){
+
+return total +
+student.attendance;
+
+},
+0
+);
+
+
+const averageAttendance =
+studentsData.length > 0
+?
+Math.round(
+totalAttendance /
+studentsData.length
+)
+:
+0;
+
+
+
+/* =========================================================
+                    UPDATE TOP CARDS
+========================================================= */
+
+const totalStudentsCount =
+document.getElementById(
+"totalStudentsCount"
+);
+
+
+if(totalStudentsCount){
+
+totalStudentsCount.innerText =
+totalStudents;
+
+}
+
+
+
+const totalClassesCount =
+document.getElementById(
+"totalClassesCount"
+);
+
+
+if(totalClassesCount){
+
+totalClassesCount.innerText =
+classKeys.size;
+
+}
+
+
+
+const lowAttendanceCount =
+document.getElementById(
+"lowAttendanceCount"
+);
+
+
+if(lowAttendanceCount){
+
+lowAttendanceCount.innerText =
+lowStudents;
+
+}
+
+
+
+const averageAttendanceElement =
+document.getElementById(
+"averageAttendance"
+);
+
+
+if(averageAttendanceElement){
+
+averageAttendanceElement.innerText =
+averageAttendance +
+"%";
+
+}
+
+
+
+/* =========================================================
+                ATTENDANCE OVERVIEW CARDS
+========================================================= */
+
+const goodSummary =
+document.getElementById(
+"goodAttendanceSummary"
+);
+
+
+if(goodSummary){
+
+goodSummary.innerText =
+goodStudents;
+
+}
+
+
+
+const averageSummary =
+document.getElementById(
+"averageAttendanceSummary"
+);
+
+
+if(averageSummary){
+
+averageSummary.innerText =
+averageStudents;
+
+}
+
+
+
+const lowSummary =
+document.getElementById(
+"lowAttendanceSummary"
+);
+
+
+if(lowSummary){
+
+lowSummary.innerText =
+lowStudents;
+
+}
+
+
+}
+
+
+
+/* =========================================================
+                    DARK / LIGHT MODE
+========================================================= */
+
+const themeToggle =
+document.getElementById(
+"themeToggle"
+);
+
+
+
+function applyTeacherTheme(
+theme
+){
+
+
+if(
+theme ===
+"dark"
+){
+
+document.body.classList.add(
+"dark"
+);
+
+}
+
+else{
+
+document.body.classList.remove(
+"dark"
+);
+
+}
+
+
+if(themeToggle){
+
+
+const icon =
+themeToggle.querySelector(
+"i"
+);
+
+
+if(icon){
+
+
+if(
+theme ===
+"dark"
+){
+
+icon.className =
+"fa-solid fa-sun";
+
+}
+
+else{
+
+icon.className =
+"fa-solid fa-moon";
+
+}
+
+
+}
+
+
+themeToggle.title =
+theme === "dark"
+?
+"Switch to Light Mode"
+:
+"Switch to Dark Mode";
+
+
+}
+
+
+localStorage.setItem(
+"teacherTheme",
+theme
+);
+
+
+}
+
+
+
+/* =========================================================
+                    LOAD SAVED THEME
+========================================================= */
+
+const savedTheme =
+localStorage.getItem(
+"teacherTheme"
+);
+
+
+if(
+savedTheme ===
+"dark"
+){
+
+applyTeacherTheme(
+"dark"
+);
+
+}
+
+else{
+
+applyTeacherTheme(
+"light"
+);
+
+}
+
+
+
+/* =========================================================
+                    THEME TOGGLE
+========================================================= */
+
+if(themeToggle){
+
+themeToggle.addEventListener(
+"click",
+function(event){
+
+
+event.preventDefault();
+
+
+const isDark =
+document.body.classList.contains(
+"dark"
+);
+
+
+applyTeacherTheme(
+isDark
+?
+"light"
+:
+"dark"
+);
+
+
+}
+);
+
+}
+
+
+
+/* =========================================================
+                    MOBILE SIDEBAR
+========================================================= */
+
+const mobileMenuBtn =
+document.getElementById(
+"mobileMenuBtn"
+);
+
+
+const teacherSidebar =
+document.getElementById(
+"teacherSidebar"
+);
+
+
+const sidebarOverlay =
+document.getElementById(
+"sidebarOverlay"
+);
+
+
+
+/* =========================================================
+                    OPEN SIDEBAR
+========================================================= */
+
+function openSidebar(){
+
+
+if(teacherSidebar){
+
+teacherSidebar.classList.add(
+"show"
+);
+
+}
+
+
+if(sidebarOverlay){
+
+sidebarOverlay.classList.add(
+"show"
+);
+
+}
+
+
+}
+
+
+
+/* =========================================================
+                    CLOSE SIDEBAR
+========================================================= */
+
+function closeSidebar(){
+
+
+if(teacherSidebar){
+
+teacherSidebar.classList.remove(
+"show"
+);
+
+}
+
+
+if(sidebarOverlay){
+
+sidebarOverlay.classList.remove(
+"show"
+);
+
+}
+
+
+}
+
+
+
+/* =========================================================
+                    MOBILE MENU CLICK
+========================================================= */
+
+if(mobileMenuBtn){
+
+mobileMenuBtn.addEventListener(
+"click",
+function(event){
+
+
+event.preventDefault();
+
+event.stopPropagation();
+
+
+if(
+teacherSidebar &&
+teacherSidebar.classList.contains(
+"show"
+)
+){
+
+closeSidebar();
+
+}
+
+else{
+
+openSidebar();
+
+}
+
+
+}
+);
+
+}
+
+
+
+/* =========================================================
+                    OVERLAY CLICK
+========================================================= */
+
+if(sidebarOverlay){
+
+sidebarOverlay.addEventListener(
+"click",
+function(){
+
+closeSidebar();
+
+}
+);
+
+}
+
+
+
+/* =========================================================
+                CLOSE AFTER SIDEBAR LINK
+========================================================= */
+
+if(teacherSidebar){
+
+
+const sidebarLinks =
+teacherSidebar.querySelectorAll(
+"a"
+);
+
+
+sidebarLinks.forEach(
+function(link){
+
+
+link.addEventListener(
+"click",
+function(){
+
+
+if(
+window.innerWidth <= 992
+){
+
+closeSidebar();
+
+}
+
+
+}
+);
+
+
+}
+);
+
+
+}
+
+
+
+/* =========================================================
+                    ESC KEY
+========================================================= */
+
+document.addEventListener(
+"keydown",
+function(event){
+
+
+if(
+event.key ===
+"Escape"
+){
+
+closeSidebar();
+
+}
+
+
+}
+);
+
+
+
+/* =========================================================
+                    WINDOW RESIZE
+========================================================= */
+
+window.addEventListener(
+"resize",
+function(){
+
+
+if(
+window.innerWidth > 992
+){
+
+closeSidebar();
+
+}
+
+
+}
+);
+
+
+
+/* =========================================================
+                    INITIAL LOAD
+========================================================= */
+
+loadClassFromURL();
+
+updateStatistics();
+
+filterStudents();
+
+
+});
+
+</script>
+
+
+
+<!-- =========================================================
+        IMPORTANT EXTRA DARK SIDEBAR CSS
+
+        Isse dark mode me sidebar bhi dark hoga.
+========================================================= -->
+
+<style>
+
+
+/* =========================================================
+                DARK MODE SIDEBAR
+========================================================= */
+
+body.dark
+.teacher-sidebar{
+
+    background:
+        linear-gradient(
+            180deg,
+            #070b16 0%,
+            #0f172a 45%,
+            #111827 100%
+        );
+
+    border-right:
+        1px solid #263244;
+
+    box-shadow:
+        8px 0 30px
+        rgba(0,0,0,.28);
+
+}
+
+
+body.dark
+.teacher-sidebar-menu a{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark
+.teacher-sidebar-menu a:hover{
+
+    background:
+        rgba(139,92,246,.14);
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.teacher-sidebar-menu a.active{
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(108,76,255,.32),
+            rgba(139,92,246,.22)
+        );
+
+    color:#ffffff;
+
+    box-shadow:
+        inset 3px 0 0 #8b5cf6;
+
+}
+
+
+body.dark
+.sidebar-section-title{
+
+    color:#64748b;
+
+}
+
+
+body.dark
+.teacher-sidebar-brand p{
+
+    color:#94a3b8;
+
+}
+
+
+/* =========================================================
+                STUDENT TABLE DARK MODE
+========================================================= */
+
+body.dark
+.student-table{
+
+    color:#e5e7eb;
+
+}
+
+
+body.dark
+.student-table thead{
+
+    background:#1e293b;
+
+}
+
+
+body.dark
+.student-table th{
+
+    color:#c4b5fd;
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.student-table td{
+
+    color:#e5e7eb;
+
+    border-color:#263244;
+
+}
+
+
+body.dark
+.student-table tbody tr:hover{
+
+    background:#1e293b;
+
+}
+
+
+body.dark
+.student-name-cell strong,
+body.dark
+.student-class-info strong{
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.student-name-cell small,
+body.dark
+.student-class-info small{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.student-avatar{
+
+    background:#312e81;
+
+    color:#ddd6fe;
+
+}
+
+
+body.dark
+.student-roll{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark
+.semester-badge{
+
+    background:#1e293b;
+
+    color:#c4b5fd;
+
+}
+
+
+/* =========================================================
+                STUDENT MODAL DARK MODE
+========================================================= */
+
+body.dark
+.student-detail-box{
+
+    background:#1e293b;
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.student-detail-box span{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.student-detail-box strong{
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.student-modal-avatar{
+
+    background:
+        linear-gradient(
+            135deg,
+            #4338ca,
+            #7c3aed
+        );
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                SELECT OPTION DARK MODE
+========================================================= */
+
+body.dark
+.student-filter option{
+
+    background:#1f2937;
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                NO RESULT DARK MODE
+========================================================= */
+
+body.dark
+.no-student-result h5{
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.no-student-result p{
+
+    color:#94a3b8;
+
+}
+
+
+/* =========================================================
+                    FOOTER DARK
+========================================================= */
+
+body.dark
+.footer{
+
+    color:#64748b;
+
+}
+
+</style>
+
+
+</body>
+
+</html>

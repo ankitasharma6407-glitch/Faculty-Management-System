@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Notifications | Admin</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+<link rel="stylesheet" href="../../css/notifications.css">
+
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+<!-- Sidebar -->
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<img src="../../images/logo.png" alt="Logo">
+
+<h3>FMPS</h3>
+
+</div>
+
+<ul>
+
+<li>
+<a href="admin-dashboard.html">
+<i class="fa-solid fa-house"></i>
+Dashboard
+</a>
+</li>
+
+<li class="active">
+<a href="#">
+<i class="fa-solid fa-bell"></i>
+Notifications
+</a>
+</li>
+
+<li>
+<a href="profile.html">
+<i class="fa-solid fa-user"></i>
+Profile
+</a>
+</li>
+
+<li>
+<a href="settings.html">
+<i class="fa-solid fa-gear"></i>
+Settings
+</a>
+</li>
+
+<li>
+<a href="admin-login.html">
+<i class="fa-solid fa-right-from-bracket"></i>
+Logout
+</a>
+</li>
+
+</ul>
+
+</aside>
+
+<!-- Main -->
+
+<main class="main">
+
+<!-- Top Bar -->
+
+<div class="topbar">
+
+<h2>
+
+<i class="fa-solid fa-bell"></i>
+
+Notifications
+
+</h2>
+
+<div class="top-actions">
+
+<input
+type="text"
+id="searchNotification"
+placeholder="Search Notification...">
+
+<select id="filterNotification">
+
+<option value="all">All</option>
+
+<option value="read">Read</option>
+
+<option value="unread">Unread</option>
+
+<option value="today">Today</option>
+
+</select>
+
+<button id="markAll">
+
+<i class="fa-solid fa-check-double"></i>
+
+Mark All Read
+
+</button>
+
+<button id="deleteAll">
+
+<i class="fa-solid fa-trash"></i>
+
+Delete All
+
+</button>
+
+</div>
+
+</div>
+
+<!-- Summary -->
+
+<section class="summary">
+
+<div class="summary-card">
+
+<h3>Total</h3>
+
+<h1 id="totalCount">18</h1>
+
+</div>
+
+<div class="summary-card">
+
+<h3>Unread</h3>
+
+<h1 id="unreadCount">6</h1>
+
+</div>
+
+<div class="summary-card">
+
+<h3>Read</h3>
+
+<h1 id="readCount">12</h1>
+
+</div>
+
+</section>
+
+<!-- Notification List -->
+
+<section class="notification-list">
+
+<div class="notification unread">
+
+<div class="icon teacher">
+
+<i class="fa-solid fa-user-plus"></i>
+
+</div>
+
+<div class="content">
+
+<h4>New Teacher Registered</h4>
+
+<p>A new faculty member joined Computer Science Department.</p>
+
+<span>2 Minutes Ago</span>
+
+</div>
+
+<div class="actions">
+
+<span class="badge unread-badge">
+
+Unread
+
+</span>
+
+<button class="deleteBtn">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</div>
+
+</div>
+
+<div class="notification">
+
+<div class="icon face">
+
+<i class="fa-solid fa-camera"></i>
+
+</div>
+
+<div class="content">
+
+<h4>Face Registration Completed</h4>
+
+<p>Faculty face registered successfully.</p>
+
+<span>10 Minutes Ago</span>
+
+</div>
+
+<div class="actions">
+
+<span class="badge read-badge">
+
+Read
+
+</span>
+
+<button class="deleteBtn">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</div>
+
+</div>
+
+<div class="notification unread">
+
+<div class="icon attendance">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+</div>
+
+<div class="content">
+
+<h4>Attendance Marked</h4>
+
+<p>Today's attendance updated successfully.</p>
+
+<span>30 Minutes Ago</span>
+
+</div>
+
+<div class="actions">
+
+<span class="badge unread-badge">
+
+Unread
+
+</span>
+
+<button class="deleteBtn">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</div>
+
+</div>
+
+<div class="notification">
+
+<div class="icon report">
+
+<i class="fa-solid fa-chart-column"></i>
+
+</div>
+
+<div class="content">
+
+<h4>Attendance Report Generated</h4>
+
+<p>Monthly report is ready for download.</p>
+
+<span>Today</span>
+
+</div>
+
+<div class="actions">
+
+<span class="badge read-badge">
+
+Read
+
+</span>
+
+<button class="deleteBtn">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</div>
+
+</div>
+
+<div class="notification">
+
+<div class="icon notice">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+</div>
+
+<div class="content">
+
+<h4>New Notice Published</h4>
+
+<p>Semester examination schedule uploaded.</p>
+
+<span>Today</span>
+
+</div>
+
+<div class="actions">
+
+<span class="badge read-badge">
+
+Read
+
+</span>
+
+<button class="deleteBtn">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<div class="bottom-btn">
+
+<a href="admin-dashboard.html">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Back To Dashboard
+
+</a>
+
+</div>
+
+</main>
+
+</div>
+
+<script src="../../js/notifications.js"></script>
+<script src="../../js/dashboard.js"></script>
+</body>
+
+</html>

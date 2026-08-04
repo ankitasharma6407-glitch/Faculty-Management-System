@@ -1,0 +1,3466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Face Attendance | HOD Panel
+</title>
+
+<!-- Bootstrap -->
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<!-- Font Awesome -->
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<!-- Google Font -->
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<!-- Common HOD CSS -->
+
+<link
+rel="stylesheet"
+href="../../css/hod-dashboard.css">
+
+
+<style>
+
+/* =========================================================
+                    FACE ATTENDANCE
+========================================================= */
+
+.face-page-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+flex-wrap:wrap;
+
+gap:20px;
+
+margin-bottom:25px;
+
+}
+
+.face-page-header h2{
+
+font-weight:800;
+
+margin-bottom:5px;
+
+}
+
+.face-page-header p{
+
+margin:0;
+
+color:#6b7280;
+
+}
+
+
+/* =========================================================
+                    MAIN GRID
+========================================================= */
+
+.face-attendance-grid{
+
+display:grid;
+
+grid-template-columns:1.5fr 1fr;
+
+gap:25px;
+
+align-items:start;
+
+}
+
+
+/* =========================================================
+                    COMMON CARD
+========================================================= */
+
+.face-card{
+
+background:#fff;
+
+border-radius:20px;
+
+padding:25px;
+
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+margin-bottom:25px;
+
+}
+
+.face-card h4{
+
+font-weight:700;
+
+color:#6c4cff;
+
+margin-bottom:20px;
+
+}
+
+
+/* =========================================================
+                    CAMERA
+========================================================= */
+
+.camera-container{
+
+position:relative;
+
+height:470px;
+
+background:#111827;
+
+border-radius:20px;
+
+overflow:hidden;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+color:#fff;
+
+}
+
+.camera-placeholder{
+
+text-align:center;
+
+padding:25px;
+
+}
+
+.camera-placeholder i{
+
+font-size:80px;
+
+color:#8b5cf6;
+
+margin-bottom:20px;
+
+}
+
+.camera-placeholder h3{
+
+font-weight:700;
+
+}
+
+.camera-placeholder p{
+
+color:#cbd5e1;
+
+}
+
+
+/* Actual Video */
+
+#cameraVideo{
+
+position:absolute;
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+display:none;
+
+}
+
+
+/* Capture Canvas */
+
+#captureCanvas{
+
+display:none;
+
+}
+
+
+/* Face Scanner Frame */
+
+.face-scan-frame{
+
+position:absolute;
+
+width:230px;
+
+height:280px;
+
+border:3px solid #22c55e;
+
+border-radius:45%;
+
+display:none;
+
+z-index:5;
+
+box-shadow:
+0 0 20px rgba(34,197,94,.5);
+
+animation:facePulse 1.5s infinite;
+
+}
+
+@keyframes facePulse{
+
+0%,100%{
+
+box-shadow:
+0 0 15px rgba(34,197,94,.4);
+
+}
+
+50%{
+
+box-shadow:
+0 0 35px rgba(34,197,94,.9);
+
+}
+
+}
+
+
+/* Scan Line */
+
+.scan-line{
+
+position:absolute;
+
+left:10%;
+
+right:10%;
+
+height:3px;
+
+background:#22c55e;
+
+box-shadow:
+0 0 12px #22c55e;
+
+top:15%;
+
+display:none;
+
+z-index:6;
+
+animation:scanMove 2s linear infinite;
+
+}
+
+@keyframes scanMove{
+
+0%{
+
+top:15%;
+
+}
+
+50%{
+
+top:80%;
+
+}
+
+100%{
+
+top:15%;
+
+}
+
+}
+
+
+/* =========================================================
+                    CAMERA BUTTONS
+========================================================= */
+
+.camera-buttons{
+
+display:flex;
+
+justify-content:center;
+
+gap:12px;
+
+flex-wrap:wrap;
+
+margin-top:20px;
+
+}
+
+.camera-buttons .btn{
+
+min-width:145px;
+
+padding:11px 18px;
+
+border-radius:12px;
+
+font-weight:600;
+
+}
+
+
+/* =========================================================
+                    STATUS ROW
+========================================================= */
+
+.status-row{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:14px 0;
+
+border-bottom:1px solid #eee;
+
+gap:10px;
+
+}
+
+.status-row:last-child{
+
+border-bottom:none;
+
+}
+
+.status-row span:first-child{
+
+font-weight:600;
+
+}
+
+
+/* =========================================================
+                    USER RESULT
+========================================================= */
+
+.recognized-user{
+
+text-align:center;
+
+display:none;
+
+}
+
+.recognized-avatar{
+
+width:115px;
+
+height:115px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+border:4px solid #22c55e;
+
+padding:3px;
+
+margin-bottom:15px;
+
+}
+
+.recognized-user h3{
+
+font-weight:700;
+
+margin-bottom:4px;
+
+}
+
+.user-detail-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:12px;
+
+margin-top:20px;
+
+text-align:left;
+
+}
+
+.user-detail-box{
+
+border:1px solid #eee;
+
+border-radius:12px;
+
+padding:12px;
+
+}
+
+.user-detail-box small{
+
+color:#6b7280;
+
+display:block;
+
+margin-bottom:4px;
+
+}
+
+.user-detail-box strong{
+
+font-size:14px;
+
+}
+
+
+/* =========================================================
+                CONFIDENCE BAR
+========================================================= */
+
+.confidence-wrapper{
+
+margin-top:20px;
+
+text-align:left;
+
+}
+
+.confidence-wrapper .progress{
+
+height:10px;
+
+border-radius:20px;
+
+}
+
+
+/* =========================================================
+                ATTENDANCE SUCCESS
+========================================================= */
+
+.attendance-success{
+
+display:none;
+
+padding:20px;
+
+border-radius:15px;
+
+background:rgba(34,197,94,.1);
+
+border:1px solid rgba(34,197,94,.25);
+
+text-align:center;
+
+margin-top:20px;
+
+}
+
+.attendance-success i{
+
+font-size:45px;
+
+color:#22c55e;
+
+margin-bottom:10px;
+
+}
+
+
+/* =========================================================
+                    LIVE CLOCK
+========================================================= */
+
+.face-time-card{
+
+text-align:center;
+
+}
+
+.face-time-card i{
+
+font-size:38px;
+
+color:#6c4cff;
+
+margin-bottom:12px;
+
+}
+
+#faceLiveTime{
+
+font-size:30px;
+
+font-weight:800;
+
+margin-bottom:5px;
+
+}
+
+#faceLiveDate{
+
+color:#6b7280;
+
+}
+
+
+/* =========================================================
+                    DARK MODE
+========================================================= */
+
+body.dark .face-page-header p{
+
+color:#cbd5e1;
+
+}
+
+body.dark .face-card{
+
+background:#1f1f1f;
+
+color:#fff;
+
+}
+
+body.dark .face-card h4{
+
+color:#fff;
+
+}
+
+body.dark .status-row{
+
+border-color:#444;
+
+}
+
+body.dark .user-detail-box{
+
+border-color:#444;
+
+background:#292929;
+
+}
+
+body.dark .user-detail-box small,
+body.dark #faceLiveDate{
+
+color:#cbd5e1;
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE
+========================================================= */
+
+@media(max-width:992px){
+
+.face-attendance-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.camera-container{
+
+height:360px;
+
+}
+
+.user-detail-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.face-card{
+
+padding:18px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="wrapper">
+
+
+<!-- =========================================================
+                        SIDEBAR
+========================================================= -->
+
+<aside class="sidebar">
+
+
+<div class="logo">
+
+<img
+src="../../images/logo.png"
+alt="Logo">
+
+<h3>HOD Panel</h3>
+
+</div>
+
+
+<ul class="menu">
+
+
+<li>
+
+<a href="hod-dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+Dashboard
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="teacher-list.html">
+
+<i class="fa-solid fa-users"></i>
+
+Teachers
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="student-list.html">
+
+<i class="fa-solid fa-user-graduate"></i>
+
+Students
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="timetable.html">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+Timetable
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="leave-requests.html">
+
+<i class="fa-solid fa-file-circle-check"></i>
+
+Leave Requests
+
+</a>
+
+</li>
+
+
+<li class="active">
+
+<a href="face-attendance.html">
+
+<i class="fa-solid fa-face-smile"></i>
+
+Face Attendance
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="attendance-report.html">
+
+<i class="fa-solid fa-clipboard-user"></i>
+
+Attendance Report
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="reports.html">
+
+<i class="fa-solid fa-chart-line"></i>
+
+Reports
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="notice-board.html">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+Notices
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="academic-calendar.html">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+Academic Calendar
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="analytics.html">
+
+<i class="fa-solid fa-chart-pie"></i>
+
+Analytics
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="hod-login.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+</aside>
+
+
+<!-- =========================================================
+                    MAIN CONTENT
+========================================================= -->
+
+<main class="main-content">
+
+
+<!-- =========================================================
+                    TOP NAVBAR
+========================================================= -->
+
+<nav class="top-navbar">
+
+
+<h3>
+
+AI Face Attendance
+
+</h3>
+
+
+<div class="top-right">
+
+
+<!-- Search -->
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="searchBox"
+placeholder="Search...">
+
+</div>
+
+
+<!-- Dark / Light -->
+
+<button
+id="themeToggle"
+class="icon-btn"
+title="Dark / Light Mode">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+
+<!-- Notification -->
+
+<div class="dropdown">
+
+
+<button
+class="icon-btn position-relative"
+data-bs-toggle="dropdown">
+
+<i class="fa-regular fa-bell"></i>
+
+
+<span
+class="badge-count"
+id="notificationCount">
+
+4
+
+</span>
+
+</button>
+
+
+<ul
+class="dropdown-menu dropdown-menu-end notification-menu">
+
+
+<li class="dropdown-header">
+
+Notifications
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="notification.html">
+
+📢 Faculty Meeting Tomorrow
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="notification.html">
+
+📄 Leave Request Pending
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="notification.html">
+
+✅ Attendance Updated
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="notification.html">
+
+🎉 Result Uploaded
+
+</a>
+
+</li>
+
+
+</ul>
+
+</div>
+
+
+<!-- Profile -->
+
+<div class="dropdown">
+
+
+<div
+class="profile"
+data-bs-toggle="dropdown">
+
+
+<img
+src="https://i.pravatar.cc/50?img=12"
+alt="HOD Profile">
+
+
+<span>
+
+Welcome, HOD
+
+</span>
+
+
+<i class="fa-solid fa-angle-down"></i>
+
+
+</div>
+
+
+<ul
+class="dropdown-menu dropdown-menu-end profile-menu">
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="profile.html">
+
+<i class="fa-solid fa-user"></i>
+
+My Profile
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="change-password.html">
+
+<i class="fa-solid fa-lock"></i>
+
+Change Password
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
+
+</a>
+
+</li>
+
+
+<li>
+
+<hr class="dropdown-divider">
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item text-danger"
+href="hod-login.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+</div>
+
+
+</div>
+
+</nav>
+
+
+<!-- =========================================================
+                    PAGE HEADER
+========================================================= -->
+
+<div class="face-page-header">
+
+
+<div>
+
+<h2>
+
+<i
+class="fa-solid fa-face-viewfinder"
+style="color:#6c4cff;">
+</i>
+
+Face Attendance
+
+</h2>
+
+
+<p>
+
+AI-powered face recognition attendance
+for faculty and department users.
+
+</p>
+
+</div>
+
+
+<div class="d-flex gap-2 flex-wrap">
+
+
+<a
+href="face-register.html"
+class="btn btn-outline-primary">
+
+<i class="fa-solid fa-user-plus me-2"></i>
+
+Face Registration
+
+</a>
+
+
+<a
+href="attendance-report.html"
+class="btn btn-primary">
+
+<i class="fa-solid fa-chart-column me-2"></i>
+
+Attendance Report
+
+</a>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    MAIN GRID
+========================================================= -->
+
+<div class="face-attendance-grid">
+
+
+<!-- =========================================================
+                    LEFT SIDE
+========================================================= -->
+
+<div>
+
+
+<section class="face-card">
+
+
+<h4>
+
+<i class="fa-solid fa-camera me-2"></i>
+
+Live Face Scanner
+
+</h4>
+
+
+<!-- ================= Camera ================= -->
+
+<div
+id="cameraContainer"
+class="camera-container">
+
+
+<video
+id="cameraVideo"
+autoplay
+playsinline>
+</video>
+
+
+<canvas
+id="captureCanvas">
+</canvas>
+
+
+<!-- Placeholder -->
+
+<div
+id="cameraPlaceholder"
+class="camera-placeholder">
+
+
+<i class="fa-solid fa-face-viewfinder"></i>
+
+
+<h3>
+
+Camera Ready
+
+</h3>
+
+
+<p>
+
+Start the camera and position your face
+inside the recognition frame.
+
+</p>
+
+
+</div>
+
+
+<!-- Face Frame -->
+
+<div
+id="faceScanFrame"
+class="face-scan-frame">
+</div>
+
+
+<!-- Scanner -->
+
+<div
+id="scanLine"
+class="scan-line">
+</div>
+
+
+</div>
+
+
+<!-- ================= Buttons ================= -->
+
+<div class="camera-buttons">
+
+
+<button
+type="button"
+id="startCameraBtn"
+class="btn btn-success">
+
+<i class="fa-solid fa-video me-2"></i>
+
+Start Camera
+
+</button>
+
+
+<button
+type="button"
+id="scanFaceBtn"
+class="btn btn-primary"
+disabled>
+
+<i class="fa-solid fa-face-viewfinder me-2"></i>
+
+Scan Face
+
+</button>
+
+
+<button
+type="button"
+id="stopCameraBtn"
+class="btn btn-danger"
+disabled>
+
+<i class="fa-solid fa-video-slash me-2"></i>
+
+Stop Camera
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    INSTRUCTIONS
+========================================================= -->
+
+<section class="face-card">
+
+
+<h4>
+
+<i class="fa-solid fa-circle-info me-2"></i>
+
+Face Attendance Instructions
+
+</h4>
+
+
+<div class="row">
+
+
+<div class="col-md-6 mb-3">
+
+<div class="d-flex gap-3">
+
+<i
+class="fa-solid fa-lightbulb"
+style="color:#f59e0b;font-size:22px;">
+</i>
+
+<div>
+
+<strong>
+
+Good Lighting
+
+</strong>
+
+<p class="text-muted mb-0">
+
+Make sure your face is clearly visible.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<div class="d-flex gap-3">
+
+<i
+class="fa-solid fa-face-smile"
+style="color:#6c4cff;font-size:22px;">
+</i>
+
+<div>
+
+<strong>
+
+Look Straight
+
+</strong>
+
+<p class="text-muted mb-0">
+
+Keep your face centered inside the frame.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<div class="d-flex gap-3">
+
+<i
+class="fa-solid fa-glasses"
+style="color:#ef4444;font-size:22px;">
+</i>
+
+<div>
+
+<strong>
+
+Clear Face
+
+</strong>
+
+<p class="text-muted mb-0">
+
+Remove mask or dark sunglasses.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<div class="d-flex gap-3">
+
+<i
+class="fa-solid fa-person"
+style="color:#22c55e;font-size:22px;">
+</i>
+
+<div>
+
+<strong>
+
+One Person
+
+</strong>
+
+<p class="text-muted mb-0">
+
+Only one face should be inside the frame.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+</div>
+
+
+<!-- =========================================================
+                    RIGHT SIDE
+========================================================= -->
+
+<div>
+
+
+<!-- ================= Live Time ================= -->
+
+<section class="face-card face-time-card">
+
+
+<i class="fa-solid fa-clock"></i>
+
+
+<h2 id="faceLiveTime">
+
+--:--:--
+
+</h2>
+
+
+<p id="faceLiveDate">
+
+Loading Date...
+
+</p>
+
+
+</section>
+
+
+<!-- ================= Recognition Status ================= -->
+
+<section class="face-card">
+
+
+<h4>
+
+<i class="fa-solid fa-microchip me-2"></i>
+
+Recognition Status
+
+</h4>
+
+
+<div class="status-row">
+
+<span>
+
+Camera
+
+</span>
+
+<span
+id="cameraStatus"
+class="badge bg-secondary">
+
+Offline
+
+</span>
+
+</div>
+
+
+<div class="status-row">
+
+<span>
+
+Face Detection
+
+</span>
+
+<span
+id="faceDetectionStatus"
+class="badge bg-warning text-dark">
+
+Waiting...
+
+</span>
+
+</div>
+
+
+<div class="status-row">
+
+<span>
+
+Recognition
+
+</span>
+
+<span
+id="recognitionStatus"
+class="badge bg-secondary">
+
+Pending
+
+</span>
+
+</div>
+
+
+<div class="status-row">
+
+<span>
+
+Attendance
+
+</span>
+
+<span
+id="attendanceStatus"
+class="badge bg-secondary">
+
+Not Marked
+
+</span>
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    RECOGNIZED USER
+========================================================= -->
+
+<section class="face-card">
+
+
+<h4>
+
+<i class="fa-solid fa-user-check me-2"></i>
+
+Recognized User
+
+</h4>
+
+
+<!-- Waiting -->
+
+<div
+id="waitingUser"
+class="text-center py-4">
+
+
+<i
+class="fa-solid fa-face-meh fa-4x text-secondary mb-3">
+</i>
+
+
+<h5>
+
+Waiting for Recognition
+
+</h5>
+
+
+<p class="text-muted">
+
+Start scanning to identify the registered user.
+
+</p>
+
+
+</div>
+
+
+<!-- Recognized -->
+
+<div
+id="recognizedUser"
+class="recognized-user">
+
+
+<img
+id="recognizedUserPhoto"
+src="../../images/default-profile.png"
+class="recognized-avatar"
+alt="Recognized User">
+
+
+<h3 id="recognizedUserName">
+
+Dr. Rahul Sharma
+
+</h3>
+
+
+<p
+id="recognizedUserRole"
+class="text-muted">
+
+Teacher
+
+</p>
+
+
+<div class="user-detail-grid">
+
+
+<div class="user-detail-box">
+
+<small>
+
+User ID
+
+</small>
+
+<strong id="recognizedUserId">
+
+TCH001
+
+</strong>
+
+</div>
+
+
+<div class="user-detail-box">
+
+<small>
+
+Department
+
+</small>
+
+<strong id="recognizedDepartment">
+
+Computer Science
+
+</strong>
+
+</div>
+
+
+<div class="user-detail-box">
+
+<small>
+
+Recognition Time
+
+</small>
+
+<strong id="recognizedTime">
+
+--
+
+</strong>
+
+</div>
+
+
+<div class="user-detail-box">
+
+<small>
+
+Method
+
+</small>
+
+<strong>
+
+Face Recognition
+
+</strong>
+
+</div>
+
+
+</div>
+
+
+<!-- Confidence -->
+
+<div class="confidence-wrapper">
+
+
+<div
+class="d-flex justify-content-between mb-2">
+
+
+<span>
+
+Recognition Confidence
+
+</span>
+
+
+<strong id="confidenceText">
+
+0%
+
+</strong>
+
+
+</div>
+
+
+<div class="progress">
+
+
+<div
+id="confidenceBar"
+class="progress-bar bg-success"
+style="width:0%;">
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- Success -->
+
+<div
+id="attendanceSuccess"
+class="attendance-success">
+
+
+<i class="fa-solid fa-circle-check"></i>
+
+
+<h5 class="fw-bold">
+
+Attendance Marked Successfully!
+
+</h5>
+
+
+<p class="mb-0">
+
+Attendance has been recorded using
+AI Face Recognition.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+        PART 2 WILL CONTINUE FROM HERE
+========================================================= -->
+<!-- =========================================================
+                FACE ATTENDANCE SUCCESS MODAL
+========================================================= -->
+
+<div
+class="modal fade"
+id="faceAttendanceSuccessModal"
+tabindex="-1"
+aria-hidden="true">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content border-0 rounded-4">
+
+<div class="modal-header bg-success text-white">
+
+<h5 class="modal-title">
+
+<i class="fa-solid fa-circle-check me-2"></i>
+
+Attendance Successful
+
+</h5>
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+
+<div class="modal-body text-center p-4">
+
+<div
+class="mx-auto mb-3 d-flex justify-content-center align-items-center rounded-circle"
+style="
+width:90px;
+height:90px;
+background:rgba(34,197,94,.12);
+color:#16a34a;
+font-size:42px;
+">
+
+<i class="fa-solid fa-user-check"></i>
+
+</div>
+
+
+<h4 class="fw-bold">
+
+Face Recognized Successfully!
+
+</h4>
+
+
+<p class="text-muted">
+
+Attendance has been recorded using
+AI Face Recognition.
+
+</p>
+
+
+<div class="card border-0 bg-light mt-4">
+
+<div class="card-body text-start">
+
+<div class="row">
+
+
+<div class="col-6 mb-3">
+
+<small class="text-muted">
+
+Name
+
+</small>
+
+<h6
+id="modalAttendanceName"
+class="fw-bold mb-0">
+
+--
+
+</h6>
+
+</div>
+
+
+<div class="col-6 mb-3">
+
+<small class="text-muted">
+
+User ID
+
+</small>
+
+<h6
+id="modalAttendanceId"
+class="fw-bold mb-0">
+
+--
+
+</h6>
+
+</div>
+
+
+<div class="col-6">
+
+<small class="text-muted">
+
+Time
+
+</small>
+
+<h6
+id="modalAttendanceTime"
+class="fw-bold mb-0">
+
+--
+
+</h6>
+
+</div>
+
+
+<div class="col-6">
+
+<small class="text-muted">
+
+Confidence
+
+</small>
+
+<h6
+id="modalAttendanceConfidence"
+class="fw-bold text-success mb-0">
+
+--
+
+</h6>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="modal-footer justify-content-center">
+
+
+<button
+type="button"
+class="btn btn-success px-4"
+data-bs-dismiss="modal">
+
+<i class="fa-solid fa-check me-2"></i>
+
+Done
+
+</button>
+
+
+<a
+href="attendance-report.html"
+class="btn btn-outline-primary">
+
+<i class="fa-solid fa-chart-column me-2"></i>
+
+View Report
+
+</a>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    ERROR MODAL
+========================================================= -->
+
+<div
+class="modal fade"
+id="faceAttendanceErrorModal"
+tabindex="-1"
+aria-hidden="true">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content border-0 rounded-4">
+
+<div class="modal-header bg-danger text-white">
+
+<h5 class="modal-title">
+
+<i class="fa-solid fa-triangle-exclamation me-2"></i>
+
+Face Recognition Failed
+
+</h5>
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+
+<div class="modal-body text-center p-4">
+
+<i
+class="fa-solid fa-face-frown fa-4x text-danger mb-3">
+</i>
+
+
+<h4>
+
+Unable to Recognize Face
+
+</h4>
+
+
+<p
+id="faceErrorMessage"
+class="text-muted">
+
+Face could not be recognized.
+Please try again.
+
+</p>
+
+</div>
+
+
+<div class="modal-footer justify-content-center">
+
+<button
+type="button"
+class="btn btn-danger"
+data-bs-dismiss="modal">
+
+<i class="fa-solid fa-rotate-right me-2"></i>
+
+Try Again
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                DUPLICATE ATTENDANCE MODAL
+========================================================= -->
+
+<div
+class="modal fade"
+id="duplicateAttendanceModal"
+tabindex="-1"
+aria-hidden="true">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content border-0 rounded-4">
+
+<div class="modal-header bg-warning">
+
+<h5 class="modal-title">
+
+<i class="fa-solid fa-circle-exclamation me-2"></i>
+
+Attendance Already Marked
+
+</h5>
+
+<button
+type="button"
+class="btn-close"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+
+<div class="modal-body text-center p-4">
+
+<i
+class="fa-solid fa-clock-rotate-left fa-4x text-warning mb-3">
+</i>
+
+
+<h4>
+
+Attendance Already Recorded
+
+</h4>
+
+
+<p class="text-muted">
+
+Your attendance for today has already been marked.
+
+</p>
+
+
+<div class="alert alert-warning">
+
+<strong>Previous Check-In:</strong>
+
+<span id="previousCheckIn">
+
+--
+
+</span>
+
+</div>
+
+</div>
+
+
+<div class="modal-footer justify-content-center">
+
+<button
+type="button"
+class="btn btn-warning"
+data-bs-dismiss="modal">
+
+OK
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                        FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+© 2026 Faculty Management & Productivity System |
+HOD AI Face Attendance
+
+</footer>
+
+
+</main>
+
+</div>
+
+
+<!-- =========================================================
+                    BOOTSTRAP JS
+========================================================= -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- =========================================================
+                    COMMON HOD JS
+========================================================= -->
+
+<script src="../../js/hod-dashboard.js"></script>
+
+
+<!-- =========================================================
+                FACE ATTENDANCE JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+
+/* =========================================================
+                        ELEMENTS
+========================================================= */
+
+const cameraVideo =
+document.getElementById("cameraVideo");
+
+const captureCanvas =
+document.getElementById("captureCanvas");
+
+const cameraPlaceholder =
+document.getElementById("cameraPlaceholder");
+
+const faceScanFrame =
+document.getElementById("faceScanFrame");
+
+const scanLine =
+document.getElementById("scanLine");
+
+
+const startCameraBtn =
+document.getElementById("startCameraBtn");
+
+const scanFaceBtn =
+document.getElementById("scanFaceBtn");
+
+const stopCameraBtn =
+document.getElementById("stopCameraBtn");
+
+
+const cameraStatus =
+document.getElementById("cameraStatus");
+
+const faceDetectionStatus =
+document.getElementById("faceDetectionStatus");
+
+const recognitionStatus =
+document.getElementById("recognitionStatus");
+
+const attendanceStatus =
+document.getElementById("attendanceStatus");
+
+
+const waitingUser =
+document.getElementById("waitingUser");
+
+const recognizedUser =
+document.getElementById("recognizedUser");
+
+
+const recognizedUserName =
+document.getElementById("recognizedUserName");
+
+const recognizedUserRole =
+document.getElementById("recognizedUserRole");
+
+const recognizedUserId =
+document.getElementById("recognizedUserId");
+
+const recognizedDepartment =
+document.getElementById("recognizedDepartment");
+
+const recognizedTime =
+document.getElementById("recognizedTime");
+
+
+const confidenceText =
+document.getElementById("confidenceText");
+
+const confidenceBar =
+document.getElementById("confidenceBar");
+
+const attendanceSuccess =
+document.getElementById("attendanceSuccess");
+
+
+const faceLiveTime =
+document.getElementById("faceLiveTime");
+
+const faceLiveDate =
+document.getElementById("faceLiveDate");
+
+
+let cameraStream = null;
+
+let cameraStarted = false;
+
+let scanning = false;
+
+
+/* =========================================================
+                    LIVE DATE & TIME
+========================================================= */
+
+function updateFaceClock(){
+
+const now =
+new Date();
+
+
+faceLiveTime.innerText =
+now.toLocaleTimeString(
+"en-IN",
+{
+
+hour:"2-digit",
+
+minute:"2-digit",
+
+second:"2-digit"
+
+}
+);
+
+
+faceLiveDate.innerText =
+now.toLocaleDateString(
+"en-IN",
+{
+
+weekday:"long",
+
+day:"2-digit",
+
+month:"long",
+
+year:"numeric"
+
+}
+);
+
+}
+
+
+updateFaceClock();
+
+
+setInterval(
+updateFaceClock,
+1000
+);
+
+
+/* =========================================================
+                    START CAMERA
+========================================================= */
+
+async function startCamera(){
+
+try{
+
+
+/* =========================================================
+        CHECK BROWSER CAMERA SUPPORT
+========================================================= */
+
+if(
+!navigator.mediaDevices ||
+!navigator.mediaDevices.getUserMedia
+){
+
+showFaceError(
+"Your browser does not support camera access."
+);
+
+return;
+
+}
+
+
+/* =========================================================
+                    CAMERA PERMISSION
+========================================================= */
+
+cameraStream =
+await navigator.mediaDevices.getUserMedia({
+
+video:{
+
+facingMode:"user",
+
+width:{
+
+ideal:1280
+
+},
+
+height:{
+
+ideal:720
+
+}
+
+},
+
+audio:false
+
+});
+
+
+/* =========================================================
+                    SET VIDEO
+========================================================= */
+
+cameraVideo.srcObject =
+cameraStream;
+
+
+cameraVideo.style.display =
+"block";
+
+
+cameraPlaceholder.style.display =
+"none";
+
+
+faceScanFrame.style.display =
+"block";
+
+
+cameraStarted =
+true;
+
+
+/* =========================================================
+                    BUTTON STATUS
+========================================================= */
+
+startCameraBtn.disabled =
+true;
+
+
+scanFaceBtn.disabled =
+false;
+
+
+stopCameraBtn.disabled =
+false;
+
+
+/* =========================================================
+                    STATUS
+========================================================= */
+
+cameraStatus.innerText =
+"Online";
+
+
+cameraStatus.className =
+"badge bg-success";
+
+
+faceDetectionStatus.innerText =
+"Ready";
+
+
+faceDetectionStatus.className =
+"badge bg-info text-dark";
+
+
+recognitionStatus.innerText =
+"Pending";
+
+
+recognitionStatus.className =
+"badge bg-secondary";
+
+
+attendanceStatus.innerText =
+"Not Marked";
+
+
+attendanceStatus.className =
+"badge bg-secondary";
+
+
+}
+
+catch(error){
+
+
+console.error(
+"Camera Error:",
+error
+);
+
+
+cameraStatus.innerText =
+"Permission Denied";
+
+
+cameraStatus.className =
+"badge bg-danger";
+
+
+showFaceError(
+"Camera access was denied. Please allow camera permission and try again."
+);
+
+
+}
+
+}
+
+
+/* =========================================================
+                START CAMERA BUTTON
+========================================================= */
+
+startCameraBtn.addEventListener(
+"click",
+startCamera
+);
+
+
+/* =========================================================
+                    STOP CAMERA
+========================================================= */
+
+function stopCamera(){
+
+if(cameraStream){
+
+cameraStream
+.getTracks()
+.forEach(
+function(track){
+
+track.stop();
+
+}
+);
+
+}
+
+
+cameraStream =
+null;
+
+
+cameraVideo.srcObject =
+null;
+
+
+cameraVideo.style.display =
+"none";
+
+
+cameraPlaceholder.style.display =
+"block";
+
+
+faceScanFrame.style.display =
+"none";
+
+
+scanLine.style.display =
+"none";
+
+
+cameraStarted =
+false;
+
+
+scanning =
+false;
+
+
+startCameraBtn.disabled =
+false;
+
+
+scanFaceBtn.disabled =
+true;
+
+
+stopCameraBtn.disabled =
+true;
+
+
+cameraStatus.innerText =
+"Offline";
+
+
+cameraStatus.className =
+"badge bg-secondary";
+
+
+faceDetectionStatus.innerText =
+"Waiting...";
+
+
+faceDetectionStatus.className =
+"badge bg-warning text-dark";
+
+
+recognitionStatus.innerText =
+"Pending";
+
+
+recognitionStatus.className =
+"badge bg-secondary";
+
+}
+
+
+/* =========================================================
+                    STOP BUTTON
+========================================================= */
+
+stopCameraBtn.addEventListener(
+"click",
+stopCamera
+);
+
+
+/* =========================================================
+                    CAPTURE FRAME
+========================================================= */
+
+function captureCurrentFrame(){
+
+const context =
+captureCanvas.getContext("2d");
+
+
+captureCanvas.width =
+cameraVideo.videoWidth;
+
+
+captureCanvas.height =
+cameraVideo.videoHeight;
+
+
+context.drawImage(
+
+cameraVideo,
+
+0,
+
+0,
+
+captureCanvas.width,
+
+captureCanvas.height
+
+);
+
+
+/* =========================================================
+                IMAGE AS DATA URL
+========================================================= */
+
+return captureCanvas.toDataURL(
+"image/jpeg",
+0.90
+);
+
+}
+
+
+/* =========================================================
+                    SCAN FACE
+========================================================= */
+
+scanFaceBtn.addEventListener(
+"click",
+async function(){
+
+
+if(!cameraStarted){
+
+showFaceError(
+"Please start the camera first."
+);
+
+return;
+
+}
+
+
+if(scanning){
+
+return;
+
+}
+
+
+scanning =
+true;
+
+
+scanFaceBtn.disabled =
+true;
+
+
+/* =========================================================
+                    SCANNING UI
+========================================================= */
+
+scanLine.style.display =
+"block";
+
+
+faceDetectionStatus.innerText =
+"Scanning...";
+
+
+faceDetectionStatus.className =
+"badge bg-primary";
+
+
+recognitionStatus.innerText =
+"Processing...";
+
+
+recognitionStatus.className =
+"badge bg-warning text-dark";
+
+
+attendanceStatus.innerText =
+"Waiting";
+
+
+attendanceStatus.className =
+"badge bg-secondary";
+
+
+waitingUser.style.display =
+"block";
+
+
+recognizedUser.style.display =
+"none";
+
+
+attendanceSuccess.style.display =
+"none";
+
+
+/* =========================================================
+                CAPTURE CAMERA FRAME
+========================================================= */
+
+let capturedImage = null;
+
+
+try{
+
+capturedImage =
+captureCurrentFrame();
+
+}
+
+catch(error){
+
+console.error(
+"Image Capture Error:",
+error
+);
+
+}
+
+
+/* =========================================================
+        FRONTEND DEMO FACE RECOGNITION
+========================================================= */
+
+/*
+
+IMPORTANT:
+
+Browser JavaScript abhi kisi actual person ko
+identify nahi kar raha.
+
+Neeche ka setTimeout sirf UI demo hai.
+
+Actual Face Recognition backend me CNN /
+OpenCV / Face Recognition model karega.
+
+*/
+
+
+setTimeout(
+function(){
+
+
+scanLine.style.display =
+"none";
+
+
+faceDetectionStatus.innerText =
+"Face Detected";
+
+
+faceDetectionStatus.className =
+"badge bg-success";
+
+
+/* =========================================================
+                DEMO RECOGNIZED USER
+========================================================= */
+
+const demoUser = {
+
+userId:"TCH001",
+
+name:"Dr. Rahul Sharma",
+
+role:"Teacher",
+
+department:"Computer Science",
+
+confidence:97.8,
+
+method:"Face Recognition"
+
+};
+
+
+/* =========================================================
+                DISPLAY RECOGNIZED USER
+========================================================= */
+
+showRecognizedUser(
+demoUser
+);
+
+
+scanning =
+false;
+
+
+scanFaceBtn.disabled =
+false;
+
+
+},
+2500
+);
+
+
+}
+);
+
+
+/* =========================================================
+                SHOW RECOGNIZED USER
+========================================================= */
+
+function showRecognizedUser(user){
+
+
+waitingUser.style.display =
+"none";
+
+
+recognizedUser.style.display =
+"block";
+
+
+recognizedUserName.innerText =
+user.name;
+
+
+recognizedUserRole.innerText =
+user.role;
+
+
+recognizedUserId.innerText =
+user.userId;
+
+
+recognizedDepartment.innerText =
+user.department;
+
+
+const currentTime =
+new Date().toLocaleTimeString(
+"en-IN",
+{
+
+hour:"2-digit",
+
+minute:"2-digit",
+
+second:"2-digit"
+
+}
+);
+
+
+recognizedTime.innerText =
+currentTime;
+
+
+/* =========================================================
+                    CONFIDENCE
+========================================================= */
+
+confidenceText.innerText =
+user.confidence + "%";
+
+
+confidenceBar.style.width =
+user.confidence + "%";
+
+
+if(user.confidence >= 90){
+
+confidenceBar.className =
+"progress-bar bg-success";
+
+}
+
+else if(user.confidence >= 75){
+
+confidenceBar.className =
+"progress-bar bg-warning";
+
+}
+
+else{
+
+confidenceBar.className =
+"progress-bar bg-danger";
+
+}
+
+
+/* =========================================================
+                    STATUS
+========================================================= */
+
+recognitionStatus.innerText =
+"Recognized";
+
+
+recognitionStatus.className =
+"badge bg-success";
+
+
+/* =========================================================
+                DEMO DUPLICATE CHECK
+========================================================= */
+
+/*
+
+Backend me duplicate attendance database se
+check hogi.
+
+Frontend demo me false rakha hai.
+
+true karoge to "Attendance Already Marked"
+modal dikhega.
+
+*/
+
+const alreadyMarked =
+false;
+
+
+if(alreadyMarked){
+
+attendanceStatus.innerText =
+"Already Marked";
+
+
+attendanceStatus.className =
+"badge bg-warning text-dark";
+
+
+document.getElementById(
+"previousCheckIn"
+).innerText =
+"09:02 AM";
+
+
+const duplicateModal =
+new bootstrap.Modal(
+document.getElementById(
+"duplicateAttendanceModal"
+)
+);
+
+
+duplicateModal.show();
+
+
+return;
+
+}
+
+
+/* =========================================================
+                    MARK ATTENDANCE
+========================================================= */
+
+markAttendance(
+user,
+currentTime
+);
+
+
+}
+
+
+/* =========================================================
+                    MARK ATTENDANCE
+========================================================= */
+
+function markAttendance(
+user,
+time
+){
+
+
+attendanceStatus.innerText =
+"Present";
+
+
+attendanceStatus.className =
+"badge bg-success";
+
+
+attendanceSuccess.style.display =
+"block";
+
+
+/* =========================================================
+                SUCCESS MODAL DATA
+========================================================= */
+
+document.getElementById(
+"modalAttendanceName"
+).innerText =
+user.name;
+
+
+document.getElementById(
+"modalAttendanceId"
+).innerText =
+user.userId;
+
+
+document.getElementById(
+"modalAttendanceTime"
+).innerText =
+time;
+
+
+document.getElementById(
+"modalAttendanceConfidence"
+).innerText =
+user.confidence + "%";
+
+
+/* =========================================================
+                    SUCCESS MODAL
+========================================================= */
+
+const successModal =
+new bootstrap.Modal(
+document.getElementById(
+"faceAttendanceSuccessModal"
+)
+);
+
+
+successModal.show();
+
+}
+
+
+/* =========================================================
+                    ERROR MODAL
+========================================================= */
+
+function showFaceError(message){
+
+document.getElementById(
+"faceErrorMessage"
+).innerText =
+message;
+
+
+const errorModal =
+new bootstrap.Modal(
+document.getElementById(
+"faceAttendanceErrorModal"
+)
+);
+
+
+errorModal.show();
+
+}
+
+
+/* =========================================================
+                ACTUAL BACKEND INTEGRATION
+========================================================= */
+
+/*
+
+=========================================================
+              FACE ATTENDANCE BACKEND
+=========================================================
+
+Frontend flow:
+
+Camera
+   ↓
+Capture Image
+   ↓
+Send image to backend
+   ↓
+Face Detection
+   ↓
+Face Recognition
+   ↓
+Registered Face Dataset
+   ↓
+User Identified
+   ↓
+Duplicate Attendance Check
+   ↓
+Attendance Save
+   ↓
+Response Frontend
+   ↓
+Attendance Report Updated
+
+
+Backend API example:
+
+POST /api/face/attendance
+
+
+Example JavaScript:
+
+
+async function recognizeFaceWithBackend(){
+
+try{
+
+
+const imageData =
+captureCurrentFrame();
+
+
+const response =
+await fetch(
+"/api/face/attendance",
+{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+credentials:"include",
+
+body:JSON.stringify({
+
+image:imageData
+
+})
+
+}
+);
+
+
+const data =
+await response.json();
+
+
+if(!response.ok){
+
+showFaceError(
+data.message ||
+"Face recognition failed."
+);
+
+return;
+
+}
+
+
+if(data.alreadyMarked){
+
+
+document.getElementById(
+"previousCheckIn"
+).innerText =
+data.checkIn || "--";
+
+
+attendanceStatus.innerText =
+"Already Marked";
+
+
+attendanceStatus.className =
+"badge bg-warning text-dark";
+
+
+const duplicateModal =
+new bootstrap.Modal(
+document.getElementById(
+"duplicateAttendanceModal"
+)
+);
+
+
+duplicateModal.show();
+
+
+return;
+
+}
+
+
+const recognizedUserData = {
+
+userId:data.userId,
+
+name:data.name,
+
+role:data.role,
+
+department:data.department,
+
+confidence:data.confidence,
+
+method:"Face Recognition"
+
+};
+
+
+showRecognizedUser(
+recognizedUserData
+);
+
+
+}
+
+catch(error){
+
+
+console.error(
+"Face Recognition Error:",
+error
+);
+
+
+showFaceError(
+"Unable to connect to Face Recognition Server."
+);
+
+
+}
+
+}
+
+
+=========================================================
+*/
+
+
+/* =========================================================
+        ALTERNATIVE BACKEND USING IMAGE FILE
+========================================================= */
+
+/*
+
+Agar Python / Flask / FastAPI backend image file
+(FormData) expect karega, to ye better rahega:
+
+
+function captureImageBlob(){
+
+return new Promise(function(resolve){
+
+captureCanvas.width =
+cameraVideo.videoWidth;
+
+captureCanvas.height =
+cameraVideo.videoHeight;
+
+
+const context =
+captureCanvas.getContext("2d");
+
+
+context.drawImage(
+
+cameraVideo,
+
+0,
+
+0,
+
+captureCanvas.width,
+
+captureCanvas.height
+
+);
+
+
+captureCanvas.toBlob(
+
+function(blob){
+
+resolve(blob);
+
+},
+
+"image/jpeg",
+
+0.9
+
+);
+
+});
+
+}
+
+
+async function sendFaceToBackend(){
+
+const imageBlob =
+await captureImageBlob();
+
+
+const formData =
+new FormData();
+
+
+formData.append(
+"face_image",
+imageBlob,
+"face.jpg"
+);
+
+
+const response =
+await fetch(
+"/api/face/attendance",
+{
+
+method:"POST",
+
+body:formData,
+
+credentials:"include"
+
+}
+);
+
+
+const result =
+await response.json();
+
+
+console.log(result);
+
+}
+
+
+=========================================================
+*/
+
+
+/* =========================================================
+            EXPECTED BACKEND RESPONSE
+========================================================= */
+
+/*
+
+Backend successful response example:
+
+
+{
+    "success": true,
+
+    "recognized": true,
+
+    "alreadyMarked": false,
+
+    "userId": "TCH001",
+
+    "name": "Dr. Rahul Sharma",
+
+    "role": "Teacher",
+
+    "department": "Computer Science",
+
+    "confidence": 97.8,
+
+    "attendanceStatus": "Present",
+
+    "checkIn": "09:12:45 AM",
+
+    "date": "2026-08-02",
+
+    "method": "Face Recognition"
+}
+
+
+Agar face registered nahi hai:
+
+
+{
+    "success": false,
+
+    "recognized": false,
+
+    "message": "Face not registered."
+}
+
+
+Agar attendance already mark hai:
+
+
+{
+    "success": true,
+
+    "recognized": true,
+
+    "alreadyMarked": true,
+
+    "userId": "TCH001",
+
+    "checkIn": "09:02 AM",
+
+    "message": "Attendance already marked."
+}
+
+
+=========================================================
+*/
+
+
+/* =========================================================
+                PAGE CLOSE CAMERA
+========================================================= */
+
+window.addEventListener(
+"beforeunload",
+function(){
+
+if(cameraStream){
+
+cameraStream
+.getTracks()
+.forEach(
+function(track){
+
+track.stop();
+
+}
+);
+
+}
+
+}
+);
+
+
+});
+
+</script>
+
+
+</body>
+
+</html>

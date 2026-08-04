@@ -1,0 +1,1642 @@
+/*=========================================
+TEACHER DASHBOARD CSS - PART 1
+=========================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#333;
+    overflow-x:hidden;
+    transition:.4s ease;
+}
+
+.wrapper{
+    display:flex;
+    min-height:100vh;
+}
+
+/* Sidebar */
+
+.sidebar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:270px;
+    height:100vh;
+    background:linear-gradient(180deg,#6F42C1,#9D4EDD);
+    color:#fff;
+    overflow-y:auto;
+    padding:25px;
+    box-shadow:5px 0 20px rgba(0,0,0,.15);
+    z-index:1000;
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.logo img{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    background:#fff;
+    padding:8px;
+    margin-bottom:12px;
+}
+
+.logo h3{
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:5px;
+}
+
+.logo p{
+    font-size:14px;
+    opacity:.9;
+}
+
+.sidebar ul{
+    list-style:none;
+    margin-top:20px;
+}
+
+.sidebar ul li{
+    margin:10px 0;
+}
+
+.sidebar ul li a{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    color:#fff;
+    text-decoration:none;
+    padding:14px 18px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li.active a{
+    background:rgba(255,255,255,.18);
+}
+
+.sidebar ul li i{
+    width:22px;
+    text-align:center;
+}
+
+/* Main */
+
+.main-content{
+    margin-left:270px;
+    width:calc(100% - 270px);
+    padding:30px;
+}
+
+/* Navbar */
+
+.top-navbar{
+    background:#fff;
+    border-radius:18px;
+    padding:18px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    margin-bottom:30px;
+}
+
+.top-navbar h2{
+    color:#6F42C1;
+    font-weight:700;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.search-box{
+    width:230px;
+    border-radius:30px;
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.profile img{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    border:3px solid #6F42C1;
+}
+
+.profile h6{
+    margin:0;
+    font-weight:600;
+}
+
+.profile small{
+    color:#777;
+}
+
+.notification-badge{
+    position:absolute;
+    top:-6px;
+    right:-6px;
+}
+
+/* Welcome Banner */
+
+.welcome-box{
+    background:linear-gradient(135deg,#6F42C1,#9D4EDD);
+    color:#fff;
+    border-radius:22px;
+    padding:40px;
+    margin-bottom:35px;
+    box-shadow:0 15px 35px rgba(111,66,193,.30);
+}
+
+.welcome-box h2{
+    font-size:34px;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.welcome-box p{
+    max-width:700px;
+    line-height:1.8;
+    font-size:16px;
+}
+
+.welcome-box .btn{
+    margin-top:20px;
+    border-radius:40px;
+    padding:12px 28px;
+    font-weight:600;
+}
+
+/* Dark Mode */
+
+body.dark{
+    background:#121212;
+    color:#fff;
+}
+
+body.dark .top-navbar{
+    background:#1f1f1f;
+}
+
+body.dark .top-navbar h2,
+body.dark .profile h6{
+    color:#fff;
+}
+
+body.dark .profile small{
+    color:#ccc;
+}
+
+body.dark .search-box{
+    background:#2b2b2b;
+    border:1px solid #444;
+    color:#fff;
+}
+
+body.dark .search-box::placeholder{
+    color:#bbb;
+}
+
+body.dark .welcome-box{
+    background:linear-gradient(135deg,#232526,#414345);
+}
+
+body.dark .welcome-box h2,
+body.dark .welcome-box p{
+    color:#fff;
+}
+
+body.dark .welcome-box .btn{
+    background:#6F42C1;
+    color:#fff;
+    border:none;
+}
+
+/*=========================================
+TEACHER DASHBOARD CSS - PART 2
+=========================================*/
+
+/* Dashboard Cards */
+
+.dashboard-cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    margin-bottom:35px;
+}
+
+.card-box{
+    background:#fff;
+    border-radius:20px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+    cursor:pointer;
+}
+
+.card-box:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 35px rgba(111,66,193,.18);
+}
+
+.card-box i{
+    width:70px;
+    height:70px;
+    line-height:70px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#6F42C1,#9D4EDD);
+    color:#fff;
+    font-size:28px;
+    margin-bottom:18px;
+}
+
+.card-box h3{
+    color:#6F42C1;
+    font-size:30px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.card-box p{
+    color:#666;
+    margin:0;
+}
+
+/* Content Grid */
+
+.content-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:25px;
+    margin-bottom:30px;
+}
+
+/* Dashboard Card */
+
+.dashboard-card{
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 18px 35px rgba(111,66,193,.15);
+}
+
+.dashboard-card h4{
+    color:#6F42C1;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+/* Table */
+
+.table{
+    margin-bottom:0;
+}
+
+.table thead th{
+    background:#F3EDFF;
+    color:#6F42C1;
+    border:none;
+    font-weight:700;
+}
+
+.table tbody td{
+    color:#555;
+    border-color:#eee;
+    vertical-align:middle;
+}
+
+.table tbody tr:hover{
+    background:#F8F5FF;
+}
+
+/* Charts */
+
+#attendanceChart,
+#performanceChart{
+    width:100%;
+    height:300px !important;
+}
+
+/* Activities */
+
+.activity-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.activity-list li{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 0;
+    border-bottom:1px solid #eee;
+    color:#555;
+}
+
+.activity-list li:last-child{
+    border-bottom:none;
+}
+
+.activity-list i{
+    color:#6F42C1;
+    font-size:18px;
+}
+
+/* Quick Actions */
+
+.quick-actions{
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.quick-actions h4{
+    color:#6F42C1;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.action-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.action-buttons .btn{
+    border:none;
+    border-radius:50px;
+    padding:12px 24px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.action-buttons .btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+/* Dark Mode */
+
+body.dark .card-box,
+body.dark .dashboard-card,
+body.dark .quick-actions{
+    background:#1f1f1f;
+    color:#fff;
+}
+
+body.dark .card-box h3,
+body.dark .dashboard-card h4{
+    color:#fff;
+}
+
+body.dark .card-box p,
+body.dark .activity-list li{
+    color:#ddd;
+}
+
+body.dark .table{
+    color:#fff;
+}
+
+body.dark .table thead th{
+    background:#2b2b2b;
+    color:#fff;
+}
+
+body.dark .table tbody td{
+    background:#1f1f1f;
+    color:#fff;
+    border-color:#444;
+}
+
+body.dark .table tbody tr{
+    background:#1f1f1f;
+}
+
+body.dark .table tbody tr:hover{
+    background:#2d2d2d;
+}
+
+body.dark .activity-list i{
+    color:#b58cff;
+}
+
+/*=========================================
+TEACHER DASHBOARD CSS - PART 3
+=========================================*/
+
+/* Live Clock */
+
+.clock-box{
+    text-align:center;
+    padding:15px;
+}
+
+.clock-box h2{
+    font-size:32px;
+    font-weight:700;
+    color:#6F42C1;
+    margin-bottom:10px;
+}
+
+.clock-box h5{
+    font-size:20px;
+    font-weight:600;
+    color:#444;
+    margin-bottom:8px;
+}
+
+.clock-box p{
+    font-size:16px;
+    color:#777;
+    margin:0;
+}
+
+/* Calendar */
+
+#calendar{
+    margin-top:15px;
+    background:#fff;
+    border-radius:15px;
+    padding:15px;
+}
+
+/* Footer */
+
+.footer{
+    margin-top:35px;
+    text-align:center;
+    color:#777;
+    font-size:14px;
+    padding:20px 0;
+}
+
+/* ==========================
+   DARK MODE
+========================== */
+
+body.dark{
+    background:#121212;
+    color:#fff;
+}
+
+body.dark .clock-box h2{
+    color:#ffffff;
+}
+
+body.dark .clock-box h5{
+    color:#e6e6e6;
+}
+
+body.dark .clock-box p{
+    color:#cccccc;
+}
+
+/* Calendar */
+
+body.dark #calendar{
+    background:#1f1f1f;
+    border-radius:15px;
+}
+
+body.dark .fc{
+    color:#fff;
+}
+
+body.dark .fc-theme-standard td,
+body.dark .fc-theme-standard th{
+    border-color:#444;
+}
+
+body.dark .fc-scrollgrid{
+    border-color:#444;
+}
+
+body.dark .fc-col-header-cell{
+    background:#2b2b2b;
+}
+
+body.dark .fc-col-header-cell a{
+    color:#fff !important;
+    font-weight:700;
+}
+
+body.dark .fc-daygrid-day{
+    background:#1f1f1f;
+}
+
+body.dark .fc-daygrid-day-number{
+    color:#fff !important;
+    font-weight:600;
+}
+
+body.dark .fc-toolbar-title{
+    color:#fff;
+    font-weight:700;
+}
+
+body.dark .fc-button{
+    background:#6F42C1 !important;
+    border:none !important;
+}
+
+body.dark .fc-button:hover{
+    background:#8B5CF6 !important;
+}
+
+body.dark .fc-day-today{
+    background:rgba(111,66,193,.25) !important;
+}
+
+/* Footer */
+
+body.dark .footer{
+    color:#ccc;
+}
+
+/* Animation */
+
+.card-box,
+.dashboard-card,
+.quick-actions,
+.top-navbar,
+.welcome-box{
+    animation:fadeUp .6s ease;
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#6F42C1;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-track{
+    background:#e5e5e5;
+}
+
+/* Responsive */
+
+@media(max-width:992px){
+
+    .sidebar{
+        width:220px;
+    }
+
+    .main-content{
+        margin-left:220px;
+        width:calc(100% - 220px);
+    }
+
+    .content-grid{
+        grid-template-columns:1fr;
+    }
+
+    .search-box{
+        width:170px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .wrapper{
+        display:block;
+    }
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+
+    .main-content{
+        margin-left:0;
+        width:100%;
+        padding:20px;
+    }
+
+    .top-navbar{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .nav-right{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .dashboard-cards{
+        grid-template-columns:1fr;
+    }
+
+    .content-grid{
+        grid-template-columns:1fr;
+    }
+
+    .action-buttons{
+        flex-direction:column;
+    }
+
+    .action-buttons .btn{
+        width:100%;
+    }
+
+    .welcome-box h2{
+        font-size:28px;
+    }
+
+    .clock-box h2{
+        font-size:26px;
+    }
+
+}
+
+
+.profile-menu{
+    width:260px;
+    border:none;
+    border-radius:18px;
+    padding:10px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.profile-header{
+    text-align:center;
+    padding:15px;
+}
+
+.profile-header img{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    border:3px solid #6F42C1;
+    margin-bottom:10px;
+}
+
+.profile-header h5{
+    margin:0;
+    font-weight:700;
+}
+
+.profile-header span{
+    font-size:13px;
+    color:#777;
+}
+
+.dropdown-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 15px;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.dropdown-item i{
+    width:20px;
+    text-align:center;
+}
+
+.dropdown-item:hover{
+    background:#6F42C1;
+    color:#fff;
+}
+
+body.dark .profile-menu{
+    background:#1f1f1f;
+}
+
+body.dark .profile-header span{
+    color:#ccc;
+}
+
+body.dark .dropdown-item{
+    color:#fff;
+}
+
+body.dark .dropdown-item:hover{
+    background:#6F42C1;
+}
+
+/* ==========================
+   SIDEBAR DARK MODE
+========================== */
+
+body.dark .sidebar{
+    background:#121212;
+    color:#fff;
+    border-right:1px solid #2d2d2d;
+}
+
+body.dark .sidebar h2,
+body.dark .sidebar h3,
+body.dark .sidebar p,
+body.dark .sidebar span{
+    color:#fff;
+}
+
+body.dark .sidebar .logo h2,
+body.dark .sidebar .logo p{
+    color:#fff;
+}
+
+body.dark .sidebar ul li a{
+    color:#d6d6d6;
+    transition:.3s;
+}
+
+body.dark .sidebar ul li a:hover{
+    background:#2c2c2c;
+    color:#fff;
+}
+
+body.dark .sidebar ul li.active a{
+    background:#6F42C1;
+    color:#fff;
+}
+
+body.dark .sidebar ul li a i{
+    color:#fff;
+}
+
+body.dark .sidebar img{
+    border:2px solid #6F42C1;
+}
+
+/*==============================
+   PREMIUM TEACHER BANNER
+==============================*/
+
+.welcome-banner{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:45px;
+
+    margin-bottom:35px;
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:linear-gradient(135deg,#6F42C1,#8B5CF6,#2563EB);
+
+    background-size:300% 300%;
+
+    animation:gradientMove 10s ease infinite;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.18);
+
+}
+
+.welcome-left{
+
+    flex:1;
+
+    z-index:2;
+
+}
+
+.welcome-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:10px 18px;
+
+    border-radius:40px;
+
+    background:rgba(255,255,255,.15);
+
+    color:#fff;
+
+    font-weight:700;
+
+    margin-bottom:20px;
+
+}
+
+.welcome-left h1{
+
+    font-size:42px;
+
+    color:#fff;
+
+    font-weight:800;
+
+}
+
+.welcome-left p{
+
+    color:#eef2ff;
+
+    line-height:30px;
+
+    max-width:650px;
+
+    margin:18px 0 25px;
+
+}
+
+.banner-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.banner-buttons .btn{
+
+    padding:12px 28px;
+
+    border-radius:40px;
+
+    font-weight:700;
+
+}
+
+.welcome-right{
+
+    flex:1;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+}
+
+.banner-image{
+
+    width:520px;
+
+    max-width:100%;
+
+    animation:floatIcon 4s ease-in-out infinite;
+
+    filter:drop-shadow(0 18px 35px rgba(0,0,0,.35));
+
+}
+
+body.dark .welcome-banner{
+
+    background:linear-gradient(135deg,#111827,#1e293b,#312e81,#2563eb);
+
+}
+
+body.dark .welcome-left h1{
+
+    color:#fff;
+
+}
+
+body.dark .welcome-left p{
+
+    color:#d1d5db;
+
+}
+
+@keyframes gradientMove{
+
+0%{background-position:0% 50%;}
+
+50%{background-position:100% 50%;}
+
+100%{background-position:0% 50%;}
+
+}
+
+@keyframes floatIcon{
+
+0%,100%{transform:translateY(0);}
+
+50%{transform:translateY(-12px);}
+
+}
+
+/* ===========================
+        MENU HEADING
+=========================== */
+
+.menu-heading{
+    padding:18px 22px 8px;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:1.4px;
+    color:rgba(255,255,255,.55);
+    list-style:none;
+}
+
+
+/* ===========================
+            AI BADGE
+=========================== */
+
+.ai-badge{
+    margin-left:auto;
+    padding:3px 7px;
+    border-radius:20px;
+    font-size:9px;
+    font-weight:800;
+
+    background:linear-gradient(
+        135deg,
+        #00e5ff,
+        #8b5cf6
+    );
+
+    color:#ffffff;
+
+    box-shadow:
+        0 0 10px rgba(0,229,255,.35);
+}
+
+
+/* Menu link alignment */
+
+.menu li a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+/* =========================================================
+                    QUICK ACTIONS
+========================================================= */
+
+.quick-action-section{
+    margin-top:25px;
+    margin-bottom:28px;
+}
+
+.quick-action-title{
+    color:#ffffff;
+    font-size:22px;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.quick-action-title i{
+    color:#facc15;
+    margin-right:8px;
+}
+
+
+/* BUTTON CONTAINER */
+
+.quick-action-buttons{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:14px;
+}
+
+
+/* COMMON BUTTON */
+
+.quick-action-btn{
+    min-width:165px;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:9px;
+
+    padding:12px 20px;
+
+    border:none;
+    border-radius:30px;
+
+    color:#ffffff !important;
+
+    font-size:14px;
+    font-weight:600;
+
+    text-decoration:none !important;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 6px 18px
+        rgba(0,0,0,.18);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        filter .25s ease;
+}
+
+
+.quick-action-btn i{
+    font-size:15px;
+    color:#ffffff;
+}
+
+
+.quick-action-btn span{
+    color:#ffffff;
+}
+
+
+/* =========================================================
+                    TAKE ATTENDANCE
+========================================================= */
+
+.quick-action-btn.take-attendance{
+    background:
+        linear-gradient(
+            135deg,
+            #06b6d4,
+            #22d3ee
+        );
+}
+
+
+/* =========================================================
+                    UPLOAD NOTES
+========================================================= */
+
+.quick-action-btn.upload-notes{
+    background:
+        linear-gradient(
+            135deg,
+            #10b981,
+            #34d399
+        );
+}
+
+
+/* =========================================================
+                    ADD ASSIGNMENT
+========================================================= */
+
+.quick-action-btn.add-assignment{
+    background:
+        linear-gradient(
+            135deg,
+            #f59e0b,
+            #facc15
+        );
+
+    color:#222 !important;
+}
+
+
+.quick-action-btn.add-assignment i,
+.quick-action-btn.add-assignment span{
+    color:#222 !important;
+}
+
+
+/* =========================================================
+                    VIEW REPORT
+========================================================= */
+
+.quick-action-btn.view-reports{
+    background:
+        linear-gradient(
+            135deg,
+            #ec4899,
+            #f43f5e
+        );
+}
+
+
+/* =========================================================
+                        HOVER
+========================================================= */
+
+.quick-action-btn:hover{
+    transform:translateY(-4px) scale(1.02);
+
+    filter:brightness(1.08);
+
+    box-shadow:
+        0 10px 24px
+        rgba(0,0,0,.25);
+}
+
+
+.quick-action-btn:active{
+    transform:scale(.97);
+}
+
+
+/* =========================================================
+                    RESPONSIVE
+========================================================= */
+
+@media(max-width:768px){
+
+    .quick-action-buttons{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+    }
+
+    .quick-action-btn{
+        width:100%;
+        min-width:0;
+    }
+}
+
+
+@media(max-width:480px){
+
+    .quick-action-buttons{
+        grid-template-columns:1fr;
+    }
+
+}
+
+/* =========================================================
+        TEACHER DASHBOARD - QUICK ACTIONS FINAL CSS
+========================================================= */
+
+.teacher-quick-actions{
+    width:100%;
+    padding:22px 25px;
+    margin:20px 0 25px 0;
+
+    background:#242b3a;
+
+    border-radius:18px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.15);
+}
+
+
+/* =========================================================
+                        TITLE
+========================================================= */
+
+.teacher-quick-title{
+    margin:0 0 20px 0;
+
+    font-size:22px;
+    font-weight:700;
+
+    color:#ffffff !important;
+
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+}
+
+
+.teacher-quick-title i{
+    color:#ffffff !important;
+    font-size:23px;
+}
+
+
+/* =========================================================
+                    BUTTON CONTAINER
+========================================================= */
+
+.teacher-quick-buttons{
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:14px;
+}
+
+
+/* =========================================================
+                    COMMON BUTTON
+========================================================= */
+
+.teacher-quick-btn{
+
+    min-width:165px !important;
+
+    height:44px !important;
+
+    padding:0 20px !important;
+
+    display:inline-flex !important;
+
+    align-items:center !important;
+
+    justify-content:center !important;
+
+    gap:9px !important;
+
+
+    border:none !important;
+
+    outline:none !important;
+
+    border-radius:30px !important;
+
+
+    font-family:'Poppins',sans-serif !important;
+
+    font-size:13px !important;
+
+    font-weight:600 !important;
+
+    line-height:1 !important;
+
+    white-space:nowrap;
+
+
+    cursor:pointer !important;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        filter .25s ease !important;
+
+
+    box-shadow:
+        0 6px 15px
+        rgba(0,0,0,.20) !important;
+}
+
+
+/* ICON */
+
+.teacher-quick-btn i{
+    font-size:15px !important;
+}
+
+
+/* =========================================================
+                    TAKE ATTENDANCE
+                    CYAN BUTTON
+========================================================= */
+
+.teacher-quick-btn.quick-attendance{
+
+    background:
+        linear-gradient(
+            135deg,
+            #20c9e8,
+            #38d9f5
+        ) !important;
+
+    color:#ffffff !important;
+
+}
+
+
+.teacher-quick-btn.quick-attendance i,
+.teacher-quick-btn.quick-attendance span{
+
+    color:#ffffff !important;
+
+}
+
+
+/* =========================================================
+                    UPLOAD NOTES
+                    GREEN BUTTON
+========================================================= */
+
+.teacher-quick-btn.quick-notes{
+
+    background:
+        linear-gradient(
+            135deg,
+            #20c997,
+            #4ddbb5
+        ) !important;
+
+    color:#ffffff !important;
+
+}
+
+
+.teacher-quick-btn.quick-notes i,
+.teacher-quick-btn.quick-notes span{
+
+    color:#ffffff !important;
+
+}
+
+
+/* =========================================================
+                    ADD ASSIGNMENT
+                    YELLOW BUTTON
+========================================================= */
+
+.teacher-quick-btn.quick-assignment{
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd43b,
+            #ffe066
+        ) !important;
+
+    color:#27272a !important;
+
+}
+
+
+.teacher-quick-btn.quick-assignment i,
+.teacher-quick-btn.quick-assignment span{
+
+    color:#27272a !important;
+
+}
+
+
+/* =========================================================
+                    VIEW REPORTS
+                    PINK BUTTON
+========================================================= */
+
+.teacher-quick-btn.quick-report{
+
+    background:
+        linear-gradient(
+            135deg,
+            #f06595,
+            #ff6b9d
+        ) !important;
+
+    color:#ffffff !important;
+
+}
+
+
+.teacher-quick-btn.quick-report i,
+.teacher-quick-btn.quick-report span{
+
+    color:#ffffff !important;
+
+}
+
+
+/* =========================================================
+                        HOVER
+========================================================= */
+
+.teacher-quick-btn:hover{
+
+    transform:
+        translateY(-3px)
+        scale(1.02) !important;
+
+    filter:
+        brightness(1.08) !important;
+
+    box-shadow:
+        0 10px 22px
+        rgba(0,0,0,.28) !important;
+
+}
+
+
+/* =========================================================
+                        ACTIVE
+========================================================= */
+
+.teacher-quick-btn:active{
+
+    transform:
+        translateY(0)
+        scale(.97) !important;
+
+}
+
+
+/* =========================================================
+                        FOCUS
+========================================================= */
+
+.teacher-quick-btn:focus{
+
+    outline:none !important;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(255,255,255,.15),
+        0 7px 18px
+        rgba(0,0,0,.25) !important;
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE TABLET
+========================================================= */
+
+@media(max-width:900px){
+
+    .teacher-quick-buttons{
+
+        display:grid;
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+
+    .teacher-quick-btn{
+
+        width:100% !important;
+
+        min-width:0 !important;
+
+    }
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE MOBILE
+========================================================= */
+
+@media(max-width:520px){
+
+    .teacher-quick-actions{
+
+        padding:18px;
+
+    }
+
+
+    .teacher-quick-buttons{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .teacher-quick-btn{
+
+        width:100% !important;
+
+    }
+
+}
+
+/* =========================================================
+        DARK MODE - NOTIFICATION DROPDOWN FIX
+========================================================= */
+
+body.dark .notification-menu{
+    background:#111827 !important;
+    border:1px solid #374151 !important;
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.35) !important;
+}
+
+
+/* Notification Header */
+
+body.dark .notification-menu .dropdown-header{
+    color:#ffffff !important;
+    background:#111827 !important;
+
+    border-bottom:
+        1px solid #374151 !important;
+}
+
+
+/* Notification Items */
+
+body.dark .notification-menu .dropdown-item{
+    color:#e5e7eb !important;
+    background:#111827 !important;
+}
+
+
+/* Notification Hover */
+
+body.dark .notification-menu .dropdown-item:hover,
+body.dark .notification-menu .dropdown-item:focus{
+    background:#1f2937 !important;
+    color:#ffffff !important;
+}
+
+
+/* Divider */
+
+body.dark .notification-menu .dropdown-divider{
+    border-color:#374151 !important;
+}
+
+
+/* Mark All Read */
+
+body.dark .notification-menu a{
+    color:#c4b5fd;
+}
+
+
+/* =========================================================
+        PROFILE DROPDOWN DARK MODE
+========================================================= */
+
+body.dark .profile-menu{
+    background:#111827 !important;
+
+    border:
+        1px solid #374151 !important;
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.35) !important;
+}
+
+
+body.dark .profile-menu .dropdown-item{
+    color:#e5e7eb !important;
+    background:#111827 !important;
+}
+
+
+body.dark .profile-menu .dropdown-item:hover,
+body.dark .profile-menu .dropdown-item:focus{
+    background:#1f2937 !important;
+    color:#ffffff !important;
+}
+
+
+body.dark .profile-menu .dropdown-divider{
+    border-color:#374151 !important;
+}
+
+
+/* Logout red hi rahe */
+
+body.dark .profile-menu .dropdown-item.text-danger{
+    color:#f87171 !important;
+}
+
+
+body.dark .profile-menu .dropdown-item.text-danger:hover{
+    background:rgba(239,68,68,.12) !important;
+    color:#fca5a5 !important;
+}

@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit Student | HOD Panel</title>
+
+<!-- Bootstrap -->
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<!-- Font Awesome -->
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<!-- HOD CSS -->
+<link rel="stylesheet" href="../../css/hod-dashboard.css">
+
+<style>
+
+/* =========================================
+   EDIT STUDENT PAGE
+========================================= */
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+}
+
+.page-header h2{
+    font-weight:800;
+    margin:0;
+}
+
+.page-header p{
+    color:#777;
+    margin:6px 0 0;
+}
+
+/* Main Form Card */
+
+.edit-card{
+    background:#fff;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 6px 20px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
+
+.edit-card h4{
+    color:#6c4cff;
+    font-weight:700;
+    margin-bottom:25px;
+}
+
+/* Profile */
+
+.profile-section{
+    display:flex;
+    align-items:center;
+    gap:25px;
+    padding-bottom:25px;
+    margin-bottom:30px;
+    border-bottom:1px solid #eee;
+}
+
+.profile-photo-box{
+    position:relative;
+}
+
+.profile-photo{
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid #ede9fe;
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+}
+
+.change-photo-btn{
+    position:absolute;
+    right:0;
+    bottom:5px;
+
+    width:40px;
+    height:40px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#6c4cff;
+    color:#fff;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+}
+
+.change-photo-btn:hover{
+    background:#5936e8;
+}
+
+/* Form */
+
+.form-label{
+    font-weight:600;
+}
+
+.form-control,
+.form-select{
+    border-radius:10px;
+    min-height:46px;
+}
+
+.form-control:focus,
+.form-select:focus{
+    border-color:#6c4cff;
+    box-shadow:0 0 0 .2rem rgba(108,76,255,.15);
+}
+
+/* Section */
+
+.form-section{
+    margin-bottom:35px;
+}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    color:#6c4cff;
+
+    font-size:20px;
+    font-weight:700;
+
+    margin-bottom:20px;
+
+    padding-bottom:10px;
+
+    border-bottom:1px solid #eee;
+}
+
+/* Action Bar */
+
+.form-actions{
+    display:flex;
+    justify-content:flex-end;
+    flex-wrap:wrap;
+    gap:12px;
+
+    border-top:1px solid #eee;
+
+    padding-top:25px;
+}
+
+.form-actions .btn{
+    min-width:140px;
+    border-radius:10px;
+    font-weight:600;
+}
+
+/* Face Card */
+
+.face-card{
+    background:#f0fdf4;
+    border:1px solid #bbf7d0;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.face-info{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.face-icon{
+    width:60px;
+    height:60px;
+
+    border-radius:50%;
+
+    background:#dcfce7;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:#16a34a;
+    font-size:27px;
+}
+
+/* Dark Mode */
+
+body.dark .edit-card{
+    background:#1f1f1f;
+    color:#fff;
+}
+
+body.dark .page-header p{
+    color:#ccc;
+}
+
+body.dark .profile-section,
+body.dark .section-title,
+body.dark .form-actions{
+    border-color:#444;
+}
+
+body.dark .form-control,
+body.dark .form-select{
+    background:#2d2d2d;
+    color:#fff;
+    border-color:#555;
+}
+
+body.dark .form-control::placeholder{
+    color:#aaa;
+}
+
+body.dark .form-select option{
+    background:#2d2d2d;
+    color:#fff;
+}
+
+body.dark .face-card{
+    background:#132a1b;
+    border-color:#245c35;
+}
+
+body.dark .profile-photo{
+    border-color:#6c4cff;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.edit-card{
+    padding:20px;
+}
+
+.profile-section{
+    flex-direction:column;
+    text-align:center;
+}
+
+.form-actions{
+    flex-direction:column;
+}
+
+.form-actions .btn{
+    width:100%;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<!-- =====================================
+                SIDEBAR
+===================================== -->
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<img src="../../images/logo.png" alt="Logo">
+
+<h3>HOD Panel</h3>
+
+</div>
+
+<ul class="menu">
+
+<li>
+<a href="hod-dashboard.html">
+<i class="fa-solid fa-house"></i>
+Dashboard
+</a>
+</li>
+
+<li>
+<a href="teacher-list.html">
+<i class="fa-solid fa-users"></i>
+Teachers
+</a>
+</li>
+
+<li class="active">
+<a href="student-list.html">
+<i class="fa-solid fa-user-graduate"></i>
+Students
+</a>
+</li>
+
+<li>
+<a href="academic-calendar.html">
+<i class="fa-solid fa-calendar-days"></i>
+Timetable
+</a>
+</li>
+
+<li>
+<a href="leave-requests.html">
+<i class="fa-solid fa-file-circle-check"></i>
+Leave Requests
+</a>
+</li>
+
+<li>
+<a href="attendance.html">
+<i class="fa-solid fa-calendar-check"></i>
+Attendance
+</a>
+</li>
+
+<li>
+<a href="performance.html">
+<i class="fa-solid fa-chart-line"></i>
+Performance
+</a>
+</li>
+
+<li>
+<a href="analytics.html">
+<i class="fa-solid fa-chart-pie"></i>
+Analytics
+</a>
+</li>
+
+<li>
+<a href="notice-board.html">
+<i class="fa-solid fa-bullhorn"></i>
+Notices
+</a>
+</li>
+
+<li>
+<a href="face-register.html">
+<i class="fa-solid fa-face-smile"></i>
+Face Registration
+</a>
+</li>
+
+<li>
+<a href="face-attendance.html">
+<i class="fa-solid fa-camera"></i>
+Face Attendance
+</a>
+</li>
+
+<li>
+<a href="settings.html">
+<i class="fa-solid fa-gear"></i>
+Settings
+</a>
+</li>
+
+<li>
+<a href="hod-login.html">
+<i class="fa-solid fa-right-from-bracket"></i>
+Logout
+</a>
+</li>
+
+</ul>
+
+</aside>
+
+<!-- =====================================
+              MAIN CONTENT
+===================================== -->
+
+<main class="main-content">
+
+<!-- =====================================
+                TOP NAVBAR
+===================================== -->
+
+<nav class="top-navbar">
+
+<h3>Edit Student</h3>
+
+<div class="top-right">
+
+<!-- Search -->
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="searchBox"
+placeholder="Search...">
+
+</div>
+
+<!-- Dark Mode -->
+
+<button
+id="themeToggle"
+class="icon-btn">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+<!-- Notification -->
+
+<div class="dropdown">
+
+<button
+class="icon-btn position-relative"
+data-bs-toggle="dropdown">
+
+<i class="fa-regular fa-bell"></i>
+
+<span
+class="badge-count"
+id="notificationCount">
+
+4
+
+</span>
+
+</button>
+
+<ul class="dropdown-menu dropdown-menu-end notification-menu">
+
+<li class="dropdown-header">
+Notifications
+</li>
+
+<li>
+<a class="dropdown-item" href="#">
+📢 Faculty Meeting Tomorrow
+</a>
+</li>
+
+<li>
+<a class="dropdown-item" href="#">
+📄 Leave Request Pending
+</a>
+</li>
+
+<li>
+<a class="dropdown-item" href="#">
+🎓 Student Record Updated
+</a>
+</li>
+
+</ul>
+
+</div>
+
+<!-- Profile -->
+
+<div class="dropdown">
+
+<div
+class="profile"
+data-bs-toggle="dropdown"
+style="cursor:pointer;">
+
+<img
+src="https://i.pravatar.cc/50?img=12"
+alt="HOD">
+
+<span>Welcome, HOD</span>
+
+<i class="fa-solid fa-angle-down"></i>
+
+</div>
+
+<ul class="dropdown-menu dropdown-menu-end profile-menu">
+
+<li>
+
+<a
+class="dropdown-item"
+href="profile.html">
+
+<i class="fa-solid fa-user me-2"></i>
+My Profile
+
+</a>
+
+</li>
+
+<li>
+
+<a
+class="dropdown-item"
+href="change-password.html">
+
+<i class="fa-solid fa-lock me-2"></i>
+Change Password
+
+</a>
+
+</li>
+
+<li>
+
+<a
+class="dropdown-item"
+href="settings.html">
+
+<i class="fa-solid fa-gear me-2"></i>
+Settings
+
+</a>
+
+</li>
+
+<li>
+<hr class="dropdown-divider">
+</li>
+
+<li>
+
+<a
+class="dropdown-item text-danger"
+href="hod-login.html">
+
+<i class="fa-solid fa-right-from-bracket me-2"></i>
+Logout
+
+</a>
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</nav>
+
+<!-- =====================================
+                 HEADER
+===================================== -->
+
+<div class="page-header">
+
+<div>
+
+<h2>
+
+<i
+class="fa-solid fa-user-pen me-2"
+style="color:#6c4cff;"></i>
+
+Edit Student
+
+</h2>
+
+<p id="breadcrumbText">
+
+Students / Edit Student / STU001
+
+</p>
+
+</div>
+
+<a
+href="student-list.html"
+class="btn btn-outline-secondary">
+
+<i class="fa-solid fa-arrow-left me-2"></i>
+
+Back to Students
+
+</a>
+
+</div>
+
+<!-- =====================================
+                 FORM CARD
+===================================== -->
+
+<section class="edit-card">
+
+<form id="editStudentForm">
+
+<!-- =====================================
+              PROFILE PHOTO
+===================================== -->
+
+<div class="profile-section">
+
+<div class="profile-photo-box">
+
+<img
+src="https://i.pravatar.cc/300?img=47"
+id="profilePreview"
+class="profile-photo"
+alt="Student">
+
+<button
+type="button"
+class="change-photo-btn"
+id="changePhotoBtn">
+
+<i class="fa-solid fa-camera"></i>
+
+</button>
+
+<input
+type="file"
+id="profilePhotoInput"
+accept="image/*"
+hidden>
+
+</div>
+
+<div>
+
+<h3
+class="fw-bold mb-2"
+id="studentHeading">
+
+Aarushi Kumari
+
+</h3>
+
+<p class="text-muted mb-2">
+
+Student ID:
+<strong id="studentHeadingId">
+STU001
+</strong>
+
+</p>
+
+<span class="badge bg-success">
+
+<i class="fa-solid fa-circle-check me-1"></i>
+
+Active Student
+
+</span>
+
+</div>
+
+</div>
+
+<!-- =====================================
+            PERSONAL DETAILS
+===================================== -->
+
+<div class="form-section">
+
+<div class="section-title">
+
+<i class="fa-solid fa-user"></i>
+
+Personal Information
+
+</div>
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Full Name
+
+</label>
+
+<input
+type="text"
+id="fullName"
+class="form-control"
+value="Aarushi Kumari"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Student ID
+
+</label>
+
+<input
+type="text"
+id="studentId"
+class="form-control"
+value="STU001"
+readonly>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Email Address
+
+</label>
+
+<input
+type="email"
+id="email"
+class="form-control"
+value="aarushi@example.com"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Mobile Number
+
+</label>
+
+<input
+type="tel"
+id="mobile"
+class="form-control"
+value="9876543210"
+maxlength="10"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Date of Birth
+
+</label>
+
+<input
+type="date"
+id="dob"
+class="form-control"
+value="2005-03-15"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Gender
+
+</label>
+
+<select
+id="gender"
+class="form-select"
+required>
+
+<option value="">
+Select Gender
+</option>
+
+<option
+value="Female"
+selected>
+Female
+</option>
+
+<option value="Male">
+Male
+</option>
+
+<option value="Other">
+Other
+</option>
+
+</select>
+
+</div>
+
+<div class="col-12 mb-3">
+
+<label class="form-label">
+
+Address
+
+</label>
+
+<textarea
+id="address"
+class="form-control"
+rows="3"
+placeholder="Enter Address">Patna, Bihar</textarea>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =====================================
+            ACADEMIC DETAILS
+===================================== -->
+
+<div class="form-section">
+
+<div class="section-title">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+Academic Information
+
+</div>
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Department
+
+</label>
+
+<select
+id="department"
+class="form-select"
+required>
+
+<option value="">
+Select Department
+</option>
+
+<option
+value="Computer Science"
+selected>
+Computer Science
+</option>
+
+<option value="Mathematics">
+Mathematics
+</option>
+
+<option value="Commerce">
+Commerce
+</option>
+
+<option value="Physics">
+Physics
+</option>
+
+<option value="Chemistry">
+Chemistry
+</option>
+
+<option value="English">
+English
+</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Course
+
+</label>
+
+<select
+id="course"
+class="form-select"
+required>
+
+<option value="">
+Select Course
+</option>
+
+<option
+value="BCA"
+selected>
+BCA
+</option>
+
+<option value="BSc">
+B.Sc
+</option>
+
+<option value="BCom">
+B.Com
+</option>
+
+<option value="BA">
+B.A
+</option>
+
+<option value="MCA">
+MCA
+</option>
+
+<option value="MSc">
+M.Sc
+</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Semester
+
+</label>
+
+<select
+id="semester"
+class="form-select"
+required>
+
+<option value="">
+Select Semester
+</option>
+
+<option value="1">
+Semester 1
+</option>
+
+<option value="2">
+Semester 2
+</option>
+
+<option value="3">
+Semester 3
+</option>
+
+<option value="4">
+Semester 4
+</option>
+
+<option
+value="5"
+selected>
+Semester 5
+</option>
+
+<option value="6">
+Semester 6
+</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Session
+
+</label>
+
+<input
+type="text"
+id="session"
+class="form-control"
+value="2024-2027"
+placeholder="Example: 2024-2027"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Roll Number
+
+</label>
+
+<input
+type="text"
+id="rollNumber"
+class="form-control"
+value="BCA24001"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Current GPA
+
+</label>
+
+<input
+type="number"
+id="gpa"
+class="form-control"
+value="8.4"
+min="0"
+max="10"
+step="0.01">
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =====================================
+             ACCOUNT STATUS
+===================================== -->
+
+<div class="form-section">
+
+<div class="section-title">
+
+<i class="fa-solid fa-user-shield"></i>
+
+Account Information
+
+</div>
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Account Status
+
+</label>
+
+<select
+id="accountStatus"
+class="form-select">
+
+<option
+value="Active"
+selected>
+Active
+</option>
+
+<option value="Inactive">
+Inactive
+</option>
+
+<option value="Suspended">
+Suspended
+</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Admission Date
+
+</label>
+
+<input
+type="date"
+id="admissionDate"
+class="form-control"
+value="2024-07-15">
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =====================================
+             FACE RECOGNITION
+===================================== -->
+
+<div class="form-section">
+
+<div class="section-title">
+
+<i class="fa-solid fa-face-smile"></i>
+
+Face Recognition
+
+</div>
+
+<div class="face-card">
+
+<div class="face-info">
+
+<div class="face-icon">
+
+<i class="fa-solid fa-face-smile"></i>
+
+</div>
+
+<div>
+
+<h5 class="fw-bold mb-1">
+
+Face Registered
+
+</h5>
+
+<p class="mb-0 text-success">
+
+<i class="fa-solid fa-circle-check me-1"></i>
+
+20 face images captured
+
+</p>
+
+</div>
+
+</div>
+
+<button
+type="button"
+class="btn btn-success"
+id="updateFaceBtn">
+
+<i class="fa-solid fa-camera-rotate me-2"></i>
+
+Update Face Dataset
+
+</button>
+
+</div>
+
+</div>
+
+<!-- =====================================
+                 BUTTONS
+===================================== -->
+
+<div class="form-actions">
+
+<button
+type="button"
+class="btn btn-outline-secondary"
+id="cancelBtn">
+
+<i class="fa-solid fa-xmark me-2"></i>
+
+Cancel
+
+</button>
+
+<button
+type="reset"
+class="btn btn-warning">
+
+<i class="fa-solid fa-rotate-left me-2"></i>
+
+Reset
+
+</button>
+
+<button
+type="submit"
+class="btn btn-success">
+
+<i class="fa-solid fa-floppy-disk me-2"></i>
+
+Save Changes
+
+</button>
+
+</div>
+
+</form>
+
+</section>
+
+<!-- Footer -->
+
+<footer class="footer">
+
+© 2026 Faculty Management & Productivity System |
+Head of Department Panel
+
+</footer>
+
+</main>
+
+</div>
+
+<!-- =====================================
+          SUCCESS MODAL
+===================================== -->
+
+<div
+class="modal fade"
+id="updateSuccessModal"
+tabindex="-1">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content">
+
+<div class="modal-header bg-success text-white">
+
+<h5 class="modal-title">
+
+<i class="fa-solid fa-circle-check me-2"></i>
+
+Student Updated
+
+</h5>
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+
+</button>
+
+</div>
+
+<div class="modal-body text-center p-4">
+
+<i
+class="fa-solid fa-user-check fa-4x text-success mb-3">
+</i>
+
+<h4 class="fw-bold">
+
+Student Updated Successfully!
+
+</h4>
+
+<p class="text-muted">
+
+Student information has been updated successfully.
+
+</p>
+
+<p class="small">
+
+Currently this is a frontend demo.
+Database update will be connected through the backend.
+
+</p>
+
+</div>
+
+<div class="modal-footer">
+
+<button
+type="button"
+id="viewStudentBtn"
+class="btn btn-success">
+
+View Student
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Bootstrap -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+<!-- Existing HOD JS -->
+
+<script src="../../js/hod-dashboard.js"></script>
+
+<script>
+
+/* =====================================
+      GET STUDENT ID FROM URL
+===================================== */
+
+const params =
+new URLSearchParams(window.location.search);
+
+const currentStudentId =
+params.get("id") || "STU001";
+
+document.getElementById("studentId").value =
+currentStudentId;
+
+document.getElementById("studentHeadingId").innerText =
+currentStudentId;
+
+document.getElementById("breadcrumbText").innerText =
+"Students / Edit Student / " + currentStudentId;
+
+
+/* =====================================
+          PROFILE PHOTO
+===================================== */
+
+const changePhotoBtn =
+document.getElementById("changePhotoBtn");
+
+const profilePhotoInput =
+document.getElementById("profilePhotoInput");
+
+const profilePreview =
+document.getElementById("profilePreview");
+
+
+changePhotoBtn.addEventListener(
+"click",
+function(){
+
+profilePhotoInput.click();
+
+});
+
+
+profilePhotoInput.addEventListener(
+"change",
+function(){
+
+const file = this.files[0];
+
+if(!file){
+return;
+}
+
+const reader =
+new FileReader();
+
+reader.onload =
+function(e){
+
+profilePreview.src =
+e.target.result;
+
+};
+
+reader.readAsDataURL(file);
+
+});
+
+
+/* =====================================
+         UPDATE HEADING NAME
+===================================== */
+
+const fullName =
+document.getElementById("fullName");
+
+fullName.addEventListener(
+"input",
+function(){
+
+document.getElementById(
+"studentHeading"
+).innerText =
+this.value || "Student";
+
+});
+
+
+/* =====================================
+        MOBILE VALIDATION
+===================================== */
+
+const mobile =
+document.getElementById("mobile");
+
+mobile.addEventListener(
+"input",
+function(){
+
+this.value =
+this.value.replace(/\D/g,"");
+
+});
+
+
+/* =====================================
+        UPDATE FACE DATASET
+===================================== */
+
+document
+.getElementById("updateFaceBtn")
+.addEventListener(
+"click",
+function(){
+
+window.location.href =
+"face-register.html?userId=" +
+encodeURIComponent(currentStudentId) +
+"&role=Student&mode=update";
+
+});
+
+
+/* =====================================
+              CANCEL
+===================================== */
+
+document
+.getElementById("cancelBtn")
+.addEventListener(
+"click",
+function(){
+
+window.location.href =
+"student-details.html?id=" +
+encodeURIComponent(currentStudentId);
+
+});
+
+
+/* =====================================
+          SAVE STUDENT
+===================================== */
+
+const editStudentForm =
+document.getElementById("editStudentForm");
+
+editStudentForm.addEventListener(
+"submit",
+function(e){
+
+e.preventDefault();
+
+/* Basic validation */
+
+if(
+fullName.value.trim() === ""
+){
+
+alert("Please enter student name.");
+
+return;
+
+}
+
+if(
+mobile.value.length !== 10
+){
+
+alert(
+"Please enter a valid 10 digit mobile number."
+);
+
+return;
+
+}
+
+/*
+=========================================
+BACKEND WILL BE CONNECTED HERE LATER
+=========================================
+
+Example:
+
+fetch(
+"/api/hod/students/" + currentStudentId,
+{
+method:"PUT",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+fullName:
+document.getElementById("fullName").value,
+
+email:
+document.getElementById("email").value,
+
+mobile:
+document.getElementById("mobile").value,
+
+dob:
+document.getElementById("dob").value,
+
+gender:
+document.getElementById("gender").value,
+
+address:
+document.getElementById("address").value,
+
+department:
+document.getElementById("department").value,
+
+course:
+document.getElementById("course").value,
+
+semester:
+document.getElementById("semester").value,
+
+session:
+document.getElementById("session").value,
+
+rollNumber:
+document.getElementById("rollNumber").value,
+
+gpa:
+document.getElementById("gpa").value,
+
+accountStatus:
+document.getElementById("accountStatus").value
+
+})
+
+}
+);
+
+=========================================
+*/
+
+const modal =
+new bootstrap.Modal(
+document.getElementById(
+"updateSuccessModal"
+)
+);
+
+modal.show();
+
+});
+
+
+/* =====================================
+           VIEW STUDENT
+===================================== */
+
+document
+.getElementById("viewStudentBtn")
+.addEventListener(
+"click",
+function(){
+
+window.location.href =
+"student-details.html?id=" +
+encodeURIComponent(currentStudentId);
+
+});
+
+</script>
+
+</body>
+
+</html>

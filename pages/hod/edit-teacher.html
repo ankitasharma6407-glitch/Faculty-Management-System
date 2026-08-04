@@ -1,0 +1,2060 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit Teacher | HOD Panel</title>
+
+<!-- Bootstrap -->
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<!-- Font Awesome -->
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<!-- HOD CSS -->
+<link rel="stylesheet" href="../../css/hod-dashboard.css">
+
+<style>
+
+/* ================= PAGE HEADER ================= */
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.page-header h2{
+    font-weight:800;
+    margin:0;
+}
+
+.page-header p{
+    margin:6px 0 0;
+    color:#777;
+}
+
+
+/* ================= FORM CARD ================= */
+
+.form-card{
+    background:#fff;
+    border-radius:18px;
+    padding:28px;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
+
+.form-card h4{
+    color:#6c4cff;
+    font-weight:700;
+    margin-bottom:25px;
+    padding-bottom:15px;
+    border-bottom:1px solid #eee;
+}
+
+.form-label{
+    font-weight:600;
+}
+
+.form-control,
+.form-select{
+    border-radius:10px;
+    padding:11px 14px;
+}
+
+.form-control:focus,
+.form-select:focus{
+    border-color:#6c4cff;
+    box-shadow:0 0 0 .2rem rgba(108,76,255,.15);
+}
+
+
+/* ================= PROFILE PHOTO ================= */
+
+.profile-upload{
+    text-align:center;
+}
+
+.teacher-photo{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid #ede9fe;
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+    margin-bottom:18px;
+}
+
+.photo-buttons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+
+/* ================= FACE CARD ================= */
+
+.face-card{
+    background:#f0fdf4;
+    border:1px solid #bbf7d0;
+    border-radius:16px;
+    padding:20px;
+}
+
+.face-icon{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#dcfce7;
+    color:#16a34a;
+    font-size:30px;
+    margin-bottom:15px;
+}
+
+
+/* ================= SUBJECT ROW ================= */
+
+.subject-row{
+    background:#f8f9fc;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:15px;
+}
+
+
+/* ================= ACTION BAR ================= */
+
+.action-bar{
+    background:#fff;
+    padding:20px;
+    border-radius:18px;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+    display:flex;
+    justify-content:flex-end;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:25px;
+}
+
+.action-bar .btn{
+    padding:11px 24px;
+    border-radius:10px;
+    font-weight:600;
+}
+
+
+/* ================= DARK MODE ================= */
+
+body.dark .form-card,
+body.dark .action-bar{
+    background:#1f1f1f;
+    color:#fff;
+}
+
+body.dark .form-card h4{
+    color:#fff;
+    border-color:#444;
+}
+
+body.dark .page-header p{
+    color:#ccc;
+}
+
+body.dark .form-control,
+body.dark .form-select{
+    background:#292929;
+    color:#fff;
+    border-color:#444;
+}
+
+body.dark .form-control::placeholder{
+    color:#aaa;
+}
+
+body.dark .form-select option{
+    background:#292929;
+    color:#fff;
+}
+
+body.dark .subject-row{
+    background:#292929;
+}
+
+body.dark .face-card{
+    background:#132a1b;
+    border-color:#245c35;
+}
+
+body.dark .teacher-photo{
+    border-color:#6c4cff;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+.action-bar{
+    flex-direction:column;
+}
+
+.action-bar .btn{
+    width:100%;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+
+<!-- =====================================================
+                        SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<img src="../../images/logo.png" alt="Logo">
+
+<h3>HOD Panel</h3>
+
+</div>
+
+<ul class="menu">
+
+<li>
+<a href="hod-dashboard.html">
+<i class="fa-solid fa-house"></i>
+Dashboard
+</a>
+</li>
+
+<li class="active">
+<a href="teacher-list.html">
+<i class="fa-solid fa-users"></i>
+Teachers
+</a>
+</li>
+
+<li>
+<a href="student-list.html">
+<i class="fa-solid fa-user-graduate"></i>
+Students
+</a>
+</li>
+
+<li>
+<a href="academic-calendar.html">
+<i class="fa-solid fa-calendar-days"></i>
+Timetable
+</a>
+</li>
+
+<li>
+<a href="leave-requests.html">
+<i class="fa-solid fa-file-circle-check"></i>
+Leave Requests
+</a>
+</li>
+
+<li>
+<a href="attendance.html">
+<i class="fa-solid fa-calendar-check"></i>
+Attendance
+</a>
+</li>
+
+<li>
+<a href="performance.html">
+<i class="fa-solid fa-chart-line"></i>
+Performance
+</a>
+</li>
+
+<li>
+<a href="analytics.html">
+<i class="fa-solid fa-chart-pie"></i>
+Analytics
+</a>
+</li>
+
+<li>
+<a href="notice-board.html">
+<i class="fa-solid fa-bullhorn"></i>
+Notices
+</a>
+</li>
+
+<li>
+<a href="face-register.html">
+<i class="fa-solid fa-face-smile"></i>
+Face Registration
+</a>
+</li>
+
+<li>
+<a href="face-attendance.html">
+<i class="fa-solid fa-camera"></i>
+Face Attendance
+</a>
+</li>
+
+<li>
+<a href="settings.html">
+<i class="fa-solid fa-gear"></i>
+Settings
+</a>
+</li>
+
+<li>
+<a href="hod-login.html">
+<i class="fa-solid fa-right-from-bracket"></i>
+Logout
+</a>
+</li>
+
+</ul>
+
+</aside>
+
+
+<!-- =====================================================
+                       MAIN CONTENT
+===================================================== -->
+
+<main class="main-content">
+
+
+<!-- =====================================================
+                         NAVBAR
+===================================================== -->
+
+<nav class="top-navbar">
+
+<h3>Edit Teacher</h3>
+
+<div class="top-right">
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="searchBox"
+placeholder="Search...">
+
+</div>
+
+
+<!-- DARK MODE -->
+
+<button
+id="themeToggle"
+class="icon-btn">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+
+<!-- NOTIFICATION -->
+
+<div class="dropdown">
+
+<button
+class="icon-btn position-relative"
+data-bs-toggle="dropdown">
+
+<i class="fa-regular fa-bell"></i>
+
+<span
+class="badge-count"
+id="notificationCount">
+
+4
+
+</span>
+
+</button>
+
+<ul class="dropdown-menu dropdown-menu-end notification-menu">
+
+<li class="dropdown-header">
+Notifications
+</li>
+
+<li>
+<a class="dropdown-item" href="#">
+📢 Faculty Meeting Tomorrow
+</a>
+</li>
+
+<li>
+<a class="dropdown-item" href="#">
+📄 Leave Request Pending
+</a>
+</li>
+
+<li>
+<a class="dropdown-item" href="#">
+👨‍🏫 Teacher Profile Updated
+</a>
+</li>
+
+</ul>
+
+</div>
+
+
+<!-- PROFILE -->
+
+<div class="dropdown">
+
+<div
+class="profile"
+data-bs-toggle="dropdown"
+style="cursor:pointer;">
+
+<img
+src="https://i.pravatar.cc/50?img=12"
+alt="HOD">
+
+<span>Welcome, HOD</span>
+
+<i class="fa-solid fa-angle-down"></i>
+
+</div>
+
+<ul class="dropdown-menu dropdown-menu-end profile-menu">
+
+<li>
+
+<a
+class="dropdown-item"
+href="profile.html">
+
+<i class="fa-solid fa-user me-2"></i>
+My Profile
+
+</a>
+
+</li>
+
+<li>
+
+<a
+class="dropdown-item"
+href="change-password.html">
+
+<i class="fa-solid fa-lock me-2"></i>
+Change Password
+
+</a>
+
+</li>
+
+<li>
+
+<a
+class="dropdown-item"
+href="settings.html">
+
+<i class="fa-solid fa-gear me-2"></i>
+Settings
+
+</a>
+
+</li>
+
+<li>
+<hr class="dropdown-divider">
+</li>
+
+<li>
+
+<a
+class="dropdown-item text-danger"
+href="hod-login.html">
+
+<i class="fa-solid fa-right-from-bracket me-2"></i>
+Logout
+
+</a>
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</nav>
+
+
+<!-- =====================================================
+                       PAGE HEADER
+===================================================== -->
+
+<div class="page-header">
+
+<div>
+
+<h2>
+
+<i
+class="fa-solid fa-user-pen me-2"
+style="color:#6c4cff;"></i>
+
+Edit Teacher
+
+</h2>
+
+<p id="breadcrumbText">
+Teachers / Edit Teacher / TCH001
+</p>
+
+</div>
+
+<a
+id="backTeacherBtn"
+href="teacher-details.html?id=TCH001"
+class="btn btn-outline-secondary">
+
+<i class="fa-solid fa-arrow-left me-2"></i>
+Back to Teacher
+
+</a>
+
+</div>
+
+
+<!-- =====================================================
+                       EDIT FORM
+===================================================== -->
+
+<form id="editTeacherForm">
+
+
+<!-- =====================================================
+                   PROFILE PHOTO
+===================================================== -->
+
+<section class="form-card">
+
+<h4>
+
+<i class="fa-solid fa-image me-2"></i>
+Teacher Profile Photo
+
+</h4>
+
+<div class="profile-upload">
+
+<img
+id="teacherPhotoPreview"
+src="https://i.pravatar.cc/300?img=11"
+class="teacher-photo"
+alt="Teacher">
+
+<input
+type="file"
+id="teacherPhotoInput"
+accept="image/*"
+hidden>
+
+<div class="photo-buttons">
+
+<button
+type="button"
+id="choosePhotoBtn"
+class="btn btn-primary">
+
+<i class="fa-solid fa-upload me-2"></i>
+Choose Photo
+
+</button>
+
+<button
+type="button"
+id="removePhotoBtn"
+class="btn btn-outline-danger">
+
+<i class="fa-solid fa-trash me-2"></i>
+Remove Photo
+
+</button>
+
+</div>
+
+<small class="text-muted d-block mt-3">
+
+Allowed: JPG, JPEG, PNG
+
+</small>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+                  PERSONAL INFORMATION
+===================================================== -->
+
+<section class="form-card">
+
+<h4>
+
+<i class="fa-solid fa-user me-2"></i>
+Personal Information
+
+</h4>
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Full Name
+</label>
+
+<input
+type="text"
+id="fullName"
+class="form-control"
+value="Rahul Kumar"
+required>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Teacher ID
+</label>
+
+<input
+type="text"
+id="teacherId"
+class="form-control"
+value="TCH001"
+readonly>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Email Address
+</label>
+
+<input
+type="email"
+id="email"
+class="form-control"
+value="rahul@pwc.edu.in"
+required>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Mobile Number
+</label>
+
+<input
+type="tel"
+id="mobile"
+class="form-control"
+value="9876543210"
+maxlength="10"
+required>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Date of Birth
+</label>
+
+<input
+type="date"
+id="dob"
+class="form-control"
+value="1988-05-12">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Gender
+</label>
+
+<select
+id="gender"
+class="form-select">
+
+<option value="">Select Gender</option>
+<option selected>Male</option>
+<option>Female</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+
+<div class="col-12 mb-3">
+
+<label class="form-label">
+Address
+</label>
+
+<textarea
+id="address"
+class="form-control"
+rows="3">Patna, Bihar</textarea>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+               PROFESSIONAL INFORMATION
+===================================================== -->
+
+<section class="form-card">
+
+<h4>
+
+<i class="fa-solid fa-briefcase me-2"></i>
+Professional Information
+
+</h4>
+
+<div class="row">
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Department
+</label>
+
+<select
+id="department"
+class="form-select"
+required>
+
+<option value="">Select Department</option>
+<option selected>Computer Science</option>
+<option>Mathematics</option>
+<option>Commerce</option>
+<option>Physics</option>
+<option>Chemistry</option>
+<option>English</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Designation
+</label>
+
+<select
+id="designation"
+class="form-select"
+required>
+
+<option value="">Select Designation</option>
+<option>Professor</option>
+<option>Associate Professor</option>
+<option selected>Assistant Professor</option>
+<option>Lecturer</option>
+<option>Guest Faculty</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Joining Date
+</label>
+
+<input
+type="date"
+id="joiningDate"
+class="form-control"
+value="2021-07-15">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Employment Type
+</label>
+
+<select
+id="employmentType"
+class="form-select">
+
+<option>Full Time</option>
+<option>Part Time</option>
+<option>Contract</option>
+<option>Guest Faculty</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Experience
+</label>
+
+<div class="input-group">
+
+<input
+type="number"
+id="experience"
+class="form-control"
+value="8"
+min="0">
+
+<span class="input-group-text">
+Years
+</span>
+
+</div>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Account Status
+</label>
+
+<select
+id="accountStatus"
+class="form-select">
+
+<option selected>Active</option>
+<option>Inactive</option>
+<option>Suspended</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Employee Type
+</label>
+
+<select
+id="employeeType"
+class="form-select">
+
+<option selected>Teaching Faculty</option>
+<option>Visiting Faculty</option>
+<option>Temporary Faculty</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Official Email
+</label>
+
+<input
+type="email"
+id="officialEmail"
+class="form-control"
+value="rahul.cs@pwc.edu.in">
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+                  QUALIFICATION
+===================================================== -->
+
+<section class="form-card">
+
+<h4>
+
+<i class="fa-solid fa-graduation-cap me-2"></i>
+Qualification & Expertise
+
+</h4>
+
+<div class="row">
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Highest Qualification
+</label>
+
+<input
+type="text"
+id="highestQualification"
+class="form-control"
+value="Ph.D. Computer Science">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Post Graduation
+</label>
+
+<input
+type="text"
+id="postGraduation"
+class="form-control"
+value="M.Tech Computer Science">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Graduation
+</label>
+
+<input
+type="text"
+id="graduation"
+class="form-control"
+value="B.Tech Computer Science">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Specialization
+</label>
+
+<input
+type="text"
+id="specialization"
+class="form-control"
+value="Artificial Intelligence">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Research Area
+</label>
+
+<input
+type="text"
+id="researchArea"
+class="form-control"
+value="Machine Learning">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+Primary Subject
+</label>
+
+<input
+type="text"
+id="primarySubject"
+class="form-control"
+value="Java Programming">
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+                   SUBJECT ASSIGNMENT
+===================================================== -->
+
+<section class="form-card">
+
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+
+<h4 class="mb-0">
+
+<i class="fa-solid fa-book-open me-2"></i>
+Assigned Subjects
+
+</h4>
+
+<button
+type="button"
+id="addSubjectBtn"
+class="btn btn-primary">
+
+<i class="fa-solid fa-plus me-2"></i>
+Add Subject
+
+</button>
+
+</div>
+
+<div
+id="subjectContainer"
+class="mt-4">
+
+
+<!-- SUBJECT 1 -->
+
+<div class="subject-row">
+
+<div class="row align-items-end">
+
+<div class="col-lg-2 col-md-6 mb-2">
+
+<label class="form-label">
+Subject Code
+</label>
+
+<input
+type="text"
+class="form-control subject-code"
+value="CS501">
+
+</div>
+
+
+<div class="col-lg-3 col-md-6 mb-2">
+
+<label class="form-label">
+Subject
+</label>
+
+<input
+type="text"
+class="form-control subject-name"
+value="Java Programming">
+
+</div>
+
+
+<div class="col-lg-2 col-md-4 mb-2">
+
+<label class="form-label">
+Course
+</label>
+
+<input
+type="text"
+class="form-control subject-course"
+value="BCA">
+
+</div>
+
+
+<div class="col-lg-2 col-md-4 mb-2">
+
+<label class="form-label">
+Semester
+</label>
+
+<input
+type="number"
+class="form-control subject-semester"
+value="5"
+min="1">
+
+</div>
+
+
+<div class="col-lg-2 col-md-4 mb-2">
+
+<label class="form-label">
+Classes / Week
+</label>
+
+<input
+type="number"
+class="form-control subject-classes"
+value="5"
+min="1">
+
+</div>
+
+
+<div class="col-lg-1 mb-2">
+
+<button
+type="button"
+class="btn btn-danger w-100 remove-subject-btn">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SUBJECT 2 -->
+
+<div class="subject-row">
+
+<div class="row align-items-end">
+
+<div class="col-lg-2 col-md-6 mb-2">
+
+<label class="form-label">
+Subject Code
+</label>
+
+<input
+type="text"
+class="form-control subject-code"
+value="CS302">
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-2">
+
+<label class="form-label">
+Subject
+</label>
+
+<input
+type="text"
+class="form-control subject-name"
+value="Data Structures">
+
+</div>
+
+<div class="col-lg-2 col-md-4 mb-2">
+
+<label class="form-label">
+Course
+</label>
+
+<input
+type="text"
+class="form-control subject-course"
+value="BCA">
+
+</div>
+
+<div class="col-lg-2 col-md-4 mb-2">
+
+<label class="form-label">
+Semester
+</label>
+
+<input
+type="number"
+class="form-control subject-semester"
+value="3">
+
+</div>
+
+<div class="col-lg-2 col-md-4 mb-2">
+
+<label class="form-label">
+Classes / Week
+</label>
+
+<input
+type="number"
+class="form-control subject-classes"
+value="4">
+
+</div>
+
+<div class="col-lg-1 mb-2">
+
+<button
+type="button"
+class="btn btn-danger w-100 remove-subject-btn">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+                 FACE RECOGNITION
+===================================================== -->
+
+<section class="form-card">
+
+<h4>
+
+<i class="fa-solid fa-face-smile me-2"></i>
+Face Recognition
+
+</h4>
+
+<div class="face-card">
+
+<div class="face-icon">
+
+<i class="fa-solid fa-face-smile"></i>
+
+</div>
+
+<h5 class="fw-bold">
+
+Face Dataset Registered
+
+</h5>
+
+<p class="text-muted">
+
+This teacher currently has a registered face dataset containing
+20 captured face images.
+
+</p>
+
+<div class="mb-3">
+
+<strong>Status:</strong>
+
+<span class="badge bg-success ms-2">
+
+Active
+
+</span>
+
+</div>
+
+<div class="mb-3">
+
+<strong>Captured Images:</strong>
+20 / 20
+
+</div>
+
+<div class="mb-3">
+
+<strong>Last Updated:</strong>
+24 July 2026
+
+</div>
+
+<button
+type="button"
+id="updateFaceBtn"
+class="btn btn-success">
+
+<i class="fa-solid fa-camera-rotate me-2"></i>
+Update Face Dataset
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+                     SAVE BUTTONS
+===================================================== -->
+
+<div class="action-bar">
+
+<button
+type="button"
+id="cancelBtn"
+class="btn btn-outline-secondary">
+
+<i class="fa-solid fa-xmark me-2"></i>
+Cancel
+
+</button>
+
+<button
+type="button"
+id="resetBtn"
+class="btn btn-warning">
+
+<i class="fa-solid fa-rotate-left me-2"></i>
+Reset Changes
+
+</button>
+
+<button
+type="submit"
+id="saveTeacherBtn"
+class="btn btn-success">
+
+<i class="fa-solid fa-floppy-disk me-2"></i>
+Save Changes
+
+</button>
+
+</div>
+
+</form>
+
+
+<!-- =====================================================
+                  SUCCESS MODAL
+===================================================== -->
+
+<div
+class="modal fade"
+id="updateSuccessModal"
+tabindex="-1">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content">
+
+<div class="modal-header bg-success text-white">
+
+<h5 class="modal-title">
+
+<i class="fa-solid fa-circle-check me-2"></i>
+Teacher Updated
+
+</h5>
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+<div class="modal-body text-center py-4">
+
+<i
+class="fa-solid fa-user-check fa-4x text-success mb-3">
+</i>
+
+<h4 class="fw-bold">
+Teacher Updated Successfully!
+</h4>
+
+<p class="text-muted">
+
+Teacher information has been updated successfully.
+
+</p>
+
+<small class="text-muted">
+
+Currently this is a frontend demo. Database update will happen after backend integration.
+
+</small>
+
+</div>
+
+<div class="modal-footer">
+
+<button
+type="button"
+id="viewTeacherBtn"
+class="btn btn-success">
+
+View Teacher
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+© 2026 Faculty Management & Productivity System |
+Head of Department Panel
+
+</footer>
+
+
+</main>
+
+</div>
+
+
+<!-- Bootstrap JS -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- Existing HOD Dashboard JS -->
+
+<script src="../../js/hod-dashboard.js"></script>
+
+
+<!-- =====================================================
+                    PAGE JAVASCRIPT
+===================================================== -->
+
+<script>
+
+/* ================= GET TEACHER ID ================= */
+
+const urlParams =
+new URLSearchParams(window.location.search);
+
+const currentTeacherId =
+urlParams.get("id") || "TCH001";
+
+
+document.getElementById("teacherId").value =
+currentTeacherId;
+
+
+document.getElementById("breadcrumbText").innerText =
+"Teachers / Edit Teacher / " +
+currentTeacherId;
+
+
+document.getElementById("backTeacherBtn").href =
+"teacher-details.html?id=" +
+encodeURIComponent(currentTeacherId);
+
+
+/*
+========================================================
+BACKEND INTEGRATION LATER
+
+GET TEACHER DATA:
+
+fetch(
+    "/api/hod/teachers/" +
+    encodeURIComponent(currentTeacherId)
+)
+.then(response => response.json())
+.then(data => {
+
+    document.getElementById("fullName").value = data.name;
+    document.getElementById("email").value = data.email;
+    document.getElementById("mobile").value = data.mobile;
+    document.getElementById("department").value = data.department;
+    document.getElementById("designation").value = data.designation;
+
+});
+
+========================================================
+*/
+
+
+/* ================= PHOTO UPLOAD ================= */
+
+const teacherPhotoInput =
+document.getElementById("teacherPhotoInput");
+
+const teacherPhotoPreview =
+document.getElementById("teacherPhotoPreview");
+
+
+document
+.getElementById("choosePhotoBtn")
+.addEventListener("click",function(){
+
+teacherPhotoInput.click();
+
+});
+
+
+teacherPhotoInput.addEventListener(
+"change",
+function(){
+
+const file = this.files[0];
+
+if(!file){
+    return;
+}
+
+if(!file.type.startsWith("image/")){
+
+alert("Please select a valid image.");
+
+this.value="";
+
+return;
+
+}
+
+const reader =
+new FileReader();
+
+reader.onload =
+function(event){
+
+teacherPhotoPreview.src =
+event.target.result;
+
+};
+
+reader.readAsDataURL(file);
+
+});
+
+
+/* ================= REMOVE PHOTO ================= */
+
+document
+.getElementById("removePhotoBtn")
+.addEventListener("click",function(){
+
+teacherPhotoPreview.src =
+"../../images/default-profile.png";
+
+teacherPhotoInput.value="";
+
+});
+
+
+/* ================= ADD SUBJECT ================= */
+
+const subjectContainer =
+document.getElementById("subjectContainer");
+
+document
+.getElementById("addSubjectBtn")
+.addEventListener("click",function(){
+
+const subjectRow =
+document.createElement("div");
+
+subjectRow.className =
+"subject-row";
+
+subjectRow.innerHTML = `
+
+<div class="row align-items-end">
+
+<div class="col-lg-2 col-md-6 mb-2">
+
+<label class="form-label">
+Subject Code
+</label>
+
+<input
+type="text"
+class="form-control subject-code"
+placeholder="CS101">
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-2">
+
+<label class="form-label">
+Subject
+</label>
+
+<input
+type="text"
+class="form-control subject-name"
+placeholder="Subject Name">
+
+</div>
+
+<div class="col-lg-2 col-md-4 mb-2">
+
+<label class="form-label">
+Course
+</label>
+
+<input
+type="text"
+class="form-control subject-course"
+placeholder="BCA">
+
+</div>
+
+<div class="col-lg-2 col-md-4 mb-2">
+
+<label class="form-label">
+Semester
+</label>
+
+<input
+type="number"
+class="form-control subject-semester"
+min="1"
+placeholder="1">
+
+</div>
+
+<div class="col-lg-2 col-md-4 mb-2">
+
+<label class="form-label">
+Classes / Week
+</label>
+
+<input
+type="number"
+class="form-control subject-classes"
+min="1"
+placeholder="4">
+
+</div>
+
+<div class="col-lg-1 mb-2">
+
+<button
+type="button"
+class="btn btn-danger w-100 remove-subject-btn">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+subjectContainer.appendChild(subjectRow);
+
+});
+
+
+/* ================= REMOVE SUBJECT ================= */
+
+subjectContainer.addEventListener(
+"click",
+function(event){
+
+const button =
+event.target.closest(".remove-subject-btn");
+
+if(!button){
+    return;
+}
+
+const row =
+button.closest(".subject-row");
+
+row.remove();
+
+});
+
+
+/* ================= UPDATE FACE ================= */
+
+document
+.getElementById("updateFaceBtn")
+.addEventListener("click",function(){
+
+window.location.href =
+"face-register.html?userId=" +
+encodeURIComponent(currentTeacherId) +
+"&role=Teacher&mode=update";
+
+});
+
+
+/* ================= MOBILE VALIDATION ================= */
+
+document
+.getElementById("mobile")
+.addEventListener("input",function(){
+
+this.value =
+this.value.replace(/\D/g,"").slice(0,10);
+
+});
+
+
+/* ================= RESET ================= */
+
+document
+.getElementById("resetBtn")
+.addEventListener("click",function(){
+
+if(
+confirm(
+"Are you sure you want to reset all changes?"
+)
+){
+
+document
+.getElementById("editTeacherForm")
+.reset();
+
+document
+.getElementById("teacherId")
+.value =
+currentTeacherId;
+
+teacherPhotoPreview.src =
+"https://i.pravatar.cc/300?img=11";
+
+}
+
+});
+
+
+/* ================= CANCEL ================= */
+
+document
+.getElementById("cancelBtn")
+.addEventListener("click",function(){
+
+window.location.href =
+"teacher-details.html?id=" +
+encodeURIComponent(currentTeacherId);
+
+});
+
+
+/* ================= SAVE TEACHER ================= */
+
+document
+.getElementById("editTeacherForm")
+.addEventListener(
+"submit",
+function(event){
+
+event.preventDefault();
+
+
+const fullName =
+document
+.getElementById("fullName")
+.value
+.trim();
+
+
+const email =
+document
+.getElementById("email")
+.value
+.trim();
+
+
+const mobile =
+document
+.getElementById("mobile")
+.value
+.trim();
+
+
+const department =
+document
+.getElementById("department")
+.value;
+
+
+const designation =
+document
+.getElementById("designation")
+.value;
+
+
+if(
+!fullName ||
+!email ||
+!mobile ||
+!department ||
+!designation
+){
+
+alert(
+"Please fill all required fields."
+);
+
+return;
+
+}
+
+
+if(mobile.length !== 10){
+
+alert(
+"Mobile number must contain 10 digits."
+);
+
+return;
+
+}
+
+
+/* ==============================================
+COLLECT SUBJECTS
+============================================== */
+
+const subjects = [];
+
+document
+.querySelectorAll(".subject-row")
+.forEach(function(row){
+
+const subject = {
+
+code:
+row.querySelector(".subject-code").value,
+
+name:
+row.querySelector(".subject-name").value,
+
+course:
+row.querySelector(".subject-course").value,
+
+semester:
+row.querySelector(".subject-semester").value,
+
+classesPerWeek:
+row.querySelector(".subject-classes").value
+
+};
+
+subjects.push(subject);
+
+});
+
+
+/* ==============================================
+DATA READY FOR BACKEND
+============================================== */
+
+const teacherData = {
+
+teacherId:
+currentTeacherId,
+
+fullName:
+fullName,
+
+email:
+email,
+
+mobile:
+mobile,
+
+dateOfBirth:
+document.getElementById("dob").value,
+
+gender:
+document.getElementById("gender").value,
+
+address:
+document.getElementById("address").value,
+
+department:
+department,
+
+designation:
+designation,
+
+joiningDate:
+document.getElementById("joiningDate").value,
+
+employmentType:
+document.getElementById("employmentType").value,
+
+experience:
+document.getElementById("experience").value,
+
+accountStatus:
+document.getElementById("accountStatus").value,
+
+employeeType:
+document.getElementById("employeeType").value,
+
+officialEmail:
+document.getElementById("officialEmail").value,
+
+highestQualification:
+document.getElementById("highestQualification").value,
+
+postGraduation:
+document.getElementById("postGraduation").value,
+
+graduation:
+document.getElementById("graduation").value,
+
+specialization:
+document.getElementById("specialization").value,
+
+researchArea:
+document.getElementById("researchArea").value,
+
+primarySubject:
+document.getElementById("primarySubject").value,
+
+subjects:
+subjects
+
+};
+
+
+console.log(
+"Teacher Update Data:",
+teacherData
+);
+
+
+/*
+========================================================
+
+BACKEND LATER
+
+PUT /api/hod/teachers/TCH001
+
+fetch(
+"/api/hod/teachers/" +
+encodeURIComponent(currentTeacherId),
+{
+
+method:"PUT",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:
+JSON.stringify(teacherData)
+
+}
+)
+
+.then(response => response.json())
+
+.then(data => {
+
+    // success modal
+
+})
+
+.catch(error => {
+
+    console.error(error);
+
+    alert("Teacher update failed.");
+
+});
+
+========================================================
+*/
+
+
+const modal =
+new bootstrap.Modal(
+document.getElementById(
+"updateSuccessModal"
+)
+);
+
+modal.show();
+
+});
+
+
+/* ================= VIEW TEACHER ================= */
+
+document
+.getElementById("viewTeacherBtn")
+.addEventListener("click",function(){
+
+window.location.href =
+"teacher-details.html?id=" +
+encodeURIComponent(currentTeacherId);
+
+});
+
+</script>
+
+
+</body>
+
+</html>

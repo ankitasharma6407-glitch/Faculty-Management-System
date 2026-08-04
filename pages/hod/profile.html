@@ -1,0 +1,4303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>My Profile | HOD Panel</title>
+
+<!-- ================= Bootstrap ================= -->
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<!-- ================= Font Awesome ================= -->
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<!-- ================= Google Font ================= -->
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<!-- ================= HOD Dashboard CSS ================= -->
+
+<link
+rel="stylesheet"
+href="../../css/hod-dashboard.css">
+
+
+<style>
+
+/* =========================================================
+                    HOD PROFILE PAGE
+========================================================= */
+
+.profile-page-header{
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:30px;
+
+    padding:35px 40px;
+
+    margin-bottom:25px;
+
+    border-radius:24px;
+
+    color:#fff;
+
+    background:
+    linear-gradient(
+        135deg,
+        #6d5dfc,
+        #7c3aed,
+        #2563eb
+    );
+
+    box-shadow:
+    0 15px 35px
+    rgba(79,70,229,.20);
+
+}
+
+
+/* Decorative Circle */
+
+.profile-page-header::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:240px;
+
+    height:240px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.10);
+
+    right:-80px;
+
+    top:-100px;
+
+}
+
+
+.profile-page-header::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:150px;
+
+    height:150px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.08);
+
+    left:45%;
+
+    bottom:-100px;
+
+}
+
+
+.profile-header-content{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+.profile-header-content h2{
+
+    font-size:32px;
+
+    font-weight:800;
+
+    margin-bottom:10px;
+
+}
+
+
+.profile-header-content p{
+
+    margin:0;
+
+    color:#eef2ff;
+
+    line-height:1.7;
+
+    max-width:650px;
+
+}
+
+
+.profile-header-icon{
+
+    position:relative;
+
+    z-index:2;
+
+    width:105px;
+
+    height:105px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.16);
+
+    backdrop-filter:
+    blur(10px);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:45px;
+
+}
+
+
+/* =========================================================
+                    PROFILE MAIN GRID
+========================================================= */
+
+.profile-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    350px 1fr;
+
+    gap:25px;
+
+    align-items:start;
+
+}
+
+
+/* =========================================================
+                    PROFILE CARD
+========================================================= */
+
+.profile-main-card{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:30px 25px;
+
+    text-align:center;
+
+    box-shadow:
+    0 8px 28px
+    rgba(15,23,42,.08);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+.profile-main-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:100px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #6d5dfc,
+        #7c3aed,
+        #2563eb
+    );
+
+}
+
+
+.profile-photo-wrapper{
+
+    position:relative;
+
+    width:150px;
+
+    height:150px;
+
+    margin:
+    25px auto 18px;
+
+    z-index:2;
+
+}
+
+
+.profile-photo-wrapper img{
+
+    width:150px;
+
+    height:150px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:
+    6px solid #fff;
+
+    box-shadow:
+    0 8px 25px
+    rgba(0,0,0,.18);
+
+}
+
+
+.profile-camera-btn{
+
+    position:absolute;
+
+    right:4px;
+
+    bottom:8px;
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#6c4cff;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 5px 15px
+    rgba(0,0,0,.22);
+
+    transition:.3s;
+
+}
+
+
+.profile-camera-btn:hover{
+
+    background:#5438e8;
+
+    transform:scale(1.08);
+
+}
+
+
+.profile-main-card h3{
+
+    font-size:23px;
+
+    font-weight:800;
+
+    margin-bottom:5px;
+
+}
+
+
+.profile-designation{
+
+    color:#6c4cff;
+
+    font-weight:600;
+
+    margin-bottom:5px;
+
+}
+
+
+.profile-department{
+
+    color:#64748b;
+
+    font-size:14px;
+
+    margin-bottom:18px;
+
+}
+
+
+.profile-status{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:
+    7px 14px;
+
+    border-radius:30px;
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    margin-bottom:22px;
+
+}
+
+
+.profile-status-dot{
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:#22c55e;
+
+}
+
+
+/* =========================================================
+                    PROFILE QUICK INFO
+========================================================= */
+
+.profile-quick-info{
+
+    border-top:
+    1px solid #edf0f5;
+
+    padding-top:20px;
+
+    text-align:left;
+
+}
+
+
+.profile-quick-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    padding:12px 0;
+
+}
+
+
+.profile-quick-icon{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+    rgba(108,76,255,.10);
+
+    color:#6c4cff;
+
+    flex-shrink:0;
+
+}
+
+
+.profile-quick-text small{
+
+    display:block;
+
+    color:#94a3b8;
+
+    margin-bottom:2px;
+
+}
+
+
+.profile-quick-text span{
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:#334155;
+
+    word-break:break-word;
+
+}
+
+
+/* =========================================================
+                    PROFILE BUTTONS
+========================================================= */
+
+.profile-buttons{
+
+    display:grid;
+
+    gap:10px;
+
+    margin-top:20px;
+
+}
+
+
+.profile-buttons .btn{
+
+    padding:11px;
+
+    border-radius:11px;
+
+    font-weight:600;
+
+}
+
+
+/* =========================================================
+                    RIGHT CONTENT
+========================================================= */
+
+.profile-right-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+
+/* =========================================================
+                    INFORMATION CARD
+========================================================= */
+
+.profile-info-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:
+    0 8px 28px
+    rgba(15,23,42,.07);
+
+}
+
+
+.profile-info-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:22px;
+
+    padding-bottom:15px;
+
+    border-bottom:
+    1px solid #edf0f5;
+
+}
+
+
+.profile-info-header h4{
+
+    margin:0;
+
+    color:#4f46e5;
+
+    font-size:19px;
+
+    font-weight:800;
+
+}
+
+
+.profile-info-header h4 i{
+
+    margin-right:8px;
+
+}
+
+
+.profile-edit-small-btn{
+
+    border:none;
+
+    background:
+    rgba(108,76,255,.10);
+
+    color:#6c4cff;
+
+    border-radius:10px;
+
+    padding:
+    8px 13px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+.profile-edit-small-btn:hover{
+
+    background:#6c4cff;
+
+    color:#fff;
+
+}
+
+
+/* =========================================================
+                    INFO GRID
+========================================================= */
+
+.profile-info-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:18px;
+
+}
+
+
+.profile-info-item{
+
+    background:#f8fafc;
+
+    padding:16px;
+
+    border-radius:13px;
+
+    border:
+    1px solid #edf0f5;
+
+    transition:.3s;
+
+}
+
+
+.profile-info-item:hover{
+
+    border-color:#c4b5fd;
+
+    transform:
+    translateY(-2px);
+
+}
+
+
+.profile-info-item label{
+
+    display:block;
+
+    color:#94a3b8;
+
+    font-size:12px;
+
+    margin-bottom:6px;
+
+    font-weight:600;
+
+}
+
+
+.profile-info-item p{
+
+    margin:0;
+
+    color:#1e293b;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+
+/* =========================================================
+                    SOCIAL LINKS
+========================================================= */
+
+.profile-social-links{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+    margin-top:18px;
+
+}
+
+
+.profile-social-link{
+
+    width:40px;
+
+    height:40px;
+
+    border-radius:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-decoration:none;
+
+    background:#f1f5f9;
+
+    color:#475569;
+
+    transition:.3s;
+
+}
+
+
+.profile-social-link:hover{
+
+    background:#6c4cff;
+
+    color:#fff;
+
+    transform:
+    translateY(-3px);
+
+}
+
+
+/* =========================================================
+                    STATISTICS
+========================================================= */
+
+.profile-stat-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:15px;
+
+}
+
+
+.profile-stat-box{
+
+    background:#f8fafc;
+
+    border:
+    1px solid #edf0f5;
+
+    border-radius:15px;
+
+    padding:18px 12px;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+
+.profile-stat-box:hover{
+
+    transform:
+    translateY(-4px);
+
+    border-color:#c4b5fd;
+
+}
+
+
+.profile-stat-box i{
+
+    font-size:25px;
+
+    color:#6c4cff;
+
+    margin-bottom:10px;
+
+}
+
+
+.profile-stat-box h4{
+
+    font-size:22px;
+
+    font-weight:800;
+
+    color:#1e293b;
+
+    margin-bottom:4px;
+
+}
+
+
+.profile-stat-box p{
+
+    margin:0;
+
+    font-size:12px;
+
+    color:#64748b;
+
+}
+
+
+/* =========================================================
+                    DARK MODE
+========================================================= */
+
+body.dark
+.profile-page-header{
+
+    background:
+    linear-gradient(
+        135deg,
+        #111827,
+        #1e293b,
+        #1e3a8a,
+        #312e81
+    );
+
+}
+
+
+body.dark
+.profile-main-card,
+
+body.dark
+.profile-info-card{
+
+    background:#1f1f1f;
+
+    color:#fff;
+
+}
+
+
+body.dark
+.profile-main-card::before{
+
+    background:
+    linear-gradient(
+        135deg,
+        #1e293b,
+        #312e81,
+        #1e3a8a
+    );
+
+}
+
+
+body.dark
+.profile-main-card h3{
+
+    color:#fff;
+
+}
+
+
+body.dark
+.profile-department{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark
+.profile-quick-info,
+
+body.dark
+.profile-info-header{
+
+    border-color:#3b3b3b;
+
+}
+
+
+body.dark
+.profile-quick-text span{
+
+    color:#fff;
+
+}
+
+
+body.dark
+.profile-quick-text small{
+
+    color:#aaa;
+
+}
+
+
+body.dark
+.profile-info-header h4{
+
+    color:#a78bfa;
+
+}
+
+
+body.dark
+.profile-info-item,
+
+body.dark
+.profile-stat-box{
+
+    background:#292929;
+
+    border-color:#3b3b3b;
+
+}
+
+
+body.dark
+.profile-info-item label{
+
+    color:#aaa;
+
+}
+
+
+body.dark
+.profile-info-item p,
+
+body.dark
+.profile-stat-box h4{
+
+    color:#fff;
+
+}
+
+
+body.dark
+.profile-stat-box p{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark
+.profile-social-link{
+
+    background:#292929;
+
+    color:#fff;
+
+}
+
+
+body.dark
+.profile-social-link:hover{
+
+    background:#6c4cff;
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE
+========================================================= */
+
+@media(max-width:1100px){
+
+.profile-grid{
+
+    grid-template-columns:
+    300px 1fr;
+
+}
+
+.profile-stat-grid{
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+}
+
+}
+
+
+@media(max-width:900px){
+
+.profile-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.profile-main-card{
+
+    max-width:100%;
+
+}
+
+}
+
+
+@media(max-width:768px){
+
+.profile-page-header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    padding:28px;
+
+}
+
+
+.profile-header-icon{
+
+    width:80px;
+
+    height:80px;
+
+    font-size:34px;
+
+}
+
+
+.profile-info-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+
+@media(max-width:576px){
+
+.profile-stat-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="wrapper">
+
+
+<!-- =========================================================
+                        SIDEBAR
+========================================================= -->
+
+<aside class="sidebar">
+
+
+<div class="logo">
+
+<img
+src="../../images/logo.png"
+alt="Logo">
+
+<h3>HOD Panel</h3>
+
+</div>
+
+
+<ul class="menu">
+
+
+<li>
+
+<a href="hod-dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+Dashboard
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="teacher-list.html">
+
+<i class="fa-solid fa-users"></i>
+
+Teachers
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="student-list.html">
+
+<i class="fa-solid fa-user-graduate"></i>
+
+Students
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="timetable.html">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+Timetable
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="leave-request.html">
+
+<i class="fa-solid fa-file-circle-check"></i>
+
+Leave Requests
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="reports.html">
+
+<i class="fa-solid fa-chart-line"></i>
+
+Reports
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="notice-board.html">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+Notices
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="notification.html">
+
+<i class="fa-solid fa-bell"></i>
+
+Notifications
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="hod-login.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</aside>
+
+
+<!-- =========================================================
+                        MAIN CONTENT
+========================================================= -->
+
+<main class="main-content">
+
+
+<!-- =========================================================
+                        TOP NAVBAR
+========================================================= -->
+
+<nav class="top-navbar">
+
+
+<h3>
+
+My Profile
+
+</h3>
+
+
+<div class="top-right">
+
+
+<!-- Search -->
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="globalSearch"
+placeholder="Search...">
+
+</div>
+
+
+<!-- Dark / Light Mode -->
+
+<button
+id="themeToggle"
+class="icon-btn"
+title="Change Theme">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+
+<!-- Notification -->
+
+<div class="dropdown">
+
+
+<button
+class="icon-btn position-relative"
+data-bs-toggle="dropdown">
+
+<i class="fa-regular fa-bell"></i>
+
+<span
+class="badge-count"
+id="notificationCount">
+
+4
+
+</span>
+
+</button>
+
+
+<ul
+class="dropdown-menu dropdown-menu-end notification-menu">
+
+
+<li class="dropdown-header">
+
+Notifications
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="notification.html">
+
+📄 New Leave Request
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="notification.html">
+
+📢 Faculty Meeting Tomorrow
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="notification.html">
+
+✅ Attendance Updated
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="notification.html">
+
+📊 Monthly Report Ready
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+<!-- Profile Dropdown -->
+
+<div class="dropdown">
+
+
+<div
+class="profile"
+data-bs-toggle="dropdown"
+style="cursor:pointer;">
+
+<img
+id="navbarProfilePhoto"
+src="https://i.pravatar.cc/100?img=12"
+alt="HOD">
+
+<span>
+
+Welcome, HOD
+
+</span>
+
+<i class="fa-solid fa-angle-down"></i>
+
+</div>
+
+
+<ul
+class="dropdown-menu dropdown-menu-end profile-menu">
+
+
+<li>
+
+<a
+class="dropdown-item active"
+href="profile.html">
+
+<i class="fa-solid fa-user me-2"></i>
+
+My Profile
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="change-password.html">
+
+<i class="fa-solid fa-lock me-2"></i>
+
+Change Password
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="settings.html">
+
+<i class="fa-solid fa-gear me-2"></i>
+
+Settings
+
+</a>
+
+</li>
+
+
+<li>
+
+<hr class="dropdown-divider">
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item text-danger"
+href="hod-login.html">
+
+<i class="fa-solid fa-right-from-bracket me-2"></i>
+
+Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+</div>
+
+
+</nav>
+
+
+<!-- =========================================================
+                    PROFILE HEADER
+========================================================= -->
+
+<section class="profile-page-header">
+
+
+<div class="profile-header-content">
+
+
+<span class="welcome-badge">
+
+<i class="fa-solid fa-id-card"></i>
+
+HOD PROFILE
+
+</span>
+
+
+<h2>
+
+My Profile 👤
+
+</h2>
+
+
+<p>
+
+View and manage your personal information,
+department details, academic qualifications,
+contact information and account preferences
+from your HOD profile.
+
+</p>
+
+
+</div>
+
+
+<div class="profile-header-icon">
+
+<i class="fa-solid fa-user-tie"></i>
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    PROFILE GRID
+========================================================= -->
+
+<section class="profile-grid">
+
+
+<!-- =========================================================
+                    LEFT PROFILE CARD
+========================================================= -->
+
+<div class="profile-main-card">
+
+
+<!-- Profile Photo -->
+
+<div class="profile-photo-wrapper">
+
+
+<img
+id="profilePhoto"
+src="https://i.pravatar.cc/300?img=12"
+alt="HOD Profile Photo">
+
+
+<button
+type="button"
+id="changePhotoBtn"
+class="profile-camera-btn"
+title="Change Profile Photo">
+
+<i class="fa-solid fa-camera"></i>
+
+</button>
+
+
+<input
+type="file"
+id="profilePhotoInput"
+accept="image/*"
+hidden>
+
+
+</div>
+
+
+<!-- Name -->
+
+<h3 id="profileDisplayName">
+
+Dr. Ananya Sharma
+
+</h3>
+
+
+<p
+class="profile-designation"
+id="profileDisplayDesignation">
+
+Head of Department
+
+</p>
+
+
+<p
+class="profile-department"
+id="profileDisplayDepartment">
+
+Department of Computer Science
+
+</p>
+
+
+<!-- Active Status -->
+
+<div class="profile-status">
+
+<span class="profile-status-dot"></span>
+
+Active Account
+
+</div>
+
+
+<!-- Social Links -->
+
+<div class="profile-social-links">
+
+
+<a
+href="#"
+class="profile-social-link"
+title="LinkedIn">
+
+<i class="fa-brands fa-linkedin-in"></i>
+
+</a>
+
+
+<a
+href="#"
+class="profile-social-link"
+title="Email">
+
+<i class="fa-solid fa-envelope"></i>
+
+</a>
+
+
+<a
+href="#"
+class="profile-social-link"
+title="Website">
+
+<i class="fa-solid fa-globe"></i>
+
+</a>
+
+
+</div>
+
+
+<!-- Quick Information -->
+
+<div class="profile-quick-info">
+
+
+<div class="profile-quick-item">
+
+
+<div class="profile-quick-icon">
+
+<i class="fa-solid fa-id-badge"></i>
+
+</div>
+
+
+<div class="profile-quick-text">
+
+<small>
+
+Employee ID
+
+</small>
+
+<span id="quickEmployeeId">
+
+HOD-CS-001
+
+</span>
+
+</div>
+
+
+</div>
+
+
+<div class="profile-quick-item">
+
+
+<div class="profile-quick-icon">
+
+<i class="fa-solid fa-envelope"></i>
+
+</div>
+
+
+<div class="profile-quick-text">
+
+<small>
+
+Email Address
+
+</small>
+
+<span id="quickEmail">
+
+ananya.sharma@college.edu
+
+</span>
+
+</div>
+
+
+</div>
+
+
+<div class="profile-quick-item">
+
+
+<div class="profile-quick-icon">
+
+<i class="fa-solid fa-phone"></i>
+
+</div>
+
+
+<div class="profile-quick-text">
+
+<small>
+
+Mobile Number
+
+</small>
+
+<span id="quickPhone">
+
++91 98765 43210
+
+</span>
+
+</div>
+
+
+</div>
+
+
+<div class="profile-quick-item">
+
+
+<div class="profile-quick-icon">
+
+<i class="fa-solid fa-building"></i>
+
+</div>
+
+
+<div class="profile-quick-text">
+
+<small>
+
+Department
+
+</small>
+
+<span id="quickDepartment">
+
+Computer Science
+
+</span>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- Profile Buttons -->
+
+<div class="profile-buttons">
+
+
+<button
+type="button"
+id="editProfileBtn"
+class="btn btn-primary">
+
+<i class="fa-solid fa-pen-to-square me-2"></i>
+
+Edit Profile
+
+</button>
+
+
+<a
+href="change-password.html"
+class="btn btn-outline-primary">
+
+<i class="fa-solid fa-key me-2"></i>
+
+Change Password
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    RIGHT PROFILE CONTENT
+========================================================= -->
+
+<div class="profile-right-content">
+
+
+<!-- =========================================================
+                    PROFILE STATISTICS
+========================================================= -->
+
+<div class="profile-info-card">
+
+
+<div class="profile-info-header">
+
+
+<h4>
+
+<i class="fa-solid fa-chart-simple"></i>
+
+Department Overview
+
+</h4>
+
+
+</div>
+
+
+<div class="profile-stat-grid">
+
+
+<div class="profile-stat-box">
+
+<i class="fa-solid fa-chalkboard-user"></i>
+
+<h4>
+
+32
+
+</h4>
+
+<p>
+
+Teachers
+
+</p>
+
+</div>
+
+
+<div class="profile-stat-box">
+
+<i class="fa-solid fa-user-graduate"></i>
+
+<h4>
+
+860
+
+</h4>
+
+<p>
+
+Students
+
+</p>
+
+</div>
+
+
+<div class="profile-stat-box">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+<h4>
+
+94%
+
+</h4>
+
+<p>
+
+Attendance
+
+</p>
+
+</div>
+
+
+<div class="profile-stat-box">
+
+<i class="fa-solid fa-star"></i>
+
+<h4>
+
+4.8
+
+</h4>
+
+<p>
+
+Performance
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    PERSONAL INFORMATION
+========================================================= -->
+
+<div class="profile-info-card">
+
+
+<div class="profile-info-header">
+
+
+<h4>
+
+<i class="fa-solid fa-user"></i>
+
+Personal Information
+
+</h4>
+
+
+<button
+type="button"
+class="profile-edit-small-btn editProfileTrigger">
+
+<i class="fa-solid fa-pen me-1"></i>
+
+Edit
+
+</button>
+
+
+</div>
+
+
+<div class="profile-info-grid">
+
+
+<div class="profile-info-item">
+
+<label>
+
+Full Name
+
+</label>
+
+<p id="infoFullName">
+
+Dr. Ananya Sharma
+
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+
+Employee ID
+
+</label>
+
+<p id="infoEmployeeId">
+
+HOD-CS-001
+
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+
+Gender
+
+</label>
+
+<p id="infoGender">
+
+Female
+
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+
+Date of Birth
+
+</label>
+
+<p id="infoDob">
+
+15 March 1982
+
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+
+Blood Group
+
+</label>
+
+<p id="infoBloodGroup">
+
+B+
+
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+
+Nationality
+
+</label>
+
+<p id="infoNationality">
+
+Indian
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    CONTACT INFORMATION
+========================================================= -->
+
+<div class="profile-info-card">
+
+
+<div class="profile-info-header">
+
+
+<h4>
+
+<i class="fa-solid fa-address-book"></i>
+
+Contact Information
+
+</h4>
+
+
+<button
+type="button"
+class="profile-edit-small-btn editProfileTrigger">
+
+<i class="fa-solid fa-pen me-1"></i>
+
+Edit
+
+</button>
+
+
+</div>
+
+
+<div class="profile-info-grid">
+
+
+<div class="profile-info-item">
+
+<label>
+
+Official Email
+
+</label>
+
+<p id="infoEmail">
+
+ananya.sharma@college.edu
+
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+
+Mobile Number
+
+</label>
+
+<p id="infoPhone">
+
++91 98765 43210
+
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+
+Alternate Email
+
+</label>
+
+<p id="infoAlternateEmail">
+
+ananya.cs@gmail.com
+
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+
+Office Extension
+
+</label>
+
+<p id="infoExtension">
+
+CS-204
+
+</p>
+
+</div>
+
+
+<div
+class="profile-info-item"
+style="grid-column:1/-1;">
+
+<label>
+
+Address
+
+</label>
+
+<p id="infoAddress">
+
+Patna, Bihar, India
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                PART 2 CONTINUES FROM HERE
+========================================================= -->
+<!-- =========================================================
+                    DEPARTMENT INFORMATION
+========================================================= -->
+
+<div class="profile-info-card">
+
+<div class="profile-info-header">
+
+<h4>
+<i class="fa-solid fa-building-columns"></i>
+Department Information
+</h4>
+
+<button
+type="button"
+class="profile-edit-small-btn editProfileTrigger">
+
+<i class="fa-solid fa-pen me-1"></i>
+Edit
+
+</button>
+
+</div>
+
+
+<div class="profile-info-grid">
+
+<div class="profile-info-item">
+
+<label>
+Department
+</label>
+
+<p id="infoDepartment">
+Computer Science
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+Designation
+</label>
+
+<p id="infoDesignation">
+Head of Department
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+Date of Joining
+</label>
+
+<p id="infoJoiningDate">
+12 July 2012
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+HOD Since
+</label>
+
+<p id="infoHodSince">
+01 July 2022
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+Office Room
+</label>
+
+<p id="infoOfficeRoom">
+Block B - Room 204
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+Employment Type
+</label>
+
+<p id="infoEmploymentType">
+Permanent
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    ACADEMIC QUALIFICATION
+========================================================= -->
+
+<div class="profile-info-card">
+
+<div class="profile-info-header">
+
+<h4>
+<i class="fa-solid fa-graduation-cap"></i>
+Academic Qualification
+</h4>
+
+<button
+type="button"
+class="profile-edit-small-btn editProfileTrigger">
+
+<i class="fa-solid fa-pen me-1"></i>
+Edit
+
+</button>
+
+</div>
+
+
+<div class="profile-info-grid">
+
+<div class="profile-info-item">
+
+<label>
+Highest Qualification
+</label>
+
+<p id="infoQualification">
+Ph.D. in Computer Science
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+Specialization
+</label>
+
+<p id="infoSpecialization">
+Artificial Intelligence & Machine Learning
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+Master's Degree
+</label>
+
+<p id="infoMasters">
+M.Tech in Computer Science
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+Bachelor's Degree
+</label>
+
+<p id="infoBachelors">
+B.Tech in Computer Science
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+Teaching Experience
+</label>
+
+<p id="infoExperience">
+14 Years
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+Research Experience
+</label>
+
+<p id="infoResearchExperience">
+10 Years
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    PROFESSIONAL DETAILS
+========================================================= -->
+
+<div class="profile-info-card">
+
+<div class="profile-info-header">
+
+<h4>
+<i class="fa-solid fa-briefcase"></i>
+Professional Details
+</h4>
+
+<button
+type="button"
+class="profile-edit-small-btn editProfileTrigger">
+
+<i class="fa-solid fa-pen me-1"></i>
+Edit
+
+</button>
+
+</div>
+
+
+<div class="profile-info-grid">
+
+<div class="profile-info-item">
+
+<label>
+Areas of Expertise
+</label>
+
+<p id="infoExpertise">
+AI, Machine Learning, Data Science
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+Subjects Taught
+</label>
+
+<p id="infoSubjects">
+Machine Learning, Python, DBMS
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+Research Papers
+</label>
+
+<p id="infoResearchPapers">
+18 Publications
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+Projects Guided
+</label>
+
+<p id="infoProjectsGuided">
+24 Projects
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+Workshops Conducted
+</label>
+
+<p id="infoWorkshops">
+12 Workshops
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+Professional Membership
+</label>
+
+<p id="infoMembership">
+IEEE Member
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    ACCOUNT INFORMATION
+========================================================= -->
+
+<div class="profile-info-card">
+
+<div class="profile-info-header">
+
+<h4>
+<i class="fa-solid fa-shield-halved"></i>
+Account Information
+</h4>
+
+</div>
+
+
+<div class="profile-info-grid">
+
+<div class="profile-info-item">
+
+<label>
+Account Role
+</label>
+
+<p>
+HOD
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+Account Status
+</label>
+
+<p>
+<span class="badge bg-success">
+Active
+</span>
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+Face Registration
+</label>
+
+<p>
+<span class="badge bg-success">
+<i class="fa-solid fa-circle-check me-1"></i>
+Registered
+</span>
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+Face Login
+</label>
+
+<p>
+<span class="badge bg-primary">
+Enabled
+</span>
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+Last Login
+</label>
+
+<p>
+02 Aug 2026, 10:32 AM
+</p>
+
+</div>
+
+
+<div class="profile-info-item">
+
+<label>
+Last Password Change
+</label>
+
+<p>
+18 July 2026
+</p>
+
+</div>
+
+</div>
+
+
+<div class="d-flex flex-wrap gap-2 mt-4">
+
+<a
+href="face-register.html"
+class="btn btn-outline-primary">
+
+<i class="fa-solid fa-face-smile me-2"></i>
+Manage Face Registration
+
+</a>
+
+
+<a
+href="change-password.html"
+class="btn btn-outline-warning">
+
+<i class="fa-solid fa-key me-2"></i>
+Change Password
+
+</a>
+
+
+<a
+href="settings.html"
+class="btn btn-outline-secondary">
+
+<i class="fa-solid fa-gear me-2"></i>
+Account Settings
+
+</a>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+                    EDIT PROFILE MODAL
+========================================================= -->
+
+<div
+class="modal fade"
+id="editProfileModal"
+tabindex="-1"
+aria-hidden="true">
+
+<div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+
+<div class="modal-content border-0 rounded-4">
+
+<div class="modal-header bg-primary text-white">
+
+<h5 class="modal-title fw-bold">
+
+<i class="fa-solid fa-user-pen me-2"></i>
+Edit HOD Profile
+
+</h5>
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+
+<div class="modal-body p-4">
+
+<form id="editProfileForm">
+
+
+<!-- ================= Personal Details ================= -->
+
+<h5 class="fw-bold mb-3">
+
+<i class="fa-solid fa-user text-primary me-2"></i>
+Personal Information
+
+</h5>
+
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Full Name
+</label>
+
+<input
+type="text"
+id="editFullName"
+class="form-control"
+value="Dr. Ananya Sharma"
+required>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Employee ID
+</label>
+
+<input
+type="text"
+id="editEmployeeId"
+class="form-control"
+value="HOD-CS-001"
+readonly>
+
+</div>
+
+
+<div class="col-md-4 mb-3">
+
+<label class="form-label fw-semibold">
+Gender
+</label>
+
+<select
+id="editGender"
+class="form-select">
+
+<option value="Female" selected>
+Female
+</option>
+
+<option value="Male">
+Male
+</option>
+
+<option value="Other">
+Other
+</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-4 mb-3">
+
+<label class="form-label fw-semibold">
+Date of Birth
+</label>
+
+<input
+type="date"
+id="editDob"
+class="form-control"
+value="1982-03-15">
+
+</div>
+
+
+<div class="col-md-4 mb-3">
+
+<label class="form-label fw-semibold">
+Blood Group
+</label>
+
+<select
+id="editBloodGroup"
+class="form-select">
+
+<option>A+</option>
+<option>A-</option>
+
+<option selected>
+B+
+</option>
+
+<option>B-</option>
+<option>AB+</option>
+<option>AB-</option>
+<option>O+</option>
+<option>O-</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Nationality
+</label>
+
+<input
+type="text"
+id="editNationality"
+class="form-control"
+value="Indian">
+
+</div>
+
+</div>
+
+
+<hr class="my-4">
+
+
+<!-- ================= Contact Details ================= -->
+
+<h5 class="fw-bold mb-3">
+
+<i class="fa-solid fa-address-book text-primary me-2"></i>
+Contact Information
+
+</h5>
+
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Official Email
+</label>
+
+<input
+type="email"
+id="editEmail"
+class="form-control"
+value="ananya.sharma@college.edu"
+required>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Mobile Number
+</label>
+
+<input
+type="tel"
+id="editPhone"
+class="form-control"
+value="+91 98765 43210"
+required>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Alternate Email
+</label>
+
+<input
+type="email"
+id="editAlternateEmail"
+class="form-control"
+value="ananya.cs@gmail.com">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Office Extension
+</label>
+
+<input
+type="text"
+id="editExtension"
+class="form-control"
+value="CS-204">
+
+</div>
+
+
+<div class="col-12 mb-3">
+
+<label class="form-label fw-semibold">
+Address
+</label>
+
+<textarea
+id="editAddress"
+class="form-control"
+rows="3">Patna, Bihar, India</textarea>
+
+</div>
+
+</div>
+
+
+<hr class="my-4">
+
+
+<!-- ================= Department Details ================= -->
+
+<h5 class="fw-bold mb-3">
+
+<i class="fa-solid fa-building-columns text-primary me-2"></i>
+Department Information
+
+</h5>
+
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Department
+</label>
+
+<select
+id="editDepartment"
+class="form-select">
+
+<option selected>
+Computer Science
+</option>
+
+<option>
+Mathematics
+</option>
+
+<option>
+Physics
+</option>
+
+<option>
+Chemistry
+</option>
+
+<option>
+Commerce
+</option>
+
+<option>
+English
+</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Designation
+</label>
+
+<input
+type="text"
+id="editDesignation"
+class="form-control"
+value="Head of Department">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Date of Joining
+</label>
+
+<input
+type="date"
+id="editJoiningDate"
+class="form-control"
+value="2012-07-12">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+HOD Since
+</label>
+
+<input
+type="date"
+id="editHodSince"
+class="form-control"
+value="2022-07-01">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Office Room
+</label>
+
+<input
+type="text"
+id="editOfficeRoom"
+class="form-control"
+value="Block B - Room 204">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Employment Type
+</label>
+
+<select
+id="editEmploymentType"
+class="form-select">
+
+<option selected>
+Permanent
+</option>
+
+<option>
+Contract
+</option>
+
+<option>
+Visiting
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<hr class="my-4">
+
+
+<!-- ================= Academic Details ================= -->
+
+<h5 class="fw-bold mb-3">
+
+<i class="fa-solid fa-graduation-cap text-primary me-2"></i>
+Academic & Professional Information
+
+</h5>
+
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Highest Qualification
+</label>
+
+<input
+type="text"
+id="editQualification"
+class="form-control"
+value="Ph.D. in Computer Science">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Specialization
+</label>
+
+<input
+type="text"
+id="editSpecialization"
+class="form-control"
+value="Artificial Intelligence & Machine Learning">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Master's Degree
+</label>
+
+<input
+type="text"
+id="editMasters"
+class="form-control"
+value="M.Tech in Computer Science">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Bachelor's Degree
+</label>
+
+<input
+type="text"
+id="editBachelors"
+class="form-control"
+value="B.Tech in Computer Science">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Teaching Experience
+</label>
+
+<input
+type="text"
+id="editExperience"
+class="form-control"
+value="14 Years">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Research Experience
+</label>
+
+<input
+type="text"
+id="editResearchExperience"
+class="form-control"
+value="10 Years">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Areas of Expertise
+</label>
+
+<input
+type="text"
+id="editExpertise"
+class="form-control"
+value="AI, Machine Learning, Data Science">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Subjects Taught
+</label>
+
+<input
+type="text"
+id="editSubjects"
+class="form-control"
+value="Machine Learning, Python, DBMS">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Research Papers
+</label>
+
+<input
+type="text"
+id="editResearchPapers"
+class="form-control"
+value="18 Publications">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Projects Guided
+</label>
+
+<input
+type="text"
+id="editProjectsGuided"
+class="form-control"
+value="24 Projects">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Workshops Conducted
+</label>
+
+<input
+type="text"
+id="editWorkshops"
+class="form-control"
+value="12 Workshops">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+Professional Membership
+</label>
+
+<input
+type="text"
+id="editMembership"
+class="form-control"
+value="IEEE Member">
+
+</div>
+
+</div>
+
+
+<div
+id="profileSaveLoader"
+class="text-center mt-3"
+style="display:none;">
+
+<div
+class="spinner-border text-primary"
+role="status">
+
+<span class="visually-hidden">
+Saving...
+</span>
+
+</div>
+
+<p class="mt-2 mb-0">
+Updating Profile...
+</p>
+
+</div>
+
+</form>
+
+</div>
+
+
+<div class="modal-footer">
+
+<button
+type="button"
+class="btn btn-outline-secondary"
+data-bs-dismiss="modal">
+
+Cancel
+
+</button>
+
+
+<button
+type="button"
+id="saveProfileBtn"
+class="btn btn-primary">
+
+<i class="fa-solid fa-floppy-disk me-2"></i>
+Save Changes
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                PROFILE UPDATE SUCCESS MODAL
+========================================================= -->
+
+<div
+class="modal fade"
+id="profileSuccessModal"
+tabindex="-1">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content border-0 rounded-4">
+
+<div class="modal-header bg-success text-white">
+
+<h5 class="modal-title">
+
+<i class="fa-solid fa-circle-check me-2"></i>
+Profile Updated
+
+</h5>
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+
+<div class="modal-body text-center p-4">
+
+<div
+class="mx-auto mb-3 d-flex justify-content-center align-items-center rounded-circle"
+style="
+width:90px;
+height:90px;
+background:rgba(34,197,94,.12);
+color:#16a34a;
+font-size:42px;
+">
+
+<i class="fa-solid fa-user-check"></i>
+
+</div>
+
+<h4 class="fw-bold">
+Profile Updated Successfully!
+</h4>
+
+<p class="text-muted mb-0">
+
+Your HOD profile information has been updated successfully.
+
+</p>
+
+</div>
+
+
+<div class="modal-footer justify-content-center">
+
+<button
+type="button"
+class="btn btn-success px-4"
+data-bs-dismiss="modal">
+
+Done
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+© 2026 Faculty Management & Productivity System |
+HOD Profile
+
+</footer>
+
+
+</main>
+
+</div>
+
+
+<!-- =========================================================
+                    BOOTSTRAP JS
+========================================================= -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- =========================================================
+                COMMON HOD DASHBOARD JS
+========================================================= -->
+
+<script src="../../js/hod-dashboard.js"></script>
+
+
+<!-- =========================================================
+                    PROFILE JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+
+/* =========================================================
+                    ELEMENTS
+========================================================= */
+
+const editProfileBtn =
+document.getElementById("editProfileBtn");
+
+const editProfileTriggers =
+document.querySelectorAll(".editProfileTrigger");
+
+const editProfileModalElement =
+document.getElementById("editProfileModal");
+
+const editProfileModal =
+new bootstrap.Modal(editProfileModalElement);
+
+const profileSuccessModal =
+new bootstrap.Modal(
+document.getElementById("profileSuccessModal")
+);
+
+const saveProfileBtn =
+document.getElementById("saveProfileBtn");
+
+const profileSaveLoader =
+document.getElementById("profileSaveLoader");
+
+const editProfileForm =
+document.getElementById("editProfileForm");
+
+
+/* =========================================================
+                OPEN EDIT PROFILE MODAL
+========================================================= */
+
+if(editProfileBtn){
+
+editProfileBtn.addEventListener("click", function(){
+
+editProfileModal.show();
+
+});
+
+}
+
+
+editProfileTriggers.forEach(function(button){
+
+button.addEventListener("click", function(){
+
+editProfileModal.show();
+
+});
+
+});
+
+
+/* =========================================================
+                    PROFILE PHOTO
+========================================================= */
+
+const changePhotoBtn =
+document.getElementById("changePhotoBtn");
+
+const profilePhotoInput =
+document.getElementById("profilePhotoInput");
+
+const profilePhoto =
+document.getElementById("profilePhoto");
+
+const navbarProfilePhoto =
+document.getElementById("navbarProfilePhoto");
+
+
+if(changePhotoBtn){
+
+changePhotoBtn.addEventListener("click", function(){
+
+profilePhotoInput.click();
+
+});
+
+}
+
+
+if(profilePhotoInput){
+
+profilePhotoInput.addEventListener("change", function(event){
+
+const file =
+event.target.files[0];
+
+if(!file){
+
+return;
+
+}
+
+
+/* Check image */
+
+if(!file.type.startsWith("image/")){
+
+alert("Please select a valid image file.");
+
+profilePhotoInput.value = "";
+
+return;
+
+}
+
+
+/* Maximum 5 MB */
+
+if(file.size > 5 * 1024 * 1024){
+
+alert("Profile image must be smaller than 5 MB.");
+
+profilePhotoInput.value = "";
+
+return;
+
+}
+
+
+const reader =
+new FileReader();
+
+
+reader.onload = function(e){
+
+profilePhoto.src =
+e.target.result;
+
+navbarProfilePhoto.src =
+e.target.result;
+
+
+/*
+Frontend Demo:
+
+Browser refresh hone par image reset ho jayegi.
+
+Backend integration ke baad image ko server /
+Cloudinary / database storage me upload karna hai.
+*/
+
+};
+
+
+reader.readAsDataURL(file);
+
+});
+
+}
+
+
+/* =========================================================
+                    DATE FORMATTER
+========================================================= */
+
+function formatDate(dateValue){
+
+if(!dateValue){
+
+return "--";
+
+}
+
+const date =
+new Date(dateValue + "T00:00:00");
+
+return date.toLocaleDateString(
+"en-GB",
+{
+day:"2-digit",
+month:"long",
+year:"numeric"
+}
+);
+
+}
+
+
+/* =========================================================
+                    SAVE PROFILE
+========================================================= */
+
+if(saveProfileBtn){
+
+saveProfileBtn.addEventListener("click", function(){
+
+
+/* Browser validation */
+
+if(!editProfileForm.checkValidity()){
+
+editProfileForm.reportValidity();
+
+return;
+
+}
+
+
+saveProfileBtn.disabled = true;
+
+profileSaveLoader.style.display =
+"block";
+
+
+saveProfileBtn.innerHTML = `
+
+<span
+class="spinner-border spinner-border-sm me-2">
+</span>
+
+Saving...
+
+`;
+
+
+setTimeout(function(){
+
+
+/* =====================================================
+                    GET VALUES
+===================================================== */
+
+const fullName =
+document.getElementById("editFullName").value.trim();
+
+const employeeId =
+document.getElementById("editEmployeeId").value.trim();
+
+const gender =
+document.getElementById("editGender").value;
+
+const dob =
+document.getElementById("editDob").value;
+
+const bloodGroup =
+document.getElementById("editBloodGroup").value;
+
+const nationality =
+document.getElementById("editNationality").value.trim();
+
+
+const email =
+document.getElementById("editEmail").value.trim();
+
+const phone =
+document.getElementById("editPhone").value.trim();
+
+const alternateEmail =
+document.getElementById("editAlternateEmail").value.trim();
+
+const extension =
+document.getElementById("editExtension").value.trim();
+
+const address =
+document.getElementById("editAddress").value.trim();
+
+
+const department =
+document.getElementById("editDepartment").value;
+
+const designation =
+document.getElementById("editDesignation").value.trim();
+
+const joiningDate =
+document.getElementById("editJoiningDate").value;
+
+const hodSince =
+document.getElementById("editHodSince").value;
+
+const officeRoom =
+document.getElementById("editOfficeRoom").value.trim();
+
+const employmentType =
+document.getElementById("editEmploymentType").value;
+
+
+const qualification =
+document.getElementById("editQualification").value.trim();
+
+const specialization =
+document.getElementById("editSpecialization").value.trim();
+
+const masters =
+document.getElementById("editMasters").value.trim();
+
+const bachelors =
+document.getElementById("editBachelors").value.trim();
+
+const experience =
+document.getElementById("editExperience").value.trim();
+
+const researchExperience =
+document.getElementById("editResearchExperience").value.trim();
+
+const expertise =
+document.getElementById("editExpertise").value.trim();
+
+const subjects =
+document.getElementById("editSubjects").value.trim();
+
+const researchPapers =
+document.getElementById("editResearchPapers").value.trim();
+
+const projectsGuided =
+document.getElementById("editProjectsGuided").value.trim();
+
+const workshops =
+document.getElementById("editWorkshops").value.trim();
+
+const membership =
+document.getElementById("editMembership").value.trim();
+
+
+/* =====================================================
+                UPDATE LEFT PROFILE CARD
+===================================================== */
+
+document.getElementById(
+"profileDisplayName"
+).innerText =
+fullName;
+
+
+document.getElementById(
+"profileDisplayDesignation"
+).innerText =
+designation;
+
+
+document.getElementById(
+"profileDisplayDepartment"
+).innerText =
+"Department of " + department;
+
+
+document.getElementById(
+"quickEmployeeId"
+).innerText =
+employeeId;
+
+
+document.getElementById(
+"quickEmail"
+).innerText =
+email;
+
+
+document.getElementById(
+"quickPhone"
+).innerText =
+phone;
+
+
+document.getElementById(
+"quickDepartment"
+).innerText =
+department;
+
+
+/* =====================================================
+                PERSONAL INFORMATION
+===================================================== */
+
+document.getElementById(
+"infoFullName"
+).innerText =
+fullName;
+
+
+document.getElementById(
+"infoEmployeeId"
+).innerText =
+employeeId;
+
+
+document.getElementById(
+"infoGender"
+).innerText =
+gender;
+
+
+document.getElementById(
+"infoDob"
+).innerText =
+formatDate(dob);
+
+
+document.getElementById(
+"infoBloodGroup"
+).innerText =
+bloodGroup;
+
+
+document.getElementById(
+"infoNationality"
+).innerText =
+nationality;
+
+
+/* =====================================================
+                    CONTACT INFO
+===================================================== */
+
+document.getElementById(
+"infoEmail"
+).innerText =
+email;
+
+
+document.getElementById(
+"infoPhone"
+).innerText =
+phone;
+
+
+document.getElementById(
+"infoAlternateEmail"
+).innerText =
+alternateEmail || "--";
+
+
+document.getElementById(
+"infoExtension"
+).innerText =
+extension || "--";
+
+
+document.getElementById(
+"infoAddress"
+).innerText =
+address || "--";
+
+
+/* =====================================================
+                DEPARTMENT INFORMATION
+===================================================== */
+
+document.getElementById(
+"infoDepartment"
+).innerText =
+department;
+
+
+document.getElementById(
+"infoDesignation"
+).innerText =
+designation;
+
+
+document.getElementById(
+"infoJoiningDate"
+).innerText =
+formatDate(joiningDate);
+
+
+document.getElementById(
+"infoHodSince"
+).innerText =
+formatDate(hodSince);
+
+
+document.getElementById(
+"infoOfficeRoom"
+).innerText =
+officeRoom;
+
+
+document.getElementById(
+"infoEmploymentType"
+).innerText =
+employmentType;
+
+
+/* =====================================================
+                ACADEMIC INFORMATION
+===================================================== */
+
+document.getElementById(
+"infoQualification"
+).innerText =
+qualification;
+
+
+document.getElementById(
+"infoSpecialization"
+).innerText =
+specialization;
+
+
+document.getElementById(
+"infoMasters"
+).innerText =
+masters;
+
+
+document.getElementById(
+"infoBachelors"
+).innerText =
+bachelors;
+
+
+document.getElementById(
+"infoExperience"
+).innerText =
+experience;
+
+
+document.getElementById(
+"infoResearchExperience"
+).innerText =
+researchExperience;
+
+
+/* =====================================================
+                PROFESSIONAL INFORMATION
+===================================================== */
+
+document.getElementById(
+"infoExpertise"
+).innerText =
+expertise;
+
+
+document.getElementById(
+"infoSubjects"
+).innerText =
+subjects;
+
+
+document.getElementById(
+"infoResearchPapers"
+).innerText =
+researchPapers;
+
+
+document.getElementById(
+"infoProjectsGuided"
+).innerText =
+projectsGuided;
+
+
+document.getElementById(
+"infoWorkshops"
+).innerText =
+workshops;
+
+
+document.getElementById(
+"infoMembership"
+).innerText =
+membership;
+
+
+/* =====================================================
+                    FINISH LOADER
+===================================================== */
+
+profileSaveLoader.style.display =
+"none";
+
+
+saveProfileBtn.disabled =
+false;
+
+
+saveProfileBtn.innerHTML = `
+
+<i class="fa-solid fa-floppy-disk me-2"></i>
+
+Save Changes
+
+`;
+
+
+/* Close Edit Modal */
+
+editProfileModal.hide();
+
+
+/* Open Success Modal */
+
+setTimeout(function(){
+
+profileSuccessModal.show();
+
+},350);
+
+
+},1000);
+
+});
+
+}
+
+
+/* =========================================================
+                FRONTEND DATA STORAGE
+========================================================= */
+
+/*
+
+Abhi ye page frontend demo hai.
+
+Backend integrate hone ke baad profile ka data
+hard-coded HTML se nahi aayega.
+
+Expected flow:
+
+HOD Login
+    ↓
+Session / JWT
+    ↓
+GET /api/hod/profile
+    ↓
+Profile Data
+    ↓
+profile.html
+
+
+Edit Profile:
+
+Edit Form
+    ↓
+PUT /api/hod/profile
+    ↓
+Database Update
+    ↓
+Updated Profile Response
+    ↓
+UI Update
+
+
+Profile Photo:
+
+Image Select
+    ↓
+FormData
+    ↓
+POST /api/hod/profile/photo
+    ↓
+Server / Cloudinary
+    ↓
+Photo URL Database me save
+    ↓
+Profile + Navbar update
+
+*/
+
+
+/* =========================================================
+                EXAMPLE BACKEND FETCH
+========================================================= */
+
+/*
+
+async function loadHodProfile(){
+
+try{
+
+const response = await fetch(
+"/api/hod/profile",
+{
+    method:"GET",
+
+    headers:{
+        "Content-Type":"application/json",
+
+        "Authorization":
+        "Bearer " + localStorage.getItem("token")
+    }
+}
+);
+
+if(!response.ok){
+
+throw new Error(
+"Unable to load HOD profile."
+);
+
+}
+
+const data =
+await response.json();
+
+console.log(data);
+
+}
+catch(error){
+
+console.error(error);
+
+}
+
+}
+
+*/
+
+
+/* =========================================================
+                EXAMPLE UPDATE API
+========================================================= */
+
+/*
+
+async function updateHodProfile(){
+
+const profileData = {
+
+fullName:
+document.getElementById("editFullName").value,
+
+gender:
+document.getElementById("editGender").value,
+
+dateOfBirth:
+document.getElementById("editDob").value,
+
+bloodGroup:
+document.getElementById("editBloodGroup").value,
+
+nationality:
+document.getElementById("editNationality").value,
+
+email:
+document.getElementById("editEmail").value,
+
+mobile:
+document.getElementById("editPhone").value,
+
+alternateEmail:
+document.getElementById("editAlternateEmail").value,
+
+officeExtension:
+document.getElementById("editExtension").value,
+
+address:
+document.getElementById("editAddress").value,
+
+department:
+document.getElementById("editDepartment").value,
+
+designation:
+document.getElementById("editDesignation").value
+
+};
+
+
+const response =
+await fetch(
+"/api/hod/profile",
+{
+
+method:"PUT",
+
+headers:{
+
+"Content-Type":"application/json",
+
+"Authorization":
+"Bearer " +
+localStorage.getItem("token")
+
+},
+
+body:
+JSON.stringify(profileData)
+
+}
+);
+
+
+const result =
+await response.json();
+
+console.log(result);
+
+}
+
+*/
+
+
+/* =========================================================
+                PROFILE PHOTO API EXAMPLE
+========================================================= */
+
+/*
+
+async function uploadProfilePhoto(file){
+
+const formData =
+new FormData();
+
+formData.append(
+"profilePhoto",
+file
+);
+
+
+const response =
+await fetch(
+"/api/hod/profile/photo",
+{
+
+method:"POST",
+
+headers:{
+
+"Authorization":
+"Bearer " +
+localStorage.getItem("token")
+
+},
+
+body:
+formData
+
+}
+);
+
+
+const result =
+await response.json();
+
+
+profilePhoto.src =
+result.photoUrl;
+
+
+navbarProfilePhoto.src =
+result.photoUrl;
+
+}
+
+*/
+
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>

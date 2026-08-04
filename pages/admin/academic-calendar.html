@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Academic Calendar | Faculty Management System</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../css/admin-dashboard.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- Sidebar -->
+
+<aside class="sidebar">
+
+<div class="logo-box">
+
+<img src="../../images/logo.png">
+
+<h3>PATNA</h3>
+
+<h2>WOMEN'S COLLEGE</h2>
+
+<span>(AUTONOMOUS)</span>
+
+</div>
+
+<ul class="menu">
+
+<li><a href="admin-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+
+<li><a href="teacher-list.html"><i class="fa-solid fa-user-tie"></i> Teachers</a></li>
+
+<li><a href="hod-list.html"><i class="fa-solid fa-building-user"></i> HOD</a></li>
+
+<li><a href="student-list.html"><i class="fa-solid fa-user-graduate"></i> Students</a></li>
+
+<li><a href="recruiter-list.html"><i class="fa-solid fa-building"></i> Recruiters</a></li>
+
+<li><a href="attendance.html"><i class="fa-solid fa-calendar-check"></i> Attendance</a></li>
+
+<li><a href="analytics.html"><i class="fa-solid fa-chart-line"></i> Analytics</a></li>
+
+<li><a href="reports.html"><i class="fa-solid fa-file-lines"></i> Reports</a></li>
+
+<li><a href="notice-board.html"><i class="fa-solid fa-bullhorn"></i> Notice Board</a></li>
+
+<li class="active">
+
+<a href="academic-calendar.html">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+Academic Calendar
+
+</a>
+
+</li>
+
+</ul>
+
+<div class="sidebar-bottom">
+
+    <a href="settings.html">
+        <i class="fa-solid fa-gear"></i>
+        <span>Settings</span>
+    </a>
+
+    <a href="admin-login.html" class="logout-btn">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Logout</span>
+    </a>
+
+</div>
+
+</aside>
+
+<!-- Main Content -->
+
+<main class="main-content">
+
+<div class="topbar">
+
+    <div>
+        <h2>Academic Calendar</h2>
+        <p>Dashboard / Academic Calendar</p>
+    </div>
+
+   <div class="topbar-actions">
+
+    <button id="themeToggle" class="theme-toggle-btn">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
+</div>
+
+</div>
+
+<!-- Summary Cards -->
+
+<div class="row g-4 mb-4">
+
+<div class="col-md-3">
+
+<div class="chart-card text-center">
+
+<i class="fa-solid fa-calendar-days fa-2x text-primary mb-3"></i>
+
+<h3>38</h3>
+
+<p>Total Events</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="chart-card text-center">
+
+<i class="fa-solid fa-graduation-cap fa-2x text-success mb-3"></i>
+
+<h3>2</h3>
+
+<p>Semesters</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="chart-card text-center">
+
+<i class="fa-solid fa-book-open fa-2x text-warning mb-3"></i>
+
+<h3>12</h3>
+
+<p>Examinations</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="chart-card text-center">
+
+<i class="fa-solid fa-star fa-2x text-danger mb-3"></i>
+
+<h3>8</h3>
+
+<p>Upcoming Events</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Add Academic Event -->
+
+<div class="chart-card">
+
+<h4 class="mb-4">
+
+<i class="fa-solid fa-plus-circle"></i>
+
+Add Academic Event
+
+</h4>
+
+<div class="row g-3">
+
+<div class="col-md-4">
+
+<label class="form-label">Event Title</label>
+
+<input type="text" class="form-control" placeholder="Enter Event Title">
+
+</div>
+
+<div class="col-md-4">
+
+<label class="form-label">Event Type</label>
+
+<select class="form-select">
+
+<option>Semester</option>
+
+<option>Examination</option>
+
+<option>Holiday</option>
+
+<option>Workshop</option>
+
+<option>Placement Drive</option>
+
+<option>Seminar</option>
+
+</select>
+
+</div>
+
+<div class="col-md-4">
+
+<label class="form-label">Department</label>
+
+<select class="form-select">
+
+<option>All Departments</option>
+
+<option>Computer Science</option>
+
+<option>Commerce</option>
+
+<option>Physics</option>
+
+<option>Mathematics</option>
+
+</select>
+
+</div>
+
+<div class="col-md-3">
+
+<label class="form-label">Start Date</label>
+
+<input type="date" class="form-control">
+
+</div>
+
+<div class="col-md-3">
+
+<label class="form-label">End Date</label>
+
+<input type="date" class="form-control">
+
+</div>
+
+<div class="col-md-3">
+
+<label class="form-label">Status</label>
+
+<select class="form-select">
+
+<option>Upcoming</option>
+
+<option>Ongoing</option>
+
+<option>Completed</option>
+
+</select>
+
+</div>
+
+<div class="col-md-3 d-flex align-items-end">
+
+<button type="button" class="btn btn-primary w-100">
+
+<i class="fa-solid fa-calendar-plus"></i>
+
+Add Event
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+<!-- Academic Events -->
+
+<div class="chart-card mt-4">
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<h4>
+<i class="fa-solid fa-calendar-days"></i>
+Academic Events
+</h4>
+
+<input
+type="text"
+class="form-control w-25"
+placeholder="Search Event...">
+
+</div>
+
+<div class="table-responsive">
+
+<table class="table table-hover table-bordered text-center align-middle">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>Event ID</th>
+<th>Event Title</th>
+<th>Type</th>
+<th>Department</th>
+<th>Start Date</th>
+<th>End Date</th>
+<th>Status</th>
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>EVT001</td>
+
+<td>Odd Semester Begins</td>
+
+<td><span class="badge bg-primary">Semester</span></td>
+
+<td>All Departments</td>
+
+<td>01 Aug 2026</td>
+
+<td>15 Dec 2026</td>
+
+<td><span class="badge bg-success">Upcoming</span></td>
+
+<td>
+
+<button class="btn btn-info btn-sm">
+<i class="fa-solid fa-eye"></i>
+</button>
+
+<button class="btn btn-warning btn-sm">
+<i class="fa-solid fa-pen"></i>
+</button>
+
+<button class="btn btn-danger btn-sm">
+<i class="fa-solid fa-trash"></i>
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>EVT002</td>
+
+<td>Mid Semester Examination</td>
+
+<td><span class="badge bg-warning text-dark">Exam</span></td>
+
+<td>All Departments</td>
+
+<td>20 Sep 2026</td>
+
+<td>28 Sep 2026</td>
+
+<td><span class="badge bg-success">Upcoming</span></td>
+
+<td>
+
+<button class="btn btn-info btn-sm">
+<i class="fa-solid fa-eye"></i>
+</button>
+
+<button class="btn btn-warning btn-sm">
+<i class="fa-solid fa-pen"></i>
+</button>
+
+<button class="btn btn-danger btn-sm">
+<i class="fa-solid fa-trash"></i>
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>EVT003</td>
+
+<td>Independence Day Holiday</td>
+
+<td><span class="badge bg-danger">Holiday</span></td>
+
+<td>All Departments</td>
+
+<td>15 Aug 2026</td>
+
+<td>15 Aug 2026</td>
+
+<td><span class="badge bg-success">Upcoming</span></td>
+
+<td>
+
+<button class="btn btn-info btn-sm">
+<i class="fa-solid fa-eye"></i>
+</button>
+
+<button class="btn btn-warning btn-sm">
+<i class="fa-solid fa-pen"></i>
+</button>
+
+<button class="btn btn-danger btn-sm">
+<i class="fa-solid fa-trash"></i>
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>EVT004</td>
+
+<td>AI & ML Workshop</td>
+
+<td><span class="badge bg-info">Workshop</span></td>
+
+<td>Computer Science</td>
+
+<td>10 Aug 2026</td>
+
+<td>10 Aug 2026</td>
+
+<td><span class="badge bg-primary">Ongoing</span></td>
+
+<td>
+
+<button class="btn btn-info btn-sm">
+<i class="fa-solid fa-eye"></i>
+</button>
+
+<button class="btn btn-warning btn-sm">
+<i class="fa-solid fa-pen"></i>
+</button>
+
+<button class="btn btn-danger btn-sm">
+<i class="fa-solid fa-trash"></i>
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>EVT005</td>
+
+<td>TCS Campus Placement Drive</td>
+
+<td><span class="badge bg-success">Placement</span></td>
+
+<td>Computer Science</td>
+
+<td>18 Oct 2026</td>
+
+<td>19 Oct 2026</td>
+
+<td><span class="badge bg-secondary">Scheduled</span></td>
+
+<td>
+
+<button type="button" class="btn btn-info btn-sm">
+    <i class="fa-solid fa-eye"></i>
+</button>
+
+<button type="button" class="btn btn-warning btn-sm">
+    <i class="fa-solid fa-pen"></i>
+</button>
+
+<button type="button" class="btn btn-danger btn-sm">
+    <i class="fa-solid fa-trash"></i>
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- Pagination -->
+
+<div class="d-flex justify-content-between align-items-center mt-4">
+
+<p class="mb-0">
+
+Showing 1 to 5 of 38 Events
+
+</p>
+
+<nav>
+
+<ul class="pagination mb-0">
+
+<li class="page-item disabled">
+<a class="page-link" href="#">Previous</a>
+</li>
+
+<li class="page-item active">
+<a class="page-link" href="#">1</a>
+</li>
+
+<li class="page-item">
+<a class="page-link" href="#">2</a>
+</li>
+
+<li class="page-item">
+<a class="page-link" href="#">3</a>
+</li>
+
+<li class="page-item">
+<a class="page-link" href="#">Next</a>
+</li>
+
+</ul>
+
+</nav>
+
+</div>
+
+</div></main>
+
+</div>
+
+<!-- Event Details Modal -->
+
+<div class="modal fade" id="eventModal" tabindex="-1">
+
+<div class="modal-dialog modal-lg">
+
+<div class="modal-content">
+
+<div class="modal-header bg-primary text-white">
+
+<h5 class="modal-title">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+Academic Event Details
+
+</h5>
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+<div class="modal-body">
+
+<h4>Odd Semester Begins</h4>
+
+<hr>
+
+<p><strong>Event ID :</strong> EVT001</p>
+
+<p><strong>Department :</strong> All Departments</p>
+
+<p><strong>Event Type :</strong>
+<span class="badge bg-primary">Semester</span>
+</p>
+
+<p><strong>Start Date :</strong> 01 Aug 2026</p>
+
+<p><strong>End Date :</strong> 15 Dec 2026</p>
+
+<p><strong>Status :</strong>
+<span class="badge bg-success">Upcoming</span>
+</p>
+
+<hr>
+
+<p>
+
+The Odd Semester for the academic session will begin on
+<strong>01 August 2026</strong>. All students and faculty members are
+requested to follow the academic schedule and attend classes regularly.
+
+</p>
+
+</div>
+
+<div class="modal-footer">
+
+<button
+class="btn btn-secondary"
+data-bs-dismiss="modal">
+
+Close
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script  src="../../js/admin-dashboard.js"></script>
+<script>
+
+// Search Events
+
+// Search Events
+
+const searchEvent = document.querySelector("input[placeholder='Search Event...']");
+const eventRows = document.querySelectorAll("tbody tr");
+
+if (searchEvent) {
+
+    searchEvent.addEventListener("keyup", function () {
+
+        const value = this.value.toLowerCase();
+
+        eventRows.forEach(row => {
+
+            row.style.display = row.innerText.toLowerCase().includes(value)
+                ? ""
+                : "none";
+
+        });
+
+    });
+
+}
+
+// View Event
+
+document.querySelectorAll(".fa-eye").forEach(icon => {
+
+icon.parentElement.setAttribute("data-bs-toggle", "modal");
+
+icon.parentElement.setAttribute("data-bs-target", "#eventModal");
+
+});
+
+// Delete Event
+
+document.querySelectorAll(".fa-trash").forEach(icon => {
+
+icon.parentElement.addEventListener("click", function () {
+
+if (confirm("Are you sure you want to delete this event?")) {
+
+this.closest("tr").remove();
+
+}
+
+});
+
+});
+
+// Edit Event Demo
+
+document.querySelectorAll(".fa-pen").forEach(icon => {
+
+icon.parentElement.addEventListener("click", function () {
+
+alert("Edit Event feature will be available after backend integration.");
+
+});
+
+});
+
+</script>
+
+</body>
+
+</html>

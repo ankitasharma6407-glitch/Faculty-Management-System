@@ -1,0 +1,1554 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+    color:#333;
+    transition:.3s;
+}
+
+.wrapper{
+    display:flex;
+    min-height:100vh;
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:260px;
+    background:linear-gradient(180deg,#5b2be0,#7b52ff);
+    color:#fff;
+    padding:20px;
+    position:fixed;
+    height:100vh;
+    overflow-y:auto;
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.logo img{
+    width:70px;
+    border-radius:50%;
+    margin-bottom:10px;
+}
+
+.logo h3{
+    font-size:24px;
+    font-weight:700;
+}
+
+.menu{
+    list-style:none;
+    padding:0;
+}
+
+.menu li{
+    margin:12px 0;
+}
+
+.menu li a{
+    text-decoration:none;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 15px;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.menu li a:hover,
+.menu li.active a{
+    background:rgba(255,255,255,.18);
+}
+
+.main-content{
+    flex:1;
+    margin-left:260px;
+    padding:25px;
+}
+
+/* Top Navbar */
+
+.top-navbar{
+    background:#fff;
+    border-radius:15px;
+    padding:15px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
+
+.top-navbar h3{
+    font-size:24px;
+    font-weight:700;
+}
+
+.top-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+/* Search */
+
+.search-box{
+    display:flex;
+    align-items:center;
+    background:#f2f2f2;
+    padding:10px 15px;
+    border-radius:30px;
+}
+
+.search-box i{
+    color:#777;
+    margin-right:8px;
+}
+
+.search-box input{
+    border:none;
+    outline:none;
+    background:transparent;
+    width:180px;
+}
+
+/* Dark Mode Button */
+
+.icon-btn{
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:50%;
+    background:#6c4cff;
+    color:#fff;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.icon-btn:hover{
+    transform:scale(1.1);
+}
+
+/* Notification */
+
+.notification{
+    position:relative;
+    font-size:24px;
+    cursor:pointer;
+    color:#555;
+}
+
+.badge-count{
+    position:absolute;
+    top:-8px;
+    right:-8px;
+    background:red;
+    color:#fff;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:10px;
+}
+
+/* Profile */
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.profile img{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.profile span{
+    font-weight:600;
+}
+
+/* Welcome Banner */
+
+.welcome-box{
+    background:linear-gradient(135deg,#6c4cff,#8f6dff);
+    color:#fff;
+    border-radius:18px;
+    padding:35px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.welcome-box img{
+    display:none;
+}
+
+.welcome-box h2{
+    font-size:32px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.welcome-box p{
+    font-size:15px;
+    line-height:1.7;
+    max-width:600px;
+}
+
+.welcome-box img{
+    width:260px;
+    height:180px;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+.welcome-box .btn{
+    margin-top:20px;
+    padding:10px 25px;
+    border-radius:30px;
+    font-weight:600;
+}
+.banner-image{
+
+    width:500px;
+
+    max-width:100%;
+
+    height:auto;
+
+    object-fit:contain;
+
+    animation:floatIcon 4s ease-in-out infinite;
+
+    filter:drop-shadow(0 18px 30px rgba(0,0,0,.35));
+
+}
+/* Statistics Cards */
+
+.dashboard-cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.card-box{
+    background:#fff;
+    border-radius:15px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card-box:hover{
+    transform:translateY(-8px);
+}
+
+.card-box i{
+    font-size:35px;
+    color:#6c4cff;
+    margin-bottom:15px;
+}
+
+.card-box h3{
+    font-size:28px;
+    font-weight:700;
+}
+
+.card-box p{
+    color:#666;
+    margin-top:8px;
+}
+
+/* Main Grid */
+
+.content-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:20px;
+    margin-bottom:25px;
+}
+
+/* Dashboard Card */
+
+.dashboard-card{
+    background:#fff;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.dashboard-card h4{
+    margin-bottom:20px;
+    color:#6c4cff;
+    font-weight:700;
+}
+
+/* Tables */
+
+.table{
+    margin-bottom:0;
+}
+
+.table thead{
+    background:#6c4cff;
+    color:#fff;
+}
+
+.table th{
+    border:none;
+}
+
+.table td{
+    vertical-align:middle;
+}
+
+/* Activity List */
+
+.activity-list{
+    list-style:none;
+    padding:0;
+}
+
+.activity-list li{
+    padding:12px 0;
+    border-bottom:1px solid #eee;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.activity-list li:last-child{
+    border-bottom:none;
+}
+
+.activity-list i{
+    font-size:18px;
+}
+
+/* Chart Canvas */
+
+canvas{
+    width:100% !important;
+    
+}
+ .performance-card{
+    width:350px;
+    height:280px;
+    margin:20px 0;
+}
+
+.performance-card canvas{
+    width:180px !important;
+    height:180px !important;
+    display:block;
+    margin:20px auto;
+}
+
+/* Academic Calendar */
+
+#calendar{
+    background:#fff;
+    border-radius:10px;
+    padding:10px;
+    min-height:350px;
+}
+.time-card{
+    padding:25px;
+}
+
+.time-box{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.clock-icon{
+    font-size:48px;
+    color:#6c4cff;
+}
+
+#liveTime{
+    font-size:32px;
+    font-weight:700;
+    color:#6c4cff;
+    margin:0;
+}
+
+#liveDate{
+    font-size:16px;
+    color:#666;
+    margin-top:5px;
+}
+
+body.dark #liveDate{
+    color:#ddd;
+}
+
+/* Quick Actions */
+
+.quick-actions{
+    background:#fff;
+    border-radius:15px;
+    padding:20px;
+    margin-top:25px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.quick-actions h4{
+    color:#6c4cff;
+    margin-bottom:20px;
+}
+
+.action-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.action-buttons .btn{
+    flex:1;
+    min-width:180px;
+    padding:14px;
+    border-radius:12px;
+    font-weight:600;
+}
+
+.action-buttons .btn i{
+    margin-right:8px;
+}
+
+/* Footer */
+
+.footer{
+    margin-top:30px;
+    text-align:center;
+    padding:20px;
+    color:#777;
+    font-size:15px;
+}
+
+/* ---------- Dark Mode ---------- */
+
+body.dark{
+    background:#121212;
+    color:#fff;
+}
+
+body.dark .top-navbar,
+body.dark .dashboard-card,
+body.dark .card-box,
+body.dark .quick-actions{
+    background:#1f1f1f;
+    color:#fff;
+}
+
+body.dark .table{
+    color:#fff;
+}
+
+body.dark .table thead{
+    background:#6c4cff;
+}
+
+body.dark .table td,
+body.dark .table th{
+    border-color:#444;
+}
+
+body.dark .search-box{
+    background:#2d2d2d;
+}
+
+body.dark .search-box input{
+    color:#fff;
+}
+
+body.dark .activity-list li{
+    border-bottom:1px solid #444;
+}
+
+body.dark .footer{
+    color:#ccc;
+}
+
+body.dark #calendar{
+    background:#1f1f1f;
+}
+
+/* ---------- Responsive ---------- */
+
+@media(max-width:992px){
+
+.content-grid{
+    grid-template-columns:1fr;
+}
+
+.welcome-box{
+    flex-direction:column;
+    text-align:center;
+}
+
+.welcome-box img{
+    width:100%;
+    height:220px;
+    margin-top:20px;
+}
+
+.top-navbar{
+    flex-direction:column;
+    gap:15px;
+}
+
+.top-right{
+    width:100%;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.main-content{
+    margin-left:0;
+}
+
+.sidebar{
+    position:relative;
+    width:100%;
+    height:auto;
+}
+
+.wrapper{
+    flex-direction:column;
+}
+
+}
+
+@media(max-width:576px){
+
+.dashboard-cards{
+    grid-template-columns:1fr;
+}
+
+.search-box input{
+    width:120px;
+}
+
+.profile span{
+    display:none;
+}
+
+.action-buttons{
+    flex-direction:column;
+}
+
+.action-buttons .btn{
+    width:100%;
+}
+
+}
+
+/* Faculty Performance */
+
+.performance-card{
+    max-width:520px;
+    height:330px;
+    margin:20px 0;
+}
+
+.performance-chart{
+    width:250px;
+    height:250px;
+    margin:20px auto;
+}
+
+.performance-chart canvas{
+    width:250px !important;
+    height:250px !important;
+}
+
+/* ---------- DARK MODE TABLE FIX ---------- */
+
+body.dark .dashboard-card{
+    background:#1f1f1f !important;
+    color:#fff !important;
+}
+
+body.dark .dashboard-card h4{
+    color:#fff !important;
+}
+
+body.dark table{
+    background:#1f1f1f !important;
+    color:#fff !important;
+}
+
+body.dark .table{
+    color:#fff !important;
+    background:#1f1f1f !important;
+}
+
+body.dark .table thead{
+    background:#2d2d2d !important;
+}
+
+body.dark .table thead th{
+    background:#2d2d2d !important;
+    color:#fff !important;
+    border-color:#444 !important;
+}
+
+body.dark .table tbody tr{
+    background:#1f1f1f !important;
+}
+
+body.dark .table tbody td{
+    background:#1f1f1f !important;
+    color:#fff !important;
+    border-color:#444 !important;
+}
+
+body.dark .table-striped tbody tr:nth-of-type(odd){
+    background:#252525 !important;
+}
+
+body.dark .table-hover tbody tr:hover{
+    background:#303030 !important;
+}
+
+body.dark .badge{
+    color:#fff !important;
+}
+
+/* Pending Leave Buttons */
+
+body.dark .btn-success{
+    color:#fff !important;
+}
+
+body.dark .btn-danger{
+    color:#fff !important;
+}
+
+/* Welcome Banner Dark Mode */
+
+body.dark .welcome-box{
+
+    background:linear-gradient(135deg,#1f2937,#111827);
+
+    color:#fff;
+
+    border:1px solid #2d3748;
+
+}
+
+body.dark .welcome-box p{
+
+    color:#d1d5db;
+
+}
+
+body.dark .welcome-box .btn{
+
+    background:#6c4cff;
+
+    color:#fff;
+
+    border:none;
+
+}
+
+body.dark .welcome-box .btn:hover{
+
+    background:#7c5cff;
+
+}
+
+.notification-menu,
+.profile-menu{
+width:270px;
+border:none;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.notification-menu .dropdown-item,
+.profile-menu .dropdown-item{
+padding:12px;
+border-radius:10px;
+}
+
+.notification-menu .dropdown-item:hover,
+.profile-menu .dropdown-item:hover{
+background:#6F42C1;
+color:#fff;
+}
+
+/* ===========================
+   SIDEBAR DARK MODE
+=========================== */
+
+body.dark .sidebar{
+    background:#121212 !important;
+    border-right:1px solid #2c2c2c;
+}
+
+body.dark .logo h3,
+body.dark .logo p{
+    color:#fff;
+}
+
+body.dark .logo img{
+    border:2px solid #6c4cff;
+}
+
+body.dark .menu li a{
+    color:#dcdcdc;
+}
+
+body.dark .menu li a:hover{
+    background:#2c2c2c;
+    color:#fff;
+}
+
+body.dark .menu li.active a{
+    background:#6c4cff;
+    color:#fff;
+}
+
+body.dark .menu li a i{
+    color:#fff;
+}
+
+.teacher-overview-card{
+    height:330px;
+}
+
+.teacher-overview-card canvas{
+    width:100% !important;
+    height:250px !important;
+}
+
+body.dark .teacher-overview-card{
+    background:#1f1f1f;
+    color:#fff;
+}
+
+/* Light Mode */
+.teacher-overview-card{
+    background:#ffffff;
+}
+
+.teacher-overview-card h4{
+    color:#2563eb;
+}
+
+/* Dark Mode */
+body.dark .teacher-overview-card{
+    background:#1e293b;
+}
+
+body.dark .teacher-overview-card h4{
+    color:#ffffff;
+}
+
+/* ===== Teacher Overview Dark Mode ===== */
+
+body.dark .teacher-overview-card h4,
+body.dark .teacher-overview-card h3{
+    color:#ffffff !important;
+    font-weight:700 !important;
+}
+
+body.dark #teacherOverviewChart{
+    color:#ffffff !important;
+}
+
+
+
+body.dark .welcome-left h1,
+body.dark .welcome-left p{
+    color:#fff;
+}
+
+body.dark .welcome-banner{
+    background:linear-gradient(-45deg,#111827,#1e3a8a,#312e81,#0f172a);
+    background-size:400% 400%;
+}
+
+/* ---------- Animation ---------- */
+
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+@keyframes floatGlow{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(18px);}
+}
+
+@keyframes floatIcon{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+}
+
+/*==================================
+      PREMIUM WELCOME BANNER
+==================================*/
+
+.welcome-banner{
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:40px;
+
+    padding:45px 50px;
+
+    margin-bottom:30px;
+
+    border-radius:28px;
+
+    background:linear-gradient(135deg,#6d5dfc,#7c3aed,#2563eb);
+
+    background-size:300% 300%;
+
+    animation:bannerMove 10s ease infinite;
+
+    color:#fff;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.18);
+
+}
+
+@keyframes bannerMove{
+
+0%{background-position:0% 50%;}
+
+50%{background-position:100% 50%;}
+
+100%{background-position:0% 50%;}
+
+}
+
+.welcome-banner::before{
+
+content:"";
+
+position:absolute;
+
+width:350px;
+
+height:350px;
+
+right:-120px;
+
+top:-120px;
+
+background:rgba(255,255,255,.12);
+
+border-radius:50%;
+
+}
+
+.welcome-banner::after{
+
+content:"";
+
+position:absolute;
+
+width:220px;
+
+height:220px;
+
+left:-70px;
+
+bottom:-70px;
+
+background:rgba(255,255,255,.08);
+
+border-radius:50%;
+
+}
+
+.welcome-left{
+
+position:relative;
+
+z-index:2;
+
+flex:1;
+
+}
+
+.welcome-badge{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:10px;
+
+padding:10px 18px;
+
+border-radius:50px;
+
+background:rgba(255,255,255,.18);
+
+backdrop-filter:blur(10px);
+
+font-size:13px;
+
+font-weight:700;
+
+letter-spacing:1px;
+
+margin-bottom:18px;
+
+}
+
+.welcome-left h1{
+
+font-size:42px;
+
+font-weight:800;
+
+margin-bottom:18px;
+
+color:#fff;
+
+}
+
+.welcome-left p{
+
+font-size:17px;
+
+line-height:30px;
+
+max-width:650px;
+
+color:#eef2ff;
+
+margin-bottom:25px;
+
+}
+
+.banner-buttons{
+
+display:flex;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+}
+
+.banner-buttons .btn{
+
+padding:12px 24px;
+
+font-weight:700;
+
+border-radius:12px;
+
+transition:.35s;
+
+}
+
+.banner-buttons .btn-light:hover{
+
+transform:translateY(-4px);
+
+}
+
+.banner-buttons .btn-outline-light:hover{
+
+background:#fff;
+
+color:#2563eb;
+
+transform:translateY(-4px);
+
+}
+
+.welcome-right{
+
+    flex:1;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    align-items:center;
+
+    padding-right:20px;
+
+}
+
+.hod-icon{
+
+font-size:125px;
+
+color:#fff;
+
+z-index:2;
+
+animation:floatIcon 3s ease-in-out infinite;
+
+filter:drop-shadow(0 15px 30px rgba(0,0,0,.30));
+
+}
+
+@keyframes floatIcon{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-12px);
+
+}
+
+}
+
+.banner-circle{
+
+position:absolute;
+
+border-radius:50%;
+
+animation:pulse 4s infinite;
+
+}
+
+.circle1{
+
+width:170px;
+
+height:170px;
+
+background:rgba(255,255,255,.18);
+
+}
+
+.circle2{
+
+width:230px;
+
+height:230px;
+
+border:2px solid rgba(255,255,255,.25);
+
+}
+
+@keyframes pulse{
+
+0%{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+50%{
+
+transform:scale(1.08);
+
+opacity:.55;
+
+}
+
+100%{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+}
+
+/*==================================
+        DARK MODE
+==================================*/
+
+body.dark .welcome-banner{
+
+background:linear-gradient(135deg,#111827,#1e293b,#1e3a8a,#312e81);
+
+background-size:300% 300%;
+
+animation:bannerMove 10s ease infinite;
+
+box-shadow:0 20px 45px rgba(0,0,0,.55);
+
+}
+
+body.dark .welcome-badge{
+
+background:rgba(255,255,255,.10);
+
+color:#fff;
+
+}
+
+body.dark .welcome-left h1{
+
+color:#fff;
+
+}
+
+body.dark .welcome-left p{
+
+color:#d1d5db;
+
+}
+
+body.dark .banner-buttons .btn-light{
+
+background:#fff;
+
+color:#111827;
+
+}
+
+body.dark .banner-buttons .btn-outline-light{
+
+border-color:#fff;
+
+color:#fff;
+
+}
+
+body.dark .banner-buttons .btn-outline-light:hover{
+
+background:#fff;
+
+color:#111827;
+
+}
+
+/*==================================
+        MOBILE
+==================================*/
+
+@media(max-width:992px){
+
+.welcome-banner{
+
+flex-direction:column;
+
+text-align:center;
+
+padding:35px 25px;
+
+}
+
+.welcome-left p{
+
+margin:auto;
+
+margin-bottom:25px;
+
+}
+
+.banner-buttons{
+
+justify-content:center;
+
+}
+
+.welcome-right{
+
+margin-top:20px;
+
+width:200px;
+
+height:180px;
+
+}
+
+.hod-icon{
+
+font-size:90px;
+
+}
+
+}
+
+/* =========================================================
+            GLOBAL HOD DARK MODE
+========================================================= */
+
+body{
+    transition:
+        background-color .3s ease,
+        color .3s ease;
+}
+
+
+/* ================= BODY ================= */
+
+body.dark{
+    background:#111827;
+    color:#f8fafc;
+}
+
+
+/* ================= MAIN CONTENT ================= */
+
+body.dark .main-content{
+    background:#111827;
+    color:#f8fafc;
+}
+
+
+/* ================= TOP NAVBAR ================= */
+
+body.dark .top-navbar{
+    background:#1f2937;
+    color:#ffffff;
+    border-color:#374151;
+    box-shadow:0 3px 15px rgba(0,0,0,.25);
+}
+
+body.dark .top-navbar h1,
+body.dark .top-navbar h2,
+body.dark .top-navbar h3,
+body.dark .top-navbar h4{
+    color:#ffffff;
+}
+
+
+/* ================= SEARCH ================= */
+
+body.dark .search-box{
+    background:#374151;
+    border-color:#4b5563;
+}
+
+body.dark .search-box input{
+    background:transparent;
+    color:#ffffff;
+}
+
+body.dark .search-box input::placeholder{
+    color:#9ca3af;
+}
+
+body.dark .search-box i{
+    color:#d1d5db;
+}
+
+
+/* ================= ICON BUTTON ================= */
+
+body.dark .icon-btn{
+    background:#374151;
+    color:#ffffff;
+    border-color:#4b5563;
+}
+
+body.dark .icon-btn:hover{
+    background:#4b5563;
+}
+
+
+/* ================= PROFILE ================= */
+
+body.dark .profile{
+    color:#ffffff;
+}
+
+
+/* ================= DROPDOWN ================= */
+
+body.dark .dropdown-menu{
+    background:#1f2937;
+    border-color:#374151;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+body.dark .dropdown-item{
+    color:#f3f4f6;
+}
+
+body.dark .dropdown-item:hover{
+    background:#374151;
+    color:#ffffff;
+}
+
+body.dark .dropdown-header{
+    color:#9ca3af;
+}
+
+body.dark .dropdown-divider{
+    border-color:#4b5563;
+}
+
+
+/* ================= GENERAL CARDS ================= */
+
+body.dark .dashboard-card,
+body.dark .card-box,
+body.dark .analytics-card,
+body.dark .analytics-filter,
+body.dark .analytics-stat-card,
+body.dark .time-card,
+body.dark .quick-actions{
+    background:#1f2937;
+    color:#ffffff;
+    border-color:#374151;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+}
+
+
+/* ================= CARD HEADINGS ================= */
+
+body.dark .dashboard-card h1,
+body.dark .dashboard-card h2,
+body.dark .dashboard-card h3,
+body.dark .dashboard-card h4,
+body.dark .dashboard-card h5,
+body.dark .analytics-card h1,
+body.dark .analytics-card h2,
+body.dark .analytics-card h3,
+body.dark .analytics-card h4,
+body.dark .analytics-card h5{
+    color:#ffffff;
+}
+
+
+/* ================= NORMAL TEXT ================= */
+
+body.dark p{
+    color:#d1d5db;
+}
+
+body.dark .text-muted{
+    color:#9ca3af !important;
+}
+
+
+/* ================= TABLE ================= */
+
+body.dark .table{
+    color:#ffffff;
+    border-color:#374151;
+}
+
+body.dark .table > :not(caption) > * > *{
+    background:#1f2937;
+    color:#ffffff;
+    border-color:#374151;
+}
+
+body.dark .table thead th{
+    background:#312e81;
+    color:#ffffff;
+    border-color:#4338ca;
+}
+
+body.dark .table-hover tbody tr:hover > *{
+    background:#374151 !important;
+    color:#ffffff !important;
+}
+
+body.dark .table-striped > tbody > tr:nth-of-type(odd) > *{
+    background:#242f40;
+    color:#ffffff;
+}
+
+
+/* ================= FORMS ================= */
+
+body.dark .form-control,
+body.dark .form-select,
+body.dark textarea{
+    background:#374151;
+    color:#ffffff;
+    border-color:#4b5563;
+}
+
+body.dark .form-control::placeholder,
+body.dark textarea::placeholder{
+    color:#9ca3af;
+}
+
+body.dark .form-control:focus,
+body.dark .form-select:focus,
+body.dark textarea:focus{
+    background:#374151;
+    color:#ffffff;
+    border-color:#8b5cf6;
+    box-shadow:0 0 0 .2rem rgba(139,92,246,.18);
+}
+
+body.dark .form-select option{
+    background:#1f2937;
+    color:#ffffff;
+}
+
+
+/* ================= LABEL ================= */
+
+body.dark label,
+body.dark .form-label{
+    color:#f3f4f6;
+}
+
+
+/* ================= INPUT GROUP ================= */
+
+body.dark .input-group-text{
+    background:#374151;
+    color:#ffffff;
+    border-color:#4b5563;
+}
+
+
+/* ================= MODAL ================= */
+
+body.dark .modal-content{
+    background:#1f2937;
+    color:#ffffff;
+    border-color:#374151;
+}
+
+body.dark .modal-header,
+body.dark .modal-footer{
+    border-color:#374151;
+}
+
+body.dark .btn-close{
+    filter:invert(1);
+}
+
+
+/* ================= LIST GROUP ================= */
+
+body.dark .list-group-item{
+    background:#1f2937;
+    color:#ffffff;
+    border-color:#374151;
+}
+
+
+/* ================= ACTIVITY LIST ================= */
+
+body.dark .activity-list li{
+    color:#f3f4f6;
+    border-color:#374151;
+}
+
+
+/* ================= PROGRESS ================= */
+
+body.dark .progress{
+    background:#374151;
+}
+
+
+/* ================= CALENDAR ================= */
+
+body.dark #calendar{
+    color:#ffffff;
+}
+
+body.dark .fc{
+    color:#ffffff;
+}
+
+body.dark .fc-theme-standard td,
+body.dark .fc-theme-standard th,
+body.dark .fc-theme-standard .fc-scrollgrid{
+    border-color:#374151;
+}
+
+body.dark .fc-col-header-cell{
+    background:#1f2937;
+}
+
+body.dark .fc-daygrid-day{
+    background:#1f2937;
+}
+
+body.dark .fc-day-today{
+    background:#312e81 !important;
+}
+
+body.dark .fc-toolbar-title{
+    color:#ffffff;
+}
+
+
+/* ================= FOOTER ================= */
+
+body.dark .footer{
+    background:#1f2937;
+    color:#9ca3af;
+    border-color:#374151;
+}
+
+
+/* ================= LINKS ================= */
+
+body.dark a{
+    transition:.2s;
+}
+
+
+/* ================= HR ================= */
+
+body.dark hr{
+    border-color:#4b5563;
+}
+
+
+/* ================= SCROLLBAR ================= */
+
+body.dark::-webkit-scrollbar{
+    width:10px;
+}
+
+body.dark::-webkit-scrollbar-track{
+    background:#111827;
+}
+
+body.dark::-webkit-scrollbar-thumb{
+    background:#4b5563;
+    border-radius:10px;
+}
+
+body.dark::-webkit-scrollbar-thumb:hover{
+    background:#6b7280;
+}

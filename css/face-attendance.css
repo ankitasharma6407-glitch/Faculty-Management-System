@@ -1,0 +1,528 @@
+/*========================================
+ FACE ATTENDANCE PAGE
+========================================*/
+
+.face-attendance-section{
+
+    min-height:100vh;
+
+    padding:70px 20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:linear-gradient(135deg,#eef2ff,#f8f9ff);
+
+}
+
+.face-attendance-card{
+
+    width:100%;
+
+    max-width:900px;
+
+    background:#ffffff;
+
+    border-radius:24px;
+
+    padding:35px;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.10);
+
+    border:1px solid rgba(111,66,193,.10);
+
+    transition:.35s;
+
+}
+
+.face-attendance-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 30px 60px rgba(111,66,193,.25);
+
+}
+
+/*========================================
+ HEADER
+========================================*/
+
+.face-attendance-header{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.face-attendance-icon{
+
+    width:90px;
+
+    height:90px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#6f42c1,#2563eb);
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:38px;
+
+    box-shadow:0 15px 35px rgba(111,66,193,.35);
+
+}
+
+.face-attendance-header h2{
+
+    margin-top:18px;
+
+    font-weight:700;
+
+    color:#2c1b4d;
+
+}
+
+.face-attendance-header p{
+
+    color:#6b7280;
+
+}
+
+/*========================================
+ CAMERA
+========================================*/
+
+.camera-box{
+
+    width:100%;
+
+    height:420px;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    border:3px dashed #6f42c1;
+
+    background:#f8f9ff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:relative;
+
+}
+
+.camera-box video{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+.camera-box canvas{
+
+    display:none;
+
+}
+
+.camera-placeholder{
+
+    text-align:center;
+
+    color:#6f42c1;
+
+}
+
+.camera-placeholder i{
+
+    font-size:70px;
+
+    margin-bottom:15px;
+
+}
+
+.camera-placeholder h5{
+
+    font-weight:700;
+
+}
+
+/*========================================
+ BUTTONS
+========================================*/
+
+.start-btn{
+
+    width:100%;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:linear-gradient(135deg,#6f42c1,#2563eb);
+
+    color:#fff;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+}
+
+.start-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 15px 35px rgba(111,66,193,.35);
+
+}
+
+.stop-btn{
+
+    width:100%;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#dc3545;
+
+    color:#fff;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+}
+
+.stop-btn:hover{
+
+    background:#bb2d3b;
+
+}
+
+.mark-btn{
+
+    width:100%;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#198754;
+
+    color:#fff;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+}
+
+.mark-btn:hover{
+
+    background:#157347;
+
+}
+/*========================================
+ FACE SCANNER ANIMATION
+========================================*/
+
+.scanner-line{
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:4px;
+
+    background:linear-gradient(90deg,#2563eb,#6f42c1,#2563eb);
+
+    box-shadow:0 0 20px rgba(111,66,193,.7);
+
+    animation:scanMove 2s linear infinite;
+
+}
+
+@keyframes scanMove{
+
+    0%{
+        top:0;
+    }
+
+    50%{
+        top:calc(100% - 4px);
+    }
+
+    100%{
+        top:0;
+    }
+
+}
+
+/*========================================
+ STATUS CARD
+========================================*/
+
+.attendance-status{
+
+    margin-top:25px;
+
+    padding:18px;
+
+    border-radius:15px;
+
+    background:#eef4ff;
+
+    color:#2563eb;
+
+    text-align:center;
+
+    font-weight:600;
+
+    border:1px solid rgba(37,99,235,.15);
+
+}
+
+.attendance-status.success{
+
+    background:#d1fae5;
+
+    color:#065f46;
+
+}
+
+.attendance-status.failed{
+
+    background:#fee2e2;
+
+    color:#991b1b;
+
+}
+
+/*========================================
+ STUDENT DETAILS
+========================================*/
+
+.student-card{
+
+    margin-top:25px;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    border:1px solid #e5e7eb;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+
+}
+
+.student-card h5{
+
+    font-weight:700;
+
+    color:#2c1b4d;
+
+    margin-bottom:15px;
+
+}
+
+.student-card p{
+
+    margin-bottom:10px;
+
+    color:#555;
+
+}
+
+.student-card span{
+
+    font-weight:600;
+
+    color:#6f42c1;
+
+}
+
+/*========================================
+ LOADER
+========================================*/
+
+.attendance-loader{
+
+    width:65px;
+
+    height:65px;
+
+    margin:25px auto;
+
+    border:6px solid #ddd;
+
+    border-top:6px solid #6f42c1;
+
+    border-radius:50%;
+
+    animation:rotateLoader 1s linear infinite;
+
+}
+
+@keyframes rotateLoader{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/*========================================
+ RESPONSIVE
+========================================*/
+
+@media(max-width:768px){
+
+.face-attendance-card{
+
+    padding:25px;
+
+}
+
+.camera-box{
+
+    height:260px;
+
+}
+
+.face-attendance-header h2{
+
+    font-size:28px;
+
+}
+
+.student-card{
+
+    padding:18px;
+
+}
+
+}
+
+/*========================================
+ DARK MODE
+========================================*/
+
+body.dark .face-attendance-section{
+
+    background:#0f172a;
+
+}
+
+body.dark .face-attendance-card{
+
+    background:#1e293b;
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+body.dark .face-attendance-header h2,
+
+body.dark .face-attendance-header p,
+
+body.dark .student-card h5,
+
+body.dark .student-card p{
+
+    color:#fff;
+
+}
+
+body.dark .camera-box{
+
+    background:#334155;
+
+    border-color:#60a5fa;
+
+}
+
+body.dark .attendance-status{
+
+    background:#1e3a8a;
+
+    color:#bfdbfe;
+
+}
+
+body.dark .attendance-status.success{
+
+    background:#064e3b;
+
+    color:#d1fae5;
+
+}
+
+body.dark .attendance-status.failed{
+
+    background:#7f1d1d;
+
+    color:#fecaca;
+
+}
+
+body.dark .student-card{
+
+    background:#334155;
+
+    border:1px solid #475569;
+
+}
+
+body.dark .student-card span{
+
+    color:#93c5fd;
+
+}

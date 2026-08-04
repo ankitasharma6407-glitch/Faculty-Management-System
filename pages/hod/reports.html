@@ -1,0 +1,3450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Reports | HOD Panel</title>
+
+
+<!-- ================= Bootstrap ================= -->
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<!-- ================= Font Awesome ================= -->
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+<!-- ================= Google Font ================= -->
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+
+<!-- ================= HOD CSS ================= -->
+
+<link
+rel="stylesheet"
+href="../../css/hod-dashboard.css">
+
+
+<style>
+
+/* =========================================================
+                        REPORT PAGE
+========================================================= */
+
+.report-page-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+
+}
+
+.report-page-header h2{
+
+    font-weight:800;
+    margin-bottom:5px;
+
+}
+
+.report-page-header p{
+
+    color:#6b7280;
+    margin:0;
+
+}
+
+.report-page-header .btn{
+
+    border-radius:12px;
+    padding:11px 20px;
+    font-weight:600;
+
+}
+
+
+/* =========================================================
+                    SUMMARY CARDS
+========================================================= */
+
+.report-stats{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(210px,1fr));
+
+    gap:20px;
+
+    margin-bottom:25px;
+
+}
+
+.report-stat-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    box-shadow:
+    0 6px 20px rgba(0,0,0,.07);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:17px;
+
+    transition:.3s;
+
+}
+
+.report-stat-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.report-stat-icon{
+
+    width:58px;
+    height:58px;
+
+    min-width:58px;
+
+    border-radius:16px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:24px;
+
+}
+
+.report-stat-icon.purple{
+
+    background:rgba(108,76,255,.12);
+    color:#6c4cff;
+
+}
+
+.report-stat-icon.green{
+
+    background:rgba(34,197,94,.12);
+    color:#22c55e;
+
+}
+
+.report-stat-icon.orange{
+
+    background:rgba(245,158,11,.15);
+    color:#f59e0b;
+
+}
+
+.report-stat-icon.blue{
+
+    background:rgba(37,99,235,.12);
+    color:#2563eb;
+
+}
+
+.report-stat-card h3{
+
+    margin:0;
+    font-size:27px;
+    font-weight:800;
+
+}
+
+.report-stat-card p{
+
+    margin:3px 0 0;
+    color:#6b7280;
+    font-size:14px;
+
+}
+
+
+/* =========================================================
+                    FILTER CARD
+========================================================= */
+
+.report-filter-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    box-shadow:
+    0 6px 20px rgba(0,0,0,.07);
+
+    margin-bottom:25px;
+
+}
+
+.report-filter-card h4{
+
+    color:#6c4cff;
+    font-weight:700;
+    margin-bottom:20px;
+
+}
+
+.report-filter-card .form-control,
+.report-filter-card .form-select{
+
+    min-height:45px;
+    border-radius:10px;
+
+}
+
+
+/* =========================================================
+                    REPORT GRID
+========================================================= */
+
+.report-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+    gap:22px;
+
+    margin-bottom:25px;
+
+}
+
+.report-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:23px;
+
+    box-shadow:
+    0 6px 20px rgba(0,0,0,.07);
+
+}
+
+.report-card-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:22px;
+
+}
+
+.report-card-header h4{
+
+    font-weight:700;
+    color:#6c4cff;
+    margin:0;
+
+}
+
+.report-card-header .icon-box{
+
+    width:42px;
+    height:42px;
+
+    border-radius:12px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(108,76,255,.12);
+    color:#6c4cff;
+
+}
+
+
+/* =========================================================
+                    PROGRESS REPORT
+========================================================= */
+
+.progress-report{
+
+    margin-bottom:22px;
+
+}
+
+.progress-report:last-child{
+
+    margin-bottom:0;
+
+}
+
+.progress-report-header{
+
+    display:flex;
+    justify-content:space-between;
+
+    margin-bottom:8px;
+
+    font-size:14px;
+
+}
+
+.progress-report-header span:first-child{
+
+    font-weight:600;
+
+}
+
+.progress-report-header span:last-child{
+
+    color:#6b7280;
+    font-weight:600;
+
+}
+
+.progress{
+
+    height:9px;
+
+    border-radius:20px;
+
+    background:#e9ecef;
+
+}
+
+.progress-bar{
+
+    border-radius:20px;
+
+}
+
+
+/* =========================================================
+                    QUICK REPORT
+========================================================= */
+
+.quick-report-item{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    padding:15px 0;
+
+    border-bottom:1px solid #eeeeee;
+
+}
+
+.quick-report-item:last-child{
+
+    border-bottom:none;
+
+}
+
+.quick-report-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+}
+
+.quick-report-icon{
+
+    width:45px;
+
+    height:45px;
+
+    min-width:45px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(108,76,255,.1);
+
+    color:#6c4cff;
+
+    font-size:18px;
+
+}
+
+.quick-report-left h6{
+
+    font-weight:700;
+    margin:0 0 3px;
+
+}
+
+.quick-report-left p{
+
+    font-size:12px;
+    color:#6b7280;
+    margin:0;
+
+}
+
+
+/* =========================================================
+                    REPORT TABLE
+========================================================= */
+
+.report-table-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:24px;
+
+    box-shadow:
+    0 6px 20px rgba(0,0,0,.07);
+
+    margin-bottom:25px;
+
+}
+
+.report-table-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+
+}
+
+.report-table-header h4{
+
+    color:#6c4cff;
+
+    font-weight:700;
+
+    margin:0;
+
+}
+
+.report-table-card table{
+
+    margin-bottom:0;
+
+}
+
+.report-table-card th{
+
+    font-size:14px;
+
+    font-weight:700;
+
+    white-space:nowrap;
+
+}
+
+.report-table-card td{
+
+    vertical-align:middle;
+
+    font-size:14px;
+
+}
+
+.report-name{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.report-name-icon{
+
+    width:38px;
+    height:38px;
+
+    border-radius:10px;
+
+    background:rgba(108,76,255,.12);
+
+    color:#6c4cff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+/* =========================================================
+                    STATUS
+========================================================= */
+
+.report-status{
+
+    padding:6px 11px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    display:inline-block;
+
+}
+
+.status-ready{
+
+    color:#15803d;
+
+    background:rgba(34,197,94,.13);
+
+}
+
+.status-pending{
+
+    color:#b45309;
+
+    background:rgba(245,158,11,.15);
+
+}
+
+
+/* =========================================================
+                    EMPTY SEARCH
+========================================================= */
+
+#noReportResult{
+
+    display:none;
+
+    text-align:center;
+
+    padding:30px;
+
+    color:#6b7280;
+
+}
+
+
+/* =========================================================
+                        DARK MODE
+========================================================= */
+
+body.dark .report-page-header p{
+
+    color:#cbd5e1;
+
+}
+
+body.dark .report-stat-card,
+body.dark .report-filter-card,
+body.dark .report-card,
+body.dark .report-table-card{
+
+    background:#1f1f1f;
+
+    color:#ffffff;
+
+}
+
+body.dark .report-stat-card p,
+body.dark .quick-report-left p{
+
+    color:#cbd5e1;
+
+}
+
+body.dark .report-filter-card h4,
+body.dark .report-card-header h4,
+body.dark .report-table-header h4{
+
+    color:#ffffff;
+
+}
+
+body.dark .quick-report-item{
+
+    border-color:#3f3f46;
+
+}
+
+body.dark .report-filter-card .form-control,
+body.dark .report-filter-card .form-select{
+
+    background:#292929;
+
+    color:#ffffff;
+
+    border-color:#444;
+
+}
+
+body.dark .report-filter-card .form-control::placeholder{
+
+    color:#999;
+
+}
+
+body.dark .report-filter-card .form-select option{
+
+    background:#292929;
+
+    color:#ffffff;
+
+}
+
+body.dark .progress{
+
+    background:#3f3f46;
+
+}
+
+body.dark .report-table-card .table{
+
+    --bs-table-bg:transparent;
+
+    --bs-table-color:#ffffff;
+
+    --bs-table-border-color:#444;
+
+}
+
+body.dark .report-table-card .table-hover > tbody > tr:hover > *{
+
+    --bs-table-bg-state:rgba(255,255,255,.05);
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                        RESPONSIVE
+========================================================= */
+
+@media(max-width:992px){
+
+    .report-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .report-page-header{
+
+        align-items:flex-start;
+
+    }
+
+    .report-filter-card,
+    .report-card,
+    .report-table-card{
+
+        padding:17px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="wrapper">
+
+
+<!-- =========================================================
+                        SIDEBAR
+========================================================= -->
+
+<aside class="sidebar">
+
+
+<div class="logo">
+
+<img
+src="../../images/logo.png"
+alt="Logo">
+
+<h3>HOD Panel</h3>
+
+</div>
+
+
+<ul class="menu">
+
+<li>
+
+<a href="hod-dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+Dashboard
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="teacher-list.html">
+
+<i class="fa-solid fa-chalkboard-user"></i>
+
+Teachers
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="student-list.html">
+
+<i class="fa-solid fa-user-graduate"></i>
+
+Students
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="timetable.html">
+
+<i class="fa-solid fa-table-list"></i>
+
+Timetable
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="academic-calendar.html">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+Academic Calendar
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="attendance-report.html">
+
+<i class="fa-solid fa-clipboard-check"></i>
+
+Attendance Report
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="analytics.html">
+
+<i class="fa-solid fa-chart-pie"></i>
+
+Analytics
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="face-attendance.html">
+
+<i class="fa-solid fa-camera"></i>
+
+Face Attendance
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="face-register.html">
+
+<i class="fa-solid fa-face-smile"></i>
+
+Face Registration
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="leave-requests.html">
+
+<i class="fa-solid fa-file-circle-check"></i>
+
+Leave Requests
+
+</a>
+
+</li>
+
+
+<li class="active">
+
+<a href="reports.html">
+
+<i class="fa-solid fa-chart-line"></i>
+
+Reports
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="notice-board.html">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+Notice Board
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="notification.html">
+
+<i class="fa-solid fa-bell"></i>
+
+Notifications
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="profile.html">
+
+<i class="fa-solid fa-user"></i>
+
+Profile
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="hod-login.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+</ul>
+
+
+</aside>
+
+
+<!-- =========================================================
+                        MAIN CONTENT
+========================================================= -->
+
+<main class="main-content">
+
+
+<!-- =========================================================
+                        TOP NAVBAR
+========================================================= -->
+
+<nav class="top-navbar">
+
+
+<h3>Reports</h3>
+
+
+<div class="top-right">
+
+
+<!-- Search -->
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="searchBox"
+placeholder="Search reports...">
+
+</div>
+
+
+<!-- Dark Mode -->
+
+<button
+id="themeToggle"
+class="icon-btn"
+type="button"
+title="Dark / Light Mode">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+
+<!-- Notification -->
+
+<div class="dropdown">
+
+
+<button
+class="icon-btn position-relative"
+type="button"
+data-bs-toggle="dropdown">
+
+<i class="fa-regular fa-bell"></i>
+
+<span
+class="badge-count"
+id="notificationCount">
+
+4
+
+</span>
+
+</button>
+
+
+<ul
+class="dropdown-menu dropdown-menu-end notification-menu">
+
+
+<li class="dropdown-header">
+
+Notifications
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="#">
+
+📊 Monthly report generated
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="#">
+
+📄 Attendance report available
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="#">
+
+📈 Faculty performance updated
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="#">
+
+📅 Semester report pending
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+<!-- Profile -->
+
+<div class="dropdown">
+
+
+<div
+class="profile"
+data-bs-toggle="dropdown">
+
+<img
+src="https://i.pravatar.cc/50?img=12"
+alt="HOD">
+
+<span>
+
+Welcome, HOD
+
+</span>
+
+<i class="fa-solid fa-angle-down"></i>
+
+</div>
+
+
+<ul
+class="dropdown-menu dropdown-menu-end profile-menu">
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="profile.html">
+
+<i class="fa-solid fa-user"></i>
+
+My Profile
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="change-password.html">
+
+<i class="fa-solid fa-lock"></i>
+
+Change Password
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
+
+</a>
+
+</li>
+
+
+<li>
+
+<hr class="dropdown-divider">
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item text-danger"
+href="hod-login.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+</div>
+
+
+</div>
+
+</nav>
+
+
+<!-- =========================================================
+                        PAGE HEADER
+========================================================= -->
+
+<div class="report-page-header">
+
+
+<div>
+
+<h2>
+
+<i
+class="fa-solid fa-chart-column"
+style="color:#6c4cff;">
+</i>
+
+Department Reports
+
+</h2>
+
+
+<p>
+
+View, generate and download academic,
+attendance and faculty performance reports.
+
+</p>
+
+</div>
+
+
+<div class="d-flex gap-2 flex-wrap">
+
+
+<button
+class="btn btn-outline-primary"
+type="button"
+onclick="window.print()">
+
+<i class="fa-solid fa-print me-2"></i>
+
+Print
+
+</button>
+
+
+<button
+class="btn btn-primary"
+type="button"
+id="generateReportBtn">
+
+<i class="fa-solid fa-file-circle-plus me-2"></i>
+
+Generate Report
+
+</button>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    SUMMARY CARDS
+========================================================= -->
+
+<section class="report-stats">
+
+
+<div class="report-stat-card">
+
+
+<div class="report-stat-icon purple">
+
+<i class="fa-solid fa-file-lines"></i>
+
+</div>
+
+
+<div>
+
+<h3>24</h3>
+
+<p>Total Reports</p>
+
+</div>
+
+</div>
+
+
+<div class="report-stat-card">
+
+
+<div class="report-stat-icon green">
+
+<i class="fa-solid fa-user-check"></i>
+
+</div>
+
+
+<div>
+
+<h3>94%</h3>
+
+<p>Avg. Attendance</p>
+
+</div>
+
+</div>
+
+
+<div class="report-stat-card">
+
+
+<div class="report-stat-icon blue">
+
+<i class="fa-solid fa-chart-line"></i>
+
+</div>
+
+
+<div>
+
+<h3>88%</h3>
+
+<p>Faculty Performance</p>
+
+</div>
+
+</div>
+
+
+<div class="report-stat-card">
+
+
+<div class="report-stat-icon orange">
+
+<i class="fa-solid fa-clock"></i>
+
+</div>
+
+
+<div>
+
+<h3>3</h3>
+
+<p>Pending Reports</p>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    REPORT FILTER
+========================================================= -->
+
+<section class="report-filter-card">
+
+
+<h4>
+
+<i class="fa-solid fa-filter me-2"></i>
+
+Report Filters
+
+</h4>
+
+
+<div class="row">
+
+
+<div class="col-lg-3 col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Report Type
+
+</label>
+
+
+<select
+id="reportType"
+class="form-select">
+
+<option value="all">
+
+All Reports
+
+</option>
+
+<option value="attendance">
+
+Attendance Report
+
+</option>
+
+<option value="performance">
+
+Faculty Performance
+
+</option>
+
+<option value="workload">
+
+Faculty Workload
+
+</option>
+
+<option value="leave">
+
+Leave Report
+
+</option>
+
+<option value="academic">
+
+Academic Report
+
+</option>
+
+</select>
+
+</div>
+
+
+<div class="col-lg-3 col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Academic Year
+
+</label>
+
+
+<select
+id="academicYear"
+class="form-select">
+
+<option>2026-2027</option>
+
+<option>2025-2026</option>
+
+<option>2024-2025</option>
+
+</select>
+
+</div>
+
+
+<div class="col-lg-3 col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+From Date
+
+</label>
+
+
+<input
+type="date"
+id="fromDate"
+class="form-control">
+
+</div>
+
+
+<div class="col-lg-3 col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+To Date
+
+</label>
+
+
+<input
+type="date"
+id="toDate"
+class="form-control">
+
+</div>
+
+
+<div class="col-12 d-flex justify-content-end gap-2">
+
+
+<button
+class="btn btn-outline-secondary"
+type="button"
+id="resetFilterBtn">
+
+<i class="fa-solid fa-rotate-left me-1"></i>
+
+Reset
+
+</button>
+
+
+<button
+class="btn btn-primary"
+type="button"
+id="applyFilterBtn">
+
+<i class="fa-solid fa-filter me-1"></i>
+
+Apply Filter
+
+</button>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+                    REPORT OVERVIEW
+========================================================= -->
+
+<section class="report-grid">
+
+
+<!-- ================= PERFORMANCE OVERVIEW ================= -->
+
+<div class="report-card">
+
+
+<div class="report-card-header">
+
+
+<h4>
+
+<i class="fa-solid fa-chart-simple me-2"></i>
+
+Department Overview
+
+</h4>
+
+
+<div class="icon-box">
+
+<i class="fa-solid fa-chart-line"></i>
+
+</div>
+
+
+</div>
+
+
+<div class="progress-report">
+
+
+<div class="progress-report-header">
+
+<span>Faculty Attendance</span>
+
+<span>96%</span>
+
+</div>
+
+
+<div class="progress">
+
+<div
+class="progress-bar bg-success"
+style="width:96%">
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="progress-report">
+
+
+<div class="progress-report-header">
+
+<span>Student Attendance</span>
+
+<span>92%</span>
+
+</div>
+
+
+<div class="progress">
+
+<div
+class="progress-bar bg-primary"
+style="width:92%">
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="progress-report">
+
+
+<div class="progress-report-header">
+
+<span>Faculty Performance</span>
+
+<span>88%</span>
+
+</div>
+
+
+<div class="progress">
+
+<div
+class="progress-bar bg-info"
+style="width:88%">
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="progress-report">
+
+
+<div class="progress-report-header">
+
+<span>Syllabus Completion</span>
+
+<span>84%</span>
+
+</div>
+
+
+<div class="progress">
+
+<div
+class="progress-bar bg-warning"
+style="width:84%">
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="progress-report">
+
+
+<div class="progress-report-header">
+
+<span>Assignment Completion</span>
+
+<span>90%</span>
+
+</div>
+
+
+<div class="progress">
+
+<div
+class="progress-bar bg-danger"
+style="width:90%">
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- ================= QUICK REPORTS ================= -->
+
+<div class="report-card">
+
+
+<div class="report-card-header">
+
+
+<h4>
+
+<i class="fa-solid fa-bolt me-2"></i>
+
+Quick Reports
+
+</h4>
+
+
+<div class="icon-box">
+
+<i class="fa-solid fa-file-export"></i>
+
+</div>
+
+
+</div>
+
+
+<div class="quick-report-item">
+
+
+<div class="quick-report-left">
+
+
+<div class="quick-report-icon">
+
+<i class="fa-solid fa-clipboard-check"></i>
+
+</div>
+
+
+<div>
+
+<h6>Attendance Report</h6>
+
+<p>Faculty and student attendance</p>
+
+</div>
+
+
+</div>
+
+
+<button
+class="btn btn-sm btn-outline-primary quickViewBtn"
+data-report="Attendance Report">
+
+View
+
+</button>
+
+
+</div>
+
+
+<div class="quick-report-item">
+
+
+<div class="quick-report-left">
+
+
+<div class="quick-report-icon">
+
+<i class="fa-solid fa-chart-line"></i>
+
+</div>
+
+
+<div>
+
+<h6>Performance Report</h6>
+
+<p>Faculty performance analysis</p>
+
+</div>
+
+
+</div>
+
+
+<button
+class="btn btn-sm btn-outline-primary quickViewBtn"
+data-report="Performance Report">
+
+View
+
+</button>
+
+
+</div>
+
+
+<div class="quick-report-item">
+
+
+<div class="quick-report-left">
+
+
+<div class="quick-report-icon">
+
+<i class="fa-solid fa-book-open"></i>
+
+</div>
+
+
+<div>
+
+<h6>Academic Report</h6>
+
+<p>Academic progress and syllabus</p>
+
+</div>
+
+
+</div>
+
+
+<button
+class="btn btn-sm btn-outline-primary quickViewBtn"
+data-report="Academic Report">
+
+View
+
+</button>
+
+
+</div>
+
+
+<div class="quick-report-item">
+
+
+<div class="quick-report-left">
+
+
+<div class="quick-report-icon">
+
+<i class="fa-solid fa-calendar-minus"></i>
+
+</div>
+
+
+<div>
+
+<h6>Leave Report</h6>
+
+<p>Faculty leave summary</p>
+
+</div>
+
+
+</div>
+
+
+<button
+class="btn btn-sm btn-outline-primary quickViewBtn"
+data-report="Leave Report">
+
+View
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    GENERATED REPORTS TABLE
+========================================================= -->
+
+<section class="report-table-card">
+
+
+<div class="report-table-header">
+
+
+<h4>
+
+<i class="fa-solid fa-folder-open me-2"></i>
+
+Generated Reports
+
+</h4>
+
+
+<button
+class="btn btn-sm btn-outline-primary"
+type="button"
+id="refreshReportsBtn">
+
+<i class="fa-solid fa-arrows-rotate me-1"></i>
+
+Refresh
+
+</button>
+
+
+</div>
+
+
+<div class="table-responsive">
+
+
+<table
+class="table table-hover align-middle"
+id="reportsTable">
+
+
+<thead>
+
+
+<tr>
+
+<th>#</th>
+
+<th>Report Name</th>
+
+<th>Type</th>
+
+<th>Generated Date</th>
+
+<th>Period</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+
+</thead>
+
+
+<tbody id="reportsTableBody">
+
+
+<tr
+class="report-row"
+data-type="attendance">
+
+
+<td>1</td>
+
+
+<td>
+
+
+<div class="report-name">
+
+
+<div class="report-name-icon">
+
+<i class="fa-solid fa-clipboard-check"></i>
+
+</div>
+
+
+<div>
+
+<strong>Monthly Attendance Report</strong>
+
+</div>
+
+
+</div>
+
+
+</td>
+
+
+<td>Attendance</td>
+
+<td>01 Aug 2026</td>
+
+<td>July 2026</td>
+
+
+<td>
+
+<span class="report-status status-ready">
+
+Ready
+
+</span>
+
+</td>
+
+
+<td>
+
+
+<button
+class="btn btn-sm btn-outline-primary viewReportBtn"
+data-report="Monthly Attendance Report">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+
+<button
+class="btn btn-sm btn-outline-success downloadReportBtn"
+data-report="Monthly Attendance Report">
+
+<i class="fa-solid fa-download"></i>
+
+</button>
+
+
+</td>
+
+
+</tr>
+
+
+<tr
+class="report-row"
+data-type="performance">
+
+
+<td>2</td>
+
+
+<td>
+
+
+<div class="report-name">
+
+
+<div class="report-name-icon">
+
+<i class="fa-solid fa-chart-line"></i>
+
+</div>
+
+
+<div>
+
+<strong>Faculty Performance Report</strong>
+
+</div>
+
+
+</div>
+
+
+</td>
+
+
+<td>Performance</td>
+
+<td>31 Jul 2026</td>
+
+<td>Semester I</td>
+
+
+<td>
+
+<span class="report-status status-ready">
+
+Ready
+
+</span>
+
+</td>
+
+
+<td>
+
+
+<button
+class="btn btn-sm btn-outline-primary viewReportBtn"
+data-report="Faculty Performance Report">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+
+<button
+class="btn btn-sm btn-outline-success downloadReportBtn"
+data-report="Faculty Performance Report">
+
+<i class="fa-solid fa-download"></i>
+
+</button>
+
+
+</td>
+
+
+</tr>
+
+
+<tr
+class="report-row"
+data-type="academic">
+
+
+<td>3</td>
+
+
+<td>
+
+
+<div class="report-name">
+
+
+<div class="report-name-icon">
+
+<i class="fa-solid fa-book"></i>
+
+</div>
+
+
+<div>
+
+<strong>Academic Progress Report</strong>
+
+</div>
+
+
+</div>
+
+
+</td>
+
+
+<td>Academic</td>
+
+<td>29 Jul 2026</td>
+
+<td>Semester I</td>
+
+
+<td>
+
+<span class="report-status status-ready">
+
+Ready
+
+</span>
+
+</td>
+
+
+<td>
+
+
+<button
+class="btn btn-sm btn-outline-primary viewReportBtn"
+data-report="Academic Progress Report">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+
+<button
+class="btn btn-sm btn-outline-success downloadReportBtn"
+data-report="Academic Progress Report">
+
+<i class="fa-solid fa-download"></i>
+
+</button>
+
+
+</td>
+
+
+</tr>
+
+
+<tr
+class="report-row"
+data-type="leave">
+
+
+<td>4</td>
+
+
+<td>
+
+
+<div class="report-name">
+
+
+<div class="report-name-icon">
+
+<i class="fa-solid fa-calendar-minus"></i>
+
+</div>
+
+
+<div>
+
+<strong>Faculty Leave Report</strong>
+
+</div>
+
+
+</div>
+
+
+</td>
+
+
+<td>Leave</td>
+
+<td>28 Jul 2026</td>
+
+<td>July 2026</td>
+
+
+<td>
+
+<span class="report-status status-pending">
+
+Pending
+
+</span>
+
+</td>
+
+
+<td>
+
+
+<button
+class="btn btn-sm btn-outline-primary viewReportBtn"
+data-report="Faculty Leave Report">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+
+<button
+class="btn btn-sm btn-outline-secondary"
+disabled>
+
+<i class="fa-solid fa-download"></i>
+
+</button>
+
+
+</td>
+
+
+</tr>
+
+
+<tr
+class="report-row"
+data-type="workload">
+
+
+<td>5</td>
+
+
+<td>
+
+
+<div class="report-name">
+
+
+<div class="report-name-icon">
+
+<i class="fa-solid fa-briefcase"></i>
+
+</div>
+
+
+<div>
+
+<strong>Faculty Workload Report</strong>
+
+</div>
+
+
+</div>
+
+
+</td>
+
+
+<td>Workload</td>
+
+<td>27 Jul 2026</td>
+
+<td>Semester I</td>
+
+
+<td>
+
+<span class="report-status status-ready">
+
+Ready
+
+</span>
+
+</td>
+
+
+<td>
+
+
+<button
+class="btn btn-sm btn-outline-primary viewReportBtn"
+data-report="Faculty Workload Report">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+
+<button
+class="btn btn-sm btn-outline-success downloadReportBtn"
+data-report="Faculty Workload Report">
+
+<i class="fa-solid fa-download"></i>
+
+</button>
+
+
+</td>
+
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+
+
+<div id="noReportResult">
+
+
+<i class="fa-solid fa-file-circle-xmark fa-3x mb-3"></i>
+
+<h5>No Reports Found</h5>
+
+<p class="mb-0">
+
+No reports match your search or filter.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    REPORT VIEW MODAL
+========================================================= -->
+
+<div
+class="modal fade"
+id="reportViewModal"
+tabindex="-1"
+aria-hidden="true">
+
+
+<div class="modal-dialog modal-dialog-centered modal-lg">
+
+
+<div class="modal-content border-0 rounded-4">
+
+
+<div class="modal-header bg-primary text-white">
+
+
+<h5 class="modal-title">
+
+<i class="fa-solid fa-file-lines me-2"></i>
+
+<span id="modalReportTitle">
+
+Report Details
+
+</span>
+
+
+</h5>
+
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+</button>
+
+
+</div>
+
+
+<div class="modal-body p-4">
+
+
+<div class="text-center mb-4">
+
+
+<div
+class="report-stat-icon purple mx-auto mb-3">
+
+<i class="fa-solid fa-chart-column"></i>
+
+</div>
+
+
+<h4
+id="reportDetailName"
+class="fw-bold">
+
+Report
+
+</h4>
+
+
+<p class="text-muted">
+
+Department of Computer Science
+
+</p>
+
+
+</div>
+
+
+<div class="row g-3">
+
+
+<div class="col-md-6">
+
+
+<div class="border rounded-3 p-3">
+
+<strong>Academic Year</strong>
+
+<p class="mb-0 mt-1">
+
+2026-2027
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="col-md-6">
+
+
+<div class="border rounded-3 p-3">
+
+<strong>Department</strong>
+
+<p class="mb-0 mt-1">
+
+Computer Science
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="col-md-4">
+
+
+<div class="border rounded-3 p-3 text-center">
+
+<h4 class="text-primary fw-bold">
+
+96%
+
+</h4>
+
+<small>Faculty Attendance</small>
+
+</div>
+
+
+</div>
+
+
+<div class="col-md-4">
+
+
+<div class="border rounded-3 p-3 text-center">
+
+<h4 class="text-success fw-bold">
+
+92%
+
+</h4>
+
+<small>Student Attendance</small>
+
+</div>
+
+
+</div>
+
+
+<div class="col-md-4">
+
+
+<div class="border rounded-3 p-3 text-center">
+
+<h4 class="text-warning fw-bold">
+
+88%
+
+</h4>
+
+<small>Performance</small>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div class="modal-footer">
+
+
+<button
+type="button"
+class="btn btn-outline-primary"
+onclick="window.print()">
+
+<i class="fa-solid fa-print me-1"></i>
+
+Print
+
+</button>
+
+
+<button
+type="button"
+class="btn btn-secondary"
+data-bs-dismiss="modal">
+
+Close
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                        FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+© 2026 Faculty Management & Productivity System |
+Head of Department Reports
+
+</footer>
+
+
+</main>
+
+</div>
+
+
+<!-- =========================================================
+                    JAVASCRIPT LIBRARIES
+========================================================= -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- HOD COMMON JS -->
+
+<script src="../../js/hod-dashboard.js"></script>
+
+
+<!-- =========================================================
+                        REPORT SCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+/* =========================================================
+                        ELEMENTS
+========================================================= */
+
+const reportType =
+document.getElementById(
+"reportType"
+);
+
+const academicYear =
+document.getElementById(
+"academicYear"
+);
+
+const fromDate =
+document.getElementById(
+"fromDate"
+);
+
+const toDate =
+document.getElementById(
+"toDate"
+);
+
+const applyFilterBtn =
+document.getElementById(
+"applyFilterBtn"
+);
+
+const resetFilterBtn =
+document.getElementById(
+"resetFilterBtn"
+);
+
+const generateReportBtn =
+document.getElementById(
+"generateReportBtn"
+);
+
+const refreshReportsBtn =
+document.getElementById(
+"refreshReportsBtn"
+);
+
+const searchBox =
+document.getElementById(
+"searchBox"
+);
+
+const reportsTableBody =
+document.getElementById(
+"reportsTableBody"
+);
+
+const noReportResult =
+document.getElementById(
+"noReportResult"
+);
+
+
+/* =========================================================
+                    FILTER REPORTS
+========================================================= */
+
+function filterReports(){
+
+const selectedType =
+reportType
+? reportType.value
+: "all";
+
+
+const searchValue =
+searchBox
+? searchBox.value
+.toLowerCase()
+.trim()
+: "";
+
+
+const rows =
+document.querySelectorAll(
+".report-row"
+);
+
+
+let visibleRows = 0;
+
+
+rows.forEach(
+function(row){
+
+const rowType =
+row.getAttribute(
+"data-type"
+);
+
+
+const rowText =
+row.innerText
+.toLowerCase();
+
+
+const typeMatch =
+
+selectedType === "all" ||
+
+rowType === selectedType;
+
+
+const searchMatch =
+
+rowText.includes(
+searchValue
+);
+
+
+if(
+typeMatch &&
+searchMatch
+){
+
+row.style.display = "";
+
+visibleRows++;
+
+}
+
+else{
+
+row.style.display =
+"none";
+
+}
+
+}
+);
+
+
+if(noReportResult){
+
+noReportResult.style.display =
+visibleRows === 0
+? "block"
+: "none";
+
+}
+
+}
+
+
+/* =========================================================
+                    APPLY FILTER
+========================================================= */
+
+if(applyFilterBtn){
+
+applyFilterBtn.addEventListener(
+"click",
+function(){
+
+if(
+fromDate.value &&
+toDate.value &&
+new Date(fromDate.value) >
+new Date(toDate.value)
+){
+
+alert(
+"From Date cannot be after To Date."
+);
+
+return;
+
+}
+
+
+filterReports();
+
+
+alert(
+"Report filter applied successfully."
+);
+
+}
+);
+
+}
+
+
+/* =========================================================
+                    RESET FILTER
+========================================================= */
+
+if(resetFilterBtn){
+
+resetFilterBtn.addEventListener(
+"click",
+function(){
+
+if(reportType){
+
+reportType.value =
+"all";
+
+}
+
+
+if(academicYear){
+
+academicYear.selectedIndex =
+0;
+
+}
+
+
+if(fromDate){
+
+fromDate.value = "";
+
+}
+
+
+if(toDate){
+
+toDate.value = "";
+
+}
+
+
+if(searchBox){
+
+searchBox.value = "";
+
+}
+
+
+filterReports();
+
+}
+);
+
+}
+
+
+/* =========================================================
+                    SEARCH
+========================================================= */
+
+if(searchBox){
+
+searchBox.addEventListener(
+"keyup",
+function(){
+
+filterReports();
+
+}
+);
+
+}
+
+
+/* =========================================================
+                    VIEW REPORT
+========================================================= */
+
+function openReportModal(
+reportName
+){
+
+document.getElementById(
+"modalReportTitle"
+).innerText =
+reportName;
+
+
+document.getElementById(
+"reportDetailName"
+).innerText =
+reportName;
+
+
+const modal =
+new bootstrap.Modal(
+document.getElementById(
+"reportViewModal"
+)
+);
+
+
+modal.show();
+
+}
+
+
+/* =========================================================
+                TABLE VIEW BUTTONS
+========================================================= */
+
+document.querySelectorAll(
+".viewReportBtn"
+).forEach(
+function(button){
+
+button.addEventListener(
+"click",
+function(){
+
+const reportName =
+this.getAttribute(
+"data-report"
+);
+
+
+openReportModal(
+reportName
+);
+
+}
+);
+
+}
+);
+
+
+/* =========================================================
+                    QUICK VIEW BUTTONS
+========================================================= */
+
+document.querySelectorAll(
+".quickViewBtn"
+).forEach(
+function(button){
+
+button.addEventListener(
+"click",
+function(){
+
+const reportName =
+this.getAttribute(
+"data-report"
+);
+
+
+openReportModal(
+reportName
+);
+
+}
+);
+
+}
+);
+
+
+/* =========================================================
+                    DOWNLOAD REPORT
+========================================================= */
+
+document.querySelectorAll(
+".downloadReportBtn"
+).forEach(
+function(button){
+
+button.addEventListener(
+"click",
+function(){
+
+const reportName =
+this.getAttribute(
+"data-report"
+);
+
+
+alert(
+reportName +
+"\n\nDownload will start after backend/PDF integration."
+);
+
+}
+);
+
+}
+);
+
+
+/* =========================================================
+                    GENERATE REPORT
+========================================================= */
+
+if(generateReportBtn){
+
+generateReportBtn.addEventListener(
+"click",
+function(){
+
+const selectedType =
+reportType.value;
+
+
+if(
+selectedType === "all"
+){
+
+alert(
+"Please select a Report Type before generating a report."
+);
+
+return;
+
+}
+
+
+const typeText =
+reportType.options[
+reportType.selectedIndex
+].text;
+
+
+const year =
+academicYear.value;
+
+
+const newRow =
+document.createElement(
+"tr"
+);
+
+
+newRow.className =
+"report-row";
+
+
+newRow.setAttribute(
+"data-type",
+selectedType
+);
+
+
+const currentRows =
+document.querySelectorAll(
+".report-row"
+).length;
+
+
+const today =
+new Date();
+
+
+const formattedDate =
+today.toLocaleDateString(
+"en-IN",
+{
+
+day:"2-digit",
+
+month:"short",
+
+year:"numeric"
+
+}
+);
+
+
+newRow.innerHTML =
+
+`
+
+<td>
+
+${currentRows + 1}
+
+</td>
+
+
+<td>
+
+<div class="report-name">
+
+<div class="report-name-icon">
+
+<i class="fa-solid fa-file-lines"></i>
+
+</div>
+
+<div>
+
+<strong>
+
+${typeText}
+
+</strong>
+
+</div>
+
+</div>
+
+</td>
+
+
+<td>
+
+${typeText.replace(
+" Report",
+""
+)}
+
+</td>
+
+
+<td>
+
+${formattedDate}
+
+</td>
+
+
+<td>
+
+${year}
+
+</td>
+
+
+<td>
+
+<span class="report-status status-ready">
+
+Ready
+
+</span>
+
+</td>
+
+
+<td>
+
+<button
+class="btn btn-sm btn-outline-primary generatedViewBtn">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+
+<button
+class="btn btn-sm btn-outline-success generatedDownloadBtn">
+
+<i class="fa-solid fa-download"></i>
+
+</button>
+
+</td>
+
+`;
+
+
+reportsTableBody.prepend(
+newRow
+);
+
+
+/* ================= View ================= */
+
+newRow.querySelector(
+".generatedViewBtn"
+)
+.addEventListener(
+"click",
+function(){
+
+openReportModal(
+typeText
+);
+
+}
+);
+
+
+/* ================= Download ================= */
+
+newRow.querySelector(
+".generatedDownloadBtn"
+)
+.addEventListener(
+"click",
+function(){
+
+alert(
+typeText +
+"\n\nDownload will start after backend/PDF integration."
+);
+
+}
+);
+
+
+alert(
+typeText +
+" generated successfully."
+);
+
+
+/*
+=========================================================
+BACKEND INTEGRATION
+
+Backend ready hone ke baad:
+
+fetch("/api/hod/reports/generate",{
+
+method:"POST",
+
+headers:{
+    "Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+    reportType:selectedType,
+
+    academicYear:year,
+
+    fromDate:fromDate.value,
+
+    toDate:toDate.value
+
+})
+
+});
+
+=========================================================
+*/
+
+
+}
+);
+
+}
+
+
+/* =========================================================
+                    REFRESH REPORTS
+========================================================= */
+
+if(refreshReportsBtn){
+
+refreshReportsBtn.addEventListener(
+"click",
+function(){
+
+this.querySelector(
+"i"
+).classList.add(
+"fa-spin"
+);
+
+
+setTimeout(
+()=>{
+
+this.querySelector(
+"i"
+).classList.remove(
+"fa-spin"
+);
+
+alert(
+"Reports refreshed successfully."
+);
+
+},
+700
+);
+
+}
+);
+
+}
+
+
+/* =========================================================
+                FUTURE BACKEND LOAD REPORTS
+========================================================= */
+
+/*
+
+async function loadReports(){
+
+try{
+
+const response =
+await fetch(
+"/api/hod/reports"
+);
+
+
+if(!response.ok){
+
+throw new Error(
+"Unable to load reports."
+);
+
+}
+
+
+const reports =
+await response.json();
+
+
+console.log(
+reports
+);
+
+
+}
+
+catch(error){
+
+console.error(
+"Reports Error:",
+error
+);
+
+}
+
+}
+
+
+loadReports();
+
+*/
+
+
+}
+);
+
+</script>
+
+
+<!-- =========================================================
+                        PRINT CSS
+========================================================= -->
+
+<style>
+
+@media print{
+
+
+.sidebar{
+
+    display:none !important;
+
+}
+
+
+.top-navbar{
+
+    display:none !important;
+
+}
+
+
+.main-content{
+
+    margin-left:0 !important;
+
+    padding:10px !important;
+
+}
+
+
+.report-page-header .btn{
+
+    display:none !important;
+
+}
+
+
+.report-filter-card{
+
+    display:none !important;
+
+}
+
+
+.report-grid{
+
+    grid-template-columns:1fr 1fr;
+
+}
+
+
+.report-table-header .btn{
+
+    display:none !important;
+
+}
+
+
+.report-table-card td:last-child,
+.report-table-card th:last-child{
+
+    display:none !important;
+
+}
+
+
+body,
+body.dark{
+
+    background:#ffffff !important;
+
+    color:#000000 !important;
+
+}
+
+
+.report-stat-card,
+.report-card,
+.report-table-card{
+
+    box-shadow:none !important;
+
+    border:1px solid #ddd;
+
+}
+
+
+.footer{
+
+    color:#000000 !important;
+
+}
+
+
+}
+
+</style>
+
+
+</body>
+
+</html>

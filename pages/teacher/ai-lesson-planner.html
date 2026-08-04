@@ -1,0 +1,7753 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Lesson Planner | Teacher</title>
+
+
+    <!-- =====================================================
+                         BOOTSTRAP
+    ====================================================== -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+
+    <!-- =====================================================
+                         FONT AWESOME
+    ====================================================== -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+      <style>
+        /* =========================================================
+   AI LESSON PLANNER
+   PART 2 - COMPLETE CSS
+========================================================= */
+
+
+/* =========================================================
+   RESET + ROOT VARIABLES
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #4f46e5;
+    --primary-light: #6366f1;
+    --primary-dark: #4338ca;
+
+    --secondary: #2563eb;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+
+    --bg: #f5f7fb;
+    --sidebar-bg: #ffffff;
+    --navbar-bg: rgba(255, 255, 255, 0.96);
+    --card-bg: #ffffff;
+
+    --input-bg: #ffffff;
+    --soft-bg: #f8fafc;
+
+    --text: #111827;
+    --text-secondary: #334155;
+    --text-soft: #64748b;
+    --muted: #94a3b8;
+
+    --border: #e5e7eb;
+    --border-soft: #eef2f7;
+
+    --shadow:
+        0 10px 30px rgba(15, 23, 42, 0.07);
+
+    --shadow-large:
+        0 20px 50px rgba(15, 23, 42, 0.10);
+
+    --sidebar-width: 235px;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background: var(--bg);
+    color: var(--text);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   PAGE WRAPPER
+========================================================= */
+
+.page-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+    width: var(--sidebar-width);
+    min-height: 100vh;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    z-index: 1000;
+
+    padding: 20px 14px;
+
+    background: var(--sidebar-bg);
+
+    border-right: 1px solid var(--border);
+
+    overflow-y: auto;
+
+    transition:
+        background 0.3s ease,
+        border 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+/* =========================================================
+   SIDEBAR LOGO
+========================================================= */
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 3px 7px 19px;
+
+    margin-bottom: 15px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.sidebar-logo img {
+    width: 46px;
+    height: 46px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 2px solid var(--primary-light);
+
+    padding: 2px;
+}
+
+
+.sidebar-logo div {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.sidebar-logo h2 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 19px;
+    font-weight: 800;
+}
+
+
+.sidebar-logo span {
+    margin-top: 1px;
+
+    color: var(--text-soft);
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   SIDEBAR MENU
+========================================================= */
+
+.sidebar-menu {
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+.sidebar-menu li {
+    margin: 5px 0;
+}
+
+
+.sidebar-menu li a {
+    min-height: 44px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 10px 12px;
+
+    color: var(--text-soft);
+
+    text-decoration: none;
+
+    border-radius: 11px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: 0.25s ease;
+}
+
+
+.sidebar-menu li a i {
+    width: 21px;
+
+    text-align: center;
+
+    font-size: 15px;
+}
+
+
+.sidebar-menu li a:hover {
+    color: var(--primary);
+
+    background: #eef2ff;
+
+    transform: translateX(3px);
+}
+
+
+.sidebar-menu li.active a {
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #2563eb
+        );
+
+    box-shadow:
+        0 8px 18px rgba(79, 70, 229, 0.23);
+}
+
+
+/* =========================================================
+   MENU LABEL
+========================================================= */
+
+.menu-label {
+    margin: 18px 10px 7px !important;
+}
+
+
+.menu-label span {
+    color: #94a3b8;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.logout-link:hover {
+    color: #dc2626 !important;
+
+    background: #fef2f2 !important;
+}
+
+
+/* =========================================================
+   SIDEBAR OVERLAY
+========================================================= */
+
+.sidebar-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 950;
+
+    display: none;
+
+    background:
+        rgba(15, 23, 42, 0.55);
+
+    backdrop-filter: blur(2px);
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.main-content {
+    width:
+        calc(
+            100% - var(--sidebar-width)
+        );
+
+    min-height: 100vh;
+
+    margin-left: var(--sidebar-width);
+
+    background: var(--bg);
+
+    transition:
+        background 0.3s ease,
+        margin 0.3s ease;
+}
+
+
+/* =========================================================
+   TOP NAVBAR
+========================================================= */
+
+.top-navbar {
+    min-height: 74px;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 900;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    padding: 11px 27px;
+
+    background: var(--navbar-bg);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-bottom:
+        1px solid var(--border);
+
+    box-shadow:
+        0 4px 18px
+        rgba(15, 23, 42, 0.05);
+}
+
+
+/* =========================================================
+   NAVBAR LEFT
+========================================================= */
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+}
+
+
+.navbar-title {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.navbar-title h3 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 19px;
+    font-weight: 800;
+}
+
+
+.navbar-title span {
+    margin-top: 1px;
+
+    color: var(--text-soft);
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.mobile-menu-btn {
+    width: 40px;
+    height: 40px;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    background: var(--card-bg);
+
+    color: var(--text);
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   TOP RIGHT
+========================================================= */
+
+.top-right {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   SEARCH BOX
+========================================================= */
+
+.search-box {
+    width: 235px;
+    height: 41px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 0 13px;
+
+    background: var(--soft-bg);
+
+    border: 1px solid var(--border);
+
+    border-radius: 11px;
+
+    transition: 0.25s ease;
+}
+
+
+.search-box:focus-within {
+    background: var(--card-bg);
+
+    border-color: var(--primary-light);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(99, 102, 241, 0.11);
+}
+
+
+.search-box i {
+    color: #94a3b8;
+
+    font-size: 13px;
+}
+
+
+.search-box input {
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: var(--text);
+
+    font-size: 12px;
+}
+
+
+.search-box input::placeholder {
+    color: #94a3b8;
+}
+
+
+/* =========================================================
+   ICON BUTTON
+========================================================= */
+
+.icon-btn {
+    position: relative;
+
+    width: 41px;
+    height: 41px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--border);
+
+    border-radius: 11px;
+
+    background: var(--card-bg);
+
+    color: var(--text-secondary);
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition: 0.25s ease;
+}
+
+
+.icon-btn:hover {
+    color: #ffffff;
+
+    background: var(--primary);
+
+    border-color: var(--primary);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(79, 70, 229, 0.20);
+}
+
+
+/* =========================================================
+   NOTIFICATION BADGE
+========================================================= */
+
+.badge-count {
+    position: absolute;
+
+    top: -5px;
+    right: -5px;
+
+    min-width: 18px;
+    height: 18px;
+
+    padding: 0 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ef4444;
+    color: #ffffff;
+
+    border: 2px solid var(--card-bg);
+
+    border-radius: 20px;
+
+    font-size: 9px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   NOTIFICATION DROPDOWN
+========================================================= */
+
+.notification-menu {
+    width: 350px;
+
+    margin-top: 12px !important;
+    padding: 0;
+
+    overflow: hidden;
+
+    background: var(--card-bg);
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 20px 50px
+        rgba(15, 23, 42, 0.16);
+}
+
+
+.notification-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 15px 16px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+
+.notification-menu-header div {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.notification-menu-header strong {
+    color: var(--text);
+
+    font-size: 14px;
+}
+
+
+.notification-menu-header small {
+    color: var(--text-soft);
+
+    font-size: 10px;
+}
+
+
+.notification-menu-header button {
+    border: none;
+
+    background: transparent;
+
+    color: var(--primary);
+
+    font-size: 10px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   NOTIFICATION ITEM
+========================================================= */
+
+.notification-item {
+    display: flex !important;
+    align-items: flex-start;
+
+    gap: 11px;
+
+    padding: 13px 15px !important;
+
+    white-space: normal !important;
+
+    border-bottom:
+        1px solid var(--border-soft);
+
+    transition: 0.2s ease;
+}
+
+
+.notification-item:hover {
+    background: var(--soft-bg);
+}
+
+
+.notification-item.unread {
+    background:
+        rgba(79, 70, 229, 0.035);
+}
+
+
+.notification-icon {
+    min-width: 37px;
+    height: 37px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--primary);
+
+    background: #eef2ff;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+}
+
+
+.notification-item > div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+
+.notification-item strong {
+    color: var(--text);
+
+    font-size: 12px;
+}
+
+
+.notification-item small {
+    color: var(--text-soft);
+
+    font-size: 10px;
+
+    line-height: 1.4;
+}
+
+
+.notification-time {
+    color: #94a3b8;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   NOTIFICATION FOOTER
+========================================================= */
+
+.notification-footer a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 13px;
+
+    color: var(--primary);
+
+    background: var(--soft-bg);
+
+    text-decoration: none;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+.notification-footer a:hover {
+    background: #eef2ff;
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    min-height: 45px;
+
+    padding: 4px 9px 4px 5px;
+
+    border-radius: 13px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.profile:hover {
+    background: var(--soft-bg);
+}
+
+
+.profile-avatar img {
+    width: 37px;
+    height: 37px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 2px solid var(--primary-light);
+
+    padding: 2px;
+}
+
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.profile-info strong {
+    color: var(--text);
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+.profile-info small {
+    color: var(--text-soft);
+
+    font-size: 9px;
+}
+
+
+.profile > i {
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   PROFILE MENU
+========================================================= */
+
+.profile-menu {
+    width: 210px;
+
+    margin-top: 12px !important;
+    padding: 7px;
+
+    background: var(--card-bg);
+
+    border: 1px solid var(--border);
+
+    border-radius: 13px;
+
+    box-shadow:
+        0 18px 40px
+        rgba(15, 23, 42, 0.15);
+}
+
+
+.profile-menu .dropdown-item {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 9px 11px;
+
+    color: var(--text-secondary);
+
+    border-radius: 8px;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+.profile-menu .dropdown-item:hover {
+    color: var(--primary);
+
+    background: var(--soft-bg);
+}
+
+
+.profile-menu .dropdown-item i {
+    width: 17px;
+}
+
+
+/* =========================================================
+   LESSON PLANNER CONTAINER
+========================================================= */
+
+.lesson-planner-container {
+    max-width: 1500px;
+
+    margin: 0 auto;
+
+    padding: 25px 28px 45px;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.planner-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 19px;
+}
+
+
+.planner-heading {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+}
+
+
+.heading-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #4f46e5
+        );
+
+    border-radius: 14px;
+
+    font-size: 19px;
+
+    box-shadow:
+        0 9px 20px
+        rgba(79, 70, 229, 0.22);
+}
+
+
+.planner-heading h1 {
+    margin: 0 0 3px;
+
+    color: var(--text);
+
+    font-size: 23px;
+    font-weight: 800;
+}
+
+
+.planner-heading p {
+    margin: 0;
+
+    color: var(--text-soft);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   HISTORY BUTTON
+========================================================= */
+
+.history-btn {
+    height: 39px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 0 14px;
+
+    border: 1px solid #c7d2fe;
+
+    border-radius: 10px;
+
+    background: var(--card-bg);
+
+    color: var(--primary);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+
+.history-btn:hover {
+    color: #ffffff;
+
+    background: var(--primary);
+
+    border-color: var(--primary);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(79, 70, 229, 0.20);
+}
+
+
+/* =========================================================
+   AI HERO
+========================================================= */
+
+.ai-planner-hero {
+    position: relative;
+
+    min-height: 205px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 35px;
+
+    margin-bottom: 20px;
+    padding: 28px 35px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            125deg,
+            #312e81 0%,
+            #4338ca 35%,
+            #4f46e5 60%,
+            #2563eb 100%
+        );
+
+    border-radius: 21px;
+
+    box-shadow:
+        0 15px 35px
+        rgba(79, 70, 229, 0.20);
+}
+
+
+.ai-planner-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    right: -100px;
+    top: -170px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+}
+
+
+.ai-planner-hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 240px;
+    height: 240px;
+
+    right: 180px;
+    bottom: -190px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.ai-hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 680px;
+}
+
+
+.ai-label {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    margin-bottom: 10px;
+    padding: 5px 9px;
+
+    color: #ffffff;
+
+    background:
+        rgba(255, 255, 255, 0.13);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.16);
+
+    border-radius: 20px;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+}
+
+
+.ai-hero-content h2 {
+    margin: 0 0 9px;
+
+    color: #ffffff;
+
+    font-size: 29px;
+    font-weight: 800;
+
+    line-height: 1.15;
+}
+
+
+.ai-hero-content h2 span {
+    color: #c7d2fe;
+}
+
+
+.ai-hero-content > p {
+    max-width: 600px;
+
+    margin: 0;
+
+    color: #dbeafe;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   HERO FEATURES
+========================================================= */
+
+.hero-features {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    margin-top: 16px;
+}
+
+
+.hero-features span {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    color: #ffffff;
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+
+.hero-features i {
+    color: #a7f3d0;
+}
+
+
+/* =========================================================
+   AI VISUAL
+========================================================= */
+
+.hero-ai-visual {
+    position: relative;
+
+    z-index: 2;
+
+    width: 190px;
+    height: 150px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+
+.ai-brain {
+    position: relative;
+
+    z-index: 4;
+
+    width: 78px;
+    height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff;
+
+    background:
+        rgba(255, 255, 255, 0.16);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.24);
+
+    border-radius: 24px;
+
+    backdrop-filter: blur(10px);
+
+    font-size: 31px;
+
+    box-shadow:
+        0 15px 35px
+        rgba(15, 23, 42, 0.22);
+
+    animation:
+        brainFloat 3s ease-in-out infinite;
+}
+
+
+@keyframes brainFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+
+/* =========================================================
+   ORBITS
+========================================================= */
+
+.ai-orbit {
+    position: absolute;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.20);
+
+    border-radius: 50%;
+}
+
+
+.orbit-one {
+    width: 130px;
+    height: 130px;
+}
+
+
+.orbit-two {
+    width: 165px;
+    height: 105px;
+
+    transform: rotate(-20deg);
+}
+
+
+/* =========================================================
+   FLOATING ICONS
+========================================================= */
+
+.floating-icon {
+    position: absolute;
+
+    z-index: 5;
+
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff;
+
+    background:
+        rgba(255, 255, 255, 0.17);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.20);
+
+    border-radius: 9px;
+
+    backdrop-filter: blur(8px);
+
+    font-size: 12px;
+}
+
+
+.icon-book {
+    top: 4px;
+    left: 25px;
+}
+
+
+.icon-light {
+    top: 23px;
+    right: 10px;
+}
+
+
+.icon-chart {
+    bottom: 4px;
+    right: 38px;
+}
+
+
+/* =========================================================
+   PLANNER GRID
+========================================================= */
+
+.planner-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr) 315px;
+
+    gap: 20px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   FORM CARD
+========================================================= */
+
+.planner-form-card {
+    padding: 23px;
+
+    background: var(--card-bg);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow);
+}
+
+
+/* =========================================================
+   CARD HEADING
+========================================================= */
+
+.card-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-bottom: 17px;
+    margin-bottom: 19px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.section-tag {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 5px;
+
+    margin-bottom: 6px;
+
+    color: var(--primary);
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+
+    text-transform: uppercase;
+}
+
+
+.card-heading h2 {
+    margin: 0 0 4px;
+
+    color: var(--text);
+
+    font-size: 18px;
+    font-weight: 800;
+}
+
+
+.card-heading p {
+    margin: 0;
+
+    color: var(--text-soft);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   STEP INDICATOR
+========================================================= */
+
+.step-indicator {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 5px 9px;
+
+    color: var(--text-soft);
+
+    background: var(--soft-bg);
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+.step-indicator span {
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff;
+
+    background: var(--primary);
+
+    border-radius: 50%;
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   FORM GRID
+========================================================= */
+
+.form-grid {
+    display: grid;
+
+    gap: 15px;
+}
+
+
+.form-grid.two-column {
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+.form-group {
+    margin-bottom: 17px;
+}
+
+
+.form-group label {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    margin-bottom: 7px;
+
+    color: var(--text-secondary);
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+.form-group label > i {
+    color: var(--primary);
+}
+
+
+.optional-text {
+    margin-left: auto;
+
+    color: var(--muted);
+
+    font-size: 8px;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   INPUT WRAPPER
+========================================================= */
+
+.input-wrapper {
+    position: relative;
+}
+
+
+.input-wrapper input,
+.input-wrapper select,
+.form-group textarea {
+    width: 100%;
+
+    outline: none;
+
+    color: var(--text);
+
+    background: var(--input-bg);
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    font-size: 11px;
+
+    transition: 0.2s ease;
+}
+
+
+.input-wrapper input,
+.input-wrapper select {
+    height: 43px;
+
+    padding: 0 13px;
+}
+
+
+.input-wrapper select {
+    padding-right: 35px;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    cursor: pointer;
+}
+
+
+.input-wrapper input:focus,
+.input-wrapper select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-light);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(99, 102, 241, 0.10);
+}
+
+
+.input-wrapper input::placeholder,
+.form-group textarea::placeholder {
+    color: #a0aec0;
+}
+
+
+/* =========================================================
+   SELECT ARROW
+========================================================= */
+
+.select-arrow {
+    position: absolute;
+
+    top: 50%;
+    right: 13px;
+
+    transform: translateY(-50%);
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   FIELD HELP
+========================================================= */
+
+.field-help {
+    display: block;
+
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+.form-group textarea {
+    min-height: 95px;
+
+    padding: 11px 13px;
+
+    resize: vertical;
+
+    line-height: 1.5;
+}
+
+
+.textarea-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-top: 5px;
+}
+
+
+.textarea-footer small,
+.textarea-footer span {
+    color: var(--muted);
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   TEACHING STYLE OPTIONS
+========================================================= */
+
+.teaching-style-options {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+}
+
+
+.style-option {
+    min-height: 69px;
+
+    display: flex !important;
+    align-items: center;
+
+    gap: 9px !important;
+
+    margin: 0 !important;
+    padding: 10px;
+
+    background: var(--soft-bg);
+
+    border: 1px solid var(--border);
+
+    border-radius: 11px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.style-option:hover {
+    border-color: #c7d2fe;
+
+    transform: translateY(-2px);
+}
+
+
+.style-option.active {
+    background: #eef2ff;
+
+    border-color: var(--primary-light);
+
+    box-shadow:
+        0 0 0 2px
+        rgba(99, 102, 241, 0.07);
+}
+
+
+.style-option input {
+    display: none;
+}
+
+
+.style-icon {
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    color: var(--primary);
+
+    background: #e0e7ff;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+}
+
+
+.style-option > span:last-child {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+
+.style-option strong {
+    color: var(--text);
+
+    font-size: 10px;
+}
+
+
+.style-option small {
+    color: var(--text-soft);
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+========================================================= */
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 9px;
+
+    padding-top: 3px;
+}
+
+
+/* =========================================================
+   CLEAR BUTTON
+========================================================= */
+
+.clear-btn {
+    height: 41px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    padding: 0 14px;
+
+    color: var(--text-soft);
+
+    background: var(--card-bg);
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.clear-btn:hover {
+    color: #dc2626;
+
+    background: #fef2f2;
+
+    border-color: #fecaca;
+}
+
+
+/* =========================================================
+   GENERATE BUTTON
+========================================================= */
+
+.generate-btn {
+    min-width: 185px;
+    height: 43px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 11px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #4f46e5,
+            #2563eb
+        );
+
+    font-size: 10px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 9px 20px
+        rgba(79, 70, 229, 0.22);
+
+    transition: 0.25s ease;
+}
+
+
+.generate-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(79, 70, 229, 0.30);
+}
+
+
+.generate-btn-content,
+.generate-loader {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+.generate-loader {
+    display: none;
+}
+
+
+.generate-btn.loading
+.generate-btn-content {
+    display: none;
+}
+
+
+.generate-btn.loading
+.generate-loader {
+    display: flex;
+}
+
+
+/* =========================================================
+   RIGHT SIDE PANEL
+========================================================= */
+
+.planner-side-panel {
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+
+/* =========================================================
+   SIDE CARD
+========================================================= */
+
+.side-card {
+    padding: 17px;
+
+    background: var(--card-bg);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 6px 20px
+        rgba(15, 23, 42, 0.045);
+}
+
+
+/* =========================================================
+   SIDE CARD TITLE
+========================================================= */
+
+.side-card-title {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 14px;
+}
+
+
+.side-icon {
+    width: 37px;
+    height: 37px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+}
+
+
+.side-icon.purple {
+    color: #7c3aed;
+
+    background: #f3e8ff;
+}
+
+
+.side-icon.blue {
+    color: #2563eb;
+
+    background: #dbeafe;
+}
+
+
+.side-card-title h3 {
+    margin: 0 0 2px;
+
+    color: var(--text);
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+
+.side-card-title p {
+    margin: 0;
+
+    color: var(--text-soft);
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   TIPS
+========================================================= */
+
+.ai-tip-card {
+    background:
+        linear-gradient(
+            145deg,
+            var(--card-bg),
+            rgba(238, 242, 255, 0.55)
+        );
+}
+
+
+.tips-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 9px;
+
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+.tips-list li {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 7px;
+
+    color: var(--text-soft);
+
+    font-size: 9px;
+
+    line-height: 1.5;
+}
+
+
+.tips-list i {
+    margin-top: 2px;
+
+    color: #10b981;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   TEMPLATE LIST
+========================================================= */
+
+.template-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.template-btn {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        34px 1fr auto;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 9px;
+
+    text-align: left;
+
+    background: var(--soft-bg);
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.template-btn:hover {
+    background: #eef2ff;
+
+    border-color: #c7d2fe;
+
+    transform: translateX(2px);
+}
+
+
+.template-btn > span {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--primary);
+
+    background: #e0e7ff;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+}
+
+
+.template-btn div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1px;
+}
+
+
+.template-btn strong {
+    color: var(--text);
+
+    font-size: 9px;
+}
+
+
+.template-btn small {
+    color: var(--text-soft);
+
+    font-size: 7px;
+}
+
+
+.template-btn > i {
+    color: var(--muted);
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   MINI STATS
+========================================================= */
+
+.planner-stat-card {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 8px;
+}
+
+
+.mini-stat {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 9px;
+
+    background: var(--soft-bg);
+
+    border-radius: 10px;
+}
+
+
+.mini-stat-icon {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    color: var(--primary);
+
+    background: #e0e7ff;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+}
+
+
+.mini-stat div {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.mini-stat strong {
+    color: var(--text);
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+
+.mini-stat small {
+    color: var(--text-soft);
+
+    font-size: 7px;
+}
+
+
+/* =========================================================
+   GENERATED PLAN SECTION
+========================================================= */
+
+.generated-plan-section {
+    margin-top: 20px;
+    padding: 23px;
+
+    background: var(--card-bg);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow);
+}
+
+
+/* =========================================================
+   GENERATED HEADER
+========================================================= */
+
+.generated-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-bottom: 16px;
+    margin-bottom: 18px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.generated-header h2 {
+    margin: 0 0 3px;
+
+    color: var(--text);
+
+    font-size: 18px;
+    font-weight: 800;
+}
+
+
+.generated-header p {
+    margin: 0;
+
+    color: var(--text-soft);
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   GENERATED ACTIONS
+========================================================= */
+
+.generated-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+.secondary-action-btn,
+.primary-action-btn {
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    padding: 0 11px;
+
+    border-radius: 9px;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.secondary-action-btn {
+    color: var(--text-soft);
+
+    background: var(--card-bg);
+
+    border: 1px solid var(--border);
+}
+
+
+.secondary-action-btn:hover {
+    color: var(--primary);
+
+    background: #eef2ff;
+
+    border-color: #c7d2fe;
+}
+
+
+.primary-action-btn {
+    color: #ffffff;
+
+    background: var(--primary);
+
+    border: 1px solid var(--primary);
+}
+
+
+.primary-action-btn:hover {
+    background: var(--primary-dark);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.lesson-empty-state {
+    min-height: 230px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    text-align: center;
+
+    background: var(--soft-bg);
+
+    border:
+        1px dashed
+        #cbd5e1;
+
+    border-radius: 14px;
+}
+
+
+.empty-ai-icon {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 12px;
+
+    color: var(--primary);
+
+    background: #e0e7ff;
+
+    border-radius: 17px;
+
+    font-size: 23px;
+}
+
+
+.lesson-empty-state h3 {
+    margin: 0 0 6px;
+
+    color: var(--text);
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+
+.lesson-empty-state p {
+    max-width: 450px;
+
+    margin: 0;
+
+    color: var(--text-soft);
+
+    font-size: 9px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   GENERATED CONTENT
+========================================================= */
+
+.generated-content {
+    display: none;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+
+.generated-content.show {
+    display: grid;
+}
+
+
+/* =========================================================
+   GENERATED BLOCK
+========================================================= */
+
+.generated-block {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding: 15px;
+
+    background: var(--soft-bg);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+}
+
+
+.generated-block-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    color: var(--primary);
+
+    background: #e0e7ff;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+}
+
+
+.generated-block > div:last-child {
+    flex: 1;
+}
+
+
+.generated-block h3 {
+    margin: 0 0 6px;
+
+    color: var(--text);
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+
+.generated-block p,
+.generated-block li,
+.generated-block div {
+    color: var(--text-soft);
+
+    font-size: 9px;
+
+    line-height: 1.6;
+}
+
+
+.generated-block ul {
+    margin: 0;
+    padding-left: 16px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.planner-toast {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    z-index: 2000;
+
+    min-width: 280px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px 14px;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+        translateY(20px);
+
+    background: var(--card-bg);
+
+    border: 1px solid var(--border);
+
+    border-radius: 13px;
+
+    box-shadow: var(--shadow-large);
+
+    transition: 0.3s ease;
+}
+
+
+.planner-toast.show {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translateY(0);
+}
+
+
+.toast-icon {
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #059669;
+
+    background: #d1fae5;
+
+    border-radius: 9px;
+}
+
+
+.planner-toast > div {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.planner-toast strong {
+    color: var(--text);
+
+    font-size: 10px;
+}
+
+
+.planner-toast div span {
+    color: var(--text-soft);
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   DARK MODE VARIABLES
+========================================================= */
+
+body.dark-mode {
+    --bg: #090e1a;
+
+    --sidebar-bg: #0c1322;
+
+    --navbar-bg:
+        rgba(12, 19, 34, 0.96);
+
+    --card-bg: #111a2b;
+
+    --input-bg: #151f32;
+
+    --soft-bg: #151f32;
+
+    --text: #f8fafc;
+
+    --text-secondary: #dbe4f0;
+
+    --text-soft: #94a3b8;
+
+    --muted: #718096;
+
+    --border: #263247;
+
+    --border-soft: #202c40;
+
+    background: #090e1a;
+}
+
+
+/* =========================================================
+   DARK - SIDEBAR
+========================================================= */
+
+body.dark-mode .sidebar {
+    background: #0c1322;
+
+    border-color: #263247;
+}
+
+
+body.dark-mode .sidebar-menu li a {
+    color: #aab6c8;
+}
+
+
+body.dark-mode
+.sidebar-menu li a:hover {
+    color: #ffffff;
+
+    background: #18233a;
+}
+
+
+body.dark-mode
+.sidebar-menu li.active a {
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4338ca,
+            #2563eb
+        );
+}
+
+
+body.dark-mode
+.logout-link:hover {
+    color: #fca5a5 !important;
+
+    background:
+        rgba(220, 38, 38, 0.10)
+        !important;
+}
+
+
+/* =========================================================
+   DARK - NAVBAR
+========================================================= */
+
+body.dark-mode
+.top-navbar {
+    background:
+        rgba(12, 19, 34, 0.96);
+
+    border-color: #263247;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   DARK - SEARCH
+========================================================= */
+
+body.dark-mode
+.search-box {
+    background: #111a2b;
+
+    border-color: #2b3850;
+}
+
+
+body.dark-mode
+.search-box:focus-within {
+    background: #151f32;
+
+    border-color: #6366f1;
+}
+
+
+/* =========================================================
+   DARK - BUTTONS
+========================================================= */
+
+body.dark-mode
+.icon-btn,
+body.dark-mode
+.mobile-menu-btn {
+    color: #dbeafe;
+
+    background: #151f32;
+
+    border-color: #2b3850;
+}
+
+
+body.dark-mode
+.icon-btn:hover {
+    color: #ffffff;
+
+    background: #4f46e5;
+
+    border-color: #6366f1;
+}
+
+
+/* =========================================================
+   DARK - DROPDOWNS
+========================================================= */
+
+body.dark-mode
+.notification-menu,
+body.dark-mode
+.profile-menu {
+    background: #111a2b;
+
+    border-color: #2b3850;
+}
+
+
+body.dark-mode
+.notification-item:hover {
+    background: #18233a;
+}
+
+
+body.dark-mode
+.notification-item.unread {
+    background:
+        rgba(99, 102, 241, 0.09);
+}
+
+
+body.dark-mode
+.notification-icon {
+    color: #a5b4fc;
+
+    background:
+        rgba(99, 102, 241, 0.15);
+}
+
+
+body.dark-mode
+.notification-footer a {
+    background: #151f32;
+
+    color: #a5b4fc;
+}
+
+
+body.dark-mode
+.notification-footer a:hover {
+    background: #18233a;
+}
+
+
+body.dark-mode
+.profile-menu .dropdown-item {
+    color: #cbd5e1;
+}
+
+
+body.dark-mode
+.profile-menu .dropdown-item:hover {
+    color: #ffffff;
+
+    background: #18233a;
+}
+
+
+/* =========================================================
+   DARK - FORM
+========================================================= */
+
+body.dark-mode
+.planner-form-card,
+body.dark-mode
+.side-card,
+body.dark-mode
+.generated-plan-section {
+    background: #111a2b;
+
+    border-color: #263247;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0, 0, 0, 0.18);
+}
+
+
+body.dark-mode
+.input-wrapper input,
+body.dark-mode
+.input-wrapper select,
+body.dark-mode
+.form-group textarea {
+    color: #f8fafc;
+
+    background: #151f32;
+
+    border-color: #2b3850;
+}
+
+
+body.dark-mode
+.input-wrapper input:focus,
+body.dark-mode
+.input-wrapper select:focus,
+body.dark-mode
+.form-group textarea:focus {
+    background: #18233a;
+
+    border-color: #6366f1;
+}
+
+
+body.dark-mode
+.input-wrapper select option {
+    color: #f8fafc;
+
+    background: #151f32;
+}
+
+
+/* =========================================================
+   DARK - TEACHING STYLE
+========================================================= */
+
+body.dark-mode
+.style-option {
+    background: #151f32;
+
+    border-color: #2b3850;
+}
+
+
+body.dark-mode
+.style-option:hover {
+    background: #18233a;
+
+    border-color: #4f46e5;
+}
+
+
+body.dark-mode
+.style-option.active {
+    background:
+        rgba(79, 70, 229, 0.16);
+
+    border-color: #6366f1;
+}
+
+
+body.dark-mode
+.style-icon {
+    color: #a5b4fc;
+
+    background:
+        rgba(99, 102, 241, 0.16);
+}
+
+
+/* =========================================================
+   DARK - SIDE CARDS
+========================================================= */
+
+body.dark-mode
+.ai-tip-card {
+    background:
+        linear-gradient(
+            145deg,
+            #111a2b,
+            #141d31
+        );
+}
+
+
+body.dark-mode
+.side-icon.purple {
+    color: #c4b5fd;
+
+    background:
+        rgba(124, 58, 237, 0.15);
+}
+
+
+body.dark-mode
+.side-icon.blue {
+    color: #93c5fd;
+
+    background:
+        rgba(37, 99, 235, 0.15);
+}
+
+
+/* =========================================================
+   DARK - TEMPLATES
+========================================================= */
+
+body.dark-mode
+.template-btn {
+    background: #151f32;
+
+    border-color: #2b3850;
+}
+
+
+body.dark-mode
+.template-btn:hover {
+    background: #18233a;
+
+    border-color: #4f46e5;
+}
+
+
+body.dark-mode
+.template-btn > span,
+body.dark-mode
+.mini-stat-icon {
+    color: #a5b4fc;
+
+    background:
+        rgba(99, 102, 241, 0.15);
+}
+
+
+body.dark-mode
+.mini-stat {
+    background: #151f32;
+}
+
+
+/* =========================================================
+   DARK - GENERATED PLAN
+========================================================= */
+
+body.dark-mode
+.lesson-empty-state {
+    background: #151f32;
+
+    border-color: #334155;
+}
+
+
+body.dark-mode
+.empty-ai-icon {
+    color: #a5b4fc;
+
+    background:
+        rgba(99, 102, 241, 0.16);
+}
+
+
+body.dark-mode
+.generated-block {
+    background: #151f32;
+
+    border-color: #2b3850;
+}
+
+
+body.dark-mode
+.generated-block-icon {
+    color: #a5b4fc;
+
+    background:
+        rgba(99, 102, 241, 0.15);
+}
+
+
+/* =========================================================
+   DARK - BUTTONS
+========================================================= */
+
+body.dark-mode
+.history-btn,
+body.dark-mode
+.clear-btn,
+body.dark-mode
+.secondary-action-btn {
+    background: #151f32;
+
+    border-color: #2b3850;
+}
+
+
+body.dark-mode
+.history-btn:hover {
+    color: #ffffff;
+
+    background: #4f46e5;
+
+    border-color: #6366f1;
+}
+
+
+body.dark-mode
+.clear-btn:hover {
+    color: #fca5a5;
+
+    background:
+        rgba(220, 38, 38, 0.10);
+
+    border-color:
+        rgba(239, 68, 68, 0.30);
+}
+
+
+body.dark-mode
+.secondary-action-btn:hover {
+    color: #a5b4fc;
+
+    background: #18233a;
+
+    border-color: #4f46e5;
+}
+
+
+/* =========================================================
+   DARK - TOAST
+========================================================= */
+
+body.dark-mode
+.planner-toast {
+    background: #111a2b;
+
+    border-color: #2b3850;
+
+    box-shadow:
+        0 20px 50px
+        rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================================
+   RESPONSIVE - 1200PX
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .planner-grid {
+        grid-template-columns:
+            minmax(0, 1fr) 280px;
+    }
+
+
+    .search-box {
+        width: 190px;
+    }
+
+
+    .ai-hero-content h2 {
+        font-size: 26px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 1050PX
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .planner-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .planner-side-panel {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .planner-stat-card {
+        grid-column:
+            1 / -1;
+    }
+
+
+    .search-box {
+        display: none;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        transform:
+            translateX(-100%);
+    }
+
+
+    .sidebar.open {
+        transform:
+            translateX(0);
+    }
+
+
+    .sidebar-overlay.show {
+        display: block;
+    }
+
+
+    .main-content {
+        width: 100%;
+
+        margin-left: 0;
+    }
+
+
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+
+    .top-navbar {
+        padding:
+            11px 18px;
+    }
+
+
+    .lesson-planner-container {
+        padding:
+            22px 18px 40px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 700PX
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .profile-info {
+        display: none;
+    }
+
+
+    .profile > i {
+        display: none;
+    }
+
+
+    .planner-page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+
+    .ai-planner-hero {
+        padding: 25px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .hero-ai-visual {
+        align-self: center;
+    }
+
+
+    .form-grid.two-column {
+        grid-template-columns: 1fr;
+    }
+
+
+    .teaching-style-options {
+        grid-template-columns: 1fr;
+    }
+
+
+    .planner-side-panel {
+        grid-template-columns: 1fr;
+    }
+
+
+    .planner-stat-card {
+        grid-column: auto;
+    }
+
+
+    .generated-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .generated-content {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 520px) {
+
+    .top-navbar {
+        padding:
+            10px 12px;
+    }
+
+
+    .navbar-title span {
+        display: none;
+    }
+
+
+    .navbar-title h3 {
+        font-size: 15px;
+    }
+
+
+    .top-right {
+        gap: 5px;
+    }
+
+
+    .icon-btn,
+    .mobile-menu-btn {
+        width: 37px;
+        height: 37px;
+    }
+
+
+    .profile {
+        padding: 2px;
+    }
+
+
+    .profile-avatar img {
+        width: 35px;
+        height: 35px;
+    }
+
+
+    .notification-menu {
+        width: 310px;
+    }
+
+
+    .lesson-planner-container {
+        padding:
+            18px 12px 35px;
+    }
+
+
+    .planner-heading {
+        align-items: flex-start;
+    }
+
+
+    .heading-icon {
+        width: 42px;
+        height: 42px;
+
+        font-size: 16px;
+    }
+
+
+    .planner-heading h1 {
+        font-size: 19px;
+    }
+
+
+    .ai-planner-hero {
+        padding:
+            23px 19px;
+    }
+
+
+    .ai-hero-content h2 {
+        font-size: 23px;
+    }
+
+
+    .hero-features {
+        align-items: flex-start;
+        flex-direction: column;
+
+        gap: 7px;
+    }
+
+
+    .planner-form-card,
+    .generated-plan-section {
+        padding: 16px;
+    }
+
+
+    .card-heading {
+        flex-direction: column;
+    }
+
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+
+    .clear-btn,
+    .generate-btn {
+        width: 100%;
+    }
+
+
+    .generated-actions {
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+
+    .secondary-action-btn,
+    .primary-action-btn {
+        padding: 0 7px;
+    }
+
+
+    .planner-toast {
+        left: 12px;
+        right: 12px;
+        bottom: 15px;
+
+        min-width: 0;
+    }
+
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print {
+
+    .sidebar,
+    .top-navbar,
+    .planner-page-header,
+    .ai-planner-hero,
+    .planner-grid,
+    .generated-actions,
+    .planner-toast {
+        display: none !important;
+    }
+
+
+    .main-content {
+        width: 100%;
+
+        margin: 0;
+    }
+
+
+    .lesson-planner-container {
+        padding: 0;
+    }
+
+
+    .generated-plan-section {
+        margin: 0;
+
+        border: none;
+
+        box-shadow: none;
+    }
+
+
+    .generated-content {
+        display: grid !important;
+    }
+
+}
+      </style>
+    <!-- =====================================================
+                         CUSTOM CSS
+    ====================================================== -->
+
+    <link rel="stylesheet"
+          href="../../css/ai-lesson-planner.css">
+
+</head>
+
+
+<body>
+
+
+<div class="page-wrapper">
+
+
+<!-- =========================================================
+                         SIDEBAR
+========================================================= -->
+
+<aside class="sidebar">
+
+
+    <!-- Logo -->
+
+    <div class="sidebar-logo">
+
+        <img src="../../images/logo.png"
+             alt="FMPS Logo">
+
+        <div>
+
+            <h2>FMPS</h2>
+
+            <span>Teacher Panel</span>
+
+        </div>
+
+    </div>
+
+
+    <!-- Menu -->
+
+    <ul class="sidebar-menu">
+
+
+        <li>
+
+            <a href="teacher-dashboard.html">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="my-classes.html">
+
+                <i class="fa-solid fa-chalkboard-user"></i>
+
+                <span>My Classes</span>
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="attendance-report.html">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <span>Attendance</span>
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="timetable.html">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                <span>Timetable</span>
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="assignments.html">
+
+                <i class="fa-solid fa-file-pen"></i>
+
+                <span>Assignments</span>
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="notices.html">
+
+                <i class="fa-solid fa-bullhorn"></i>
+
+                <span>Notices</span>
+
+            </a>
+
+        </li>
+
+
+        <!-- =================================================
+                            AI SECTION
+        ================================================== -->
+
+        <li class="menu-label">
+
+            <span>AI SMART TOOLS</span>
+
+        </li>
+
+
+        <li class="active">
+
+            <a href="ai-lesson-planner.html">
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                <span>AI Lesson Planner</span>
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="student-performance.html">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>AI Performance</span>
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="profile.html">
+
+                <i class="fa-solid fa-user"></i>
+
+                <span>My Profile</span>
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="settings.html">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>Settings</span>
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="teacher-login.html"
+               class="logout-link">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Logout</span>
+
+            </a>
+
+        </li>
+
+
+    </ul>
+
+
+</aside>
+
+
+
+<!-- =========================================================
+                      MOBILE OVERLAY
+========================================================= -->
+
+<div class="sidebar-overlay"></div>
+
+
+
+<!-- =========================================================
+                       MAIN CONTENT
+========================================================= -->
+
+<main class="main-content">
+
+
+<!-- =========================================================
+                         TOP NAVBAR
+========================================================= -->
+
+<nav class="top-navbar">
+
+
+    <!-- LEFT -->
+
+    <div class="navbar-left">
+
+
+        <button type="button"
+                id="mobileMenuBtn"
+                class="mobile-menu-btn">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+
+        <div class="navbar-title">
+
+            <h3>AI Lesson Planner</h3>
+
+            <span>Smart Teaching Assistant</span>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- RIGHT -->
+
+    <div class="top-right">
+
+
+        <!-- Search -->
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input type="text"
+                   id="globalSearch"
+                   placeholder="Search...">
+
+        </div>
+
+
+
+        <!-- Theme -->
+
+        <button type="button"
+                id="themeToggle"
+                class="icon-btn"
+                title="Dark / Light Mode">
+
+            <i class="fa-solid fa-moon"></i>
+
+        </button>
+
+
+
+        <!-- =================================================
+                         NOTIFICATIONS
+        ================================================== -->
+
+        <div class="dropdown">
+
+
+            <button type="button"
+                    class="icon-btn position-relative"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+
+                <i class="fa-regular fa-bell"></i>
+
+
+                <span class="badge-count"
+                      id="notificationCount">
+
+                    4
+
+                </span>
+
+            </button>
+
+
+
+            <ul class="dropdown-menu dropdown-menu-end notification-menu">
+
+
+                <!-- Header -->
+
+                <li class="notification-menu-header">
+
+                    <div>
+
+                        <strong>Notifications</strong>
+
+                        <small>
+                            You have 4 new notifications
+                        </small>
+
+                    </div>
+
+
+                    <button type="button"
+                            id="markAllRead">
+
+                        Mark all read
+
+                    </button>
+
+                </li>
+
+
+
+                <!-- Notification 1 -->
+
+                <li>
+
+                    <a href="notification.html"
+                       class="dropdown-item notification-item unread">
+
+                        <span class="notification-icon">
+
+                            <i class="fa-solid fa-calendar-check"></i>
+
+                        </span>
+
+
+                        <div>
+
+                            <strong>
+                                Attendance Updated
+                            </strong>
+
+                            <small>
+                                Today's attendance has been updated.
+                            </small>
+
+                            <span class="notification-time">
+                                5 min ago
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                </li>
+
+
+
+                <!-- Notification 2 -->
+
+                <li>
+
+                    <a href="notification.html"
+                       class="dropdown-item notification-item unread">
+
+                        <span class="notification-icon">
+
+                            <i class="fa-solid fa-book-open"></i>
+
+                        </span>
+
+
+                        <div>
+
+                            <strong>
+                                New Class Assigned
+                            </strong>
+
+                            <small>
+                                A new class has been added to your timetable.
+                            </small>
+
+                            <span class="notification-time">
+                                20 min ago
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                </li>
+
+
+
+                <!-- Notification 3 -->
+
+                <li>
+
+                    <a href="notification.html"
+                       class="dropdown-item notification-item">
+
+                        <span class="notification-icon">
+
+                            <i class="fa-solid fa-bullhorn"></i>
+
+                        </span>
+
+
+                        <div>
+
+                            <strong>
+                                New Notice Published
+                            </strong>
+
+                            <small>
+                                A new academic notice has been published.
+                            </small>
+
+                            <span class="notification-time">
+                                1 hour ago
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                </li>
+
+
+
+                <!-- Notification 4 -->
+
+                <li>
+
+                    <a href="notification.html"
+                       class="dropdown-item notification-item">
+
+                        <span class="notification-icon">
+
+                            <i class="fa-solid fa-clock"></i>
+
+                        </span>
+
+
+                        <div>
+
+                            <strong>
+                                Faculty Meeting
+                            </strong>
+
+                            <small>
+                                Faculty meeting scheduled for tomorrow.
+                            </small>
+
+                            <span class="notification-time">
+                                2 hours ago
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                </li>
+
+
+
+                <!-- Footer -->
+
+                <li class="notification-footer">
+
+                    <a href="notification.html">
+
+                        View All Notifications
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </li>
+
+
+            </ul>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+                            PROFILE
+        ================================================== -->
+
+        <div class="dropdown">
+
+
+            <div class="profile"
+                 data-bs-toggle="dropdown"
+                 aria-expanded="false">
+
+
+                <div class="profile-avatar">
+
+                    <img src="https://i.pravatar.cc/80?img=47"
+                         alt="Teacher">
+
+                </div>
+
+
+                <div class="profile-info">
+
+                    <strong>Welcome, Teacher</strong>
+
+                    <small>Faculty</small>
+
+                </div>
+
+
+                <i class="fa-solid fa-angle-down"></i>
+
+
+            </div>
+
+
+
+            <ul class="dropdown-menu dropdown-menu-end profile-menu">
+
+
+                <li>
+
+                    <a class="dropdown-item"
+                       href="profile.html">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        My Profile
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a class="dropdown-item"
+                       href="change-password.html">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        Change Password
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a class="dropdown-item"
+                       href="settings.html">
+
+                        <i class="fa-solid fa-gear"></i>
+
+                        Settings
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <hr class="dropdown-divider">
+
+                </li>
+
+
+                <li>
+
+                    <a class="dropdown-item text-danger"
+                       href="teacher-login.html">
+
+                        <i class="fa-solid fa-right-from-bracket"></i>
+
+                        Logout
+
+                    </a>
+
+                </li>
+
+
+            </ul>
+
+
+        </div>
+
+
+    </div>
+
+
+</nav>
+
+
+
+<!-- =========================================================
+                  AI LESSON PLANNER CONTENT
+========================================================= -->
+
+<div class="lesson-planner-container">
+
+
+<!-- =========================================================
+                        PAGE HEADING
+========================================================= -->
+
+<section class="planner-page-header">
+
+
+    <div class="planner-heading">
+
+
+        <div class="heading-icon">
+
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+        </div>
+
+
+        <div>
+
+            <h1>
+                AI Lesson Planner
+            </h1>
+
+            <p>
+                Create structured and engaging lesson plans
+                using AI-powered teaching assistance.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <button type="button"
+            class="history-btn"
+            id="openHistoryBtn">
+
+        <i class="fa-solid fa-clock-rotate-left"></i>
+
+        Lesson History
+
+    </button>
+
+
+</section>
+
+
+
+<!-- =========================================================
+                         AI HERO
+========================================================= -->
+
+<section class="ai-planner-hero">
+
+
+    <div class="ai-hero-content">
+
+
+        <span class="ai-label">
+
+            <i class="fa-solid fa-sparkles"></i>
+
+            AI POWERED
+
+        </span>
+
+
+        <h2>
+            Plan Better Lessons
+            <span>in Seconds.</span>
+        </h2>
+
+
+        <p>
+            Enter your class, subject and topic.
+            Our AI teaching assistant will help generate
+            objectives, activities, teaching methods,
+            assessments and homework ideas.
+        </p>
+
+
+        <div class="hero-features">
+
+
+            <span>
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                Smart Objectives
+
+            </span>
+
+
+            <span>
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                Teaching Activities
+
+            </span>
+
+
+            <span>
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                Quick Assessment
+
+            </span>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="hero-ai-visual">
+
+
+        <div class="ai-orbit orbit-one"></div>
+
+        <div class="ai-orbit orbit-two"></div>
+
+
+        <div class="ai-brain">
+
+            <i class="fa-solid fa-brain"></i>
+
+        </div>
+
+
+        <span class="floating-icon icon-book">
+
+            <i class="fa-solid fa-book-open"></i>
+
+        </span>
+
+
+        <span class="floating-icon icon-light">
+
+            <i class="fa-solid fa-lightbulb"></i>
+
+        </span>
+
+
+        <span class="floating-icon icon-chart">
+
+            <i class="fa-solid fa-chart-simple"></i>
+
+        </span>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+                      PLANNER GRID
+========================================================= -->
+
+<div class="planner-grid">
+
+
+<!-- =========================================================
+                  LEFT - LESSON PLAN FORM
+========================================================= -->
+
+<section class="planner-form-card">
+
+
+    <div class="card-heading">
+
+
+        <div>
+
+            <span class="section-tag">
+
+                <i class="fa-solid fa-pen-to-square"></i>
+
+                Lesson Details
+
+            </span>
+
+
+            <h2>
+                Create New Lesson Plan
+            </h2>
+
+
+            <p>
+                Fill in the details below and let AI prepare
+                your lesson structure.
+            </p>
+
+        </div>
+
+
+        <div class="step-indicator">
+
+            <span>1</span>
+
+            Details
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+                         FORM
+    ====================================================== -->
+
+    <form id="lessonPlannerForm">
+
+
+        <!-- Row 1 -->
+
+        <div class="form-grid two-column">
+
+
+            <!-- Class -->
+
+            <div class="form-group">
+
+                <label for="classSelect">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    Class / Semester
+
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <select id="classSelect"
+                            required>
+
+                        <option value="">
+                            Select Class
+                        </option>
+
+                        <option value="BCA-1">
+                            BCA Semester I
+                        </option>
+
+                        <option value="BCA-2">
+                            BCA Semester II
+                        </option>
+
+                        <option value="BCA-3">
+                            BCA Semester III
+                        </option>
+
+                        <option value="BCA-4">
+                            BCA Semester IV
+                        </option>
+
+                        <option value="BCA-5">
+                            BCA Semester V
+                        </option>
+
+                        <option value="BCA-6">
+                            BCA Semester VI
+                        </option>
+
+                    </select>
+
+
+                    <i class="fa-solid fa-angle-down select-arrow"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Subject -->
+
+            <div class="form-group">
+
+                <label for="subjectSelect">
+
+                    <i class="fa-solid fa-book"></i>
+
+                    Subject
+
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <select id="subjectSelect"
+                            required>
+
+                        <option value="">
+                            Select Subject
+                        </option>
+
+                        <option value="Artificial Intelligence">
+                            Artificial Intelligence
+                        </option>
+
+                        <option value="Machine Learning">
+                            Machine Learning
+                        </option>
+
+                        <option value="DBMS">
+                            Database Management System
+                        </option>
+
+                        <option value="Java">
+                            Java Programming
+                        </option>
+
+                        <option value="Python">
+                            Python Programming
+                        </option>
+
+                        <option value="Web Development">
+                            Web Development
+                        </option>
+
+                        <option value="Data Structures">
+                            Data Structures
+                        </option>
+
+                    </select>
+
+
+                    <i class="fa-solid fa-angle-down select-arrow"></i>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- Topic -->
+
+        <div class="form-group">
+
+            <label for="lessonTopic">
+
+                <i class="fa-solid fa-lightbulb"></i>
+
+                Lesson Topic
+
+            </label>
+
+
+            <div class="input-wrapper">
+
+                <input type="text"
+                       id="lessonTopic"
+                       placeholder="Example: Introduction to Machine Learning"
+                       required>
+
+            </div>
+
+
+            <small class="field-help">
+
+                Enter the main topic you want to teach.
+
+            </small>
+
+        </div>
+
+
+
+        <!-- Row -->
+
+        <div class="form-grid two-column">
+
+
+            <!-- Duration -->
+
+            <div class="form-group">
+
+                <label for="lessonDuration">
+
+                    <i class="fa-regular fa-clock"></i>
+
+                    Duration
+
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <select id="lessonDuration"
+                            required>
+
+                        <option value="30">
+                            30 Minutes
+                        </option>
+
+                        <option value="45">
+                            45 Minutes
+                        </option>
+
+                        <option value="60"
+                                selected>
+                            60 Minutes
+                        </option>
+
+                        <option value="90">
+                            90 Minutes
+                        </option>
+
+                        <option value="120">
+                            120 Minutes
+                        </option>
+
+                    </select>
+
+
+                    <i class="fa-solid fa-angle-down select-arrow"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Difficulty -->
+
+            <div class="form-group">
+
+                <label for="difficultyLevel">
+
+                    <i class="fa-solid fa-signal"></i>
+
+                    Difficulty Level
+
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <select id="difficultyLevel">
+
+                        <option value="Beginner">
+                            Beginner
+                        </option>
+
+                        <option value="Intermediate"
+                                selected>
+                            Intermediate
+                        </option>
+
+                        <option value="Advanced">
+                            Advanced
+                        </option>
+
+                    </select>
+
+
+                    <i class="fa-solid fa-angle-down select-arrow"></i>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+                        LEARNING STYLE
+        ================================================== -->
+
+        <div class="form-group">
+
+            <label>
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+                Teaching Style
+
+            </label>
+
+
+            <div class="teaching-style-options">
+
+
+                <label class="style-option active">
+
+                    <input type="radio"
+                           name="teachingStyle"
+                           value="Interactive"
+                           checked>
+
+                    <span class="style-icon">
+
+                        <i class="fa-solid fa-comments"></i>
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Interactive</strong>
+
+                        <small>
+                            Discussion & activities
+                        </small>
+
+                    </span>
+
+                </label>
+
+
+
+                <label class="style-option">
+
+                    <input type="radio"
+                           name="teachingStyle"
+                           value="Lecture">
+
+                    <span class="style-icon">
+
+                        <i class="fa-solid fa-person-chalkboard"></i>
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Lecture</strong>
+
+                        <small>
+                            Concept focused
+                        </small>
+
+                    </span>
+
+                </label>
+
+
+
+                <label class="style-option">
+
+                    <input type="radio"
+                           name="teachingStyle"
+                           value="Practical">
+
+                    <span class="style-icon">
+
+                        <i class="fa-solid fa-laptop-code"></i>
+
+                    </span>
+
+
+                    <span>
+
+                        <strong>Practical</strong>
+
+                        <small>
+                            Hands-on learning
+                        </small>
+
+                    </span>
+
+                </label>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+                       ADDITIONAL NOTES
+        ================================================== -->
+
+        <div class="form-group">
+
+            <label for="additionalNotes">
+
+                <i class="fa-solid fa-note-sticky"></i>
+
+                Additional Instructions
+
+                <span class="optional-text">
+                    Optional
+                </span>
+
+            </label>
+
+
+            <textarea id="additionalNotes"
+                      rows="4"
+                      placeholder="Example: Include real-world examples, group activity, coding demonstration, etc."></textarea>
+
+
+            <div class="textarea-footer">
+
+                <small>
+                    Give AI any special instructions for the lesson.
+                </small>
+
+                <span id="characterCount">
+                    0 / 300
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+                        GENERATE BUTTON
+        ================================================== -->
+
+        <div class="form-actions">
+
+
+            <button type="reset"
+                    class="clear-btn"
+                    id="clearFormBtn">
+
+                <i class="fa-solid fa-rotate-left"></i>
+
+                Clear
+
+            </button>
+
+
+            <button type="submit"
+                    class="generate-btn"
+                    id="generateLessonBtn">
+
+                <span class="generate-btn-content">
+
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                    Generate Lesson Plan
+
+                </span>
+
+
+                <span class="generate-loader">
+
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+
+                    AI is Thinking...
+
+                </span>
+
+            </button>
+
+
+        </div>
+
+
+    </form>
+
+
+</section>
+
+
+
+<!-- =========================================================
+                    RIGHT SIDE PANEL
+========================================================= -->
+
+<aside class="planner-side-panel">
+
+
+    <!-- AI Tips -->
+
+    <div class="side-card ai-tip-card">
+
+
+        <div class="side-card-title">
+
+            <span class="side-icon purple">
+
+                <i class="fa-solid fa-lightbulb"></i>
+
+            </span>
+
+
+            <div>
+
+                <h3>AI Teaching Tips</h3>
+
+                <p>For better lesson plans</p>
+
+            </div>
+
+        </div>
+
+
+        <ul class="tips-list">
+
+
+            <li>
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span>
+                    Use a clear and specific lesson topic.
+                </span>
+
+            </li>
+
+
+            <li>
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span>
+                    Select the correct class and difficulty level.
+                </span>
+
+            </li>
+
+
+            <li>
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span>
+                    Add special instructions for customized activities.
+                </span>
+
+            </li>
+
+
+            <li>
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span>
+                    Review AI-generated content before teaching.
+                </span>
+
+            </li>
+
+
+        </ul>
+
+
+    </div>
+
+
+
+    <!-- Quick Templates -->
+
+    <div class="side-card">
+
+
+        <div class="side-card-title">
+
+            <span class="side-icon blue">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+            </span>
+
+
+            <div>
+
+                <h3>Quick Templates</h3>
+
+                <p>Start with a teaching format</p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="template-list">
+
+
+            <button type="button"
+                    class="template-btn"
+                    data-template="concept">
+
+                <span>
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                </span>
+
+
+                <div>
+
+                    <strong>
+                        Concept Lesson
+                    </strong>
+
+                    <small>
+                        Explain theory with examples
+                    </small>
+
+                </div>
+
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+
+
+            <button type="button"
+                    class="template-btn"
+                    data-template="practical">
+
+                <span>
+
+                    <i class="fa-solid fa-code"></i>
+
+                </span>
+
+
+                <div>
+
+                    <strong>
+                        Practical Class
+                    </strong>
+
+                    <small>
+                        Hands-on learning session
+                    </small>
+
+                </div>
+
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+
+
+            <button type="button"
+                    class="template-btn"
+                    data-template="revision">
+
+                <span>
+
+                    <i class="fa-solid fa-arrows-rotate"></i>
+
+                </span>
+
+
+                <div>
+
+                    <strong>
+                        Revision Class
+                    </strong>
+
+                    <small>
+                        Review important concepts
+                    </small>
+
+                </div>
+
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+
+
+            <button type="button"
+                    class="template-btn"
+                    data-template="assessment">
+
+                <span>
+
+                    <i class="fa-solid fa-list-check"></i>
+
+                </span>
+
+
+                <div>
+
+                    <strong>
+                        Assessment Lesson
+                    </strong>
+
+                    <small>
+                        Quiz and evaluation focused
+                    </small>
+
+                </div>
+
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- Stats -->
+
+    <div class="side-card planner-stat-card">
+
+
+        <div class="mini-stat">
+
+            <span class="mini-stat-icon">
+
+                <i class="fa-solid fa-file-circle-check"></i>
+
+            </span>
+
+
+            <div>
+
+                <strong id="totalPlans">
+                    24
+                </strong>
+
+                <small>
+                    Plans Created
+                </small>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="mini-stat">
+
+            <span class="mini-stat-icon">
+
+                <i class="fa-solid fa-clock"></i>
+
+            </span>
+
+
+            <div>
+
+                <strong>
+                    12h
+                </strong>
+
+                <small>
+                    Time Saved
+                </small>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</aside>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                  GENERATED LESSON PLAN SECTION
+========================================================= -->
+
+<section class="generated-plan-section"
+         id="generatedPlanSection">
+
+
+    <div class="generated-header">
+
+
+        <div>
+
+
+            <span class="section-tag">
+
+                <i class="fa-solid fa-sparkles"></i>
+
+                AI GENERATED
+
+            </span>
+
+
+            <h2>
+                Your Lesson Plan
+            </h2>
+
+
+            <p>
+                Review and customize the generated teaching plan.
+            </p>
+
+
+        </div>
+
+
+
+        <div class="generated-actions">
+
+
+            <button type="button"
+                    id="copyPlanBtn"
+                    class="secondary-action-btn">
+
+                <i class="fa-regular fa-copy"></i>
+
+                Copy
+
+            </button>
+
+
+            <button type="button"
+                    id="printPlanBtn"
+                    class="secondary-action-btn">
+
+                <i class="fa-solid fa-print"></i>
+
+                Print
+
+            </button>
+
+
+            <button type="button"
+                    id="savePlanBtn"
+                    class="primary-action-btn">
+
+                <i class="fa-solid fa-bookmark"></i>
+
+                Save Plan
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- Empty State -->
+
+    <div class="lesson-empty-state"
+         id="lessonEmptyState">
+
+
+        <div class="empty-ai-icon">
+
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+        </div>
+
+
+        <h3>
+            Your AI lesson plan will appear here
+        </h3>
+
+
+        <p>
+            Complete the lesson details above and click
+            <strong>Generate Lesson Plan</strong>.
+        </p>
+
+
+    </div>
+
+
+
+    <!-- Generated Content -->
+
+    <div class="generated-content"
+         id="generatedContent">
+
+
+        <!-- Lesson Overview -->
+
+        <article class="generated-block">
+
+
+            <div class="generated-block-icon">
+
+                <i class="fa-solid fa-book-open"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>Lesson Overview</h3>
+
+                <p id="generatedOverview">
+                    Generated lesson overview will appear here.
+                </p>
+
+            </div>
+
+
+        </article>
+
+
+
+        <!-- Objectives -->
+
+        <article class="generated-block">
+
+
+            <div class="generated-block-icon">
+
+                <i class="fa-solid fa-bullseye"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>Learning Objectives</h3>
+
+                <ul id="generatedObjectives">
+
+                    <li>
+                        Learning objective will appear here.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+        </article>
+
+
+
+        <!-- Materials -->
+
+        <article class="generated-block">
+
+
+            <div class="generated-block-icon">
+
+                <i class="fa-solid fa-box-open"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>Teaching Materials</h3>
+
+                <ul id="generatedMaterials">
+
+                    <li>
+                        Teaching materials will appear here.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+        </article>
+
+
+
+        <!-- Activities -->
+
+        <article class="generated-block">
+
+
+            <div class="generated-block-icon">
+
+                <i class="fa-solid fa-people-group"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>Classroom Activities</h3>
+
+                <div id="generatedActivities">
+
+                    Activities will appear here.
+
+                </div>
+
+            </div>
+
+
+        </article>
+
+
+
+        <!-- Assessment -->
+
+        <article class="generated-block">
+
+
+            <div class="generated-block-icon">
+
+                <i class="fa-solid fa-list-check"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>Assessment</h3>
+
+                <p id="generatedAssessment">
+
+                    Assessment strategy will appear here.
+
+                </p>
+
+            </div>
+
+
+        </article>
+
+
+
+        <!-- Homework -->
+
+        <article class="generated-block">
+
+
+            <div class="generated-block-icon">
+
+                <i class="fa-solid fa-house-laptop"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>Homework / Follow-up</h3>
+
+                <p id="generatedHomework">
+
+                    Homework recommendation will appear here.
+
+                </p>
+
+            </div>
+
+
+        </article>
+
+
+    </div>
+
+
+</section>
+
+
+</div>
+
+
+</main>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                         TOAST
+========================================================= -->
+
+<div class="planner-toast"
+     id="plannerToast">
+
+
+    <span class="toast-icon">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+    </span>
+
+
+    <div>
+
+        <strong>
+            Lesson Plan Generated
+        </strong>
+
+        <span>
+            Your AI lesson plan is ready.
+        </span>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                        BOOTSTRAP JS
+========================================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+<script>
+    /* =========================================================
+   AI LESSON PLANNER
+   PART 3 - COMPLETE JAVASCRIPT
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
+
+    const body = document.body;
+
+    const themeToggle = document.getElementById("themeToggle");
+
+    const sidebar = document.querySelector(".sidebar");
+    const sidebarOverlay = document.querySelector(".sidebar-overlay");
+    const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+
+    const searchBox = document.getElementById("searchBox");
+
+    const notificationCount =
+        document.getElementById("notificationCount");
+
+    const markAllReadBtn =
+        document.getElementById("markAllRead");
+
+    const notificationItems =
+        document.querySelectorAll(".notification-item");
+
+    const lessonForm =
+        document.getElementById("lessonPlannerForm");
+
+    const generateBtn =
+        document.getElementById("generateLessonBtn");
+
+    const clearBtn =
+        document.getElementById("clearFormBtn");
+
+    const topicInput =
+        document.getElementById("lessonTopic");
+
+    const subjectInput =
+        document.getElementById("subject");
+
+    const classInput =
+        document.getElementById("classLevel");
+
+    const durationInput =
+        document.getElementById("duration");
+
+    const objectivesInput =
+        document.getElementById("learningObjectives");
+
+    const additionalInput =
+        document.getElementById("additionalInstructions");
+
+    const characterCount =
+        document.getElementById("characterCount");
+
+    const styleOptions =
+        document.querySelectorAll(".style-option");
+
+    const templateButtons =
+        document.querySelectorAll(".template-btn");
+
+    const emptyState =
+        document.querySelector(".lesson-empty-state");
+
+    const generatedContent =
+        document.querySelector(".generated-content");
+
+    const generatedSection =
+        document.querySelector(".generated-plan-section");
+
+    const copyBtn =
+        document.getElementById("copyPlanBtn");
+
+    const saveBtn =
+        document.getElementById("savePlanBtn");
+
+    const printBtn =
+        document.getElementById("printPlanBtn");
+
+    const historyBtn =
+        document.getElementById("historyBtn");
+
+
+    /* =====================================================
+       DARK / LIGHT MODE
+    ===================================================== */
+
+    function applySavedTheme() {
+
+        const savedTheme =
+            localStorage.getItem("fmpsTheme");
+
+        if (savedTheme === "dark") {
+
+            body.classList.add("dark-mode");
+
+        } else {
+
+            body.classList.remove("dark-mode");
+
+        }
+
+        updateThemeIcon();
+    }
+
+
+    function updateThemeIcon() {
+
+        if (!themeToggle) return;
+
+        const icon =
+            themeToggle.querySelector("i");
+
+        if (!icon) return;
+
+
+        if (body.classList.contains("dark-mode")) {
+
+            icon.className =
+                "fa-solid fa-sun";
+
+            themeToggle.title =
+                "Switch to Light Mode";
+
+        } else {
+
+            icon.className =
+                "fa-solid fa-moon";
+
+            themeToggle.title =
+                "Switch to Dark Mode";
+        }
+    }
+
+
+    applySavedTheme();
+
+
+    if (themeToggle) {
+
+        themeToggle.addEventListener(
+            "click",
+            function () {
+
+                body.classList.toggle(
+                    "dark-mode"
+                );
+
+                const theme =
+                    body.classList.contains(
+                        "dark-mode"
+                    )
+                        ? "dark"
+                        : "light";
+
+                localStorage.setItem(
+                    "fmpsTheme",
+                    theme
+                );
+
+                updateThemeIcon();
+            }
+        );
+    }
+
+
+    /* =====================================================
+       MOBILE SIDEBAR
+    ===================================================== */
+
+    if (mobileMenuBtn) {
+
+        mobileMenuBtn.addEventListener(
+            "click",
+            function () {
+
+                if (sidebar) {
+                    sidebar.classList.add("open");
+                }
+
+                if (sidebarOverlay) {
+                    sidebarOverlay.classList.add("show");
+                }
+            }
+        );
+    }
+
+
+    if (sidebarOverlay) {
+
+        sidebarOverlay.addEventListener(
+            "click",
+            closeSidebar
+        );
+    }
+
+
+    function closeSidebar() {
+
+        if (sidebar) {
+            sidebar.classList.remove("open");
+        }
+
+        if (sidebarOverlay) {
+            sidebarOverlay.classList.remove("show");
+        }
+    }
+
+
+    document
+        .querySelectorAll(".sidebar-menu a")
+        .forEach(function (link) {
+
+            link.addEventListener(
+                "click",
+                function () {
+
+                    if (
+                        window.innerWidth <= 900
+                    ) {
+                        closeSidebar();
+                    }
+                }
+            );
+        });
+
+
+    /* =====================================================
+       NOTIFICATION SYSTEM
+    ===================================================== */
+
+    function updateNotificationCount() {
+
+        const unread =
+            document.querySelectorAll(
+                ".notification-item.unread"
+            ).length;
+
+        if (notificationCount) {
+
+            notificationCount.textContent =
+                unread;
+
+            if (unread === 0) {
+
+                notificationCount.style.display =
+                    "none";
+
+            } else {
+
+                notificationCount.style.display =
+                    "flex";
+            }
+        }
+    }
+
+
+    updateNotificationCount();
+
+
+    notificationItems.forEach(
+        function (item) {
+
+            item.addEventListener(
+                "click",
+                function () {
+
+                    item.classList.remove(
+                        "unread"
+                    );
+
+                    updateNotificationCount();
+                }
+            );
+        }
+    );
+
+
+    if (markAllReadBtn) {
+
+        markAllReadBtn.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                document
+                    .querySelectorAll(
+                        ".notification-item.unread"
+                    )
+                    .forEach(
+                        function (item) {
+
+                            item.classList.remove(
+                                "unread"
+                            );
+                        }
+                    );
+
+                updateNotificationCount();
+
+                showToast(
+                    "Notifications Updated",
+                    "All notifications marked as read.",
+                    "success"
+                );
+            }
+        );
+    }
+
+
+    /* =====================================================
+       CHARACTER COUNTER
+    ===================================================== */
+
+    function updateCharacterCounter() {
+
+        if (
+            !additionalInput ||
+            !characterCount
+        ) {
+            return;
+        }
+
+        const length =
+            additionalInput.value.length;
+
+        characterCount.textContent =
+            length + " / 500";
+
+
+        if (length > 500) {
+
+            additionalInput.value =
+                additionalInput.value.substring(
+                    0,
+                    500
+                );
+
+            characterCount.textContent =
+                "500 / 500";
+        }
+    }
+
+
+    if (additionalInput) {
+
+        additionalInput.addEventListener(
+            "input",
+            updateCharacterCounter
+        );
+
+        updateCharacterCounter();
+    }
+
+
+    /* =====================================================
+       TEACHING STYLE
+    ===================================================== */
+
+    styleOptions.forEach(
+        function (option) {
+
+            option.addEventListener(
+                "click",
+                function () {
+
+                    styleOptions.forEach(
+                        function (item) {
+
+                            item.classList.remove(
+                                "active"
+                            );
+                        }
+                    );
+
+                    option.classList.add(
+                        "active"
+                    );
+
+                    const radio =
+                        option.querySelector(
+                            'input[type="radio"]'
+                        );
+
+                    if (radio) {
+
+                        radio.checked = true;
+                    }
+                }
+            );
+        }
+    );
+
+
+    /* =====================================================
+       QUICK TEMPLATES
+    ===================================================== */
+
+    templateButtons.forEach(
+        function (button) {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    const template =
+                        button.dataset.template ||
+                        button
+                            .querySelector("strong")
+                            ?.textContent
+                            .trim()
+                            .toLowerCase() ||
+                        "";
+
+
+                    applyTemplate(template);
+
+
+                    showToast(
+                        "Template Applied",
+                        "Lesson planner fields have been filled.",
+                        "success"
+                    );
+                }
+            );
+        }
+    );
+
+
+    function applyTemplate(template) {
+
+        if (
+            template.includes("lecture") ||
+            template.includes("theory")
+        ) {
+
+            setValue(
+                subjectInput,
+                "Computer Science"
+            );
+
+            setValue(
+                classInput,
+                "Undergraduate"
+            );
+
+            setValue(
+                durationInput,
+                "60"
+            );
+
+            setValue(
+                topicInput,
+                "Introduction to Artificial Intelligence"
+            );
+
+            setValue(
+                objectivesInput,
+                "Understand the basic concepts of Artificial Intelligence, its applications, types, advantages and real-world use cases."
+            );
+
+            setValue(
+                additionalInput,
+                "Include a short introduction, real-world examples, classroom discussion and a quick assessment."
+            );
+
+
+        } else if (
+            template.includes("practical") ||
+            template.includes("lab")
+        ) {
+
+            setValue(
+                subjectInput,
+                "Computer Science"
+            );
+
+            setValue(
+                classInput,
+                "Undergraduate"
+            );
+
+            setValue(
+                durationInput,
+                "90"
+            );
+
+            setValue(
+                topicInput,
+                "Python Programming Practical"
+            );
+
+            setValue(
+                objectivesInput,
+                "Help students understand Python syntax and implement basic programs using variables, conditions and loops."
+            );
+
+            setValue(
+                additionalInput,
+                "Include hands-on coding exercises, sample programs and a practical task for students."
+            );
+
+
+        } else if (
+            template.includes("revision")
+        ) {
+
+            setValue(
+                durationInput,
+                "45"
+            );
+
+            setValue(
+                topicInput,
+                "Revision Session"
+            );
+
+            setValue(
+                objectivesInput,
+                "Revise important concepts, identify weak areas and prepare students for assessment."
+            );
+
+            setValue(
+                additionalInput,
+                "Include rapid revision questions, important definitions and a short quiz."
+            );
+
+
+        } else if (
+            template.includes("interactive")
+        ) {
+
+            setValue(
+                durationInput,
+                "60"
+            );
+
+            setValue(
+                topicInput,
+                "Interactive Learning Session"
+            );
+
+            setValue(
+                objectivesInput,
+                "Improve conceptual understanding through discussion, examples, group activities and problem solving."
+            );
+
+            setValue(
+                additionalInput,
+                "Use interactive questions, student participation and collaborative activities."
+            );
+
+
+        } else {
+
+            setValue(
+                durationInput,
+                "60"
+            );
+
+            setValue(
+                topicInput,
+                "Introduction to Machine Learning"
+            );
+
+            setValue(
+                objectivesInput,
+                "Understand the fundamentals of Machine Learning and its major applications."
+            );
+        }
+
+
+        updateCharacterCounter();
+    }
+
+
+    function setValue(
+        element,
+        value
+    ) {
+
+        if (element) {
+            element.value = value;
+        }
+    }
+
+
+    /* =====================================================
+       CLEAR FORM
+    ===================================================== */
+
+    if (clearBtn) {
+
+        clearBtn.addEventListener(
+            "click",
+            function () {
+
+                if (lessonForm) {
+
+                    lessonForm.reset();
+
+                } else {
+
+                    [
+                        topicInput,
+                        subjectInput,
+                        classInput,
+                        durationInput,
+                        objectivesInput,
+                        additionalInput
+                    ].forEach(
+                        function (element) {
+
+                            if (element) {
+                                element.value = "";
+                            }
+                        }
+                    );
+                }
+
+
+                styleOptions.forEach(
+                    function (option) {
+
+                        option.classList.remove(
+                            "active"
+                        );
+                    }
+                );
+
+
+                if (styleOptions[0]) {
+
+                    styleOptions[0]
+                        .classList.add(
+                            "active"
+                        );
+
+                    const radio =
+                        styleOptions[0]
+                            .querySelector(
+                                'input[type="radio"]'
+                            );
+
+                    if (radio) {
+                        radio.checked = true;
+                    }
+                }
+
+
+                hideGeneratedPlan();
+
+                updateCharacterCounter();
+
+
+                showToast(
+                    "Form Cleared",
+                    "Lesson planner has been reset.",
+                    "success"
+                );
+            }
+        );
+    }
+
+
+    /* =====================================================
+       FORM SUBMIT
+    ===================================================== */
+
+    if (lessonForm) {
+
+        lessonForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+                generateLessonPlan();
+            }
+        );
+
+    } else if (generateBtn) {
+
+        generateBtn.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                generateLessonPlan();
+            }
+        );
+    }
+
+
+    /* =====================================================
+       GENERATE LESSON PLAN
+    ===================================================== */
+
+    function generateLessonPlan() {
+
+        const topic =
+            topicInput?.value.trim() || "";
+
+        const subject =
+            subjectInput?.value.trim() || "";
+
+        const classLevel =
+            classInput?.value.trim() || "";
+
+        const duration =
+            durationInput?.value.trim() || "";
+
+        const objectives =
+            objectivesInput?.value.trim() || "";
+
+
+        if (!topic) {
+
+            showToast(
+                "Topic Required",
+                "Please enter a lesson topic.",
+                "error"
+            );
+
+            topicInput?.focus();
+
+            return;
+        }
+
+
+        if (!subject) {
+
+            showToast(
+                "Subject Required",
+                "Please select or enter a subject.",
+                "error"
+            );
+
+            subjectInput?.focus();
+
+            return;
+        }
+
+
+        if (!classLevel) {
+
+            showToast(
+                "Class Required",
+                "Please select a class level.",
+                "error"
+            );
+
+            classInput?.focus();
+
+            return;
+        }
+
+
+        setGenerateLoading(true);
+
+
+        setTimeout(
+            function () {
+
+                const plan =
+                    createLessonPlanData();
+
+                renderLessonPlan(plan);
+
+                setGenerateLoading(false);
+
+                saveRecentGeneratedPlan(plan);
+
+                showToast(
+                    "Lesson Plan Generated",
+                    "Your AI lesson plan is ready.",
+                    "success"
+                );
+
+
+                if (generatedSection) {
+
+                    generatedSection.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+
+            },
+            1200
+        );
+    }
+
+
+    /* =====================================================
+       GENERATE BUTTON LOADING
+    ===================================================== */
+
+    function setGenerateLoading(
+        loading
+    ) {
+
+        if (!generateBtn) return;
+
+
+        if (loading) {
+
+            generateBtn.classList.add(
+                "loading"
+            );
+
+            generateBtn.disabled = true;
+
+        } else {
+
+            generateBtn.classList.remove(
+                "loading"
+            );
+
+            generateBtn.disabled = false;
+        }
+    }
+
+
+    /* =====================================================
+       CREATE LESSON PLAN DATA
+    ===================================================== */
+
+    function createLessonPlanData() {
+
+        const topic =
+            topicInput?.value.trim() ||
+            "Lesson Topic";
+
+        const subject =
+            subjectInput?.value.trim() ||
+            "Subject";
+
+        const classLevel =
+            classInput?.value.trim() ||
+            "Class";
+
+        const duration =
+            durationInput?.value.trim() ||
+            "60";
+
+        const objectives =
+            objectivesInput?.value.trim() ||
+            "Understand the important concepts of the lesson.";
+
+        const instructions =
+            additionalInput?.value.trim() ||
+            "Use examples and classroom interaction.";
+
+
+        const selectedStyle =
+            document.querySelector(
+                'input[name="teachingStyle"]:checked'
+            );
+
+
+        const teachingStyle =
+            selectedStyle?.value ||
+            selectedStyle
+                ?.closest(".style-option")
+                ?.querySelector("strong")
+                ?.textContent
+                .trim() ||
+            "Interactive";
+
+
+        return {
+
+            id: Date.now(),
+
+            createdAt:
+                new Date().toLocaleString(),
+
+            topic: topic,
+
+            subject: subject,
+
+            classLevel: classLevel,
+
+            duration: duration,
+
+            objectives: objectives,
+
+            instructions: instructions,
+
+            teachingStyle: teachingStyle,
+
+            introduction:
+                `Begin the lesson by introducing "${topic}" and connecting it with students' existing knowledge. Use a simple real-world example to create interest.`,
+
+            activities: [
+                `Explain the core concepts of ${topic}.`,
+                `Use practical examples related to ${subject}.`,
+                `Encourage students to ask questions and participate.`,
+                `Conduct a short activity based on the ${teachingStyle} teaching style.`
+            ],
+
+            assessment: [
+                `Ask 3-5 concept-based questions about ${topic}.`,
+                "Conduct a quick classroom quiz.",
+                "Ask students to explain one key concept in their own words."
+            ],
+
+            homework:
+                `Prepare short notes on ${topic} and solve one application-based question before the next class.`,
+
+            resources: [
+                "Presentation / Smart Board",
+                "Class Notes",
+                "Reference Material",
+                "Practice Questions"
+            ]
+        };
+    }
+
+
+    /* =====================================================
+       RENDER LESSON PLAN
+    ===================================================== */
+
+    function renderLessonPlan(plan) {
+
+        if (!generatedContent) {
+
+            console.warn(
+                "Generated content container not found."
+            );
+
+            return;
+        }
+
+
+        if (emptyState) {
+
+            emptyState.style.display =
+                "none";
+        }
+
+
+        generatedContent.classList.add(
+            "show"
+        );
+
+
+        generatedContent.innerHTML = `
+
+            <div class="generated-block">
+
+                <div class="generated-block-icon">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+
+                <div>
+
+                    <h3>Lesson Overview</h3>
+
+                    <p>
+                        <strong>Topic:</strong>
+                        ${escapeHTML(plan.topic)}
+                    </p>
+
+                    <p>
+                        <strong>Subject:</strong>
+                        ${escapeHTML(plan.subject)}
+                    </p>
+
+                    <p>
+                        <strong>Class:</strong>
+                        ${escapeHTML(plan.classLevel)}
+                    </p>
+
+                    <p>
+                        <strong>Duration:</strong>
+                        ${escapeHTML(plan.duration)} Minutes
+                    </p>
+
+                    <p>
+                        <strong>Teaching Style:</strong>
+                        ${escapeHTML(plan.teachingStyle)}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="generated-block">
+
+                <div class="generated-block-icon">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+
+                <div>
+
+                    <h3>Learning Objectives</h3>
+
+                    <p>
+                        ${escapeHTML(plan.objectives)}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="generated-block">
+
+                <div class="generated-block-icon">
+                    <i class="fa-solid fa-lightbulb"></i>
+                </div>
+
+                <div>
+
+                    <h3>Lesson Introduction</h3>
+
+                    <p>
+                        ${escapeHTML(plan.introduction)}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="generated-block">
+
+                <div class="generated-block-icon">
+                    <i class="fa-solid fa-people-group"></i>
+                </div>
+
+                <div>
+
+                    <h3>Teaching Activities</h3>
+
+                    <ul>
+
+                        ${plan.activities
+                            .map(
+                                item =>
+                                    `<li>${escapeHTML(item)}</li>`
+                            )
+                            .join("")}
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="generated-block">
+
+                <div class="generated-block-icon">
+                    <i class="fa-solid fa-clipboard-check"></i>
+                </div>
+
+                <div>
+
+                    <h3>Assessment</h3>
+
+                    <ul>
+
+                        ${plan.assessment
+                            .map(
+                                item =>
+                                    `<li>${escapeHTML(item)}</li>`
+                            )
+                            .join("")}
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="generated-block">
+
+                <div class="generated-block-icon">
+                    <i class="fa-solid fa-house-laptop"></i>
+                </div>
+
+                <div>
+
+                    <h3>Homework</h3>
+
+                    <p>
+                        ${escapeHTML(plan.homework)}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="generated-block">
+
+                <div class="generated-block-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+
+                <div>
+
+                    <h3>Required Resources</h3>
+
+                    <ul>
+
+                        ${plan.resources
+                            .map(
+                                item =>
+                                    `<li>${escapeHTML(item)}</li>`
+                            )
+                            .join("")}
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="generated-block">
+
+                <div class="generated-block-icon">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+
+                <div>
+
+                    <h3>Additional Instructions</h3>
+
+                    <p>
+                        ${escapeHTML(plan.instructions)}
+                    </p>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        generatedContent.dataset.plan =
+            JSON.stringify(plan);
+    }
+
+
+    /* =====================================================
+       HIDE GENERATED PLAN
+    ===================================================== */
+
+    function hideGeneratedPlan() {
+
+        if (generatedContent) {
+
+            generatedContent.classList.remove(
+                "show"
+            );
+
+            generatedContent.innerHTML = "";
+
+            delete generatedContent.dataset.plan;
+        }
+
+
+        if (emptyState) {
+
+            emptyState.style.display =
+                "flex";
+        }
+    }
+
+
+    /* =====================================================
+       COPY LESSON PLAN
+    ===================================================== */
+
+    if (copyBtn) {
+
+        copyBtn.addEventListener(
+            "click",
+            async function () {
+
+                const plan =
+                    getCurrentPlan();
+
+                if (!plan) {
+
+                    showToast(
+                        "Nothing to Copy",
+                        "Generate a lesson plan first.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                const text =
+                    createPlanText(plan);
+
+
+                try {
+
+                    await navigator.clipboard
+                        .writeText(text);
+
+                    showToast(
+                        "Copied",
+                        "Lesson plan copied to clipboard.",
+                        "success"
+                    );
+
+                } catch (error) {
+
+                    fallbackCopy(text);
+                }
+            }
+        );
+    }
+
+
+    function fallbackCopy(text) {
+
+        const textarea =
+            document.createElement(
+                "textarea"
+            );
+
+        textarea.value = text;
+
+        document.body.appendChild(
+            textarea
+        );
+
+        textarea.select();
+
+        document.execCommand(
+            "copy"
+        );
+
+        textarea.remove();
+
+
+        showToast(
+            "Copied",
+            "Lesson plan copied to clipboard.",
+            "success"
+        );
+    }
+
+
+    /* =====================================================
+       SAVE LESSON PLAN
+    ===================================================== */
+
+    if (saveBtn) {
+
+        saveBtn.addEventListener(
+            "click",
+            function () {
+
+                const plan =
+                    getCurrentPlan();
+
+                if (!plan) {
+
+                    showToast(
+                        "Nothing to Save",
+                        "Generate a lesson plan first.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                let savedPlans =
+                    getSavedPlans();
+
+
+                const alreadySaved =
+                    savedPlans.some(
+                        item =>
+                            item.id === plan.id
+                    );
+
+
+                if (!alreadySaved) {
+
+                    savedPlans.unshift(
+                        plan
+                    );
+
+
+                    savedPlans =
+                        savedPlans.slice(
+                            0,
+                            20
+                        );
+
+
+                    localStorage.setItem(
+                        "fmpsLessonPlans",
+                        JSON.stringify(
+                            savedPlans
+                        )
+                    );
+                }
+
+
+                updatePlanStats();
+
+
+                showToast(
+                    "Lesson Plan Saved",
+                    "Plan saved successfully in this browser.",
+                    "success"
+                );
+            }
+        );
+    }
+
+
+    /* =====================================================
+       PRINT
+    ===================================================== */
+
+    if (printBtn) {
+
+        printBtn.addEventListener(
+            "click",
+            function () {
+
+                const plan =
+                    getCurrentPlan();
+
+                if (!plan) {
+
+                    showToast(
+                        "Nothing to Print",
+                        "Generate a lesson plan first.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                window.print();
+            }
+        );
+    }
+
+
+    /* =====================================================
+       HISTORY
+    ===================================================== */
+
+    if (historyBtn) {
+
+        historyBtn.addEventListener(
+            "click",
+            function () {
+
+                showLessonHistory();
+            }
+        );
+    }
+
+
+    function showLessonHistory() {
+
+        const savedPlans =
+            getSavedPlans();
+
+
+        let oldModal =
+            document.getElementById(
+                "lessonHistoryModal"
+            );
+
+
+        if (oldModal) {
+            oldModal.remove();
+        }
+
+
+        const modal =
+            document.createElement(
+                "div"
+            );
+
+
+        modal.id =
+            "lessonHistoryModal";
+
+
+        modal.innerHTML = `
+
+            <div class="history-modal-overlay">
+
+                <div class="history-modal-box">
+
+                    <div class="history-modal-header">
+
+                        <div>
+
+                            <h3>
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                                Lesson Plan History
+                            </h3>
+
+                            <p>
+                                Your saved lesson plans
+                            </p>
+
+                        </div>
+
+                        <button
+                            type="button"
+                            id="closeHistoryModal">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="history-modal-content">
+
+                        ${
+                            savedPlans.length
+                                ? savedPlans
+                                    .map(
+                                        plan => `
+
+                                            <div
+                                                class="history-plan-item"
+                                                data-plan-id="${plan.id}">
+
+                                                <div>
+
+                                                    <strong>
+                                                        ${escapeHTML(plan.topic)}
+                                                    </strong>
+
+                                                    <span>
+                                                        ${escapeHTML(plan.subject)}
+                                                        •
+                                                        ${escapeHTML(plan.classLevel)}
+                                                    </span>
+
+                                                    <small>
+                                                        ${escapeHTML(plan.createdAt)}
+                                                    </small>
+
+                                                </div>
+
+
+                                                <div class="history-item-actions">
+
+                                                    <button
+                                                        class="load-history-plan"
+                                                        data-plan-id="${plan.id}">
+
+                                                        <i class="fa-solid fa-eye"></i>
+
+                                                    </button>
+
+                                                    <button
+                                                        class="delete-history-plan"
+                                                        data-plan-id="${plan.id}">
+
+                                                        <i class="fa-solid fa-trash"></i>
+
+                                                    </button>
+
+                                                </div>
+
+                                            </div>
+
+                                        `
+                                    )
+                                    .join("")
+
+                                : `
+
+                                    <div class="history-empty">
+
+                                        <i class="fa-solid fa-folder-open"></i>
+
+                                        <h4>No Saved Plans</h4>
+
+                                        <p>
+                                            Saved lesson plans will appear here.
+                                        </p>
+
+                                    </div>
+
+                                `
+                        }
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        document.body.appendChild(
+            modal
+        );
+
+
+        addHistoryModalStyles();
+
+
+        document
+            .getElementById(
+                "closeHistoryModal"
+            )
+            ?.addEventListener(
+                "click",
+                function () {
+
+                    modal.remove();
+                }
+            );
+
+
+        modal
+            .querySelector(
+                ".history-modal-overlay"
+            )
+            ?.addEventListener(
+                "click",
+                function (event) {
+
+                    if (
+                        event.target ===
+                        event.currentTarget
+                    ) {
+
+                        modal.remove();
+                    }
+                }
+            );
+
+
+        modal
+            .querySelectorAll(
+                ".load-history-plan"
+            )
+            .forEach(
+                function (button) {
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            const id =
+                                Number(
+                                    button.dataset.planId
+                                );
+
+                            const plan =
+                                savedPlans.find(
+                                    item =>
+                                        item.id === id
+                                );
+
+                            if (plan) {
+
+                                renderLessonPlan(
+                                    plan
+                                );
+
+                                modal.remove();
+
+
+                                generatedSection
+                                    ?.scrollIntoView({
+                                        behavior:
+                                            "smooth"
+                                    });
+
+
+                                showToast(
+                                    "Plan Loaded",
+                                    "Saved lesson plan opened.",
+                                    "success"
+                                );
+                            }
+                        }
+                    );
+                }
+            );
+
+
+        modal
+            .querySelectorAll(
+                ".delete-history-plan"
+            )
+            .forEach(
+                function (button) {
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            const id =
+                                Number(
+                                    button.dataset.planId
+                                );
+
+
+                            const updatedPlans =
+                                getSavedPlans()
+                                    .filter(
+                                        item =>
+                                            item.id !== id
+                                    );
+
+
+                            localStorage.setItem(
+                                "fmpsLessonPlans",
+                                JSON.stringify(
+                                    updatedPlans
+                                )
+                            );
+
+
+                            updatePlanStats();
+
+                            modal.remove();
+
+                            showLessonHistory();
+
+
+                            showToast(
+                                "Plan Deleted",
+                                "Lesson plan removed from history.",
+                                "success"
+                            );
+                        }
+                    );
+                }
+            );
+    }
+
+
+    /* =====================================================
+       HISTORY MODAL CSS
+       Injected automatically
+    ===================================================== */
+
+    function addHistoryModalStyles() {
+
+        if (
+            document.getElementById(
+                "lessonHistoryStyles"
+            )
+        ) {
+            return;
+        }
+
+
+        const style =
+            document.createElement(
+                "style"
+            );
+
+
+        style.id =
+            "lessonHistoryStyles";
+
+
+        style.textContent = `
+
+            .history-modal-overlay {
+                position: fixed;
+                inset: 0;
+                z-index: 5000;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                padding: 20px;
+
+                background: rgba(15, 23, 42, .60);
+                backdrop-filter: blur(6px);
+            }
+
+            .history-modal-box {
+                width: min(620px, 100%);
+                max-height: 80vh;
+
+                overflow: hidden;
+
+                background: var(--card-bg);
+                border: 1px solid var(--border);
+                border-radius: 18px;
+
+                box-shadow:
+                    0 25px 70px
+                    rgba(0,0,0,.28);
+            }
+
+            .history-modal-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                gap: 20px;
+
+                padding: 18px 20px;
+
+                border-bottom:
+                    1px solid var(--border);
+            }
+
+            .history-modal-header h3 {
+                margin: 0 0 3px;
+
+                color: var(--text);
+
+                font-size: 16px;
+            }
+
+            .history-modal-header h3 i {
+                margin-right: 6px;
+
+                color: var(--primary);
+            }
+
+            .history-modal-header p {
+                margin: 0;
+
+                color: var(--text-soft);
+
+                font-size: 10px;
+            }
+
+            .history-modal-header button {
+                width: 35px;
+                height: 35px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                border: 1px solid var(--border);
+                border-radius: 9px;
+
+                background: var(--soft-bg);
+                color: var(--text);
+
+                cursor: pointer;
+            }
+
+            .history-modal-content {
+                max-height: 60vh;
+
+                overflow-y: auto;
+
+                padding: 14px;
+            }
+
+            .history-plan-item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                gap: 15px;
+
+                padding: 13px;
+
+                margin-bottom: 8px;
+
+                background: var(--soft-bg);
+
+                border: 1px solid var(--border);
+                border-radius: 11px;
+            }
+
+            .history-plan-item > div:first-child {
+                display: flex;
+                flex-direction: column;
+
+                gap: 2px;
+            }
+
+            .history-plan-item strong {
+                color: var(--text);
+
+                font-size: 11px;
+            }
+
+            .history-plan-item span {
+                color: var(--text-soft);
+
+                font-size: 9px;
+            }
+
+            .history-plan-item small {
+                color: var(--muted);
+
+                font-size: 8px;
+            }
+
+            .history-item-actions {
+                display: flex;
+
+                gap: 6px;
+            }
+
+            .history-item-actions button {
+                width: 32px;
+                height: 32px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                border: 1px solid var(--border);
+                border-radius: 8px;
+
+                background: var(--card-bg);
+                color: var(--text-soft);
+
+                cursor: pointer;
+
+                transition: .2s;
+            }
+
+            .load-history-plan:hover {
+                color: #fff !important;
+                background: #4f46e5 !important;
+                border-color: #4f46e5 !important;
+            }
+
+            .delete-history-plan:hover {
+                color: #fff !important;
+                background: #dc2626 !important;
+                border-color: #dc2626 !important;
+            }
+
+            .history-empty {
+                min-height: 220px;
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                text-align: center;
+            }
+
+            .history-empty > i {
+                margin-bottom: 10px;
+
+                color: var(--muted);
+
+                font-size: 35px;
+            }
+
+            .history-empty h4 {
+                margin: 0 0 5px;
+
+                color: var(--text);
+
+                font-size: 13px;
+            }
+
+            .history-empty p {
+                margin: 0;
+
+                color: var(--text-soft);
+
+                font-size: 9px;
+            }
+
+        `;
+
+
+        document.head.appendChild(
+            style
+        );
+    }
+
+
+    /* =====================================================
+       GET SAVED PLANS
+    ===================================================== */
+
+    function getSavedPlans() {
+
+        try {
+
+            return JSON.parse(
+                localStorage.getItem(
+                    "fmpsLessonPlans"
+                )
+            ) || [];
+
+        } catch (error) {
+
+            return [];
+        }
+    }
+
+
+    /* =====================================================
+       SAVE RECENT GENERATED PLAN
+    ===================================================== */
+
+    function saveRecentGeneratedPlan(
+        plan
+    ) {
+
+        localStorage.setItem(
+            "fmpsLastGeneratedPlan",
+            JSON.stringify(plan)
+        );
+    }
+
+
+    /* =====================================================
+       GET CURRENT PLAN
+    ===================================================== */
+
+    function getCurrentPlan() {
+
+        if (
+            !generatedContent ||
+            !generatedContent.dataset.plan
+        ) {
+            return null;
+        }
+
+
+        try {
+
+            return JSON.parse(
+                generatedContent.dataset.plan
+            );
+
+        } catch (error) {
+
+            return null;
+        }
+    }
+
+
+    /* =====================================================
+       PLAN TO TEXT
+    ===================================================== */
+
+    function createPlanText(plan) {
+
+        return `
+AI LESSON PLAN
+
+Topic: ${plan.topic}
+Subject: ${plan.subject}
+Class: ${plan.classLevel}
+Duration: ${plan.duration} Minutes
+Teaching Style: ${plan.teachingStyle}
+
+LEARNING OBJECTIVES
+${plan.objectives}
+
+INTRODUCTION
+${plan.introduction}
+
+TEACHING ACTIVITIES
+${plan.activities
+    .map(
+        (item, index) =>
+            `${index + 1}. ${item}`
+    )
+    .join("\n")}
+
+ASSESSMENT
+${plan.assessment
+    .map(
+        (item, index) =>
+            `${index + 1}. ${item}`
+    )
+    .join("\n")}
+
+HOMEWORK
+${plan.homework}
+
+RESOURCES
+${plan.resources
+    .map(
+        item => `• ${item}`
+    )
+    .join("\n")}
+
+ADDITIONAL INSTRUCTIONS
+${plan.instructions}
+        `.trim();
+    }
+
+
+    /* =====================================================
+       UPDATE STAT CARDS
+    ===================================================== */
+
+    function updatePlanStats() {
+
+        const savedPlans =
+            getSavedPlans();
+
+
+        const totalElement =
+            document.getElementById(
+                "totalPlans"
+            );
+
+        const thisMonthElement =
+            document.getElementById(
+                "monthlyPlans"
+            );
+
+
+        if (totalElement) {
+
+            totalElement.textContent =
+                savedPlans.length;
+        }
+
+
+        if (thisMonthElement) {
+
+            const currentMonth =
+                new Date().getMonth();
+
+            const currentYear =
+                new Date().getFullYear();
+
+
+            const monthly =
+                savedPlans.filter(
+                    function (plan) {
+
+                        const date =
+                            new Date(
+                                plan.id
+                            );
+
+                        return (
+                            date.getMonth() ===
+                                currentMonth &&
+                            date.getFullYear() ===
+                                currentYear
+                        );
+                    }
+                ).length;
+
+
+            thisMonthElement.textContent =
+                monthly;
+        }
+    }
+
+
+    updatePlanStats();
+
+
+    /* =====================================================
+       SEARCH
+    ===================================================== */
+
+    if (searchBox) {
+
+        searchBox.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key !== "Enter"
+                ) {
+                    return;
+                }
+
+
+                const search =
+                    searchBox.value
+                        .trim()
+                        .toLowerCase();
+
+
+                if (!search) return;
+
+
+                const savedPlans =
+                    getSavedPlans();
+
+
+                const found =
+                    savedPlans.find(
+                        function (plan) {
+
+                            return (
+                                plan.topic
+                                    .toLowerCase()
+                                    .includes(
+                                        search
+                                    ) ||
+
+                                plan.subject
+                                    .toLowerCase()
+                                    .includes(
+                                        search
+                                    )
+                            );
+                        }
+                    );
+
+
+                if (found) {
+
+                    renderLessonPlan(
+                        found
+                    );
+
+
+                    generatedSection
+                        ?.scrollIntoView({
+                            behavior:
+                                "smooth"
+                        });
+
+
+                    showToast(
+                        "Plan Found",
+                        `"${found.topic}" loaded.`,
+                        "success"
+                    );
+
+                } else {
+
+                    showToast(
+                        "No Result",
+                        "No saved lesson plan matched your search.",
+                        "error"
+                    );
+                }
+            }
+        );
+    }
+
+
+    /* =====================================================
+       TOAST
+    ===================================================== */
+
+    function showToast(
+        title,
+        message,
+        type = "success"
+    ) {
+
+        let toast =
+            document.querySelector(
+                ".planner-toast"
+            );
+
+
+        if (!toast) {
+
+            toast =
+                document.createElement(
+                    "div"
+                );
+
+            toast.className =
+                "planner-toast";
+
+
+            toast.innerHTML = `
+
+                <div class="toast-icon">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+
+                <div>
+                    <strong></strong>
+                    <span></span>
+                </div>
+
+            `;
+
+
+            document.body.appendChild(
+                toast
+            );
+        }
+
+
+        const iconBox =
+            toast.querySelector(
+                ".toast-icon"
+            );
+
+        const icon =
+            iconBox.querySelector("i");
+
+        const titleElement =
+            toast.querySelector(
+                "strong"
+            );
+
+        const messageElement =
+            toast.querySelector(
+                "span"
+            );
+
+
+        titleElement.textContent =
+            title;
+
+        messageElement.textContent =
+            message;
+
+
+        if (type === "error") {
+
+            icon.className =
+                "fa-solid fa-circle-exclamation";
+
+            iconBox.style.color =
+                "#dc2626";
+
+            iconBox.style.background =
+                "#fee2e2";
+
+        } else {
+
+            icon.className =
+                "fa-solid fa-check";
+
+            iconBox.style.color =
+                "#059669";
+
+            iconBox.style.background =
+                "#d1fae5";
+        }
+
+
+        toast.classList.add(
+            "show"
+        );
+
+
+        clearTimeout(
+            toast.hideTimeout
+        );
+
+
+        toast.hideTimeout =
+            setTimeout(
+                function () {
+
+                    toast.classList.remove(
+                        "show"
+                    );
+
+                },
+                3000
+            );
+    }
+
+
+    /* =====================================================
+       ESCAPE HTML
+    ===================================================== */
+
+    function escapeHTML(value) {
+
+        const div =
+            document.createElement(
+                "div"
+            );
+
+        div.textContent =
+            value ?? "";
+
+        return div.innerHTML;
+    }
+
+
+    /* =====================================================
+       ESC KEY
+    ===================================================== */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                closeSidebar();
+
+
+                const historyModal =
+                    document.getElementById(
+                        "lessonHistoryModal"
+                    );
+
+                if (historyModal) {
+
+                    historyModal.remove();
+                }
+            }
+        }
+    );
+
+
+    /* =====================================================
+       PAGE READY
+    ===================================================== */
+
+    console.log(
+        "FMPS AI Lesson Planner loaded successfully."
+    );
+
+});
+</script>
+
+<!-- =========================================================
+                         CUSTOM JS
+========================================================= -->
+
+<script src="../../js/ai-lesson-planner.js"></script>
+
+
+</body>
+
+</html>

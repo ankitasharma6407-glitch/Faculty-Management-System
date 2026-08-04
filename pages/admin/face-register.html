@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Face Registration | Faculty Management System</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../css/admin-dashboard.css">
+
+</head>
+
+<body>
+
+<div class="container-fluid py-4">
+
+<div class="row justify-content-center">
+
+<div class="col-xl-11">
+
+<div class="card shadow-lg border-0 rounded-4">
+
+<div class="card-header bg-primary text-white py-3">
+
+<h3 class="mb-0">
+
+<i class="fa-solid fa-face-smile"></i>
+
+AI Face Registration
+
+</h3>
+
+</div>
+
+<div class="card-body">
+
+<div class="row">
+
+<!-- ================= Camera Section ================= -->
+
+<div class="col-lg-7">
+
+<h4 class="mb-3">
+
+<i class="fa-solid fa-camera"></i>
+
+Live Camera
+
+</h4>
+
+<div
+id="cameraPreview"
+class="border rounded-4 bg-dark d-flex justify-content-center align-items-center text-white"
+style="height:430px;">
+
+<div class="text-center">
+
+<i class="fa-solid fa-video fa-5x text-primary mb-3"></i>
+
+<h4>Camera Preview</h4>
+
+<p>
+
+Live camera feed will appear here after backend integration.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="text-center mt-4">
+
+<button
+id="startCameraBtn"
+class="btn btn-success me-2">
+
+<i class="fa-solid fa-play"></i>
+
+Start Camera
+
+</button>
+
+<button
+id="captureFaceBtn"
+class="btn btn-primary me-2">
+
+<i class="fa-solid fa-camera"></i>
+
+Capture Face
+
+</button>
+
+<button
+id="retakeBtn"
+class="btn btn-warning text-dark">
+
+<i class="fa-solid fa-rotate-right"></i>
+
+Retake
+
+</button>
+
+</div>
+
+</div>
+
+<!-- ================= Face Detection Status ================= -->
+
+<div class="col-lg-5">
+
+<h4 class="mb-3">
+
+<i class="fa-solid fa-microchip"></i>
+
+Detection Status
+
+</h4>
+
+<div class="card border-0 shadow-sm mb-3">
+
+<div class="card-body">
+
+<p>
+
+<strong>Camera :</strong>
+
+<span class="badge bg-secondary">
+
+Offline
+
+</span>
+
+</p>
+
+<p>
+
+<strong>Face Detection :</strong>
+
+<span class="badge bg-warning text-dark">
+
+Waiting...
+
+</span>
+
+</p>
+
+<p>
+
+<strong>Detected Faces :</strong>
+
+0
+
+</p>
+
+<p>
+
+<strong>Captured Images :</strong>
+
+<span id="captureCount">
+
+0 / 20
+
+</span>
+
+</p>
+
+<p>
+
+<strong>Quality :</strong>
+
+Pending
+
+</p>
+
+</div>
+
+</div>
+
+<div class="card border-0 shadow-sm">
+
+<div class="card-body">
+
+<h5>
+
+<i class="fa-solid fa-circle-info"></i>
+
+Instructions
+
+</h5>
+
+<ul class="mb-0">
+
+<li>Face should be clearly visible.</li>
+
+<li>Remove mask or sunglasses.</li>
+
+<li>Maintain good lighting.</li>
+
+<li>Capture at least <strong>20 images</strong>.</li>
+
+<li>Look in different directions while capturing.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<!-- Registration Form Starts Below -->
+<div class="mt-4">
+
+<div class="card border-0 shadow-sm">
+
+<div class="card-body">
+
+<h4 class="mb-4">
+
+<i class="fa-solid fa-id-card"></i>
+
+User Registration
+
+</h4>
+
+<form id="faceRegisterForm">
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Full Name
+
+</label>
+
+<input
+type="text"
+id="fullName"
+class="form-control"
+placeholder="Enter Full Name"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+User ID
+
+</label>
+
+<input
+type="text"
+id="userId"
+class="form-control"
+placeholder="Enter User ID"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Role
+
+</label>
+
+<select
+id="userRole"
+class="form-select"
+required>
+
+<option value="">Select Role</option>
+
+<option>Student</option>
+
+<option>Teacher</option>
+
+<option>HOD</option>
+
+<option>Admin</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Department
+
+</label>
+
+<select
+id="department"
+class="form-select"
+required>
+
+<option value="">Select Department</option>
+
+<option>Computer Science</option>
+
+<option>Mathematics</option>
+
+<option>Commerce</option>
+
+<option>Physics</option>
+
+<option>Chemistry</option>
+
+<option>English</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Email
+
+</label>
+
+<input
+type="email"
+id="email"
+class="form-control"
+placeholder="Enter Email"
+required>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Mobile Number
+
+</label>
+
+<input
+type="tel"
+id="mobile"
+class="form-control"
+placeholder="Enter Mobile Number"
+required>
+
+</div>
+
+</div>
+
+<div class="mt-4">
+
+<label class="form-label fw-semibold">
+
+Face Capture Progress
+
+</label>
+
+<div class="progress" style="height:24px;">
+
+<div
+id="captureProgress"
+class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+role="progressbar"
+style="width:0%;">
+
+0%
+
+</div>
+
+</div>
+
+<small class="text-muted">
+
+Capture at least <strong>20 face images</strong> before registration.
+
+</small>
+
+</div>
+
+<div class="d-grid gap-2 mt-4">
+
+<button
+type="submit"
+id="registerFaceBtn"
+class="btn btn-success">
+
+<i class="fa-solid fa-user-plus"></i>
+
+Register Face
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= Registration Success Modal ================= -->
+
+<div
+class="modal fade"
+id="registerSuccessModal"
+tabindex="-1">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content">
+
+<div class="modal-header bg-success text-white">
+
+<h5 class="modal-title">
+
+<i class="fa-solid fa-circle-check"></i>
+
+Registration Successful
+
+</h5>
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+
+</button>
+
+</div>
+
+<div class="modal-body text-center">
+
+<i class="fa-solid fa-face-smile fa-4x text-success mb-3"></i>
+
+<h4>Face Registered Successfully!</h4>
+
+<p>
+
+The face dataset has been captured successfully.
+The user is now ready for Face Login and Face Attendance.
+
+</p>
+
+</div>
+
+<div class="modal-footer">
+
+<button
+type="button"
+class="btn btn-success"
+data-bs-dismiss="modal">
+
+Done
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= Bootstrap JS ================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../js/dashboard.js"></script>
+<!-- ================= JavaScript ================= -->
+
+<script>
+
+// ================= Elements =================
+
+const startCameraBtn = document.getElementById("startCameraBtn");
+const captureFaceBtn = document.getElementById("captureFaceBtn");
+const retakeBtn = document.getElementById("retakeBtn");
+
+const captureCount = document.getElementById("captureCount");
+const captureProgress = document.getElementById("captureProgress");
+
+const faceRegisterForm = document.getElementById("faceRegisterForm");
+
+let capturedImages = 0;
+
+// ================= Start Camera =================
+
+if(startCameraBtn){
+
+startCameraBtn.addEventListener("click",function(){
+
+alert("Camera started successfully! (Frontend Demo)");
+
+});
+
+}
+
+// ================= Capture Face =================
+
+if(captureFaceBtn){
+
+captureFaceBtn.addEventListener("click",function(){
+
+if(capturedImages >= 20){
+
+alert("Required face images already captured.");
+
+return;
+
+}
+
+capturedImages++;
+
+captureCount.innerHTML = capturedImages + " / 20";
+
+const progress = (capturedImages / 20) * 100;
+
+captureProgress.style.width = progress + "%";
+captureProgress.innerHTML = Math.round(progress) + "%";
+
+if(capturedImages === 20){
+
+alert("Face dataset completed successfully!");
+
+}
+
+});
+
+}
+
+// ================= Retake =================
+
+if(retakeBtn){
+
+retakeBtn.addEventListener("click",function(){
+
+capturedImages = 0;
+
+captureCount.innerHTML = "0 / 20";
+
+captureProgress.style.width = "0%";
+captureProgress.innerHTML = "0%";
+
+alert("Captured images have been reset.");
+
+});
+
+}
+
+// ================= Register Face =================
+
+if(faceRegisterForm){
+
+faceRegisterForm.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+if(capturedImages < 20){
+
+alert("Please capture at least 20 face images before registration.");
+
+return;
+
+}
+
+const modal = new bootstrap.Modal(document.getElementById("registerSuccessModal"));
+
+modal.show();
+
+});
+
+}
+
+</script>
+
+</body>
+
+</html>

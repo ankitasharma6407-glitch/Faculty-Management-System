@@ -1,0 +1,7409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>
+    My Profile | Teacher Panel
+</title>
+
+
+<!-- =========================================================
+                        BOOTSTRAP
+========================================================= -->
+
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+
+
+<!-- =========================================================
+                        FONT AWESOME
+========================================================= -->
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+<!-- =========================================================
+                        GOOGLE FONT
+========================================================= -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+
+<style>
+
+
+/* =========================================================
+                        GLOBAL
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+html{
+    scroll-behavior:smooth;
+}
+
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#f5f7fb;
+
+    color:#1f2937;
+
+    min-height:100vh;
+
+}
+
+
+a{
+    text-decoration:none;
+}
+
+
+button,
+input,
+select,
+textarea{
+
+    font-family:inherit;
+
+}
+
+
+/* =========================================================
+                    MAIN LAYOUT
+========================================================= */
+
+.teacher-layout{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+
+/* =========================================================
+                        SIDEBAR
+========================================================= */
+
+.teacher-sidebar{
+
+    width:270px;
+
+    min-height:100vh;
+
+    background:
+        linear-gradient(
+            180deg,
+            #263bd8 0%,
+            #6747dc 52%,
+            #ad72dd 100%
+        );
+
+    position:fixed;
+
+    top:0;
+    left:0;
+    bottom:0;
+
+    z-index:1200;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow-y:auto;
+
+    transition:.3s ease;
+
+    box-shadow:
+        8px 0 30px
+        rgba(76,58,180,.13);
+
+}
+
+
+/* =========================================================
+                    SIDEBAR SCROLLBAR
+========================================================= */
+
+.teacher-sidebar::-webkit-scrollbar{
+
+    width:5px;
+
+}
+
+
+.teacher-sidebar::-webkit-scrollbar-track{
+
+    background:
+        rgba(255,255,255,.05);
+
+}
+
+
+.teacher-sidebar::-webkit-scrollbar-thumb{
+
+    background:
+        rgba(255,255,255,.25);
+
+    border-radius:20px;
+
+}
+
+
+/* =========================================================
+                    SIDEBAR LOGO
+========================================================= */
+
+.teacher-sidebar-brand{
+
+    text-align:center;
+
+    padding:
+        27px 20px
+        20px;
+
+    color:#ffffff;
+
+}
+
+
+.teacher-sidebar-brand img{
+
+    width:82px;
+
+    height:82px;
+
+    object-fit:contain;
+
+    background:#ffffff;
+
+    padding:6px;
+
+    border-radius:50%;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.15);
+
+    margin-bottom:12px;
+
+}
+
+
+.teacher-sidebar-brand h3{
+
+    margin:0;
+
+    font-size:25px;
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+
+}
+
+
+.teacher-sidebar-brand p{
+
+    margin:
+        4px 0 0;
+
+    font-size:13px;
+
+    color:
+        rgba(255,255,255,.82);
+
+}
+
+
+/* =========================================================
+                    SIDEBAR MENU
+========================================================= */
+
+.teacher-sidebar-menu{
+
+    list-style:none;
+
+    padding:
+        15px 16px
+        30px;
+
+    margin:0;
+
+}
+
+
+.teacher-sidebar-menu li{
+
+    margin-bottom:7px;
+
+}
+
+
+.teacher-sidebar-menu a{
+
+    color:
+        rgba(255,255,255,.88);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:
+        13px 17px;
+
+    border-radius:13px;
+
+    font-size:14px;
+
+    font-weight:500;
+
+    transition:.25s ease;
+
+}
+
+
+.teacher-sidebar-menu a i{
+
+    width:22px;
+
+    text-align:center;
+
+    font-size:16px;
+
+}
+
+
+.teacher-sidebar-menu a span{
+
+    flex:1;
+
+}
+
+
+.teacher-sidebar-menu a:hover{
+
+    background:
+        rgba(255,255,255,.16);
+
+    color:#ffffff;
+
+    transform:
+        translateX(4px);
+
+}
+
+
+.teacher-sidebar-menu a.active{
+
+    background:
+        rgba(255,255,255,.23);
+
+    color:#ffffff;
+
+    font-weight:700;
+
+    box-shadow:
+        0 6px 18px
+        rgba(0,0,0,.08);
+
+}
+
+
+/* =========================================================
+                    SIDEBAR DIVIDER
+========================================================= */
+
+.sidebar-section-title{
+
+    color:
+        rgba(255,255,255,.58);
+
+    font-size:10px;
+
+    font-weight:700;
+
+    letter-spacing:1.2px;
+
+    text-transform:uppercase;
+
+    padding:
+        18px 17px
+        7px;
+
+}
+
+
+/* =========================================================
+                        MAIN
+========================================================= */
+
+.teacher-main{
+
+    margin-left:270px;
+
+    width:
+        calc(100% - 270px);
+
+    min-height:100vh;
+
+}
+
+
+/* =========================================================
+                        NAVBAR
+========================================================= */
+
+.teacher-navbar{
+
+    height:78px;
+
+    background:#ffffff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:
+        space-between;
+
+    padding:
+        0 30px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    box-shadow:
+        0 3px 16px
+        rgba(0,0,0,.06);
+
+}
+
+
+/* =========================================================
+                    NAVBAR LEFT
+========================================================= */
+
+.navbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+.mobile-menu-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#f0edff;
+
+    color:#6c4cff;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.mobile-menu-btn:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+}
+
+
+.navbar-title h4{
+
+    margin:0;
+
+    color:#243c9e;
+
+    font-size:21px;
+
+    font-weight:800;
+
+}
+
+
+.navbar-title p{
+
+    margin:
+        2px 0 0;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                    NAVBAR RIGHT
+========================================================= */
+
+.navbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+}
+
+
+.nav-icon-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#f2efff;
+
+    color:#6c4cff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    position:relative;
+
+}
+
+
+.nav-icon-btn:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+                    NOTIFICATION BADGE
+========================================================= */
+
+.notification-dot{
+
+    position:absolute;
+
+    top:7px;
+
+    right:7px;
+
+    width:8px;
+
+    height:8px;
+
+    background:#ef4444;
+
+    border-radius:50%;
+
+    border:
+        2px solid #ffffff;
+
+}
+
+
+/* =========================================================
+                    PROFILE NAVBAR
+========================================================= */
+
+.teacher-profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-left:5px;
+
+    cursor:pointer;
+
+}
+
+
+.teacher-profile img{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:
+        3px solid #ddd6fe;
+
+}
+
+
+.teacher-profile-info strong{
+
+    display:block;
+
+    font-size:13px;
+
+}
+
+
+.teacher-profile-info small{
+
+    display:block;
+
+    color:#64748b;
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+                    PAGE CONTENT
+========================================================= */
+
+.teacher-content{
+
+    padding:
+        28px 30px
+        20px;
+
+}
+
+
+/* =========================================================
+                    PROFILE PAGE HEADER
+========================================================= */
+
+.profile-page-header{
+
+    background:#ffffff;
+
+    padding:
+        22px 25px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    justify-content:
+        space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.055);
+
+    margin-bottom:24px;
+
+}
+
+
+.profile-page-header h2{
+
+    margin:
+        0 0 5px;
+
+    font-weight:800;
+
+    font-size:25px;
+
+}
+
+
+.profile-page-header h2 i{
+
+    color:#6c4cff;
+
+}
+
+
+.profile-page-header p{
+
+    margin:0;
+
+    color:#64748b;
+
+    font-size:13px;
+
+}
+
+
+/* =========================================================
+                    EDIT PROFILE BUTTON
+========================================================= */
+
+.edit-profile-btn{
+
+    border:none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c4cff,
+            #8b5cf6
+        );
+
+    color:#ffffff;
+
+    border-radius:12px;
+
+    padding:
+        11px 19px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.edit-profile-btn:hover{
+
+    color:#ffffff;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(108,76,255,.25);
+
+}
+
+
+/* =========================================================
+                    PROFILE HERO CARD
+========================================================= */
+
+.profile-hero{
+
+    background:#ffffff;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.055);
+
+    margin-bottom:24px;
+
+}
+
+
+/* =========================================================
+                    PROFILE COVER
+========================================================= */
+
+.profile-cover{
+
+    height:180px;
+
+    position:relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            #263bd8 0%,
+            #6c4cff 45%,
+            #a855f7 100%
+        );
+
+    overflow:hidden;
+
+}
+
+
+.profile-cover::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:280px;
+
+    height:280px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.08);
+
+    top:-150px;
+
+    right:5%;
+
+}
+
+
+.profile-cover::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:190px;
+
+    height:190px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.07);
+
+    bottom:-120px;
+
+    left:18%;
+
+}
+
+
+/* =========================================================
+                    COVER CONTENT
+========================================================= */
+
+.profile-cover-content{
+
+    position:absolute;
+
+    top:25px;
+
+    right:30px;
+
+    color:
+        rgba(255,255,255,.90);
+
+    font-size:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    z-index:2;
+
+}
+
+
+/* =========================================================
+                    PROFILE HERO BODY
+========================================================= */
+
+.profile-hero-body{
+
+    padding:
+        0 28px
+        25px;
+
+    display:flex;
+
+    justify-content:
+        space-between;
+
+    align-items:flex-end;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+}
+
+
+/* =========================================================
+                    PROFILE IDENTITY
+========================================================= */
+
+.profile-identity{
+
+    display:flex;
+
+    align-items:flex-end;
+
+    gap:20px;
+
+}
+
+
+/* =========================================================
+                    PROFILE PHOTO
+========================================================= */
+
+.profile-photo-wrapper{
+
+    position:relative;
+
+    margin-top:-65px;
+
+    z-index:5;
+
+}
+
+
+.profile-photo{
+
+    width:135px;
+
+    height:135px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:
+        6px solid #ffffff;
+
+    background:#ffffff;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.16);
+
+}
+
+
+/* =========================================================
+                    PHOTO EDIT BUTTON
+========================================================= */
+
+.profile-photo-edit{
+
+    position:absolute;
+
+    right:4px;
+
+    bottom:8px;
+
+    width:36px;
+
+    height:36px;
+
+    border-radius:50%;
+
+    border:
+        3px solid #ffffff;
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    font-size:13px;
+
+    transition:.25s;
+
+}
+
+
+.profile-photo-edit:hover{
+
+    background:#5138d8;
+
+    transform:
+        scale(1.08);
+
+}
+
+
+/* =========================================================
+                    PROFILE NAME
+========================================================= */
+
+.profile-basic-info{
+
+    padding-bottom:7px;
+
+}
+
+
+.profile-basic-info h2{
+
+    margin:
+        0 0 4px;
+
+    font-size:25px;
+
+    font-weight:800;
+
+}
+
+
+.profile-basic-info .designation{
+
+    color:#6c4cff;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    margin-bottom:5px;
+
+}
+
+
+.profile-basic-info .department{
+
+    color:#64748b;
+
+    font-size:12px;
+
+    margin:0;
+
+}
+
+
+/* =========================================================
+                    PROFILE STATUS
+========================================================= */
+
+.profile-status{
+
+    padding-bottom:8px;
+
+}
+
+
+.profile-status-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+    border-radius:30px;
+
+    padding:
+        8px 14px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+
+.profile-status-badge i{
+
+    font-size:8px;
+
+}
+
+
+/* =========================================================
+                    PROFILE STATISTICS
+========================================================= */
+
+.profile-stat-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
+
+    margin-bottom:24px;
+
+}
+
+
+/* =========================================================
+                    STAT CARD
+========================================================= */
+
+.profile-stat-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    box-shadow:
+        0 7px 22px
+        rgba(0,0,0,.055);
+
+    transition:.3s;
+
+}
+
+
+.profile-stat-card:hover{
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.09);
+
+}
+
+
+.profile-stat-icon{
+
+    width:55px;
+
+    height:55px;
+
+    flex-shrink:0;
+
+    border-radius:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:22px;
+
+}
+
+
+.profile-stat-icon.purple{
+
+    color:#6c4cff;
+
+    background:#ede9fe;
+
+}
+
+
+.profile-stat-icon.blue{
+
+    color:#2563eb;
+
+    background:#dbeafe;
+
+}
+
+
+.profile-stat-icon.green{
+
+    color:#16a34a;
+
+    background:#dcfce7;
+
+}
+
+
+.profile-stat-icon.orange{
+
+    color:#ea580c;
+
+    background:#ffedd5;
+
+}
+
+
+.profile-stat-info h3{
+
+    margin:0;
+
+    font-size:22px;
+
+    font-weight:800;
+
+}
+
+
+.profile-stat-info p{
+
+    margin:
+        3px 0 0;
+
+    font-size:11px;
+
+    color:#64748b;
+
+}
+
+
+/* =========================================================
+                    PROFILE CONTENT GRID
+========================================================= */
+
+.profile-content-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1.6fr)
+        minmax(300px,.8fr);
+
+    gap:22px;
+
+    align-items:start;
+
+}
+
+
+/* =========================================================
+                    PROFILE CARD
+========================================================= */
+
+.profile-card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:23px;
+
+    margin-bottom:22px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.055);
+
+}
+
+
+/* =========================================================
+                    CARD HEADER
+========================================================= */
+
+.profile-card-header{
+
+    display:flex;
+
+    justify-content:
+        space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:20px;
+
+}
+
+
+.profile-card-header h4{
+
+    margin:0;
+
+    color:#6c4cff;
+
+    font-size:17px;
+
+    font-weight:700;
+
+}
+
+
+.profile-card-header h4 i{
+
+    margin-right:8px;
+
+}
+
+
+.profile-card-header p{
+
+    margin:
+        4px 0 0;
+
+    color:#64748b;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                    SMALL EDIT BUTTON
+========================================================= */
+
+.profile-small-edit{
+
+    width:36px;
+
+    height:36px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#f0edff;
+
+    color:#6c4cff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.profile-small-edit:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                    INFORMATION GRID
+========================================================= */
+
+.profile-info-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:15px;
+
+}
+
+
+/* =========================================================
+                    INFORMATION ITEM
+========================================================= */
+
+.profile-info-item{
+
+    border:
+        1px solid #eceaf5;
+
+    border-radius:14px;
+
+    padding:14px 15px;
+
+    transition:.25s;
+
+}
+
+
+.profile-info-item:hover{
+
+    border-color:#d8d2ff;
+
+    background:#faf9ff;
+
+}
+
+
+.profile-info-label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#64748b;
+
+    font-size:10px;
+
+    margin-bottom:7px;
+
+}
+
+
+.profile-info-label i{
+
+    color:#8b5cf6;
+
+    width:15px;
+
+    text-align:center;
+
+}
+
+
+.profile-info-value{
+
+    color:#1f2937;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    word-break:break-word;
+
+}
+
+
+/* =========================================================
+                    ABOUT SECTION
+========================================================= */
+
+.profile-about{
+
+    color:#64748b;
+
+    font-size:12px;
+
+    line-height:1.8;
+
+    margin:0;
+
+}
+
+
+/* =========================================================
+                    SKILLS
+========================================================= */
+
+.profile-skills{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:9px;
+
+}
+
+
+.profile-skill{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    background:#f0edff;
+
+    color:#6c4cff;
+
+    padding:
+        8px 12px;
+
+    border-radius:30px;
+
+    font-size:10px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+
+.profile-skill:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+                    QUICK CONTACT
+========================================================= */
+
+.profile-contact-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    padding:
+        13px 0;
+
+    border-bottom:
+        1px solid #eeeeee;
+
+}
+
+
+.profile-contact-item:last-child{
+
+    border-bottom:none;
+
+    padding-bottom:0;
+
+}
+
+
+.profile-contact-item:first-of-type{
+
+    padding-top:0;
+
+}
+
+
+.profile-contact-icon{
+
+    width:40px;
+
+    height:40px;
+
+    min-width:40px;
+
+    border-radius:12px;
+
+    background:#f0edff;
+
+    color:#6c4cff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:14px;
+
+}
+
+
+.profile-contact-content small{
+
+    display:block;
+
+    color:#64748b;
+
+    font-size:9px;
+
+    margin-bottom:2px;
+
+}
+
+
+.profile-contact-content strong{
+
+    display:block;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    word-break:break-word;
+
+}
+
+
+/* =========================================================
+                    ACTIVITY LIST
+========================================================= */
+
+.profile-activity-item{
+
+    display:flex;
+
+    gap:12px;
+
+    padding:
+        12px 0;
+
+    border-bottom:
+        1px solid #eeeeee;
+
+}
+
+
+.profile-activity-item:last-child{
+
+    border-bottom:none;
+
+    padding-bottom:0;
+
+}
+
+
+.profile-activity-item:first-of-type{
+
+    padding-top:0;
+
+}
+
+
+.activity-icon{
+
+    width:36px;
+
+    height:36px;
+
+    min-width:36px;
+
+    border-radius:11px;
+
+    background:#ede9fe;
+
+    color:#6c4cff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:13px;
+
+}
+
+
+.activity-content strong{
+
+    display:block;
+
+    font-size:11px;
+
+    margin-bottom:3px;
+
+}
+
+
+.activity-content small{
+
+    color:#94a3b8;
+
+    font-size:9px;
+
+}
+
+
+/* =========================================================
+                    PROFILE COMPLETION
+========================================================= */
+
+.profile-completion{
+
+    text-align:center;
+
+}
+
+
+.completion-circle{
+
+    width:125px;
+
+    height:125px;
+
+    border-radius:50%;
+
+    margin:
+        5px auto 18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    position:relative;
+
+    background:
+        conic-gradient(
+            #6c4cff 0deg 331deg,
+            #ede9fe 331deg 360deg
+        );
+
+}
+
+
+.completion-circle::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:98px;
+
+    height:98px;
+
+    background:#ffffff;
+
+    border-radius:50%;
+
+}
+
+
+.completion-circle-content{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+.completion-circle-content strong{
+
+    display:block;
+
+    font-size:24px;
+
+    font-weight:800;
+
+    color:#6c4cff;
+
+}
+
+
+.completion-circle-content small{
+
+    display:block;
+
+    font-size:9px;
+
+    color:#64748b;
+
+}
+
+
+.profile-completion p{
+
+    margin:0;
+
+    color:#64748b;
+
+    font-size:10px;
+
+    line-height:1.6;
+
+}
+
+
+/* =========================================================
+                    FOOTER
+========================================================= */
+
+.footer{
+
+    text-align:center;
+
+    padding:
+        20px 10px
+        10px;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                        DARK MODE
+========================================================= */
+
+body.dark{
+
+    background:#0f172a;
+
+    color:#f8fafc;
+
+}
+/* =========================================================
+        PROFILE PAGE - DARK MODE SIDEBAR
+========================================================= */
+
+body.dark .teacher-sidebar{
+
+    background:
+        linear-gradient(
+            180deg,
+            #080d1a 0%,
+            #10172a 48%,
+            #17162f 100%
+        );
+
+    box-shadow:
+        8px 0 30px
+        rgba(0,0,0,.35);
+
+}
+
+
+/* =========================================================
+                SIDEBAR BRAND
+========================================================= */
+
+body.dark .teacher-sidebar-brand{
+
+    color:#ffffff;
+
+}
+
+
+body.dark .teacher-sidebar-brand h3{
+
+    color:#ffffff;
+
+}
+
+
+body.dark .teacher-sidebar-brand p{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .teacher-sidebar-brand img{
+
+    background:#ffffff;
+
+    box-shadow:
+        0 8px 24px
+        rgba(0,0,0,.30);
+
+}
+
+
+/* =========================================================
+                SIDEBAR MENU LINKS
+========================================================= */
+
+body.dark .teacher-sidebar-menu a{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark .teacher-sidebar-menu a i{
+
+    color:#a5b4fc;
+
+}
+
+
+/* =========================================================
+                SIDEBAR HOVER
+========================================================= */
+
+body.dark .teacher-sidebar-menu a:hover{
+
+    background:
+        rgba(139,92,246,.14);
+
+    color:#ffffff;
+
+    transform:
+        translateX(4px);
+
+}
+
+
+body.dark .teacher-sidebar-menu a:hover i{
+
+    color:#c4b5fd;
+
+}
+
+
+/* =========================================================
+                ACTIVE MENU ITEM
+========================================================= */
+
+body.dark .teacher-sidebar-menu a.active{
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(108,76,255,.32),
+            rgba(139,92,246,.22)
+        );
+
+    color:#ffffff;
+
+    border:
+        1px solid
+        rgba(167,139,250,.20);
+
+    box-shadow:
+        0 8px 22px
+        rgba(0,0,0,.18);
+
+}
+
+
+body.dark .teacher-sidebar-menu a.active i{
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                SECTION TITLES
+========================================================= */
+
+body.dark .sidebar-section-title{
+
+    color:#64748b;
+
+}
+
+
+/* =========================================================
+                SIDEBAR SCROLLBAR
+========================================================= */
+
+body.dark
+.teacher-sidebar::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+
+body.dark
+.teacher-sidebar::-webkit-scrollbar-thumb{
+
+    background:
+        rgba(148,163,184,.30);
+
+    border-radius:20px;
+
+}
+
+
+/* =========================================================
+                MAIN AREA
+========================================================= */
+
+body.dark .teacher-main{
+
+    background:#0f172a;
+
+}
+
+
+/* =========================================================
+                MOBILE MENU BUTTON
+========================================================= */
+
+body.dark .mobile-menu-btn{
+
+    background:#1f2937;
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark .mobile-menu-btn:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+}
+
+body.dark
+.teacher-navbar{
+
+    background:#111827;
+
+    border-bottom:
+        1px solid #263244;
+
+}
+
+
+body.dark
+.navbar-title h4{
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.navbar-title p{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.nav-icon-btn{
+
+    background:#1f2937;
+
+    color:#facc15;
+
+}
+
+
+body.dark
+.mobile-menu-btn{
+
+    background:#1f2937;
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark
+.profile-page-header,
+
+body.dark
+.profile-hero,
+
+body.dark
+.profile-stat-card,
+
+body.dark
+.profile-card{
+
+    background:#111827;
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.profile-page-header p,
+
+body.dark
+.profile-stat-info p,
+
+body.dark
+.profile-card-header p,
+
+body.dark
+.profile-about,
+
+body.dark
+.profile-contact-content small,
+
+body.dark
+.profile-completion p{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.profile-card-header h4{
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark
+.profile-photo{
+
+    border-color:#111827;
+
+    background:#111827;
+
+}
+
+
+body.dark
+.profile-photo-edit{
+
+    border-color:#111827;
+
+}
+
+
+body.dark
+.profile-basic-info .department{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.profile-info-item{
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.profile-info-item:hover{
+
+    background:#1f2937;
+
+    border-color:#4c3fcf;
+
+}
+
+
+body.dark
+.profile-info-label{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.profile-info-value{
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.profile-skill{
+
+    background:#312e81;
+
+    color:#ddd6fe;
+
+}
+
+
+body.dark
+.profile-contact-item,
+
+body.dark
+.profile-activity-item{
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.profile-contact-icon,
+
+body.dark
+.activity-icon{
+
+    background:#312e81;
+
+    color:#ddd6fe;
+
+}
+
+
+body.dark
+.completion-circle::before{
+
+    background:#111827;
+
+}
+
+
+body.dark
+.modal-content{
+
+    background:#111827;
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.modal-header,
+
+body.dark
+.modal-footer{
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.btn-close{
+
+    filter:invert(1);
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE
+========================================================= */
+
+@media(max-width:1200px){
+
+
+    .profile-stat-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+
+    .profile-content-grid{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
+
+
+@media(max-width:992px){
+
+
+    .teacher-sidebar{
+
+        transform:
+            translateX(-100%);
+
+    }
+
+
+    .teacher-sidebar.show{
+
+        transform:
+            translateX(0);
+
+    }
+
+
+    .teacher-main{
+
+        margin-left:0;
+
+        width:100%;
+
+    }
+
+
+    .mobile-menu-btn{
+
+        display:flex;
+
+    }
+
+
+}
+
+
+@media(max-width:768px){
+
+
+    .teacher-navbar{
+
+        padding:
+            0 17px;
+
+    }
+
+
+    .teacher-content{
+
+        padding:
+            20px 16px;
+
+    }
+
+
+    .teacher-profile-info{
+
+        display:none;
+
+    }
+
+
+    .navbar-title p{
+
+        display:none;
+
+    }
+
+
+    .profile-hero-body{
+
+        align-items:center;
+
+    }
+
+
+    .profile-identity{
+
+        align-items:center;
+
+    }
+
+
+    .profile-info-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+}
+
+
+@media(max-width:576px){
+
+
+    .profile-stat-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .profile-page-header{
+
+        padding:18px;
+
+    }
+
+
+    .profile-page-header h2{
+
+        font-size:21px;
+
+    }
+
+
+    .profile-cover{
+
+        height:145px;
+
+    }
+
+
+    .profile-cover-content{
+
+        top:18px;
+
+        right:18px;
+
+    }
+
+
+    .profile-hero-body{
+
+        padding:
+            0 18px
+            20px;
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+
+    .profile-identity{
+
+        width:100%;
+
+        flex-direction:column;
+
+        align-items:center;
+
+        text-align:center;
+
+    }
+
+
+    .profile-photo-wrapper{
+
+        margin-top:-60px;
+
+    }
+
+
+    .profile-photo{
+
+        width:120px;
+
+        height:120px;
+
+    }
+
+
+    .profile-basic-info{
+
+        padding-bottom:0;
+
+    }
+
+
+    .profile-basic-info h2{
+
+        font-size:21px;
+
+    }
+
+
+    .profile-status{
+
+        width:100%;
+
+        text-align:center;
+
+        padding-bottom:0;
+
+    }
+
+
+    .profile-card{
+
+        padding:17px;
+
+    }
+
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+                    TEACHER LAYOUT
+========================================================= -->
+
+<div class="teacher-layout">
+
+
+<!-- =========================================================
+                        SIDEBAR
+========================================================= -->
+
+<aside
+    class="teacher-sidebar"
+    id="teacherSidebar">
+
+
+<!-- =========================================================
+                    SIDEBAR BRAND
+========================================================= -->
+
+<div class="teacher-sidebar-brand">
+
+
+<img
+    src="../../images/logo.png"
+    alt="FMPS Logo">
+
+
+<h3>
+    FMPS
+</h3>
+
+
+<p>
+    Teacher Panel
+</p>
+
+
+</div>
+
+
+<!-- =========================================================
+                    SIDEBAR MENU
+========================================================= -->
+
+<ul class="teacher-sidebar-menu">
+
+
+<li>
+
+<a href="teacher-dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+<span>
+Dashboard
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="timetable.html">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+<span>
+Timetable
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="attendance.html">
+
+<i class="fa-solid fa-user-check"></i>
+
+<span>
+Attendance
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="my-classes.html">
+
+<i class="fa-solid fa-book-open"></i>
+
+<span>
+My Classes
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="assignments.html">
+
+<i class="fa-solid fa-file-lines"></i>
+
+<span>
+Assignments
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="performance.html">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<span>
+Performance
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                    ACADEMIC TOOLS
+========================================================= -->
+
+<div class="sidebar-section-title">
+
+Academic Tools
+
+</div>
+
+
+<li>
+
+<a href="academic-calendar.html">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+<span>
+Academic Calendar
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="notices.html">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+<span>
+Notices
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="leave-request.html">
+
+<i class="fa-solid fa-calendar-minus"></i>
+
+<span>
+Leave Request
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                    AI SMART FEATURES
+========================================================= -->
+
+<div class="sidebar-section-title">
+
+AI Smart Features
+
+</div>
+
+
+<li>
+
+<a href="face-attendance.html">
+
+<i class="fa-solid fa-camera"></i>
+
+<span>
+Face Attendance
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="student-performance-ai.html">
+
+<i class="fa-solid fa-brain"></i>
+
+<span>
+Student Performance AI
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="smart-report.html">
+
+<i class="fa-solid fa-file-waveform"></i>
+
+<span>
+Smart Reports
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="ai-assistant.html">
+
+<i class="fa-solid fa-robot"></i>
+
+<span>
+AI Assistant
+</span>
+
+</a>
+
+</li>
+
+
+<!-- =========================================================
+                        ACCOUNT
+========================================================= -->
+
+<div class="sidebar-section-title">
+
+Account
+
+</div>
+
+
+<li>
+
+<a
+    href="profile.html"
+    class="active">
+
+<i class="fa-solid fa-user"></i>
+
+<span>
+Profile
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+<span>
+Settings
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="change-password.html">
+
+<i class="fa-solid fa-lock"></i>
+
+<span>
+Change Password
+</span>
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="teacher-login.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+<span>
+Logout
+</span>
+
+</a>
+
+</li>
+
+
+</ul>
+
+</aside>
+
+
+
+<!-- =========================================================
+                        MAIN AREA
+========================================================= -->
+
+<div class="teacher-main">
+
+
+<!-- =========================================================
+                        NAVBAR
+========================================================= -->
+
+<header class="teacher-navbar">
+
+
+<!-- =========================================================
+                    NAVBAR LEFT
+========================================================= -->
+
+<div class="navbar-left">
+
+
+<button
+    type="button"
+    class="mobile-menu-btn"
+    id="mobileMenuBtn">
+
+<i class="fa-solid fa-bars"></i>
+
+</button>
+
+
+<div class="navbar-title">
+
+
+<h4>
+My Profile
+</h4>
+
+
+<p>
+Faculty Management & Productivity System
+</p>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    NAVBAR RIGHT
+========================================================= -->
+
+<div class="navbar-right">
+
+
+<!-- DARK MODE -->
+
+<button
+    type="button"
+    class="nav-icon-btn"
+    id="themeToggle"
+    title="Dark / Light Mode">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+
+<!-- NOTIFICATION -->
+
+<a
+    href="notices.html"
+    class="nav-icon-btn"
+    title="Notifications">
+
+<i class="fa-solid fa-bell"></i>
+
+<span class="notification-dot"></span>
+
+</a>
+
+
+<!-- PROFILE -->
+
+<div class="teacher-profile">
+
+
+<img
+    src="../../images/default-profile.png"
+    id="navbarProfileImage"
+    alt="Teacher">
+
+
+<div class="teacher-profile-info">
+
+
+<strong id="navbarTeacherName">
+
+Teacher
+
+</strong>
+
+
+<small>
+
+Faculty Member
+
+</small>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</header>
+
+
+
+<!-- =========================================================
+                    PAGE CONTENT START
+========================================================= -->
+
+<main class="teacher-content">
+
+
+<!-- =========================================================
+                    PAGE HEADER
+========================================================= -->
+
+<section class="profile-page-header">
+
+
+<div>
+
+
+<h2>
+
+<i class="fa-solid fa-user-circle me-2"></i>
+
+My Profile
+
+</h2>
+
+
+<p>
+
+Manage your personal,
+professional and academic information.
+
+</p>
+
+
+</div>
+
+
+<button
+    type="button"
+    class="edit-profile-btn"
+    id="openEditProfileBtn">
+
+<i class="fa-solid fa-pen-to-square me-2"></i>
+
+Edit Profile
+
+</button>
+
+
+</section>
+
+
+
+<!-- =========================================================
+                    PROFILE HERO
+========================================================= -->
+
+<section class="profile-hero">
+
+
+<!-- COVER -->
+
+<div class="profile-cover">
+
+
+<div class="profile-cover-content">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+Faculty Management & Productivity System
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    PROFILE HERO BODY
+========================================================= -->
+
+<div class="profile-hero-body">
+
+
+<div class="profile-identity">
+
+
+<!-- PROFILE PHOTO -->
+
+<div class="profile-photo-wrapper">
+
+
+<img
+    src="../../images/default-profile.png"
+    alt="Teacher Profile"
+    class="profile-photo"
+    id="mainProfileImage">
+
+
+<label
+    for="profilePhotoInput"
+    class="profile-photo-edit"
+    title="Change Profile Photo">
+
+<i class="fa-solid fa-camera"></i>
+
+</label>
+
+
+<input
+    type="file"
+    id="profilePhotoInput"
+    accept="image/*"
+    hidden>
+
+
+</div>
+
+
+<!-- PROFILE BASIC INFORMATION -->
+
+<div class="profile-basic-info">
+
+
+<h2 id="profileTeacherName">
+
+Dr. Ananya Sharma
+
+</h2>
+
+
+<div
+    class="designation"
+    id="profileDesignation">
+
+Assistant Professor
+
+</div>
+
+
+<p
+    class="department"
+    id="profileDepartment">
+
+Department of Computer Science
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+<!-- PROFILE STATUS -->
+
+<div class="profile-status">
+
+
+<span class="profile-status-badge">
+
+<i class="fa-solid fa-circle"></i>
+
+Active Faculty
+
+</span>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+                PROFILE STATISTICS START
+========================================================= -->
+
+<section class="profile-stat-grid">
+
+
+<!-- TOTAL CLASSES -->
+
+<div class="profile-stat-card">
+
+
+<div class="profile-stat-icon purple">
+
+<i class="fa-solid fa-chalkboard-user"></i>
+
+</div>
+
+
+<div class="profile-stat-info">
+
+<h3>
+8
+</h3>
+
+<p>
+Assigned Classes
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- TOTAL STUDENTS -->
+
+<div class="profile-stat-card">
+
+
+<div class="profile-stat-icon blue">
+
+<i class="fa-solid fa-users"></i>
+
+</div>
+
+
+<div class="profile-stat-info">
+
+<h3>
+245
+</h3>
+
+<p>
+Total Students
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- EXPERIENCE -->
+
+<div class="profile-stat-card">
+
+
+<div class="profile-stat-icon green">
+
+<i class="fa-solid fa-briefcase"></i>
+
+</div>
+
+
+<div class="profile-stat-info">
+
+<h3>
+6+
+</h3>
+
+<p>
+Years Experience
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- SUBJECTS -->
+
+<div class="profile-stat-card">
+
+
+<div class="profile-stat-icon orange">
+
+<i class="fa-solid fa-book-open-reader"></i>
+
+</div>
+
+
+<div class="profile-stat-info">
+
+<h3>
+5
+</h3>
+
+<p>
+Subjects Assigned
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    PROFILE CONTENT GRID
+========================================================= -->
+
+<section class="profile-content-grid">
+
+
+<!-- =========================================================
+                    LEFT COLUMN
+========================================================= -->
+
+<div class="profile-left-column">
+
+
+<!-- =========================================================
+                PERSONAL INFORMATION CARD
+========================================================= -->
+
+<div class="profile-card">
+
+
+<div class="profile-card-header">
+
+
+<div>
+
+<h4>
+
+<i class="fa-solid fa-address-card"></i>
+
+Personal Information
+
+</h4>
+
+<p>
+Basic personal and contact information
+</p>
+
+</div>
+
+
+<button
+    type="button"
+    class="profile-small-edit"
+    onclick="openProfileModal()"
+    title="Edit Personal Information">
+
+<i class="fa-solid fa-pen"></i>
+
+</button>
+
+
+</div>
+
+
+<div class="profile-info-grid">
+
+
+<!-- EMPLOYEE ID -->
+
+<div class="profile-info-item">
+
+
+<div class="profile-info-label">
+
+<i class="fa-solid fa-id-badge"></i>
+
+Employee ID
+
+</div>
+
+
+<div
+    class="profile-info-value"
+    id="employeeId">
+
+FAC-2026-001
+
+</div>
+
+
+</div>
+
+
+<!-- FULL NAME -->
+
+<div class="profile-info-item">
+
+
+<div class="profile-info-label">
+
+<i class="fa-solid fa-user"></i>
+
+Full Name
+
+</div>
+
+
+<div
+    class="profile-info-value"
+    id="fullName">
+
+Dr. Ananya Sharma
+
+</div>
+
+
+</div>
+
+
+<!-- EMAIL -->
+
+<div class="profile-info-item">
+
+
+<div class="profile-info-label">
+
+<i class="fa-solid fa-envelope"></i>
+
+Email Address
+
+</div>
+
+
+<div
+    class="profile-info-value"
+    id="emailAddress">
+
+ananya.sharma@college.edu
+
+</div>
+
+
+</div>
+
+
+<!-- PHONE -->
+
+<div class="profile-info-item">
+
+
+<div class="profile-info-label">
+
+<i class="fa-solid fa-phone"></i>
+
+Phone Number
+
+</div>
+
+
+<div
+    class="profile-info-value"
+    id="phoneNumber">
+
++91 98765 43210
+
+</div>
+
+
+</div>
+
+
+<!-- GENDER -->
+
+<div class="profile-info-item">
+
+
+<div class="profile-info-label">
+
+<i class="fa-solid fa-venus-mars"></i>
+
+Gender
+
+</div>
+
+
+<div
+    class="profile-info-value"
+    id="gender">
+
+Female
+
+</div>
+
+
+</div>
+
+
+<!-- DATE OF BIRTH -->
+
+<div class="profile-info-item">
+
+
+<div class="profile-info-label">
+
+<i class="fa-solid fa-cake-candles"></i>
+
+Date of Birth
+
+</div>
+
+
+<div
+    class="profile-info-value"
+    id="dateOfBirth">
+
+15 August 1992
+
+</div>
+
+
+</div>
+
+
+<!-- ADDRESS -->
+
+<div class="profile-info-item">
+
+
+<div class="profile-info-label">
+
+<i class="fa-solid fa-location-dot"></i>
+
+Address
+
+</div>
+
+
+<div
+    class="profile-info-value"
+    id="address">
+
+Greater Noida, Uttar Pradesh
+
+</div>
+
+
+</div>
+
+
+<!-- BLOOD GROUP -->
+
+<div class="profile-info-item">
+
+
+<div class="profile-info-label">
+
+<i class="fa-solid fa-droplet"></i>
+
+Blood Group
+
+</div>
+
+
+<div
+    class="profile-info-value"
+    id="bloodGroup">
+
+B+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                PROFESSIONAL INFORMATION
+========================================================= -->
+
+<div class="profile-card">
+
+
+<div class="profile-card-header">
+
+
+<div>
+
+<h4>
+
+<i class="fa-solid fa-briefcase"></i>
+
+Professional Information
+
+</h4>
+
+<p>
+Faculty employment and academic details
+</p>
+
+</div>
+
+
+<button
+    type="button"
+    class="profile-small-edit"
+    onclick="openProfileModal()"
+    title="Edit Professional Information">
+
+<i class="fa-solid fa-pen"></i>
+
+</button>
+
+
+</div>
+
+
+<div class="profile-info-grid">
+
+
+<!-- DESIGNATION -->
+
+<div class="profile-info-item">
+
+
+<div class="profile-info-label">
+
+<i class="fa-solid fa-user-tie"></i>
+
+Designation
+
+</div>
+
+
+<div
+    class="profile-info-value"
+    id="designationValue">
+
+Assistant Professor
+
+</div>
+
+
+</div>
+
+
+<!-- DEPARTMENT -->
+
+<div class="profile-info-item">
+
+
+<div class="profile-info-label">
+
+<i class="fa-solid fa-building-columns"></i>
+
+Department
+
+</div>
+
+
+<div
+    class="profile-info-value"
+    id="departmentValue">
+
+Computer Science
+
+</div>
+
+
+</div>
+
+
+<!-- JOINING DATE -->
+
+<div class="profile-info-item">
+
+
+<div class="profile-info-label">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+Joining Date
+
+</div>
+
+
+<div
+    class="profile-info-value"
+    id="joiningDate">
+
+12 July 2020
+
+</div>
+
+
+</div>
+
+
+<!-- EXPERIENCE -->
+
+<div class="profile-info-item">
+
+
+<div class="profile-info-label">
+
+<i class="fa-solid fa-business-time"></i>
+
+Teaching Experience
+
+</div>
+
+
+<div
+    class="profile-info-value"
+    id="experienceValue">
+
+6+ Years
+
+</div>
+
+
+</div>
+
+
+<!-- QUALIFICATION -->
+
+<div class="profile-info-item">
+
+
+<div class="profile-info-label">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+Highest Qualification
+
+</div>
+
+
+<div
+    class="profile-info-value"
+    id="qualificationValue">
+
+Ph.D. in Computer Science
+
+</div>
+
+
+</div>
+
+
+<!-- SPECIALIZATION -->
+
+<div class="profile-info-item">
+
+
+<div class="profile-info-label">
+
+<i class="fa-solid fa-microchip"></i>
+
+Specialization
+
+</div>
+
+
+<div
+    class="profile-info-value"
+    id="specializationValue">
+
+Artificial Intelligence & Machine Learning
+
+</div>
+
+
+</div>
+
+
+<!-- EMPLOYMENT TYPE -->
+
+<div class="profile-info-item">
+
+
+<div class="profile-info-label">
+
+<i class="fa-solid fa-file-contract"></i>
+
+Employment Type
+
+</div>
+
+
+<div
+    class="profile-info-value"
+    id="employmentType">
+
+Full Time
+
+</div>
+
+
+</div>
+
+
+<!-- FACULTY STATUS -->
+
+<div class="profile-info-item">
+
+
+<div class="profile-info-label">
+
+<i class="fa-solid fa-circle-check"></i>
+
+Faculty Status
+
+</div>
+
+
+<div
+    class="profile-info-value">
+
+<span
+    style="
+        color:#16a34a;
+        font-weight:700;
+    ">
+
+Active
+
+</span>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    ABOUT ME
+========================================================= -->
+
+<div class="profile-card">
+
+
+<div class="profile-card-header">
+
+
+<div>
+
+<h4>
+
+<i class="fa-solid fa-circle-info"></i>
+
+About Me
+
+</h4>
+
+<p>
+Professional introduction
+</p>
+
+</div>
+
+
+<button
+    type="button"
+    class="profile-small-edit"
+    onclick="openProfileModal()"
+    title="Edit About">
+
+<i class="fa-solid fa-pen"></i>
+
+</button>
+
+
+</div>
+
+
+<p
+    class="profile-about"
+    id="aboutText">
+
+Passionate educator and researcher with extensive experience
+in Computer Science, Artificial Intelligence and Machine
+Learning. Dedicated to creating an engaging learning
+environment, mentoring students and integrating modern
+technologies into classroom teaching.
+
+</p>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                SUBJECTS & EXPERTISE
+========================================================= -->
+
+<div class="profile-card">
+
+
+<div class="profile-card-header">
+
+
+<div>
+
+<h4>
+
+<i class="fa-solid fa-book-open-reader"></i>
+
+Subjects & Expertise
+
+</h4>
+
+<p>
+Teaching subjects and technical expertise
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="profile-skills">
+
+
+<span class="profile-skill">
+
+<i class="fa-solid fa-code"></i>
+
+Data Structures
+
+</span>
+
+
+<span class="profile-skill">
+
+<i class="fa-solid fa-database"></i>
+
+Database Management
+
+</span>
+
+
+<span class="profile-skill">
+
+<i class="fa-solid fa-brain"></i>
+
+Machine Learning
+
+</span>
+
+
+<span class="profile-skill">
+
+<i class="fa-solid fa-robot"></i>
+
+Artificial Intelligence
+
+</span>
+
+
+<span class="profile-skill">
+
+<i class="fa-solid fa-laptop-code"></i>
+
+Web Development
+
+</span>
+
+
+<span class="profile-skill">
+
+<i class="fa-brands fa-python"></i>
+
+Python
+
+</span>
+
+
+<span class="profile-skill">
+
+<i class="fa-brands fa-java"></i>
+
+Java
+
+</span>
+
+
+<span class="profile-skill">
+
+<i class="fa-solid fa-chart-line"></i>
+
+Data Analytics
+
+</span>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                EDUCATIONAL QUALIFICATIONS
+========================================================= -->
+
+<div class="profile-card">
+
+
+<div class="profile-card-header">
+
+
+<div>
+
+<h4>
+
+<i class="fa-solid fa-user-graduate"></i>
+
+Educational Qualifications
+
+</h4>
+
+<p>
+Academic qualification details
+</p>
+
+</div>
+
+
+<button
+    type="button"
+    class="profile-small-edit"
+    title="Edit Qualifications">
+
+<i class="fa-solid fa-pen"></i>
+
+</button>
+
+
+</div>
+
+
+
+<!-- PhD -->
+
+<div
+    style="
+        display:flex;
+        gap:15px;
+        padding:15px 0;
+        border-bottom:1px solid #eeeeee;
+    ">
+
+
+<div class="profile-contact-icon">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+</div>
+
+
+<div style="flex:1;">
+
+
+<strong
+    style="
+        display:block;
+        font-size:13px;
+        margin-bottom:4px;
+    ">
+
+Ph.D. in Computer Science
+
+</strong>
+
+
+<div
+    style="
+        color:#64748b;
+        font-size:11px;
+    ">
+
+Indian Institute of Technology
+
+</div>
+
+
+<div
+    style="
+        color:#8b5cf6;
+        font-size:10px;
+        font-weight:600;
+        margin-top:4px;
+    ">
+
+2016 – 2020
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- M.Tech -->
+
+<div
+    style="
+        display:flex;
+        gap:15px;
+        padding:15px 0;
+        border-bottom:1px solid #eeeeee;
+    ">
+
+
+<div class="profile-contact-icon">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+</div>
+
+
+<div style="flex:1;">
+
+
+<strong
+    style="
+        display:block;
+        font-size:13px;
+        margin-bottom:4px;
+    ">
+
+M.Tech in Computer Science
+
+</strong>
+
+
+<div
+    style="
+        color:#64748b;
+        font-size:11px;
+    ">
+
+Delhi Technological University
+
+</div>
+
+
+<div
+    style="
+        color:#8b5cf6;
+        font-size:10px;
+        font-weight:600;
+        margin-top:4px;
+    ">
+
+2014 – 2016
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- B.Tech -->
+
+<div
+    style="
+        display:flex;
+        gap:15px;
+        padding:15px 0 0;
+    ">
+
+
+<div class="profile-contact-icon">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+</div>
+
+
+<div style="flex:1;">
+
+
+<strong
+    style="
+        display:block;
+        font-size:13px;
+        margin-bottom:4px;
+    ">
+
+B.Tech in Computer Science
+
+</strong>
+
+
+<div
+    style="
+        color:#64748b;
+        font-size:11px;
+    ">
+
+University of Delhi
+
+</div>
+
+
+<div
+    style="
+        color:#8b5cf6;
+        font-size:10px;
+        font-weight:600;
+        margin-top:4px;
+    ">
+
+2010 – 2014
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    RIGHT COLUMN
+========================================================= -->
+
+<div class="profile-right-column">
+
+
+
+<!-- =========================================================
+                    PROFILE COMPLETION
+========================================================= -->
+
+<div class="profile-card">
+
+
+<div class="profile-card-header">
+
+
+<div>
+
+<h4>
+
+<i class="fa-solid fa-chart-pie"></i>
+
+Profile Completion
+
+</h4>
+
+<p>
+Complete your faculty profile
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="profile-completion">
+
+
+<div class="completion-circle">
+
+
+<div class="completion-circle-content">
+
+<strong>
+92%
+</strong>
+
+<small>
+Completed
+</small>
+
+</div>
+
+
+</div>
+
+
+<p>
+
+Your profile is almost complete.
+Add remaining professional details
+to reach 100%.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    QUICK CONTACT
+========================================================= -->
+
+<div class="profile-card">
+
+
+<div class="profile-card-header">
+
+
+<div>
+
+<h4>
+
+<i class="fa-solid fa-address-book"></i>
+
+Quick Contact
+
+</h4>
+
+<p>
+Faculty contact information
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- EMAIL -->
+
+<div class="profile-contact-item">
+
+
+<div class="profile-contact-icon">
+
+<i class="fa-solid fa-envelope"></i>
+
+</div>
+
+
+<div class="profile-contact-content">
+
+<small>
+Email
+</small>
+
+<strong id="quickEmail">
+
+ananya.sharma@college.edu
+
+</strong>
+
+</div>
+
+
+</div>
+
+
+
+<!-- PHONE -->
+
+<div class="profile-contact-item">
+
+
+<div class="profile-contact-icon">
+
+<i class="fa-solid fa-phone"></i>
+
+</div>
+
+
+<div class="profile-contact-content">
+
+<small>
+Phone
+</small>
+
+<strong id="quickPhone">
+
++91 98765 43210
+
+</strong>
+
+</div>
+
+
+</div>
+
+
+
+<!-- DEPARTMENT -->
+
+<div class="profile-contact-item">
+
+
+<div class="profile-contact-icon">
+
+<i class="fa-solid fa-building"></i>
+
+</div>
+
+
+<div class="profile-contact-content">
+
+<small>
+Department
+</small>
+
+<strong id="quickDepartment">
+
+Computer Science
+
+</strong>
+
+</div>
+
+
+</div>
+
+
+
+<!-- OFFICE -->
+
+<div class="profile-contact-item">
+
+
+<div class="profile-contact-icon">
+
+<i class="fa-solid fa-location-dot"></i>
+
+</div>
+
+
+<div class="profile-contact-content">
+
+<small>
+Faculty Office
+</small>
+
+<strong>
+
+Block B · Room 204
+
+</strong>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    TODAY'S SCHEDULE
+========================================================= -->
+
+<div class="profile-card">
+
+
+<div class="profile-card-header">
+
+
+<div>
+
+<h4>
+
+<i class="fa-solid fa-calendar-day"></i>
+
+Today's Schedule
+
+</h4>
+
+<p>
+Your classes for today
+</p>
+
+</div>
+
+
+<a
+    href="timetable.html"
+    class="profile-small-edit"
+    title="View Timetable">
+
+<i class="fa-solid fa-arrow-right"></i>
+
+</a>
+
+
+</div>
+
+
+
+<!-- CLASS 1 -->
+
+<div class="profile-activity-item">
+
+
+<div class="activity-icon">
+
+<i class="fa-solid fa-code"></i>
+
+</div>
+
+
+<div class="activity-content">
+
+
+<strong>
+
+Data Structures
+
+</strong>
+
+
+<small>
+
+09:00 AM – 10:00 AM · Room 301
+
+</small>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- CLASS 2 -->
+
+<div class="profile-activity-item">
+
+
+<div class="activity-icon">
+
+<i class="fa-solid fa-database"></i>
+
+</div>
+
+
+<div class="activity-content">
+
+
+<strong>
+
+Database Management System
+
+</strong>
+
+
+<small>
+
+11:00 AM – 12:00 PM · Lab 02
+
+</small>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- CLASS 3 -->
+
+<div class="profile-activity-item">
+
+
+<div class="activity-icon">
+
+<i class="fa-solid fa-brain"></i>
+
+</div>
+
+
+<div class="activity-content">
+
+
+<strong>
+
+Machine Learning
+
+</strong>
+
+
+<small>
+
+02:00 PM – 03:00 PM · Room 405
+
+</small>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    RECENT ACTIVITY
+========================================================= -->
+
+<div class="profile-card">
+
+
+<div class="profile-card-header">
+
+
+<div>
+
+<h4>
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+Recent Activity
+
+</h4>
+
+<p>
+Latest faculty activities
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<div class="profile-activity-item">
+
+
+<div class="activity-icon">
+
+<i class="fa-solid fa-user-check"></i>
+
+</div>
+
+
+<div class="activity-content">
+
+
+<strong>
+
+Attendance Updated
+
+</strong>
+
+
+<small>
+
+Data Structures · 25 minutes ago
+
+</small>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="profile-activity-item">
+
+
+<div class="activity-icon">
+
+<i class="fa-solid fa-file-circle-check"></i>
+
+</div>
+
+
+<div class="activity-content">
+
+
+<strong>
+
+Assignment Reviewed
+
+</strong>
+
+
+<small>
+
+DBMS Assignment #04 · 2 hours ago
+
+</small>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="profile-activity-item">
+
+
+<div class="activity-icon">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+</div>
+
+
+<div class="activity-content">
+
+
+<strong>
+
+Notice Viewed
+
+</strong>
+
+
+<small>
+
+Mid Semester Examination · Yesterday
+
+</small>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="profile-activity-item">
+
+
+<div class="activity-icon">
+
+<i class="fa-solid fa-chart-line"></i>
+
+</div>
+
+
+<div class="activity-content">
+
+
+<strong>
+
+Performance Report Generated
+
+</strong>
+
+
+<small>
+
+B.Tech CSE 4th Semester · 2 days ago
+
+</small>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    ACCOUNT SECURITY
+========================================================= -->
+
+<div class="profile-card">
+
+
+<div class="profile-card-header">
+
+
+<div>
+
+<h4>
+
+<i class="fa-solid fa-shield-halved"></i>
+
+Account Security
+
+</h4>
+
+<p>
+Manage your account security
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<div class="profile-contact-item">
+
+
+<div class="profile-contact-icon">
+
+<i class="fa-solid fa-key"></i>
+
+</div>
+
+
+<div
+    class="profile-contact-content"
+    style="flex:1;">
+
+<small>
+Password
+</small>
+
+<strong>
+Last changed 30 days ago
+</strong>
+
+</div>
+
+
+<a
+    href="change-password.html"
+    style="
+        font-size:10px;
+        color:#6c4cff;
+        font-weight:700;
+    ">
+
+Change
+
+</a>
+
+
+</div>
+
+
+
+<div class="profile-contact-item">
+
+
+<div class="profile-contact-icon">
+
+<i class="fa-solid fa-shield"></i>
+
+</div>
+
+
+<div
+    class="profile-contact-content"
+    style="flex:1;">
+
+<small>
+Account Status
+</small>
+
+<strong style="color:#16a34a;">
+
+Secure
+
+</strong>
+
+</div>
+
+
+<i
+    class="fa-solid fa-circle-check"
+    style="color:#16a34a;">
+
+</i>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+                        FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+© 2026 Faculty Management & Productivity System |
+Teacher Panel
+
+</footer>
+
+
+</main>
+
+
+<!-- =========================================================
+                    PAGE CONTENT END
+========================================================= -->
+
+
+</div>
+
+<!-- teacher-main end -->
+
+
+</div>
+
+<!-- teacher-layout end -->
+
+
+
+<!-- =========================================================
+                EDIT PROFILE MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="editProfileModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+
+<div class="modal-dialog modal-lg modal-dialog-centered">
+
+
+<div
+    class="modal-content"
+    style="
+        border:none;
+        border-radius:20px;
+        overflow:hidden;
+    ">
+
+
+<!-- =========================================================
+                    MODAL HEADER
+========================================================= -->
+
+<div
+    class="modal-header"
+    style="
+        padding:20px 24px;
+    ">
+
+
+<div>
+
+
+<h5
+    class="modal-title"
+    style="
+        font-weight:800;
+        color:#6c4cff;
+    ">
+
+<i class="fa-solid fa-user-pen me-2"></i>
+
+Edit Profile
+
+</h5>
+
+
+<small style="color:#64748b;">
+
+Update your personal and professional information
+
+</small>
+
+
+</div>
+
+
+<button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal">
+
+</button>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    MODAL BODY
+========================================================= -->
+
+<div
+    class="modal-body"
+    style="padding:24px;">
+
+
+<form id="profileEditForm">
+
+
+<div class="row g-3">
+
+
+<!-- FULL NAME -->
+
+<div class="col-md-6">
+
+
+<label
+    class="form-label"
+    style="
+        font-size:11px;
+        font-weight:600;
+    ">
+
+Full Name
+
+</label>
+
+
+<input
+    type="text"
+    class="form-control"
+    id="editFullName"
+    value="Dr. Ananya Sharma">
+
+
+</div>
+
+
+
+<!-- EMPLOYEE ID -->
+
+<div class="col-md-6">
+
+
+<label
+    class="form-label"
+    style="
+        font-size:11px;
+        font-weight:600;
+    ">
+
+Employee ID
+
+</label>
+
+
+<input
+    type="text"
+    class="form-control"
+    id="editEmployeeId"
+    value="FAC-2026-001"
+    readonly>
+
+
+</div>
+
+
+
+<!-- EMAIL -->
+
+<div class="col-md-6">
+
+
+<label
+    class="form-label"
+    style="
+        font-size:11px;
+        font-weight:600;
+    ">
+
+Email Address
+
+</label>
+
+
+<input
+    type="email"
+    class="form-control"
+    id="editEmail"
+    value="ananya.sharma@college.edu">
+
+
+</div>
+
+
+
+<!-- PHONE -->
+
+<div class="col-md-6">
+
+
+<label
+    class="form-label"
+    style="
+        font-size:11px;
+        font-weight:600;
+    ">
+
+Phone Number
+
+</label>
+
+
+<input
+    type="text"
+    class="form-control"
+    id="editPhone"
+    value="+91 98765 43210">
+
+
+</div>
+
+
+
+<!-- GENDER -->
+
+<div class="col-md-6">
+
+
+<label
+    class="form-label"
+    style="
+        font-size:11px;
+        font-weight:600;
+    ">
+
+Gender
+
+</label>
+
+
+<select
+    class="form-select"
+    id="editGender">
+
+
+<option selected>
+Female
+</option>
+
+<option>
+Male
+</option>
+
+<option>
+Other
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+<!-- DOB -->
+
+<div class="col-md-6">
+
+
+<label
+    class="form-label"
+    style="
+        font-size:11px;
+        font-weight:600;
+    ">
+
+Date of Birth
+
+</label>
+
+
+<input
+    type="date"
+    class="form-control"
+    id="editDob"
+    value="1992-08-15">
+
+
+</div>
+
+
+
+<!-- DESIGNATION -->
+
+<div class="col-md-6">
+
+
+<label
+    class="form-label"
+    style="
+        font-size:11px;
+        font-weight:600;
+    ">
+
+Designation
+
+</label>
+
+
+<select
+    class="form-select"
+    id="editDesignation">
+
+
+<option>
+Professor
+</option>
+
+<option>
+Associate Professor
+</option>
+
+<option selected>
+Assistant Professor
+</option>
+
+<option>
+Lecturer
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+<!-- DEPARTMENT -->
+
+<div class="col-md-6">
+
+
+<label
+    class="form-label"
+    style="
+        font-size:11px;
+        font-weight:600;
+    ">
+
+Department
+
+</label>
+
+
+<select
+    class="form-select"
+    id="editDepartment">
+
+
+<option selected>
+Computer Science
+</option>
+
+<option>
+Information Technology
+</option>
+
+<option>
+Electronics
+</option>
+
+<option>
+Mechanical Engineering
+</option>
+
+<option>
+Civil Engineering
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+<!-- QUALIFICATION -->
+
+<div class="col-md-6">
+
+
+<label
+    class="form-label"
+    style="
+        font-size:11px;
+        font-weight:600;
+    ">
+
+Highest Qualification
+
+</label>
+
+
+<input
+    type="text"
+    class="form-control"
+    id="editQualification"
+    value="Ph.D. in Computer Science">
+
+
+</div>
+
+
+
+<!-- SPECIALIZATION -->
+
+<div class="col-md-6">
+
+
+<label
+    class="form-label"
+    style="
+        font-size:11px;
+        font-weight:600;
+    ">
+
+Specialization
+
+</label>
+
+
+<input
+    type="text"
+    class="form-control"
+    id="editSpecialization"
+    value="Artificial Intelligence & Machine Learning">
+
+
+</div>
+
+
+
+<!-- ADDRESS -->
+
+<div class="col-12">
+
+
+<label
+    class="form-label"
+    style="
+        font-size:11px;
+        font-weight:600;
+    ">
+
+Address
+
+</label>
+
+
+<input
+    type="text"
+    class="form-control"
+    id="editAddress"
+    value="Greater Noida, Uttar Pradesh">
+
+
+</div>
+
+
+
+<!-- ABOUT -->
+
+<div class="col-12">
+
+
+<label
+    class="form-label"
+    style="
+        font-size:11px;
+        font-weight:600;
+    ">
+
+About Me
+
+</label>
+
+
+<textarea
+    class="form-control"
+    id="editAbout"
+    rows="4">Passionate educator and researcher with extensive experience in Computer Science, Artificial Intelligence and Machine Learning. Dedicated to creating an engaging learning environment, mentoring students and integrating modern technologies into classroom teaching.</textarea>
+
+
+</div>
+
+
+</div>
+
+
+</form>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                    MODAL FOOTER
+========================================================= -->
+
+<div
+    class="modal-footer"
+    style="
+        padding:15px 24px;
+    ">
+
+
+<button
+    type="button"
+    class="btn btn-light"
+    data-bs-dismiss="modal">
+
+Cancel
+
+</button>
+
+
+<button
+    type="button"
+    class="edit-profile-btn"
+    id="saveProfileBtn">
+
+<i class="fa-solid fa-floppy-disk me-2"></i>
+
+Save Changes
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+                BOOTSTRAP JAVASCRIPT
+========================================================= -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- =========================================================
+                    PROFILE JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+/* =========================================================
+                    ELEMENTS
+========================================================= */
+
+const body =
+document.body;
+
+const teacherSidebar =
+document.getElementById(
+    "teacherSidebar"
+);
+
+const mobileMenuBtn =
+document.getElementById(
+    "mobileMenuBtn"
+);
+
+const themeToggle =
+document.getElementById(
+    "themeToggle"
+);
+
+const saveProfileBtn =
+document.getElementById(
+    "saveProfileBtn"
+);
+
+const profileEditForm =
+document.getElementById(
+    "profileEditForm"
+);
+
+
+/* =========================================================
+                    MOBILE SIDEBAR
+========================================================= */
+
+if(
+    mobileMenuBtn &&
+    teacherSidebar
+){
+
+mobileMenuBtn.addEventListener(
+    "click",
+    function(event){
+
+        event.stopPropagation();
+
+        teacherSidebar.classList.toggle(
+            "show"
+        );
+
+    }
+);
+
+}
+
+
+/* =========================================================
+            CLOSE SIDEBAR OUTSIDE CLICK
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            window.innerWidth <= 992 &&
+            teacherSidebar &&
+            teacherSidebar.classList.contains(
+                "show"
+            )
+        ){
+
+            const clickedInsideSidebar =
+            teacherSidebar.contains(
+                event.target
+            );
+
+            const clickedMenuButton =
+            mobileMenuBtn &&
+            mobileMenuBtn.contains(
+                event.target
+            );
+
+
+            if(
+                !clickedInsideSidebar &&
+                !clickedMenuButton
+            ){
+
+                teacherSidebar.classList.remove(
+                    "show"
+                );
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+                CLOSE SIDEBAR AFTER LINK CLICK
+========================================================= */
+
+if(teacherSidebar){
+
+const sidebarLinks =
+teacherSidebar.querySelectorAll(
+    "a"
+);
+
+
+sidebarLinks.forEach(
+    function(link){
+
+        link.addEventListener(
+            "click",
+            function(){
+
+                if(
+                    window.innerWidth <= 992
+                ){
+
+                    teacherSidebar.classList.remove(
+                        "show"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+);
+
+}
+
+
+/* =========================================================
+                    THEME ICON
+========================================================= */
+
+function updateThemeIcon(){
+
+    if(!themeToggle){
+        return;
+    }
+
+
+    const icon =
+    themeToggle.querySelector(
+        "i"
+    );
+
+
+    if(!icon){
+        return;
+    }
+
+
+    if(
+        body.classList.contains(
+            "dark"
+        )
+    ){
+
+        icon.className =
+        "fa-solid fa-sun";
+
+        themeToggle.title =
+        "Switch to Light Mode";
+
+    }
+
+    else{
+
+        icon.className =
+        "fa-solid fa-moon";
+
+        themeToggle.title =
+        "Switch to Dark Mode";
+
+    }
+
+}
+
+
+/* =========================================================
+                    LOAD SAVED THEME
+========================================================= */
+
+const savedTheme =
+localStorage.getItem(
+    "teacherTheme"
+);
+
+
+if(
+    savedTheme === "dark"
+){
+
+    body.classList.add(
+        "dark"
+    );
+
+}
+
+else{
+
+    body.classList.remove(
+        "dark"
+    );
+
+}
+
+
+updateThemeIcon();
+
+
+/* =========================================================
+                    THEME TOGGLE
+========================================================= */
+
+if(themeToggle){
+
+themeToggle.addEventListener(
+    "click",
+    function(){
+
+        body.classList.toggle(
+            "dark"
+        );
+
+
+        if(
+            body.classList.contains(
+                "dark"
+            )
+        ){
+
+            localStorage.setItem(
+                "teacherTheme",
+                "dark"
+            );
+
+        }
+
+        else{
+
+            localStorage.setItem(
+                "teacherTheme",
+                "light"
+            );
+
+        }
+
+
+        updateThemeIcon();
+
+    }
+);
+
+}
+
+
+/* =========================================================
+                    PROFILE DATA
+========================================================= */
+
+const defaultProfileData = {
+
+    fullName:
+    "Dr. Ananya Sharma",
+
+    employeeId:
+    "FAC-2026-001",
+
+    email:
+    "ananya.sharma@college.edu",
+
+    phone:
+    "+91 98765 43210",
+
+    gender:
+    "Female",
+
+    dob:
+    "1992-08-15",
+
+    designation:
+    "Assistant Professor",
+
+    department:
+    "Computer Science",
+
+    qualification:
+    "Ph.D. in Computer Science",
+
+    specialization:
+    "Artificial Intelligence & Machine Learning",
+
+    address:
+    "Greater Noida, Uttar Pradesh",
+
+    about:
+    "Passionate educator and researcher with extensive experience in Computer Science, Artificial Intelligence and Machine Learning. Dedicated to creating an engaging learning environment, mentoring students and integrating modern technologies into classroom teaching."
+
+};
+
+
+/* =========================================================
+                FORMAT DATE
+========================================================= */
+
+function formatDate(
+    dateValue
+){
+
+    if(!dateValue){
+
+        return "--";
+
+    }
+
+
+    const date =
+    new Date(
+        dateValue + "T00:00:00"
+    );
+
+
+    if(
+        Number.isNaN(
+            date.getTime()
+        )
+    ){
+
+        return dateValue;
+
+    }
+
+
+    return date.toLocaleDateString(
+        "en-GB",
+        {
+
+            day:"2-digit",
+
+            month:"long",
+
+            year:"numeric"
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+                GET SAVED PROFILE
+========================================================= */
+
+function getSavedProfile(){
+
+    const savedData =
+    localStorage.getItem(
+        "teacherProfileData"
+    );
+
+
+    if(!savedData){
+
+        return {
+            ...defaultProfileData
+        };
+
+    }
+
+
+    try{
+
+        const parsedData =
+        JSON.parse(
+            savedData
+        );
+
+
+        return {
+
+            ...defaultProfileData,
+
+            ...parsedData
+
+        };
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Unable to load profile:",
+            error
+        );
+
+
+        return {
+            ...defaultProfileData
+        };
+
+    }
+
+}
+
+
+/* =========================================================
+                    SAFE TEXT UPDATE
+========================================================= */
+
+function setText(
+    elementId,
+    value
+){
+
+    const element =
+    document.getElementById(
+        elementId
+    );
+
+
+    if(element){
+
+        element.innerText =
+        value || "--";
+
+    }
+
+}
+
+
+/* =========================================================
+                UPDATE PROFILE UI
+========================================================= */
+
+function updateProfileUI(
+    profile
+){
+
+/* PERSONAL */
+
+setText(
+    "fullName",
+    profile.fullName
+);
+
+
+setText(
+    "employeeId",
+    profile.employeeId
+);
+
+
+setText(
+    "emailAddress",
+    profile.email
+);
+
+
+setText(
+    "phoneNumber",
+    profile.phone
+);
+
+
+setText(
+    "gender",
+    profile.gender
+);
+
+
+setText(
+    "dateOfBirth",
+    formatDate(
+        profile.dob
+    )
+);
+
+
+setText(
+    "address",
+    profile.address
+);
+
+
+/* PROFESSIONAL */
+
+setText(
+    "designationValue",
+    profile.designation
+);
+
+
+setText(
+    "departmentValue",
+    profile.department
+);
+
+
+setText(
+    "qualificationValue",
+    profile.qualification
+);
+
+
+setText(
+    "specializationValue",
+    profile.specialization
+);
+
+
+/* ABOUT */
+
+setText(
+    "aboutText",
+    profile.about
+);
+
+
+/* QUICK CONTACT */
+
+setText(
+    "quickEmail",
+    profile.email
+);
+
+
+setText(
+    "quickPhone",
+    profile.phone
+);
+
+
+setText(
+    "quickDepartment",
+    profile.department
+);
+
+
+/* =========================================================
+                    HERO PROFILE NAME
+========================================================= */
+
+const heroNameSelectors = [
+
+    "#profileName",
+
+    "#teacherProfileName",
+
+    ".profile-hero-name",
+
+    ".profile-main-name"
+
+];
+
+
+heroNameSelectors.forEach(
+    function(selector){
+
+        const element =
+        document.querySelector(
+            selector
+        );
+
+
+        if(element){
+
+            element.innerText =
+            profile.fullName;
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+                HERO DESIGNATION
+========================================================= */
+
+const heroDesignationSelectors = [
+
+    "#profileDesignation",
+
+    "#teacherDesignation",
+
+    ".profile-hero-designation",
+
+    ".profile-main-designation"
+
+];
+
+
+heroDesignationSelectors.forEach(
+    function(selector){
+
+        const element =
+        document.querySelector(
+            selector
+        );
+
+
+        if(element){
+
+            element.innerText =
+            profile.designation;
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+                    HERO DEPARTMENT
+========================================================= */
+
+const heroDepartmentSelectors = [
+
+    "#profileDepartment",
+
+    ".profile-hero-department"
+
+];
+
+
+heroDepartmentSelectors.forEach(
+    function(selector){
+
+        const element =
+        document.querySelector(
+            selector
+        );
+
+
+        if(element){
+
+            element.innerText =
+            profile.department;
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+                    NAVBAR PROFILE
+========================================================= */
+
+const navbarProfileName =
+document.querySelector(
+    ".teacher-profile-info strong"
+);
+
+
+if(navbarProfileName){
+
+    navbarProfileName.innerText =
+    profile.fullName;
+
+}
+
+
+const navbarProfileRole =
+document.querySelector(
+    ".teacher-profile-info small"
+);
+
+
+if(navbarProfileRole){
+
+    navbarProfileRole.innerText =
+    profile.designation;
+
+}
+
+}
+
+
+/* =========================================================
+                FILL EDIT FORM
+========================================================= */
+
+function fillEditForm(
+    profile
+){
+
+const mappings = {
+
+    editFullName:
+    profile.fullName,
+
+    editEmployeeId:
+    profile.employeeId,
+
+    editEmail:
+    profile.email,
+
+    editPhone:
+    profile.phone,
+
+    editGender:
+    profile.gender,
+
+    editDob:
+    profile.dob,
+
+    editDesignation:
+    profile.designation,
+
+    editDepartment:
+    profile.department,
+
+    editQualification:
+    profile.qualification,
+
+    editSpecialization:
+    profile.specialization,
+
+    editAddress:
+    profile.address,
+
+    editAbout:
+    profile.about
+
+};
+
+
+Object.keys(
+    mappings
+).forEach(
+    function(id){
+
+        const input =
+        document.getElementById(
+            id
+        );
+
+
+        if(input){
+
+            input.value =
+            mappings[id] || "";
+
+        }
+
+    }
+);
+
+}
+
+
+/* =========================================================
+                OPEN PROFILE MODAL
+========================================================= */
+
+window.openProfileModal =
+function(){
+
+    const profile =
+    getSavedProfile();
+
+
+    fillEditForm(
+        profile
+    );
+
+
+    const modalElement =
+    document.getElementById(
+        "editProfileModal"
+    );
+
+
+    if(!modalElement){
+
+        console.error(
+            "Edit profile modal not found."
+        );
+
+        return;
+
+    }
+
+
+    const modal =
+    bootstrap.Modal.getOrCreateInstance(
+        modalElement
+    );
+
+
+    modal.show();
+
+};
+
+
+/* =========================================================
+                    VALIDATE EMAIL
+========================================================= */
+
+function isValidEmail(
+    email
+){
+
+    const emailPattern =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+    return emailPattern.test(
+        email
+    );
+
+}
+
+
+/* =========================================================
+                    VALIDATE PHONE
+========================================================= */
+
+function isValidPhone(
+    phone
+){
+
+    const cleanedPhone =
+    phone.replace(
+        /[\s()+-]/g,
+        ""
+    );
+
+
+    return (
+        /^\d{10,13}$/.test(
+            cleanedPhone
+        )
+    );
+
+}
+
+
+/* =========================================================
+                    SHOW MESSAGE
+========================================================= */
+
+function showProfileMessage(
+    message,
+    type = "success"
+){
+
+    const oldAlert =
+    document.getElementById(
+        "profileDynamicAlert"
+    );
+
+
+    if(oldAlert){
+
+        oldAlert.remove();
+
+    }
+
+
+    const alert =
+    document.createElement(
+        "div"
+    );
+
+
+    alert.id =
+    "profileDynamicAlert";
+
+
+    alert.className =
+    "alert alert-" +
+    type +
+    " alert-dismissible fade show";
+
+
+    alert.style.position =
+    "fixed";
+
+
+    alert.style.top =
+    "95px";
+
+
+    alert.style.right =
+    "25px";
+
+
+    alert.style.zIndex =
+    "9999";
+
+
+    alert.style.minWidth =
+    "280px";
+
+
+    alert.style.maxWidth =
+    "380px";
+
+
+    alert.style.borderRadius =
+    "14px";
+
+
+    alert.style.boxShadow =
+    "0 10px 30px rgba(0,0,0,.15)";
+
+
+    const iconClass =
+    type === "success"
+    ? "fa-circle-check"
+    : "fa-circle-exclamation";
+
+
+    alert.innerHTML = `
+
+        <div
+            class="d-flex
+                   align-items-center
+                   gap-2">
+
+            <i
+                class="fa-solid
+                       ${iconClass}">
+            </i>
+
+            <div
+                style="
+                    flex:1;
+                    font-size:12px;
+                    font-weight:600;
+                ">
+
+                ${message}
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+            </button>
+
+        </div>
+
+    `;
+
+
+    document.body.appendChild(
+        alert
+    );
+
+
+    setTimeout(
+        function(){
+
+            if(alert){
+
+                const alertInstance =
+                bootstrap.Alert.getOrCreateInstance(
+                    alert
+                );
+
+
+                alertInstance.close();
+
+            }
+
+        },
+        3500
+    );
+
+}
+
+
+/* =========================================================
+                    SAVE PROFILE
+========================================================= */
+
+if(saveProfileBtn){
+
+saveProfileBtn.addEventListener(
+    "click",
+    function(){
+
+
+/* =========================================================
+                    GET VALUES
+========================================================= */
+
+const fullName =
+document.getElementById(
+    "editFullName"
+).value.trim();
+
+
+const employeeId =
+document.getElementById(
+    "editEmployeeId"
+).value.trim();
+
+
+const email =
+document.getElementById(
+    "editEmail"
+).value.trim();
+
+
+const phone =
+document.getElementById(
+    "editPhone"
+).value.trim();
+
+
+const gender =
+document.getElementById(
+    "editGender"
+).value;
+
+
+const dob =
+document.getElementById(
+    "editDob"
+).value;
+
+
+const designation =
+document.getElementById(
+    "editDesignation"
+).value;
+
+
+const department =
+document.getElementById(
+    "editDepartment"
+).value;
+
+
+const qualification =
+document.getElementById(
+    "editQualification"
+).value.trim();
+
+
+const specialization =
+document.getElementById(
+    "editSpecialization"
+).value.trim();
+
+
+const address =
+document.getElementById(
+    "editAddress"
+).value.trim();
+
+
+const about =
+document.getElementById(
+    "editAbout"
+).value.trim();
+
+
+/* =========================================================
+                    VALIDATION
+========================================================= */
+
+if(
+    fullName === ""
+){
+
+    showProfileMessage(
+        "Please enter your full name.",
+        "danger"
+    );
+
+    return;
+
+}
+
+
+if(
+    !isValidEmail(
+        email
+    )
+){
+
+    showProfileMessage(
+        "Please enter a valid email address.",
+        "danger"
+    );
+
+    return;
+
+}
+
+
+if(
+    !isValidPhone(
+        phone
+    )
+){
+
+    showProfileMessage(
+        "Please enter a valid phone number.",
+        "danger"
+    );
+
+    return;
+
+}
+
+
+if(
+    qualification === ""
+){
+
+    showProfileMessage(
+        "Please enter your qualification.",
+        "danger"
+    );
+
+    return;
+
+}
+
+
+if(
+    specialization === ""
+){
+
+    showProfileMessage(
+        "Please enter your specialization.",
+        "danger"
+    );
+
+    return;
+
+}
+
+
+/* =========================================================
+                    CREATE OBJECT
+========================================================= */
+
+const updatedProfile = {
+
+    fullName:
+    fullName,
+
+    employeeId:
+    employeeId,
+
+    email:
+    email,
+
+    phone:
+    phone,
+
+    gender:
+    gender,
+
+    dob:
+    dob,
+
+    designation:
+    designation,
+
+    department:
+    department,
+
+    qualification:
+    qualification,
+
+    specialization:
+    specialization,
+
+    address:
+    address,
+
+    about:
+    about
+
+};
+
+
+/* =========================================================
+                    SAVE LOCAL STORAGE
+========================================================= */
+
+localStorage.setItem(
+    "teacherProfileData",
+    JSON.stringify(
+        updatedProfile
+    )
+);
+
+
+/* =========================================================
+                    UPDATE UI
+========================================================= */
+
+updateProfileUI(
+    updatedProfile
+);
+
+
+/* =========================================================
+                    CLOSE MODAL
+========================================================= */
+
+const modalElement =
+document.getElementById(
+    "editProfileModal"
+);
+
+
+const modal =
+bootstrap.Modal.getInstance(
+    modalElement
+);
+
+
+if(modal){
+
+    modal.hide();
+
+}
+
+
+/* =========================================================
+                    SUCCESS MESSAGE
+========================================================= */
+
+showProfileMessage(
+    "Profile updated successfully.",
+    "success"
+);
+
+
+    }
+);
+
+}
+
+
+/* =========================================================
+            FORM SUBMIT WITH ENTER
+========================================================= */
+
+if(profileEditForm){
+
+profileEditForm.addEventListener(
+    "submit",
+    function(event){
+
+        event.preventDefault();
+
+
+        if(saveProfileBtn){
+
+            saveProfileBtn.click();
+
+        }
+
+    }
+);
+
+}
+
+
+/* =========================================================
+                    PROFILE IMAGE
+========================================================= */
+
+const profileImageInput =
+document.getElementById(
+    "profileImageInput"
+);
+
+
+const profileMainImage =
+document.getElementById(
+    "profileMainImage"
+);
+
+
+/* =========================================================
+                UPDATE ALL PROFILE IMAGES
+========================================================= */
+
+function updateProfileImages(
+    imageSource
+){
+
+    if(!imageSource){
+        return;
+    }
+
+
+    if(profileMainImage){
+
+        profileMainImage.src =
+        imageSource;
+
+    }
+
+
+    const navbarImage =
+    document.querySelector(
+        ".teacher-profile img"
+    );
+
+
+    if(navbarImage){
+
+        navbarImage.src =
+        imageSource;
+
+    }
+
+}
+
+
+/* =========================================================
+                LOAD SAVED PROFILE IMAGE
+========================================================= */
+
+const savedProfileImage =
+localStorage.getItem(
+    "teacherProfileImage"
+);
+
+
+if(savedProfileImage){
+
+    updateProfileImages(
+        savedProfileImage
+    );
+
+}
+
+
+/* =========================================================
+                CHANGE PROFILE IMAGE
+========================================================= */
+
+if(profileImageInput){
+
+profileImageInput.addEventListener(
+    "change",
+    function(event){
+
+
+        const file =
+        event.target.files[0];
+
+
+        if(!file){
+
+            return;
+
+        }
+
+
+        if(
+            !file.type.startsWith(
+                "image/"
+            )
+        ){
+
+            showProfileMessage(
+                "Please select a valid image file.",
+                "danger"
+            );
+
+            this.value =
+            "";
+
+            return;
+
+        }
+
+
+/* =========================================================
+                    FILE SIZE CHECK
+========================================================= */
+
+        const maximumSize =
+        2 * 1024 * 1024;
+
+
+        if(
+            file.size >
+            maximumSize
+        ){
+
+            showProfileMessage(
+                "Profile image must be smaller than 2 MB.",
+                "danger"
+            );
+
+            this.value =
+            "";
+
+            return;
+
+        }
+
+
+/* =========================================================
+                    READ IMAGE
+========================================================= */
+
+        const reader =
+        new FileReader();
+
+
+        reader.onload =
+        function(loadEvent){
+
+
+            const imageSource =
+            loadEvent.target.result;
+
+
+            updateProfileImages(
+                imageSource
+            );
+
+
+            try{
+
+                localStorage.setItem(
+                    "teacherProfileImage",
+                    imageSource
+                );
+
+
+                showProfileMessage(
+                    "Profile photo updated successfully.",
+                    "success"
+                );
+
+            }
+
+            catch(error){
+
+                console.error(
+                    "Image could not be saved:",
+                    error
+                );
+
+
+                showProfileMessage(
+                    "Photo preview updated, but browser storage is full.",
+                    "warning"
+                );
+
+            }
+
+
+        };
+
+
+        reader.readAsDataURL(
+            file
+        );
+
+
+    }
+);
+
+}
+
+
+/* =========================================================
+                REMOVE PROFILE IMAGE
+========================================================= */
+
+window.removeProfileImage =
+function(){
+
+
+    localStorage.removeItem(
+        "teacherProfileImage"
+    );
+
+
+    const defaultImage =
+    "../../images/default-profile.png";
+
+
+    updateProfileImages(
+        defaultImage
+    );
+
+
+    if(profileImageInput){
+
+        profileImageInput.value =
+        "";
+
+    }
+
+
+    showProfileMessage(
+        "Profile photo removed.",
+        "success"
+    );
+
+};
+
+
+/* =========================================================
+                    RESET PROFILE
+========================================================= */
+
+window.resetTeacherProfile =
+function(){
+
+
+    const confirmation =
+    confirm(
+        "Do you want to reset the profile information?"
+    );
+
+
+    if(!confirmation){
+
+        return;
+
+    }
+
+
+    localStorage.removeItem(
+        "teacherProfileData"
+    );
+
+
+    updateProfileUI(
+        defaultProfileData
+    );
+
+
+    fillEditForm(
+        defaultProfileData
+    );
+
+
+    showProfileMessage(
+        "Profile information has been reset.",
+        "success"
+    );
+
+};
+
+
+/* =========================================================
+                PROFILE COMPLETION
+========================================================= */
+
+function calculateProfileCompletion(
+    profile
+){
+
+    const fields = [
+
+        profile.fullName,
+
+        profile.employeeId,
+
+        profile.email,
+
+        profile.phone,
+
+        profile.gender,
+
+        profile.dob,
+
+        profile.designation,
+
+        profile.department,
+
+        profile.qualification,
+
+        profile.specialization,
+
+        profile.address,
+
+        profile.about
+
+    ];
+
+
+    const completedFields =
+    fields.filter(
+        function(field){
+
+            return (
+                field &&
+                field.toString().trim() !== ""
+            );
+
+        }
+    ).length;
+
+
+    return Math.round(
+        (
+            completedFields /
+            fields.length
+        )
+        *
+        100
+    );
+
+}
+
+
+/* =========================================================
+            UPDATE COMPLETION UI
+========================================================= */
+
+function updateCompletionUI(
+    profile
+){
+
+    const percentage =
+    calculateProfileCompletion(
+        profile
+    );
+
+
+    const completionValue =
+    document.querySelector(
+        ".completion-circle-content strong"
+    );
+
+
+    if(completionValue){
+
+        completionValue.innerText =
+        percentage + "%";
+
+    }
+
+
+    const completionCircle =
+    document.querySelector(
+        ".completion-circle"
+    );
+
+
+    if(completionCircle){
+
+        completionCircle.style.background =
+        `conic-gradient(
+            #6c4cff ${percentage * 3.6}deg,
+            #ede9fe 0deg
+        )`;
+
+    }
+
+}
+
+
+/* =========================================================
+        OVERRIDE PROFILE UPDATE FOR COMPLETION
+========================================================= */
+
+const originalUpdateProfileUI =
+updateProfileUI;
+
+
+updateProfileUI =
+function(profile){
+
+    originalUpdateProfileUI(
+        profile
+    );
+
+
+    updateCompletionUI(
+        profile
+    );
+
+};
+
+
+/* =========================================================
+                    INITIAL PROFILE LOAD
+========================================================= */
+
+const initialProfile =
+getSavedProfile();
+
+
+updateProfileUI(
+    initialProfile
+);
+
+
+fillEditForm(
+    initialProfile
+);
+
+
+/* =========================================================
+                    WINDOW RESIZE
+========================================================= */
+
+window.addEventListener(
+    "resize",
+    function(){
+
+        if(
+            window.innerWidth >
+            992 &&
+            teacherSidebar
+        ){
+
+            teacherSidebar.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+
+
+});
+
+
+</script>
+
+
+<!-- =========================================================
+                    PROFILE EXTRA DARK MODE
+========================================================= -->
+
+<style>
+
+/* =========================================================
+                DARK MODE PROFILE CARDS
+========================================================= */
+
+body.dark .profile-card{
+
+    background:#111827;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .profile-card-header{
+
+    border-color:#374151;
+
+}
+
+
+body.dark .profile-card-header h4{
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark .profile-card-header p,
+body.dark .profile-info-label,
+body.dark .profile-contact-content small,
+body.dark .activity-content small,
+body.dark .profile-completion p{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .profile-info-value,
+body.dark .profile-contact-content strong,
+body.dark .activity-content strong{
+
+    color:#f8fafc;
+
+}
+
+
+body.dark .profile-info-item{
+
+    background:#1f2937;
+
+    border-color:#374151;
+
+}
+
+
+body.dark .profile-about{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark .profile-skill{
+
+    background:#1f2937;
+
+    color:#c4b5fd;
+
+    border-color:#374151;
+
+}
+
+
+body.dark .profile-contact-item,
+body.dark .profile-activity-item{
+
+    border-color:#374151;
+
+}
+
+
+body.dark .profile-contact-icon,
+body.dark .activity-icon{
+
+    background:#1f2937;
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark .profile-small-edit{
+
+    background:#1f2937;
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark .completion-circle{
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.20);
+
+}
+
+
+body.dark .completion-circle::before{
+
+    background:#111827;
+
+}
+
+
+body.dark .modal-content{
+
+    background:#111827;
+
+    color:#ffffff;
+
+}
+
+
+body.dark .modal-header,
+body.dark .modal-footer{
+
+    border-color:#374151;
+
+}
+
+
+body.dark .form-control,
+body.dark .form-select{
+
+    background:#1f2937;
+
+    color:#ffffff;
+
+    border-color:#374151;
+
+}
+
+
+body.dark .form-control:focus,
+body.dark .form-select:focus{
+
+    background:#1f2937;
+
+    color:#ffffff;
+
+    border-color:#8b5cf6;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139,92,246,.15);
+
+}
+
+
+body.dark .form-control::placeholder{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark .btn-close{
+
+    filter:invert(1);
+
+}
+
+
+/* =========================================================
+                MOBILE PROFILE FIX
+========================================================= */
+
+@media(max-width:768px){
+
+    #profileDynamicAlert{
+
+        left:15px !important;
+
+        right:15px !important;
+
+        min-width:auto !important;
+
+        max-width:none !important;
+
+    }
+
+}
+
+</style>
+
+
+</body>
+
+</html>

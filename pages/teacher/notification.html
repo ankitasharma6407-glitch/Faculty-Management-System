@@ -1,0 +1,5047 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>
+    Notifications | Teacher Panel
+</title>
+
+
+<!-- =========================================================
+                        BOOTSTRAP CSS
+========================================================= -->
+
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+
+
+<!-- =========================================================
+                        FONT AWESOME
+========================================================= -->
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+<!-- =========================================================
+                        GOOGLE FONT
+========================================================= -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+
+<!-- =========================================================
+                    TEACHER COMMON CSS
+========================================================= -->
+
+<link
+    rel="stylesheet"
+    href="../../css/teacher-dashboard.css">
+
+
+<style>
+
+
+/* =========================================================
+                    NOTIFICATION PAGE
+========================================================= */
+
+.notification-page{
+
+    width:100%;
+
+}
+
+
+/* =========================================================
+                    PAGE HEADER
+========================================================= */
+
+.notification-page-header{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:24px;
+
+    margin-bottom:24px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.06);
+
+}
+
+
+.notification-page-header h2{
+
+    margin:0 0 5px;
+
+    font-size:25px;
+
+    font-weight:800;
+
+}
+
+
+.notification-page-header h2 i{
+
+    color:#6c4cff;
+
+}
+
+
+.notification-page-header p{
+
+    margin:0;
+
+    color:#64748b;
+
+    font-size:13px;
+
+}
+
+
+/* =========================================================
+                    HEADER ACTION
+========================================================= */
+
+.notification-header-action{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.notification-action-btn{
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:11px 17px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.notification-action-btn i{
+
+    margin-right:7px;
+
+}
+
+
+/* =========================================================
+                    MARK ALL READ
+========================================================= */
+
+.notification-action-btn.mark-read{
+
+    background:
+        linear-gradient(
+            135deg,
+            #6c4cff,
+            #8b5cf6
+        );
+
+    color:#ffffff;
+
+}
+
+
+.notification-action-btn.mark-read:hover{
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(108,76,255,.25);
+
+}
+
+
+/* =========================================================
+                    DELETE ALL
+========================================================= */
+
+.notification-action-btn.delete-all{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+
+.notification-action-btn.delete-all:hover{
+
+    background:#ef4444;
+
+    color:#ffffff;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+                    STATISTICS
+========================================================= */
+
+.notification-stat-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+
+    margin-bottom:24px;
+
+}
+
+
+/* =========================================================
+                    STAT CARD
+========================================================= */
+
+.notification-stat-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:21px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.055);
+
+    transition:.3s;
+
+}
+
+
+.notification-stat-card:hover{
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.09);
+
+}
+
+
+/* =========================================================
+                    STAT ICON
+========================================================= */
+
+.notification-stat-icon{
+
+    width:58px;
+
+    height:58px;
+
+    flex-shrink:0;
+
+    border-radius:17px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:23px;
+
+}
+
+
+.notification-stat-icon.total{
+
+    color:#6c4cff;
+
+    background:
+        rgba(108,76,255,.12);
+
+}
+
+
+.notification-stat-icon.unread{
+
+    color:#ef4444;
+
+    background:
+        rgba(239,68,68,.12);
+
+}
+
+
+.notification-stat-icon.read{
+
+    color:#16a34a;
+
+    background:
+        rgba(34,197,94,.12);
+
+}
+
+
+/* =========================================================
+                    STAT CONTENT
+========================================================= */
+
+.notification-stat-content small{
+
+    display:block;
+
+    color:#64748b;
+
+    font-size:12px;
+
+    font-weight:500;
+
+    margin-bottom:3px;
+
+}
+
+
+.notification-stat-content h3{
+
+    margin:0;
+
+    font-size:24px;
+
+    font-weight:800;
+
+}
+
+
+/* =========================================================
+                    TOOLBAR
+========================================================= */
+
+.notification-toolbar{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:19px;
+
+    margin-bottom:24px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.055);
+
+}
+
+
+.notification-toolbar-inner{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+
+/* =========================================================
+                    SEARCH BOX
+========================================================= */
+
+.notification-search{
+
+    position:relative;
+
+    flex:1;
+
+    min-width:260px;
+
+}
+
+
+.notification-search i{
+
+    position:absolute;
+
+    left:15px;
+
+    top:50%;
+
+    transform:
+        translateY(-50%);
+
+    color:#94a3b8;
+
+    font-size:14px;
+
+}
+
+
+.notification-search input{
+
+    width:100%;
+
+    height:44px;
+
+    border:
+        1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    padding:
+        0 15px
+        0 42px;
+
+    outline:none;
+
+    background:#ffffff;
+
+    font-size:13px;
+
+    transition:.25s;
+
+}
+
+
+.notification-search input:focus{
+
+    border-color:#8b5cf6;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139,92,246,.10);
+
+}
+
+
+/* =========================================================
+                    FILTER
+========================================================= */
+
+.notification-filter{
+
+    min-width:175px;
+
+    height:44px;
+
+    border:
+        1px solid #e5e7eb;
+
+    border-radius:12px;
+
+    padding:
+        0 13px;
+
+    background:#ffffff;
+
+    outline:none;
+
+    color:#374151;
+
+    font-size:13px;
+
+    cursor:pointer;
+
+}
+
+
+.notification-filter:focus{
+
+    border-color:#8b5cf6;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139,92,246,.10);
+
+}
+
+
+/* =========================================================
+                    NOTIFICATION CONTAINER
+========================================================= */
+
+.teacher-notification-container{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:23px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.055);
+
+    margin-bottom:24px;
+
+}
+
+
+/* =========================================================
+                    LIST HEADER
+========================================================= */
+
+.notification-list-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-bottom:20px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.notification-list-header h4{
+
+    margin:0;
+
+    color:#6c4cff;
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+
+.notification-list-header p{
+
+    margin:4px 0 0;
+
+    color:#64748b;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                    NOTIFICATION LIST
+========================================================= */
+
+.teacher-notification-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:13px;
+
+}
+
+
+/* =========================================================
+                    NOTIFICATION ITEM
+========================================================= */
+
+.teacher-notification-item{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:17px;
+
+    border:
+        1px solid #ebeaf3;
+
+    border-radius:16px;
+
+    background:#ffffff;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+.teacher-notification-item:hover{
+
+    transform:
+        translateY(-2px);
+
+    border-color:#d8d2ff;
+
+    box-shadow:
+        0 8px 22px
+        rgba(0,0,0,.06);
+
+}
+
+
+/* =========================================================
+                    UNREAD NOTIFICATION
+========================================================= */
+
+.teacher-notification-item.unread{
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(108,76,255,.065),
+            #ffffff
+        );
+
+    border-color:
+        rgba(108,76,255,.20);
+
+}
+
+
+.teacher-notification-item.unread::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-1px;
+
+    top:18%;
+
+    bottom:18%;
+
+    width:4px;
+
+    border-radius:
+        0 6px 6px 0;
+
+    background:#6c4cff;
+
+}
+
+
+/* =========================================================
+                    NOTIFICATION ICON
+========================================================= */
+
+.teacher-notification-icon{
+
+    width:52px;
+
+    height:52px;
+
+    flex-shrink:0;
+
+    border-radius:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:20px;
+
+}
+
+
+/* =========================================================
+                    ICON COLORS
+========================================================= */
+
+.teacher-notification-icon.meeting{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+
+.teacher-notification-icon.assignment{
+
+    background:#ede9fe;
+
+    color:#7c3aed;
+
+}
+
+
+.teacher-notification-icon.attendance{
+
+    background:#dcfce7;
+
+    color:#16a34a;
+
+}
+
+
+.teacher-notification-icon.timetable{
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+}
+
+
+.teacher-notification-icon.notice{
+
+    background:#fef3c7;
+
+    color:#d97706;
+
+}
+
+
+.teacher-notification-icon.academic{
+
+    background:#e0e7ff;
+
+    color:#4f46e5;
+
+}
+
+
+.teacher-notification-icon.report{
+
+    background:#cffafe;
+
+    color:#0891b2;
+
+}
+
+
+.teacher-notification-icon.general{
+
+    background:#f1f5f9;
+
+    color:#475569;
+
+}
+
+
+/* =========================================================
+                    NOTIFICATION CONTENT
+========================================================= */
+
+.teacher-notification-content{
+
+    flex:1;
+
+    min-width:0;
+
+}
+
+
+.teacher-notification-content h5{
+
+    margin:
+        0 0 5px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    color:#1f2937;
+
+}
+
+
+.teacher-notification-content p{
+
+    margin:
+        0 0 6px;
+
+    color:#64748b;
+
+    font-size:12px;
+
+    line-height:1.6;
+
+}
+
+
+.notification-time{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    color:#94a3b8;
+
+    font-size:10px;
+
+}
+
+
+.notification-time i{
+
+    font-size:10px;
+
+}
+
+
+/* =========================================================
+                    RIGHT ACTION AREA
+========================================================= */
+
+.teacher-notification-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    flex-shrink:0;
+
+}
+
+
+/* =========================================================
+                    STATUS BADGE
+========================================================= */
+
+.notification-status{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:60px;
+
+    padding:
+        5px 10px;
+
+    border-radius:20px;
+
+    font-size:10px;
+
+    font-weight:700;
+
+}
+
+
+.notification-status.unread-status{
+
+    background:
+        rgba(239,68,68,.12);
+
+    color:#dc2626;
+
+}
+
+
+.notification-status.read-status{
+
+    background:
+        rgba(34,197,94,.12);
+
+    color:#16a34a;
+
+}
+
+
+/* =========================================================
+                    ACTION BUTTON
+========================================================= */
+
+.notification-item-btn{
+
+    width:35px;
+
+    height:35px;
+
+    border:none;
+
+    border-radius:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    font-size:13px;
+
+}
+
+
+/* =========================================================
+                    READ BUTTON
+========================================================= */
+
+.notification-item-btn.read-btn{
+
+    background:#ede9fe;
+
+    color:#6c4cff;
+
+}
+
+
+.notification-item-btn.read-btn:hover{
+
+    background:#6c4cff;
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                    DELETE BUTTON
+========================================================= */
+
+.notification-item-btn.delete-btn{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+
+.notification-item-btn.delete-btn:hover{
+
+    background:#ef4444;
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                    EMPTY RESULT
+========================================================= */
+
+.no-notification-result{
+
+    display:none;
+
+    padding:
+        55px 20px;
+
+    text-align:center;
+
+}
+
+
+.no-notification-result i{
+
+    font-size:55px;
+
+    color:#c4b5fd;
+
+    margin-bottom:15px;
+
+}
+
+
+.no-notification-result h5{
+
+    margin-bottom:6px;
+
+    font-weight:700;
+
+}
+
+
+.no-notification-result p{
+
+    margin:0;
+
+    color:#64748b;
+
+    font-size:12px;
+
+}
+
+
+/* =========================================================
+                    NOTIFICATION DETAILS MODAL
+========================================================= */
+
+.notification-modal-icon{
+
+    width:78px;
+
+    height:78px;
+
+    margin:
+        0 auto 17px;
+
+    border-radius:50%;
+
+    background:#ede9fe;
+
+    color:#6c4cff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:31px;
+
+}
+
+
+.notification-detail-row{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    padding:
+        12px 0;
+
+    border-bottom:
+        1px solid #eeeeee;
+
+}
+
+
+.notification-detail-row:last-child{
+
+    border-bottom:none;
+
+}
+
+
+.notification-detail-row span{
+
+    color:#64748b;
+
+    font-size:12px;
+
+}
+
+
+.notification-detail-row strong{
+
+    font-size:12px;
+
+    text-align:right;
+
+}
+
+
+/* =========================================================
+                    NOTIFICATION MESSAGE
+========================================================= */
+
+.notification-message-box{
+
+    margin-top:20px;
+
+    padding:18px;
+
+    border-radius:14px;
+
+    background:
+        rgba(108,76,255,.06);
+
+    border:
+        1px solid
+        rgba(108,76,255,.12);
+
+}
+
+
+.notification-message-box h6{
+
+    color:#6c4cff;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+}
+
+
+.notification-message-box p{
+
+    margin:0;
+
+    color:#475569;
+
+    font-size:13px;
+
+    line-height:1.7;
+
+}
+
+
+/* =========================================================
+                    DELETE CONFIRMATION
+========================================================= */
+
+.delete-confirm-icon{
+
+    width:80px;
+
+    height:80px;
+
+    margin:
+        0 auto 18px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#fee2e2;
+
+    color:#ef4444;
+
+    font-size:31px;
+
+}
+
+
+/* =========================================================
+                        DARK MODE
+========================================================= */
+
+body.dark
+.notification-page-header,
+
+body.dark
+.notification-stat-card,
+
+body.dark
+.notification-toolbar,
+
+body.dark
+.teacher-notification-container{
+
+    background:#111827;
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                DARK MODE SECONDARY TEXT
+========================================================= */
+
+body.dark
+.notification-page-header p,
+
+body.dark
+.notification-stat-content small,
+
+body.dark
+.notification-list-header p,
+
+body.dark
+.teacher-notification-content p,
+
+body.dark
+.notification-detail-row span{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.notification-list-header h4{
+
+    color:#c4b5fd;
+
+}
+
+
+/* =========================================================
+                    DARK SEARCH
+========================================================= */
+
+body.dark
+.notification-search input,
+
+body.dark
+.notification-filter{
+
+    background:#1f2937;
+
+    border-color:#374151;
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.notification-search input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+
+body.dark
+.notification-filter option{
+
+    background:#1f2937;
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+                DARK NOTIFICATION ITEM
+========================================================= */
+
+body.dark
+.teacher-notification-item{
+
+    background:#111827;
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.teacher-notification-item:hover{
+
+    background:#1f2937;
+
+    border-color:#4c3fb5;
+
+}
+
+
+body.dark
+.teacher-notification-item.unread{
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(108,76,255,.16),
+            #111827
+        );
+
+    border-color:
+        rgba(139,92,246,.35);
+
+}
+
+
+body.dark
+.teacher-notification-content h5{
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.notification-time{
+
+    color:#94a3b8;
+
+}
+
+
+/* =========================================================
+                DARK NOTIFICATION ICONS
+========================================================= */
+
+body.dark
+.teacher-notification-icon.meeting{
+
+    background:
+        rgba(239,68,68,.15);
+
+    color:#f87171;
+
+}
+
+
+body.dark
+.teacher-notification-icon.assignment{
+
+    background:
+        rgba(139,92,246,.16);
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark
+.teacher-notification-icon.attendance{
+
+    background:
+        rgba(34,197,94,.15);
+
+    color:#4ade80;
+
+}
+
+
+body.dark
+.teacher-notification-icon.timetable{
+
+    background:
+        rgba(59,130,246,.15);
+
+    color:#60a5fa;
+
+}
+
+
+body.dark
+.teacher-notification-icon.notice{
+
+    background:
+        rgba(245,158,11,.15);
+
+    color:#fbbf24;
+
+}
+
+
+body.dark
+.teacher-notification-icon.academic{
+
+    background:
+        rgba(99,102,241,.15);
+
+    color:#a5b4fc;
+
+}
+
+
+body.dark
+.teacher-notification-icon.report{
+
+    background:
+        rgba(6,182,212,.15);
+
+    color:#67e8f9;
+
+}
+
+
+body.dark
+.teacher-notification-icon.general{
+
+    background:#1f2937;
+
+    color:#cbd5e1;
+
+}
+
+
+/* =========================================================
+                    DARK BUTTONS
+========================================================= */
+
+body.dark
+.notification-action-btn.delete-all{
+
+    background:
+        rgba(239,68,68,.14);
+
+    color:#f87171;
+
+}
+
+
+body.dark
+.notification-action-btn.delete-all:hover{
+
+    background:#ef4444;
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.notification-item-btn.read-btn{
+
+    background:
+        rgba(139,92,246,.15);
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark
+.notification-item-btn.delete-btn{
+
+    background:
+        rgba(239,68,68,.14);
+
+    color:#f87171;
+
+}
+
+
+/* =========================================================
+                    DARK MODAL
+========================================================= */
+
+body.dark
+.modal-content{
+
+    background:#111827;
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+.modal-header,
+
+body.dark
+.modal-footer{
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.notification-detail-row{
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.notification-message-box{
+
+    background:
+        rgba(108,76,255,.10);
+
+    border-color:
+        rgba(139,92,246,.25);
+
+}
+
+
+body.dark
+.notification-message-box h6{
+
+    color:#c4b5fd;
+
+}
+
+
+body.dark
+.notification-message-box p{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark
+.btn-close{
+
+    filter:invert(1);
+
+}
+
+
+/* =========================================================
+                DARK DROPDOWN FIX
+========================================================= */
+
+body.dark
+.notification-menu{
+
+    background:#111827 !important;
+
+    border:
+        1px solid #374151 !important;
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.35) !important;
+
+}
+
+
+body.dark
+.notification-menu .dropdown-header{
+
+    background:#111827 !important;
+
+    color:#ffffff !important;
+
+    border-color:#374151 !important;
+
+}
+
+
+body.dark
+.notification-menu .dropdown-item{
+
+    background:#111827 !important;
+
+    color:#e5e7eb !important;
+
+}
+
+
+body.dark
+.notification-menu .dropdown-item:hover,
+
+body.dark
+.notification-menu .dropdown-item:focus{
+
+    background:#1f2937 !important;
+
+    color:#ffffff !important;
+
+}
+
+
+body.dark
+.notification-menu .dropdown-divider{
+
+    border-color:#374151 !important;
+
+}
+
+
+/* =========================================================
+                    FOOTER
+========================================================= */
+
+.notification-footer{
+
+    text-align:center;
+
+    padding:
+        10px 10px 20px;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE 1200
+========================================================= */
+
+@media(max-width:1200px){
+
+.notification-stat-grid{
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+}
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE 768
+========================================================= */
+
+@media(max-width:768px){
+
+.notification-stat-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+
+.notification-page-header{
+
+    padding:19px;
+
+}
+
+
+.notification-page-header h2{
+
+    font-size:21px;
+
+}
+
+
+.notification-header-action{
+
+    width:100%;
+
+}
+
+
+.notification-action-btn{
+
+    flex:1;
+
+}
+
+
+.notification-toolbar-inner{
+
+    flex-direction:column;
+
+    align-items:stretch;
+
+}
+
+
+.notification-search{
+
+    width:100%;
+
+    min-width:0;
+
+}
+
+
+.notification-filter{
+
+    width:100%;
+
+}
+
+
+.teacher-notification-container{
+
+    padding:17px;
+
+}
+
+
+.teacher-notification-item{
+
+    align-items:flex-start;
+
+}
+
+
+.teacher-notification-actions{
+
+    flex-direction:column;
+
+}
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE 576
+========================================================= */
+
+@media(max-width:576px){
+
+.notification-page-header{
+
+    align-items:flex-start;
+
+}
+
+
+.notification-header-action{
+
+    flex-direction:column;
+
+}
+
+
+.notification-action-btn{
+
+    width:100%;
+
+}
+
+
+.teacher-notification-item{
+
+    flex-wrap:wrap;
+
+}
+
+
+.teacher-notification-content{
+
+    width:
+        calc(100% - 70px);
+
+}
+
+
+.teacher-notification-actions{
+
+    width:100%;
+
+    flex-direction:row;
+
+    justify-content:flex-end;
+
+    padding-top:5px;
+
+}
+
+
+.notification-status{
+
+    margin-right:auto;
+
+}
+
+
+.notification-detail-row{
+
+    align-items:flex-start;
+
+    flex-direction:column;
+
+    gap:5px;
+
+}
+
+
+.notification-detail-row strong{
+
+    text-align:left;
+
+}
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="page-wrapper">
+
+<!-- =========================================================
+                         SIDEBAR
+========================================================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo">
+
+        <img src="../../images/logo.png" alt="FMPS Logo">
+
+        <div>
+            <h3>FMPS</h3>
+            <span>Teacher Panel</span>
+        </div>
+
+    </div>
+
+
+    <ul class="sidebar-menu">
+
+        <li>
+            <a href="teacher-dashboard.html">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+
+        <li>
+            <a href="my-classes.html">
+                <i class="fa-solid fa-chalkboard"></i>
+                <span>My Classes</span>
+            </a>
+        </li>
+
+
+        <li>
+            <a href="attendance.html">
+                <i class="fa-solid fa-user-check"></i>
+                <span>Attendance</span>
+            </a>
+        </li>
+
+
+        <li>
+            <a href="assignments.html">
+                <i class="fa-solid fa-file-pen"></i>
+                <span>Assignments</span>
+            </a>
+        </li>
+
+
+        <li>
+            <a href="lesson-plan.html">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Lesson Plans</span>
+            </a>
+        </li>
+
+
+        <li>
+            <a href="students.html">
+                <i class="fa-solid fa-users"></i>
+                <span>Students</span>
+            </a>
+        </li>
+
+
+        <li>
+            <a href="reports.html">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Reports</span>
+            </a>
+        </li>
+
+
+        <li>
+            <a href="notices.html">
+                <i class="fa-solid fa-bullhorn"></i>
+                <span>Notices</span>
+            </a>
+        </li>
+
+
+        <!-- Active Page -->
+
+        <li class="active">
+            <a href="notifications.html">
+                <i class="fa-solid fa-bell"></i>
+                <span>Notifications</span>
+            </a>
+        </li>
+
+
+        <li>
+            <a href="profile.html">
+                <i class="fa-solid fa-user"></i>
+                <span>My Profile</span>
+            </a>
+        </li>
+
+
+        <li>
+            <a href="settings.html">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+        </li>
+
+    </ul>
+
+
+    <div class="sidebar-bottom">
+
+        <a href="../auth/teacher-login.html">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================================
+                        MAIN CONTENT
+========================================================= -->
+
+<main class="main-content">
+
+
+<!-- =========================================================
+                           TOPBAR
+========================================================= -->
+
+<header class="topbar">
+
+    <div class="topbar-left">
+
+        <!-- Mobile Sidebar Button -->
+
+        <button
+            type="button"
+            class="menu-toggle"
+            id="menuToggle">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+
+        <div>
+
+            <h2>Notifications</h2>
+
+            <p>
+                Stay updated with your academic activities
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+                        TOPBAR RIGHT
+    ====================================================== -->
+
+    <div class="topbar-right">
+
+
+        <!-- Search -->
+
+        <div class="top-search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                placeholder="Search...">
+
+        </div>
+
+
+
+        <!-- =================================================
+                            DARK MODE
+        ================================================== -->
+
+        <button
+            type="button"
+            class="top-icon-btn"
+            id="themeToggle"
+            title="Change Theme">
+
+            <i
+                class="fa-solid fa-moon"
+                id="themeIcon">
+            </i>
+
+        </button>
+
+
+
+        <!-- =================================================
+                        NOTIFICATION BELL
+        ================================================== -->
+
+        <div class="notification-dropdown">
+
+            <button
+                type="button"
+                class="top-icon-btn notification-btn"
+                id="notificationBtn">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <span
+                    class="notification-count"
+                    id="headerNotificationCount">
+                    3
+                </span>
+
+            </button>
+
+
+
+            <!-- =============================================
+                    NOTIFICATION DROPDOWN MENU
+            ============================================== -->
+
+            <div
+                class="notification-menu"
+                id="notificationMenu">
+
+
+                <!-- Header -->
+
+                <div class="dropdown-header">
+
+                    <strong>
+                        Notifications
+                    </strong>
+
+                    <button
+                        type="button"
+                        id="dropdownMarkAll">
+
+                        Mark all read
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- =========================================
+                        DROPDOWN ITEM 1
+                ========================================== -->
+
+                <div
+                    class="dropdown-item unread"
+                    data-notification-id="1">
+
+                    <div class="dropdown-notification-icon meeting">
+
+                        <i class="fa-solid fa-bullhorn"></i>
+
+                    </div>
+
+
+                    <div class="dropdown-notification-text">
+
+                        <strong>
+                            Staff Meeting Today
+                        </strong>
+
+                        <span>
+                            Staff meeting at 3:00 PM
+                        </span>
+
+                    </div>
+
+
+                    <span class="dropdown-unread-dot"></span>
+
+                </div>
+
+
+
+                <!-- =========================================
+                        DROPDOWN ITEM 2
+                ========================================== -->
+
+                <div
+                    class="dropdown-item unread"
+                    data-notification-id="2">
+
+                    <div class="dropdown-notification-icon assignment">
+
+                        <i class="fa-solid fa-file-lines"></i>
+
+                    </div>
+
+
+                    <div class="dropdown-notification-text">
+
+                        <strong>
+                            New Assignment Uploaded
+                        </strong>
+
+                        <span>
+                            Assignment added successfully
+                        </span>
+
+                    </div>
+
+
+                    <span class="dropdown-unread-dot"></span>
+
+                </div>
+
+
+
+                <!-- =========================================
+                        DROPDOWN ITEM 3
+                ========================================== -->
+
+                <div
+                    class="dropdown-item unread"
+                    data-notification-id="3">
+
+                    <div class="dropdown-notification-icon attendance">
+
+                        <i class="fa-solid fa-square-check"></i>
+
+                    </div>
+
+
+                    <div class="dropdown-notification-text">
+
+                        <strong>
+                            Attendance Submitted
+                        </strong>
+
+                        <span>
+                            Attendance submitted successfully
+                        </span>
+
+                    </div>
+
+
+                    <span class="dropdown-unread-dot"></span>
+
+                </div>
+
+
+
+                <!-- Footer -->
+
+                <div class="dropdown-footer">
+
+                    <a href="notification.html">
+
+                        View All Notifications
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+                            PROFILE
+        ================================================== -->
+
+        <div
+            class="teacher-profile-menu"
+            id="teacherProfileMenu">
+
+
+            <button
+                type="button"
+                class="teacher-profile-trigger"
+                id="profileTrigger">
+
+
+                <div class="teacher-avatar">
+
+                    <img
+                        src="../../images/teacher-avatar.png"
+                        alt="Teacher"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+
+                    <span
+                        class="avatar-fallback"
+                        style="display:none;">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </span>
+
+                </div>
+
+
+                <div class="teacher-profile-info">
+
+                    <strong>
+                        Welcome, Teacher
+                    </strong>
+
+                    <span>
+                        Faculty Member
+                    </span>
+
+                </div>
+
+
+                <i
+                    class="fa-solid fa-chevron-down profile-arrow">
+                </i>
+
+            </button>
+
+
+
+            <!-- =============================================
+                        PROFILE DROPDOWN
+            ============================================== -->
+
+            <div
+                class="teacher-profile-dropdown"
+                id="profileDropdown">
+
+
+                <div class="profile-dropdown-header">
+
+                    <div class="profile-dropdown-avatar">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Teacher
+                        </strong>
+
+                        <span>
+                            Faculty Member
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-dropdown-divider"></div>
+
+
+                <a href="profile.html">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    My Profile
+
+                </a>
+
+
+                <a href="settings.html">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    Settings
+
+                </a>
+
+
+                <div class="profile-dropdown-divider"></div>
+
+
+                <a
+                    href="../auth/teacher-login.html"
+                    class="logout-link">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    Logout
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+                    PAGE CONTENT WRAPPER
+========================================================= -->
+
+<div class="content-area">
+
+<div class="notification-page">
+
+
+<!-- =========================================================
+                    PAGE HEADER
+========================================================= -->
+
+<section class="notification-page-header">
+
+    <div>
+
+        <h2>
+
+            <i class="fa-solid fa-bell"></i>
+
+            My Notifications
+
+        </h2>
+
+        <p>
+            View and manage all your latest academic notifications.
+        </p>
+
+    </div>
+
+
+    <div class="notification-header-action">
+
+        <button
+            type="button"
+            class="notification-action-btn mark-read"
+            id="markAllRead">
+
+            <i class="fa-solid fa-check-double"></i>
+
+            Mark All Read
+
+        </button>
+
+
+        <button
+            type="button"
+            class="notification-action-btn delete-all"
+            id="deleteAllNotifications">
+
+            <i class="fa-solid fa-trash"></i>
+
+            Delete All
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+                    SUMMARY CARDS
+========================================================= -->
+
+<section class="notification-stat-grid">
+
+
+    <!-- Total -->
+
+    <div class="notification-stat-card">
+
+        <div class="notification-stat-icon total">
+
+            <i class="fa-solid fa-bell"></i>
+
+        </div>
+
+
+        <div class="notification-stat-content">
+
+            <small>
+                Total Notifications
+            </small>
+
+            <h3 id="totalNotifications">
+                8
+            </h3>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Unread -->
+
+    <div class="notification-stat-card">
+
+        <div class="notification-stat-icon unread">
+
+            <i class="fa-solid fa-envelope"></i>
+
+        </div>
+
+
+        <div class="notification-stat-content">
+
+            <small>
+                Unread
+            </small>
+
+            <h3 id="unreadNotifications">
+                3
+            </h3>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Read -->
+
+    <div class="notification-stat-card">
+
+        <div class="notification-stat-icon read">
+
+            <i class="fa-solid fa-envelope-open"></i>
+
+        </div>
+
+
+        <div class="notification-stat-content">
+
+            <small>
+                Read
+            </small>
+
+            <h3 id="readNotifications">
+                5
+            </h3>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+                    SEARCH + FILTER
+========================================================= -->
+
+<section class="notification-toolbar">
+
+    <div class="notification-toolbar-inner">
+
+
+        <!-- Search -->
+
+        <div class="notification-search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="notificationSearch"
+                placeholder="Search notifications...">
+
+        </div>
+
+
+
+        <!-- Filter -->
+
+        <select
+            class="notification-filter"
+            id="notificationFilter">
+
+            <option value="all">
+                All Notifications
+            </option>
+
+            <option value="unread">
+                Unread
+            </option>
+
+            <option value="read">
+                Read
+            </option>
+
+            <option value="meeting">
+                Meetings
+            </option>
+
+            <option value="assignment">
+                Assignments
+            </option>
+
+            <option value="attendance">
+                Attendance
+            </option>
+
+            <option value="timetable">
+                Timetable
+            </option>
+
+            <option value="notice">
+                Notices
+            </option>
+
+            <option value="academic">
+                Academic
+            </option>
+
+        </select>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+                    NOTIFICATION LIST
+========================================================= -->
+
+<section class="teacher-notification-container">
+
+
+    <div class="notification-list-header">
+
+        <div>
+
+            <h4>
+                Recent Notifications
+            </h4>
+
+            <p>
+                Click any notification to view complete details.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div
+        class="teacher-notification-list"
+        id="teacherNotificationList">
+
+
+
+        <!-- =================================================
+                        NOTIFICATION 1
+        ================================================== -->
+
+        <div
+            class="teacher-notification-item unread"
+            data-id="1"
+            data-category="meeting"
+            data-title="Staff Meeting Today"
+            data-message="A staff meeting has been scheduled today at 3:00 PM in the Conference Hall."
+            data-time="5 Minutes Ago">
+
+
+            <div class="teacher-notification-icon meeting">
+
+                <i class="fa-solid fa-bullhorn"></i>
+
+            </div>
+
+
+            <div class="teacher-notification-content">
+
+                <h5>
+                    Staff Meeting Today (3:00 PM)
+                </h5>
+
+                <p>
+                    A staff meeting has been scheduled in the
+                    Conference Hall.
+                </p>
+
+                <span class="notification-time">
+
+                    <i class="fa-regular fa-clock"></i>
+
+                    5 Minutes Ago
+
+                </span>
+
+            </div>
+
+
+            <div class="teacher-notification-actions">
+
+                <span
+                    class="notification-status unread-status">
+
+                    Unread
+
+                </span>
+
+
+                <button
+                    type="button"
+                    class="notification-item-btn read-btn"
+                    title="Mark as read">
+
+                    <i class="fa-solid fa-check"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="notification-item-btn delete-btn"
+                    title="Delete notification">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+                        NOTIFICATION 2
+        ================================================== -->
+
+        <div
+            class="teacher-notification-item unread"
+            data-id="2"
+            data-category="assignment"
+            data-title="New Assignment Uploaded"
+            data-message="A new assignment has been uploaded for your BCA Semester IV class."
+            data-time="20 Minutes Ago">
+
+
+            <div class="teacher-notification-icon assignment">
+
+                <i class="fa-solid fa-file-lines"></i>
+
+            </div>
+
+
+            <div class="teacher-notification-content">
+
+                <h5>
+                    New Assignment Uploaded
+                </h5>
+
+                <p>
+                    New assignment added for BCA Semester IV.
+                </p>
+
+                <span class="notification-time">
+
+                    <i class="fa-regular fa-clock"></i>
+
+                    20 Minutes Ago
+
+                </span>
+
+            </div>
+
+
+            <div class="teacher-notification-actions">
+
+                <span
+                    class="notification-status unread-status">
+
+                    Unread
+
+                </span>
+
+
+                <button
+                    type="button"
+                    class="notification-item-btn read-btn">
+
+                    <i class="fa-solid fa-check"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="notification-item-btn delete-btn">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+                        NOTIFICATION 3
+        ================================================== -->
+
+        <div
+            class="teacher-notification-item unread"
+            data-id="3"
+            data-category="attendance"
+            data-title="Attendance Submitted Successfully"
+            data-message="Today's attendance for BCA Semester IV has been submitted successfully."
+            data-time="35 Minutes Ago">
+
+
+            <div class="teacher-notification-icon attendance">
+
+                <i class="fa-solid fa-square-check"></i>
+
+            </div>
+
+
+            <div class="teacher-notification-content">
+
+                <h5>
+                    Attendance Submitted Successfully
+                </h5>
+
+                <p>
+                    Today's class attendance has been saved.
+                </p>
+
+                <span class="notification-time">
+
+                    <i class="fa-regular fa-clock"></i>
+
+                    35 Minutes Ago
+
+                </span>
+
+            </div>
+
+
+            <div class="teacher-notification-actions">
+
+                <span
+                    class="notification-status unread-status">
+
+                    Unread
+
+                </span>
+
+
+                <button
+                    type="button"
+                    class="notification-item-btn read-btn">
+
+                    <i class="fa-solid fa-check"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="notification-item-btn delete-btn">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+                        NOTIFICATION 4
+        ================================================== -->
+
+        <div
+            class="teacher-notification-item"
+            data-id="4"
+            data-category="timetable"
+            data-title="Class Schedule Updated"
+            data-message="Your Monday class schedule has been updated. Please check My Classes for complete details."
+            data-time="1 Hour Ago">
+
+
+            <div class="teacher-notification-icon timetable">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+            </div>
+
+
+            <div class="teacher-notification-content">
+
+                <h5>
+                    Class Schedule Updated
+                </h5>
+
+                <p>
+                    Your Monday timetable has been updated.
+                </p>
+
+                <span class="notification-time">
+
+                    <i class="fa-regular fa-clock"></i>
+
+                    1 Hour Ago
+
+                </span>
+
+            </div>
+
+
+            <div class="teacher-notification-actions">
+
+                <span
+                    class="notification-status read-status">
+
+                    Read
+
+                </span>
+
+
+                <button
+                    type="button"
+                    class="notification-item-btn read-btn">
+
+                    <i class="fa-solid fa-check"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="notification-item-btn delete-btn">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+                        NOTIFICATION 5
+        ================================================== -->
+
+        <div
+            class="teacher-notification-item"
+            data-id="5"
+            data-category="notice"
+            data-title="New College Notice"
+            data-message="The semester examination schedule has been published. Please check the Notices section."
+            data-time="2 Hours Ago">
+
+
+            <div class="teacher-notification-icon notice">
+
+                <i class="fa-solid fa-bullhorn"></i>
+
+            </div>
+
+
+            <div class="teacher-notification-content">
+
+                <h5>
+                    New College Notice
+                </h5>
+
+                <p>
+                    Semester examination schedule published.
+                </p>
+
+                <span class="notification-time">
+
+                    <i class="fa-regular fa-clock"></i>
+
+                    2 Hours Ago
+
+                </span>
+
+            </div>
+
+
+            <div class="teacher-notification-actions">
+
+                <span
+                    class="notification-status read-status">
+
+                    Read
+
+                </span>
+
+
+                <button
+                    type="button"
+                    class="notification-item-btn read-btn">
+
+                    <i class="fa-solid fa-check"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="notification-item-btn delete-btn">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+                        NOTIFICATION 6
+        ================================================== -->
+
+        <div
+            class="teacher-notification-item"
+            data-id="6"
+            data-category="academic"
+            data-title="Lesson Plan Approved"
+            data-message="Your submitted lesson plan for Database Management System has been approved."
+            data-time="Yesterday">
+
+
+            <div class="teacher-notification-icon academic">
+
+                <i class="fa-solid fa-book-open"></i>
+
+            </div>
+
+
+            <div class="teacher-notification-content">
+
+                <h5>
+                    Lesson Plan Approved
+                </h5>
+
+                <p>
+                    Your DBMS lesson plan has been approved.
+                </p>
+
+                <span class="notification-time">
+
+                    <i class="fa-regular fa-clock"></i>
+
+                    Yesterday
+
+                </span>
+
+            </div>
+
+
+            <div class="teacher-notification-actions">
+
+                <span
+                    class="notification-status read-status">
+
+                    Read
+
+                </span>
+
+
+                <button
+                    type="button"
+                    class="notification-item-btn read-btn">
+
+                    <i class="fa-solid fa-check"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="notification-item-btn delete-btn">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+                        NOTIFICATION 7
+        ================================================== -->
+
+        <div
+            class="teacher-notification-item"
+            data-id="7"
+            data-category="attendance"
+            data-title="Weekly Attendance Report"
+            data-message="Your weekly student attendance report has been generated successfully."
+            data-time="Yesterday">
+
+
+            <div class="teacher-notification-icon report">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+            </div>
+
+
+            <div class="teacher-notification-content">
+
+                <h5>
+                    Weekly Attendance Report
+                </h5>
+
+                <p>
+                    Weekly attendance report is ready.
+                </p>
+
+                <span class="notification-time">
+
+                    <i class="fa-regular fa-clock"></i>
+
+                    Yesterday
+
+                </span>
+
+            </div>
+
+
+            <div class="teacher-notification-actions">
+
+                <span
+                    class="notification-status read-status">
+
+                    Read
+
+                </span>
+
+
+                <button
+                    type="button"
+                    class="notification-item-btn read-btn">
+
+                    <i class="fa-solid fa-check"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="notification-item-btn delete-btn">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+                        NOTIFICATION 8
+        ================================================== -->
+
+        <div
+            class="teacher-notification-item"
+            data-id="8"
+            data-category="academic"
+            data-title="Student Performance Updated"
+            data-message="The latest student performance statistics are now available in your Reports section."
+            data-time="2 Days Ago">
+
+
+            <div class="teacher-notification-icon general">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+            </div>
+
+
+            <div class="teacher-notification-content">
+
+                <h5>
+                    Student Performance Updated
+                </h5>
+
+                <p>
+                    Latest performance statistics are available.
+                </p>
+
+                <span class="notification-time">
+
+                    <i class="fa-regular fa-clock"></i>
+
+                    2 Days Ago
+
+                </span>
+
+            </div>
+
+
+            <div class="teacher-notification-actions">
+
+                <span
+                    class="notification-status read-status">
+
+                    Read
+
+                </span>
+
+
+                <button
+                    type="button"
+                    class="notification-item-btn read-btn">
+
+                    <i class="fa-solid fa-check"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="notification-item-btn delete-btn">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+                        NO RESULT
+        ================================================== -->
+
+        <div
+            class="no-notification-result"
+            id="noNotificationResult">
+
+            <i class="fa-regular fa-bell-slash"></i>
+
+            <h5>
+                No Notifications Found
+            </h5>
+
+            <p>
+                No notifications match your current
+                search or filter.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+                         FOOTER
+========================================================= -->
+
+<div class="notification-footer">
+
+    Faculty Management & Productivity System
+
+    <span id="footerYear"></span>
+
+</div>
+
+
+</div>
+</div>
+
+
+<!-- =========================================================
+                    BOOTSTRAP JAVASCRIPT
+========================================================= -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- =========================================================
+                    TEACHER COMMON JS
+========================================================= -->
+
+<script src="../../js/teacher-dashboard.js"></script>
+
+
+<!-- =========================================================
+                NOTIFICATION JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+
+/* =========================================================
+                    ELEMENTS
+========================================================= */
+
+const notificationList =
+document.getElementById(
+    "notificationList"
+);
+
+
+const notificationSearchInput =
+document.getElementById(
+    "notificationSearchInput"
+);
+
+
+const notificationFilter =
+document.getElementById(
+    "notificationFilter"
+);
+
+
+const markAllReadBtn =
+document.getElementById(
+    "markAllReadBtn"
+);
+
+
+const deleteAllNotificationsBtn =
+document.getElementById(
+    "deleteAllNotificationsBtn"
+);
+
+
+const globalSearchBox =
+document.getElementById(
+    "searchBox"
+);
+
+
+const noNotificationResult =
+document.getElementById(
+    "noNotificationResult"
+);
+
+
+/* =========================================================
+                GET NOTIFICATION CARDS
+========================================================= */
+
+function getNotificationCards(){
+
+    return Array.from(
+        document.querySelectorAll(
+            ".teacher-notification-card"
+        )
+    );
+
+}
+
+
+/* =========================================================
+                    UPDATE COUNTERS
+========================================================= */
+
+function updateNotificationCounters(){
+
+
+    const cards =
+    getNotificationCards();
+
+
+    const total =
+    cards.length;
+
+
+    const unread =
+    cards.filter(
+        function(card){
+
+            return card.classList.contains(
+                "unread"
+            );
+
+        }
+    ).length;
+
+
+    const read =
+    total - unread;
+
+
+    /* =====================================================
+                    TOTAL
+    ===================================================== */
+
+    const totalElement =
+    document.getElementById(
+        "totalNotificationCount"
+    );
+
+
+    if(totalElement){
+
+        totalElement.innerText =
+        total;
+
+    }
+
+
+    /* =====================================================
+                    UNREAD
+    ===================================================== */
+
+    const unreadElement =
+    document.getElementById(
+        "unreadNotificationCount"
+    );
+
+
+    if(unreadElement){
+
+        unreadElement.innerText =
+        unread;
+
+    }
+
+
+    /* =====================================================
+                    READ
+    ===================================================== */
+
+    const readElement =
+    document.getElementById(
+        "readNotificationCount"
+    );
+
+
+    if(readElement){
+
+        readElement.innerText =
+        read;
+
+    }
+
+
+    /* =====================================================
+                NAVBAR BADGE
+    ===================================================== */
+
+    const navbarCount =
+    document.getElementById(
+        "notificationCount"
+    );
+
+
+    if(navbarCount){
+
+
+        navbarCount.innerText =
+        unread;
+
+
+        if(unread === 0){
+
+            navbarCount.style.display =
+            "none";
+
+        }
+
+        else{
+
+            navbarCount.style.display =
+            "flex";
+
+        }
+
+
+    }
+
+
+}
+
+
+/* =========================================================
+                UPDATE STATUS BADGE
+========================================================= */
+
+function updateCardStatus(
+    card,
+    isUnread
+){
+
+
+    if(!card){
+
+        return;
+
+    }
+
+
+    const status =
+    card.querySelector(
+        ".notification-status"
+    );
+
+
+    const readButton =
+    card.querySelector(
+        ".notification-card-btn.read-btn"
+    );
+
+
+    if(isUnread){
+
+
+        card.classList.add(
+            "unread"
+        );
+
+
+        if(status){
+
+            status.className =
+            "notification-status unread";
+
+
+            status.innerText =
+            "Unread";
+
+        }
+
+
+        if(readButton){
+
+            readButton.style.display =
+            "flex";
+
+        }
+
+
+    }
+
+    else{
+
+
+        card.classList.remove(
+            "unread"
+        );
+
+
+        if(status){
+
+            status.className =
+            "notification-status read";
+
+
+            status.innerText =
+            "Read";
+
+        }
+
+
+        if(readButton){
+
+            readButton.style.display =
+            "none";
+
+        }
+
+
+    }
+
+
+}
+
+
+/* =========================================================
+                    FILTER NOTIFICATIONS
+========================================================= */
+
+function filterNotifications(){
+
+
+    const searchValue =
+    notificationSearchInput
+    ?
+    notificationSearchInput.value
+        .toLowerCase()
+        .trim()
+    :
+    "";
+
+
+    const filterValue =
+    notificationFilter
+    ?
+    notificationFilter.value
+    :
+    "all";
+
+
+    const cards =
+    getNotificationCards();
+
+
+    let visibleCount =
+    0;
+
+
+    cards.forEach(
+        function(card){
+
+
+            const searchText =
+            (
+                card.dataset.search
+                ||
+                card.innerText
+            )
+            .toLowerCase();
+
+
+            const matchesSearch =
+            searchText.includes(
+                searchValue
+            );
+
+
+            let matchesFilter =
+            true;
+
+
+            /* =================================================
+                            UNREAD
+            ================================================= */
+
+            if(
+                filterValue ===
+                "unread"
+            ){
+
+                matchesFilter =
+                card.classList.contains(
+                    "unread"
+                );
+
+            }
+
+
+            /* =================================================
+                            READ
+            ================================================= */
+
+            else if(
+                filterValue ===
+                "read"
+            ){
+
+                matchesFilter =
+                !card.classList.contains(
+                    "unread"
+                );
+
+            }
+
+
+            /* =================================================
+                            TODAY
+            ================================================= */
+
+            else if(
+                filterValue ===
+                "today"
+            ){
+
+                matchesFilter =
+                card.dataset.today ===
+                "true";
+
+            }
+
+
+            /* =================================================
+                            DISPLAY
+            ================================================= */
+
+            if(
+                matchesSearch &&
+                matchesFilter
+            ){
+
+                card.style.display =
+                "flex";
+
+                visibleCount++;
+
+            }
+
+            else{
+
+                card.style.display =
+                "none";
+
+            }
+
+
+        }
+    );
+
+
+    /* =====================================================
+                    NO RESULT
+    ===================================================== */
+
+    if(noNotificationResult){
+
+
+        if(visibleCount === 0){
+
+            noNotificationResult.style.display =
+            "block";
+
+        }
+
+        else{
+
+            noNotificationResult.style.display =
+            "none";
+
+        }
+
+
+    }
+
+
+}
+
+
+/* =========================================================
+                    SEARCH
+========================================================= */
+
+if(notificationSearchInput){
+
+
+    notificationSearchInput.addEventListener(
+        "input",
+        function(){
+
+            filterNotifications();
+
+        }
+    );
+
+
+}
+
+
+/* =========================================================
+                    FILTER
+========================================================= */
+
+if(notificationFilter){
+
+
+    notificationFilter.addEventListener(
+        "change",
+        function(){
+
+            filterNotifications();
+
+        }
+    );
+
+
+}
+
+
+/* =========================================================
+                TOP NAVBAR SEARCH
+========================================================= */
+
+if(globalSearchBox){
+
+
+    globalSearchBox.addEventListener(
+        "input",
+        function(){
+
+
+            if(notificationSearchInput){
+
+                notificationSearchInput.value =
+                this.value;
+
+            }
+
+
+            filterNotifications();
+
+
+        }
+    );
+
+
+}
+
+
+/* =========================================================
+                    MARK ALL READ
+========================================================= */
+
+if(markAllReadBtn){
+
+
+    markAllReadBtn.addEventListener(
+        "click",
+        function(){
+
+
+            const cards =
+            getNotificationCards();
+
+
+            cards.forEach(
+                function(card){
+
+                    updateCardStatus(
+                        card,
+                        false
+                    );
+
+                }
+            );
+
+
+            updateNotificationCounters();
+
+
+            filterNotifications();
+
+
+            showNotificationToast(
+                "All notifications marked as read.",
+                "success"
+            );
+
+
+        }
+    );
+
+
+}
+
+
+/* =========================================================
+                INDIVIDUAL BUTTON ACTIONS
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+
+        /* =====================================================
+                    MARK SINGLE AS READ
+        ===================================================== */
+
+        const readButton =
+        event.target.closest(
+            ".notification-card-btn.read-btn"
+        );
+
+
+        if(readButton){
+
+
+            const card =
+            readButton.closest(
+                ".teacher-notification-card"
+            );
+
+
+            updateCardStatus(
+                card,
+                false
+            );
+
+
+            updateNotificationCounters();
+
+
+            filterNotifications();
+
+
+            showNotificationToast(
+                "Notification marked as read.",
+                "success"
+            );
+
+
+            return;
+
+        }
+
+
+        /* =====================================================
+                    DELETE SINGLE
+        ===================================================== */
+
+        const deleteButton =
+        event.target.closest(
+            ".notification-card-btn.delete"
+        );
+
+
+        if(deleteButton){
+
+
+            const card =
+            deleteButton.closest(
+                ".teacher-notification-card"
+            );
+
+
+            if(!card){
+
+                return;
+
+            }
+
+
+            const titleElement =
+            card.querySelector(
+                ".notification-content h5"
+            );
+
+
+            const title =
+            titleElement
+            ?
+            titleElement.innerText
+            :
+            "this notification";
+
+
+            const confirmed =
+            confirm(
+                `Delete "${title}"?`
+            );
+
+
+            if(!confirmed){
+
+                return;
+
+            }
+
+
+            card.style.opacity =
+            "0";
+
+
+            card.style.transform =
+            "translateX(30px)";
+
+
+            setTimeout(
+                function(){
+
+
+                    card.remove();
+
+
+                    updateNotificationCounters();
+
+
+                    filterNotifications();
+
+
+                    showNotificationToast(
+                        "Notification deleted.",
+                        "danger"
+                    );
+
+
+                },
+                250
+            );
+
+
+            return;
+
+        }
+
+
+        /* =====================================================
+                    VIEW NOTIFICATION
+        ===================================================== */
+
+        const viewButton =
+        event.target.closest(
+            ".notification-card-btn.view"
+        );
+
+
+        if(viewButton){
+
+
+            const card =
+            viewButton.closest(
+                ".teacher-notification-card"
+            );
+
+
+            if(!card){
+
+                return;
+
+            }
+
+
+            openNotificationDetails(
+                card
+            );
+
+
+        }
+
+
+    }
+);
+
+
+/* =========================================================
+                    DELETE ALL
+========================================================= */
+
+if(deleteAllNotificationsBtn){
+
+
+    deleteAllNotificationsBtn.addEventListener(
+        "click",
+        function(){
+
+
+            const cards =
+            getNotificationCards();
+
+
+            if(cards.length === 0){
+
+
+                showNotificationToast(
+                    "No notifications available.",
+                    "warning"
+                );
+
+
+                return;
+
+            }
+
+
+            const confirmed =
+            confirm(
+                "Are you sure you want to delete all notifications?"
+            );
+
+
+            if(!confirmed){
+
+                return;
+
+            }
+
+
+            cards.forEach(
+                function(card){
+
+                    card.remove();
+
+                }
+            );
+
+
+            updateNotificationCounters();
+
+
+            filterNotifications();
+
+
+            showNotificationToast(
+                "All notifications deleted.",
+                "danger"
+            );
+
+
+        }
+    );
+
+
+}
+
+
+/* =========================================================
+                INITIAL COUNTERS
+========================================================= */
+
+updateNotificationCounters();
+
+
+filterNotifications();
+
+
+});
+
+
+/* =========================================================
+                OPEN NOTIFICATION DETAILS
+========================================================= */
+
+function openNotificationDetails(
+    card
+){
+
+
+    if(!card){
+
+        return;
+
+    }
+
+
+    const titleElement =
+    card.querySelector(
+        ".notification-content h5"
+    );
+
+
+    const descriptionElement =
+    card.querySelector(
+        ".notification-content p"
+    );
+
+
+    const timeElement =
+    card.querySelector(
+        ".notification-time"
+    );
+
+
+    const iconElement =
+    card.querySelector(
+        ".notification-icon i"
+    );
+
+
+    const title =
+    titleElement
+    ?
+    titleElement.innerText
+    :
+    "Notification";
+
+
+    const description =
+    descriptionElement
+    ?
+    descriptionElement.innerText
+    :
+    "";
+
+
+    const time =
+    timeElement
+    ?
+    timeElement.innerText.trim()
+    :
+    "";
+
+
+    /* =====================================================
+                    MODAL ELEMENTS
+    ===================================================== */
+
+    const modalTitle =
+    document.getElementById(
+        "notificationModalTitle"
+    );
+
+
+    const modalDescription =
+    document.getElementById(
+        "notificationModalDescription"
+    );
+
+
+    const modalTime =
+    document.getElementById(
+        "notificationModalTime"
+    );
+
+
+    const modalIcon =
+    document.getElementById(
+        "notificationModalIcon"
+    );
+
+
+    const modalStatus =
+    document.getElementById(
+        "notificationModalStatus"
+    );
+
+
+    if(modalTitle){
+
+        modalTitle.innerText =
+        title;
+
+    }
+
+
+    if(modalDescription){
+
+        modalDescription.innerText =
+        description;
+
+    }
+
+
+    if(modalTime){
+
+        modalTime.innerText =
+        time;
+
+    }
+
+
+    if(modalIcon && iconElement){
+
+        modalIcon.className =
+        iconElement.className;
+
+    }
+
+
+    if(modalStatus){
+
+
+        if(
+            card.classList.contains(
+                "unread"
+            )
+        ){
+
+            modalStatus.innerText =
+            "Unread";
+
+
+            modalStatus.className =
+            "notification-status unread";
+
+        }
+
+        else{
+
+            modalStatus.innerText =
+            "Read";
+
+
+            modalStatus.className =
+            "notification-status read";
+
+        }
+
+
+    }
+
+
+    /* =====================================================
+                AUTO MARK AS READ
+    ===================================================== */
+
+    if(
+        card.classList.contains(
+            "unread"
+        )
+    ){
+
+
+        card.classList.remove(
+            "unread"
+        );
+
+
+        const status =
+        card.querySelector(
+            ".notification-status"
+        );
+
+
+        if(status){
+
+            status.className =
+            "notification-status read";
+
+
+            status.innerText =
+            "Read";
+
+        }
+
+
+        const readButton =
+        card.querySelector(
+            ".notification-card-btn.read-btn"
+        );
+
+
+        if(readButton){
+
+            readButton.style.display =
+            "none";
+
+        }
+
+
+        /* =================================================
+                    UPDATE COUNTERS
+        ================================================= */
+
+        const cards =
+        Array.from(
+            document.querySelectorAll(
+                ".teacher-notification-card"
+            )
+        );
+
+
+        const total =
+        cards.length;
+
+
+        const unread =
+        cards.filter(
+            function(item){
+
+                return item.classList.contains(
+                    "unread"
+                );
+
+            }
+        ).length;
+
+
+        const read =
+        total - unread;
+
+
+        const totalCounter =
+        document.getElementById(
+            "totalNotificationCount"
+        );
+
+
+        const unreadCounter =
+        document.getElementById(
+            "unreadNotificationCount"
+        );
+
+
+        const readCounter =
+        document.getElementById(
+            "readNotificationCount"
+        );
+
+
+        const navbarCounter =
+        document.getElementById(
+            "notificationCount"
+        );
+
+
+        if(totalCounter){
+
+            totalCounter.innerText =
+            total;
+
+        }
+
+
+        if(unreadCounter){
+
+            unreadCounter.innerText =
+            unread;
+
+        }
+
+
+        if(readCounter){
+
+            readCounter.innerText =
+            read;
+
+        }
+
+
+        if(navbarCounter){
+
+
+            navbarCounter.innerText =
+            unread;
+
+
+            navbarCounter.style.display =
+            unread === 0
+            ?
+            "none"
+            :
+            "flex";
+
+
+        }
+
+
+        if(modalStatus){
+
+            modalStatus.innerText =
+            "Read";
+
+
+            modalStatus.className =
+            "notification-status read";
+
+        }
+
+
+    }
+
+
+    /* =====================================================
+                    OPEN MODAL
+    ===================================================== */
+
+    const modalElement =
+    document.getElementById(
+        "notificationDetailsModal"
+    );
+
+
+    if(modalElement){
+
+
+        const modal =
+        bootstrap.Modal.getOrCreateInstance(
+            modalElement
+        );
+
+
+        modal.show();
+
+
+    }
+
+
+}
+
+
+/* =========================================================
+                FOCUS NOTIFICATION
+========================================================= */
+
+function focusNotification(
+    notificationId
+){
+
+
+    const card =
+    document.getElementById(
+        notificationId
+    );
+
+
+    if(!card){
+
+        return;
+
+    }
+
+
+    /* =====================================================
+                RESET FILTER
+    ===================================================== */
+
+    const searchInput =
+    document.getElementById(
+        "notificationSearchInput"
+    );
+
+
+    const filter =
+    document.getElementById(
+        "notificationFilter"
+    );
+
+
+    if(searchInput){
+
+        searchInput.value =
+        "";
+
+    }
+
+
+    if(filter){
+
+        filter.value =
+        "all";
+
+    }
+
+
+    /* =====================================================
+                SHOW ALL CARDS
+    ===================================================== */
+
+    document.querySelectorAll(
+        ".teacher-notification-card"
+    )
+    .forEach(
+        function(item){
+
+            item.style.display =
+            "flex";
+
+        }
+    );
+
+
+    const noResult =
+    document.getElementById(
+        "noNotificationResult"
+    );
+
+
+    if(noResult){
+
+        noResult.style.display =
+        "none";
+
+    }
+
+
+    /* =====================================================
+                    SCROLL
+    ===================================================== */
+
+    card.scrollIntoView({
+
+        behavior:"smooth",
+
+        block:"center"
+
+    });
+
+
+    /* =====================================================
+                    HIGHLIGHT
+    ===================================================== */
+
+    card.classList.add(
+        "notification-highlight"
+    );
+
+
+    setTimeout(
+        function(){
+
+            card.classList.remove(
+                "notification-highlight"
+            );
+
+        },
+        1800
+    );
+
+
+}
+
+
+/* =========================================================
+                    TOAST MESSAGE
+========================================================= */
+
+function showNotificationToast(
+    message,
+    type
+){
+
+
+    const toast =
+    document.getElementById(
+        "notificationToast"
+    );
+
+
+    const toastMessage =
+    document.getElementById(
+        "notificationToastMessage"
+    );
+
+
+    if(
+        !toast ||
+        !toastMessage
+    ){
+
+        return;
+
+    }
+
+
+    toastMessage.innerText =
+    message;
+
+
+    toast.classList.remove(
+        "toast-success",
+        "toast-danger",
+        "toast-warning"
+    );
+
+
+    if(type === "danger"){
+
+        toast.classList.add(
+            "toast-danger"
+        );
+
+    }
+
+    else if(type === "warning"){
+
+        toast.classList.add(
+            "toast-warning"
+        );
+
+    }
+
+    else{
+
+        toast.classList.add(
+            "toast-success"
+        );
+
+    }
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        window.notificationToastTimer
+    );
+
+
+    window.notificationToastTimer =
+    setTimeout(
+        function(){
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2500
+    );
+
+
+}
+
+</script>
+
+
+<!-- =========================================================
+            EXTRA CSS FOR MODAL / TOAST / HIGHLIGHT
+========================================================= -->
+
+<style>
+
+/* =========================================================
+                    DETAILS MODAL
+========================================================= */
+
+.notification-modal-icon{
+
+    width:80px;
+
+    height:80px;
+
+    margin:
+        0 auto 18px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        rgba(108,76,255,.12);
+
+    color:#6c4cff;
+
+    font-size:32px;
+
+}
+
+
+.notification-detail-box{
+
+    background:#f8f7ff;
+
+    border:
+        1px solid #ede9fe;
+
+    border-radius:15px;
+
+    padding:18px;
+
+    margin-top:20px;
+
+}
+
+
+.notification-detail-box p{
+
+    margin:0;
+
+    color:#64748b;
+
+    font-size:13px;
+
+    line-height:1.8;
+
+}
+
+
+/* =========================================================
+                    HIGHLIGHT
+========================================================= */
+
+.notification-highlight{
+
+    animation:
+        notificationHighlight
+        1.8s ease;
+
+}
+
+
+@keyframes notificationHighlight{
+
+
+    0%{
+
+        box-shadow:
+            0 0 0 0
+            rgba(108,76,255,.45);
+
+    }
+
+
+    35%{
+
+        box-shadow:
+            0 0 0 7px
+            rgba(108,76,255,.18);
+
+        transform:
+            translateY(-3px);
+
+    }
+
+
+    100%{
+
+        box-shadow:
+            0 7px 23px
+            rgba(0,0,0,.055);
+
+    }
+
+
+}
+
+
+/* =========================================================
+                    TOAST
+========================================================= */
+
+.notification-toast{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    z-index:9999;
+
+    min-width:290px;
+
+    max-width:380px;
+
+    background:#ffffff;
+
+    color:#1f2937;
+
+    border-radius:14px;
+
+    padding:
+        14px 18px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.18);
+
+    border-left:
+        4px solid #22c55e;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:
+        translateY(25px);
+
+    transition:.3s;
+
+}
+
+
+.notification-toast.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:
+        translateY(0);
+
+}
+
+
+.notification-toast.toast-success{
+
+    border-left-color:#22c55e;
+
+}
+
+
+.notification-toast.toast-danger{
+
+    border-left-color:#ef4444;
+
+}
+
+
+.notification-toast.toast-warning{
+
+    border-left-color:#f59e0b;
+
+}
+
+
+.notification-toast i{
+
+    color:#6c4cff;
+
+}
+
+
+/* =========================================================
+            DARK MODE - MODAL FIX
+========================================================= */
+
+body.dark
+#notificationDetailsModal
+.modal-content{
+
+    background:#111827;
+
+    color:#ffffff;
+
+}
+
+
+body.dark
+#notificationDetailsModal
+.modal-header,
+
+body.dark
+#notificationDetailsModal
+.modal-footer{
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+#notificationDetailsModal
+.btn-close{
+
+    filter:
+        invert(1)
+        grayscale(100%)
+        brightness(200%);
+
+}
+
+
+body.dark
+.notification-detail-box{
+
+    background:#1f2937;
+
+    border-color:#374151;
+
+}
+
+
+body.dark
+.notification-detail-box p{
+
+    color:#cbd5e1;
+
+}
+
+
+body.dark
+.notification-toast{
+
+    background:#1f2937;
+
+    color:#ffffff;
+
+}
+
+
+/* =========================================================
+        DARK MODE NAVBAR NOTIFICATION DROPDOWN FIX
+========================================================= */
+
+body.dark
+.notification-menu{
+
+    background:#111827 !important;
+
+    border:
+        1px solid #374151 !important;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.35) !important;
+
+}
+
+
+body.dark
+.notification-menu
+.dropdown-header{
+
+    color:#c4b5fd !important;
+
+    background:#111827 !important;
+
+}
+
+
+body.dark
+.notification-menu
+.dropdown-item{
+
+    color:#e5e7eb !important;
+
+    background:#111827 !important;
+
+}
+
+
+body.dark
+.notification-menu
+.dropdown-item:hover,
+
+body.dark
+.notification-menu
+.dropdown-item:focus{
+
+    background:#1f2937 !important;
+
+    color:#ffffff !important;
+
+}
+
+
+body.dark
+.notification-menu
+.dropdown-divider{
+
+    border-color:#374151 !important;
+
+}
+
+
+/* =========================================================
+        DARK MODE PROFILE DROPDOWN FIX
+========================================================= */
+
+body.dark
+.profile-menu{
+
+    background:#111827 !important;
+
+    border:
+        1px solid #374151 !important;
+
+}
+
+
+body.dark
+.profile-menu
+.dropdown-item{
+
+    color:#e5e7eb !important;
+
+}
+
+
+body.dark
+.profile-menu
+.dropdown-item:hover{
+
+    background:#1f2937 !important;
+
+    color:#ffffff !important;
+
+}
+
+
+body.dark
+.profile-menu
+.dropdown-divider{
+
+    border-color:#374151 !important;
+
+}
+
+
+/* =========================================================
+                    MOBILE TOAST
+========================================================= */
+
+@media(max-width:576px){
+
+
+    .notification-toast{
+
+        left:15px;
+
+        right:15px;
+
+        bottom:15px;
+
+        min-width:0;
+
+        max-width:none;
+
+    }
+
+
+}
+
+</style>
+
+
+</body>
+
+</html>

@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Settings | Faculty Management System</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../css/admin-dashboard.css">
+
+</head>
+
+<body class="settings-page">
+
+<div class="dashboard">
+
+<!-- ================= Sidebar ================= -->
+
+<aside class="sidebar">
+
+<div class="logo-box">
+
+<img src="../../images/logo.png" alt="College Logo">
+
+<h3>PATNA</h3>
+
+<h2>WOMEN'S COLLEGE</h2>
+
+<span>(AUTONOMOUS)</span>
+
+</div>
+
+<ul class="menu">
+
+<li>
+<a href="admin-dashboard.html">
+<i class="fa-solid fa-house"></i>
+<span>Dashboard</span>
+</a>
+</li>
+
+<li>
+<a href="teacher-list.html">
+<i class="fa-solid fa-user-tie"></i>
+<span>Teachers</span>
+</a>
+</li>
+
+<li>
+<a href="hod-list.html">
+<i class="fa-solid fa-building-user"></i>
+<span>HOD List</span>
+</a>
+</li>
+
+<li>
+<a href="student-list.html">
+<i class="fa-solid fa-user-graduate"></i>
+<span>Students</span>
+</a>
+</li>
+
+<li>
+<a href="notice-board.html">
+<i class="fa-solid fa-bullhorn"></i>
+<span>Notice Board</span>
+</a>
+</li>
+
+<li>
+<a href="reports.html">
+<i class="fa-solid fa-chart-column"></i>
+<span>Reports</span>
+</a>
+</li>
+
+<li class="active">
+<a href="settings.html">
+<i class="fa-solid fa-gear"></i>
+<span>Settings</span>
+</a>
+</li>
+
+</ul>
+
+<div class="sidebar-bottom">
+
+<a href="admin-login.html" class="logout-btn">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+<span>Logout</span>
+
+</a>
+
+</div>
+
+</aside>
+
+<!-- ================= Main Content ================= -->
+
+<main class="main-content">
+
+<div class="topbar">
+
+<div>
+
+<h2>Settings</h2>
+
+<p>Dashboard / Settings</p>
+
+</div>
+<div class="topbar-actions">
+
+    <button id="themeToggle" class="theme-toggle-btn">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
+</div>
+</div>
+
+<!-- ================= General Settings ================= -->
+
+<div class="chart-card mt-4">
+
+<h3 class="mb-4">
+
+<i class="fa-solid fa-sliders"></i>
+
+General Settings
+
+</h3>
+
+<form id="settingsForm">
+
+<div class="row">
+
+<div class="col-md-6 mb-4">
+
+<label class="form-label fw-semibold">
+
+Application Theme
+
+</label>
+
+<select class="form-select">
+
+<option selected>Light Mode</option>
+
+<option>Dark Mode</option>
+
+<option>System Default</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-4">
+
+<label class="form-label fw-semibold">
+
+Language
+
+</label>
+
+<select class="form-select">
+
+<option selected>English</option>
+
+<option>Hindi</option>
+
+<option>French</option>
+
+</select>
+
+</div>
+
+<div class="col-md-6 mb-4">
+
+<div class="form-check form-switch">
+
+<input
+class="form-check-input"
+type="checkbox"
+id="darkModeSwitch">
+
+<label
+class="form-check-label fw-semibold"
+for="darkModeSwitch">
+
+Enable Dark Mode
+
+</label>
+
+</div>
+
+</div>
+
+<div class="col-md-6 mb-4">
+
+<div class="form-check form-switch">
+
+<input
+class="form-check-input"
+type="checkbox"
+id="autoLogoutSwitch"
+checked>
+
+<label
+class="form-check-label fw-semibold"
+for="autoLogoutSwitch">
+
+Auto Logout (30 Minutes)
+
+</label>
+
+</div>
+
+</div>
+
+<div class="col-md-6 mb-4">
+
+<div class="form-check form-switch">
+
+<input
+class="form-check-input"
+type="checkbox"
+id="rememberMeSwitch"
+checked>
+
+<label
+class="form-check-label fw-semibold"
+for="rememberMeSwitch">
+
+Remember Me
+
+</label>
+
+</div>
+
+</div>
+
+<div class="col-md-6 mb-4">
+
+<div class="form-check form-switch">
+
+<input
+class="form-check-input"
+type="checkbox"
+id="soundSwitch">
+
+<label
+class="form-check-label fw-semibold"
+for="soundSwitch">
+
+Enable Sound Effects
+
+</label>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Notification & Security Settings Start Below -->
+<div class="mt-3">
+
+<div class="row">
+
+<!-- ================= Notification Settings ================= -->
+
+<div class="col-lg-6">
+
+<div class="card border-0 shadow-sm mb-4">
+
+<div class="card-body">
+
+<h4 class="mb-4">
+
+<i class="fa-solid fa-bell text-warning"></i>
+
+Notification Settings
+
+</h4>
+
+<div class="form-check form-switch mb-3">
+
+<input
+class="form-check-input"
+type="checkbox"
+id="emailNotification"
+checked>
+
+<label
+class="form-check-label"
+for="emailNotification">
+
+Email Notifications
+
+</label>
+
+</div>
+
+<div class="form-check form-switch mb-3">
+
+<input
+class="form-check-input"
+type="checkbox"
+id="smsNotification">
+
+<label
+class="form-check-label"
+for="smsNotification">
+
+SMS Notifications
+
+</label>
+
+</div>
+
+<div class="form-check form-switch mb-3">
+
+<input
+class="form-check-input"
+type="checkbox"
+id="pushNotification"
+checked>
+
+<label
+class="form-check-label"
+for="pushNotification">
+
+Push Notifications
+
+</label>
+
+</div>
+
+<div class="form-check form-switch">
+
+<input
+class="form-check-input"
+type="checkbox"
+id="attendanceNotification"
+checked>
+
+<label
+class="form-check-label"
+for="attendanceNotification">
+
+Attendance Alerts
+
+</label>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= Security Settings ================= -->
+
+<div class="col-lg-6">
+
+<div class="card border-0 shadow-sm mb-4">
+
+<div class="card-body">
+
+<h4 class="mb-4">
+
+<i class="fa-solid fa-shield-halved text-success"></i>
+
+Security Settings
+
+</h4>
+
+<div class="form-check form-switch mb-3">
+
+<input
+class="form-check-input"
+type="checkbox"
+id="twoFactorAuth">
+
+<label
+class="form-check-label"
+for="twoFactorAuth">
+
+Enable Two-Factor Authentication
+
+</label>
+
+</div>
+
+<div class="form-check form-switch mb-3">
+
+<input
+class="form-check-input"
+type="checkbox"
+id="faceLoginSwitch"
+checked>
+
+<label
+class="form-check-label"
+for="faceLoginSwitch">
+
+Enable Face Login
+
+</label>
+
+</div>
+
+<div class="d-grid mt-4">
+
+<a
+href="change-password.html"
+class="btn btn-warning">
+
+<i class="fa-solid fa-lock"></i>
+
+Change Password
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= Face Recognition Settings ================= -->
+
+<div class="col-lg-6">
+
+<div class="card border-0 shadow-sm mb-4">
+
+<div class="card-body">
+
+<h4 class="mb-4">
+
+<i class="fa-solid fa-face-smile text-primary"></i>
+
+Face Recognition
+
+</h4>
+
+<label class="form-label">
+
+Recognition Sensitivity
+
+</label>
+
+<input
+type="range"
+class="form-range"
+min="1"
+max="100"
+value="80">
+
+<label class="form-label mt-3">
+
+Minimum Confidence (%)
+
+</label>
+
+<input
+type="number"
+class="form-control"
+value="85">
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= Camera Settings ================= -->
+
+<div class="col-lg-6">
+
+<div class="card border-0 shadow-sm mb-4">
+
+<div class="card-body">
+
+<h4 class="mb-4">
+
+<i class="fa-solid fa-camera text-danger"></i>
+
+Camera Settings
+
+</h4>
+
+<label class="form-label">
+
+Camera Resolution
+
+</label>
+
+<select class="form-select mb-3">
+
+<option>640 × 480</option>
+
+<option selected>1280 × 720 (HD)</option>
+
+<option>1920 × 1080 (Full HD)</option>
+
+</select>
+
+<div class="form-check form-switch">
+
+<input
+class="form-check-input"
+type="checkbox"
+id="autoCamera"
+checked>
+
+<label
+class="form-check-label"
+for="autoCamera">
+
+Start Camera Automatically
+
+</label>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<hr class="my-4">
+
+<div class="d-flex justify-content-end gap-2">
+
+<button
+type="reset"
+id="resetSettingsBtn"
+class="btn btn-secondary">
+
+<i class="fa-solid fa-rotate-left"></i>
+
+Reset Settings
+
+</button>
+
+<button
+type="submit"
+class="btn btn-success">
+
+<i class="fa-solid fa-floppy-disk"></i>
+
+Save Settings
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</main>
+
+</div>
+
+<!-- ================= Settings Saved Modal ================= -->
+
+<div
+class="modal fade"
+id="settingsSavedModal"
+tabindex="-1">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content">
+
+<div class="modal-header bg-success text-white">
+
+<h5 class="modal-title">
+
+<i class="fa-solid fa-circle-check"></i>
+
+Settings Saved
+
+</h5>
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+
+</button>
+
+</div>
+
+<div class="modal-body text-center">
+
+<i class="fa-solid fa-gear fa-4x text-success mb-3"></i>
+
+<h4>Settings Updated Successfully!</h4>
+
+<p>
+
+Your application settings have been saved successfully.
+
+</p>
+
+</div>
+
+<div class="modal-footer">
+
+<button
+type="button"
+class="btn btn-success"
+data-bs-dismiss="modal">
+
+OK
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= Bootstrap JS ================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../js/dashboard.js"></script>
+<!-- ================= JavaScript ================= -->
+
+<script>
+
+// ================= Dark Mode Demo =================
+
+const darkModeSwitch = document.getElementById("darkModeSwitch");
+
+if(darkModeSwitch){
+
+darkModeSwitch.addEventListener("change",function(){
+
+if(this.checked){
+
+document.body.classList.add("dark");
+
+}else{
+
+document.body.classList.remove("dark");
+
+}
+
+});
+
+}
+
+// ================= Save Settings =================
+
+const settingsForm = document.getElementById("settingsForm");
+
+if(settingsForm){
+
+settingsForm.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const modal = new bootstrap.Modal(
+document.getElementById("settingsSavedModal")
+);
+
+modal.show();
+
+});
+
+}
+
+// ================= Reset Settings =================
+
+const resetSettingsBtn = document.getElementById("resetSettingsBtn");
+
+if(resetSettingsBtn){
+
+resetSettingsBtn.addEventListener("click",function(){
+
+setTimeout(function(){
+
+settingsForm.reset();
+
+document.body.classList.remove("dark");
+
+},100);
+
+alert("Settings have been reset successfully.");
+
+});
+
+}
+
+// ================= Range Slider =================
+
+const sensitivitySlider = document.querySelector(".form-range");
+
+if(sensitivitySlider){
+
+sensitivitySlider.addEventListener("input",function(){
+
+console.log("Recognition Sensitivity :",this.value);
+
+});
+
+}
+
+</script>
+
+</body>
+
+</html>

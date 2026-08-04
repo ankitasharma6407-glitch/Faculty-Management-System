@@ -1,0 +1,3741 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Attendance Management | HOD Panel</title>
+
+
+<!-- Bootstrap -->
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<!-- Font Awesome -->
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+<!-- HOD CSS -->
+
+<link
+rel="stylesheet"
+href="../../css/hod-dashboard.css">
+
+
+<!-- Excel Library -->
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js">
+</script>
+
+
+<!-- jsPDF -->
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+</script>
+
+
+<!-- AutoTable -->
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js">
+</script>
+
+
+<style>
+
+/* =====================================================
+                    PAGE HEADER
+===================================================== */
+
+.page-header{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+
+gap:20px;
+
+margin-bottom:25px;
+
+}
+
+.page-header h2{
+
+font-weight:800;
+
+margin:0;
+
+}
+
+.page-header p{
+
+margin:6px 0 0;
+
+color:#777;
+
+}
+
+
+/* =====================================================
+                    COMMON CARD
+===================================================== */
+
+.attendance-card{
+
+background:#fff;
+
+border-radius:18px;
+
+padding:25px;
+
+box-shadow:0 5px 18px rgba(0,0,0,.08);
+
+margin-bottom:25px;
+
+}
+
+.attendance-card h4{
+
+font-weight:700;
+
+color:#6c4cff;
+
+}
+
+
+/* =====================================================
+                    STAT CARDS
+===================================================== */
+
+.attendance-stats{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(200px,1fr));
+
+gap:20px;
+
+margin-bottom:25px;
+
+}
+
+
+.attendance-stat-card{
+
+background:#fff;
+
+border-radius:18px;
+
+padding:22px;
+
+display:flex;
+
+align-items:center;
+
+gap:18px;
+
+box-shadow:0 5px 18px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+
+.attendance-stat-card:hover{
+
+transform:translateY(-6px);
+
+}
+
+
+.stat-icon{
+
+width:60px;
+
+height:60px;
+
+border-radius:16px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:25px;
+
+}
+
+
+.stat-icon.total{
+
+background:#ede9fe;
+
+color:#6c4cff;
+
+}
+
+
+.stat-icon.present{
+
+background:#dcfce7;
+
+color:#16a34a;
+
+}
+
+
+.stat-icon.late{
+
+background:#fef3c7;
+
+color:#d97706;
+
+}
+
+
+.stat-icon.absent{
+
+background:#fee2e2;
+
+color:#dc2626;
+
+}
+
+
+.attendance-stat-card h3{
+
+font-weight:800;
+
+margin:0;
+
+}
+
+
+.attendance-stat-card p{
+
+margin:3px 0 0;
+
+color:#777;
+
+}
+
+
+/* =====================================================
+                    FILTER
+===================================================== */
+
+.filter-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(180px,1fr));
+
+gap:15px;
+
+}
+
+
+.form-control,
+.form-select{
+
+border-radius:10px;
+
+padding:10px 13px;
+
+}
+
+
+.form-control:focus,
+.form-select:focus{
+
+border-color:#6c4cff;
+
+box-shadow:
+0 0 0 .2rem rgba(108,76,255,.15);
+
+}
+
+
+/* =====================================================
+                    TABLE
+===================================================== */
+
+.attendance-table{
+
+white-space:nowrap;
+
+}
+
+
+.attendance-table th{
+
+background:#6c4cff !important;
+
+color:#fff !important;
+
+vertical-align:middle;
+
+}
+
+
+.attendance-table td{
+
+vertical-align:middle;
+
+}
+
+
+.profile-mini{
+
+width:42px;
+
+height:42px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+margin-right:8px;
+
+}
+
+
+/* =====================================================
+                    FACE STATUS
+===================================================== */
+
+.face-status{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:6px;
+
+padding:6px 10px;
+
+border-radius:20px;
+
+font-size:12px;
+
+font-weight:600;
+
+}
+
+
+.face-success{
+
+background:#dcfce7;
+
+color:#15803d;
+
+}
+
+
+.manual-status{
+
+background:#e0e7ff;
+
+color:#4338ca;
+
+}
+
+
+/* =====================================================
+                    EXPORT BUTTONS
+===================================================== */
+
+.export-buttons{
+
+display:flex;
+
+gap:10px;
+
+flex-wrap:wrap;
+
+}
+
+
+/* =====================================================
+                    ATTENDANCE PROGRESS
+===================================================== */
+
+.attendance-progress{
+
+height:8px;
+
+border-radius:20px;
+
+}
+
+
+/* =====================================================
+                    DARK MODE
+===================================================== */
+
+body.dark .attendance-card,
+body.dark .attendance-stat-card{
+
+background:#1f1f1f;
+
+color:#fff;
+
+}
+
+
+body.dark .page-header p,
+body.dark .attendance-stat-card p{
+
+color:#ccc;
+
+}
+
+
+body.dark .attendance-card h4{
+
+color:#fff;
+
+}
+
+
+body.dark .form-control,
+body.dark .form-select{
+
+background:#292929;
+
+color:#fff;
+
+border-color:#444;
+
+}
+
+
+body.dark .form-control::placeholder{
+
+color:#aaa;
+
+}
+
+
+body.dark .form-select option{
+
+background:#292929;
+
+color:#fff;
+
+}
+
+
+body.dark .attendance-table td{
+
+background:#1f1f1f !important;
+
+color:#fff !important;
+
+border-color:#444 !important;
+
+}
+
+
+body.dark .attendance-table th{
+
+background:#29205e !important;
+
+color:#fff !important;
+
+border-color:#444 !important;
+
+}
+
+
+/* =====================================================
+                    RESPONSIVE
+===================================================== */
+
+@media(max-width:768px){
+
+.export-buttons{
+
+width:100%;
+
+}
+
+.export-buttons .btn{
+
+flex:1;
+
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="wrapper">
+
+
+<!-- =====================================================
+                        SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+
+<div class="logo">
+
+<img
+src="../../images/logo.png"
+alt="Logo">
+
+<h3>HOD Panel</h3>
+
+</div>
+
+
+<ul class="menu">
+
+
+<li>
+
+<a href="hod-dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+Dashboard
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="teacher-list.html">
+
+<i class="fa-solid fa-users"></i>
+
+Teachers
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="student-list.html">
+
+<i class="fa-solid fa-user-graduate"></i>
+
+Students
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="academic-calendar.html">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+Timetable
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="leave-requests.html">
+
+<i class="fa-solid fa-file-circle-check"></i>
+
+Leave Requests
+
+</a>
+
+</li>
+
+
+<!-- ACTIVE -->
+
+<li class="active">
+
+<a href="attendance.html">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+Attendance
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="performance.html">
+
+<i class="fa-solid fa-chart-line"></i>
+
+Performance
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="analytics.html">
+
+<i class="fa-solid fa-chart-pie"></i>
+
+Analytics
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="notice-board.html">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+Notices
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="face-register.html">
+
+<i class="fa-solid fa-face-smile"></i>
+
+Face Registration
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="face-attendance.html">
+
+<i class="fa-solid fa-camera"></i>
+
+Face Attendance
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="hod-login.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</aside>
+
+
+<!-- =====================================================
+                    MAIN CONTENT
+===================================================== -->
+
+<main class="main-content">
+
+
+<!-- =====================================================
+                    TOP NAVBAR
+===================================================== -->
+
+<nav class="top-navbar">
+
+
+<h3>
+
+Attendance Management
+
+</h3>
+
+
+<div class="top-right">
+
+
+<!-- SEARCH -->
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="topSearch"
+placeholder="Search...">
+
+</div>
+
+
+<!-- DARK MODE -->
+
+<button
+id="themeToggle"
+class="icon-btn">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+
+<!-- NOTIFICATION -->
+
+<div class="dropdown">
+
+
+<button
+class="icon-btn position-relative"
+data-bs-toggle="dropdown">
+
+<i class="fa-regular fa-bell"></i>
+
+<span
+class="badge-count"
+id="notificationCount">
+
+4
+
+</span>
+
+</button>
+
+
+<ul
+class="dropdown-menu dropdown-menu-end notification-menu">
+
+
+<li class="dropdown-header">
+
+Notifications
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="#">
+
+📢 Faculty Meeting Tomorrow
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="#">
+
+📄 Leave Request Pending
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="#">
+
+✅ Attendance Updated
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+<!-- PROFILE -->
+
+<div class="dropdown">
+
+
+<div
+class="profile"
+data-bs-toggle="dropdown"
+style="cursor:pointer;">
+
+
+<img
+src="https://i.pravatar.cc/50?img=12"
+alt="HOD">
+
+
+<span>
+
+Welcome, HOD
+
+</span>
+
+
+<i class="fa-solid fa-angle-down"></i>
+
+
+</div>
+
+
+<ul
+class="dropdown-menu dropdown-menu-end profile-menu">
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="profile.html">
+
+<i class="fa-solid fa-user me-2"></i>
+
+My Profile
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="change-password.html">
+
+<i class="fa-solid fa-lock me-2"></i>
+
+Change Password
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="settings.html">
+
+<i class="fa-solid fa-gear me-2"></i>
+
+Settings
+
+</a>
+
+</li>
+
+
+<li>
+
+<hr class="dropdown-divider">
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item text-danger"
+href="hod-login.html">
+
+<i class="fa-solid fa-right-from-bracket me-2"></i>
+
+Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+</div>
+
+
+</nav>
+
+
+<!-- =====================================================
+                    PAGE HEADER
+===================================================== -->
+
+<div class="page-header">
+
+
+<div>
+
+
+<h2>
+
+<i
+class="fa-solid fa-calendar-check me-2"
+style="color:#6c4cff;">
+</i>
+
+Department Attendance
+
+</h2>
+
+
+<p>
+
+Dashboard / Attendance Management
+
+</p>
+
+
+</div>
+
+
+<a
+href="face-attendance.html"
+class="btn btn-success">
+
+
+<i class="fa-solid fa-face-smile me-2"></i>
+
+Start Face Attendance
+
+</a>
+
+
+</div>
+
+
+<!-- =====================================================
+                    STATISTICS
+===================================================== -->
+
+<section class="attendance-stats">
+
+
+<!-- TOTAL -->
+
+<div class="attendance-stat-card">
+
+
+<div class="stat-icon total">
+
+<i class="fa-solid fa-users"></i>
+
+</div>
+
+
+<div>
+
+<h3 id="totalRecords">
+
+8
+
+</h3>
+
+<p>
+
+Total Records
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- PRESENT -->
+
+<div class="attendance-stat-card">
+
+
+<div class="stat-icon present">
+
+<i class="fa-solid fa-user-check"></i>
+
+</div>
+
+
+<div>
+
+<h3 id="presentRecords">
+
+5
+
+</h3>
+
+<p>
+
+Present
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- LATE -->
+
+<div class="attendance-stat-card">
+
+
+<div class="stat-icon late">
+
+<i class="fa-solid fa-user-clock"></i>
+
+</div>
+
+
+<div>
+
+<h3 id="lateRecords">
+
+1
+
+</h3>
+
+<p>
+
+Late
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- ABSENT -->
+
+<div class="attendance-stat-card">
+
+
+<div class="stat-icon absent">
+
+<i class="fa-solid fa-user-xmark"></i>
+
+</div>
+
+
+<div>
+
+<h3 id="absentRecords">
+
+2
+
+</h3>
+
+<p>
+
+Absent
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+                    FILTER CARD
+===================================================== -->
+
+<section class="attendance-card">
+
+
+<h4 class="mb-4">
+
+<i class="fa-solid fa-filter me-2"></i>
+
+Filter Attendance
+
+</h4>
+
+
+<div class="filter-grid">
+
+
+<!-- FROM DATE -->
+
+<div>
+
+<label class="form-label fw-semibold">
+
+From Date
+
+</label>
+
+<input
+type="date"
+id="fromDate"
+class="form-control">
+
+</div>
+
+
+<!-- TO DATE -->
+
+<div>
+
+<label class="form-label fw-semibold">
+
+To Date
+
+</label>
+
+<input
+type="date"
+id="toDate"
+class="form-control">
+
+</div>
+
+
+<!-- ROLE -->
+
+<div>
+
+<label class="form-label fw-semibold">
+
+Role
+
+</label>
+
+<select
+id="roleFilter"
+class="form-select">
+
+
+<option value="">
+
+All Roles
+
+</option>
+
+
+<option value="Teacher">
+
+Teacher
+
+</option>
+
+
+<option value="Student">
+
+Student
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+<!-- STATUS -->
+
+<div>
+
+<label class="form-label fw-semibold">
+
+Status
+
+</label>
+
+
+<select
+id="statusFilter"
+class="form-select">
+
+
+<option value="">
+
+All Status
+
+</option>
+
+
+<option value="Present">
+
+Present
+
+</option>
+
+
+<option value="Late">
+
+Late
+
+</option>
+
+
+<option value="Absent">
+
+Absent
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+<!-- METHOD -->
+
+<div>
+
+<label class="form-label fw-semibold">
+
+Attendance Method
+
+</label>
+
+
+<select
+id="methodFilter"
+class="form-select">
+
+
+<option value="">
+
+All Methods
+
+</option>
+
+
+<option value="Face">
+
+Face Recognition
+
+</option>
+
+
+<option value="Manual">
+
+Manual
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+</div>
+
+
+<div class="text-end mt-4">
+
+
+<button
+type="button"
+id="resetFilterBtn"
+class="btn btn-outline-secondary me-2">
+
+
+<i class="fa-solid fa-rotate-left me-2"></i>
+
+Reset
+
+
+</button>
+
+
+<button
+type="button"
+id="applyFilterBtn"
+class="btn btn-primary">
+
+
+<i class="fa-solid fa-filter me-2"></i>
+
+Apply Filter
+
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+                    ATTENDANCE TABLE
+===================================================== -->
+
+<section class="attendance-card">
+
+
+<div
+class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+
+
+<h4 class="mb-0">
+
+<i class="fa-solid fa-table me-2"></i>
+
+Attendance Records
+
+</h4>
+
+
+<div class="export-buttons">
+
+
+<button
+type="button"
+id="excelBtn"
+class="btn btn-success">
+
+
+<i class="fa-solid fa-file-excel me-2"></i>
+
+Excel
+
+
+</button>
+
+
+<button
+type="button"
+id="pdfBtn"
+class="btn btn-danger">
+
+
+<i class="fa-solid fa-file-pdf me-2"></i>
+
+PDF
+
+
+</button>
+
+
+<button
+type="button"
+id="printBtn"
+class="btn btn-primary">
+
+
+<i class="fa-solid fa-print me-2"></i>
+
+Print
+
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+<!-- SEARCH -->
+
+<div class="row mb-4">
+
+
+<div class="col-lg-5">
+
+
+<div class="input-group">
+
+
+<span class="input-group-text">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+</span>
+
+
+<input
+type="text"
+id="attendanceSearch"
+class="form-control"
+placeholder="Search by ID, name, role...">
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div class="table-responsive">
+
+
+<table
+id="attendanceTable"
+class="table table-hover table-bordered attendance-table text-center align-middle">
+
+
+<thead>
+
+
+<tr>
+
+<th>ID</th>
+
+<th>Name</th>
+
+<th>Role</th>
+
+<th>Date</th>
+
+<th>Check In</th>
+
+<th>Check Out</th>
+
+<th>Method</th>
+
+<th>Confidence</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+
+</thead>
+
+
+<tbody id="attendanceTableBody">
+
+
+<!-- ================= RECORD 1 ================= -->
+
+<tr
+data-role="Teacher"
+data-status="Present"
+data-method="Face">
+
+
+<td>
+
+TCH001
+
+</td>
+
+
+<td class="text-start">
+
+
+<img
+src="https://i.pravatar.cc/100?img=11"
+class="profile-mini"
+alt="">
+
+
+Rahul Kumar
+
+
+</td>
+
+
+<td>
+
+Teacher
+
+</td>
+
+
+<td>
+
+01-08-2026
+
+</td>
+
+
+<td>
+
+08:55 AM
+
+</td>
+
+
+<td>
+
+04:10 PM
+
+</td>
+
+
+<td>
+
+
+<span class="face-status face-success">
+
+<i class="fa-solid fa-face-smile"></i>
+
+Face
+
+</span>
+
+
+</td>
+
+
+<td>
+
+98.4%
+
+</td>
+
+
+<td>
+
+<span class="badge bg-success">
+
+Present
+
+</span>
+
+</td>
+
+
+<td>
+
+
+<button
+type="button"
+class="btn btn-info btn-sm view-btn"
+
+data-id="TCH001"
+
+data-name="Rahul Kumar"
+
+data-role="Teacher"
+
+data-date="01-08-2026"
+
+data-checkin="08:55 AM"
+
+data-checkout="04:10 PM"
+
+data-method="Face Recognition"
+
+data-confidence="98.4%"
+
+data-status="Present">
+
+
+<i class="fa-solid fa-eye"></i>
+
+
+</button>
+
+
+</td>
+
+
+</tr>
+
+
+<!-- ================= RECORD 2 ================= -->
+
+<tr
+data-role="Teacher"
+data-status="Late"
+data-method="Face">
+
+
+<td>
+
+TCH002
+
+</td>
+
+
+<td class="text-start">
+
+
+<img
+src="https://i.pravatar.cc/100?img=47"
+class="profile-mini"
+alt="">
+
+
+Priya Singh
+
+
+</td>
+
+
+<td>
+
+Teacher
+
+</td>
+
+
+<td>
+
+01-08-2026
+
+</td>
+
+
+<td>
+
+09:18 AM
+
+</td>
+
+
+<td>
+
+04:05 PM
+
+</td>
+
+
+<td>
+
+
+<span class="face-status face-success">
+
+<i class="fa-solid fa-face-smile"></i>
+
+Face
+
+</span>
+
+
+</td>
+
+
+<td>
+
+96.8%
+
+</td>
+
+
+<td>
+
+<span class="badge bg-warning text-dark">
+
+Late
+
+</span>
+
+</td>
+
+
+<td>
+
+
+<button
+type="button"
+class="btn btn-info btn-sm view-btn"
+
+data-id="TCH002"
+
+data-name="Priya Singh"
+
+data-role="Teacher"
+
+data-date="01-08-2026"
+
+data-checkin="09:18 AM"
+
+data-checkout="04:05 PM"
+
+data-method="Face Recognition"
+
+data-confidence="96.8%"
+
+data-status="Late">
+
+
+<i class="fa-solid fa-eye"></i>
+
+
+</button>
+
+
+</td>
+
+
+</tr>
+
+
+<!-- ================= RECORD 3 ================= -->
+
+<tr
+data-role="Teacher"
+data-status="Absent"
+data-method="Manual">
+
+
+<td>
+
+TCH003
+
+</td>
+
+
+<td class="text-start">
+
+
+<img
+src="https://i.pravatar.cc/100?img=13"
+class="profile-mini"
+alt="">
+
+
+Amit Raj
+
+
+</td>
+
+
+<td>
+
+Teacher
+
+</td>
+
+
+<td>
+
+01-08-2026
+
+</td>
+
+
+<td>
+
+--
+
+</td>
+
+
+<td>
+
+--
+
+</td>
+
+
+<td>
+
+
+<span class="face-status manual-status">
+
+<i class="fa-solid fa-keyboard"></i>
+
+Manual
+
+</span>
+
+
+</td>
+
+
+<td>
+
+--
+
+</td>
+
+
+<td>
+
+<span class="badge bg-danger">
+
+Absent
+
+</span>
+
+</td>
+
+
+<td>
+
+
+<button
+type="button"
+class="btn btn-info btn-sm view-btn"
+
+data-id="TCH003"
+
+data-name="Amit Raj"
+
+data-role="Teacher"
+
+data-date="01-08-2026"
+
+data-checkin="--"
+
+data-checkout="--"
+
+data-method="Manual"
+
+data-confidence="--"
+
+data-status="Absent">
+
+
+<i class="fa-solid fa-eye"></i>
+
+
+</button>
+
+
+</td>
+
+
+</tr>
+
+
+<!-- ================= STUDENT ================= -->
+
+<tr
+data-role="Student"
+data-status="Present"
+data-method="Face">
+
+
+<td>
+
+STU001
+
+</td>
+
+
+<td class="text-start">
+
+
+<img
+src="https://i.pravatar.cc/100?img=32"
+class="profile-mini"
+alt="">
+
+
+Anjali Kumari
+
+
+</td>
+
+
+<td>
+
+Student
+
+</td>
+
+
+<td>
+
+01-08-2026
+
+</td>
+
+
+<td>
+
+09:01 AM
+
+</td>
+
+
+<td>
+
+03:55 PM
+
+</td>
+
+
+<td>
+
+
+<span class="face-status face-success">
+
+<i class="fa-solid fa-face-smile"></i>
+
+Face
+
+</span>
+
+
+</td>
+
+
+<td>
+
+97.9%
+
+</td>
+
+
+<td>
+
+<span class="badge bg-success">
+
+Present
+
+</span>
+
+</td>
+
+
+<td>
+
+
+<button
+type="button"
+class="btn btn-info btn-sm view-btn"
+
+data-id="STU001"
+
+data-name="Anjali Kumari"
+
+data-role="Student"
+
+data-date="01-08-2026"
+
+data-checkin="09:01 AM"
+
+data-checkout="03:55 PM"
+
+data-method="Face Recognition"
+
+data-confidence="97.9%"
+
+data-status="Present">
+
+
+<i class="fa-solid fa-eye"></i>
+
+
+</button>
+
+
+</td>
+
+
+</tr>
+
+
+<!-- ================= STUDENT ================= -->
+
+<tr
+data-role="Student"
+data-status="Present"
+data-method="Face">
+
+
+<td>
+
+STU002
+
+</td>
+
+
+<td class="text-start">
+
+
+<img
+src="https://i.pravatar.cc/100?img=44"
+class="profile-mini"
+alt="">
+
+
+Neha Kumari
+
+
+</td>
+
+
+<td>
+
+Student
+
+</td>
+
+
+<td>
+
+01-08-2026
+
+</td>
+
+
+<td>
+
+08:58 AM
+
+</td>
+
+
+<td>
+
+04:00 PM
+
+</td>
+
+
+<td>
+
+
+<span class="face-status face-success">
+
+<i class="fa-solid fa-face-smile"></i>
+
+Face
+
+</span>
+
+
+</td>
+
+
+<td>
+
+99.1%
+
+</td>
+
+
+<td>
+
+<span class="badge bg-success">
+
+Present
+
+</span>
+
+</td>
+
+
+<td>
+
+
+<button
+type="button"
+class="btn btn-info btn-sm view-btn"
+
+data-id="STU002"
+
+data-name="Neha Kumari"
+
+data-role="Student"
+
+data-date="01-08-2026"
+
+data-checkin="08:58 AM"
+
+data-checkout="04:00 PM"
+
+data-method="Face Recognition"
+
+data-confidence="99.1%"
+
+data-status="Present">
+
+
+<i class="fa-solid fa-eye"></i>
+
+
+</button>
+
+
+</td>
+
+
+</tr>
+
+
+<!-- ================= STUDENT ================= -->
+
+<tr
+data-role="Student"
+data-status="Absent"
+data-method="Manual">
+
+
+<td>
+
+STU003
+
+</td>
+
+
+<td class="text-start">
+
+
+<img
+src="https://i.pravatar.cc/100?img=5"
+class="profile-mini"
+alt="">
+
+
+Rohit Kumar
+
+
+</td>
+
+
+<td>
+
+Student
+
+</td>
+
+
+<td>
+
+01-08-2026
+
+</td>
+
+
+<td>
+
+--
+
+</td>
+
+
+<td>
+
+--
+
+</td>
+
+
+<td>
+
+
+<span class="face-status manual-status">
+
+<i class="fa-solid fa-keyboard"></i>
+
+Manual
+
+</span>
+
+
+</td>
+
+
+<td>
+
+--
+
+</td>
+
+
+<td>
+
+<span class="badge bg-danger">
+
+Absent
+
+</span>
+
+</td>
+
+
+<td>
+
+
+<button
+type="button"
+class="btn btn-info btn-sm view-btn"
+
+data-id="STU003"
+
+data-name="Rohit Kumar"
+
+data-role="Student"
+
+data-date="01-08-2026"
+
+data-checkin="--"
+
+data-checkout="--"
+
+data-method="Manual"
+
+data-confidence="--"
+
+data-status="Absent">
+
+
+<i class="fa-solid fa-eye"></i>
+
+
+</button>
+
+
+</td>
+
+
+</tr>
+
+
+<!-- ================= STUDENT ================= -->
+
+<tr
+data-role="Student"
+data-status="Present"
+data-method="Manual">
+
+
+<td>
+
+STU004
+
+</td>
+
+
+<td class="text-start">
+
+
+<img
+src="https://i.pravatar.cc/100?img=25"
+class="profile-mini"
+alt="">
+
+
+Sneha Sharma
+
+
+</td>
+
+
+<td>
+
+Student
+
+</td>
+
+
+<td>
+
+01-08-2026
+
+</td>
+
+
+<td>
+
+09:04 AM
+
+</td>
+
+
+<td>
+
+03:58 PM
+
+</td>
+
+
+<td>
+
+
+<span class="face-status manual-status">
+
+<i class="fa-solid fa-keyboard"></i>
+
+Manual
+
+</span>
+
+
+</td>
+
+
+<td>
+
+--
+
+</td>
+
+
+<td>
+
+<span class="badge bg-success">
+
+Present
+
+</span>
+
+</td>
+
+
+<td>
+
+
+<button
+type="button"
+class="btn btn-info btn-sm view-btn"
+
+data-id="STU004"
+
+data-name="Sneha Sharma"
+
+data-role="Student"
+
+data-date="01-08-2026"
+
+data-checkin="09:04 AM"
+
+data-checkout="03:58 PM"
+
+data-method="Manual"
+
+data-confidence="--"
+
+data-status="Present">
+
+
+<i class="fa-solid fa-eye"></i>
+
+
+</button>
+
+
+</td>
+
+
+</tr>
+
+
+<!-- ================= TEACHER ================= -->
+
+<tr
+data-role="Teacher"
+data-status="Present"
+data-method="Face">
+
+
+<td>
+
+TCH004
+
+</td>
+
+
+<td class="text-start">
+
+
+<img
+src="https://i.pravatar.cc/100?img=15"
+class="profile-mini"
+alt="">
+
+
+Neha Singh
+
+
+</td>
+
+
+<td>
+
+Teacher
+
+</td>
+
+
+<td>
+
+01-08-2026
+
+</td>
+
+
+<td>
+
+09:00 AM
+
+</td>
+
+
+<td>
+
+04:12 PM
+
+</td>
+
+
+<td>
+
+
+<span class="face-status face-success">
+
+<i class="fa-solid fa-face-smile"></i>
+
+Face
+
+</span>
+
+
+</td>
+
+
+<td>
+
+98.7%
+
+</td>
+
+
+<td>
+
+<span class="badge bg-success">
+
+Present
+
+</span>
+
+</td>
+
+
+<td>
+
+
+<button
+type="button"
+class="btn btn-info btn-sm view-btn"
+
+data-id="TCH004"
+
+data-name="Neha Singh"
+
+data-role="Teacher"
+
+data-date="01-08-2026"
+
+data-checkin="09:00 AM"
+
+data-checkout="04:12 PM"
+
+data-method="Face Recognition"
+
+data-confidence="98.7%"
+
+data-status="Present">
+
+
+<i class="fa-solid fa-eye"></i>
+
+
+</button>
+
+
+</td>
+
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+<!-- PAGINATION -->
+
+<nav class="mt-4">
+
+
+<ul class="pagination justify-content-end">
+
+
+<li class="page-item disabled">
+
+<a class="page-link" href="#">
+
+Previous
+
+</a>
+
+</li>
+
+
+<li class="page-item active">
+
+<a class="page-link" href="#">
+
+1
+
+</a>
+
+</li>
+
+
+<li class="page-item">
+
+<a class="page-link" href="#">
+
+2
+
+</a>
+
+</li>
+
+
+<li class="page-item">
+
+<a class="page-link" href="#">
+
+3
+
+</a>
+
+</li>
+
+
+<li class="page-item">
+
+<a class="page-link" href="#">
+
+Next
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</nav>
+
+
+</section>
+
+
+<!-- =====================================================
+                ATTENDANCE PERFORMANCE
+===================================================== -->
+
+<section class="attendance-card">
+
+
+<h4 class="mb-4">
+
+<i class="fa-solid fa-chart-line me-2"></i>
+
+Today's Attendance Summary
+
+</h4>
+
+
+<div class="row">
+
+
+<div class="col-md-6 mb-4">
+
+
+<div class="d-flex justify-content-between">
+
+<span>
+
+Teacher Attendance
+
+</span>
+
+<strong>
+
+75%
+
+</strong>
+
+</div>
+
+
+<div class="progress attendance-progress mt-2">
+
+
+<div
+class="progress-bar bg-success"
+style="width:75%;">
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div class="col-md-6 mb-4">
+
+
+<div class="d-flex justify-content-between">
+
+<span>
+
+Student Attendance
+
+</span>
+
+<strong>
+
+75%
+
+</strong>
+
+</div>
+
+
+<div class="progress attendance-progress mt-2">
+
+
+<div
+class="progress-bar bg-primary"
+style="width:75%;">
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+© 2026 Faculty Management & Productivity System |
+Head of Department Panel
+
+</footer>
+
+
+</main>
+
+
+</div>
+
+
+<!-- =====================================================
+                    VIEW MODAL
+===================================================== -->
+
+<div
+class="modal fade"
+id="attendanceDetailsModal"
+tabindex="-1">
+
+
+<div class="modal-dialog modal-dialog-centered">
+
+
+<div class="modal-content">
+
+
+<div class="modal-header bg-primary text-white">
+
+
+<h5 class="modal-title">
+
+
+<i class="fa-solid fa-calendar-check me-2"></i>
+
+Attendance Details
+
+
+</h5>
+
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+
+</button>
+
+
+</div>
+
+
+<div class="modal-body">
+
+
+<table class="table table-bordered">
+
+
+<tr>
+
+<th>ID</th>
+
+<td id="modalId">
+
+--
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<th>Name</th>
+
+<td id="modalName">
+
+--
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<th>Role</th>
+
+<td id="modalRole">
+
+--
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<th>Date</th>
+
+<td id="modalDate">
+
+--
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<th>Check In</th>
+
+<td id="modalCheckIn">
+
+--
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<th>Check Out</th>
+
+<td id="modalCheckOut">
+
+--
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<th>Method</th>
+
+<td id="modalMethod">
+
+--
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<th>Face Confidence</th>
+
+<td id="modalConfidence">
+
+--
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<th>Status</th>
+
+<td id="modalStatus">
+
+--
+
+</td>
+
+</tr>
+
+
+</table>
+
+
+</div>
+
+
+<div class="modal-footer">
+
+
+<button
+type="button"
+class="btn btn-secondary"
+data-bs-dismiss="modal">
+
+Close
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+                    BOOTSTRAP JS
+===================================================== -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- Existing HOD JS -->
+
+<script src="../../js/hod-dashboard.js"></script>
+
+
+<!-- =====================================================
+                    PAGE JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+                    ELEMENTS
+===================================================== */
+
+
+const attendanceSearch =
+document.getElementById("attendanceSearch");
+
+
+const roleFilter =
+document.getElementById("roleFilter");
+
+
+const statusFilter =
+document.getElementById("statusFilter");
+
+
+const methodFilter =
+document.getElementById("methodFilter");
+
+
+const fromDate =
+document.getElementById("fromDate");
+
+
+const toDate =
+document.getElementById("toDate");
+
+
+const rows =
+document.querySelectorAll(
+"#attendanceTableBody tr"
+);
+
+
+/* =====================================================
+                    SEARCH
+===================================================== */
+
+
+attendanceSearch.addEventListener(
+"keyup",
+function(){
+
+const searchValue =
+this.value.toLowerCase();
+
+
+rows.forEach(function(row){
+
+
+const rowText =
+row.innerText.toLowerCase();
+
+
+row.style.display =
+rowText.includes(searchValue)
+? ""
+: "none";
+
+
+});
+
+
+updateStatistics();
+
+});
+
+
+/* =====================================================
+                    APPLY FILTER
+===================================================== */
+
+
+document
+.getElementById("applyFilterBtn")
+.addEventListener(
+"click",
+function(){
+
+
+const selectedRole =
+roleFilter.value;
+
+
+const selectedStatus =
+statusFilter.value;
+
+
+const selectedMethod =
+methodFilter.value;
+
+
+rows.forEach(function(row){
+
+
+const rowRole =
+row.dataset.role;
+
+
+const rowStatus =
+row.dataset.status;
+
+
+const rowMethod =
+row.dataset.method;
+
+
+let show = true;
+
+
+if(
+selectedRole &&
+rowRole !== selectedRole
+){
+
+show = false;
+
+}
+
+
+if(
+selectedStatus &&
+rowStatus !== selectedStatus
+){
+
+show = false;
+
+}
+
+
+if(
+selectedMethod &&
+rowMethod !== selectedMethod
+){
+
+show = false;
+
+}
+
+
+row.style.display =
+show ? "" : "none";
+
+
+});
+
+
+updateStatistics();
+
+
+});
+
+
+/* =====================================================
+                    RESET FILTER
+===================================================== */
+
+
+document
+.getElementById("resetFilterBtn")
+.addEventListener(
+"click",
+function(){
+
+
+roleFilter.value="";
+
+statusFilter.value="";
+
+methodFilter.value="";
+
+fromDate.value="";
+
+toDate.value="";
+
+attendanceSearch.value="";
+
+
+rows.forEach(function(row){
+
+row.style.display="";
+
+});
+
+
+updateStatistics();
+
+
+});
+
+
+/* =====================================================
+                UPDATE STATISTICS
+===================================================== */
+
+
+function updateStatistics(){
+
+
+let total=0;
+
+let present=0;
+
+let late=0;
+
+let absent=0;
+
+
+rows.forEach(function(row){
+
+
+if(
+row.style.display !== "none"
+){
+
+
+total++;
+
+
+const status =
+row.dataset.status;
+
+
+if(status==="Present"){
+
+present++;
+
+}
+
+
+if(status==="Late"){
+
+late++;
+
+}
+
+
+if(status==="Absent"){
+
+absent++;
+
+}
+
+
+}
+
+
+});
+
+
+document
+.getElementById("totalRecords")
+.innerText =
+total;
+
+
+document
+.getElementById("presentRecords")
+.innerText =
+present;
+
+
+document
+.getElementById("lateRecords")
+.innerText =
+late;
+
+
+document
+.getElementById("absentRecords")
+.innerText =
+absent;
+
+
+}
+
+
+/* =====================================================
+                    VIEW DETAILS
+===================================================== */
+
+
+document
+.querySelectorAll(".view-btn")
+.forEach(function(button){
+
+
+button.addEventListener(
+"click",
+function(){
+
+
+document
+.getElementById("modalId")
+.innerText =
+this.dataset.id;
+
+
+document
+.getElementById("modalName")
+.innerText =
+this.dataset.name;
+
+
+document
+.getElementById("modalRole")
+.innerText =
+this.dataset.role;
+
+
+document
+.getElementById("modalDate")
+.innerText =
+this.dataset.date;
+
+
+document
+.getElementById("modalCheckIn")
+.innerText =
+this.dataset.checkin;
+
+
+document
+.getElementById("modalCheckOut")
+.innerText =
+this.dataset.checkout;
+
+
+document
+.getElementById("modalMethod")
+.innerText =
+this.dataset.method;
+
+
+document
+.getElementById("modalConfidence")
+.innerText =
+this.dataset.confidence;
+
+
+document
+.getElementById("modalStatus")
+.innerText =
+this.dataset.status;
+
+
+const modal =
+new bootstrap.Modal(
+
+document.getElementById(
+"attendanceDetailsModal"
+)
+
+);
+
+
+modal.show();
+
+
+});
+
+
+});
+
+
+/* =====================================================
+                    EXCEL EXPORT
+===================================================== */
+
+
+document
+.getElementById("excelBtn")
+.addEventListener(
+"click",
+function(){
+
+
+if(typeof XLSX === "undefined"){
+
+alert(
+"Excel library could not be loaded."
+);
+
+return;
+
+}
+
+
+const table =
+document.getElementById(
+"attendanceTable"
+);
+
+
+const workbook =
+XLSX.utils.table_to_book(
+table,
+{
+sheet:
+"Attendance Report"
+}
+);
+
+
+XLSX.writeFile(
+workbook,
+"HOD_Attendance_Report.xlsx"
+);
+
+
+});
+
+
+/* =====================================================
+                    PDF EXPORT
+===================================================== */
+
+
+document
+.getElementById("pdfBtn")
+.addEventListener(
+"click",
+function(){
+
+
+if(
+!window.jspdf
+){
+
+alert(
+"PDF library could not be loaded."
+);
+
+return;
+
+}
+
+
+const { jsPDF } =
+window.jspdf;
+
+
+const pdf =
+new jsPDF(
+"landscape"
+);
+
+
+pdf.setFontSize(18);
+
+
+pdf.text(
+"Department Attendance Report",
+14,
+15
+);
+
+
+pdf.setFontSize(10);
+
+
+pdf.text(
+"Faculty Management & Productivity System",
+14,
+22
+);
+
+
+/*
+We are manually creating the PDF table.
+
+Action column is intentionally removed.
+*/
+
+
+const tableRows=[];
+
+
+document
+.querySelectorAll(
+"#attendanceTableBody tr"
+)
+.forEach(function(row){
+
+
+if(
+row.style.display === "none"
+){
+
+return;
+
+}
+
+
+const cells =
+row.querySelectorAll("td");
+
+
+tableRows.push([
+
+cells[0].innerText.trim(),
+
+cells[1].innerText.trim(),
+
+cells[2].innerText.trim(),
+
+cells[3].innerText.trim(),
+
+cells[4].innerText.trim(),
+
+cells[5].innerText.trim(),
+
+cells[6].innerText.trim(),
+
+cells[7].innerText.trim(),
+
+cells[8].innerText.trim()
+
+]);
+
+
+});
+
+
+pdf.autoTable({
+
+
+startY:28,
+
+
+head:[[
+
+"ID",
+
+"Name",
+
+"Role",
+
+"Date",
+
+"Check In",
+
+"Check Out",
+
+"Method",
+
+"Confidence",
+
+"Status"
+
+]],
+
+
+body:
+tableRows,
+
+
+styles:{
+
+fontSize:8,
+
+halign:"center"
+
+},
+
+
+headStyles:{
+
+fillColor:[108,76,255]
+
+}
+
+
+});
+
+
+pdf.save(
+"HOD_Attendance_Report.pdf"
+);
+
+
+});
+
+
+/* =====================================================
+                    PRINT
+===================================================== */
+
+
+document
+.getElementById("printBtn")
+.addEventListener(
+"click",
+function(){
+
+
+const table =
+document
+.getElementById(
+"attendanceTable"
+)
+.cloneNode(true);
+
+
+/*
+Remove Action column
+*/
+
+
+table
+.querySelectorAll("tr")
+.forEach(function(row){
+
+
+if(row.lastElementChild){
+
+row.removeChild(
+row.lastElementChild
+);
+
+}
+
+
+});
+
+
+const printWindow =
+window.open(
+"",
+"",
+"width=1200,height=800"
+);
+
+
+printWindow.document.write(`
+
+<html>
+
+<head>
+
+<title>
+Attendance Report
+</title>
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<style>
+
+body{
+
+padding:30px;
+
+font-family:Arial,sans-serif;
+
+}
+
+h2{
+
+text-align:center;
+
+margin-bottom:5px;
+
+}
+
+p{
+
+text-align:center;
+
+margin-bottom:25px;
+
+}
+
+table{
+
+font-size:12px;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<h2>
+
+Department Attendance Report
+
+</h2>
+
+
+<p>
+
+Faculty Management & Productivity System
+
+</p>
+
+
+${table.outerHTML}
+
+
+</body>
+
+</html>
+
+`);
+
+
+printWindow.document.close();
+
+
+printWindow.onload =
+function(){
+
+
+printWindow.print();
+
+
+printWindow.close();
+
+
+};
+
+
+});
+
+
+/* =====================================================
+                BACKEND INTEGRATION LATER
+===================================================== */
+
+
+/*
+
+Later attendance records backend se:
+
+GET
+
+/api/hod/attendance
+
+
+Example:
+
+
+fetch("/api/hod/attendance")
+
+.then(response => response.json())
+
+.then(data => {
+
+    console.log(data);
+
+});
+
+
+Filter API:
+
+/api/hod/attendance
+?role=Teacher
+&status=Present
+&fromDate=2026-08-01
+&toDate=2026-08-01
+
+
+Face Attendance backend:
+
+POST
+
+/api/attendance/face
+
+
+Example response:
+
+{
+
+"userId":"TCH001",
+
+"name":"Rahul Kumar",
+
+"role":"Teacher",
+
+"confidence":98.4,
+
+"checkIn":"08:55 AM",
+
+"status":"Present"
+
+}
+
+*/
+
+
+</script>
+
+
+</body>
+
+</html>

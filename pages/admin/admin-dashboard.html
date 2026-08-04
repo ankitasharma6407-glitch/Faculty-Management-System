@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Management & Productivity System</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FullCalendar -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/admin-dashboard.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo-box">
+
+            <img src="../../images/logo.png" alt="College Logo">
+
+            <h3>PATNA</h3>
+
+            <h2>WOMEN'S COLLEGE</h2>
+
+            <span>(AUTONOMOUS)</span>
+
+        </div>
+
+        <ul class="menu">
+
+            <li class="active">
+    <a href="admin-dashboard.html">
+        <i class="fa-solid fa-house"></i>
+        <span>Dashboard</span>
+    </a>
+</li>
+
+<li>
+    <a href="teacher-list.html">
+        <i class="fa-solid fa-user-tie"></i>
+        <span>Teachers</span>
+    </a>
+</li>
+
+<li>
+    <a href="hod-list.html">
+        <i class="fa-solid fa-building-user"></i>
+        <span>HOD</span>
+    </a>
+</li>
+
+<li>
+    <a href="student-list.html">
+        <i class="fa-solid fa-user-graduate"></i>
+        <span>Students</span>
+    </a>
+</li>
+
+<li>
+    <a href="recruiter-list.html">
+        <i class="fa-solid fa-building"></i>
+        <span>Recruiters</span>
+    </a>
+</li>
+
+<li>
+    <a href="analytics.html">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Analytics</span>
+    </a>
+</li>
+
+<li>
+    <a href="reports.html">
+        <i class="fa-solid fa-file-lines"></i>
+        <span>Reports</span>
+    </a>
+</li>
+
+<li>
+    <a href="attendance.html">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>Attendance</span>
+    </a>
+</li>
+
+<li>
+    <a href="notice-board.html">
+        <i class="fa-solid fa-bullhorn"></i>
+        <span>Notice Board</span>
+    </a>
+</li>
+
+<li>
+    <a href="academic-calendar.html">
+        <i class="fa-solid fa-calendar-days"></i>
+        <span>Academic Calendar</span>
+    </a>
+</li>
+
+        </ul>
+
+        <div class="sidebar-bottom">
+
+            <a href="settings.html">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+
+            <a href="admin-login.html" class="logout-btn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+        <!-- ================= TOPBAR ================= -->
+
+        <div class="topbar">
+
+            <div class="top-left">
+
+                <h2>Admin Dashboard</h2>
+
+                <p id="greeting">Welcome Back 👋</p>
+
+            </div>
+
+            <div class="top-right">
+
+                <!-- Search -->
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input type="text"
+                        id="searchBox"
+                        placeholder="Search teachers, students...">
+
+                </div>
+
+                <!-- Dark Mode -->
+
+                <button id="themeToggle" class="icon-btn">
+
+                    <i class="fa-solid fa-moon"></i>
+
+                </button>
+
+                <!-- Notification -->
+
+                <div class="dropdown">
+
+                    <button class="icon-btn"
+                        data-bs-toggle="dropdown">
+
+                        <i class="fa-regular fa-bell"></i>
+
+                        <span class="badge-count"
+                            id="notificationCount">
+
+                            5
+
+                        </span>
+
+                    </button>
+
+                    <ul class="dropdown-menu dropdown-menu-end notification-menu">
+
+                        <li class="dropdown-header">
+                            Notifications
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item notification-item" href="#">
+                                🔔 New Teacher Registered
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item notification-item" href="#">
+                                📢 Placement Drive Updated
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item notification-item" href="#">
+                                📝 Leave Approval Pending
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item notification-item" href="#">
+                                🎉 Recruiter Added
+                            </a>
+                        </li>
+
+                        <li><hr></li>
+
+                        <li>
+                            <a href="#"
+                                id="markAllRead"
+                                class="dropdown-item">
+
+                                ✔ Mark All Read
+
+                            </a>
+                        </li>
+                          
+
+                        <li><hr class="dropdown-divider"></li>
+
+<li>
+    <a class="dropdown-item text-center fw-bold text-primary"
+       href="notifications.html">
+        View All Notifications
+        <i class="fa-solid fa-arrow-right ms-1"></i>
+    </a>
+</li>
+                    </ul>
+
+                </div>
+
+                <!-- Profile -->
+
+                <div class="profile" id="profileBtn">
+
+                    <img src="../../images/admin.png"
+                        alt="Admin">
+
+                    <div class="profile-info">
+
+                        <h6>Admin</h6>
+
+                    </div>
+
+                    <i class="fa-solid fa-angle-down"></i>
+
+                </div>
+
+                <!-- Profile Dropdown -->
+
+                <div class="profile-dropdown"
+                    id="profileDropdown">
+
+                   <a href="profile.html">
+    <i class="fa-solid fa-user"></i>
+    My Profile
+</a>
+
+<a href="#" id="changePhoto">
+    <i class="fa-solid fa-camera"></i>
+    Change Profile Photo
+</a>
+
+<a href="change-password.html">
+    <i class="fa-solid fa-key"></i>
+    Change Password
+</a>
+
+<a href="settings.html">
+    <i class="fa-solid fa-gear"></i>
+    Settings
+</a>
+
+<a href="#" id="themeMenu">
+    <i class="fa-solid fa-moon"></i>
+    Dark Mode
+</a>
+
+<a href="admin-login.html">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    Logout
+</a>
+                </div>
+
+            </div>
+            <!-- top-right -->
+
+        </div>
+        <!-- topbar -->
+
+       <section class="welcome-banner">
+
+    <div class="welcome-left">
+
+        <span class="welcome-badge">
+            Admin Panel
+        </span>
+
+        <h1>
+            Faculty Management & Productivity System
+        </h1>
+
+        <p>
+            Manage teachers, HODs, recruiters, attendance,
+            reports and analytics from one modern dashboard.
+        </p>
+
+        <div class="banner-buttons">
+
+        </div>
+
+    </div>
+
+    <div class="welcome-right">
+
+        <img src="../../images/admin-banner.jpeg"
+             alt="Dashboard">
+
+    </div>
+
+</section>
+
+        <!-- ================= STATISTICS ================= -->
+
+<section class="stats-grid">
+
+    <div class="stat-card teacher-card">
+
+        <div class="stat-icon purple">
+            <i class="fa-solid fa-user-tie"></i>
+        </div>
+
+        <div class="stat-content">
+            <span>Total Teachers</span>
+            <h2>128</h2>
+            <small>+12 This Month</small>
+        </div>
+
+    </div>
+
+    <div class="stat-card department-card">
+
+        <div class="stat-icon blue">
+            <i class="fa-solid fa-building"></i>
+        </div>
+
+        <div class="stat-content">
+            <span>Departments</span>
+            <h2>18</h2>
+            <small>Academic Units</small>
+        </div>
+
+    </div>
+
+    <div class="stat-card recruiter-card">
+
+        <div class="stat-icon orange">
+            <i class="fa-solid fa-briefcase"></i>
+        </div>
+
+        <div class="stat-content">
+            <span>Recruiters</span>
+            <h2>52</h2>
+            <small>Placement Partners</small>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="quick-grid">
+
+    <div class="quick-card"
+     onclick="window.location.href='add-teacher.html'"
+     style="cursor:pointer;">
+
+    <i class="fa-solid fa-user-plus"></i>
+
+    <h4>Add Teacher</h4>
+
+    <p>Create Faculty Profile</p>
+
+</div>
+
+    <div class="quick-card"
+    
+     onclick="window.location.href='add-hod.html'"
+     style="cursor:pointer;">
+
+    
+        <i class="fa-solid fa-building-user"></i>
+
+        <h4>Add HOD</h4>
+
+        <p>Assign Department Head</p>
+
+    </div>
+
+    <div class="quick-card"
+    onclick="window.location.href='analytics.html'"
+     style="cursor:pointer;">
+
+    
+
+        <i class="fa-solid fa-chart-column"></i>
+
+        <h4>Analytics</h4>
+
+        <p>View Reports</p>
+
+    </div>
+
+    <div class="quick-card"
+    onclick="window.location.href='generate-report.html'"
+     style="cursor:pointer;">
+
+    
+
+        <i class="fa-solid fa-file-lines"></i>
+
+        <h4>Generate Report</h4>
+
+        <p>Download PDF Report</p>
+
+    </div>
+
+</section>
+<!-- ================= CHART SECTION ================= -->
+
+<section class="chart-section">
+
+    <!-- Attendance -->
+
+    <div class="chart-card attendance-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>Attendance Analytics</h3>
+
+                <p>Monthly Faculty Attendance</p>
+
+            </div>
+
+            <select class="form-select" style="width:120px;">
+
+                <option>2026</option>
+
+                <option>2025</option>
+
+            </select>
+
+        </div>
+
+        <canvas id="attendanceChart"></canvas>
+
+    </div>
+
+    <!-- Performance -->
+
+    <div class="chart-card performance-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h3>Faculty Performance</h3>
+
+                <p>Overall Performance</p>
+
+            </div>
+
+        </div>
+
+        <canvas id="performanceChart"></canvas>
+
+        <div class="performance-list">
+
+            <div class="item">
+
+                <span>
+
+                    <span class="dot excellent"></span>
+
+                    Excellent
+
+                </span>
+
+                <strong>45%</strong>
+
+            </div>
+
+            <div class="item">
+
+                <span>
+
+                    <span class="dot good"></span>
+
+                    Good
+
+                </span>
+
+                <strong>30%</strong>
+
+            </div>
+
+            <div class="item">
+
+                <span>
+
+                    <span class="dot average"></span>
+
+                    Average
+
+                </span>
+
+                <strong>15%</strong>
+
+            </div>
+
+            <div class="item">
+
+                <span>
+
+                    <span class="dot poor"></span>
+
+                    Poor
+
+                </span>
+
+                <strong>10%</strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= CALENDAR & RECENT ACTIVITIES ================= -->
+
+<section class="bottom-grid">
+
+    <!-- Calendar -->
+
+    <div class="calendar-card">
+
+        <div class="card-header">
+
+            <h3>Academic Calendar</h3>
+
+            <button class="btn btn-primary btn-sm"
+            onclick="window.location.href='academic-calendar.html'"
+     style="cursor:pointer;">
+
+    
+                View All
+            </button>
+
+        </div>
+
+        <div id="calendar"></div>
+
+    </div>
+
+    <!-- Activities -->
+
+    <div class="activity-card">
+
+        <div class="card-header">
+            <h3>Recent Activities</h3>
+        </div>
+
+        <ul class="activity-list">
+
+            <li>
+                <i class="fa-solid fa-user-plus"></i>
+                <div>
+                    <strong>New Faculty Added</strong>
+                    <p>Computer Science Department</p>
+                    <small>10 Minutes Ago</small>
+                </div>
+            </li>
+
+            <li>
+                <i class="fa-solid fa-calendar-check"></i>
+                <div>
+                    <strong>Attendance Updated</strong>
+                    <p>Today's attendance submitted</p>
+                    <small>35 Minutes Ago</small>
+                </div>
+            </li>
+
+            <li>
+                <i class="fa-solid fa-file-circle-check"></i>
+                <div>
+                    <strong>Leave Approved</strong>
+                    <p>Physics Department</p>
+                    <small>Today</small>
+                </div>
+            </li>
+
+            <li>
+                <i class="fa-solid fa-bullhorn"></i>
+                <div>
+                    <strong>Notice Published</strong>
+                    <p>Semester Examination Schedule</p>
+                    <small>Today</small>
+                </div>
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+<!-- ================= RECENT FACULTY ================= -->
+
+<section class="table-card">
+
+    <div class="card-header">
+
+        <h3>Recent Faculty Members</h3>
+
+        <button class="btn btn-outline-primary btn-sm"
+        onclick="window.location.href='teacher-list.html'"
+     style="cursor:pointer;">
+
+    
+            View All
+        </button>
+
+    </div>
+
+    <div class="table-responsive">
+
+        <table class="table align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Experience</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td>Dr. Priya Sharma</td>
+                    <td>Computer Science</td>
+                    <td>8 Years</td>
+                    <td>
+                        <span class="badge bg-success">
+                            Active
+                        </span>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Rahul Kumar</td>
+                    <td>Mathematics</td>
+                    <td>6 Years</td>
+                    <td>
+                        <span class="badge bg-success">
+                            Active
+                        </span>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Neha Singh</td>
+                    <td>Commerce</td>
+                    <td>4 Years</td>
+                    <td>
+                        <span class="badge bg-warning text-dark">
+                            On Leave
+                        </span>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Amit Verma</td>
+                    <td>Physics</td>
+                    <td>10 Years</td>
+                    <td>
+                        <span class="badge bg-success">
+                            Active
+                        </span>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+<!-- ================= NOTIFICATIONS ================= -->
+
+<section class="notification-panel">
+
+    <div class="card-header">
+
+        <h3>Latest Notifications</h3>
+
+    </div>
+
+    <div class="notification-item">
+        🔔 Faculty Meeting Tomorrow (10:00 AM)
+    </div>
+
+    <div class="notification-item">
+        📢 Placement Drive Registration Open
+    </div>
+
+    <div class="notification-item">
+        📝 Internal Examination Starts Monday
+    </div>
+
+    <div class="notification-item">
+        🎉 Five New Recruiters Added
+    </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <p>
+
+        © 2026 Faculty Management & Productivity System
+
+        <br>
+
+        Patna Women's College (Autonomous)
+
+    </p>
+
+</footer>
+
+</main>
+
+</div>
+
+<!-- Bootstrap -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Chart.js -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- FullCalendar -->
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+
+<!-- Dashboard JS -->
+
+<script src="../../js/dashboard.js"></script>
+
+</body>
+
+</html>

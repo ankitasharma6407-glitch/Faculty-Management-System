@@ -1,0 +1,6410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Notice Board | HOD Panel</title>
+
+<!-- Bootstrap -->
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<!-- Font Awesome -->
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<!-- Google Font -->
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<!-- HOD Dashboard CSS -->
+<link
+rel="stylesheet"
+href="../../css/hod-dashboard.css">
+
+
+<style>
+
+/* =========================================================
+                    NOTICE BOARD PAGE
+========================================================= */
+
+.notice-page-header{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+gap:20px;
+flex-wrap:wrap;
+
+margin-bottom:25px;
+
+}
+
+.notice-page-header h2{
+
+font-weight:800;
+margin-bottom:5px;
+
+}
+
+.notice-page-header p{
+
+margin:0;
+color:#6b7280;
+
+}
+
+
+/* =========================================================
+                    STATISTICS
+========================================================= */
+
+.notice-stat-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:20px;
+
+margin-bottom:25px;
+
+}
+
+
+.notice-stat-card{
+
+background:#fff;
+
+padding:22px;
+
+border-radius:18px;
+
+display:flex;
+align-items:center;
+
+gap:18px;
+
+box-shadow:
+0 8px 25px rgba(0,0,0,.07);
+
+transition:.3s;
+
+}
+
+
+.notice-stat-card:hover{
+
+transform:translateY(-6px);
+
+box-shadow:
+0 15px 35px rgba(0,0,0,.12);
+
+}
+
+
+.notice-stat-icon{
+
+width:58px;
+height:58px;
+
+min-width:58px;
+
+border-radius:16px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:25px;
+
+}
+
+
+.notice-stat-card h3{
+
+font-size:27px;
+font-weight:800;
+
+margin:0;
+
+}
+
+
+.notice-stat-card p{
+
+font-size:13px;
+
+color:#6b7280;
+
+margin:3px 0 0;
+
+}
+
+
+/* Total */
+
+.notice-total .notice-stat-icon{
+
+background:rgba(108,76,255,.12);
+
+color:#6c4cff;
+
+}
+
+
+/* Active */
+
+.notice-active .notice-stat-icon{
+
+background:rgba(34,197,94,.13);
+
+color:#16a34a;
+
+}
+
+
+/* Scheduled */
+
+.notice-scheduled .notice-stat-icon{
+
+background:rgba(245,158,11,.13);
+
+color:#f59e0b;
+
+}
+
+
+/* Expired */
+
+.notice-expired .notice-stat-icon{
+
+background:rgba(239,68,68,.13);
+
+color:#dc2626;
+
+}
+
+
+/* =========================================================
+                    MAIN GRID
+========================================================= */
+
+.notice-main-grid{
+
+display:grid;
+
+grid-template-columns:
+1.7fr 1fr;
+
+gap:22px;
+
+align-items:start;
+
+}
+
+
+/* =========================================================
+                    CARD
+========================================================= */
+
+.notice-card{
+
+background:#fff;
+
+border-radius:20px;
+
+padding:25px;
+
+box-shadow:
+0 8px 25px rgba(0,0,0,.07);
+
+}
+
+
+.notice-card-title{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+margin-bottom:22px;
+
+}
+
+
+.notice-card-title h4{
+
+margin:0;
+
+font-weight:800;
+
+color:#6c4cff;
+
+}
+
+
+/* =========================================================
+                    FILTERS
+========================================================= */
+
+.notice-filters{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+flex-wrap:wrap;
+
+}
+
+
+.notice-search{
+
+position:relative;
+
+}
+
+
+.notice-search i{
+
+position:absolute;
+
+left:14px;
+
+top:50%;
+
+transform:translateY(-50%);
+
+color:#9ca3af;
+
+}
+
+
+.notice-search input{
+
+width:220px;
+
+padding:
+10px 14px 10px 40px;
+
+border:
+1px solid #e5e7eb;
+
+border-radius:12px;
+
+outline:none;
+
+transition:.3s;
+
+}
+
+
+.notice-search input:focus{
+
+border-color:#6c4cff;
+
+box-shadow:
+0 0 0 3px rgba(108,76,255,.10);
+
+}
+
+
+.notice-filter{
+
+min-width:140px;
+
+padding:10px 12px;
+
+border:
+1px solid #e5e7eb;
+
+border-radius:12px;
+
+outline:none;
+
+background:#fff;
+
+}
+
+
+/* =========================================================
+                    NOTICE TABLE
+========================================================= */
+
+.notice-table-wrapper{
+
+overflow-x:auto;
+
+}
+
+
+.notice-table{
+
+min-width:1000px;
+
+margin-bottom:0;
+
+}
+
+
+.notice-table thead th{
+
+background:#6c4cff;
+
+color:#fff;
+
+border:none;
+
+padding:14px;
+
+font-size:13px;
+
+white-space:nowrap;
+
+}
+
+
+.notice-table tbody td{
+
+padding:15px 14px;
+
+vertical-align:middle;
+
+border-bottom:
+1px solid #eef0f4;
+
+font-size:13px;
+
+}
+
+
+.notice-table tbody tr{
+
+transition:.2s;
+
+}
+
+
+.notice-table tbody tr:hover{
+
+background:#f8f7ff;
+
+}
+
+
+/* =========================================================
+                    NOTICE TITLE
+========================================================= */
+
+.notice-title-box{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+min-width:220px;
+
+}
+
+
+.notice-mini-icon{
+
+width:42px;
+height:42px;
+
+min-width:42px;
+
+border-radius:12px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+font-size:18px;
+
+background:
+rgba(108,76,255,.12);
+
+color:#6c4cff;
+
+}
+
+
+.notice-title-box strong{
+
+display:block;
+
+font-size:13px;
+
+}
+
+
+.notice-title-box small{
+
+color:#6b7280;
+
+}
+
+
+/* =========================================================
+                    PRIORITY BADGES
+========================================================= */
+
+.notice-priority{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:5px;
+
+padding:6px 10px;
+
+border-radius:50px;
+
+font-size:11px;
+
+font-weight:700;
+
+}
+
+
+.priority-high{
+
+background:
+rgba(239,68,68,.12);
+
+color:#dc2626;
+
+}
+
+
+.priority-medium{
+
+background:
+rgba(245,158,11,.13);
+
+color:#d97706;
+
+}
+
+
+.priority-low{
+
+background:
+rgba(37,99,235,.12);
+
+color:#2563eb;
+
+}
+
+
+/* =========================================================
+                    STATUS BADGES
+========================================================= */
+
+.notice-status{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:5px;
+
+padding:6px 10px;
+
+border-radius:50px;
+
+font-size:11px;
+
+font-weight:700;
+
+}
+
+
+.status-active{
+
+background:
+rgba(34,197,94,.12);
+
+color:#16a34a;
+
+}
+
+
+.status-scheduled{
+
+background:
+rgba(245,158,11,.13);
+
+color:#d97706;
+
+}
+
+
+.status-expired{
+
+background:
+rgba(107,114,128,.13);
+
+color:#6b7280;
+
+}
+
+
+/* =========================================================
+                    ACTIONS
+========================================================= */
+
+.notice-actions{
+
+display:flex;
+
+align-items:center;
+
+gap:6px;
+
+}
+
+
+.notice-action-btn{
+
+width:35px;
+height:35px;
+
+border:none;
+
+border-radius:9px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+transition:.3s;
+
+}
+
+
+.notice-view-btn{
+
+background:
+rgba(37,99,235,.12);
+
+color:#2563eb;
+
+}
+
+
+.notice-view-btn:hover{
+
+background:#2563eb;
+color:#fff;
+
+}
+
+
+.notice-edit-btn{
+
+background:
+rgba(245,158,11,.13);
+
+color:#d97706;
+
+}
+
+
+.notice-edit-btn:hover{
+
+background:#f59e0b;
+color:#fff;
+
+}
+
+
+.notice-delete-btn{
+
+background:
+rgba(239,68,68,.12);
+
+color:#dc2626;
+
+}
+
+
+.notice-delete-btn:hover{
+
+background:#dc2626;
+color:#fff;
+
+}
+
+
+/* =========================================================
+                    CREATE NOTICE
+========================================================= */
+
+.create-notice-card{
+
+position:sticky;
+
+top:20px;
+
+}
+
+
+.notice-form-label{
+
+font-size:13px;
+
+font-weight:600;
+
+margin-bottom:7px;
+
+}
+
+
+.notice-card .form-control,
+.notice-card .form-select{
+
+border-radius:11px;
+
+padding:11px 13px;
+
+border:
+1px solid #e5e7eb;
+
+}
+
+
+.notice-card .form-control:focus,
+.notice-card .form-select:focus{
+
+border-color:#6c4cff;
+
+box-shadow:
+0 0 0 3px rgba(108,76,255,.10);
+
+}
+
+
+/* =========================================================
+                AUDIENCE OPTIONS
+========================================================= */
+
+.audience-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:10px;
+
+}
+
+
+.audience-option{
+
+border:
+1px solid #e5e7eb;
+
+padding:11px;
+
+border-radius:11px;
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+
+.audience-option:hover{
+
+border-color:#6c4cff;
+
+background:#f8f7ff;
+
+}
+
+
+.audience-option input{
+
+accent-color:#6c4cff;
+
+}
+
+
+/* =========================================================
+                    ATTACHMENT
+========================================================= */
+
+.notice-upload-box{
+
+border:
+2px dashed #d1d5db;
+
+border-radius:14px;
+
+padding:20px;
+
+text-align:center;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+
+.notice-upload-box:hover{
+
+border-color:#6c4cff;
+
+background:#faf9ff;
+
+}
+
+
+.notice-upload-box i{
+
+font-size:30px;
+
+color:#6c4cff;
+
+margin-bottom:8px;
+
+}
+
+
+.notice-upload-box p{
+
+font-size:13px;
+
+margin:0;
+
+}
+
+
+.notice-upload-box small{
+
+font-size:11px;
+
+color:#6b7280;
+
+}
+
+
+/* =========================================================
+                    PUBLISH BUTTON
+========================================================= */
+
+.publish-notice-btn{
+
+border:none;
+
+padding:12px;
+
+border-radius:12px;
+
+font-weight:700;
+
+background:
+linear-gradient(135deg,#6c4cff,#7c3aed);
+
+color:#fff;
+
+transition:.3s;
+
+}
+
+
+.publish-notice-btn:hover{
+
+transform:translateY(-2px);
+
+box-shadow:
+0 8px 18px rgba(108,76,255,.25);
+
+}
+
+
+/* =========================================================
+                    PAGINATION
+========================================================= */
+
+.notice-pagination-wrapper{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+margin-top:22px;
+
+}
+
+
+.notice-pagination-wrapper p{
+
+font-size:13px;
+
+color:#6b7280;
+
+margin:0;
+
+}
+
+
+.notice-pagination{
+
+display:flex;
+
+gap:6px;
+
+}
+
+
+.notice-pagination button{
+
+width:35px;
+height:35px;
+
+border:none;
+
+border-radius:9px;
+
+background:#f3f4f6;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+
+.notice-pagination button:hover,
+.notice-pagination button.active{
+
+background:#6c4cff;
+
+color:#fff;
+
+}
+
+
+/* =========================================================
+                    DARK MODE
+========================================================= */
+
+body.dark .notice-page-header p{
+
+color:#cbd5e1;
+
+}
+
+
+body.dark .notice-stat-card,
+body.dark .notice-card{
+
+background:#1f1f1f;
+
+color:#fff;
+
+}
+
+
+body.dark .notice-stat-card p,
+body.dark .notice-title-box small,
+body.dark .notice-pagination-wrapper p{
+
+color:#cbd5e1;
+
+}
+
+
+body.dark .notice-table tbody td{
+
+background:#1f1f1f;
+
+color:#fff;
+
+border-color:#333;
+
+}
+
+
+body.dark .notice-table tbody tr:hover td{
+
+background:#292929;
+
+}
+
+
+body.dark .notice-search input,
+body.dark .notice-filter,
+body.dark .notice-card .form-control,
+body.dark .notice-card .form-select{
+
+background:#292929;
+
+border-color:#444;
+
+color:#fff;
+
+}
+
+
+body.dark .notice-search input::placeholder,
+body.dark .notice-card .form-control::placeholder{
+
+color:#9ca3af;
+
+}
+
+
+body.dark .notice-filter option,
+body.dark .notice-card .form-select option{
+
+background:#292929;
+
+color:#fff;
+
+}
+
+
+body.dark .audience-option{
+
+border-color:#444;
+
+}
+
+
+body.dark .audience-option:hover{
+
+background:#292929;
+
+border-color:#6c4cff;
+
+}
+
+
+body.dark .notice-upload-box{
+
+border-color:#444;
+
+}
+
+
+body.dark .notice-upload-box:hover{
+
+background:#292929;
+
+}
+
+
+body.dark .notice-pagination button{
+
+background:#292929;
+
+color:#fff;
+
+}
+
+
+body.dark .notice-pagination button.active{
+
+background:#6c4cff;
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE
+========================================================= */
+
+@media(max-width:1200px){
+
+.notice-stat-grid{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+
+.notice-main-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+.create-notice-card{
+
+position:static;
+
+}
+
+}
+
+
+@media(max-width:576px){
+
+.notice-stat-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+.notice-card{
+
+padding:18px;
+
+}
+
+
+.notice-search{
+
+width:100%;
+
+}
+
+
+.notice-search input{
+
+width:100%;
+
+}
+
+
+.notice-filter{
+
+width:100%;
+
+}
+
+
+.notice-filters{
+
+width:100%;
+
+}
+
+
+.audience-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="wrapper">
+
+
+<!-- =========================================================
+                        SIDEBAR
+========================================================= -->
+
+<aside class="sidebar">
+
+
+<div class="logo">
+
+<img
+src="../../images/logo.png"
+alt="Logo">
+
+<h3>HOD Panel</h3>
+
+</div>
+
+
+<ul class="menu">
+
+
+<li>
+
+<a href="hod-dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+Dashboard
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="teacher-list.html">
+
+<i class="fa-solid fa-users"></i>
+
+Teachers
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="student-list.html">
+
+<i class="fa-solid fa-user-graduate"></i>
+
+Students
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="timetable.html">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+Timetable
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="leave-request.html">
+
+<i class="fa-solid fa-file-circle-check"></i>
+
+Leave Requests
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="face-attendance.html">
+
+<i class="fa-solid fa-face-smile"></i>
+
+Face Attendance
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="attendance-report.html">
+
+<i class="fa-solid fa-clipboard-user"></i>
+
+Attendance Report
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="reports.html">
+
+<i class="fa-solid fa-chart-line"></i>
+
+Reports
+
+</a>
+
+</li>
+
+
+<li class="active">
+
+<a href="notice-board.html">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+Notices
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="academic-calendar.html">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+Academic Calendar
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="analytics.html">
+
+<i class="fa-solid fa-chart-pie"></i>
+
+Analytics
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="hod-login.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+</aside>
+
+
+<!-- =========================================================
+                        MAIN CONTENT
+========================================================= -->
+
+<main class="main-content">
+
+
+<!-- =========================================================
+                        TOP NAVBAR
+========================================================= -->
+
+<nav class="top-navbar">
+
+
+<h3>
+
+Notice Board
+
+</h3>
+
+
+<div class="top-right">
+
+
+<!-- Search -->
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="searchBox"
+placeholder="Search...">
+
+</div>
+
+
+<!-- Dark / Light Mode -->
+
+<button
+id="themeToggle"
+class="icon-btn"
+title="Dark / Light Mode">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+
+<!-- Notification -->
+
+<div class="dropdown">
+
+
+<button
+class="icon-btn position-relative"
+data-bs-toggle="dropdown">
+
+<i class="fa-regular fa-bell"></i>
+
+
+<span
+class="badge-count"
+id="notificationCount">
+
+4
+
+</span>
+
+</button>
+
+
+<ul
+class="dropdown-menu dropdown-menu-end notification-menu">
+
+
+<li class="dropdown-header">
+
+Notifications
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="notification.html">
+
+📢 Faculty Meeting Tomorrow
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="notification.html">
+
+📄 Leave Request Pending
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="notification.html">
+
+🎓 Examination Schedule Updated
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="notification.html">
+
+✅ Attendance Updated
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+<!-- Profile -->
+
+<div class="dropdown">
+
+
+<div
+class="profile"
+data-bs-toggle="dropdown">
+
+
+<img
+src="https://i.pravatar.cc/50?img=12"
+alt="HOD">
+
+
+<span>
+
+Welcome, HOD
+
+</span>
+
+
+<i class="fa-solid fa-angle-down"></i>
+
+</div>
+
+
+<ul
+class="dropdown-menu dropdown-menu-end profile-menu">
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="profile.html">
+
+<i class="fa-solid fa-user"></i>
+
+My Profile
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="change-password.html">
+
+<i class="fa-solid fa-lock"></i>
+
+Change Password
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
+
+</a>
+
+</li>
+
+
+<li>
+
+<hr class="dropdown-divider">
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item text-danger"
+href="hod-login.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+</div>
+
+
+</div>
+
+</nav>
+
+
+<!-- =========================================================
+                        PAGE HEADER
+========================================================= -->
+
+<section class="notice-page-header">
+
+
+<div>
+
+
+<h2>
+
+<i
+class="fa-solid fa-bullhorn"
+style="color:#6c4cff;">
+</i>
+
+Department Notice Board
+
+</h2>
+
+
+<p>
+
+Create, publish and manage notices for
+teachers and students in your department.
+
+</p>
+
+
+</div>
+
+
+<button
+type="button"
+class="btn btn-primary"
+id="scrollCreateNoticeBtn">
+
+<i class="fa-solid fa-plus me-2"></i>
+
+Create New Notice
+
+</button>
+
+
+</section>
+
+
+<!-- =========================================================
+                    STATISTICS CARDS
+========================================================= -->
+
+<section class="notice-stat-grid">
+
+
+<!-- Total -->
+
+<div class="notice-stat-card notice-total">
+
+
+<div class="notice-stat-icon">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+</div>
+
+
+<div>
+
+<h3 id="totalNoticeCount">
+
+28
+
+</h3>
+
+<p>
+
+Total Notices
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- Active -->
+
+<div class="notice-stat-card notice-active">
+
+
+<div class="notice-stat-icon">
+
+<i class="fa-solid fa-circle-check"></i>
+
+</div>
+
+
+<div>
+
+<h3 id="activeNoticeCount">
+
+14
+
+</h3>
+
+<p>
+
+Active Notices
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- Scheduled -->
+
+<div class="notice-stat-card notice-scheduled">
+
+
+<div class="notice-stat-icon">
+
+<i class="fa-solid fa-clock"></i>
+
+</div>
+
+
+<div>
+
+<h3 id="scheduledNoticeCount">
+
+5
+
+</h3>
+
+<p>
+
+Scheduled
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- Expired -->
+
+<div class="notice-stat-card notice-expired">
+
+
+<div class="notice-stat-icon">
+
+<i class="fa-solid fa-calendar-xmark"></i>
+
+</div>
+
+
+<div>
+
+<h3 id="expiredNoticeCount">
+
+9
+
+</h3>
+
+<p>
+
+Expired Notices
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    MAIN GRID
+========================================================= -->
+
+<section class="notice-main-grid">
+
+
+<!-- =========================================================
+                    LEFT SIDE
+========================================================= -->
+
+<div class="notice-card">
+
+
+<div class="notice-card-title">
+
+
+<h4>
+
+<i class="fa-solid fa-list me-2"></i>
+
+Published Notices
+
+</h4>
+
+
+<div class="notice-filters">
+
+
+<!-- Search -->
+
+<div class="notice-search">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="noticeSearchInput"
+placeholder="Search notices...">
+
+</div>
+
+
+<!-- Status -->
+
+<select
+id="noticeStatusFilter"
+class="notice-filter">
+
+<option value="all">
+
+All Status
+
+</option>
+
+<option value="active">
+
+Active
+
+</option>
+
+<option value="scheduled">
+
+Scheduled
+
+</option>
+
+<option value="expired">
+
+Expired
+
+</option>
+
+</select>
+
+
+<!-- Priority -->
+
+<select
+id="noticePriorityFilter"
+class="notice-filter">
+
+<option value="all">
+
+All Priority
+
+</option>
+
+<option value="high">
+
+High
+
+</option>
+
+<option value="medium">
+
+Medium
+
+</option>
+
+<option value="low">
+
+Low
+
+</option>
+
+</select>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                        TABLE
+========================================================= -->
+
+<div class="notice-table-wrapper">
+
+
+<table
+class="table notice-table"
+id="noticeTable">
+
+
+<thead>
+
+
+<tr>
+
+<th>
+
+Notice
+
+</th>
+
+<th>
+
+Audience
+
+</th>
+
+<th>
+
+Priority
+
+</th>
+
+<th>
+
+Publish Date
+
+</th>
+
+<th>
+
+Expiry Date
+
+</th>
+
+<th>
+
+Status
+
+</th>
+
+<th>
+
+Actions
+
+</th>
+
+</tr>
+
+
+</thead>
+
+
+<tbody id="noticeTableBody">
+
+
+<!-- =========================================================
+                        NOTICE 1
+========================================================= -->
+
+<tr
+data-status="active"
+data-priority="high">
+
+
+<td>
+
+
+<div class="notice-title-box">
+
+
+<div class="notice-mini-icon">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+
+Faculty Meeting Tomorrow
+
+</strong>
+
+<small>
+
+N001 • Department Meeting
+
+</small>
+
+</div>
+
+
+</div>
+
+
+</td>
+
+
+<td>
+
+Teachers
+
+</td>
+
+
+<td>
+
+<span class="notice-priority priority-high">
+
+<i class="fa-solid fa-circle-exclamation"></i>
+
+High
+
+</span>
+
+</td>
+
+
+<td>
+
+02 Aug 2026
+
+</td>
+
+
+<td>
+
+04 Aug 2026
+
+</td>
+
+
+<td>
+
+<span class="notice-status status-active">
+
+<i class="fa-solid fa-circle-check"></i>
+
+Active
+
+</span>
+
+</td>
+
+
+<td>
+
+
+<div class="notice-actions">
+
+
+<button
+type="button"
+class="notice-action-btn notice-view-btn viewNoticeBtn"
+
+title="View"
+
+data-id="N001"
+data-title="Faculty Meeting Tomorrow"
+data-category="Department Meeting"
+data-audience="Teachers"
+data-priority="High"
+data-publish="02 Aug 2026"
+data-expiry="04 Aug 2026"
+data-status="Active"
+data-description="All faculty members are requested to attend the department meeting tomorrow at 11:00 AM in the conference hall.">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+
+<button
+type="button"
+class="notice-action-btn notice-edit-btn editNoticeBtn"
+
+title="Edit">
+
+<i class="fa-solid fa-pen"></i>
+
+</button>
+
+
+<button
+type="button"
+class="notice-action-btn notice-delete-btn deleteNoticeBtn"
+
+title="Delete">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+
+</div>
+
+
+</td>
+
+
+</tr>
+
+
+<!-- =========================================================
+                        NOTICE 2
+========================================================= -->
+
+<tr
+data-status="active"
+data-priority="high">
+
+
+<td>
+
+
+<div class="notice-title-box">
+
+
+<div class="notice-mini-icon">
+
+<i class="fa-solid fa-file-pen"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+
+Semester Examination Schedule
+
+</strong>
+
+<small>
+
+N002 • Examination
+
+</small>
+
+</div>
+
+
+</div>
+
+
+</td>
+
+
+<td>
+
+Teachers & Students
+
+</td>
+
+
+<td>
+
+<span class="notice-priority priority-high">
+
+<i class="fa-solid fa-circle-exclamation"></i>
+
+High
+
+</span>
+
+</td>
+
+
+<td>
+
+01 Aug 2026
+
+</td>
+
+
+<td>
+
+25 Aug 2026
+
+</td>
+
+
+<td>
+
+<span class="notice-status status-active">
+
+<i class="fa-solid fa-circle-check"></i>
+
+Active
+
+</span>
+
+</td>
+
+
+<td>
+
+
+<div class="notice-actions">
+
+
+<button
+type="button"
+class="notice-action-btn notice-view-btn viewNoticeBtn"
+
+title="View"
+
+data-id="N002"
+data-title="Semester Examination Schedule"
+data-category="Examination"
+data-audience="Teachers & Students"
+data-priority="High"
+data-publish="01 Aug 2026"
+data-expiry="25 Aug 2026"
+data-status="Active"
+data-description="The semester examination schedule has been published. All faculty members and students are advised to check the timetable carefully.">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+
+<button
+type="button"
+class="notice-action-btn notice-edit-btn editNoticeBtn"
+
+title="Edit">
+
+<i class="fa-solid fa-pen"></i>
+
+</button>
+
+
+<button
+type="button"
+class="notice-action-btn notice-delete-btn deleteNoticeBtn"
+
+title="Delete">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+
+</div>
+
+
+</td>
+
+
+</tr>
+
+
+<!-- =========================================================
+                        NOTICE 3
+========================================================= -->
+
+<tr
+data-status="scheduled"
+data-priority="medium">
+
+
+<td>
+
+
+<div class="notice-title-box">
+
+
+<div class="notice-mini-icon">
+
+<i class="fa-solid fa-laptop-code"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+
+Faculty Development Workshop
+
+</strong>
+
+<small>
+
+N003 • Workshop
+
+</small>
+
+</div>
+
+
+</div>
+
+
+</td>
+
+
+<td>
+
+Teachers
+
+</td>
+
+
+<td>
+
+<span class="notice-priority priority-medium">
+
+<i class="fa-solid fa-circle"></i>
+
+Medium
+
+</span>
+
+</td>
+
+
+<td>
+
+08 Aug 2026
+
+</td>
+
+
+<td>
+
+12 Aug 2026
+
+</td>
+
+
+<td>
+
+<span class="notice-status status-scheduled">
+
+<i class="fa-solid fa-clock"></i>
+
+Scheduled
+
+</span>
+
+</td>
+
+
+<td>
+
+
+<div class="notice-actions">
+
+
+<button
+type="button"
+class="notice-action-btn notice-view-btn viewNoticeBtn"
+
+title="View"
+
+data-id="N003"
+data-title="Faculty Development Workshop"
+data-category="Workshop"
+data-audience="Teachers"
+data-priority="Medium"
+data-publish="08 Aug 2026"
+data-expiry="12 Aug 2026"
+data-status="Scheduled"
+data-description="A Faculty Development Workshop on emerging technologies will be conducted for all department faculty members.">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+
+<button
+type="button"
+class="notice-action-btn notice-edit-btn editNoticeBtn"
+
+title="Edit">
+
+<i class="fa-solid fa-pen"></i>
+
+</button>
+
+
+<button
+type="button"
+class="notice-action-btn notice-delete-btn deleteNoticeBtn"
+
+title="Delete">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+
+</div>
+
+
+</td>
+
+
+</tr>
+
+
+<!-- =========================================================
+                        NOTICE 4
+========================================================= -->
+
+<tr
+data-status="active"
+data-priority="medium">
+
+
+<td>
+
+
+<div class="notice-title-box">
+
+
+<div class="notice-mini-icon">
+
+<i class="fa-solid fa-clipboard-check"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+
+Internal Assessment Submission
+
+</strong>
+
+<small>
+
+N004 • Academic
+
+</small>
+
+</div>
+
+
+</div>
+
+
+</td>
+
+
+<td>
+
+Teachers
+
+</td>
+
+
+<td>
+
+<span class="notice-priority priority-medium">
+
+<i class="fa-solid fa-circle"></i>
+
+Medium
+
+</span>
+
+</td>
+
+
+<td>
+
+31 Jul 2026
+
+</td>
+
+
+<td>
+
+10 Aug 2026
+
+</td>
+
+
+<td>
+
+<span class="notice-status status-active">
+
+<i class="fa-solid fa-circle-check"></i>
+
+Active
+
+</span>
+
+</td>
+
+
+<td>
+
+
+<div class="notice-actions">
+
+
+<button
+type="button"
+class="notice-action-btn notice-view-btn viewNoticeBtn"
+
+title="View"
+
+data-id="N004"
+data-title="Internal Assessment Submission"
+data-category="Academic"
+data-audience="Teachers"
+data-priority="Medium"
+data-publish="31 Jul 2026"
+data-expiry="10 Aug 2026"
+data-status="Active"
+data-description="All faculty members must submit internal assessment marks before the specified deadline.">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+
+<button
+type="button"
+class="notice-action-btn notice-edit-btn editNoticeBtn"
+
+title="Edit">
+
+<i class="fa-solid fa-pen"></i>
+
+</button>
+
+
+<button
+type="button"
+class="notice-action-btn notice-delete-btn deleteNoticeBtn"
+
+title="Delete">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+
+</div>
+
+
+</td>
+
+
+</tr>
+
+
+<!-- =========================================================
+                        NOTICE 5
+========================================================= -->
+
+<tr
+data-status="expired"
+data-priority="low">
+
+
+<td>
+
+
+<div class="notice-title-box">
+
+
+<div class="notice-mini-icon">
+
+<i class="fa-solid fa-book"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+
+Library Book Verification
+
+</strong>
+
+<small>
+
+N005 • General
+
+</small>
+
+</div>
+
+
+</div>
+
+
+</td>
+
+
+<td>
+
+Students
+
+</td>
+
+
+<td>
+
+<span class="notice-priority priority-low">
+
+<i class="fa-solid fa-circle"></i>
+
+Low
+
+</span>
+
+</td>
+
+
+<td>
+
+20 Jul 2026
+
+</td>
+
+
+<td>
+
+30 Jul 2026
+
+</td>
+
+
+<td>
+
+<span class="notice-status status-expired">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+Expired
+
+</span>
+
+</td>
+
+
+<td>
+
+
+<div class="notice-actions">
+
+
+<button
+type="button"
+class="notice-action-btn notice-view-btn viewNoticeBtn"
+
+title="View"
+
+data-id="N005"
+data-title="Library Book Verification"
+data-category="General"
+data-audience="Students"
+data-priority="Low"
+data-publish="20 Jul 2026"
+data-expiry="30 Jul 2026"
+data-status="Expired"
+data-description="Students were requested to complete library book verification before the given deadline.">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+
+<button
+type="button"
+class="notice-action-btn notice-edit-btn editNoticeBtn"
+
+title="Edit">
+
+<i class="fa-solid fa-pen"></i>
+
+</button>
+
+
+<button
+type="button"
+class="notice-action-btn notice-delete-btn deleteNoticeBtn"
+
+title="Delete">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+
+</div>
+
+
+</td>
+
+
+</tr>
+
+
+<!-- =========================================================
+                        NOTICE 6
+========================================================= -->
+
+<tr
+data-status="scheduled"
+data-priority="low">
+
+
+<td>
+
+
+<div class="notice-title-box">
+
+
+<div class="notice-mini-icon">
+
+<i class="fa-solid fa-trophy"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+
+Department Coding Competition
+
+</strong>
+
+<small>
+
+N006 • Event
+
+</small>
+
+</div>
+
+
+</div>
+
+
+</td>
+
+
+<td>
+
+Students
+
+</td>
+
+
+<td>
+
+<span class="notice-priority priority-low">
+
+<i class="fa-solid fa-circle"></i>
+
+Low
+
+</span>
+
+</td>
+
+
+<td>
+
+15 Aug 2026
+
+</td>
+
+
+<td>
+
+22 Aug 2026
+
+</td>
+
+
+<td>
+
+<span class="notice-status status-scheduled">
+
+<i class="fa-solid fa-clock"></i>
+
+Scheduled
+
+</span>
+
+</td>
+
+
+<td>
+
+
+<div class="notice-actions">
+
+
+<button
+type="button"
+class="notice-action-btn notice-view-btn viewNoticeBtn"
+
+title="View"
+
+data-id="N006"
+data-title="Department Coding Competition"
+data-category="Event"
+data-audience="Students"
+data-priority="Low"
+data-publish="15 Aug 2026"
+data-expiry="22 Aug 2026"
+data-status="Scheduled"
+data-description="The Computer Science Department will organize a coding competition for students. Registration details will be announced soon.">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+
+<button
+type="button"
+class="notice-action-btn notice-edit-btn editNoticeBtn"
+
+title="Edit">
+
+<i class="fa-solid fa-pen"></i>
+
+</button>
+
+
+<button
+type="button"
+class="notice-action-btn notice-delete-btn deleteNoticeBtn"
+
+title="Delete">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+
+</div>
+
+
+</td>
+
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+
+</div>
+
+
+<!-- =========================================================
+                        PAGINATION
+========================================================= -->
+
+<div class="notice-pagination-wrapper">
+
+
+<p id="noticeResultInfo">
+
+Showing 1 to 6 of 28 notices
+
+</p>
+
+
+<div class="notice-pagination">
+
+
+<button
+type="button"
+id="noticePrevBtn">
+
+<i class="fa-solid fa-angle-left"></i>
+
+</button>
+
+
+<button
+type="button"
+class="active">
+
+1
+
+</button>
+
+
+<button type="button">
+
+2
+
+</button>
+
+
+<button type="button">
+
+3
+
+</button>
+
+
+<button type="button">
+
+4
+
+</button>
+
+
+<button type="button">
+
+5
+
+</button>
+
+
+<button
+type="button"
+id="noticeNextBtn">
+
+<i class="fa-solid fa-angle-right"></i>
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                RIGHT SIDE - CREATE NOTICE
+========================================================= -->
+
+<div
+class="notice-card create-notice-card"
+id="createNoticeSection">
+
+
+<div class="notice-card-title">
+
+
+<h4>
+
+<i class="fa-solid fa-square-plus me-2"></i>
+
+Create Notice
+
+</h4>
+
+
+<span class="badge bg-success">
+
+HOD
+
+</span>
+
+
+</div>
+
+
+<form id="createNoticeForm">
+
+
+<!-- Notice Title -->
+
+<div class="mb-3">
+
+
+<label class="notice-form-label">
+
+Notice Title
+
+<span class="text-danger">*</span>
+
+</label>
+
+
+<input
+type="text"
+id="noticeTitle"
+class="form-control"
+placeholder="Enter notice title"
+required>
+
+
+</div>
+
+
+<!-- Category -->
+
+<div class="mb-3">
+
+
+<label class="notice-form-label">
+
+Category
+
+<span class="text-danger">*</span>
+
+</label>
+
+
+<select
+id="noticeCategory"
+class="form-select"
+required>
+
+
+<option value="">
+
+Select Category
+
+</option>
+
+
+<option value="Academic">
+
+Academic
+
+</option>
+
+
+<option value="Examination">
+
+Examination
+
+</option>
+
+
+<option value="Meeting">
+
+Department Meeting
+
+</option>
+
+
+<option value="Workshop">
+
+Workshop
+
+</option>
+
+
+<option value="Event">
+
+Event
+
+</option>
+
+
+<option value="General">
+
+General
+
+</option>
+
+
+<option value="Emergency">
+
+Emergency
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+<!-- Description -->
+
+<div class="mb-3">
+
+
+<label class="notice-form-label">
+
+Notice Description
+
+<span class="text-danger">*</span>
+
+</label>
+
+
+<textarea
+id="noticeDescription"
+class="form-control"
+rows="5"
+maxlength="500"
+placeholder="Write notice details..."
+required>
+</textarea>
+
+
+<div
+class="text-end mt-1">
+
+<small class="text-muted">
+
+<span id="noticeCharacterCount">
+
+0
+
+</span>
+
+/ 500
+
+</small>
+
+</div>
+
+
+</div>
+
+
+<!-- Audience -->
+
+<div class="mb-3">
+
+
+<label class="notice-form-label">
+
+Target Audience
+
+<span class="text-danger">*</span>
+
+</label>
+
+
+<div class="audience-grid">
+
+
+<label class="audience-option">
+
+
+<input
+type="checkbox"
+class="noticeAudience"
+value="Teachers">
+
+<i class="fa-solid fa-chalkboard-user"></i>
+
+Teachers
+
+
+</label>
+
+
+<label class="audience-option">
+
+
+<input
+type="checkbox"
+class="noticeAudience"
+value="Students">
+
+<i class="fa-solid fa-user-graduate"></i>
+
+Students
+
+
+</label>
+
+
+<label class="audience-option">
+
+
+<input
+type="checkbox"
+class="noticeAudience"
+value="All">
+
+<i class="fa-solid fa-users"></i>
+
+Everyone
+
+
+</label>
+
+
+<label class="audience-option">
+
+
+<input
+type="checkbox"
+class="noticeAudience"
+value="Selected Semester">
+
+<i class="fa-solid fa-layer-group"></i>
+
+Semester
+
+
+</label>
+
+
+</div>
+
+
+</div>
+
+
+<!-- Priority -->
+
+<div class="mb-3">
+
+
+<label class="notice-form-label">
+
+Priority
+
+</label>
+
+
+<select
+id="noticePriority"
+class="form-select">
+
+
+<option value="Low">
+
+Low
+
+</option>
+
+
+<option
+value="Medium"
+selected>
+
+Medium
+
+</option>
+
+
+<option value="High">
+
+High
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+<!-- Publish Date -->
+
+<div class="row">
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="notice-form-label">
+
+Publish Date
+
+</label>
+
+
+<input
+type="date"
+id="noticePublishDate"
+class="form-control">
+
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="notice-form-label">
+
+Expiry Date
+
+</label>
+
+
+<input
+type="date"
+id="noticeExpiryDate"
+class="form-control">
+
+
+</div>
+
+
+</div>
+
+
+<!-- Attachment -->
+
+<div class="mb-3">
+
+
+<label class="notice-form-label">
+
+Attachment
+
+</label>
+
+
+<div
+class="notice-upload-box"
+id="noticeUploadBox">
+
+
+<i class="fa-solid fa-cloud-arrow-up"></i>
+
+
+<p>
+
+Click to upload attachment
+
+</p>
+
+
+<small>
+
+PDF, DOC, DOCX, JPG or PNG
+
+</small>
+
+
+<input
+type="file"
+id="noticeAttachment"
+accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+hidden>
+
+
+</div>
+
+
+<div
+id="selectedNoticeFile"
+class="small text-success mt-2"
+style="display:none;">
+
+<i class="fa-solid fa-paperclip me-1"></i>
+
+<span id="selectedNoticeFileName">
+
+</span>
+
+</div>
+
+
+</div>
+
+
+<!-- Schedule -->
+
+<div class="form-check form-switch mb-3">
+
+
+<input
+class="form-check-input"
+type="checkbox"
+id="scheduleNotice">
+
+
+<label
+class="form-check-label fw-semibold"
+for="scheduleNotice">
+
+Schedule Notice
+
+</label>
+
+
+</div>
+
+
+<!-- Notify -->
+
+<div class="form-check form-switch mb-4">
+
+
+<input
+class="form-check-input"
+type="checkbox"
+id="sendNotification"
+checked>
+
+
+<label
+class="form-check-label fw-semibold"
+for="sendNotification">
+
+Send Notification to Users
+
+</label>
+
+
+</div>
+
+
+<!-- Buttons -->
+
+<div class="d-grid gap-2">
+
+
+<button
+type="submit"
+class="publish-notice-btn"
+id="publishNoticeBtn">
+
+
+<i class="fa-solid fa-paper-plane me-2"></i>
+
+Publish Notice
+
+
+</button>
+
+
+<button
+type="button"
+class="btn btn-outline-secondary"
+id="clearNoticeFormBtn">
+
+
+<i class="fa-solid fa-rotate-left me-2"></i>
+
+Clear Form
+
+
+</button>
+
+
+</div>
+
+
+</form>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    PART 2 CONTINUES HERE
+========================================================= -->
+
+<!-- =========================================================
+                    VIEW NOTICE MODAL
+========================================================= -->
+
+<div
+class="modal fade"
+id="viewNoticeModal"
+tabindex="-1">
+
+<div class="modal-dialog modal-lg modal-dialog-centered">
+
+<div class="modal-content border-0 rounded-4">
+
+<div class="modal-header bg-primary text-white">
+
+<h5 class="modal-title">
+
+<i class="fa-solid fa-bullhorn me-2"></i>
+
+Notice Details
+
+</h5>
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+
+<div class="modal-body p-4">
+
+<div class="text-center mb-4">
+
+<div
+class="mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle"
+style="
+width:85px;
+height:85px;
+background:rgba(108,76,255,.12);
+color:#6c4cff;
+font-size:36px;
+">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+</div>
+
+<h3
+id="viewNoticeTitle"
+class="fw-bold">
+
+--
+
+</h3>
+
+<p
+id="viewNoticeCategory"
+class="text-muted">
+
+--
+
+</p>
+
+</div>
+
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Notice ID
+
+</label>
+
+<input
+type="text"
+id="viewNoticeId"
+class="form-control"
+readonly>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Target Audience
+
+</label>
+
+<input
+type="text"
+id="viewNoticeAudience"
+class="form-control"
+readonly>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Priority
+
+</label>
+
+<div
+id="viewNoticePriority"
+class="form-control d-flex align-items-center">
+
+--
+
+</div>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Status
+
+</label>
+
+<div
+id="viewNoticeStatus"
+class="form-control d-flex align-items-center">
+
+--
+
+</div>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Publish Date
+
+</label>
+
+<input
+type="text"
+id="viewNoticePublish"
+class="form-control"
+readonly>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Expiry Date
+
+</label>
+
+<input
+type="text"
+id="viewNoticeExpiry"
+class="form-control"
+readonly>
+
+</div>
+
+
+<div class="col-12 mb-3">
+
+<label class="form-label fw-semibold">
+
+Notice Description
+
+</label>
+
+<textarea
+id="viewNoticeDescription"
+class="form-control"
+rows="5"
+readonly>
+</textarea>
+
+</div>
+
+
+<div class="col-12">
+
+<label class="form-label fw-semibold">
+
+Attachment
+
+</label>
+
+<div
+class="border rounded-3 p-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
+
+<div>
+
+<i class="fa-solid fa-paperclip text-primary me-2"></i>
+
+<span id="viewNoticeAttachment">
+
+No attachment available
+
+</span>
+
+</div>
+
+<button
+type="button"
+class="btn btn-sm btn-outline-primary"
+id="viewNoticeAttachmentBtn">
+
+<i class="fa-solid fa-eye me-1"></i>
+
+View Attachment
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="modal-footer">
+
+<button
+type="button"
+class="btn btn-secondary"
+data-bs-dismiss="modal">
+
+Close
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    EDIT NOTICE MODAL
+========================================================= -->
+
+<div
+class="modal fade"
+id="editNoticeModal"
+tabindex="-1">
+
+<div class="modal-dialog modal-lg modal-dialog-centered">
+
+<div class="modal-content border-0 rounded-4">
+
+<div class="modal-header bg-warning">
+
+<h5 class="modal-title fw-bold">
+
+<i class="fa-solid fa-pen-to-square me-2"></i>
+
+Edit Notice
+
+</h5>
+
+<button
+type="button"
+class="btn-close"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+
+<div class="modal-body p-4">
+
+<form id="editNoticeForm">
+
+<input
+type="hidden"
+id="editNoticeRowIndex">
+
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Notice ID
+
+</label>
+
+<input
+type="text"
+id="editNoticeId"
+class="form-control"
+readonly>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Notice Title
+
+</label>
+
+<input
+type="text"
+id="editNoticeTitle"
+class="form-control"
+required>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Category
+
+</label>
+
+<select
+id="editNoticeCategory"
+class="form-select">
+
+<option>Academic</option>
+<option>Examination</option>
+<option>Department Meeting</option>
+<option>Workshop</option>
+<option>Event</option>
+<option>General</option>
+<option>Emergency</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Audience
+
+</label>
+
+<select
+id="editNoticeAudience"
+class="form-select">
+
+<option>Teachers</option>
+<option>Students</option>
+<option>Teachers & Students</option>
+<option>Everyone</option>
+<option>Selected Semester</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Priority
+
+</label>
+
+<select
+id="editNoticePriority"
+class="form-select">
+
+<option>High</option>
+<option>Medium</option>
+<option>Low</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Status
+
+</label>
+
+<select
+id="editNoticeStatus"
+class="form-select">
+
+<option>Active</option>
+<option>Scheduled</option>
+<option>Expired</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Publish Date
+
+</label>
+
+<input
+type="date"
+id="editNoticePublishDate"
+class="form-control">
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Expiry Date
+
+</label>
+
+<input
+type="date"
+id="editNoticeExpiryDate"
+class="form-control">
+
+</div>
+
+
+<div class="col-12 mb-3">
+
+<label class="form-label fw-semibold">
+
+Description
+
+</label>
+
+<textarea
+id="editNoticeDescription"
+class="form-control"
+rows="5">
+</textarea>
+
+</div>
+
+</div>
+
+</form>
+
+</div>
+
+
+<div class="modal-footer">
+
+<button
+type="button"
+class="btn btn-outline-secondary"
+data-bs-dismiss="modal">
+
+Cancel
+
+</button>
+
+<button
+type="button"
+id="saveNoticeChangesBtn"
+class="btn btn-warning">
+
+<i class="fa-solid fa-floppy-disk me-2"></i>
+
+Save Changes
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    DELETE NOTICE MODAL
+========================================================= -->
+
+<div
+class="modal fade"
+id="deleteNoticeModal"
+tabindex="-1">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content border-0 rounded-4">
+
+<div class="modal-header bg-danger text-white">
+
+<h5 class="modal-title">
+
+<i class="fa-solid fa-trash me-2"></i>
+
+Delete Notice
+
+</h5>
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+
+<div class="modal-body text-center p-4">
+
+<div
+class="mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle"
+style="
+width:90px;
+height:90px;
+background:rgba(239,68,68,.12);
+color:#dc2626;
+font-size:40px;
+">
+
+<i class="fa-solid fa-trash"></i>
+
+</div>
+
+<h4 class="fw-bold">
+
+Delete this notice?
+
+</h4>
+
+<p class="text-muted">
+
+Are you sure you want to delete
+
+<strong id="deleteNoticeTitle">
+
+this notice
+
+</strong>?
+
+</p>
+
+<div class="alert alert-warning">
+
+<i class="fa-solid fa-triangle-exclamation me-2"></i>
+
+This action cannot be undone.
+
+</div>
+
+</div>
+
+
+<div class="modal-footer justify-content-center">
+
+<button
+type="button"
+class="btn btn-outline-secondary"
+data-bs-dismiss="modal">
+
+Cancel
+
+</button>
+
+<button
+type="button"
+id="confirmDeleteNoticeBtn"
+class="btn btn-danger">
+
+<i class="fa-solid fa-trash me-2"></i>
+
+Delete Notice
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                NOTICE SUCCESS MODAL
+========================================================= -->
+
+<div
+class="modal fade"
+id="noticeSuccessModal"
+tabindex="-1">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content border-0 rounded-4">
+
+<div
+id="noticeSuccessHeader"
+class="modal-header bg-success text-white">
+
+<h5 class="modal-title">
+
+<i
+id="noticeSuccessHeaderIcon"
+class="fa-solid fa-circle-check me-2">
+</i>
+
+<span id="noticeSuccessTitle">
+
+Notice Published
+
+</span>
+
+</h5>
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+
+<div class="modal-body text-center p-4">
+
+<div
+id="noticeSuccessIconBox"
+class="mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle"
+style="
+width:90px;
+height:90px;
+background:rgba(34,197,94,.12);
+color:#16a34a;
+font-size:42px;
+">
+
+<i
+id="noticeSuccessIcon"
+class="fa-solid fa-check">
+</i>
+
+</div>
+
+<h4
+id="noticeSuccessHeading"
+class="fw-bold">
+
+Notice Published Successfully!
+
+</h4>
+
+<p
+id="noticeSuccessMessage"
+class="text-muted">
+
+The notice has been published successfully.
+
+</p>
+
+</div>
+
+
+<div class="modal-footer justify-content-center">
+
+<button
+type="button"
+class="btn btn-primary px-4"
+data-bs-dismiss="modal">
+
+Done
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                        FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+© 2026 Faculty Management & Productivity System |
+HOD Notice Board
+
+</footer>
+
+
+</main>
+
+</div>
+
+
+<!-- =========================================================
+                        BOOTSTRAP JS
+========================================================= -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- =========================================================
+                    HOD DASHBOARD JS
+========================================================= -->
+
+<script src="../../js/hod-dashboard.js"></script>
+
+
+<!-- =========================================================
+                    NOTICE BOARD JS
+========================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+
+/* =========================================================
+                    BASIC ELEMENTS
+========================================================= */
+
+const noticeTableBody =
+document.getElementById("noticeTableBody");
+
+const noticeSearchInput =
+document.getElementById("noticeSearchInput");
+
+const noticeStatusFilter =
+document.getElementById("noticeStatusFilter");
+
+const noticePriorityFilter =
+document.getElementById("noticePriorityFilter");
+
+const noticeResultInfo =
+document.getElementById("noticeResultInfo");
+
+
+const totalNoticeCount =
+document.getElementById("totalNoticeCount");
+
+const activeNoticeCount =
+document.getElementById("activeNoticeCount");
+
+const scheduledNoticeCount =
+document.getElementById("scheduledNoticeCount");
+
+const expiredNoticeCount =
+document.getElementById("expiredNoticeCount");
+
+
+const createNoticeForm =
+document.getElementById("createNoticeForm");
+
+const noticeTitle =
+document.getElementById("noticeTitle");
+
+const noticeCategory =
+document.getElementById("noticeCategory");
+
+const noticeDescription =
+document.getElementById("noticeDescription");
+
+const noticePriority =
+document.getElementById("noticePriority");
+
+const noticePublishDate =
+document.getElementById("noticePublishDate");
+
+const noticeExpiryDate =
+document.getElementById("noticeExpiryDate");
+
+const scheduleNotice =
+document.getElementById("scheduleNotice");
+
+const sendNotification =
+document.getElementById("sendNotification");
+
+const noticeCharacterCount =
+document.getElementById("noticeCharacterCount");
+
+
+let selectedNoticeRow = null;
+
+
+/* =========================================================
+                    MODAL OBJECTS
+========================================================= */
+
+const viewNoticeModal =
+new bootstrap.Modal(
+document.getElementById("viewNoticeModal")
+);
+
+
+const editNoticeModal =
+new bootstrap.Modal(
+document.getElementById("editNoticeModal")
+);
+
+
+const deleteNoticeModal =
+new bootstrap.Modal(
+document.getElementById("deleteNoticeModal")
+);
+
+
+const noticeSuccessModal =
+new bootstrap.Modal(
+document.getElementById("noticeSuccessModal")
+);
+
+
+/* =========================================================
+                CREATE NOTICE SCROLL BUTTON
+========================================================= */
+
+document
+.getElementById("scrollCreateNoticeBtn")
+.addEventListener("click", function(){
+
+document
+.getElementById("createNoticeSection")
+.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+});
+
+
+/* =========================================================
+                    DESCRIPTION COUNTER
+========================================================= */
+
+noticeDescription.addEventListener(
+"input",
+function(){
+
+noticeCharacterCount.innerText =
+this.value.length;
+
+}
+);
+
+
+/* =========================================================
+                    FILE UPLOAD
+========================================================= */
+
+const noticeUploadBox =
+document.getElementById("noticeUploadBox");
+
+const noticeAttachment =
+document.getElementById("noticeAttachment");
+
+const selectedNoticeFile =
+document.getElementById("selectedNoticeFile");
+
+const selectedNoticeFileName =
+document.getElementById("selectedNoticeFileName");
+
+
+noticeUploadBox.addEventListener(
+"click",
+function(){
+
+noticeAttachment.click();
+
+}
+);
+
+
+noticeAttachment.addEventListener(
+"change",
+function(){
+
+if(this.files.length > 0){
+
+selectedNoticeFileName.innerText =
+this.files[0].name;
+
+selectedNoticeFile.style.display =
+"block";
+
+}
+else{
+
+selectedNoticeFile.style.display =
+"none";
+
+}
+
+}
+);
+
+
+/* =========================================================
+                    VIEW NOTICE
+========================================================= */
+
+document.addEventListener(
+"click",
+function(event){
+
+const button =
+event.target.closest(".viewNoticeBtn");
+
+if(!button){
+
+return;
+
+}
+
+document.getElementById(
+"viewNoticeId"
+).value =
+button.dataset.id || "--";
+
+
+document.getElementById(
+"viewNoticeTitle"
+).innerText =
+button.dataset.title || "--";
+
+
+document.getElementById(
+"viewNoticeCategory"
+).innerText =
+button.dataset.category || "--";
+
+
+document.getElementById(
+"viewNoticeAudience"
+).value =
+button.dataset.audience || "--";
+
+
+document.getElementById(
+"viewNoticePublish"
+).value =
+button.dataset.publish || "--";
+
+
+document.getElementById(
+"viewNoticeExpiry"
+).value =
+button.dataset.expiry || "--";
+
+
+document.getElementById(
+"viewNoticeDescription"
+).value =
+button.dataset.description || "--";
+
+
+setViewPriority(
+button.dataset.priority
+);
+
+
+setViewStatus(
+button.dataset.status
+);
+
+
+viewNoticeModal.show();
+
+}
+);
+
+
+/* =========================================================
+                    VIEW PRIORITY
+========================================================= */
+
+function setViewPriority(priority){
+
+const element =
+document.getElementById(
+"viewNoticePriority"
+);
+
+const value =
+(priority || "").toLowerCase();
+
+
+if(value === "high"){
+
+element.innerHTML = `
+
+<span class="notice-priority priority-high">
+
+<i class="fa-solid fa-circle-exclamation"></i>
+
+High
+
+</span>
+
+`;
+
+}
+else if(value === "medium"){
+
+element.innerHTML = `
+
+<span class="notice-priority priority-medium">
+
+<i class="fa-solid fa-circle"></i>
+
+Medium
+
+</span>
+
+`;
+
+}
+else{
+
+element.innerHTML = `
+
+<span class="notice-priority priority-low">
+
+<i class="fa-solid fa-circle"></i>
+
+Low
+
+</span>
+
+`;
+
+}
+
+}
+
+
+/* =========================================================
+                    VIEW STATUS
+========================================================= */
+
+function setViewStatus(status){
+
+const element =
+document.getElementById(
+"viewNoticeStatus"
+);
+
+const value =
+(status || "").toLowerCase();
+
+
+if(value === "active"){
+
+element.innerHTML = `
+
+<span class="notice-status status-active">
+
+<i class="fa-solid fa-circle-check"></i>
+
+Active
+
+</span>
+
+`;
+
+}
+else if(value === "scheduled"){
+
+element.innerHTML = `
+
+<span class="notice-status status-scheduled">
+
+<i class="fa-solid fa-clock"></i>
+
+Scheduled
+
+</span>
+
+`;
+
+}
+else{
+
+element.innerHTML = `
+
+<span class="notice-status status-expired">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+Expired
+
+</span>
+
+`;
+
+}
+
+}
+
+
+/* =========================================================
+                    ATTACHMENT VIEW
+========================================================= */
+
+document
+.getElementById("viewNoticeAttachmentBtn")
+.addEventListener("click", function(){
+
+alert(
+"Attachment preview will work after backend/file storage integration."
+);
+
+});
+
+
+/* =========================================================
+                    EDIT NOTICE BUTTON
+========================================================= */
+
+document.addEventListener(
+"click",
+function(event){
+
+const button =
+event.target.closest(".editNoticeBtn");
+
+if(!button){
+
+return;
+
+}
+
+selectedNoticeRow =
+button.closest("tr");
+
+
+const viewButton =
+selectedNoticeRow.querySelector(
+".viewNoticeBtn"
+);
+
+
+document.getElementById(
+"editNoticeId"
+).value =
+viewButton.dataset.id;
+
+
+document.getElementById(
+"editNoticeTitle"
+).value =
+viewButton.dataset.title;
+
+
+setSelectValue(
+"editNoticeCategory",
+viewButton.dataset.category
+);
+
+
+setSelectValue(
+"editNoticeAudience",
+viewButton.dataset.audience
+);
+
+
+setSelectValue(
+"editNoticePriority",
+viewButton.dataset.priority
+);
+
+
+setSelectValue(
+"editNoticeStatus",
+viewButton.dataset.status
+);
+
+
+document.getElementById(
+"editNoticePublishDate"
+).value =
+convertDisplayDateToInput(
+viewButton.dataset.publish
+);
+
+
+document.getElementById(
+"editNoticeExpiryDate"
+).value =
+convertDisplayDateToInput(
+viewButton.dataset.expiry
+);
+
+
+document.getElementById(
+"editNoticeDescription"
+).value =
+viewButton.dataset.description;
+
+
+editNoticeModal.show();
+
+}
+);
+
+
+/* =========================================================
+                    SELECT HELPER
+========================================================= */
+
+function setSelectValue(id,value){
+
+const select =
+document.getElementById(id);
+
+const target =
+(value || "")
+.toLowerCase();
+
+
+let matched =
+false;
+
+
+Array.from(select.options)
+.forEach(function(option){
+
+if(
+option.value.toLowerCase() === target ||
+option.text.toLowerCase() === target
+){
+
+select.value =
+option.value;
+
+matched =
+true;
+
+}
+
+});
+
+
+if(!matched && select.options.length){
+
+select.selectedIndex = 0;
+
+}
+
+}
+
+
+/* =========================================================
+                SAVE EDITED NOTICE
+========================================================= */
+
+document
+.getElementById("saveNoticeChangesBtn")
+.addEventListener("click", function(){
+
+if(!selectedNoticeRow){
+
+return;
+
+}
+
+
+const newTitle =
+document
+.getElementById("editNoticeTitle")
+.value
+.trim();
+
+
+if(newTitle === ""){
+
+alert("Please enter Notice Title.");
+
+return;
+
+}
+
+
+const id =
+document.getElementById(
+"editNoticeId"
+).value;
+
+
+const category =
+document.getElementById(
+"editNoticeCategory"
+).value;
+
+
+const audience =
+document.getElementById(
+"editNoticeAudience"
+).value;
+
+
+const priority =
+document.getElementById(
+"editNoticePriority"
+).value;
+
+
+const status =
+document.getElementById(
+"editNoticeStatus"
+).value;
+
+
+const publishDate =
+document.getElementById(
+"editNoticePublishDate"
+).value;
+
+
+const expiryDate =
+document.getElementById(
+"editNoticeExpiryDate"
+).value;
+
+
+const description =
+document.getElementById(
+"editNoticeDescription"
+).value
+.trim();
+
+
+const displayPublish =
+formatDate(publishDate);
+
+
+const displayExpiry =
+formatDate(expiryDate);
+
+
+selectedNoticeRow.dataset.status =
+status.toLowerCase();
+
+
+selectedNoticeRow.dataset.priority =
+priority.toLowerCase();
+
+
+const viewButton =
+selectedNoticeRow.querySelector(
+".viewNoticeBtn"
+);
+
+
+viewButton.dataset.id =
+id;
+
+viewButton.dataset.title =
+newTitle;
+
+viewButton.dataset.category =
+category;
+
+viewButton.dataset.audience =
+audience;
+
+viewButton.dataset.priority =
+priority;
+
+viewButton.dataset.publish =
+displayPublish;
+
+viewButton.dataset.expiry =
+displayExpiry;
+
+viewButton.dataset.status =
+status;
+
+viewButton.dataset.description =
+description;
+
+
+/* Title */
+
+selectedNoticeRow
+.querySelector(
+".notice-title-box strong"
+)
+.innerText =
+newTitle;
+
+
+/* ID + Category */
+
+selectedNoticeRow
+.querySelector(
+".notice-title-box small"
+)
+.innerText =
+id + " • " + category;
+
+
+/* Audience */
+
+selectedNoticeRow.children[1]
+.innerText =
+audience;
+
+
+/* Priority */
+
+selectedNoticeRow.children[2]
+.innerHTML =
+createPriorityBadge(priority);
+
+
+/* Publish */
+
+selectedNoticeRow.children[3]
+.innerText =
+displayPublish;
+
+
+/* Expiry */
+
+selectedNoticeRow.children[4]
+.innerText =
+displayExpiry;
+
+
+/* Status */
+
+selectedNoticeRow.children[5]
+.innerHTML =
+createStatusBadge(status);
+
+
+updateNoticeStatistics();
+
+applyNoticeFilters();
+
+
+editNoticeModal.hide();
+
+
+setTimeout(function(){
+
+showNoticeSuccess(
+"edited"
+);
+
+},300);
+
+}
+);
+
+
+/* =========================================================
+                    DELETE BUTTON
+========================================================= */
+
+document.addEventListener(
+"click",
+function(event){
+
+const button =
+event.target.closest(".deleteNoticeBtn");
+
+if(!button){
+
+return;
+
+}
+
+selectedNoticeRow =
+button.closest("tr");
+
+
+const title =
+selectedNoticeRow
+.querySelector(
+".notice-title-box strong"
+)
+.innerText;
+
+
+document.getElementById(
+"deleteNoticeTitle"
+).innerText =
+'"' + title + '"';
+
+
+deleteNoticeModal.show();
+
+}
+);
+
+
+/* =========================================================
+                    CONFIRM DELETE
+========================================================= */
+
+document
+.getElementById("confirmDeleteNoticeBtn")
+.addEventListener("click", function(){
+
+if(!selectedNoticeRow){
+
+return;
+
+}
+
+
+const deleteButton = this;
+
+
+deleteButton.disabled =
+true;
+
+
+deleteButton.innerHTML = `
+
+<span
+class="spinner-border spinner-border-sm me-2">
+</span>
+
+Deleting...
+
+`;
+
+
+setTimeout(function(){
+
+selectedNoticeRow.remove();
+
+
+selectedNoticeRow =
+null;
+
+
+updateNoticeStatistics();
+
+applyNoticeFilters();
+
+
+deleteButton.disabled =
+false;
+
+
+deleteButton.innerHTML = `
+
+<i class="fa-solid fa-trash me-2"></i>
+
+Delete Notice
+
+`;
+
+
+deleteNoticeModal.hide();
+
+
+setTimeout(function(){
+
+showNoticeSuccess(
+"deleted"
+);
+
+},300);
+
+
+},600);
+
+}
+);
+
+
+/* =========================================================
+                    CREATE NOTICE
+========================================================= */
+
+createNoticeForm.addEventListener(
+"submit",
+function(event){
+
+event.preventDefault();
+
+
+const title =
+noticeTitle.value.trim();
+
+
+const category =
+noticeCategory.value;
+
+
+const description =
+noticeDescription.value.trim();
+
+
+const priority =
+noticePriority.value;
+
+
+const publishDate =
+noticePublishDate.value;
+
+
+const expiryDate =
+noticeExpiryDate.value;
+
+
+const selectedAudience =
+Array.from(
+document.querySelectorAll(
+".noticeAudience:checked"
+)
+)
+.map(function(item){
+
+return item.value;
+
+});
+
+
+if(title === ""){
+
+alert("Please enter Notice Title.");
+
+return;
+
+}
+
+
+if(category === ""){
+
+alert("Please select Notice Category.");
+
+return;
+
+}
+
+
+if(description === ""){
+
+alert("Please enter Notice Description.");
+
+return;
+
+}
+
+
+if(selectedAudience.length === 0){
+
+alert("Please select at least one Target Audience.");
+
+return;
+
+}
+
+
+if(
+publishDate &&
+expiryDate &&
+new Date(expiryDate) <
+new Date(publishDate)
+){
+
+alert(
+"Expiry Date cannot be before Publish Date."
+);
+
+return;
+
+}
+
+
+/* =========================================================
+                    GENERATE NOTICE ID
+========================================================= */
+
+const noticeId =
+"N" +
+String(
+Date.now()
+).slice(-5);
+
+
+/* =========================================================
+                    AUDIENCE
+========================================================= */
+
+let audienceText =
+selectedAudience.join(", ");
+
+
+if(selectedAudience.includes("All")){
+
+audienceText =
+"Everyone";
+
+}
+
+
+/* =========================================================
+                    STATUS
+========================================================= */
+
+let status =
+scheduleNotice.checked
+? "Scheduled"
+: "Active";
+
+
+/* =========================================================
+                    DATES
+========================================================= */
+
+const finalPublishDate =
+publishDate
+? formatDate(publishDate)
+: formatDate(
+new Date()
+.toISOString()
+.split("T")[0]
+);
+
+
+const finalExpiryDate =
+expiryDate
+? formatDate(expiryDate)
+: "--";
+
+
+/* =========================================================
+                    CREATE ROW
+========================================================= */
+
+const row =
+document.createElement("tr");
+
+
+row.dataset.status =
+status.toLowerCase();
+
+
+row.dataset.priority =
+priority.toLowerCase();
+
+
+row.innerHTML = `
+
+<td>
+
+<div class="notice-title-box">
+
+<div class="notice-mini-icon">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+</div>
+
+<div>
+
+<strong>
+${escapeHTML(title)}
+</strong>
+
+<small>
+${noticeId} • ${escapeHTML(category)}
+</small>
+
+</div>
+
+</div>
+
+</td>
+
+
+<td>
+
+${escapeHTML(audienceText)}
+
+</td>
+
+
+<td>
+
+${createPriorityBadge(priority)}
+
+</td>
+
+
+<td>
+
+${finalPublishDate}
+
+</td>
+
+
+<td>
+
+${finalExpiryDate}
+
+</td>
+
+
+<td>
+
+${createStatusBadge(status)}
+
+</td>
+
+
+<td>
+
+<div class="notice-actions">
+
+<button
+type="button"
+class="notice-action-btn notice-view-btn viewNoticeBtn"
+
+title="View"
+
+data-id="${noticeId}"
+data-title="${escapeAttribute(title)}"
+data-category="${escapeAttribute(category)}"
+data-audience="${escapeAttribute(audienceText)}"
+data-priority="${priority}"
+data-publish="${finalPublishDate}"
+data-expiry="${finalExpiryDate}"
+data-status="${status}"
+data-description="${escapeAttribute(description)}">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+
+<button
+type="button"
+class="notice-action-btn notice-edit-btn editNoticeBtn"
+title="Edit">
+
+<i class="fa-solid fa-pen"></i>
+
+</button>
+
+
+<button
+type="button"
+class="notice-action-btn notice-delete-btn deleteNoticeBtn"
+title="Delete">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</div>
+
+</td>
+
+`;
+
+
+noticeTableBody.prepend(row);
+
+
+/* =========================================================
+                    UPDATE UI
+========================================================= */
+
+updateNoticeStatistics();
+
+applyNoticeFilters();
+
+
+const notificationEnabled =
+sendNotification.checked;
+
+
+createNoticeForm.reset();
+
+
+noticeCharacterCount.innerText =
+"0";
+
+
+selectedNoticeFile.style.display =
+"none";
+
+
+selectedNoticeFileName.innerText =
+"";
+
+
+showNoticeSuccess(
+scheduleNotice.checked
+? "scheduled"
+: "published",
+notificationEnabled
+);
+
+}
+);
+
+
+/* =========================================================
+                CLEAR CREATE NOTICE FORM
+========================================================= */
+
+document
+.getElementById("clearNoticeFormBtn")
+.addEventListener("click", function(){
+
+createNoticeForm.reset();
+
+noticeCharacterCount.innerText =
+"0";
+
+selectedNoticeFile.style.display =
+"none";
+
+selectedNoticeFileName.innerText =
+"";
+
+});
+
+
+/* =========================================================
+                PRIORITY BADGE CREATOR
+========================================================= */
+
+function createPriorityBadge(priority){
+
+const value =
+priority.toLowerCase();
+
+
+if(value === "high"){
+
+return `
+
+<span class="notice-priority priority-high">
+
+<i class="fa-solid fa-circle-exclamation"></i>
+
+High
+
+</span>
+
+`;
+
+}
+
+
+if(value === "medium"){
+
+return `
+
+<span class="notice-priority priority-medium">
+
+<i class="fa-solid fa-circle"></i>
+
+Medium
+
+</span>
+
+`;
+
+}
+
+
+return `
+
+<span class="notice-priority priority-low">
+
+<i class="fa-solid fa-circle"></i>
+
+Low
+
+</span>
+
+`;
+
+}
+
+
+/* =========================================================
+                    STATUS BADGE CREATOR
+========================================================= */
+
+function createStatusBadge(status){
+
+const value =
+status.toLowerCase();
+
+
+if(value === "active"){
+
+return `
+
+<span class="notice-status status-active">
+
+<i class="fa-solid fa-circle-check"></i>
+
+Active
+
+</span>
+
+`;
+
+}
+
+
+if(value === "scheduled"){
+
+return `
+
+<span class="notice-status status-scheduled">
+
+<i class="fa-solid fa-clock"></i>
+
+Scheduled
+
+</span>
+
+`;
+
+}
+
+
+return `
+
+<span class="notice-status status-expired">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+Expired
+
+</span>
+
+`;
+
+}
+
+
+/* =========================================================
+                    SEARCH + FILTER
+========================================================= */
+
+function applyNoticeFilters(){
+
+const search =
+noticeSearchInput
+.value
+.toLowerCase()
+.trim();
+
+
+const status =
+noticeStatusFilter.value;
+
+
+const priority =
+noticePriorityFilter.value;
+
+
+const rows =
+Array.from(
+noticeTableBody.querySelectorAll(
+"tr"
+)
+);
+
+
+let visible =
+0;
+
+
+rows.forEach(function(row){
+
+const text =
+row.innerText
+.toLowerCase();
+
+
+const searchMatch =
+text.includes(search);
+
+
+const statusMatch =
+status === "all" ||
+row.dataset.status === status;
+
+
+const priorityMatch =
+priority === "all" ||
+row.dataset.priority === priority;
+
+
+if(
+searchMatch &&
+statusMatch &&
+priorityMatch
+){
+
+row.style.display =
+"";
+
+visible++;
+
+}
+else{
+
+row.style.display =
+"none";
+
+}
+
+});
+
+
+if(visible === 0){
+
+noticeResultInfo.innerText =
+"No matching notices found";
+
+}
+else{
+
+noticeResultInfo.innerText =
+"Showing " +
+visible +
+" matching notice" +
+(
+visible > 1
+? "s"
+: ""
+);
+
+}
+
+}
+
+
+noticeSearchInput.addEventListener(
+"input",
+applyNoticeFilters
+);
+
+
+noticeStatusFilter.addEventListener(
+"change",
+applyNoticeFilters
+);
+
+
+noticePriorityFilter.addEventListener(
+"change",
+applyNoticeFilters
+);
+
+
+/* =========================================================
+                    STATISTICS
+========================================================= */
+
+function updateNoticeStatistics(){
+
+const rows =
+Array.from(
+noticeTableBody.querySelectorAll(
+"tr"
+)
+);
+
+
+let active = 0;
+
+let scheduled = 0;
+
+let expired = 0;
+
+
+rows.forEach(function(row){
+
+if(
+row.dataset.status === "active"
+){
+
+active++;
+
+}
+else if(
+row.dataset.status === "scheduled"
+){
+
+scheduled++;
+
+}
+else if(
+row.dataset.status === "expired"
+){
+
+expired++;
+
+}
+
+});
+
+
+/*
+
+Part 1 me 28 total notices ka dashboard
+summary diya gaya tha.
+
+Ab frontend demo me table ke actual rows ke
+according counts update honge.
+
+*/
+
+totalNoticeCount.innerText =
+rows.length;
+
+
+activeNoticeCount.innerText =
+active;
+
+
+scheduledNoticeCount.innerText =
+scheduled;
+
+
+expiredNoticeCount.innerText =
+expired;
+
+}
+
+
+/* =========================================================
+                    SUCCESS MODAL
+========================================================= */
+
+function showNoticeSuccess(
+type,
+notificationEnabled = false
+){
+
+const header =
+document.getElementById(
+"noticeSuccessHeader"
+);
+
+
+const title =
+document.getElementById(
+"noticeSuccessTitle"
+);
+
+
+const heading =
+document.getElementById(
+"noticeSuccessHeading"
+);
+
+
+const message =
+document.getElementById(
+"noticeSuccessMessage"
+);
+
+
+const iconBox =
+document.getElementById(
+"noticeSuccessIconBox"
+);
+
+
+const icon =
+document.getElementById(
+"noticeSuccessIcon"
+);
+
+
+if(type === "published"){
+
+header.className =
+"modal-header bg-success text-white";
+
+
+title.innerText =
+"Notice Published";
+
+
+heading.innerText =
+"Notice Published Successfully!";
+
+
+message.innerText =
+notificationEnabled
+? "Notice published and user notifications have been queued."
+: "The notice has been published successfully.";
+
+
+iconBox.style.background =
+"rgba(34,197,94,.12)";
+
+
+iconBox.style.color =
+"#16a34a";
+
+
+icon.className =
+"fa-solid fa-paper-plane";
+
+}
+
+
+else if(type === "scheduled"){
+
+header.className =
+"modal-header bg-primary text-white";
+
+
+title.innerText =
+"Notice Scheduled";
+
+
+heading.innerText =
+"Notice Scheduled Successfully!";
+
+
+message.innerText =
+"The notice will be published on the selected date.";
+
+
+iconBox.style.background =
+"rgba(37,99,235,.12)";
+
+
+iconBox.style.color =
+"#2563eb";
+
+
+icon.className =
+"fa-solid fa-clock";
+
+}
+
+
+else if(type === "edited"){
+
+header.className =
+"modal-header bg-warning";
+
+
+title.innerText =
+"Notice Updated";
+
+
+heading.innerText =
+"Changes Saved Successfully!";
+
+
+message.innerText =
+"The notice information has been updated.";
+
+
+iconBox.style.background =
+"rgba(245,158,11,.13)";
+
+
+iconBox.style.color =
+"#d97706";
+
+
+icon.className =
+"fa-solid fa-pen-to-square";
+
+}
+
+
+else if(type === "deleted"){
+
+header.className =
+"modal-header bg-danger text-white";
+
+
+title.innerText =
+"Notice Deleted";
+
+
+heading.innerText =
+"Notice Deleted Successfully!";
+
+
+message.innerText =
+"The selected notice has been removed.";
+
+
+iconBox.style.background =
+"rgba(239,68,68,.12)";
+
+
+iconBox.style.color =
+"#dc2626";
+
+
+icon.className =
+"fa-solid fa-trash";
+
+}
+
+
+noticeSuccessModal.show();
+
+}
+
+
+/* =========================================================
+                    DATE FORMAT
+========================================================= */
+
+function formatDate(dateString){
+
+if(!dateString){
+
+return "--";
+
+}
+
+
+const date =
+new Date(
+dateString + "T00:00:00"
+);
+
+
+const months = [
+
+"Jan",
+"Feb",
+"Mar",
+"Apr",
+"May",
+"Jun",
+"Jul",
+"Aug",
+"Sep",
+"Oct",
+"Nov",
+"Dec"
+
+];
+
+
+return (
+String(date.getDate())
+.padStart(2,"0")
++
+" "
++
+months[date.getMonth()]
++
+" "
++
+date.getFullYear()
+);
+
+}
+
+
+/* =========================================================
+            DISPLAY DATE → INPUT DATE
+========================================================= */
+
+function convertDisplayDateToInput(
+displayDate
+){
+
+if(
+!displayDate ||
+displayDate === "--"
+){
+
+return "";
+
+}
+
+
+const months = {
+
+Jan:"01",
+Feb:"02",
+Mar:"03",
+Apr:"04",
+May:"05",
+Jun:"06",
+Jul:"07",
+Aug:"08",
+Sep:"09",
+Oct:"10",
+Nov:"11",
+Dec:"12"
+
+};
+
+
+const parts =
+displayDate.split(" ");
+
+
+if(parts.length !== 3){
+
+return "";
+
+}
+
+
+return (
+parts[2]
++
+"-"
++
+months[parts[1]]
++
+"-"
++
+parts[0]
+);
+
+}
+
+
+/* =========================================================
+                    ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value){
+
+return value
+
+.replaceAll("&","&amp;")
+
+.replaceAll("<","&lt;")
+
+.replaceAll(">","&gt;")
+
+.replaceAll('"',"&quot;")
+
+.replaceAll("'","&#039;");
+
+}
+
+
+/* =========================================================
+                    ESCAPE ATTRIBUTE
+========================================================= */
+
+function escapeAttribute(value){
+
+return escapeHTML(value)
+.replaceAll("\n","&#10;");
+
+}
+
+
+/* =========================================================
+                    PAGINATION
+========================================================= */
+
+const pageButtons =
+Array.from(
+document.querySelectorAll(
+".notice-pagination button:not(#noticePrevBtn):not(#noticeNextBtn)"
+)
+);
+
+
+pageButtons.forEach(function(button){
+
+button.addEventListener(
+"click",
+function(){
+
+pageButtons.forEach(function(btn){
+
+btn.classList.remove(
+"active"
+);
+
+});
+
+
+this.classList.add(
+"active"
+);
+
+});
+
+});
+
+
+/* Previous */
+
+document
+.getElementById("noticePrevBtn")
+.addEventListener("click", function(){
+
+const currentIndex =
+pageButtons.findIndex(
+function(button){
+
+return button
+.classList
+.contains("active");
+
+}
+);
+
+
+if(currentIndex > 0){
+
+pageButtons[currentIndex]
+.classList
+.remove("active");
+
+
+pageButtons[currentIndex - 1]
+.classList
+.add("active");
+
+}
+
+});
+
+
+/* Next */
+
+document
+.getElementById("noticeNextBtn")
+.addEventListener("click", function(){
+
+const currentIndex =
+pageButtons.findIndex(
+function(button){
+
+return button
+.classList
+.contains("active");
+
+}
+);
+
+
+if(
+currentIndex <
+pageButtons.length - 1
+){
+
+pageButtons[currentIndex]
+.classList
+.remove("active");
+
+
+pageButtons[currentIndex + 1]
+.classList
+.add("active");
+
+}
+
+});
+
+
+/* =========================================================
+            SET TODAY AS DEFAULT PUBLISH DATE
+========================================================= */
+
+const today =
+new Date()
+.toISOString()
+.split("T")[0];
+
+
+if(!noticePublishDate.value){
+
+noticePublishDate.value =
+today;
+
+}
+
+
+/* =========================================================
+                    INITIAL UPDATE
+========================================================= */
+
+updateNoticeStatistics();
+
+
+/* =========================================================
+                BACKEND INTEGRATION LATER
+========================================================= */
+
+/*
+
+=========================================================
+        NOTICE BOARD BACKEND FLOW
+=========================================================
+
+HOD creates notice
+        ↓
+Frontend sends notice data
+        ↓
+Backend validates HOD permission
+        ↓
+Notice stored in database
+        ↓
+Target audience determined
+        ↓
+Notifications generated
+        ↓
+Teachers / Students see notice
+
+
+=========================================================
+                    EXPECTED APIs
+=========================================================
+
+
+1. GET ALL NOTICES
+
+GET
+
+/api/hod/notices
+
+
+---------------------------------------------------------
+
+
+2. GET SINGLE NOTICE
+
+GET
+
+/api/hod/notices/{noticeId}
+
+
+---------------------------------------------------------
+
+
+3. CREATE NOTICE
+
+POST
+
+/api/hod/notices
+
+
+Example Body:
+
+{
+    "title":
+    "Faculty Meeting Tomorrow",
+
+    "category":
+    "Department Meeting",
+
+    "description":
+    "All faculty members must attend.",
+
+    "audience":
+    [
+        "Teachers"
+    ],
+
+    "priority":
+    "High",
+
+    "publishDate":
+    "2026-08-02",
+
+    "expiryDate":
+    "2026-08-04",
+
+    "scheduled":
+    false,
+
+    "sendNotification":
+    true
+}
+
+
+---------------------------------------------------------
+
+
+4. UPDATE NOTICE
+
+PUT
+
+/api/hod/notices/{noticeId}
+
+
+---------------------------------------------------------
+
+
+5. DELETE NOTICE
+
+DELETE
+
+/api/hod/notices/{noticeId}
+
+
+---------------------------------------------------------
+
+
+6. UPLOAD ATTACHMENT
+
+POST
+
+/api/hod/notices/{noticeId}/attachment
+
+
+Use:
+
+multipart/form-data
+
+
+---------------------------------------------------------
+
+
+7. GET NOTICE STATISTICS
+
+GET
+
+/api/hod/notices/statistics
+
+
+Example Response:
+
+{
+    "total":28,
+    "active":14,
+    "scheduled":5,
+    "expired":9
+}
+
+
+---------------------------------------------------------
+
+
+8. SEND NOTIFICATION
+
+POST
+
+/api/hod/notices/{noticeId}/notify
+
+
+=========================================================
+
+IMPORTANT:
+
+Frontend ka create/edit/delete abhi demo functionality
+hai.
+
+Backend integration ke baad:
+
+local DOM update
+        ↓
+
+replace with
+
+fetch() / API request
+        ↓
+database update
+        ↓
+fresh data fetch
+        ↓
+table render
+
+HOD authorization backend par verify karna zaroori hai.
+
+Teacher ya Student ko HOD notice create/edit/delete
+API access nahi milna chahiye.
+
+=========================================================
+
+*/
+
+});
+
+</script>
+
+
+</body>
+
+</html>

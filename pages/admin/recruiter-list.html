@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Recruiter Management | Faculty Management System</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../css/admin-dashboard.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- ================= Sidebar ================= -->
+
+<aside class="sidebar">
+
+<div class="logo-box">
+
+<img src="../../images/logo.png" alt="College Logo">
+
+<h3>PATNA</h3>
+
+<h2>WOMEN'S COLLEGE</h2>
+
+<span>(AUTONOMOUS)</span>
+
+</div>
+
+<ul class="menu">
+
+<li>
+<a href="admin-dashboard.html">
+<i class="fa-solid fa-house"></i>
+<span>Dashboard</span>
+</a>
+</li>
+
+<li>
+<a href="teacher-list.html">
+<i class="fa-solid fa-user-tie"></i>
+<span>Teachers</span>
+</a>
+</li>
+
+<li>
+<a href="hod-list.html">
+<i class="fa-solid fa-building-user"></i>
+<span>HOD</span>
+</a>
+</li>
+
+<li>
+<a href="student-list.html">
+<i class="fa-solid fa-user-graduate"></i>
+<span>Students</span>
+</a>
+</li>
+
+<li class="active">
+<a href="recruiter-list.html">
+<i class="fa-solid fa-building"></i>
+<span>Recruiters</span>
+</a>
+</li>
+
+<li>
+<a href="attendance.html">
+<i class="fa-solid fa-calendar-check"></i>
+<span>Attendance</span>
+</a>
+</li>
+
+<li>
+<a href="analytics.html">
+<i class="fa-solid fa-chart-line"></i>
+<span>Analytics</span>
+</a>
+</li>
+
+<li>
+<a href="attendance-report.html">
+<i class="fa-solid fa-file-lines"></i>
+<span>Attendance Report</span>
+</a>
+</li>
+
+<li>
+<a href="notice-board.html">
+<i class="fa-solid fa-bullhorn"></i>
+<span>Notice Board</span>
+</a>
+</li>
+
+<li>
+<a href="academic-calendar.html">
+<i class="fa-solid fa-calendar-days"></i>
+<span>Academic Calendar</span>
+</a>
+</li>
+
+</ul>
+
+<div class="sidebar-bottom">
+
+<a href="settings.html">
+
+<i class="fa-solid fa-gear"></i>
+
+<span>Settings</span>
+
+</a>
+
+<a href="admin-login.html" class="logout-btn">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+<span>Logout</span>
+
+</a>
+
+</div>
+
+</aside>
+
+<!-- ================= Main Content ================= -->
+
+<main class="main-content">
+
+<div class="topbar">
+
+<div>
+
+<h2>Recruiter Management</h2>
+
+<p>Dashboard / Recruiters</p>
+
+</div>
+<div class="topbar-actions">
+
+    <button id="themeToggle" class="theme-toggle-btn">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
+</div>
+<div>
+
+<a href="add-recruiter.html" class="btn btn-primary">
+
+<i class="fa-solid fa-plus"></i>
+
+Add Recruiter
+
+</a>
+
+</div>
+
+</div>
+
+<!-- ================= Summary Cards ================= -->
+
+<div class="stats-grid">
+
+<div class="stat-card">
+
+<div>
+
+<h4>Total Recruiters</h4>
+
+<h2>35</h2>
+
+<p class="text-primary">
+
+Registered Companies
+
+</p>
+
+</div>
+
+<div class="stat-icon bg-primary">
+
+<i class="fa-solid fa-building"></i>
+
+</div>
+
+</div>
+
+<div class="stat-card">
+
+<div>
+
+<h4>Active Recruiters</h4>
+
+<h2>30</h2>
+
+<p class="text-success">
+
+Currently Active
+
+</p>
+
+</div>
+
+<div class="stat-icon bg-success">
+
+<i class="fa-solid fa-circle-check"></i>
+
+</div>
+
+</div>
+
+<div class="stat-card">
+
+<div>
+
+<h4>Inactive</h4>
+
+<h2>5</h2>
+
+<p class="text-danger">
+
+Need Verification
+
+</p>
+
+</div>
+
+<div class="stat-icon bg-danger">
+
+<i class="fa-solid fa-circle-xmark"></i>
+
+</div>
+
+</div>
+
+<div class="stat-card">
+
+<div>
+
+<h4>Campus Drives</h4>
+
+<h2>12</h2>
+
+<p class="text-warning">
+
+This Month
+
+</p>
+
+</div>
+
+<div class="stat-icon bg-warning">
+
+<i class="fa-solid fa-briefcase"></i>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= Recruiter Table ================= -->
+
+<div class="chart-card mt-4">
+
+<div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
+
+<h4>
+
+<i class="fa-solid fa-building"></i>
+
+Recruiter List
+
+</h4>
+
+<div class="input-group" style="max-width:320px;">
+
+<span class="input-group-text">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+</span>
+
+<input
+type="text"
+class="form-control"
+id="searchRecruiter"
+placeholder="Search Recruiter...">
+
+</div>
+
+</div>
+
+<div class="table-responsive">
+
+<table class="table table-hover table-bordered align-middle text-center">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>#</th>
+
+<th>Company</th>
+
+<th>Recruiter</th>
+
+<th>Email</th>
+
+<th>Mobile</th>
+
+<th>Designation</th>
+
+<th>Status</th>
+
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody id="recruiterTable">
+<tr>
+
+<td>1</td>
+
+<td>Tata Consultancy Services (TCS)</td>
+
+<td>Rahul Verma</td>
+
+<td>rahul.verma@tcs.com</td>
+
+<td>9876543210</td>
+
+<td>HR Manager</td>
+
+<td>
+
+<span class="badge bg-success">
+
+Active
+
+</span>
+
+</td>
+
+<td>
+
+<a href="view-recruiter.html" class="btn btn-info btn-sm">
+
+<i class="fa-solid fa-eye"></i>
+
+</a>
+
+<a href="edit-recruiter.html" class="btn btn-warning btn-sm">
+
+<i class="fa-solid fa-pen"></i>
+
+</a>
+
+<button class="btn btn-danger btn-sm delete-btn">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>2</td>
+
+<td>Infosys</td>
+
+<td>Anjali Sharma</td>
+
+<td>anjali@infosys.com</td>
+
+<td>9123456780</td>
+
+<td>Talent Acquisition</td>
+
+<td>
+
+<span class="badge bg-success">
+
+Active
+
+</span>
+
+</td>
+
+<td>
+
+<a href="view-recruiter.html" class="btn btn-info btn-sm">
+
+<i class="fa-solid fa-eye"></i>
+
+</a>
+
+<a href="edit-recruiter.html" class="btn btn-warning btn-sm">
+
+<i class="fa-solid fa-pen"></i>
+
+</a>
+
+<button class="btn btn-danger btn-sm delete-btn">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>3</td>
+
+<td>Wipro</td>
+
+<td>Rohit Singh</td>
+
+<td>rohit@wipro.com</td>
+
+<td>9988776655</td>
+
+<td>Recruitment Lead</td>
+
+<td>
+
+<span class="badge bg-danger">
+
+Inactive
+
+</span>
+
+</td>
+
+<td>
+
+<a href="view-recruiter.html" class="btn btn-info btn-sm">
+
+<i class="fa-solid fa-eye"></i>
+
+</a>
+
+<a href="edit-recruiter.html" class="btn btn-warning btn-sm">
+
+<i class="fa-solid fa-pen"></i>
+
+</a>
+
+<button class="btn btn-danger btn-sm delete-btn">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>4</td>
+
+<td>Accenture</td>
+
+<td>Priya Gupta</td>
+
+<td>priya@accenture.com</td>
+
+<td>9871203456</td>
+
+<td>Senior HR</td>
+
+<td>
+
+<span class="badge bg-success">
+
+Active
+
+</span>
+
+</td>
+
+<td>
+
+<a href="view-recruiter.html" class="btn btn-info btn-sm">
+
+<i class="fa-solid fa-eye"></i>
+
+</a>
+
+<a href="edit-recruiter.html" class="btn btn-warning btn-sm">
+
+<i class="fa-solid fa-pen"></i>
+
+</a>
+
+<button class="btn btn-danger btn-sm delete-btn">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>5</td>
+
+<td>Capgemini</td>
+
+<td>Amit Kumar</td>
+
+<td>amit@capgemini.com</td>
+
+<td>9012345678</td>
+
+<td>Campus Recruiter</td>
+
+<td>
+
+<span class="badge bg-success">
+
+Active
+
+</span>
+
+</td>
+
+<td>
+
+<a href="view-recruiter.html" class="btn btn-info btn-sm">
+
+<i class="fa-solid fa-eye"></i>
+
+</a>
+
+<a href="edit-recruiter.html" class="btn btn-warning btn-sm">
+
+<i class="fa-solid fa-pen"></i>
+
+</a>
+
+<button class="btn btn-danger btn-sm delete-btn">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- ================= Pagination ================= -->
+
+<nav class="mt-4">
+
+<ul class="pagination justify-content-end">
+
+<li class="page-item disabled">
+
+<a class="page-link">Previous</a>
+
+</li>
+
+<li class="page-item active">
+
+<a class="page-link">1</a>
+
+</li>
+
+<li class="page-item">
+
+<a class="page-link">2</a>
+
+</li>
+
+<li class="page-item">
+
+<a class="page-link">3</a>
+
+</li>
+
+<li class="page-item">
+
+<a class="page-link">Next</a>
+
+</li>
+
+</ul>
+
+</nav>
+
+</div>
+<!-- ================= Bootstrap JS ================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../js/dashboard.js"></script>
+<!-- ================= JavaScript ================= -->
+
+<script>
+
+// ================= Search Recruiter =================
+
+const searchRecruiter = document.getElementById("searchRecruiter");
+
+if(searchRecruiter){
+
+searchRecruiter.addEventListener("keyup", function(){
+
+const filter = this.value.toLowerCase();
+
+const rows = document.querySelectorAll("#recruiterTable tr");
+
+rows.forEach(function(row){
+
+const text = row.innerText.toLowerCase();
+
+row.style.display = text.includes(filter) ? "" : "none";
+
+});
+
+});
+
+}
+
+// ================= Delete Recruiter =================
+
+document.querySelectorAll(".delete-btn").forEach(function(button){
+
+button.addEventListener("click", function(){
+
+const confirmDelete = confirm("Are you sure you want to delete this recruiter?");
+
+if(confirmDelete){
+
+this.closest("tr").remove();
+
+alert("Recruiter deleted successfully! (Frontend Demo)");
+
+}
+
+});
+
+});
+
+// ================= View Recruiter =================
+
+document.querySelectorAll(".btn-info").forEach(function(button){
+
+button.addEventListener("click", function(e){
+
+e.preventDefault();
+
+alert("Recruiter details page will open after backend integration.");
+
+});
+
+});
+
+// ================= Edit Recruiter =================
+
+document.querySelectorAll(".btn-warning").forEach(function(button){
+
+button.addEventListener("click", function(e){
+
+e.preventDefault();
+
+window.location.href = "edit-recruiter.html";
+
+});
+
+});
+
+</script>
+
+</main>
+
+</div>
+
+</body>
+
+</html>

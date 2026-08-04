@@ -1,0 +1,5226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Performance | Teacher Panel
+</title>
+
+
+<!-- =========================================================
+                        BOOTSTRAP
+========================================================= -->
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<!-- =========================================================
+                        FONT AWESOME
+========================================================= -->
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+<!-- =========================================================
+                        GOOGLE FONT
+========================================================= -->
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+
+<!-- =========================================================
+                    TEACHER COMMON CSS
+========================================================= -->
+
+<link
+rel="stylesheet"
+href="../../css/teacher-dashboard.css">
+
+
+<style>
+
+/* =========================================================
+                    PERFORMANCE PAGE
+========================================================= */
+
+.performance-page-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+flex-wrap:wrap;
+
+gap:20px;
+
+margin-bottom:25px;
+
+}
+
+
+.performance-page-header h2{
+
+font-weight:800;
+
+margin-bottom:5px;
+
+}
+
+
+.performance-page-header p{
+
+margin:0;
+
+color:#6b7280;
+
+}
+
+
+/* =========================================================
+                    PERFORMANCE STATS
+========================================================= */
+
+.performance-stats{
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:20px;
+
+margin-bottom:25px;
+
+}
+
+
+.performance-stat-card{
+
+background:#ffffff;
+
+border-radius:18px;
+
+padding:22px;
+
+box-shadow:
+0 7px 25px rgba(0,0,0,.07);
+
+display:flex;
+
+align-items:center;
+
+gap:18px;
+
+transition:.3s;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+
+.performance-stat-card:hover{
+
+transform:
+translateY(-5px);
+
+box-shadow:
+0 12px 30px rgba(0,0,0,.11);
+
+}
+
+
+.performance-stat-card::before{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+top:0;
+
+bottom:0;
+
+width:5px;
+
+background:#6c4cff;
+
+}
+
+
+.performance-stat-icon{
+
+width:58px;
+
+height:58px;
+
+border-radius:16px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:25px;
+
+flex-shrink:0;
+
+}
+
+
+.performance-stat-icon.purple{
+
+background:
+rgba(108,76,255,.12);
+
+color:#6c4cff;
+
+}
+
+
+.performance-stat-icon.green{
+
+background:
+rgba(34,197,94,.12);
+
+color:#16a34a;
+
+}
+
+
+.performance-stat-icon.blue{
+
+background:
+rgba(59,130,246,.12);
+
+color:#2563eb;
+
+}
+
+
+.performance-stat-icon.orange{
+
+background:
+rgba(249,115,22,.12);
+
+color:#ea580c;
+
+}
+
+
+.performance-stat-content small{
+
+display:block;
+
+color:#6b7280;
+
+font-size:13px;
+
+margin-bottom:4px;
+
+}
+
+
+.performance-stat-content h3{
+
+font-size:25px;
+
+font-weight:800;
+
+margin:0;
+
+}
+
+
+.performance-stat-content span{
+
+font-size:12px;
+
+}
+
+
+/* =========================================================
+                    COMMON PERFORMANCE CARD
+========================================================= */
+
+.performance-card{
+
+background:#ffffff;
+
+border-radius:20px;
+
+padding:25px;
+
+box-shadow:
+0 8px 25px rgba(0,0,0,.07);
+
+margin-bottom:25px;
+
+}
+
+
+.performance-card-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+flex-wrap:wrap;
+
+gap:15px;
+
+margin-bottom:22px;
+
+}
+
+
+.performance-card-header h4{
+
+font-weight:700;
+
+margin:0;
+
+color:#6c4cff;
+
+}
+
+
+.performance-card-header p{
+
+margin:5px 0 0;
+
+font-size:13px;
+
+color:#6b7280;
+
+}
+
+
+/* =========================================================
+                    MAIN PERFORMANCE GRID
+========================================================= */
+
+.performance-main-grid{
+
+display:grid;
+
+grid-template-columns:
+1.45fr .85fr;
+
+gap:25px;
+
+align-items:start;
+
+}
+
+
+/* =========================================================
+                    CHART AREA
+========================================================= */
+
+.performance-chart-container{
+
+position:relative;
+
+width:100%;
+
+height:340px;
+
+}
+
+
+/* =========================================================
+                    OVERALL SCORE
+========================================================= */
+
+.overall-score-wrapper{
+
+text-align:center;
+
+padding:10px 0 5px;
+
+}
+
+
+.overall-score-circle{
+
+width:190px;
+
+height:190px;
+
+margin:
+10px auto 25px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+position:relative;
+
+background:
+
+conic-gradient(
+#6c4cff 0deg 331deg,
+#ece9ff 331deg 360deg
+);
+
+}
+
+
+.overall-score-circle::before{
+
+content:"";
+
+position:absolute;
+
+width:155px;
+
+height:155px;
+
+border-radius:50%;
+
+background:#ffffff;
+
+}
+
+
+.overall-score-value{
+
+position:relative;
+
+z-index:2;
+
+}
+
+
+.overall-score-value h2{
+
+font-size:43px;
+
+font-weight:800;
+
+margin:0;
+
+color:#6c4cff;
+
+}
+
+
+.overall-score-value span{
+
+font-size:13px;
+
+color:#6b7280;
+
+}
+
+
+.performance-grade{
+
+display:inline-block;
+
+padding:7px 17px;
+
+border-radius:50px;
+
+background:
+rgba(34,197,94,.12);
+
+color:#15803d;
+
+font-weight:700;
+
+margin-bottom:18px;
+
+}
+
+
+.performance-score-text{
+
+color:#6b7280;
+
+font-size:14px;
+
+line-height:1.7;
+
+}
+
+
+/* =========================================================
+                    SCORE BREAKDOWN
+========================================================= */
+
+.score-breakdown{
+
+margin-top:22px;
+
+}
+
+
+.score-row{
+
+margin-bottom:18px;
+
+}
+
+
+.score-row:last-child{
+
+margin-bottom:0;
+
+}
+
+
+.score-row-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:7px;
+
+}
+
+
+.score-row-header span{
+
+font-size:13px;
+
+font-weight:600;
+
+}
+
+
+.score-row-header strong{
+
+font-size:13px;
+
+}
+
+
+.score-row .progress{
+
+height:8px;
+
+border-radius:50px;
+
+background:#eeeeee;
+
+}
+
+
+/* =========================================================
+                    SUBJECT PERFORMANCE
+========================================================= */
+
+.subject-performance-table{
+
+overflow-x:auto;
+
+}
+
+
+.subject-performance-table table{
+
+min-width:800px;
+
+margin-bottom:0;
+
+}
+
+
+.subject-performance-table thead th{
+
+background:#f7f5ff;
+
+color:#4b5563;
+
+font-size:13px;
+
+font-weight:700;
+
+border:none;
+
+padding:14px;
+
+white-space:nowrap;
+
+}
+
+
+.subject-performance-table tbody td{
+
+vertical-align:middle;
+
+padding:15px 14px;
+
+font-size:14px;
+
+border-color:#eeeeee;
+
+}
+
+
+.subject-name{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+
+.subject-icon{
+
+width:42px;
+
+height:42px;
+
+border-radius:12px;
+
+background:
+rgba(108,76,255,.10);
+
+color:#6c4cff;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:18px;
+
+}
+
+
+.subject-name strong{
+
+display:block;
+
+font-size:14px;
+
+}
+
+
+.subject-name small{
+
+color:#6b7280;
+
+font-size:11px;
+
+}
+
+
+/* =========================================================
+                    RATING STARS
+========================================================= */
+
+.rating-stars{
+
+white-space:nowrap;
+
+color:#f59e0b;
+
+font-size:13px;
+
+}
+
+
+/* =========================================================
+                    PERFORMANCE BADGES
+========================================================= */
+
+.performance-badge{
+
+display:inline-block;
+
+padding:6px 11px;
+
+border-radius:30px;
+
+font-size:11px;
+
+font-weight:700;
+
+}
+
+
+.performance-badge.excellent{
+
+background:
+rgba(34,197,94,.12);
+
+color:#15803d;
+
+}
+
+
+.performance-badge.good{
+
+background:
+rgba(59,130,246,.12);
+
+color:#2563eb;
+
+}
+
+
+.performance-badge.average{
+
+background:
+rgba(245,158,11,.15);
+
+color:#b45309;
+
+}
+
+
+.performance-badge.improve{
+
+background:
+rgba(239,68,68,.12);
+
+color:#dc2626;
+
+}
+
+
+/* =========================================================
+                    QUICK PERFORMANCE
+========================================================= */
+
+.quick-performance-item{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+gap:15px;
+
+padding:16px 0;
+
+border-bottom:
+1px solid #eeeeee;
+
+}
+
+
+.quick-performance-item:last-child{
+
+border-bottom:none;
+
+}
+
+
+.quick-performance-left{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+
+.quick-performance-icon{
+
+width:45px;
+
+height:45px;
+
+border-radius:13px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:18px;
+
+}
+
+
+.quick-performance-left strong{
+
+display:block;
+
+font-size:14px;
+
+}
+
+
+.quick-performance-left small{
+
+display:block;
+
+font-size:11px;
+
+color:#6b7280;
+
+margin-top:3px;
+
+}
+
+
+.quick-performance-value{
+
+font-weight:800;
+
+font-size:15px;
+
+}
+
+
+/* =========================================================
+                    DARK MODE
+========================================================= */
+
+body.dark
+.performance-page-header p{
+
+color:#cbd5e1;
+
+}
+
+
+body.dark
+.performance-stat-card,
+
+body.dark
+.performance-card{
+
+background:#1f1f1f;
+
+color:#ffffff;
+
+}
+
+
+body.dark
+.performance-card-header h4{
+
+color:#ffffff;
+
+}
+
+
+body.dark
+.performance-card-header p{
+
+color:#cbd5e1;
+
+}
+
+
+body.dark
+.performance-stat-content small{
+
+color:#cbd5e1;
+
+}
+
+
+body.dark
+.overall-score-circle::before{
+
+background:#1f1f1f;
+
+}
+
+
+body.dark
+.overall-score-value span,
+
+body.dark
+.performance-score-text{
+
+color:#cbd5e1;
+
+}
+
+
+body.dark
+.score-row .progress{
+
+background:#3b3b3b;
+
+}
+
+
+body.dark
+.subject-performance-table thead th{
+
+background:#292929;
+
+color:#ffffff;
+
+}
+
+
+body.dark
+.subject-performance-table tbody td{
+
+color:#ffffff;
+
+border-color:#444444;
+
+}
+
+
+body.dark
+.subject-name small,
+
+body.dark
+.quick-performance-left small{
+
+color:#cbd5e1;
+
+}
+
+
+body.dark
+.quick-performance-item{
+
+border-color:#444444;
+
+}
+
+
+/* =========================================================
+                    RESPONSIVE
+========================================================= */
+
+@media(max-width:1200px){
+
+.performance-stats{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+}
+
+
+@media(max-width:992px){
+
+.performance-main-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+
+@media(max-width:576px){
+
+.performance-stats{
+
+grid-template-columns:1fr;
+
+}
+
+
+.performance-card{
+
+padding:18px;
+
+}
+
+
+.performance-page-header{
+
+align-items:flex-start;
+
+}
+
+
+.performance-chart-container{
+
+height:280px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="wrapper">
+
+
+<!-- =========================================================
+                        SIDEBAR
+========================================================= -->
+
+<aside class="sidebar">
+
+
+<div class="logo">
+
+<img
+src="../../images/logo.png"
+alt="Logo">
+
+<h3>
+Teacher Panel
+</h3>
+
+</div>
+
+
+<ul class="menu">
+
+
+<li>
+
+<a href="teacher-dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+Dashboard
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="my-classes.html">
+
+<i class="fa-solid fa-chalkboard-user"></i>
+
+My Classes
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="attendance.html">
+
+<i class="fa-solid fa-clipboard-user"></i>
+
+Attendance
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="assignments.html">
+
+<i class="fa-solid fa-file-pen"></i>
+
+Assignments
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="timetable.html">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+Timetable
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="leave-request.html">
+
+<i class="fa-solid fa-file-circle-check"></i>
+
+Leave Request
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="performance.html"
+class="active">
+
+<i class="fa-solid fa-chart-line"></i>
+
+Performance
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="notices.html">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+Notices
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="academic-calendar.html">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+Academic Calendar
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="ai-assistant.html">
+
+<i class="fa-solid fa-robot"></i>
+
+AI Assistant
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="face-login.html">
+
+<i class="fa-solid fa-face-smile"></i>
+
+Face Login
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="face-register.html">
+
+<i class="fa-solid fa-camera"></i>
+
+Face Register
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="profile.html">
+
+<i class="fa-solid fa-user"></i>
+
+Profile
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="change-password.html">
+
+<i class="fa-solid fa-lock"></i>
+
+Change Password
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="teacher-login.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+</aside>
+
+
+<!-- =========================================================
+                    MAIN CONTENT
+========================================================= -->
+
+<main class="main-content">
+
+
+<!-- =========================================================
+                    TOP NAVBAR
+========================================================= -->
+
+<nav class="top-navbar">
+
+
+<div>
+
+<h3>
+Teacher Performance
+</h3>
+
+</div>
+
+
+<div class="top-right">
+
+
+<!-- Search -->
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="searchBox"
+placeholder="Search performance...">
+
+</div>
+
+
+<!-- Dark Mode -->
+
+<button
+id="themeToggle"
+class="icon-btn"
+title="Dark / Light Mode">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+
+<!-- Notifications -->
+
+<div class="dropdown">
+
+
+<button
+class="icon-btn position-relative"
+data-bs-toggle="dropdown">
+
+<i class="fa-regular fa-bell"></i>
+
+<span
+class="badge-count">
+
+4
+
+</span>
+
+</button>
+
+
+<ul
+class="dropdown-menu dropdown-menu-end notification-menu">
+
+
+<li class="dropdown-header">
+
+Notifications
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="notices.html">
+
+📢 Faculty Meeting Tomorrow
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="assignments.html">
+
+📝 Assignment Evaluation Pending
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="attendance.html">
+
+✅ Attendance Updated
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="performance.html">
+
+📊 Performance Report Updated
+
+</a>
+
+</li>
+
+
+</ul>
+
+</div>
+
+
+<!-- Profile -->
+
+<div class="dropdown">
+
+
+<div
+class="profile"
+data-bs-toggle="dropdown">
+
+
+<img
+src="https://i.pravatar.cc/50?img=47"
+alt="Teacher">
+
+
+<span>
+
+Welcome, Teacher
+
+</span>
+
+
+<i class="fa-solid fa-angle-down"></i>
+
+</div>
+
+
+<ul
+class="dropdown-menu dropdown-menu-end profile-menu">
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="profile.html">
+
+<i class="fa-solid fa-user"></i>
+
+My Profile
+
+</a>
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item"
+href="change-password.html">
+
+<i class="fa-solid fa-lock"></i>
+
+Change Password
+
+</a>
+
+</li>
+
+
+<li>
+
+<hr class="dropdown-divider">
+
+</li>
+
+
+<li>
+
+<a
+class="dropdown-item text-danger"
+href="teacher-login.html">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+</div>
+
+
+</div>
+
+</nav>
+
+
+<!-- =========================================================
+                    PAGE HEADER
+========================================================= -->
+
+<div class="performance-page-header">
+
+
+<div>
+
+<h2>
+
+<i
+class="fa-solid fa-chart-line me-2"
+style="color:#6c4cff;">
+</i>
+
+My Performance
+
+</h2>
+
+
+<p>
+
+Track your teaching performance,
+attendance, student feedback and
+academic productivity.
+
+</p>
+
+</div>
+
+
+<div class="d-flex gap-2 flex-wrap">
+
+
+<select
+id="performanceSemester"
+class="form-select"
+style="width:auto;">
+
+<option value="odd">
+Odd Semester 2026
+</option>
+
+<option value="even">
+Even Semester 2026
+</option>
+
+<option value="odd2025">
+Odd Semester 2025
+</option>
+
+</select>
+
+
+<button
+type="button"
+class="btn btn-primary"
+id="downloadPerformanceBtn">
+
+<i class="fa-solid fa-download me-2"></i>
+
+Download Report
+
+</button>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    PERFORMANCE STATISTICS
+========================================================= -->
+
+<div class="performance-stats">
+
+
+<!-- Overall Performance -->
+
+<div class="performance-stat-card">
+
+
+<div class="performance-stat-icon purple">
+
+<i class="fa-solid fa-chart-simple"></i>
+
+</div>
+
+
+<div class="performance-stat-content">
+
+<small>
+
+Overall Performance
+
+</small>
+
+<h3>
+
+92%
+
+</h3>
+
+<span class="text-success">
+
+<i class="fa-solid fa-arrow-up"></i>
+
+4.2% this semester
+
+</span>
+
+</div>
+
+</div>
+
+
+<!-- Attendance -->
+
+<div class="performance-stat-card">
+
+
+<div class="performance-stat-icon green">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+</div>
+
+
+<div class="performance-stat-content">
+
+<small>
+
+Teacher Attendance
+
+</small>
+
+<h3>
+
+96.4%
+
+</h3>
+
+<span class="text-success">
+
+Excellent attendance
+
+</span>
+
+</div>
+
+</div>
+
+
+<!-- Classes -->
+
+<div class="performance-stat-card">
+
+
+<div class="performance-stat-icon blue">
+
+<i class="fa-solid fa-chalkboard-user"></i>
+
+</div>
+
+
+<div class="performance-stat-content">
+
+<small>
+
+Classes Conducted
+
+</small>
+
+<h3>
+
+148
+
+</h3>
+
+<span class="text-primary">
+
+152 scheduled
+
+</span>
+
+</div>
+
+</div>
+
+
+<!-- Feedback -->
+
+<div class="performance-stat-card">
+
+
+<div class="performance-stat-icon orange">
+
+<i class="fa-solid fa-star"></i>
+
+</div>
+
+
+<div class="performance-stat-content">
+
+<small>
+
+Student Feedback
+
+</small>
+
+<h3>
+
+4.7/5
+
+</h3>
+
+<span class="text-warning">
+
+Excellent rating
+
+</span>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+                    MAIN GRID
+========================================================= -->
+
+<div class="performance-main-grid">
+
+
+<!-- =========================================================
+                    LEFT COLUMN
+========================================================= -->
+
+<div>
+
+
+<!-- =========================================================
+                MONTHLY PERFORMANCE CHART
+========================================================= -->
+
+<section class="performance-card">
+
+
+<div class="performance-card-header">
+
+
+<div>
+
+<h4>
+
+<i class="fa-solid fa-chart-line me-2"></i>
+
+Monthly Performance Trend
+
+</h4>
+
+<p>
+
+Your overall teaching performance
+during the current semester.
+
+</p>
+
+</div>
+
+
+<span
+class="badge bg-primary rounded-pill px-3 py-2">
+
+July - December 2026
+
+</span>
+
+
+</div>
+
+
+<div class="performance-chart-container">
+
+<canvas id="monthlyPerformanceChart"></canvas>
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    SUBJECT PERFORMANCE
+========================================================= -->
+
+<section class="performance-card">
+
+
+<div class="performance-card-header">
+
+
+<div>
+
+<h4>
+
+<i class="fa-solid fa-book-open me-2"></i>
+
+Subject-wise Performance
+
+</h4>
+
+<p>
+
+Performance analysis for your
+assigned subjects.
+
+</p>
+
+</div>
+
+
+<button
+type="button"
+class="btn btn-outline-primary btn-sm"
+id="viewSubjectReportBtn">
+
+<i class="fa-solid fa-eye me-1"></i>
+
+View Detailed Report
+
+</button>
+
+
+</div>
+
+
+<div class="subject-performance-table">
+
+
+<table class="table">
+
+
+<thead>
+
+<tr>
+
+<th>
+Subject
+</th>
+
+<th>
+Classes
+</th>
+
+<th>
+Attendance
+</th>
+
+<th>
+Result
+</th>
+
+<th>
+Feedback
+</th>
+
+<th>
+Performance
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+<!-- =========================================================
+                    SUBJECT 1
+========================================================= -->
+
+<tr>
+
+
+<td>
+
+<div class="subject-name">
+
+
+<div class="subject-icon">
+
+<i class="fa-solid fa-code"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+
+Java Programming
+
+</strong>
+
+<small>
+
+MCA Semester III
+
+</small>
+
+</div>
+
+
+</div>
+
+</td>
+
+
+<td>
+
+42 / 43
+
+</td>
+
+
+<td>
+
+94%
+
+</td>
+
+
+<td>
+
+91%
+
+</td>
+
+
+<td>
+
+<div class="rating-stars">
+
+<i class="fa-solid fa-star"></i>
+
+<i class="fa-solid fa-star"></i>
+
+<i class="fa-solid fa-star"></i>
+
+<i class="fa-solid fa-star"></i>
+
+<i class="fa-solid fa-star-half-stroke"></i>
+
+</div>
+
+<small>
+4.7
+</small>
+
+</td>
+
+
+<td>
+
+<span class="performance-badge excellent">
+
+Excellent
+
+</span>
+
+</td>
+
+
+</tr>
+
+
+<!-- =========================================================
+                    SUBJECT 2
+========================================================= -->
+
+<tr>
+
+
+<td>
+
+<div class="subject-name">
+
+
+<div class="subject-icon">
+
+<i class="fa-solid fa-database"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+
+Database Management System
+
+</strong>
+
+<small>
+
+MCA Semester III
+
+</small>
+
+</div>
+
+
+</div>
+
+</td>
+
+
+<td>
+
+38 / 40
+
+</td>
+
+
+<td>
+
+92%
+
+</td>
+
+
+<td>
+
+89%
+
+</td>
+
+
+<td>
+
+<div class="rating-stars">
+
+<i class="fa-solid fa-star"></i>
+
+<i class="fa-solid fa-star"></i>
+
+<i class="fa-solid fa-star"></i>
+
+<i class="fa-solid fa-star"></i>
+
+<i class="fa-regular fa-star"></i>
+
+</div>
+
+<small>
+4.5
+</small>
+
+</td>
+
+
+<td>
+
+<span class="performance-badge excellent">
+
+Excellent
+
+</span>
+
+</td>
+
+
+</tr>
+
+
+<!-- =========================================================
+                    SUBJECT 3
+========================================================= -->
+
+<tr>
+
+
+<td>
+
+<div class="subject-name">
+
+
+<div class="subject-icon">
+
+<i class="fa-solid fa-globe"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+
+Web Technology
+
+</strong>
+
+<small>
+
+MCA Semester II
+
+</small>
+
+</div>
+
+
+</div>
+
+</td>
+
+
+<td>
+
+36 / 37
+
+</td>
+
+
+<td>
+
+95%
+
+</td>
+
+
+<td>
+
+93%
+
+</td>
+
+
+<td>
+
+<div class="rating-stars">
+
+<i class="fa-solid fa-star"></i>
+
+<i class="fa-solid fa-star"></i>
+
+<i class="fa-solid fa-star"></i>
+
+<i class="fa-solid fa-star"></i>
+
+<i class="fa-solid fa-star-half-stroke"></i>
+
+</div>
+
+<small>
+4.8
+</small>
+
+</td>
+
+
+<td>
+
+<span class="performance-badge excellent">
+
+Excellent
+
+</span>
+
+</td>
+
+
+</tr>
+
+
+<!-- =========================================================
+                    SUBJECT 4
+========================================================= -->
+
+<tr>
+
+
+<td>
+
+<div class="subject-name">
+
+
+<div class="subject-icon">
+
+<i class="fa-solid fa-laptop-code"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+
+Software Engineering
+
+</strong>
+
+<small>
+
+MCA Semester II
+
+</small>
+
+</div>
+
+
+</div>
+
+</td>
+
+
+<td>
+
+32 / 32
+
+</td>
+
+
+<td>
+
+91%
+
+</td>
+
+
+<td>
+
+87%
+
+</td>
+
+
+<td>
+
+<div class="rating-stars">
+
+<i class="fa-solid fa-star"></i>
+
+<i class="fa-solid fa-star"></i>
+
+<i class="fa-solid fa-star"></i>
+
+<i class="fa-solid fa-star"></i>
+
+<i class="fa-regular fa-star"></i>
+
+</div>
+
+<small>
+4.4
+</small>
+
+</td>
+
+
+<td>
+
+<span class="performance-badge good">
+
+Very Good
+
+</span>
+
+</td>
+
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</section>
+
+
+</div>
+
+
+<!-- =========================================================
+                    RIGHT COLUMN
+========================================================= -->
+
+<div>
+
+
+<!-- =========================================================
+                    OVERALL SCORE
+========================================================= -->
+
+<section class="performance-card">
+
+
+<div class="performance-card-header">
+
+
+<div>
+
+<h4>
+
+<i class="fa-solid fa-award me-2"></i>
+
+Overall Score
+
+</h4>
+
+<p>
+
+Current semester rating
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="overall-score-wrapper">
+
+
+<div class="overall-score-circle">
+
+
+<div class="overall-score-value">
+
+<h2>
+
+92
+
+</h2>
+
+<span>
+
+out of 100
+
+</span>
+
+</div>
+
+
+</div>
+
+
+<div class="performance-grade">
+
+<i class="fa-solid fa-trophy me-1"></i>
+
+Excellent Performance
+
+</div>
+
+
+<p class="performance-score-text">
+
+Your overall teaching performance is
+above the department average.
+
+Keep maintaining strong attendance,
+student engagement and academic
+productivity.
+
+</p>
+
+
+<!-- =========================================================
+                    SCORE BREAKDOWN
+========================================================= -->
+
+<div class="score-breakdown">
+
+
+<!-- Attendance -->
+
+<div class="score-row">
+
+
+<div class="score-row-header">
+
+<span>
+
+Attendance
+
+</span>
+
+<strong>
+
+96%
+
+</strong>
+
+</div>
+
+
+<div class="progress">
+
+<div
+class="progress-bar bg-success"
+style="width:96%;">
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- Teaching -->
+
+<div class="score-row">
+
+
+<div class="score-row-header">
+
+<span>
+
+Teaching Quality
+
+</span>
+
+<strong>
+
+94%
+
+</strong>
+
+</div>
+
+
+<div class="progress">
+
+<div
+class="progress-bar bg-primary"
+style="width:94%;">
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- Student Feedback -->
+
+<div class="score-row">
+
+
+<div class="score-row-header">
+
+<span>
+
+Student Feedback
+
+</span>
+
+<strong>
+
+94%
+
+</strong>
+
+</div>
+
+
+<div class="progress">
+
+<div
+class="progress-bar bg-warning"
+style="width:94%;">
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- Results -->
+
+<div class="score-row">
+
+
+<div class="score-row-header">
+
+<span>
+
+Student Results
+
+</span>
+
+<strong>
+
+90%
+
+</strong>
+
+</div>
+
+
+<div class="progress">
+
+<div
+class="progress-bar bg-info"
+style="width:90%;">
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- Academic Work -->
+
+<div class="score-row">
+
+
+<div class="score-row-header">
+
+<span>
+
+Academic Productivity
+
+</span>
+
+<strong>
+
+88%
+
+</strong>
+
+</div>
+
+
+<div class="progress">
+
+<div
+class="progress-bar bg-danger"
+style="width:88%;">
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+                    QUICK PERFORMANCE
+========================================================= -->
+
+<section class="performance-card">
+
+
+<div class="performance-card-header">
+
+
+<div>
+
+<h4>
+
+<i class="fa-solid fa-bolt me-2"></i>
+
+Performance Summary
+
+</h4>
+
+<p>
+
+Quick academic overview
+
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- Classes -->
+
+<div class="quick-performance-item">
+
+
+<div class="quick-performance-left">
+
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(59,130,246,.12);
+color:#2563eb;
+">
+
+<i class="fa-solid fa-chalkboard"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+
+Classes Completed
+
+</strong>
+
+<small>
+
+148 of 152 classes
+
+</small>
+
+</div>
+
+
+</div>
+
+
+<div
+class="quick-performance-value text-primary">
+
+97.4%
+
+</div>
+
+
+</div>
+
+
+<!-- Assignment -->
+
+<div class="quick-performance-item">
+
+
+<div class="quick-performance-left">
+
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(34,197,94,.12);
+color:#16a34a;
+">
+
+<i class="fa-solid fa-file-circle-check"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+
+Assignments Evaluated
+
+</strong>
+
+<small>
+
+286 of 300 submissions
+
+</small>
+
+</div>
+
+
+</div>
+
+
+<div
+class="quick-performance-value text-success">
+
+95.3%
+
+</div>
+
+
+</div>
+
+
+<!-- Feedback -->
+
+<div class="quick-performance-item">
+
+
+<div class="quick-performance-left">
+
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(245,158,11,.14);
+color:#d97706;
+">
+
+<i class="fa-solid fa-star"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+
+Positive Feedback
+
+</strong>
+
+<small>
+
+From 174 students
+
+</small>
+
+</div>
+
+
+</div>
+
+
+<div
+class="quick-performance-value text-warning">
+
+94%
+
+</div>
+
+
+</div>
+
+
+<!-- Result -->
+
+<div class="quick-performance-item">
+
+
+<div class="quick-performance-left">
+
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(168,85,247,.12);
+color:#9333ea;
+">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+</div>
+
+
+<div>
+
+<strong>
+
+Student Pass Rate
+
+</strong>
+
+<small>
+
+Overall subject results
+
+</small>
+
+</div>
+
+
+</div>
+
+
+<div
+class="quick-performance-value"
+style="color:#9333ea;">
+
+90%
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================================================
+              PART 1 ENDS HERE
+
+              PART 2 CONTINUES FROM HERE
+========================================================= -->
+<!-- =========================================================
+                    AI PERFORMANCE INSIGHTS
+========================================================= -->
+
+<section class="performance-card">
+
+<div class="performance-card-header">
+
+<div>
+
+<h4>
+<i class="fa-solid fa-robot me-2"></i>
+AI Performance Insights
+</h4>
+
+<p>
+AI-generated analysis based on your teaching activity,
+attendance, feedback and student performance.
+</p>
+
+</div>
+
+<span class="badge bg-primary rounded-pill px-3 py-2">
+
+<i class="fa-solid fa-wand-magic-sparkles me-1"></i>
+AI Analysis
+
+</span>
+
+</div>
+
+
+<div class="row g-4">
+
+
+<!-- ================= INSIGHT 1 ================= -->
+
+<div class="col-lg-4">
+
+<div class="p-4 rounded-4 h-100"
+style="
+background:rgba(34,197,94,.08);
+border:1px solid rgba(34,197,94,.20);
+">
+
+<div class="d-flex align-items-center gap-3 mb-3">
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(34,197,94,.15);
+color:#16a34a;
+">
+
+<i class="fa-solid fa-arrow-trend-up"></i>
+
+</div>
+
+<div>
+
+<h6 class="fw-bold mb-1">
+Strong Teaching Performance
+</h6>
+
+<small class="text-muted">
+AI Observation
+</small>
+
+</div>
+
+</div>
+
+<p class="text-muted mb-0">
+
+Your teaching performance has improved consistently.
+Student feedback and class completion rates indicate
+strong classroom engagement.
+
+</p>
+
+</div>
+
+</div>
+
+
+<!-- ================= INSIGHT 2 ================= -->
+
+<div class="col-lg-4">
+
+<div class="p-4 rounded-4 h-100"
+style="
+background:rgba(59,130,246,.08);
+border:1px solid rgba(59,130,246,.20);
+">
+
+<div class="d-flex align-items-center gap-3 mb-3">
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(59,130,246,.15);
+color:#2563eb;
+">
+
+<i class="fa-solid fa-users"></i>
+
+</div>
+
+<div>
+
+<h6 class="fw-bold mb-1">
+Student Engagement
+</h6>
+
+<small class="text-muted">
+AI Observation
+</small>
+
+</div>
+
+</div>
+
+<p class="text-muted mb-0">
+
+Students show high engagement in Web Technology
+and Java Programming. Continue using practical
+examples and interactive activities.
+
+</p>
+
+</div>
+
+</div>
+
+
+<!-- ================= INSIGHT 3 ================= -->
+
+<div class="col-lg-4">
+
+<div class="p-4 rounded-4 h-100"
+style="
+background:rgba(245,158,11,.08);
+border:1px solid rgba(245,158,11,.22);
+">
+
+<div class="d-flex align-items-center gap-3 mb-3">
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(245,158,11,.15);
+color:#d97706;
+">
+
+<i class="fa-solid fa-lightbulb"></i>
+
+</div>
+
+<div>
+
+<h6 class="fw-bold mb-1">
+Recommended Improvement
+</h6>
+
+<small class="text-muted">
+AI Suggestion
+</small>
+
+</div>
+
+</div>
+
+<p class="text-muted mb-0">
+
+Academic productivity is slightly lower than your
+other metrics. Consider increasing research,
+workshops and academic contribution activities.
+
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div
+class="mt-4 p-4 rounded-4"
+style="
+background:linear-gradient(
+135deg,
+rgba(108,76,255,.10),
+rgba(59,130,246,.08)
+);
+border:1px solid rgba(108,76,255,.15);
+">
+
+<div class="d-flex align-items-start gap-3">
+
+<div
+class="quick-performance-icon"
+style="
+background:#6c4cff;
+color:#fff;
+">
+
+<i class="fa-solid fa-brain"></i>
+
+</div>
+
+<div>
+
+<h6 class="fw-bold mb-2">
+AI Performance Summary
+</h6>
+
+<p class="text-muted mb-2">
+
+Based on the current performance indicators,
+your overall teaching effectiveness is rated
+<strong>Excellent</strong>.
+
+</p>
+
+<p class="mb-0">
+
+<strong>Recommendation:</strong>
+Maintain your strong attendance and teaching quality
+while increasing academic research and professional
+development activities.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+                STRENGTHS AND IMPROVEMENT
+========================================================= -->
+
+<div class="row g-4">
+
+
+<!-- ================= STRENGTHS ================= -->
+
+<div class="col-lg-6">
+
+<section class="performance-card h-100">
+
+<div class="performance-card-header">
+
+<div>
+
+<h4>
+<i class="fa-solid fa-circle-check me-2 text-success"></i>
+Key Strengths
+</h4>
+
+<p>
+Your strongest performance areas
+</p>
+
+</div>
+
+</div>
+
+
+<div class="quick-performance-item">
+
+<div class="quick-performance-left">
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(34,197,94,.12);
+color:#16a34a;
+">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+</div>
+
+<div>
+
+<strong>
+Excellent Attendance
+</strong>
+
+<small>
+96.4% teacher attendance
+</small>
+
+</div>
+
+</div>
+
+<i class="fa-solid fa-circle-check text-success"></i>
+
+</div>
+
+
+<div class="quick-performance-item">
+
+<div class="quick-performance-left">
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(59,130,246,.12);
+color:#2563eb;
+">
+
+<i class="fa-solid fa-chalkboard-user"></i>
+
+</div>
+
+<div>
+
+<strong>
+Class Completion
+</strong>
+
+<small>
+148 of 152 scheduled classes completed
+</small>
+
+</div>
+
+</div>
+
+<i class="fa-solid fa-circle-check text-success"></i>
+
+</div>
+
+
+<div class="quick-performance-item">
+
+<div class="quick-performance-left">
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(245,158,11,.13);
+color:#d97706;
+">
+
+<i class="fa-solid fa-star"></i>
+
+</div>
+
+<div>
+
+<strong>
+Student Satisfaction
+</strong>
+
+<small>
+Average student rating of 4.7 / 5
+</small>
+
+</div>
+
+</div>
+
+<i class="fa-solid fa-circle-check text-success"></i>
+
+</div>
+
+
+<div class="quick-performance-item">
+
+<div class="quick-performance-left">
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(168,85,247,.12);
+color:#9333ea;
+">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+</div>
+
+<div>
+
+<strong>
+Strong Student Results
+</strong>
+
+<small>
+90% overall student pass rate
+</small>
+
+</div>
+
+</div>
+
+<i class="fa-solid fa-circle-check text-success"></i>
+
+</div>
+
+
+</section>
+
+</div>
+
+
+<!-- ================= IMPROVEMENT ================= -->
+
+<div class="col-lg-6">
+
+<section class="performance-card h-100">
+
+<div class="performance-card-header">
+
+<div>
+
+<h4>
+<i class="fa-solid fa-arrow-trend-up me-2 text-warning"></i>
+Improvement Areas
+</h4>
+
+<p>
+AI recommended areas for development
+</p>
+
+</div>
+
+</div>
+
+
+<div class="quick-performance-item">
+
+<div class="quick-performance-left">
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(245,158,11,.13);
+color:#d97706;
+">
+
+<i class="fa-solid fa-book-open-reader"></i>
+
+</div>
+
+<div>
+
+<strong>
+Research Contribution
+</strong>
+
+<small>
+Increase research papers and publications
+</small>
+
+</div>
+
+</div>
+
+<span class="performance-badge average">
+Improve
+</span>
+
+</div>
+
+
+<div class="quick-performance-item">
+
+<div class="quick-performance-left">
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(59,130,246,.12);
+color:#2563eb;
+">
+
+<i class="fa-solid fa-person-chalkboard"></i>
+
+</div>
+
+<div>
+
+<strong>
+Professional Development
+</strong>
+
+<small>
+Attend more FDPs and workshops
+</small>
+
+</div>
+
+</div>
+
+<span class="performance-badge good">
+Recommended
+</span>
+
+</div>
+
+
+<div class="quick-performance-item">
+
+<div class="quick-performance-left">
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(239,68,68,.10);
+color:#dc2626;
+">
+
+<i class="fa-solid fa-clock"></i>
+
+</div>
+
+<div>
+
+<strong>
+Evaluation Time
+</strong>
+
+<small>
+Reduce assignment evaluation delay
+</small>
+
+</div>
+
+</div>
+
+<span class="performance-badge average">
+Improve
+</span>
+
+</div>
+
+
+<div class="quick-performance-item">
+
+<div class="quick-performance-left">
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(168,85,247,.12);
+color:#9333ea;
+">
+
+<i class="fa-solid fa-laptop-file"></i>
+
+</div>
+
+<div>
+
+<strong>
+Digital Content
+</strong>
+
+<small>
+Create more digital learning resources
+</small>
+
+</div>
+
+</div>
+
+<span class="performance-badge good">
+Recommended
+</span>
+
+</div>
+
+
+</section>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                RECENT PERFORMANCE ACTIVITY
+========================================================= -->
+
+<section class="performance-card mt-4">
+
+<div class="performance-card-header">
+
+<div>
+
+<h4>
+
+<i class="fa-solid fa-clock-rotate-left me-2"></i>
+
+Recent Performance Activities
+
+</h4>
+
+<p>
+Latest activities contributing to your performance score
+</p>
+
+</div>
+
+<button
+type="button"
+class="btn btn-outline-primary btn-sm"
+id="viewAllActivitiesBtn">
+
+View All
+
+</button>
+
+</div>
+
+
+<div class="table-responsive">
+
+<table
+class="table align-middle"
+id="performanceActivityTable">
+
+<thead>
+
+<tr>
+
+<th>
+Activity
+</th>
+
+<th>
+Category
+</th>
+
+<th>
+Date
+</th>
+
+<th>
+Impact
+</th>
+
+<th>
+Status
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+<tr>
+
+<td>
+
+<div class="d-flex align-items-center gap-3">
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(34,197,94,.12);
+color:#16a34a;
+">
+
+<i class="fa-solid fa-chalkboard-user"></i>
+
+</div>
+
+<div>
+
+<strong>
+Java Programming Class
+</strong>
+
+<small class="d-block text-muted">
+Completed successfully
+</small>
+
+</div>
+
+</div>
+
+</td>
+
+<td>
+Teaching
+</td>
+
+<td>
+02 Aug 2026
+</td>
+
+<td class="text-success fw-bold">
++2.4
+</td>
+
+<td>
+
+<span class="performance-badge excellent">
+Completed
+</span>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+
+<div class="d-flex align-items-center gap-3">
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(59,130,246,.12);
+color:#2563eb;
+">
+
+<i class="fa-solid fa-file-circle-check"></i>
+
+</div>
+
+<div>
+
+<strong>
+Assignment Evaluation
+</strong>
+
+<small class="d-block text-muted">
+DBMS Assignment 03
+</small>
+
+</div>
+
+</div>
+
+</td>
+
+<td>
+Evaluation
+</td>
+
+<td>
+01 Aug 2026
+</td>
+
+<td class="text-success fw-bold">
++1.8
+</td>
+
+<td>
+
+<span class="performance-badge excellent">
+Completed
+</span>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+
+<div class="d-flex align-items-center gap-3">
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(245,158,11,.12);
+color:#d97706;
+">
+
+<i class="fa-solid fa-users"></i>
+
+</div>
+
+<div>
+
+<strong>
+Faculty Meeting
+</strong>
+
+<small class="d-block text-muted">
+Academic planning discussion
+</small>
+
+</div>
+
+</div>
+
+</td>
+
+<td>
+Academic
+</td>
+
+<td>
+30 Jul 2026
+</td>
+
+<td class="text-success fw-bold">
++1.2
+</td>
+
+<td>
+
+<span class="performance-badge good">
+Attended
+</span>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+
+<div class="d-flex align-items-center gap-3">
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(168,85,247,.12);
+color:#9333ea;
+">
+
+<i class="fa-solid fa-laptop-code"></i>
+
+</div>
+
+<div>
+
+<strong>
+AI Workshop
+</strong>
+
+<small class="d-block text-muted">
+Faculty development activity
+</small>
+
+</div>
+
+</div>
+
+</td>
+
+<td>
+Development
+</td>
+
+<td>
+28 Jul 2026
+</td>
+
+<td class="text-success fw-bold">
++3.5
+</td>
+
+<td>
+
+<span class="performance-badge excellent">
+Completed
+</span>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+
+<div class="d-flex align-items-center gap-3">
+
+<div
+class="quick-performance-icon"
+style="
+background:rgba(239,68,68,.10);
+color:#dc2626;
+">
+
+<i class="fa-solid fa-clock"></i>
+
+</div>
+
+<div>
+
+<strong>
+Late Assignment Evaluation
+</strong>
+
+<small class="d-block text-muted">
+Web Technology Assignment
+</small>
+
+</div>
+
+</div>
+
+</td>
+
+<td>
+Evaluation
+</td>
+
+<td>
+25 Jul 2026
+</td>
+
+<td class="text-danger fw-bold">
+-0.5
+</td>
+
+<td>
+
+<span class="performance-badge improve">
+Delayed
+</span>
+
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+                PERFORMANCE REPORT MODAL
+========================================================= -->
+
+<div
+class="modal fade"
+id="performanceReportModal"
+tabindex="-1"
+aria-hidden="true">
+
+<div
+class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+
+<div class="modal-content border-0 rounded-4">
+
+
+<div class="modal-header">
+
+<h5 class="modal-title fw-bold">
+
+<i
+class="fa-solid fa-chart-pie me-2"
+style="color:#6c4cff;">
+</i>
+
+Detailed Performance Report
+
+</h5>
+
+<button
+type="button"
+class="btn-close"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+
+<div class="modal-body p-4">
+
+
+<!-- Teacher -->
+
+<div
+class="p-4 rounded-4 mb-4"
+style="
+background:rgba(108,76,255,.07);
+">
+
+<div class="row align-items-center g-3">
+
+<div class="col-md-8">
+
+<h4 class="fw-bold mb-1">
+
+Teacher Performance Report
+
+</h4>
+
+<p class="text-muted mb-0">
+
+Academic Session 2026 - 2027 |
+Odd Semester
+
+</p>
+
+</div>
+
+
+<div class="col-md-4 text-md-end">
+
+<span
+class="badge bg-success rounded-pill px-4 py-2">
+
+Excellent Performance
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- Report Stats -->
+
+<div class="row g-3 mb-4">
+
+
+<div class="col-md-3">
+
+<div class="academic-report-box text-center p-3 border rounded-4">
+
+<small class="text-muted">
+Overall Score
+</small>
+
+<h3 class="fw-bold text-primary mt-2 mb-0">
+92%
+</h3>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3">
+
+<div class="academic-report-box text-center p-3 border rounded-4">
+
+<small class="text-muted">
+Attendance
+</small>
+
+<h3 class="fw-bold text-success mt-2 mb-0">
+96.4%
+</h3>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3">
+
+<div class="academic-report-box text-center p-3 border rounded-4">
+
+<small class="text-muted">
+Student Feedback
+</small>
+
+<h3 class="fw-bold text-warning mt-2 mb-0">
+4.7/5
+</h3>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3">
+
+<div class="academic-report-box text-center p-3 border rounded-4">
+
+<small class="text-muted">
+Student Pass Rate
+</small>
+
+<h3 class="fw-bold text-info mt-2 mb-0">
+90%
+</h3>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<h5 class="fw-bold mb-3">
+
+Subject Performance
+
+</h5>
+
+
+<div class="table-responsive">
+
+<table class="table table-bordered align-middle">
+
+<thead>
+
+<tr>
+
+<th>
+Subject
+</th>
+
+<th>
+Classes
+</th>
+
+<th>
+Attendance
+</th>
+
+<th>
+Result
+</th>
+
+<th>
+Feedback
+</th>
+
+<th>
+Score
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+<tr>
+
+<td>
+Java Programming
+</td>
+
+<td>
+42 / 43
+</td>
+
+<td>
+94%
+</td>
+
+<td>
+91%
+</td>
+
+<td>
+4.7 / 5
+</td>
+
+<td class="fw-bold text-success">
+94%
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Database Management System
+</td>
+
+<td>
+38 / 40
+</td>
+
+<td>
+92%
+</td>
+
+<td>
+89%
+</td>
+
+<td>
+4.5 / 5
+</td>
+
+<td class="fw-bold text-success">
+91%
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Web Technology
+</td>
+
+<td>
+36 / 37
+</td>
+
+<td>
+95%
+</td>
+
+<td>
+93%
+</td>
+
+<td>
+4.8 / 5
+</td>
+
+<td class="fw-bold text-success">
+95%
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Software Engineering
+</td>
+
+<td>
+32 / 32
+</td>
+
+<td>
+91%
+</td>
+
+<td>
+87%
+</td>
+
+<td>
+4.4 / 5
+</td>
+
+<td class="fw-bold text-primary">
+89%
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="alert alert-primary mt-4 mb-0">
+
+<i class="fa-solid fa-robot me-2"></i>
+
+<strong>
+AI Recommendation:
+</strong>
+
+Continue your strong classroom performance while
+increasing research participation, FDP attendance
+and digital content development.
+
+</div>
+
+
+</div>
+
+
+<div class="modal-footer">
+
+<button
+type="button"
+class="btn btn-outline-secondary"
+data-bs-dismiss="modal">
+
+Close
+
+</button>
+
+
+<button
+type="button"
+class="btn btn-primary"
+id="modalDownloadReportBtn">
+
+<i class="fa-solid fa-download me-2"></i>
+
+Download Report
+
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+                    FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+© 2026 Faculty Management & Productivity System |
+Teacher Performance
+
+</footer>
+
+
+</main>
+
+</div>
+
+
+<!-- =========================================================
+                    BOOTSTRAP JS
+========================================================= -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- =========================================================
+                        CHART JS
+========================================================= -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/chart.js">
+</script>
+
+
+<!-- =========================================================
+                    TEACHER COMMON JS
+========================================================= -->
+
+<script src="../../js/teacher-dashboard.js"></script>
+
+
+<!-- =========================================================
+                PERFORMANCE JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+
+/* =========================================================
+                    ELEMENTS
+========================================================= */
+
+const searchBox =
+document.getElementById(
+"searchBox"
+);
+
+
+const performanceSemester =
+document.getElementById(
+"performanceSemester"
+);
+
+
+const downloadPerformanceBtn =
+document.getElementById(
+"downloadPerformanceBtn"
+);
+
+
+const modalDownloadReportBtn =
+document.getElementById(
+"modalDownloadReportBtn"
+);
+
+
+const viewSubjectReportBtn =
+document.getElementById(
+"viewSubjectReportBtn"
+);
+
+
+const viewAllActivitiesBtn =
+document.getElementById(
+"viewAllActivitiesBtn"
+);
+
+
+/* =========================================================
+                    CHART ELEMENT
+========================================================= */
+
+const chartCanvas =
+document.getElementById(
+"monthlyPerformanceChart"
+);
+
+
+let performanceChart = null;
+
+
+/* =========================================================
+                    PERFORMANCE DATA
+========================================================= */
+
+const semesterData = {
+
+
+odd:{
+
+label:"Odd Semester 2026",
+
+months:[
+"July",
+"August",
+"September",
+"October",
+"November",
+"December"
+],
+
+overall:[
+84,
+87,
+89,
+90,
+91,
+92
+],
+
+attendance:[
+92,
+94,
+95,
+95,
+96,
+96.4
+],
+
+feedback:[
+82,
+85,
+87,
+90,
+92,
+94
+]
+
+},
+
+
+even:{
+
+label:"Even Semester 2026",
+
+months:[
+"January",
+"February",
+"March",
+"April",
+"May",
+"June"
+],
+
+overall:[
+80,
+82,
+85,
+87,
+89,
+91
+],
+
+attendance:[
+90,
+92,
+93,
+94,
+95,
+96
+],
+
+feedback:[
+78,
+81,
+84,
+87,
+89,
+92
+]
+
+},
+
+
+odd2025:{
+
+label:"Odd Semester 2025",
+
+months:[
+"July",
+"August",
+"September",
+"October",
+"November",
+"December"
+],
+
+overall:[
+76,
+79,
+82,
+84,
+86,
+88
+],
+
+attendance:[
+88,
+89,
+91,
+92,
+93,
+94
+],
+
+feedback:[
+75,
+78,
+80,
+83,
+85,
+88
+]
+
+}
+
+
+};
+
+
+/* =========================================================
+                    CREATE CHART
+========================================================= */
+
+function createPerformanceChart(
+semesterKey
+){
+
+const selectedData =
+semesterData[
+semesterKey
+];
+
+
+if(
+performanceChart
+){
+
+performanceChart.destroy();
+
+}
+
+
+performanceChart =
+new Chart(
+chartCanvas,
+{
+
+type:"line",
+
+data:{
+
+labels:
+selectedData.months,
+
+datasets:[
+
+
+{
+
+label:
+"Overall Performance",
+
+data:
+selectedData.overall,
+
+borderColor:
+"#6c4cff",
+
+backgroundColor:
+"rgba(108,76,255,.10)",
+
+borderWidth:
+3,
+
+tension:
+0.4,
+
+fill:
+true,
+
+pointRadius:
+5,
+
+pointHoverRadius:
+7
+
+},
+
+
+{
+
+label:
+"Attendance",
+
+data:
+selectedData.attendance,
+
+borderColor:
+"#22c55e",
+
+backgroundColor:
+"rgba(34,197,94,.05)",
+
+borderWidth:
+3,
+
+tension:
+0.4,
+
+fill:
+false,
+
+pointRadius:
+4
+
+},
+
+
+{
+
+label:
+"Student Feedback",
+
+data:
+selectedData.feedback,
+
+borderColor:
+"#f59e0b",
+
+backgroundColor:
+"rgba(245,158,11,.05)",
+
+borderWidth:
+3,
+
+tension:
+0.4,
+
+fill:
+false,
+
+pointRadius:
+4
+
+}
+
+
+]
+
+},
+
+
+options:{
+
+responsive:true,
+
+maintainAspectRatio:false,
+
+
+interaction:{
+
+mode:"index",
+
+intersect:false
+
+},
+
+
+plugins:{
+
+legend:{
+
+position:"bottom",
+
+labels:{
+
+usePointStyle:true,
+
+padding:20
+
+}
+
+},
+
+
+tooltip:{
+
+callbacks:{
+
+label:function(context){
+
+return (
+context.dataset.label +
+": " +
+context.parsed.y +
+"%"
+);
+
+}
+
+}
+
+}
+
+},
+
+
+scales:{
+
+y:{
+
+beginAtZero:false,
+
+min:60,
+
+max:100,
+
+ticks:{
+
+callback:function(value){
+
+return value + "%";
+
+}
+
+},
+
+grid:{
+
+color:
+"rgba(0,0,0,.06)"
+
+}
+
+},
+
+
+x:{
+
+grid:{
+
+display:false
+
+}
+
+}
+
+}
+
+}
+
+}
+);
+
+}
+
+
+/* =========================================================
+                    INITIAL CHART
+========================================================= */
+
+createPerformanceChart(
+"odd"
+);
+
+
+/* =========================================================
+                SEMESTER CHANGE
+========================================================= */
+
+performanceSemester.addEventListener(
+"change",
+function(){
+
+const selectedSemester =
+this.value;
+
+
+createPerformanceChart(
+selectedSemester
+);
+
+
+const selectedLabel =
+semesterData[
+selectedSemester
+].label;
+
+
+showToast(
+"Performance data changed to " +
+selectedLabel
+);
+
+
+}
+);
+
+
+/* =========================================================
+                    SUBJECT REPORT
+========================================================= */
+
+viewSubjectReportBtn.addEventListener(
+"click",
+function(){
+
+
+const reportModal =
+new bootstrap.Modal(
+document.getElementById(
+"performanceReportModal"
+)
+);
+
+
+reportModal.show();
+
+
+}
+);
+
+
+/* =========================================================
+                VIEW ALL ACTIVITIES
+========================================================= */
+
+viewAllActivitiesBtn.addEventListener(
+"click",
+function(){
+
+
+document
+.getElementById(
+"performanceActivityTable"
+)
+.scrollIntoView({
+
+behavior:"smooth",
+
+block:"center"
+
+});
+
+
+showToast(
+"Showing all recent performance activities."
+);
+
+
+}
+);
+
+
+/* =========================================================
+                    SEARCH
+========================================================= */
+
+if(searchBox){
+
+searchBox.addEventListener(
+"input",
+function(){
+
+
+const searchValue =
+this.value
+.toLowerCase()
+.trim();
+
+
+const subjectRows =
+document.querySelectorAll(
+".subject-performance-table tbody tr"
+);
+
+
+subjectRows.forEach(
+function(row){
+
+
+const text =
+row.innerText
+.toLowerCase();
+
+
+row.style.display =
+text.includes(
+searchValue
+)
+? ""
+: "none";
+
+
+}
+);
+
+
+/* Activity Search */
+
+const activityRows =
+document.querySelectorAll(
+"#performanceActivityTable tbody tr"
+);
+
+
+activityRows.forEach(
+function(row){
+
+
+const text =
+row.innerText
+.toLowerCase();
+
+
+row.style.display =
+text.includes(
+searchValue
+)
+? ""
+: "none";
+
+
+}
+);
+
+
+}
+);
+
+}
+
+
+/* =========================================================
+                DOWNLOAD PERFORMANCE REPORT
+========================================================= */
+
+function downloadPerformanceReport(){
+
+
+const semester =
+performanceSemester.options[
+performanceSemester.selectedIndex
+].text;
+
+
+const reportContent =
+
+`
+FACULTY MANAGEMENT & PRODUCTIVITY SYSTEM
+PATNA WOMEN'S COLLEGE (AUTONOMOUS)
+
+========================================
+TEACHER PERFORMANCE REPORT
+========================================
+
+Semester:
+${semester}
+
+Overall Performance:
+92%
+
+Teacher Attendance:
+96.4%
+
+Classes Conducted:
+148 / 152
+
+Student Feedback:
+4.7 / 5
+
+Student Pass Rate:
+90%
+
+Academic Productivity:
+88%
+
+
+========================================
+SUBJECT PERFORMANCE
+========================================
+
+1. Java Programming
+Classes: 42 / 43
+Attendance: 94%
+Result: 91%
+Feedback: 4.7 / 5
+Performance: Excellent
+
+
+2. Database Management System
+Classes: 38 / 40
+Attendance: 92%
+Result: 89%
+Feedback: 4.5 / 5
+Performance: Excellent
+
+
+3. Web Technology
+Classes: 36 / 37
+Attendance: 95%
+Result: 93%
+Feedback: 4.8 / 5
+Performance: Excellent
+
+
+4. Software Engineering
+Classes: 32 / 32
+Attendance: 91%
+Result: 87%
+Feedback: 4.4 / 5
+Performance: Very Good
+
+
+========================================
+AI PERFORMANCE INSIGHT
+========================================
+
+Overall teaching effectiveness is excellent.
+
+Strengths:
+- Excellent attendance
+- High student satisfaction
+- Strong class completion
+- Good student results
+
+Recommended Improvements:
+- Increase research contribution
+- Attend more FDPs and workshops
+- Develop more digital learning resources
+- Reduce assignment evaluation delay
+
+
+Generated By:
+Faculty Management & Productivity System
+
+Academic Session:
+2026 - 2027
+`;
+
+
+/* Create File */
+
+const blob =
+new Blob(
+[
+reportContent
+],
+{
+type:
+"text/plain"
+}
+);
+
+
+const url =
+URL.createObjectURL(
+blob
+);
+
+
+const link =
+document.createElement(
+"a"
+);
+
+
+link.href =
+url;
+
+
+link.download =
+"Teacher-Performance-Report-2026.txt";
+
+
+document.body.appendChild(
+link
+);
+
+
+link.click();
+
+
+document.body.removeChild(
+link
+);
+
+
+URL.revokeObjectURL(
+url
+);
+
+
+showToast(
+"Performance report downloaded successfully."
+);
+
+
+}
+
+
+/* Main Download */
+
+downloadPerformanceBtn.addEventListener(
+"click",
+downloadPerformanceReport
+);
+
+
+/* Modal Download */
+
+modalDownloadReportBtn.addEventListener(
+"click",
+downloadPerformanceReport
+);
+
+
+/* =========================================================
+                        TOAST
+========================================================= */
+
+function showToast(
+message
+){
+
+
+let toastContainer =
+document.getElementById(
+"performanceToastContainer"
+);
+
+
+if(
+!toastContainer
+){
+
+toastContainer =
+document.createElement(
+"div"
+);
+
+
+toastContainer.id =
+"performanceToastContainer";
+
+
+toastContainer.className =
+"toast-container position-fixed bottom-0 end-0 p-3";
+
+
+toastContainer.style.zIndex =
+"9999";
+
+
+document.body.appendChild(
+toastContainer
+);
+
+}
+
+
+const toastElement =
+document.createElement(
+"div"
+);
+
+
+toastElement.className =
+"toast align-items-center text-bg-primary border-0";
+
+
+toastElement.setAttribute(
+"role",
+"alert"
+);
+
+
+toastElement.innerHTML =
+
+`
+
+<div class="d-flex">
+
+    <div class="toast-body">
+
+        <i class="fa-solid fa-circle-check me-2"></i>
+
+        ${message}
+
+    </div>
+
+    <button
+        type="button"
+        class="btn-close btn-close-white me-2 m-auto"
+        data-bs-dismiss="toast">
+    </button>
+
+</div>
+
+`;
+
+
+toastContainer.appendChild(
+toastElement
+);
+
+
+const toast =
+new bootstrap.Toast(
+toastElement,
+{
+
+delay:2500
+
+}
+);
+
+
+toast.show();
+
+
+toastElement.addEventListener(
+"hidden.bs.toast",
+function(){
+
+toastElement.remove();
+
+}
+);
+
+
+}
+
+
+/* =========================================================
+                DARK MODE CHART UPDATE
+========================================================= */
+
+const themeToggle =
+document.getElementById(
+"themeToggle"
+);
+
+
+if(themeToggle){
+
+themeToggle.addEventListener(
+"click",
+function(){
+
+
+setTimeout(
+function(){
+
+
+if(
+!performanceChart
+){
+
+return;
+
+}
+
+
+const darkMode =
+document.body.classList.contains(
+"dark"
+);
+
+
+const textColor =
+darkMode
+? "#e5e7eb"
+: "#666666";
+
+
+const gridColor =
+darkMode
+? "rgba(255,255,255,.08)"
+: "rgba(0,0,0,.06)";
+
+
+performanceChart.options
+.plugins
+.legend
+.labels
+.color =
+textColor;
+
+
+performanceChart.options
+.scales
+.x
+.ticks
+.color =
+textColor;
+
+
+performanceChart.options
+.scales
+.y
+.ticks
+.color =
+textColor;
+
+
+performanceChart.options
+.scales
+.y
+.grid
+.color =
+gridColor;
+
+
+performanceChart.update();
+
+
+},
+100
+);
+
+
+}
+);
+
+}
+
+
+/* =========================================================
+                INITIAL DARK MODE CHART
+========================================================= */
+
+setTimeout(
+function(){
+
+
+if(
+document.body.classList.contains(
+"dark"
+)
+){
+
+const textColor =
+"#e5e7eb";
+
+
+performanceChart.options
+.plugins
+.legend
+.labels
+.color =
+textColor;
+
+
+performanceChart.options
+.scales
+.x
+.ticks
+.color =
+textColor;
+
+
+performanceChart.options
+.scales
+.y
+.ticks
+.color =
+textColor;
+
+
+performanceChart.options
+.scales
+.y
+.grid
+.color =
+"rgba(255,255,255,.08)";
+
+
+performanceChart.update();
+
+}
+
+
+},
+200
+);
+
+
+});
+
+</script>
+
+
+</body>
+
+</html>
