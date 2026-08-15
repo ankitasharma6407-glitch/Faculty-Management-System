@@ -4,251 +4,606 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>HOD Login | FMPS</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 
-    <link rel="stylesheet"
+    <link
+        rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-    <link rel="stylesheet" href="../../css/style.css">
+    <link
+        rel="stylesheet"
+        href="../../css/style.css">
 
 </head>
 
+
 <body>
 
-<!-- Navbar -->
+
+<!-- =========================================================
+                        NAVBAR
+========================================================= -->
 
 <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
 
     <div class="container">
 
-        <a class="navbar-brand d-flex align-items-center text-decoration-none"
+        <a
+            class="navbar-brand d-flex align-items-center text-decoration-none"
             href="../../index.html">
 
-            <img src="../../images/logo.png" width="60" class="me-3">
+            <img
+                src="../../images/logo.png"
+                width="60"
+                class="me-3"
+                alt="FMPS Logo">
 
             <div>
 
-                <h5 class="mb-0 fw-bold" style="color:#6f42c1;">
+                <h5
+                    class="mb-0 fw-bold"
+                    style="color:#6f42c1;">
+
                     FACULTY MANAGEMENT &
                     PRODUCTIVITY SYSTEM
+
                 </h5>
 
                 <small class="text-secondary">
+
                     Patna Women's College (Autonomous)
+
                 </small>
 
             </div>
 
         </a>
-              <div class="d-flex align-items-center">
 
-    <button id="themeToggle" class="theme-btn me-3">
-        <i class="fa-solid fa-moon"></i>
-    </button>
 
-    <a href="../role-selection.html"
-       class="text-decoration-none fw-bold text-dark">
+        <div class="d-flex align-items-center">
 
-        <i class="fa-solid fa-arrow-left me-2"
-           style="color:#6f42c1;"></i>
+            <button
+                id="themeToggle"
+                class="theme-btn me-3">
 
-        Back
+                <i class="fa-solid fa-moon"></i>
 
-    </a>
+            </button>
 
-</div>
+
+            <a
+                href="../role-selection.html"
+                class="text-decoration-none fw-bold text-dark">
+
+                <i
+                    class="fa-solid fa-arrow-left me-2"
+                    style="color:#6f42c1;">
+                </i>
+
+                Back
+
+            </a>
+
+        </div>
 
     </div>
 
 </nav>
 
-<!-- Login Section -->
+
+
+<!-- =========================================================
+                        LOGIN SECTION
+========================================================= -->
 
 <section class="py-5">
 
-<div class="container">
+    <div class="container">
 
-<div class="row justify-content-center">
+        <div class="row justify-content-center">
 
-<div class="col-lg-5">
+            <div class="col-lg-5">
 
-<div class="help-card">
+                <div class="help-card">
 
-<div class="text-center mb-4">
 
-<i class="fa-solid fa-user-tie fa-4x mb-3"
-style="color:#6f42c1;"></i>
+                    <!-- =========================================
+                            HEADER
+                    ========================================== -->
 
-<span class="badge bg-primary rounded-pill px-4 py-2">
+                    <div class="text-center mb-4">
 
-HOD Portal
+                        <i
+                            class="fa-solid fa-user-tie fa-4x mb-3"
+                            style="color:#6f42c1;">
+                        </i>
 
-</span>
 
-<h2 class="fw-bold mt-3">
+                        <span
+                            class="badge bg-primary rounded-pill px-4 py-2">
 
-HOD Login
+                            HOD Portal
 
-</h2>
+                        </span>
 
-<p class="text-muted">
 
-Sign in to access your Head of Department Dashboard.
+                        <h2 class="fw-bold mt-3">
 
-</p>
+                            HOD Login
 
-</div>
+                        </h2>
 
-<form action="hod-dashboard.html" method="get">
 
-<div class="mb-3">
+                        <p class="text-muted">
 
-<label class="form-label fw-semibold">
+                            Sign in to access your Head of
+                            Department Dashboard.
 
-HOD Email
+                        </p>
 
-</label>
+                    </div>
 
-<input type="email"
-class="form-control"
-placeholder="Enter HOD Email"
-required>
 
-</div>
 
-<div class="mb-3">
+                    <!-- =========================================
+                            LOGIN FORM
+                    ========================================== -->
 
-<label class="form-label fw-semibold">
+                    <form id="hodLoginForm">
 
-Password
 
-</label>
+                        <!-- HOD EMAIL -->
 
-<input type="password"
-class="form-control"
-placeholder="Enter Password"
-required>
+                        <div class="mb-3">
 
-</div>
+                            <label
+                                class="form-label fw-semibold"
+                                for="hodEmail">
 
-<div class="d-flex justify-content-between align-items-center mb-4">
+                                HOD Email
 
-<div class="form-check">
+                            </label>
 
-<input class="form-check-input"
-type="checkbox"
-id="remember">
 
-<label class="form-check-label"
-for="remember">
+                            <input
+                                type="email"
+                                id="hodEmail"
+                                class="form-control"
+                                placeholder="Enter HOD Email"
+                                autocomplete="email"
+                                required>
 
-Remember Me
+                        </div>
 
-</label>
 
-</div>
 
-<a href="#"
-class="text-decoration-none fw-semibold"
-style="color:#6f42c1;">
+                        <!-- PASSWORD -->
 
-Forgot Password?
+                        <div class="mb-3">
 
-</a>
+                            <label
+                                class="form-label fw-semibold"
+                                for="hodPassword">
 
-</div>
+                                Password
 
-<div class="d-grid">
+                            </label>
 
-    <button type="submit"
-    class="btn btn-primary btn-lg rounded-pill">
 
-        <i class="fa-solid fa-right-to-bracket me-2"></i>
+                            <input
+                                type="password"
+                                id="hodPassword"
+                                class="form-control"
+                                placeholder="Enter Password"
+                                autocomplete="current-password"
+                                required>
 
-        Login
+                        </div>
 
-    </button>
 
-</div>
 
-</form>
+                        <!-- REMEMBER / FORGOT -->
 
+                        <div
+                            class="d-flex justify-content-between align-items-center mb-4">
 
-<!-- ================= OR ================= -->
 
-<div class="d-flex align-items-center my-4">
+                            <div class="form-check">
 
-    <hr class="flex-grow-1">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="remember">
 
-    <span class="mx-3 text-muted fw-semibold">
-        OR
-    </span>
 
-    <hr class="flex-grow-1">
+                                <label
+                                    class="form-check-label"
+                                    for="remember">
 
-</div>
+                                    Remember Me
 
+                                </label>
 
-<!-- ================= FACE LOGIN ================= -->
+                            </div>
 
-<div class="d-grid">
 
-    <a href="face-login.html"
-       class="btn face-login-btn">
+                            <a
+                                href="#"
+                                class="text-decoration-none fw-semibold"
+                                style="color:#6f42c1;">
 
-        <div class="face-login-content">
+                                Forgot Password?
 
-            <div class="face-scan-icon">
+                            </a>
 
-                <i class="fa-solid fa-expand"></i>
+                        </div>
 
-                <i class="fa-solid fa-face-smile"></i>
 
-            </div>
 
+                        <!-- LOGIN BUTTON -->
 
-            <div class="text-start">
+                        <div class="d-grid">
 
-                <div class="face-login-title">
-                    Login with Face Recognition
-                </div>
+                            <button
+                                type="submit"
+                                id="hodLoginBtn"
+                                class="btn btn-primary btn-lg rounded-pill">
 
-                <div class="face-login-subtitle">
-                    Use Face Recognition to Login
+                                <i
+                                    class="fa-solid fa-right-to-bracket me-2">
+                                </i>
+
+                                Login
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+
+
+                    <!-- ================= OR ================= -->
+
+                    <div class="d-flex align-items-center my-4">
+
+                        <hr class="flex-grow-1">
+
+                        <span class="mx-3 text-muted fw-semibold">
+
+                            OR
+
+                        </span>
+
+                        <hr class="flex-grow-1">
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                                FACE LOGIN
+                    ================================================== -->
+
+                    <div class="d-grid">
+
+                        <a
+                            href="face-login.html"
+                            class="btn face-login-btn">
+
+                            <div class="face-login-content">
+
+                                <div class="face-scan-icon">
+
+                                    <i class="fa-solid fa-expand"></i>
+
+                                    <i class="fa-solid fa-face-smile"></i>
+
+                                </div>
+
+
+                                <div class="text-start">
+
+                                    <div class="face-login-title">
+
+                                        Login with Face Recognition
+
+                                    </div>
+
+                                    <div class="face-login-subtitle">
+
+                                        Use Face Recognition to Login
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </a>
+
+                    </div>
+
+
+                    <hr class="my-4">
+
+
                 </div>
 
             </div>
 
         </div>
 
-    </a>
-
-</div>
-
-
-<hr class="my-4">
-
-
-
-
-
-
-</div>
-
-</div>
-
-</div>
-
-</div>
+    </div>
 
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- =========================================================
+                        JAVASCRIPT
+========================================================= -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- COMMON API CLIENT -->
+
+<script src="../../js/api.js"></script>
+
+
+<!-- EXISTING GLOBAL SCRIPT -->
+
 <script src="../../js/script.js"></script>
+
+
+
+<!-- =========================================================
+                        HOD LOGIN
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        const hodLoginForm =
+            document.getElementById(
+                "hodLoginForm"
+            );
+
+
+        const hodEmail =
+            document.getElementById(
+                "hodEmail"
+            );
+
+
+        const hodPassword =
+            document.getElementById(
+                "hodPassword"
+            );
+
+
+        const rememberCheckbox =
+            document.getElementById(
+                "remember"
+            );
+
+
+        const hodLoginBtn =
+            document.getElementById(
+                "hodLoginBtn"
+            );
+
+
+
+        /* =====================================================
+                        RESTORE SAVED EMAIL
+        ===================================================== */
+
+        const savedHodEmail =
+            localStorage.getItem(
+                "fmps_hod_email"
+            );
+
+
+        if (savedHodEmail) {
+
+            hodEmail.value =
+                savedHodEmail;
+
+            rememberCheckbox.checked =
+                true;
+
+        }
+
+
+
+        /* =====================================================
+                            LOGIN
+        ===================================================== */
+
+        hodLoginForm.addEventListener(
+            "submit",
+            async function (event) {
+
+
+                event.preventDefault();
+
+
+
+                const email =
+                    hodEmail.value.trim();
+
+
+                const password =
+                    hodPassword.value;
+
+
+
+                if (!email || !password) {
+
+                    alert(
+                        "Please enter HOD email and password."
+                    );
+
+                    return;
+
+                }
+
+
+
+                const originalButtonContent =
+                    hodLoginBtn.innerHTML;
+
+
+
+                try {
+
+
+                    /* -----------------------------------------
+                            LOADING BUTTON
+                    ------------------------------------------ */
+
+                    hodLoginBtn.disabled =
+                        true;
+
+
+                    hodLoginBtn.innerHTML = `
+                        <i class="fa-solid fa-spinner fa-spin me-2"></i>
+                        Logging In...
+                    `;
+
+
+
+                    /* -----------------------------------------
+                            BACKEND LOGIN
+                    ------------------------------------------ */
+
+                    const data =
+                        await API.auth.login({
+                            email: email,
+                            password: password
+                        });
+
+
+
+                    /* -----------------------------------------
+                            ROLE CHECK
+                    ------------------------------------------ */
+
+                    if (
+                        !data.user ||
+                        String(
+                            data.user.role
+                        ).toLowerCase() !==
+                        "hod"
+                    ) {
+
+
+                        API.auth.logout();
+
+
+                        alert(
+                            "Access denied. This account is not a HOD account."
+                        );
+
+
+                        return;
+
+                    }
+
+
+
+                    /* -----------------------------------------
+                            REMEMBER EMAIL
+                    ------------------------------------------ */
+
+                    if (
+                        rememberCheckbox.checked
+                    ) {
+
+                        localStorage.setItem(
+                            "fmps_hod_email",
+                            email
+                        );
+
+                    }
+
+                    else {
+
+                        localStorage.removeItem(
+                            "fmps_hod_email"
+                        );
+
+                    }
+
+
+
+                    /* -----------------------------------------
+                            LOGIN SUCCESS
+                    ------------------------------------------ */
+
+                    window.location.href =
+                        "hod-dashboard.html";
+
+
+                }
+
+
+                catch (error) {
+
+
+                    console.error(
+                        "HOD Login Error:",
+                        error
+                    );
+
+
+                    alert(
+                        error.message ||
+                        "Invalid email or password."
+                    );
+
+
+                }
+
+
+                finally {
+
+
+                    hodLoginBtn.disabled =
+                        false;
+
+
+                    hodLoginBtn.innerHTML =
+                        originalButtonContent;
+
+
+                }
+
+            }
+        );
+
+    }
+);
+
+</script>
+
+
 </body>
 
 </html>

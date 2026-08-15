@@ -3,618 +3,2178 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>Add Teacher | Faculty Management System</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>
+        Add Teacher | Faculty Management System
+    </title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 
-<link rel="stylesheet" href="../../css/admin-dashboard.css">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Existing CSS -->
+    <link
+        rel="stylesheet"
+        href="../../css/admin-dashboard.css">
+
+
+    <style>
+
+        /* =====================================================
+           ADD TEACHER PAGE
+        ===================================================== */
+
+        .teacher-form-card {
+            margin-top: 25px;
+        }
+
+
+        .teacher-section-title {
+            margin: 25px 0 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+
+        .teacher-section-title:first-child {
+            margin-top: 0;
+        }
+
+
+        .teacher-section-title i {
+            margin-right: 8px;
+        }
+
+
+        .form-label {
+            font-weight: 500;
+        }
+
+
+        .required {
+            color: #dc3545;
+        }
+
+
+        .save-button {
+            min-width: 160px;
+        }
+
+
+        /* =====================================================
+           MESSAGE
+        ===================================================== */
+
+        #formMessage {
+            display: none;
+            margin-bottom: 20px;
+        }
+
+
+        /* =====================================================
+           PHOTO PREVIEW
+        ===================================================== */
+
+        .photo-preview-box {
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
+            border: 2px dashed #cbd5e1;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+
+        .photo-preview-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        /* =====================================================
+           DARK MODE FORM FIX
+        ===================================================== */
+
+        body.dark .teacher-form-card {
+            background: #1e293b !important;
+            color: #ffffff !important;
+            border-color: #334155 !important;
+        }
+
+
+        body.dark .teacher-section-title {
+            color: #f8fafc;
+            border-color: #374151;
+        }
+
+
+        body.dark .form-label {
+            color: #f8fafc !important;
+        }
+
+
+        body.dark .form-control,
+        body.dark .form-control:focus,
+        body.dark .form-control:active,
+        body.dark .form-select,
+        body.dark .form-select:focus,
+        body.dark textarea,
+        body.dark textarea:focus {
+            background-color: #111827 !important;
+            color: #ffffff !important;
+            border-color: #374151 !important;
+        }
+
+
+        body.dark .form-control::placeholder,
+        body.dark textarea::placeholder {
+            color: #94a3b8 !important;
+            opacity: 1 !important;
+        }
+
+
+        body.dark input:-webkit-autofill,
+        body.dark input:-webkit-autofill:hover,
+        body.dark input:-webkit-autofill:focus,
+        body.dark input:-webkit-autofill:active {
+
+            -webkit-text-fill-color: #ffffff !important;
+
+            caret-color: #ffffff !important;
+
+            -webkit-box-shadow:
+                0 0 0 1000px #111827 inset !important;
+
+            box-shadow:
+                0 0 0 1000px #111827 inset !important;
+
+            border-color: #374151 !important;
+
+            transition:
+                background-color 9999s ease-out 0s;
+        }
+
+
+        body.dark input[type="date"] {
+            color-scheme: dark;
+        }
+
+
+        body.dark .form-select option {
+            background: #111827;
+            color: #ffffff;
+        }
+
+
+        body.dark .photo-preview-box {
+            border-color: #475569;
+        }
+
+
+        body.dark .alert-success {
+            background: #14532d;
+            border-color: #166534;
+            color: #dcfce7;
+        }
+
+
+        body.dark .alert-danger {
+            background: #7f1d1d;
+            border-color: #991b1b;
+            color: #fee2e2;
+        }
+
+    </style>
 
 </head>
 
+
 <body>
+
 
 <div class="dashboard">
 
-<!-- ================= Sidebar ================= -->
 
-<aside class="sidebar">
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
-<div class="logo-box">
+    <aside class="sidebar">
 
-<img src="../../images/logo.png" alt="College Logo">
 
-<h3>PATNA</h3>
+        <div class="logo-box">
 
-<h2>WOMEN'S COLLEGE</h2>
+            <img
+                src="../../images/logo.png"
+                alt="College Logo">
 
-<span>(AUTONOMOUS)</span>
+            <h3>
+                PATNA
+            </h3>
+
+            <h2>
+                WOMEN'S COLLEGE
+            </h2>
+
+            <span>
+                (AUTONOMOUS)
+            </span>
+
+        </div>
+
+
+
+        <ul class="menu">
+
+
+            <li>
+
+                <a href="admin-dashboard.html">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <span>
+                        Dashboard
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li class="active">
+
+                <a href="teacher-list.html">
+
+                    <i class="fa-solid fa-user-tie"></i>
+
+                    <span>
+                        Teachers
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="hod-list.html">
+
+                    <i class="fa-solid fa-building-user"></i>
+
+                    <span>
+                        HOD
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="student-list.html">
+
+                    <i class="fa-solid fa-user-graduate"></i>
+
+                    <span>
+                        Students
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="recruiter-list.html">
+
+                    <i class="fa-solid fa-building"></i>
+
+                    <span>
+                        Recruiters
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="analytics.html">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <span>
+                        Analytics
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="reports.html">
+
+                    <i class="fa-solid fa-file-lines"></i>
+
+                    <span>
+                        Reports
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="attendance-report.html">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                    <span>
+                        Attendance Report
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="notice-board.html">
+
+                    <i class="fa-solid fa-bullhorn"></i>
+
+                    <span>
+                        Notice Board
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="academic-calendar.html">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    <span>
+                        Academic Calendar
+                    </span>
+
+                </a>
+
+            </li>
+
+
+        </ul>
+
+
+
+        <div class="sidebar-bottom">
+
+
+            <a href="settings.html">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+
+
+            <a
+                href="admin-login.html"
+                class="logout-btn">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+
+        <div class="topbar">
+
+
+            <div>
+
+                <h2>
+                    Add Teacher
+                </h2>
+
+                <p>
+                    Dashboard / Teachers / Add Teacher
+                </p>
+
+            </div>
+
+
+
+            <div class="topbar-actions">
+
+
+                <button
+                    type="button"
+                    id="themeToggle"
+                    class="theme-toggle-btn"
+                    title="Dark Mode">
+
+                    <i class="fa-solid fa-moon"></i>
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             FORM CARD
+        ================================================== -->
+
+        <div class="chart-card teacher-form-card">
+
+
+            <h3 class="mb-4">
+
+                <i class="fa-solid fa-user-plus"></i>
+
+                Teacher Registration Form
+
+            </h3>
+
+
+
+            <!-- Response Message -->
+
+            <div
+                id="formMessage"
+                class="alert"
+                role="alert">
+            </div>
+
+
+
+            <form
+                id="teacherForm"
+                enctype="multipart/form-data">
+
+
+                <div class="row">
+
+
+                    <!-- =========================================
+                         PERSONAL INFORMATION
+                    ========================================== -->
+
+                    <div class="col-12">
+
+                        <div class="teacher-section-title">
+
+                            <i class="fa-solid fa-user"></i>
+
+                            Personal Information
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Teacher ID -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Teacher ID
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="teacherId"
+                            placeholder="e.g. TCH001"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- Full Name -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Full Name
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="teacherName"
+                            placeholder="Enter Full Name"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- Email -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Email Address
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="teacherEmail"
+                            placeholder="Enter Email Address"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- Phone -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Mobile Number
+
+                        </label>
+
+
+                        <input
+                            type="tel"
+                            class="form-control"
+                            id="teacherPhone"
+                            placeholder="Enter Mobile Number">
+
+                    </div>
+
+
+
+                    <!-- Gender -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Gender
+
+                        </label>
+
+
+                        <select
+                            class="form-select"
+                            id="teacherGender">
+
+                            <option value="">
+                                Select Gender
+                            </option>
+
+                            <option value="Male">
+                                Male
+                            </option>
+
+                            <option value="Female">
+                                Female
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- DOB -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Date of Birth
+
+                        </label>
+
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            id="teacherDob">
+
+                    </div>
+
+
+
+                    <!-- Blood Group -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Blood Group
+
+                        </label>
+
+
+                        <select
+                            class="form-select"
+                            id="bloodGroup">
+
+                            <option value="">
+                                Select Blood Group
+                            </option>
+
+                            <option value="A+">
+                                A+
+                            </option>
+
+                            <option value="A-">
+                                A-
+                            </option>
+
+                            <option value="B+">
+                                B+
+                            </option>
+
+                            <option value="B-">
+                                B-
+                            </option>
+
+                            <option value="AB+">
+                                AB+
+                            </option>
+
+                            <option value="AB-">
+                                AB-
+                            </option>
+
+                            <option value="O+">
+                                O+
+                            </option>
+
+                            <option value="O-">
+                                O-
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Photo -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Profile Photo
+
+                        </label>
+
+
+                        <input
+                            type="file"
+                            class="form-control"
+                            id="teacherPhoto"
+                            accept="image/png,image/jpeg,image/jpg,image/webp">
+
+
+                        <div
+                            class="photo-preview-box"
+                            id="photoPreviewBox">
+
+                            <img
+                                id="photoPreview"
+                                alt="Teacher Preview">
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =========================================
+                         PROFESSIONAL INFORMATION
+                    ========================================== -->
+
+                    <div class="col-12">
+
+                        <div class="teacher-section-title">
+
+                            <i class="fa-solid fa-briefcase"></i>
+
+                            Professional Information
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Department -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Department
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <select
+                            class="form-select"
+                            id="teacherDepartment"
+                            required>
+
+                            <option value="">
+                                Loading Departments...
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Designation -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Designation
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <select
+                            class="form-select"
+                            id="teacherDesignation"
+                            required>
+
+                            <option value="">
+                                Select Designation
+                            </option>
+
+                            <option value="Assistant Professor">
+                                Assistant Professor
+                            </option>
+
+                            <option value="Associate Professor">
+                                Associate Professor
+                            </option>
+
+                            <option value="Professor">
+                                Professor
+                            </option>
+
+                            <option value="Guest Faculty">
+                                Guest Faculty
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Qualification -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Qualification
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="teacherQualification"
+                            placeholder="e.g. M.Tech, Ph.D">
+
+                    </div>
+
+
+
+                    <!-- Experience -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Experience (Years)
+
+                        </label>
+
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="teacherExperience"
+                            min="0"
+                            step="1"
+                            placeholder="Enter Experience">
+
+                    </div>
+
+
+
+                    <!-- Joining Date -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Joining Date
+
+                        </label>
+
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            id="joiningDate">
+
+                    </div>
+
+
+
+                    <!-- Salary -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Salary
+
+                        </label>
+
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="teacherSalary"
+                            min="0"
+                            step="0.01"
+                            placeholder="Enter Salary">
+
+                    </div>
+
+
+
+                    <!-- Address -->
+
+                    <div class="col-12 mb-3">
+
+                        <label class="form-label">
+
+                            Residential Address
+
+                        </label>
+
+
+                        <textarea
+                            class="form-control"
+                            id="teacherAddress"
+                            rows="4"
+                            placeholder="Enter Complete Address">
+                        </textarea>
+
+                    </div>
+
+
+
+                    <!-- =========================================
+                         ACCOUNT DETAILS
+                    ========================================== -->
+
+                    <div class="col-12">
+
+                        <div class="teacher-section-title">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            Account Details
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Username -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Username
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="username"
+                            placeholder="Enter Username"
+                            autocomplete="off"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- Password -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Password
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="password"
+                            placeholder="Enter Password"
+                            autocomplete="new-password"
+                            minlength="6"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- Confirm Password -->
+
+                    <div class="col-md-6 mb-4">
+
+                        <label class="form-label">
+
+                            Confirm Password
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="confirmPassword"
+                            placeholder="Confirm Password"
+                            autocomplete="new-password"
+                            minlength="6"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- Status -->
+
+                    <div class="col-md-6 mb-4">
+
+                        <label class="form-label">
+
+                            Status
+
+                        </label>
+
+
+                        <select
+                            class="form-select"
+                            id="teacherStatus">
+
+                            <option value="active">
+                                Active
+                            </option>
+
+                            <option value="inactive">
+                                Inactive
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- =========================================
+                         BUTTONS
+                    ========================================== -->
+
+                    <div class="col-12">
+
+
+                        <div
+                            class="d-flex justify-content-end gap-3 flex-wrap">
+
+
+                            <a
+                                href="teacher-list.html"
+                                class="btn btn-secondary">
+
+                                <i class="fa-solid fa-arrow-left"></i>
+
+                                Back
+
+                            </a>
+
+
+
+                            <button
+                                type="reset"
+                                class="btn btn-warning"
+                                id="resetButton">
+
+                                <i class="fa-solid fa-rotate-left"></i>
+
+                                Reset
+
+                            </button>
+
+
+
+                            <button
+                                type="submit"
+                                class="btn btn-success save-button"
+                                id="saveTeacherButton">
+
+                                <i class="fa-solid fa-floppy-disk"></i>
+
+                                Save Teacher
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </main>
+
 
 </div>
 
-<ul class="menu">
 
-<li>
 
-<a href="admin-dashboard.html">
+<!-- =========================================================
+     BOOTSTRAP
+========================================================= -->
 
-<i class="fa-solid fa-house"></i>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
 
-<span>Dashboard</span>
 
-</a>
 
-</li>
+<!-- =========================================================
+     ADD TEACHER JAVASCRIPT
+========================================================= -->
 
-<li class="active">
+<script>
 
-<a href="teacher-list.html">
 
-<i class="fa-solid fa-user-tie"></i>
+// ============================================================
+// API URLS
+// ============================================================
 
-<span>Teachers</span>
+const TEACHER_API_URL =
+    "http://127.0.0.1:5000/api/teachers";
 
-</a>
 
-</li>
+const DEPARTMENT_API_URL =
+    "http://127.0.0.1:5000/api/academic-events/departments";
 
-<li>
 
-<a href="hod-list.html">
 
-<i class="fa-solid fa-building-user"></i>
+// ============================================================
+// DOM READY
+// ============================================================
 
-<span>HOD List</span>
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-</a>
 
-</li>
+        setupTheme();
 
-<li>
+        loadDepartments();
 
-<a href="student-list.html">
+        setupPhotoPreview();
 
-<i class="fa-solid fa-user-graduate"></i>
+        setupTeacherForm();
 
-<span>Students</span>
+        setupResetButton();
 
-</a>
 
-</li>
+    }
+);
 
-<li>
 
-<a href="reports.html">
 
-<i class="fa-solid fa-chart-column"></i>
+// ============================================================
+// LOAD REAL DEPARTMENTS
+// ============================================================
 
-<span>Reports</span>
+async function loadDepartments() {
 
-</a>
 
-</li>
+    const select =
+        document.getElementById(
+            "teacherDepartment"
+        );
 
-<li>
 
-<a href="notice-board.html">
+    select.innerHTML = `
 
-<i class="fa-solid fa-bullhorn"></i>
+        <option value="">
+            Loading Departments...
+        </option>
 
-<span>Notice Board</span>
+    `;
 
-</a>
 
-</li>
+    select.disabled =
+        true;
 
-<li>
 
-<a href="analytics.html">
+    try {
 
-<i class="fa-solid fa-chart-line"></i>
 
-<span>Analytics</span>
+        const response =
+            await fetch(
+                DEPARTMENT_API_URL
+            );
 
-</a>
 
-</li>
+        const result =
+            await response.json();
 
-<li>
 
-<a href="academic-calendar.html">
+        if (
+            !response.ok ||
+            result.success === false
+        ) {
 
-<i class="fa-solid fa-calendar-days"></i>
+            throw new Error(
+                result.message ||
+                "Unable to load departments."
+            );
 
-<span>Academic Calendar</span>
+        }
 
-</a>
 
-</li>
+        const departments =
+            Array.isArray(result)
+                ? result
+                : (
+                    Array.isArray(result.data)
+                        ? result.data
+                        : []
+                );
 
-<li>
 
-<a href="settings.html">
+        select.innerHTML = `
 
-<i class="fa-solid fa-gear"></i>
+            <option value="">
+                Select Department
+            </option>
 
-<span>Settings</span>
+        `;
 
-</a>
 
-</li>
+        departments.forEach(
+            function (department) {
 
-</ul>
 
-<div class="sidebar-bottom">
+                const option =
+                    document.createElement(
+                        "option"
+                    );
 
-<a href="admin-login.html" class="logout-btn">
 
-<i class="fa-solid fa-right-from-bracket"></i>
+                option.value =
+                    String(
+                        department.id
+                    );
 
-<span>Logout</span>
 
-</a>
+                option.textContent =
+                    department.name;
 
-</div>
 
-</aside>
+                select.appendChild(
+                    option
+                );
 
-<!-- ================= Main Content ================= -->
 
-<main class="main-content">
+            }
+        );
 
-<div class="topbar">
 
-<div>
+        select.disabled =
+            false;
 
-<h2>Add Teacher</h2>
 
-<p>Dashboard / Teachers / Add Teacher</p>
+    }
 
-</div>
-<div class="topbar-actions">
+    catch (error) {
 
-    <button id="themeToggle" class="theme-toggle-btn">
-        <i class="fa-solid fa-moon"></i>
-    </button>
 
-</div>
-</div>
+        console.error(
+            "Department Load Error:",
+            error
+        );
 
-<div class="chart-card mt-4">
 
-<h3 class="mb-4">
+        select.innerHTML = `
 
-<i class="fa-solid fa-user-plus"></i>
+            <option value="">
+                Unable to load departments
+            </option>
 
-Teacher Registration Form
+        `;
 
-</h3>
 
-<form id="teacherForm">
+        select.disabled =
+            true;
 
-<div class="row">
-<!-- ================= Personal Information ================= -->
 
-<div class="col-md-6 mb-3">
+        showMessage(
+            "Unable to load departments. Please make sure Flask backend is running.",
+            "danger"
+        );
 
-<label class="form-label">
 
-Teacher ID
+    }
 
-</label>
 
-<input
-type="text"
-class="form-control"
-id="teacherId"
-placeholder="Enter Teacher ID"
-required>
+}
 
-</div>
 
-<div class="col-md-6 mb-3">
 
-<label class="form-label">
+// ============================================================
+// PHOTO PREVIEW
+// ============================================================
 
-Full Name
+function setupPhotoPreview() {
 
-</label>
 
-<input
-type="text"
-class="form-control"
-id="teacherName"
-placeholder="Enter Full Name"
-required>
+    const input =
+        document.getElementById(
+            "teacherPhoto"
+        );
 
-</div>
 
-<div class="col-md-6 mb-3">
+    const box =
+        document.getElementById(
+            "photoPreviewBox"
+        );
 
-<label class="form-label">
 
-Email Address
+    const preview =
+        document.getElementById(
+            "photoPreview"
+        );
 
-</label>
 
-<input
-type="email"
-class="form-control"
-id="teacherEmail"
-placeholder="Enter Email"
-required>
+    input.addEventListener(
+        "change",
+        function () {
 
-</div>
 
-<div class="col-md-6 mb-3">
+            const file =
+                input.files[0];
 
-<label class="form-label">
 
-Mobile Number
+            if (!file) {
 
-</label>
 
-<input
-type="tel"
-class="form-control"
-id="teacherPhone"
-placeholder="Enter Mobile Number"
-required>
+                box.style.display =
+                    "none";
 
-</div>
 
-<div class="col-md-6 mb-3">
+                preview.removeAttribute(
+                    "src"
+                );
 
-<label class="form-label">
 
-Gender
+                return;
 
-</label>
+            }
 
-<select
-class="form-select"
-id="teacherGender"
-required>
 
-<option value="">Select Gender</option>
+            if (
+                !file.type.startsWith(
+                    "image/"
+                )
+            ) {
 
-<option>Male</option>
 
-<option>Female</option>
+                alert(
+                    "Please select a valid image file."
+                );
 
-<option>Other</option>
 
-</select>
+                input.value =
+                    "";
 
-</div>
 
-<div class="col-md-6 mb-3">
+                box.style.display =
+                    "none";
 
-<label class="form-label">
 
-Date of Birth
+                return;
 
-</label>
+            }
 
-<input
-type="date"
-class="form-control"
-id="teacherDob"
-required>
 
-</div>
+            const reader =
+                new FileReader();
 
-<div class="col-md-6 mb-3">
 
-<label class="form-label">
+            reader.onload =
+                function (event) {
 
-Blood Group
 
-</label>
+                    preview.src =
+                        event.target.result;
 
-<select
-class="form-select"
-id="bloodGroup">
 
-<option value="">Select Blood Group</option>
+                    box.style.display =
+                        "flex";
 
-<option>A+</option>
-<option>A-</option>
-<option>B+</option>
-<option>B-</option>
-<option>AB+</option>
-<option>AB-</option>
-<option>O+</option>
-<option>O-</option>
 
-</select>
+                };
 
-</div>
 
-<div class="col-md-6 mb-3">
+            reader.readAsDataURL(
+                file
+            );
 
-<label class="form-label">
 
-Profile Photo
+        }
+    );
 
-</label>
 
-<input
-type="file"
-class="form-control"
-id="teacherPhoto"
-accept="image/*">
+}
 
-</div>
-<!-- ================= Professional Information ================= -->
 
-<div class="col-md-6 mb-3">
 
-<label class="form-label">
+// ============================================================
+// TEACHER FORM
+// ============================================================
 
-Department
+function setupTeacherForm() {
 
-</label>
 
-<select
-class="form-select"
-id="teacherDepartment"
-required>
+    const form =
+        document.getElementById(
+            "teacherForm"
+        );
 
-<option value="">Select Department</option>
 
-<option>Computer Science</option>
-<option>Mathematics</option>
-<option>Physics</option>
-<option>Chemistry</option>
-<option>Commerce</option>
-<option>English</option>
-<option>Hindi</option>
+    form.addEventListener(
+        "submit",
+        async function (event) {
 
-</select>
 
-</div>
+            // =================================================
+            // STOP NORMAL HTML FORM SUBMIT
+            // =================================================
 
-<div class="col-md-6 mb-3">
+            event.preventDefault();
 
-<label class="form-label">
 
-Designation
+            hideMessage();
 
-</label>
 
-<select
-class="form-select"
-id="teacherDesignation"
-required>
+            // =================================================
+            // PASSWORD CHECK
+            // =================================================
 
-<option value="">Select Designation</option>
+            const password =
+                document.getElementById(
+                    "password"
+                ).value;
 
-<option>Assistant Professor</option>
-<option>Associate Professor</option>
-<option>Professor</option>
-<option>Guest Faculty</option>
 
-</select>
+            const confirmPassword =
+                document.getElementById(
+                    "confirmPassword"
+                ).value;
 
-</div>
 
-<div class="col-md-6 mb-3">
+            if (
+                password !==
+                confirmPassword
+            ) {
 
-<label class="form-label">
 
-Qualification
+                showMessage(
+                    "Password and Confirm Password do not match.",
+                    "danger"
+                );
 
-</label>
 
-<input
-type="text"
-class="form-control"
-id="teacherQualification"
-placeholder="e.g. M.Tech, Ph.D"
-required>
+                document.getElementById(
+                    "confirmPassword"
+                ).focus();
 
-</div>
 
-<div class="col-md-6 mb-3">
+                return;
 
-<label class="form-label">
+            }
 
-Experience (Years)
 
-</label>
+            // =================================================
+            // DEPARTMENT CHECK
+            // =================================================
 
-<input
-type="number"
-class="form-control"
-id="teacherExperience"
-placeholder="Enter Experience">
+            const departmentId =
+                document.getElementById(
+                    "teacherDepartment"
+                ).value;
 
-</div>
 
-<div class="col-md-6 mb-3">
+            if (!departmentId) {
 
-<label class="form-label">
 
-Joining Date
+                showMessage(
+                    "Please select a department.",
+                    "danger"
+                );
 
-</label>
 
-<input
-type="date"
-class="form-control"
-id="joiningDate"
-required>
+                return;
 
-</div>
+            }
 
-<div class="col-md-6 mb-3">
 
-<label class="form-label">
+            // =================================================
+            // CREATE FORMDATA
+            // =================================================
 
-Salary
+            const formData =
+                new FormData();
 
-</label>
 
-<input
-type="number"
-class="form-control"
-id="teacherSalary"
-placeholder="Enter Salary">
+            formData.append(
+                "teacher_code",
+                document.getElementById(
+                    "teacherId"
+                ).value.trim()
+            );
 
-</div>
 
-<div class="col-12 mb-3">
+            formData.append(
+                "full_name",
+                document.getElementById(
+                    "teacherName"
+                ).value.trim()
+            );
 
-<label class="form-label">
 
-Residential Address
+            formData.append(
+                "email",
+                document.getElementById(
+                    "teacherEmail"
+                ).value.trim()
+            );
 
-</label>
 
-<textarea
-class="form-control"
-id="teacherAddress"
-rows="4"
-placeholder="Enter Complete Address"
-required></textarea>
+            formData.append(
+                "phone",
+                document.getElementById(
+                    "teacherPhone"
+                ).value.trim()
+            );
 
-</div>
-<!-- ================= Account Details ================= -->
 
-<div class="col-md-6 mb-3">
+            formData.append(
+                "gender",
+                document.getElementById(
+                    "teacherGender"
+                ).value
+            );
 
-<label class="form-label">
 
-Username
+            formData.append(
+                "dob",
+                document.getElementById(
+                    "teacherDob"
+                ).value
+            );
 
-</label>
 
-<input
-type="text"
-class="form-control"
-id="username"
-placeholder="Enter Username"
-required>
+            formData.append(
+                "blood_group",
+                document.getElementById(
+                    "bloodGroup"
+                ).value
+            );
 
-</div>
 
-<div class="col-md-6 mb-3">
+            formData.append(
+                "department_id",
+                departmentId
+            );
 
-<label class="form-label">
 
-Password
+            formData.append(
+                "designation",
+                document.getElementById(
+                    "teacherDesignation"
+                ).value
+            );
 
-</label>
 
-<input
-type="password"
-class="form-control"
-id="password"
-placeholder="Enter Password"
-required>
+            formData.append(
+                "qualification",
+                document.getElementById(
+                    "teacherQualification"
+                ).value.trim()
+            );
 
-</div>
 
-<div class="col-md-6 mb-4">
+            formData.append(
+                "experience_years",
+                document.getElementById(
+                    "teacherExperience"
+                ).value || "0"
+            );
 
-<label class="form-label">
 
-Confirm Password
+            formData.append(
+                "joining_date",
+                document.getElementById(
+                    "joiningDate"
+                ).value
+            );
 
-</label>
 
-<input
-type="password"
-class="form-control"
-id="confirmPassword"
-placeholder="Confirm Password"
-required>
+            formData.append(
+                "salary",
+                document.getElementById(
+                    "teacherSalary"
+                ).value
+            );
 
-</div>
 
-<div class="col-md-6 mb-4">
+            formData.append(
+                "address",
+                document.getElementById(
+                    "teacherAddress"
+                ).value.trim()
+            );
 
-<label class="form-label">
 
-Status
+            formData.append(
+                "username",
+                document.getElementById(
+                    "username"
+                ).value.trim()
+            );
 
-</label>
 
-<select
-class="form-select"
-id="teacherStatus">
+            formData.append(
+                "password",
+                password
+            );
 
-<option value="Active">Active</option>
 
-<option value="Inactive">Inactive</option>
+            formData.append(
+                "status",
+                document.getElementById(
+                    "teacherStatus"
+                ).value
+            );
 
-</select>
 
-</div>
+            // =================================================
+            // PHOTO
+            // =================================================
 
-<!-- ================= Buttons ================= -->
+            const photoInput =
+                document.getElementById(
+                    "teacherPhoto"
+                );
 
-<div class="col-12">
 
-<div class="d-flex justify-content-end gap-3 flex-wrap">
+            if (
+                photoInput.files.length >
+                0
+            ) {
 
-<a
-href="teacher-list.html"
-class="btn btn-secondary">
 
-<i class="fa-solid fa-arrow-left"></i>
+                formData.append(
+                    "photo",
+                    photoInput.files[0]
+                );
 
-Back
 
-</a>
+            }
 
-<button
-type="reset"
-class="btn btn-warning">
 
-<i class="fa-solid fa-rotate-left"></i>
+            // =================================================
+            // BUTTON STATE
+            // =================================================
 
-Reset
+            const saveButton =
+                document.getElementById(
+                    "saveTeacherButton"
+                );
 
-</button>
 
-<button
-type="submit"
-class="btn btn-success">
+            saveButton.disabled =
+                true;
 
-<i class="fa-solid fa-floppy-disk"></i>
 
-Save Teacher
+            saveButton.innerHTML = `
 
-</button>
+                <i
+                    class="fa-solid fa-spinner fa-spin">
+                </i>
 
-</div>
+                Saving...
 
-</div>
+            `;
 
-</div>
 
-</form>
+            // =================================================
+            // SEND REAL POST REQUEST
+            // =================================================
 
-</div>
+            try {
 
-</main>
 
-</div>
+                console.log(
+                    "Sending POST /api/teachers..."
+                );
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../js/dashboard.js"></script>
-<!-- Future JS -->
-<!--
-<script src="../../js/add-teacher.js"></script>
--->
+
+                const response =
+                    await fetch(
+                        TEACHER_API_URL,
+                        {
+
+                            method:
+                                "POST",
+
+                            body:
+                                formData
+
+                        }
+                    );
+
+
+                let result;
+
+
+                try {
+
+
+                    result =
+                        await response.json();
+
+
+                }
+
+                catch {
+
+
+                    throw new Error(
+                        "Backend returned an invalid response."
+                    );
+
+
+                }
+
+
+                console.log(
+                    "Teacher API Response:",
+                    result
+                );
+
+
+                if (
+                    !response.ok ||
+                    result.success === false
+                ) {
+
+
+                    throw new Error(
+                        result.message ||
+                        result.error ||
+                        "Failed to add teacher."
+                    );
+
+
+                }
+
+
+                // =============================================
+                // SUCCESS
+                // =============================================
+
+                showMessage(
+                    result.message ||
+                    "Teacher added successfully.",
+                    "success"
+                );
+
+
+                form.reset();
+
+
+                resetPhotoPreview();
+
+
+                // Scroll success message into view
+
+                window.scrollTo({
+
+                    top:
+                        0,
+
+                    behavior:
+                        "smooth"
+
+                });
+
+
+                // Optional redirect after 1.5 seconds
+
+                setTimeout(
+                    function () {
+
+
+                        window.location.href =
+                            "teacher-list.html";
+
+
+                    },
+                    1500
+                );
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(
+                    "Add Teacher Error:",
+                    error
+                );
+
+
+                showMessage(
+                    error.message ||
+                    "Failed to add teacher.",
+                    "danger"
+                );
+
+
+            }
+
+            finally {
+
+
+                saveButton.disabled =
+                    false;
+
+
+                saveButton.innerHTML = `
+
+                    <i
+                        class="fa-solid fa-floppy-disk">
+                    </i>
+
+                    Save Teacher
+
+                `;
+
+
+            }
+
+
+        }
+    );
+
+
+}
+
+
+
+// ============================================================
+// RESET
+// ============================================================
+
+function setupResetButton() {
+
+
+    const resetButton =
+        document.getElementById(
+            "resetButton"
+        );
+
+
+    resetButton.addEventListener(
+        "click",
+        function () {
+
+
+            setTimeout(
+                function () {
+
+
+                    hideMessage();
+
+                    resetPhotoPreview();
+
+
+                },
+                0
+            );
+
+
+        }
+    );
+
+
+}
+
+
+
+function resetPhotoPreview() {
+
+
+    const box =
+        document.getElementById(
+            "photoPreviewBox"
+        );
+
+
+    const preview =
+        document.getElementById(
+            "photoPreview"
+        );
+
+
+    box.style.display =
+        "none";
+
+
+    preview.removeAttribute(
+        "src"
+    );
+
+
+}
+
+
+
+// ============================================================
+// MESSAGE
+// ============================================================
+
+function showMessage(
+    message,
+    type
+) {
+
+
+    const box =
+        document.getElementById(
+            "formMessage"
+        );
+
+
+    box.className =
+        "alert alert-" +
+        type;
+
+
+    box.textContent =
+        message;
+
+
+    box.style.display =
+        "block";
+
+
+}
+
+
+
+function hideMessage() {
+
+
+    const box =
+        document.getElementById(
+            "formMessage"
+        );
+
+
+    box.style.display =
+        "none";
+
+
+    box.textContent =
+        "";
+
+
+}
+
+
+
+// ============================================================
+// THEME
+// ============================================================
+
+function setupTheme() {
+
+
+    const button =
+        document.getElementById(
+            "themeToggle"
+        );
+
+
+    const savedTheme =
+        localStorage.getItem(
+            "fmpsTheme"
+        );
+
+
+    if (
+        savedTheme ===
+        "dark"
+    ) {
+
+
+        document.body.classList.add(
+            "dark"
+        );
+
+
+    }
+
+
+    updateThemeButton();
+
+
+    button.addEventListener(
+        "click",
+        function () {
+
+
+            document.body.classList.toggle(
+                "dark"
+            );
+
+
+            const dark =
+                document.body.classList.contains(
+                    "dark"
+                );
+
+
+            localStorage.setItem(
+                "fmpsTheme",
+                dark
+                    ? "dark"
+                    : "light"
+            );
+
+
+            updateThemeButton();
+
+
+        }
+    );
+
+
+}
+
+
+
+function updateThemeButton() {
+
+
+    const icon =
+        document.querySelector(
+            "#themeToggle i"
+        );
+
+
+    if (!icon) {
+        return;
+    }
+
+
+    const dark =
+        document.body.classList.contains(
+            "dark"
+        );
+
+
+    icon.className =
+        dark
+            ? "fa-solid fa-sun"
+            : "fa-solid fa-moon";
+
+
+}
+
+
+</script>
+
 
 </body>
 

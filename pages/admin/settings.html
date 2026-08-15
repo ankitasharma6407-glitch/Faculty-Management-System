@@ -3,731 +3,1789 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>Settings | Faculty Management System</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>
+        Settings | Faculty Management System
+    </title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
 
-<link rel="stylesheet" href="../../css/admin-dashboard.css">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+
+    <!-- Google Font -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Dashboard CSS -->
+
+    <link
+        rel="stylesheet"
+        href="../../css/admin-dashboard.css">
+
+
+    <style>
+
+        /* =====================================================
+           SETTINGS PAGE ONLY
+        ===================================================== */
+
+        .settings-page-title h2 {
+            margin-bottom: 4px;
+        }
+
+
+        .settings-page-title p {
+            margin-bottom: 0;
+            color: #777;
+        }
+
+
+        body.dark .settings-page-title p {
+            color: #cbd5e1 !important;
+        }
+
+
+        .settings-section-card {
+            height: 100%;
+            border: 0;
+            border-radius: 18px;
+        }
+
+
+        .settings-section-card .card-body {
+            padding: 24px;
+        }
+
+
+        .settings-section-card h4 {
+            font-size: 19px;
+            font-weight: 600;
+        }
+
+
+        .settings-description {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 22px;
+        }
+
+
+        body.dark .settings-description {
+            color: #cbd5e1 !important;
+        }
+
+
+        /* Active Settings Link */
+
+        .sidebar-bottom a.active {
+            background: rgba(255, 255, 255, 0.18);
+            border-radius: 10px;
+        }
+
+
+        @media (max-width: 768px) {
+
+            .settings-top-actions {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body class="settings-page">
+
 
 <div class="dashboard">
 
-<!-- ================= Sidebar ================= -->
 
-<aside class="sidebar">
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
-<div class="logo-box">
+    <aside class="sidebar">
 
-<img src="../../images/logo.png" alt="College Logo">
 
-<h3>PATNA</h3>
+        <div class="logo-box">
 
-<h2>WOMEN'S COLLEGE</h2>
+            <img
+                src="../../images/logo.png"
+                alt="College Logo">
 
-<span>(AUTONOMOUS)</span>
+            <h3>
+                PATNA
+            </h3>
+
+            <h2>
+                WOMEN'S COLLEGE
+            </h2>
+
+            <span>
+                (AUTONOMOUS)
+            </span>
+
+        </div>
+
+
+
+        <ul class="menu">
+
+
+            <!-- Dashboard -->
+
+            <li>
+
+                <a href="admin-dashboard.html">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <span>
+                        Dashboard
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Teachers -->
+
+            <li>
+
+                <a href="teacher-list.html">
+
+                    <i class="fa-solid fa-user-tie"></i>
+
+                    <span>
+                        Teachers
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- HOD -->
+
+            <li>
+
+                <a href="hod-list.html">
+
+                    <i class="fa-solid fa-building-user"></i>
+
+                    <span>
+                        HOD
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Students -->
+
+            <li>
+
+                <a href="student-list.html">
+
+                    <i class="fa-solid fa-user-graduate"></i>
+
+                    <span>
+                        Students
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Recruiters -->
+
+            <li>
+
+                <a href="recruiter-list.html">
+
+                    <i class="fa-solid fa-building"></i>
+
+                    <span>
+                        Recruiters
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Analytics -->
+
+            <li>
+
+                <a href="analytics.html">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <span>
+                        Analytics
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Reports -->
+
+            <li>
+
+                <a href="reports.html">
+
+                    <i class="fa-solid fa-file-lines"></i>
+
+                    <span>
+                        Reports
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Attendance Report -->
+
+            <li>
+
+                <a href="attendance-report.html">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                    <span>
+                        Attendance Report
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Notice Board -->
+
+            <li>
+
+                <a href="notice-board.html">
+
+                    <i class="fa-solid fa-bullhorn"></i>
+
+                    <span>
+                        Notice Board
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Academic Calendar -->
+
+            <li>
+
+                <a href="academic-calendar.html">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    <span>
+                        Academic Calendar
+                    </span>
+
+                </a>
+
+            </li>
+
+
+        </ul>
+
+
+
+        <!-- =================================================
+             SIDEBAR BOTTOM
+        ================================================== -->
+
+        <div class="sidebar-bottom">
+
+
+            <!-- Settings -->
+
+            <a
+                href="settings.html"
+                class="active">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+
+
+            <!-- Logout -->
+
+            <a
+                href="admin-login.html"
+                class="logout-btn">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+
+        <div class="topbar">
+
+
+            <div class="top-left settings-page-title">
+
+                <h2>
+                    Settings
+                </h2>
+
+                <p>
+                    Dashboard / Settings
+                </p>
+
+            </div>
+
+
+
+            <div class="top-right settings-top-actions">
+
+
+                <!-- Dark Mode Button -->
+
+                <button
+                    type="button"
+                    id="themeToggle"
+                    class="icon-btn"
+                    title="Dark Mode">
+
+                    <i class="fa-solid fa-moon"></i>
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             SETTINGS FORM
+        ================================================== -->
+
+        <form id="settingsForm">
+
+
+            <!-- =================================================
+                 GENERAL SETTINGS
+            ================================================== -->
+
+            <div class="chart-card mt-4">
+
+
+                <h3 class="mb-2">
+
+                    <i class="fa-solid fa-sliders me-2"></i>
+
+                    General Settings
+
+                </h3>
+
+
+                <p class="settings-description">
+
+                    Manage application appearance and general
+                    preferences for your Admin account.
+
+                </p>
+
+
+
+                <div class="row">
+
+
+                    <!-- Theme -->
+
+                    <div class="col-md-6 mb-4">
+
+
+                        <label
+                            for="applicationTheme"
+                            class="form-label fw-semibold">
+
+                            Application Theme
+
+                        </label>
+
+
+                        <select
+                            id="applicationTheme"
+                            class="form-select">
+
+                            <option value="light">
+                                Light Mode
+                            </option>
+
+                            <option value="dark">
+                                Dark Mode
+                            </option>
+
+                            <option value="system">
+                                System Default
+                            </option>
+
+                        </select>
+
+
+                    </div>
+
+
+
+                    <!-- Language -->
+
+                    <div class="col-md-6 mb-4">
+
+
+                        <label
+                            for="applicationLanguage"
+                            class="form-label fw-semibold">
+
+                            Language
+
+                        </label>
+
+
+                        <select
+                            id="applicationLanguage"
+                            class="form-select">
+
+                            <option
+                                value="English"
+                                selected>
+
+                                English
+
+                            </option>
+
+                            <option value="Hindi">
+                                Hindi
+                            </option>
+
+                        </select>
+
+
+                    </div>
+
+
+
+                    <!-- Dark Mode -->
+
+                    <div class="col-md-6 mb-4">
+
+
+                        <div class="form-check form-switch">
+
+
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="darkModeSwitch">
+
+
+                            <label
+                                class="form-check-label fw-semibold"
+                                for="darkModeSwitch">
+
+                                Enable Dark Mode
+
+                            </label>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- Auto Logout -->
+
+                    <div class="col-md-6 mb-4">
+
+
+                        <div class="form-check form-switch">
+
+
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="autoLogoutSwitch"
+                                checked>
+
+
+                            <label
+                                class="form-check-label fw-semibold"
+                                for="autoLogoutSwitch">
+
+                                Auto Logout (30 Minutes)
+
+                            </label>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- Remember Me -->
+
+                    <div class="col-md-6 mb-4">
+
+
+                        <div class="form-check form-switch">
+
+
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="rememberMeSwitch"
+                                checked>
+
+
+                            <label
+                                class="form-check-label fw-semibold"
+                                for="rememberMeSwitch">
+
+                                Remember Me
+
+                            </label>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- Sound -->
+
+                    <div class="col-md-6 mb-4">
+
+
+                        <div class="form-check form-switch">
+
+
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="soundSwitch">
+
+
+                            <label
+                                class="form-check-label fw-semibold"
+                                for="soundSwitch">
+
+                                Enable Sound Effects
+
+                            </label>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 NOTIFICATIONS + SECURITY
+            ================================================== -->
+
+            <div class="row g-4 mt-1">
+
+
+                <!-- =================================================
+                     NOTIFICATION SETTINGS
+                ================================================== -->
+
+                <div class="col-lg-6">
+
+
+                    <div
+                        class="card shadow-sm settings-section-card">
+
+
+                        <div class="card-body">
+
+
+                            <h4 class="mb-2">
+
+                                <i class="fa-solid fa-bell text-warning me-2"></i>
+
+                                Notification Settings
+
+                            </h4>
+
+
+                            <p class="settings-description">
+
+                                Choose which system notifications
+                                you want to receive.
+
+                            </p>
+
+
+
+                            <!-- Email -->
+
+                            <div class="form-check form-switch mb-3">
+
+
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="emailNotification"
+                                    checked>
+
+
+                                <label
+                                    class="form-check-label"
+                                    for="emailNotification">
+
+                                    Email Notifications
+
+                                </label>
+
+
+                            </div>
+
+
+
+                            <!-- System -->
+
+                            <div class="form-check form-switch mb-3">
+
+
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="systemNotification"
+                                    checked>
+
+
+                                <label
+                                    class="form-check-label"
+                                    for="systemNotification">
+
+                                    System Notifications
+
+                                </label>
+
+
+                            </div>
+
+
+
+                            <!-- Notice -->
+
+                            <div class="form-check form-switch mb-3">
+
+
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="noticeNotification"
+                                    checked>
+
+
+                                <label
+                                    class="form-check-label"
+                                    for="noticeNotification">
+
+                                    Notice Board Alerts
+
+                                </label>
+
+
+                            </div>
+
+
+
+                            <!-- Attendance -->
+
+                            <div class="form-check form-switch">
+
+
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="attendanceNotification"
+                                    checked>
+
+
+                                <label
+                                    class="form-check-label"
+                                    for="attendanceNotification">
+
+                                    Faculty Attendance Report Alerts
+
+                                </label>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     SECURITY SETTINGS
+                ================================================== -->
+
+                <div class="col-lg-6">
+
+
+                    <div
+                        class="card shadow-sm settings-section-card">
+
+
+                        <div class="card-body">
+
+
+                            <h4 class="mb-2">
+
+                                <i class="fa-solid fa-shield-halved text-success me-2"></i>
+
+                                Security Settings
+
+                            </h4>
+
+
+                            <p class="settings-description">
+
+                                Manage security preferences for
+                                your Admin account.
+
+                            </p>
+
+
+
+                            <!-- Two Factor -->
+
+                            <div class="form-check form-switch mb-3">
+
+
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="twoFactorAuth">
+
+
+                                <label
+                                    class="form-check-label"
+                                    for="twoFactorAuth">
+
+                                    Enable Two-Factor Authentication
+
+                                </label>
+
+
+                            </div>
+
+
+
+                            <!-- Login Alerts -->
+
+                            <div class="form-check form-switch mb-3">
+
+
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="loginAlerts"
+                                    checked>
+
+
+                                <label
+                                    class="form-check-label"
+                                    for="loginAlerts">
+
+                                    Login Activity Alerts
+
+                                </label>
+
+
+                            </div>
+
+
+
+                            <!-- Secure Session -->
+
+                            <div class="form-check form-switch mb-4">
+
+
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="secureSession"
+                                    checked>
+
+
+                                <label
+                                    class="form-check-label"
+                                    for="secureSession">
+
+                                    Secure Session Protection
+
+                                </label>
+
+
+                            </div>
+
+
+
+                           <!-- =================================================
+     SECURITY ACTIONS
+================================================== -->
+
+<div class="d-grid gap-2">
+
+    <!-- Change Password -->
+
+    <a
+        href="change-password.html"
+        class="btn btn-warning">
+
+        <i class="fa-solid fa-lock me-1"></i>
+
+        Change Password
+
+    </a>
+
+
+    <!-- Register / Update Face -->
+
+    <a
+        href="face-register.html"
+        class="btn btn-primary">
+
+        <i class="fa-solid fa-face-smile me-1"></i>
+
+        Register / Update Face
+
+    </a>
+
+
+    <!-- Face Login -->
+
+    <a
+        href="face-login.html"
+        class="btn btn-outline-primary">
+
+        <i class="fa-solid fa-camera me-1"></i>
+
+        Test Face Login
+
+    </a>
 
 </div>
 
-<ul class="menu">
 
-<li>
-<a href="admin-dashboard.html">
-<i class="fa-solid fa-house"></i>
-<span>Dashboard</span>
-</a>
-</li>
+                        </div>
 
-<li>
-<a href="teacher-list.html">
-<i class="fa-solid fa-user-tie"></i>
-<span>Teachers</span>
-</a>
-</li>
 
-<li>
-<a href="hod-list.html">
-<i class="fa-solid fa-building-user"></i>
-<span>HOD List</span>
-</a>
-</li>
+                    </div>
 
-<li>
-<a href="student-list.html">
-<i class="fa-solid fa-user-graduate"></i>
-<span>Students</span>
-</a>
-</li>
 
-<li>
-<a href="notice-board.html">
-<i class="fa-solid fa-bullhorn"></i>
-<span>Notice Board</span>
-</a>
-</li>
+                </div>
 
-<li>
-<a href="reports.html">
-<i class="fa-solid fa-chart-column"></i>
-<span>Reports</span>
-</a>
-</li>
 
-<li class="active">
-<a href="settings.html">
-<i class="fa-solid fa-gear"></i>
-<span>Settings</span>
-</a>
-</li>
+            </div>
 
-</ul>
 
-<div class="sidebar-bottom">
 
-<a href="admin-login.html" class="logout-btn">
+            <!-- =================================================
+                 ACCOUNT INFORMATION
+            ================================================== -->
 
-<i class="fa-solid fa-right-from-bracket"></i>
+            <div class="chart-card mt-4">
 
-<span>Logout</span>
 
-</a>
+                <h3 class="mb-2">
 
-</div>
+                    <i class="fa-solid fa-user-shield me-2"></i>
 
-</aside>
+                    Admin Account
 
-<!-- ================= Main Content ================= -->
+                </h3>
 
-<main class="main-content">
 
-<div class="topbar">
+                <p class="settings-description">
 
-<div>
+                    Basic information related to the current
+                    administrator account.
 
-<h2>Settings</h2>
+                </p>
 
-<p>Dashboard / Settings</p>
 
-</div>
-<div class="topbar-actions">
 
-    <button id="themeToggle" class="theme-toggle-btn">
-        <i class="fa-solid fa-moon"></i>
-    </button>
+                <div class="row">
 
-</div>
-</div>
 
-<!-- ================= General Settings ================= -->
+                    <!-- Role -->
 
-<div class="chart-card mt-4">
+                    <div class="col-md-6 mb-3">
 
-<h3 class="mb-4">
 
-<i class="fa-solid fa-sliders"></i>
+                        <label class="form-label fw-semibold">
 
-General Settings
+                            Account Role
 
-</h3>
+                        </label>
 
-<form id="settingsForm">
 
-<div class="row">
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="Administrator"
+                            readonly>
 
-<div class="col-md-6 mb-4">
 
-<label class="form-label fw-semibold">
+                    </div>
 
-Application Theme
 
-</label>
 
-<select class="form-select">
+                    <!-- Access Level -->
 
-<option selected>Light Mode</option>
+                    <div class="col-md-6 mb-3">
 
-<option>Dark Mode</option>
 
-<option>System Default</option>
+                        <label class="form-label fw-semibold">
 
-</select>
+                            Access Level
 
-</div>
+                        </label>
 
-<div class="col-md-6 mb-4">
 
-<label class="form-label fw-semibold">
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="System Administration"
+                            readonly>
 
-Language
 
-</label>
+                    </div>
 
-<select class="form-select">
 
-<option selected>English</option>
+                </div>
 
-<option>Hindi</option>
 
-<option>French</option>
+            </div>
 
-</select>
 
-</div>
 
-<div class="col-md-6 mb-4">
+            <hr class="my-4">
 
-<div class="form-check form-switch">
 
-<input
-class="form-check-input"
-type="checkbox"
-id="darkModeSwitch">
 
-<label
-class="form-check-label fw-semibold"
-for="darkModeSwitch">
+            <!-- =================================================
+                 ACTION BUTTONS
+            ================================================== -->
 
-Enable Dark Mode
+            <div
+                class="d-flex justify-content-end gap-2 flex-wrap mb-4">
 
-</label>
+
+                <!-- Reset -->
+
+                <button
+                    type="button"
+                    id="resetSettingsBtn"
+                    class="btn btn-secondary">
+
+                    <i class="fa-solid fa-rotate-left me-1"></i>
+
+                    Reset Settings
+
+                </button>
+
+
+
+                <!-- Save -->
+
+                <button
+                    type="submit"
+                    class="btn btn-success">
+
+                    <i class="fa-solid fa-floppy-disk me-1"></i>
+
+                    Save Settings
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+    </main>
+
 
 </div>
 
-</div>
 
-<div class="col-md-6 mb-4">
 
-<div class="form-check form-switch">
-
-<input
-class="form-check-input"
-type="checkbox"
-id="autoLogoutSwitch"
-checked>
-
-<label
-class="form-check-label fw-semibold"
-for="autoLogoutSwitch">
-
-Auto Logout (30 Minutes)
-
-</label>
-
-</div>
-
-</div>
-
-<div class="col-md-6 mb-4">
-
-<div class="form-check form-switch">
-
-<input
-class="form-check-input"
-type="checkbox"
-id="rememberMeSwitch"
-checked>
-
-<label
-class="form-check-label fw-semibold"
-for="rememberMeSwitch">
-
-Remember Me
-
-</label>
-
-</div>
-
-</div>
-
-<div class="col-md-6 mb-4">
-
-<div class="form-check form-switch">
-
-<input
-class="form-check-input"
-type="checkbox"
-id="soundSwitch">
-
-<label
-class="form-check-label fw-semibold"
-for="soundSwitch">
-
-Enable Sound Effects
-
-</label>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- Notification & Security Settings Start Below -->
-<div class="mt-3">
-
-<div class="row">
-
-<!-- ================= Notification Settings ================= -->
-
-<div class="col-lg-6">
-
-<div class="card border-0 shadow-sm mb-4">
-
-<div class="card-body">
-
-<h4 class="mb-4">
-
-<i class="fa-solid fa-bell text-warning"></i>
-
-Notification Settings
-
-</h4>
-
-<div class="form-check form-switch mb-3">
-
-<input
-class="form-check-input"
-type="checkbox"
-id="emailNotification"
-checked>
-
-<label
-class="form-check-label"
-for="emailNotification">
-
-Email Notifications
-
-</label>
-
-</div>
-
-<div class="form-check form-switch mb-3">
-
-<input
-class="form-check-input"
-type="checkbox"
-id="smsNotification">
-
-<label
-class="form-check-label"
-for="smsNotification">
-
-SMS Notifications
-
-</label>
-
-</div>
-
-<div class="form-check form-switch mb-3">
-
-<input
-class="form-check-input"
-type="checkbox"
-id="pushNotification"
-checked>
-
-<label
-class="form-check-label"
-for="pushNotification">
-
-Push Notifications
-
-</label>
-
-</div>
-
-<div class="form-check form-switch">
-
-<input
-class="form-check-input"
-type="checkbox"
-id="attendanceNotification"
-checked>
-
-<label
-class="form-check-label"
-for="attendanceNotification">
-
-Attendance Alerts
-
-</label>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ================= Security Settings ================= -->
-
-<div class="col-lg-6">
-
-<div class="card border-0 shadow-sm mb-4">
-
-<div class="card-body">
-
-<h4 class="mb-4">
-
-<i class="fa-solid fa-shield-halved text-success"></i>
-
-Security Settings
-
-</h4>
-
-<div class="form-check form-switch mb-3">
-
-<input
-class="form-check-input"
-type="checkbox"
-id="twoFactorAuth">
-
-<label
-class="form-check-label"
-for="twoFactorAuth">
-
-Enable Two-Factor Authentication
-
-</label>
-
-</div>
-
-<div class="form-check form-switch mb-3">
-
-<input
-class="form-check-input"
-type="checkbox"
-id="faceLoginSwitch"
-checked>
-
-<label
-class="form-check-label"
-for="faceLoginSwitch">
-
-Enable Face Login
-
-</label>
-
-</div>
-
-<div class="d-grid mt-4">
-
-<a
-href="change-password.html"
-class="btn btn-warning">
-
-<i class="fa-solid fa-lock"></i>
-
-Change Password
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ================= Face Recognition Settings ================= -->
-
-<div class="col-lg-6">
-
-<div class="card border-0 shadow-sm mb-4">
-
-<div class="card-body">
-
-<h4 class="mb-4">
-
-<i class="fa-solid fa-face-smile text-primary"></i>
-
-Face Recognition
-
-</h4>
-
-<label class="form-label">
-
-Recognition Sensitivity
-
-</label>
-
-<input
-type="range"
-class="form-range"
-min="1"
-max="100"
-value="80">
-
-<label class="form-label mt-3">
-
-Minimum Confidence (%)
-
-</label>
-
-<input
-type="number"
-class="form-control"
-value="85">
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ================= Camera Settings ================= -->
-
-<div class="col-lg-6">
-
-<div class="card border-0 shadow-sm mb-4">
-
-<div class="card-body">
-
-<h4 class="mb-4">
-
-<i class="fa-solid fa-camera text-danger"></i>
-
-Camera Settings
-
-</h4>
-
-<label class="form-label">
-
-Camera Resolution
-
-</label>
-
-<select class="form-select mb-3">
-
-<option>640 × 480</option>
-
-<option selected>1280 × 720 (HD)</option>
-
-<option>1920 × 1080 (Full HD)</option>
-
-</select>
-
-<div class="form-check form-switch">
-
-<input
-class="form-check-input"
-type="checkbox"
-id="autoCamera"
-checked>
-
-<label
-class="form-check-label"
-for="autoCamera">
-
-Start Camera Automatically
-
-</label>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<hr class="my-4">
-
-<div class="d-flex justify-content-end gap-2">
-
-<button
-type="reset"
-id="resetSettingsBtn"
-class="btn btn-secondary">
-
-<i class="fa-solid fa-rotate-left"></i>
-
-Reset Settings
-
-</button>
-
-<button
-type="submit"
-class="btn btn-success">
-
-<i class="fa-solid fa-floppy-disk"></i>
-
-Save Settings
-
-</button>
-
-</div>
-
-</form>
-
-</div>
-
-</main>
-
-</div>
-
-<!-- ================= Settings Saved Modal ================= -->
+<!-- =========================================================
+     SETTINGS SAVED MODAL
+========================================================= -->
 
 <div
-class="modal fade"
-id="settingsSavedModal"
-tabindex="-1">
+    class="modal fade"
+    id="settingsSavedModal"
+    tabindex="-1"
+    aria-hidden="true">
 
-<div class="modal-dialog modal-dialog-centered">
 
-<div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered">
 
-<div class="modal-header bg-success text-white">
 
-<h5 class="modal-title">
+        <div class="modal-content">
 
-<i class="fa-solid fa-circle-check"></i>
 
-Settings Saved
+            <div class="modal-header bg-success text-white">
 
-</h5>
 
-<button
-type="button"
-class="btn-close btn-close-white"
-data-bs-dismiss="modal">
+                <h5 class="modal-title">
 
-</button>
+                    <i class="fa-solid fa-circle-check me-2"></i>
+
+                    Settings Saved
+
+                </h5>
+
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal">
+                </button>
+
+
+            </div>
+
+
+
+            <div class="modal-body text-center">
+
+
+                <i
+                    class="fa-solid fa-gear fa-4x text-success mb-3">
+                </i>
+
+
+                <h4>
+                    Settings Updated Successfully!
+                </h4>
+
+
+                <p class="mb-0">
+
+                    Your application settings have been saved.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div class="modal-footer">
+
+
+                <button
+                    type="button"
+                    class="btn btn-success"
+                    data-bs-dismiss="modal">
+
+                    OK
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
 
 </div>
 
-<div class="modal-body text-center">
 
-<i class="fa-solid fa-gear fa-4x text-success mb-3"></i>
 
-<h4>Settings Updated Successfully!</h4>
+<!-- =========================================================
+     BOOTSTRAP JS
+========================================================= -->
 
-<p>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
 
-Your application settings have been saved successfully.
 
-</p>
 
-</div>
+<!-- =========================================================
+     COMMON DASHBOARD JS
+========================================================= -->
 
-<div class="modal-footer">
-
-<button
-type="button"
-class="btn btn-success"
-data-bs-dismiss="modal">
-
-OK
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<!-- ================= Bootstrap JS ================= -->
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../../js/dashboard.js"></script>
-<!-- ================= JavaScript ================= -->
+
+
+
+<!-- =========================================================
+     SETTINGS JAVASCRIPT
+========================================================= -->
 
 <script>
 
-// ================= Dark Mode Demo =================
 
-const darkModeSwitch = document.getElementById("darkModeSwitch");
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-if(darkModeSwitch){
 
-darkModeSwitch.addEventListener("change",function(){
+        // =====================================================
+        // ELEMENTS
+        // =====================================================
 
-if(this.checked){
+        const settingsForm =
+            document.getElementById(
+                "settingsForm"
+            );
 
-document.body.classList.add("dark");
 
-}else{
+        const darkModeSwitch =
+            document.getElementById(
+                "darkModeSwitch"
+            );
 
-document.body.classList.remove("dark");
 
-}
+        const applicationTheme =
+            document.getElementById(
+                "applicationTheme"
+            );
 
-});
 
-}
+        const resetSettingsBtn =
+            document.getElementById(
+                "resetSettingsBtn"
+            );
 
-// ================= Save Settings =================
 
-const settingsForm = document.getElementById("settingsForm");
 
-if(settingsForm){
+        // =====================================================
+        // CURRENT THEME
+        // =====================================================
 
-settingsForm.addEventListener("submit",function(e){
+        const currentTheme =
+            localStorage.getItem(
+                "theme"
+            ) || "light";
 
-e.preventDefault();
 
-const modal = new bootstrap.Modal(
-document.getElementById("settingsSavedModal")
+        darkModeSwitch.checked =
+            currentTheme === "dark";
+
+
+        applicationTheme.value =
+            currentTheme === "dark"
+                ? "dark"
+                : "light";
+
+
+
+        // =====================================================
+        // APPLY THEME
+        // =====================================================
+
+        function applyTheme(theme) {
+
+
+            if (
+                theme === "dark"
+            ) {
+
+
+                document.body.classList.add(
+                    "dark"
+                );
+
+
+                localStorage.setItem(
+                    "theme",
+                    "dark"
+                );
+
+
+                darkModeSwitch.checked =
+                    true;
+
+
+            }
+
+            else {
+
+
+                document.body.classList.remove(
+                    "dark"
+                );
+
+
+                localStorage.setItem(
+                    "theme",
+                    "light"
+                );
+
+
+                darkModeSwitch.checked =
+                    false;
+
+
+            }
+
+
+        }
+
+
+
+        // =====================================================
+        // DARK MODE SWITCH
+        // =====================================================
+
+        darkModeSwitch.addEventListener(
+            "change",
+            function () {
+
+
+                if (
+                    this.checked
+                ) {
+
+
+                    applicationTheme.value =
+                        "dark";
+
+
+                    applyTheme(
+                        "dark"
+                    );
+
+
+                }
+
+                else {
+
+
+                    applicationTheme.value =
+                        "light";
+
+
+                    applyTheme(
+                        "light"
+                    );
+
+
+                }
+
+
+            }
+        );
+
+
+
+        // =====================================================
+        // THEME DROPDOWN
+        // =====================================================
+
+        applicationTheme.addEventListener(
+            "change",
+            function () {
+
+
+                const selectedTheme =
+                    this.value;
+
+
+
+                if (
+                    selectedTheme ===
+                    "system"
+                ) {
+
+
+                    const systemDark =
+                        window.matchMedia(
+                            "(prefers-color-scheme: dark)"
+                        ).matches;
+
+
+                    applyTheme(
+                        systemDark
+                            ? "dark"
+                            : "light"
+                    );
+
+
+                    return;
+
+                }
+
+
+
+                applyTheme(
+                    selectedTheme
+                );
+
+
+            }
+        );
+
+
+
+        // =====================================================
+        // SAVE SETTINGS
+        // =====================================================
+
+        settingsForm.addEventListener(
+            "submit",
+            function (event) {
+
+
+                event.preventDefault();
+
+
+
+                const settings = {
+
+
+                    language:
+                        document.getElementById(
+                            "applicationLanguage"
+                        ).value,
+
+
+                    autoLogout:
+                        document.getElementById(
+                            "autoLogoutSwitch"
+                        ).checked,
+
+
+                    rememberMe:
+                        document.getElementById(
+                            "rememberMeSwitch"
+                        ).checked,
+
+
+                    sound:
+                        document.getElementById(
+                            "soundSwitch"
+                        ).checked,
+
+
+                    emailNotification:
+                        document.getElementById(
+                            "emailNotification"
+                        ).checked,
+
+
+                    systemNotification:
+                        document.getElementById(
+                            "systemNotification"
+                        ).checked,
+
+
+                    noticeNotification:
+                        document.getElementById(
+                            "noticeNotification"
+                        ).checked,
+
+
+                    attendanceNotification:
+                        document.getElementById(
+                            "attendanceNotification"
+                        ).checked,
+
+
+                    twoFactorAuth:
+                        document.getElementById(
+                            "twoFactorAuth"
+                        ).checked,
+
+
+                    loginAlerts:
+                        document.getElementById(
+                            "loginAlerts"
+                        ).checked,
+
+
+                    secureSession:
+                        document.getElementById(
+                            "secureSession"
+                        ).checked
+
+
+                };
+
+
+
+                localStorage.setItem(
+                    "adminSettings",
+                    JSON.stringify(
+                        settings
+                    )
+                );
+
+
+
+                const modal =
+                    new bootstrap.Modal(
+                        document.getElementById(
+                            "settingsSavedModal"
+                        )
+                    );
+
+
+                modal.show();
+
+
+            }
+        );
+
+
+
+        // =====================================================
+        // LOAD SAVED SETTINGS
+        // =====================================================
+
+        const savedSettings =
+            localStorage.getItem(
+                "adminSettings"
+            );
+
+
+        if (
+            savedSettings
+        ) {
+
+
+            try {
+
+
+                const settings =
+                    JSON.parse(
+                        savedSettings
+                    );
+
+
+                document.getElementById(
+                    "applicationLanguage"
+                ).value =
+                    settings.language ||
+                    "English";
+
+
+                document.getElementById(
+                    "autoLogoutSwitch"
+                ).checked =
+                    settings.autoLogout ??
+                    true;
+
+
+                document.getElementById(
+                    "rememberMeSwitch"
+                ).checked =
+                    settings.rememberMe ??
+                    true;
+
+
+                document.getElementById(
+                    "soundSwitch"
+                ).checked =
+                    settings.sound ??
+                    false;
+
+
+                document.getElementById(
+                    "emailNotification"
+                ).checked =
+                    settings.emailNotification ??
+                    true;
+
+
+                document.getElementById(
+                    "systemNotification"
+                ).checked =
+                    settings.systemNotification ??
+                    true;
+
+
+                document.getElementById(
+                    "noticeNotification"
+                ).checked =
+                    settings.noticeNotification ??
+                    true;
+
+
+                document.getElementById(
+                    "attendanceNotification"
+                ).checked =
+                    settings.attendanceNotification ??
+                    true;
+
+
+                document.getElementById(
+                    "twoFactorAuth"
+                ).checked =
+                    settings.twoFactorAuth ??
+                    false;
+
+
+                document.getElementById(
+                    "loginAlerts"
+                ).checked =
+                    settings.loginAlerts ??
+                    true;
+
+
+                document.getElementById(
+                    "secureSession"
+                ).checked =
+                    settings.secureSession ??
+                    true;
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(
+                    "Unable to load saved settings:",
+                    error
+                );
+
+
+            }
+
+
+        }
+
+
+
+        // =====================================================
+        // RESET SETTINGS
+        // =====================================================
+
+        resetSettingsBtn.addEventListener(
+            "click",
+            function () {
+
+
+                const confirmed =
+                    confirm(
+                        "Are you sure you want to reset all settings?"
+                    );
+
+
+                if (
+                    !confirmed
+                ) {
+
+                    return;
+
+                }
+
+
+
+                localStorage.removeItem(
+                    "adminSettings"
+                );
+
+
+                localStorage.setItem(
+                    "theme",
+                    "light"
+                );
+
+
+                settingsForm.reset();
+
+
+                document.body.classList.remove(
+                    "dark"
+                );
+
+
+                darkModeSwitch.checked =
+                    false;
+
+
+                applicationTheme.value =
+                    "light";
+
+
+                document.getElementById(
+                    "applicationLanguage"
+                ).value =
+                    "English";
+
+
+                document.getElementById(
+                    "autoLogoutSwitch"
+                ).checked =
+                    true;
+
+
+                document.getElementById(
+                    "rememberMeSwitch"
+                ).checked =
+                    true;
+
+
+                document.getElementById(
+                    "emailNotification"
+                ).checked =
+                    true;
+
+
+                document.getElementById(
+                    "systemNotification"
+                ).checked =
+                    true;
+
+
+                document.getElementById(
+                    "noticeNotification"
+                ).checked =
+                    true;
+
+
+                document.getElementById(
+                    "attendanceNotification"
+                ).checked =
+                    true;
+
+
+                document.getElementById(
+                    "loginAlerts"
+                ).checked =
+                    true;
+
+
+                document.getElementById(
+                    "secureSession"
+                ).checked =
+                    true;
+
+
+                alert(
+                    "Settings have been reset successfully."
+                );
+
+
+            }
+        );
+
+
+    }
 );
 
-modal.show();
-
-});
-
-}
-
-// ================= Reset Settings =================
-
-const resetSettingsBtn = document.getElementById("resetSettingsBtn");
-
-if(resetSettingsBtn){
-
-resetSettingsBtn.addEventListener("click",function(){
-
-setTimeout(function(){
-
-settingsForm.reset();
-
-document.body.classList.remove("dark");
-
-},100);
-
-alert("Settings have been reset successfully.");
-
-});
-
-}
-
-// ================= Range Slider =================
-
-const sensitivitySlider = document.querySelector(".form-range");
-
-if(sensitivitySlider){
-
-sensitivitySlider.addEventListener("input",function(){
-
-console.log("Recognition Sensitivity :",this.value);
-
-});
-
-}
 
 </script>
+
 
 </body>
 

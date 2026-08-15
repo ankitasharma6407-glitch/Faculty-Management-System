@@ -104,7 +104,7 @@ Sign in to access the Faculty Management & Productivity System.
 
 </div>
 
-<form action="admin-dashboard.html" method="get">
+<form id="adminLoginForm">
 
 <div class="mb-3">
 
@@ -115,6 +115,7 @@ Admin Email
 </label>
 
 <input type="email"
+id="adminEmail"
 class="form-control"
 placeholder="Enter Admin Email"
 required>
@@ -130,6 +131,7 @@ Password
 </label>
 
 <input type="password"
+id="adminPassword"
 class="form-control"
 placeholder="Enter Password"
 required>
@@ -255,10 +257,132 @@ required>
 </section>
 
 <!-- Bootstrap JS -->
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+<script src="../../js/api.js"></script>
+
 <script src="../../js/script.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const adminLoginForm =
+        document.getElementById("adminLoginForm");
+
+    const adminEmail =
+        document.getElementById("adminEmail");
+
+    const adminPassword =
+        document.getElementById("adminPassword");
+
+
+    adminLoginForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            const email =
+                adminEmail.value.trim();
+
+            const password =
+                adminPassword.value;
+
+
+            if (!email || !password) {
+
+                alert(
+                    "Please enter email and password."
+                );
+
+                return;
+
+            }
+
+
+            const loginButton =
+                adminLoginForm.querySelector(
+                    'button[type="submit"]'
+                );
+
+            const originalButtonContent =
+                loginButton.innerHTML;
+
+
+            try {
+
+                loginButton.disabled =
+                    true;
+
+                loginButton.innerHTML = `
+                    <i class="fa-solid fa-spinner fa-spin me-2"></i>
+                    Logging In...
+                `;
+
+
+                const data =
+                    await API.auth.login({
+                        email: email,
+                        password: password
+                    });
+
+
+                if (
+                    !data.user ||
+                    String(data.user.role).toLowerCase()
+                        !== "admin"
+                ) {
+
+                    API.auth.logout?.();
+
+                    alert(
+                        "Access denied. This account is not an Admin account."
+                    );
+
+                    return;
+
+                }
+
+
+                window.location.href =
+                    "admin-dashboard.html";
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Admin login error:",
+                    error
+                );
+
+
+                alert(
+                    error.message ||
+                    "Invalid email or password."
+                );
+
+            }
+
+            finally {
+
+                loginButton.disabled =
+                    false;
+
+                loginButton.innerHTML =
+                    originalButtonContent;
+
+            }
+
+        }
+    );
+
+});
+
+</script>
+
 </body>
 
 </html>

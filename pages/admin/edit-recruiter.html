@@ -8,545 +8,1547 @@
 
 <title>Edit Recruiter | Faculty Management System</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
 
-<link rel="stylesheet" href="../../css/admin-dashboard.css">
+<link
+    rel="stylesheet"
+    href="../../css/admin-dashboard.css">
 
 </head>
+
 
 <body>
 
 <div class="dashboard">
 
-<!-- ================= Sidebar ================= -->
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
 
 <aside class="sidebar">
 
-<div class="logo-box">
+    <div class="logo-box">
 
-<img src="../../images/logo.png" alt="College Logo">
+        <img
+            src="../../images/logo.png"
+            alt="College Logo">
 
-<h3>PATNA</h3>
+        <h3>PATNA</h3>
 
-<h2>WOMEN'S COLLEGE</h2>
+        <h2>WOMEN'S COLLEGE</h2>
 
-<span>(AUTONOMOUS)</span>
+        <span>(AUTONOMOUS)</span>
 
-</div>
+    </div>
 
-<ul class="menu">
 
-<li>
-<a href="admin-dashboard.html">
-<i class="fa-solid fa-house"></i>
-<span>Dashboard</span>
-</a>
-</li>
+    <ul class="menu">
 
-<li>
-<a href="teacher-list.html">
-<i class="fa-solid fa-user-tie"></i>
-<span>Teachers</span>
-</a>
-</li>
+        <li>
+            <a href="admin-dashboard.html">
 
-<li>
-<a href="hod-list.html">
-<i class="fa-solid fa-building-user"></i>
-<span>HOD</span>
-</a>
-</li>
+                <i class="fa-solid fa-house"></i>
 
-<li>
-<a href="student-list.html">
-<i class="fa-solid fa-user-graduate"></i>
-<span>Students</span>
-</a>
-</li>
+                <span>Dashboard</span>
 
-<li class="active">
-<a href="recruiter-list.html">
-<i class="fa-solid fa-building"></i>
-<span>Recruiters</span>
-</a>
-</li>
+            </a>
+        </li>
 
-<li>
-<a href="attendance.html">
-<i class="fa-solid fa-calendar-check"></i>
-<span>Attendance</span>
-</a>
-</li>
 
-<li>
-<a href="analytics.html">
-<i class="fa-solid fa-chart-line"></i>
-<span>Analytics</span>
-</a>
-</li>
+        <li>
+            <a href="teacher-list.html">
 
-<li>
-<a href="attendance-report.html">
-<i class="fa-solid fa-file-lines"></i>
-<span>Attendance Report</span>
-</a>
-</li>
+                <i class="fa-solid fa-user-tie"></i>
 
-<li>
-<a href="notice-board.html">
-<i class="fa-solid fa-bullhorn"></i>
-<span>Notice Board</span>
-</a>
-</li>
+                <span>Teachers</span>
 
-<li>
-<a href="academic-calendar.html">
-<i class="fa-solid fa-calendar-days"></i>
-<span>Academic Calendar</span>
-</a>
-</li>
+            </a>
+        </li>
 
-</ul>
 
-<div class="sidebar-bottom">
+        <li>
+            <a href="hod-list.html">
 
-<a href="settings.html">
+                <i class="fa-solid fa-building-user"></i>
 
-<i class="fa-solid fa-gear"></i>
+                <span>HOD</span>
 
-<span>Settings</span>
+            </a>
+        </li>
 
-</a>
 
-<a href="admin-login.html" class="logout-btn">
+        <li>
+            <a href="student-list.html">
 
-<i class="fa-solid fa-right-from-bracket"></i>
+                <i class="fa-solid fa-user-graduate"></i>
 
-<span>Logout</span>
+                <span>Students</span>
 
-</a>
+            </a>
+        </li>
 
-</div>
+
+        <li class="active">
+
+            <a href="recruiter-list.html">
+
+                <i class="fa-solid fa-building"></i>
+
+                <span>Recruiters</span>
+
+            </a>
+        </li>
+
+
+        <li>
+            <a href="attendance.html">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <span>Attendance</span>
+
+            </a>
+        </li>
+
+
+        <li>
+            <a href="analytics.html">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>Analytics</span>
+
+            </a>
+        </li>
+
+
+        <li>
+            <a href="attendance-report.html">
+
+                <i class="fa-solid fa-file-lines"></i>
+
+                <span>Attendance Report</span>
+
+            </a>
+        </li>
+
+
+        <li>
+            <a href="notice-board.html">
+
+                <i class="fa-solid fa-bullhorn"></i>
+
+                <span>Notice Board</span>
+
+            </a>
+        </li>
+
+
+        <li>
+            <a href="academic-calendar.html">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                <span>Academic Calendar</span>
+
+            </a>
+        </li>
+
+    </ul>
+
+
+    <div class="sidebar-bottom">
+
+        <a href="settings.html">
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>Settings</span>
+
+        </a>
+
+
+        <a
+            href="admin-login.html"
+            class="logout-btn">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>Logout</span>
+
+        </a>
+
+    </div>
 
 </aside>
 
-<!-- ================= Main Content ================= -->
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
 
 <main class="main-content">
 
+
+<!-- =========================================================
+     TOPBAR
+========================================================= -->
+
 <div class="topbar">
 
-<div>
+    <div>
 
-<h2>Edit Recruiter</h2>
+        <h2>Edit Recruiter</h2>
 
-<p>Dashboard / Recruiters / Edit Recruiter</p>
+        <p>
+            Dashboard / Recruiters / Edit Recruiter
+        </p>
+
+    </div>
+
+
+    <div class="topbar-actions">
+
+        <button
+            id="themeToggle"
+            class="theme-toggle-btn">
+
+            <i class="fa-solid fa-moon"></i>
+
+        </button>
+
+    </div>
 
 </div>
-<div class="topbar-actions">
 
-    <button id="themeToggle" class="theme-toggle-btn">
-        <i class="fa-solid fa-moon"></i>
-    </button>
 
-</div>
-</div>
+
+<!-- =========================================================
+     FORM
+========================================================= -->
 
 <div class="row justify-content-center mt-4">
 
-<div class="col-lg-10">
+    <div class="col-lg-10">
 
-<div class="chart-card">
+        <div class="chart-card">
 
-<h4 class="mb-4">
+            <h4 class="mb-4">
 
-<i class="fa-solid fa-user-pen"></i>
+                <i class="fa-solid fa-user-pen"></i>
 
-Update Recruiter Details
+                Update Recruiter Details
 
-</h4>
+            </h4>
 
-<form id="editRecruiterForm">
 
-<div class="row">
+            <div
+                id="loadingMessage"
+                class="text-center py-4">
 
-<div class="col-md-6 mb-3">
+                <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
 
-<label class="form-label">Recruiter ID</label>
+                <p class="mt-2 mb-0">
+                    Loading recruiter details...
+                </p>
 
-<input
-type="text"
-class="form-control"
-value="REC001"
-readonly>
+            </div>
+
+
+            <form
+                id="editRecruiterForm"
+                style="display:none;">
+
+
+                <div class="row">
+
+
+                    <!-- Recruiter ID -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Recruiter ID
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="recruiterCode"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- Company Name -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Company Name
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="companyName"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- HR / Recruiter Name -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Recruiter / HR Name
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="fullName"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- Email -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- Mobile -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Mobile Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            class="form-control"
+                            id="phone"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- Website -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Company Website
+                        </label>
+
+                        <input
+                            type="url"
+                            class="form-control"
+                            id="website"
+                            placeholder="https://company.com">
+
+                    </div>
+
+
+
+                    <!-- Industry Type -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Industry Type
+                        </label>
+
+                        <select
+                            class="form-select"
+                            id="industryType"
+                            required>
+
+                            <option value="">
+                                Select Industry
+                            </option>
+
+                            <option value="Information Technology">
+                                Information Technology
+                            </option>
+
+                            <option value="Software Development">
+                                Software Development
+                            </option>
+
+                            <option value="Banking & Finance">
+                                Banking & Finance
+                            </option>
+
+                            <option value="Healthcare">
+                                Healthcare
+                            </option>
+
+                            <option value="Education">
+                                Education
+                            </option>
+
+                            <option value="Manufacturing">
+                                Manufacturing
+                            </option>
+
+                            <option value="E-Commerce">
+                                E-Commerce
+                            </option>
+
+                            <option value="Telecommunication">
+                                Telecommunication
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Company Size -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Company Size
+                        </label>
+
+                        <select
+                            class="form-select"
+                            id="companySize"
+                            required>
+
+                            <option value="">
+                                Select Company Size
+                            </option>
+
+                            <option value="1-50 Employees">
+                                1-50 Employees
+                            </option>
+
+                            <option value="51-200 Employees">
+                                51-200 Employees
+                            </option>
+
+                            <option value="201-500 Employees">
+                                201-500 Employees
+                            </option>
+
+                            <option value="500+ Employees">
+                                500+ Employees
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Hiring Role -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Hiring Role
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="hiringRole"
+                            placeholder="Software Engineer"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- Package Offered -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Package Offered (CTC)
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="packageOffered"
+                            placeholder="₹6 LPA"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- Hiring Date -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Hiring Date
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            id="hiringDate"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- Status -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Account Status
+                        </label>
+
+                        <select
+                            class="form-select"
+                            id="status"
+                            required>
+
+                            <option value="active">
+                                Active
+                            </option>
+
+                            <option value="inactive">
+                                Inactive
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Address -->
+
+                    <div class="col-12 mb-3">
+
+                        <label class="form-label">
+                            Company Address
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            id="address"
+                            rows="3"
+                            placeholder="Enter company address"
+                            required></textarea>
+
+                    </div>
+
+
+
+                    <!-- Username -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Username
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="username"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- Password -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            New Password
+                        </label>
+
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="password"
+                            placeholder="Leave blank to keep current password">
+
+                        <small class="text-muted">
+                            Leave blank if you do not want to change the password.
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- Company Logo -->
+
+                    <div class="col-12 mb-4">
+
+                        <label class="form-label">
+                            Company Logo
+                        </label>
+
+                        <input
+                            type="file"
+                            class="form-control"
+                            id="logoInput"
+                            accept="image/*">
+
+
+                        <div
+                            class="text-center mt-3"
+                            id="logoPreviewContainer"
+                            style="display:none;">
+
+                            <img
+                                id="logoPreview"
+                                alt="Company Logo"
+                                class="rounded shadow border"
+                                style="
+                                    width:160px;
+                                    height:160px;
+                                    object-fit:contain;
+                                    padding:10px;
+                                ">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     BUTTONS
+                ================================================= -->
+
+                <div class="d-flex justify-content-end mt-3">
+
+                    <a
+                        href="recruiter-list.html"
+                        class="btn btn-secondary me-3">
+
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                        Back
+
+                    </a>
+
+
+                    <button
+                        type="button"
+                        id="resetButton"
+                        class="btn btn-warning me-3">
+
+                        <i class="fa-solid fa-rotate-left"></i>
+
+                        Reset
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        id="updateButton"
+                        class="btn btn-primary">
+
+                        <i class="fa-solid fa-floppy-disk"></i>
+
+                        Update Recruiter
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </div>
 
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Company Name</label>
-
-<input
-type="text"
-class="form-control"
-value="Tata Consultancy Services"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Recruiter Name</label>
-
-<input
-type="text"
-class="form-control"
-value="Rahul Verma"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Email Address</label>
-
-<input
-type="email"
-class="form-control"
-value="rahul.verma@tcs.com"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Mobile Number</label>
-
-<input
-type="tel"
-class="form-control"
-value="9876543210"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Designation</label>
-
-<input
-type="text"
-class="form-control"
-value="HR Manager"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Company Website</label>
-
-<input
-type="url"
-class="form-control"
-value="https://www.tcs.com">
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">City</label>
-
-<input
-type="text"
-class="form-control"
-value="Bengaluru"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">State</label>
-
-<input
-type="text"
-class="form-control"
-value="Karnataka"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Joining Date</label>
-
-<input
-type="date"
-class="form-control"
-value="2024-01-15"
-required>
-
-</div>
-<div class="col-12 mb-3">
-
-<label class="form-label">Company Address</label>
-
-<textarea
-class="form-control"
-rows="3"
-required>Electronic City, Phase-1, Bengaluru, Karnataka, India</textarea>
-
-</div>
-
-<div class="col-12 mb-3">
-
-<label class="form-label">Company Description</label>
-
-<textarea
-class="form-control"
-rows="4"
-placeholder="Enter company description..."
-required>Tata Consultancy Services (TCS) is a leading global IT services, consulting and business solutions organization offering technology-driven solutions across multiple industries.</textarea>
-
-</div>
-
-<div class="col-12 mb-4">
-
-<label class="form-label">Company Logo</label>
-
-<input
-type="file"
-class="form-control"
-id="logoInput"
-accept="image/*">
-
-<div class="text-center mt-3">
-
-<img
-src="../../images/company-logo.png"
-id="logoPreview"
-alt="Company Logo"
-class="rounded shadow border"
-style="width:160px;height:160px;object-fit:contain;padding:10px;">
-
-</div>
-
-</div>
-
-</div>
-
-<div class="d-flex justify-content-end mt-3">
-
-<button
-type="reset"
-class="btn btn-secondary me-3">
-
-<i class="fa-solid fa-rotate-left"></i>
-
-Reset
-
-</button>
-
-<button
-type="submit"
-class="btn btn-primary">
-
-<i class="fa-solid fa-floppy-disk"></i>
-
-Update Recruiter
-
-</button>
-
-</div>
-
-</form>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ================= Success Modal ================= -->
-
-<div
-class="modal fade"
-id="updateRecruiterModal"
-tabindex="-1"
-aria-hidden="true">
-
-<div class="modal-dialog modal-dialog-centered">
-
-<div class="modal-content">
-
-<div class="modal-header bg-success text-white">
-
-<h5 class="modal-title">
-
-<i class="fa-solid fa-circle-check me-2"></i>
-
-Recruiter Updated
-
-</h5>
-
-<button
-type="button"
-class="btn-close btn-close-white"
-data-bs-dismiss="modal">
-
-</button>
-
-</div>
-
-<div class="modal-body text-center">
-
-<i class="fa-solid fa-building-circle-check fa-4x text-success mb-3"></i>
-
-<h4>Recruiter Updated Successfully!</h4>
-
-<p class="text-muted">
-
-The recruiter information has been updated successfully.
-Changes will be saved permanently after backend integration.
-
-</p>
-
-</div>
-
-<div class="modal-footer">
-
-<button
-type="button"
-class="btn btn-success"
-data-bs-dismiss="modal">
-
-OK
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<!-- ================= Bootstrap JS ================= -->
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../js/dashboard.js"></script>
-<!-- ================= JavaScript ================= -->
-
-<script>
-
-// ================= Company Logo Preview =================
-
-const logoInput = document.getElementById("logoInput");
-const logoPreview = document.getElementById("logoPreview");
-
-if(logoInput){
-
-logoInput.addEventListener("change", function(){
-
-const file = this.files[0];
-
-if(file){
-
-const reader = new FileReader();
-
-reader.onload = function(e){
-
-logoPreview.src = e.target.result;
-
-};
-
-reader.readAsDataURL(file);
-
-}
-
-});
-
-}
-
-// ================= Form Validation =================
-
-const recruiterForm = document.getElementById("editRecruiterForm");
-
-if(recruiterForm){
-
-recruiterForm.addEventListener("submit", function(e){
-
-e.preventDefault();
-
-const requiredFields = recruiterForm.querySelectorAll("input[required], textarea[required], select[required]");
-
-let isValid = true;
-
-requiredFields.forEach(function(field){
-
-if(field.value.trim() === ""){
-
-field.classList.add("is-invalid");
-field.classList.remove("is-valid");
-
-isValid = false;
-
-}else{
-
-field.classList.remove("is-invalid");
-field.classList.add("is-valid");
-
-}
-
-});
-
-if(!isValid){
-
-alert("Please fill all required fields.");
-
-return;
-
-}
-
-// ================= Success Modal =================
-
-const modal = new bootstrap.Modal(document.getElementById("updateRecruiterModal"));
-
-modal.show();
-
-});
-
-}
-
-// ================= Reset Form =================
-
-recruiterForm.addEventListener("reset", function(){
-
-setTimeout(function(){
-
-document.querySelectorAll(".is-valid, .is-invalid").forEach(function(input){
-
-input.classList.remove("is-valid");
-input.classList.remove("is-invalid");
-
-});
-
-logoPreview.src = "../../images/company-logo.png";
-
-},100);
-
-});
-
-</script>
 
 </main>
 
 </div>
+
+
+
+<!-- =========================================================
+     SUCCESS MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="updateRecruiterModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+
+    <div class="modal-dialog modal-dialog-centered">
+
+
+        <div class="modal-content">
+
+
+            <div class="modal-header bg-success text-white">
+
+                <h5 class="modal-title">
+
+                    <i class="fa-solid fa-circle-check me-2"></i>
+
+                    Recruiter Updated
+
+                </h5>
+
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+
+
+            <div class="modal-body text-center">
+
+                <i
+                    class="fa-solid fa-building-circle-check fa-4x text-success mb-3">
+                </i>
+
+                <h4>
+                    Recruiter Updated Successfully!
+                </h4>
+
+                <p class="text-muted">
+                    The recruiter information has been updated successfully.
+                </p>
+
+            </div>
+
+
+
+            <div class="modal-footer">
+
+                <a
+                    href="recruiter-list.html"
+                    class="btn btn-success">
+
+                    <i class="fa-solid fa-list"></i>
+
+                    Recruiter List
+
+                </a>
+
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+
+                    Close
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     SCRIPTS
+========================================================= -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+<script src="../../js/api.js"></script>
+
+<script src="../../js/dashboard.js"></script>
+
+
+
+<script>
+
+
+// ============================================================
+// BACKEND BASE URL
+// ============================================================
+
+const BACKEND_URL =
+    "http://127.0.0.1:5000";
+
+
+
+// ============================================================
+// GET RECRUITER ID FROM URL
+// ============================================================
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const recruiterId =
+    params.get("id");
+
+
+
+let originalRecruiter = null;
+
+
+
+// ============================================================
+// ELEMENTS
+// ============================================================
+
+const form =
+    document.getElementById(
+        "editRecruiterForm"
+    );
+
+
+const loadingMessage =
+    document.getElementById(
+        "loadingMessage"
+    );
+
+
+const updateButton =
+    document.getElementById(
+        "updateButton"
+    );
+
+
+const logoInput =
+    document.getElementById(
+        "logoInput"
+    );
+
+
+const logoPreview =
+    document.getElementById(
+        "logoPreview"
+    );
+
+
+const logoPreviewContainer =
+    document.getElementById(
+        "logoPreviewContainer"
+    );
+
+
+
+// ============================================================
+// SET LOGO PREVIEW
+// ============================================================
+
+function setLogoPreview(photoUrl) {
+
+
+    if (!photoUrl) {
+
+        logoPreview.src = "";
+
+        logoPreviewContainer.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    if (
+        photoUrl.startsWith("http://") ||
+        photoUrl.startsWith("https://")
+    ) {
+
+        logoPreview.src =
+            photoUrl;
+
+    }
+
+    else {
+
+        logoPreview.src =
+            BACKEND_URL +
+            photoUrl;
+
+    }
+
+
+    logoPreviewContainer.style.display =
+        "block";
+
+}
+
+
+
+// ============================================================
+// FILL FORM
+// ============================================================
+
+function fillRecruiterForm(recruiter) {
+
+
+    document.getElementById(
+        "recruiterCode"
+    ).value =
+        recruiter.recruiter_code || "";
+
+
+    document.getElementById(
+        "companyName"
+    ).value =
+        recruiter.company_name || "";
+
+
+    document.getElementById(
+        "fullName"
+    ).value =
+        recruiter.full_name || "";
+
+
+    document.getElementById(
+        "email"
+    ).value =
+        recruiter.email || "";
+
+
+    document.getElementById(
+        "phone"
+    ).value =
+        recruiter.phone || "";
+
+
+    document.getElementById(
+        "website"
+    ).value =
+        recruiter.website || "";
+
+
+    document.getElementById(
+        "industryType"
+    ).value =
+        recruiter.industry_type || "";
+
+
+    document.getElementById(
+        "companySize"
+    ).value =
+        recruiter.company_size || "";
+
+
+    document.getElementById(
+        "hiringRole"
+    ).value =
+        recruiter.hiring_role || "";
+
+
+    document.getElementById(
+        "packageOffered"
+    ).value =
+        recruiter.package_offered || "";
+
+
+    document.getElementById(
+        "hiringDate"
+    ).value =
+        recruiter.hiring_date || "";
+
+
+    document.getElementById(
+        "status"
+    ).value =
+        (
+            recruiter.status ||
+            "active"
+        ).toLowerCase();
+
+
+    document.getElementById(
+        "address"
+    ).value =
+        recruiter.address || "";
+
+
+    document.getElementById(
+        "username"
+    ).value =
+        recruiter.username || "";
+
+
+    document.getElementById(
+        "password"
+    ).value =
+        "";
+
+
+    logoInput.value =
+        "";
+
+
+    setLogoPreview(
+        recruiter.photo_url
+    );
+
+}
+
+
+
+// ============================================================
+// LOAD RECRUITER
+// ============================================================
+
+async function loadRecruiter() {
+
+
+    if (!recruiterId) {
+
+        alert(
+            "Recruiter ID is missing."
+        );
+
+        window.location.href =
+            "recruiter-list.html";
+
+        return;
+
+    }
+
+
+    try {
+
+
+        const result =
+            await API.recruiters.get(
+                recruiterId
+            );
+
+
+        console.log(
+            "Recruiter Details:",
+            result
+        );
+
+
+        if (
+            !result.success ||
+            !result.data
+        ) {
+
+            throw new Error(
+                result.message ||
+                "Recruiter not found."
+            );
+
+        }
+
+
+        originalRecruiter =
+            result.data;
+
+
+        fillRecruiterForm(
+            originalRecruiter
+        );
+
+
+        loadingMessage.style.display =
+            "none";
+
+
+        form.style.display =
+            "block";
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(
+            "Load Recruiter Error:",
+            error
+        );
+
+
+        loadingMessage.innerHTML = `
+
+            <div class="text-danger">
+
+                <i
+                    class="fa-solid fa-circle-exclamation fa-3x mb-3">
+                </i>
+
+                <h5>
+                    Failed to load recruiter
+                </h5>
+
+                <p>
+                    ${error.message}
+                </p>
+
+                <a
+                    href="recruiter-list.html"
+                    class="btn btn-secondary">
+
+                    Back to Recruiter List
+
+                </a>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+
+// ============================================================
+// LOGO FILE PREVIEW
+// ============================================================
+
+logoInput.addEventListener(
+    "change",
+    function () {
+
+
+        const file =
+            this.files[0];
+
+
+        if (!file) {
+
+            setLogoPreview(
+                originalRecruiter
+                    ? originalRecruiter.photo_url
+                    : null
+            );
+
+            return;
+
+        }
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function (event) {
+
+
+                logoPreview.src =
+                    event.target.result;
+
+
+                logoPreviewContainer.style.display =
+                    "block";
+
+            };
+
+
+        reader.readAsDataURL(
+            file
+        );
+
+    }
+);
+
+
+
+// ============================================================
+// RESET
+// ============================================================
+
+document.getElementById(
+    "resetButton"
+).addEventListener(
+    "click",
+    function () {
+
+
+        if (!originalRecruiter) {
+            return;
+        }
+
+
+        fillRecruiterForm(
+            originalRecruiter
+        );
+
+
+        document.querySelectorAll(
+            ".is-valid, .is-invalid"
+        ).forEach(
+            function (field) {
+
+                field.classList.remove(
+                    "is-valid"
+                );
+
+                field.classList.remove(
+                    "is-invalid"
+                );
+
+            }
+        );
+
+    }
+);
+
+
+
+// ============================================================
+// UPDATE RECRUITER
+// ============================================================
+
+form.addEventListener(
+    "submit",
+    async function (event) {
+
+
+        event.preventDefault();
+
+
+        // ====================================================
+        // FORM DATA
+        // ====================================================
+
+        const formData =
+            new FormData();
+
+
+        formData.append(
+            "recruiter_code",
+            document.getElementById(
+                "recruiterCode"
+            ).value.trim()
+        );
+
+
+        formData.append(
+            "company_name",
+            document.getElementById(
+                "companyName"
+            ).value.trim()
+        );
+
+
+        formData.append(
+            "full_name",
+            document.getElementById(
+                "fullName"
+            ).value.trim()
+        );
+
+
+        formData.append(
+            "email",
+            document.getElementById(
+                "email"
+            ).value.trim()
+        );
+
+
+        formData.append(
+            "phone",
+            document.getElementById(
+                "phone"
+            ).value.trim()
+        );
+
+
+        formData.append(
+            "website",
+            document.getElementById(
+                "website"
+            ).value.trim()
+        );
+
+
+        formData.append(
+            "industry_type",
+            document.getElementById(
+                "industryType"
+            ).value
+        );
+
+
+        formData.append(
+            "company_size",
+            document.getElementById(
+                "companySize"
+            ).value
+        );
+
+
+        formData.append(
+            "hiring_role",
+            document.getElementById(
+                "hiringRole"
+            ).value.trim()
+        );
+
+
+        formData.append(
+            "package_offered",
+            document.getElementById(
+                "packageOffered"
+            ).value.trim()
+        );
+
+
+        formData.append(
+            "hiring_date",
+            document.getElementById(
+                "hiringDate"
+            ).value
+        );
+
+
+        formData.append(
+            "status",
+            document.getElementById(
+                "status"
+            ).value
+        );
+
+
+        formData.append(
+            "address",
+            document.getElementById(
+                "address"
+            ).value.trim()
+        );
+
+
+        formData.append(
+            "username",
+            document.getElementById(
+                "username"
+            ).value.trim()
+        );
+
+
+        // ====================================================
+        // PASSWORD
+        // ====================================================
+
+        const password =
+            document.getElementById(
+                "password"
+            ).value;
+
+
+        if (password.trim() !== "") {
+
+            formData.append(
+                "password",
+                password
+            );
+
+        }
+
+
+
+        // ====================================================
+        // NEW LOGO
+        // ====================================================
+
+        if (
+            logoInput.files &&
+            logoInput.files.length > 0
+        ) {
+
+            formData.append(
+                "photo",
+                logoInput.files[0]
+            );
+
+        }
+
+
+
+        // ====================================================
+        // BUTTON
+        // ====================================================
+
+        updateButton.disabled =
+            true;
+
+
+        updateButton.innerHTML =
+            '<i class="fa-solid fa-spinner fa-spin"></i> Updating...';
+
+
+
+        // ====================================================
+        // SEND PUT
+        // ====================================================
+
+        try {
+
+
+            const result =
+                await API.recruiters.update(
+                    recruiterId,
+                    formData
+                );
+
+
+            console.log(
+                "Update Recruiter Response:",
+                result
+            );
+
+
+            if (
+                !result.success
+            ) {
+
+                throw new Error(
+                    result.message ||
+                    "Failed to update recruiter."
+                );
+
+            }
+
+
+
+            // =================================================
+            // UPDATE ORIGINAL DATA
+            // =================================================
+
+            originalRecruiter =
+                result.data;
+
+
+            fillRecruiterForm(
+                originalRecruiter
+            );
+
+
+
+            // =================================================
+            // SUCCESS MODAL
+            // =================================================
+
+            const modal =
+                new bootstrap.Modal(
+                    document.getElementById(
+                        "updateRecruiterModal"
+                    )
+                );
+
+
+            modal.show();
+
+
+        }
+
+        catch (error) {
+
+
+            console.error(
+                "Update Recruiter Error:",
+                error
+            );
+
+
+            alert(
+                error.message ||
+                "Failed to update recruiter."
+            );
+
+        }
+
+        finally {
+
+
+            updateButton.disabled =
+                false;
+
+
+            updateButton.innerHTML =
+                '<i class="fa-solid fa-floppy-disk"></i> Update Recruiter';
+
+        }
+
+    }
+);
+
+
+
+// ============================================================
+// LOAD WHEN PAGE OPENS
+// ============================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        loadRecruiter();
+
+    }
+);
+
+
+</script>
+
 
 </body>
 

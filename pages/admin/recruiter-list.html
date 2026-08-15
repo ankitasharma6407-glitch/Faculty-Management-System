@@ -3,706 +3,1591 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>Recruiter Management | Faculty Management System</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>
+        Recruiter Management | Faculty Management System
+    </title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
 
-<link rel="stylesheet" href="../../css/admin-dashboard.css">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+
+    <!-- Google Font -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Dashboard CSS -->
+
+    <link
+        rel="stylesheet"
+        href="../../css/admin-dashboard.css">
+
+
+    <style>
+
+        /* =====================================================
+           RECRUITER PAGE ONLY
+        ===================================================== */
+
+        .recruiter-table-wrapper {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+
+        #recruiterTableElement {
+            width: 100%;
+            min-width: 1000px;
+            table-layout: fixed;
+        }
+
+
+        #recruiterTableElement th,
+        #recruiterTableElement td {
+            vertical-align: middle;
+        }
+
+
+        #recruiterTableElement th {
+            white-space: nowrap;
+        }
+
+
+        #recruiterTableElement td {
+            word-break: break-word;
+            overflow-wrap: anywhere;
+        }
+
+
+        /* Serial Number */
+
+        #recruiterTableElement th:nth-child(1),
+        #recruiterTableElement td:nth-child(1) {
+            width: 60px;
+        }
+
+
+        /* Company */
+
+        #recruiterTableElement th:nth-child(2),
+        #recruiterTableElement td:nth-child(2) {
+            width: 180px;
+        }
+
+
+        /* Recruiter */
+
+        #recruiterTableElement th:nth-child(3),
+        #recruiterTableElement td:nth-child(3) {
+            width: 160px;
+        }
+
+
+        /* Email */
+
+        #recruiterTableElement th:nth-child(4),
+        #recruiterTableElement td:nth-child(4) {
+            width: 200px;
+        }
+
+
+        /* Mobile */
+
+        #recruiterTableElement th:nth-child(5),
+        #recruiterTableElement td:nth-child(5) {
+            width: 130px;
+        }
+
+
+        /* Hiring Role */
+
+        #recruiterTableElement th:nth-child(6),
+        #recruiterTableElement td:nth-child(6) {
+            width: 160px;
+        }
+
+
+        /* Status */
+
+        #recruiterTableElement th:nth-child(7),
+        #recruiterTableElement td:nth-child(7) {
+            width: 100px;
+        }
+
+
+        /* Actions */
+
+        #recruiterTableElement th:nth-child(8),
+        #recruiterTableElement td:nth-child(8) {
+            width: 150px;
+        }
+
+
+        #recruiterTableElement td:last-child {
+            white-space: nowrap;
+        }
+
+
+        #recruiterTableElement td:last-child .btn {
+            margin: 2px;
+        }
+
+
+        .recruiter-page-title h2 {
+            margin-bottom: 4px;
+        }
+
+
+        .recruiter-page-title p {
+            margin-bottom: 0;
+            color: #777;
+        }
+
+
+        body.dark .recruiter-page-title p {
+            color: #cbd5e1 !important;
+        }
+
+
+        @media (max-width: 768px) {
+
+            .recruiter-top-actions {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
+
 
 <div class="dashboard">
 
-<!-- ================= Sidebar ================= -->
 
-<aside class="sidebar">
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
-<div class="logo-box">
+    <aside class="sidebar">
 
-<img src="../../images/logo.png" alt="College Logo">
 
-<h3>PATNA</h3>
+        <div class="logo-box">
 
-<h2>WOMEN'S COLLEGE</h2>
+            <img
+                src="../../images/logo.png"
+                alt="College Logo">
 
-<span>(AUTONOMOUS)</span>
+            <h3>
+                PATNA
+            </h3>
+
+            <h2>
+                WOMEN'S COLLEGE
+            </h2>
+
+            <span>
+                (AUTONOMOUS)
+            </span>
+
+        </div>
+
+
+
+        <ul class="menu">
+
+
+            <!-- Dashboard -->
+
+            <li>
+
+                <a href="admin-dashboard.html">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <span>
+                        Dashboard
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Teachers -->
+
+            <li>
+
+                <a href="teacher-list.html">
+
+                    <i class="fa-solid fa-user-tie"></i>
+
+                    <span>
+                        Teachers
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- HOD -->
+
+            <li>
+
+                <a href="hod-list.html">
+
+                    <i class="fa-solid fa-building-user"></i>
+
+                    <span>
+                        HOD
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Students -->
+
+            <li>
+
+                <a href="student-list.html">
+
+                    <i class="fa-solid fa-user-graduate"></i>
+
+                    <span>
+                        Students
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Recruiters -->
+
+            <li class="active">
+
+                <a href="recruiter-list.html">
+
+                    <i class="fa-solid fa-building"></i>
+
+                    <span>
+                        Recruiters
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Analytics -->
+
+            <li>
+
+                <a href="analytics.html">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <span>
+                        Analytics
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Reports -->
+
+            <li>
+
+                <a href="reports.html">
+
+                    <i class="fa-solid fa-file-lines"></i>
+
+                    <span>
+                        Reports
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Attendance Report -->
+
+            <li>
+
+                <a href="attendance-report.html">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                    <span>
+                        Attendance Report
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Notice Board -->
+
+            <li>
+
+                <a href="notice-board.html">
+
+                    <i class="fa-solid fa-bullhorn"></i>
+
+                    <span>
+                        Notice Board
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Academic Calendar -->
+
+            <li>
+
+                <a href="academic-calendar.html">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    <span>
+                        Academic Calendar
+                    </span>
+
+                </a>
+
+            </li>
+
+
+        </ul>
+
+
+
+        <!-- =================================================
+             SIDEBAR BOTTOM
+        ================================================== -->
+
+        <div class="sidebar-bottom">
+
+
+            <!-- Settings -->
+
+            <a href="settings.html">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+
+
+            <!-- Logout -->
+
+            <a
+                href="admin-login.html"
+                class="logout-btn">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+
+        <div class="topbar">
+
+
+            <div class="top-left recruiter-page-title">
+
+                <h2>
+                    Recruiter Management
+                </h2>
+
+                <p>
+                    Dashboard / Recruiters
+                </p>
+
+            </div>
+
+
+
+            <div class="top-right recruiter-top-actions">
+
+
+                <!-- Dark Mode -->
+
+                <button
+                    type="button"
+                    id="themeToggle"
+                    class="icon-btn"
+                    title="Dark Mode">
+
+                    <i class="fa-solid fa-moon"></i>
+
+                </button>
+
+
+
+                <!-- Add Recruiter -->
+
+                <a
+                    href="add-recruiter.html"
+                    class="btn btn-primary">
+
+                    <i class="fa-solid fa-plus me-1"></i>
+
+                    Add Recruiter
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             SUMMARY CARDS
+        ================================================== -->
+
+        <div class="stats-grid">
+
+
+            <!-- Total Recruiters -->
+
+            <div class="stat-card">
+
+
+                <div>
+
+                    <h4>
+                        Total Recruiters
+                    </h4>
+
+                    <h2 id="totalRecruiters">
+                        0
+                    </h2>
+
+                    <p class="text-primary">
+                        Registered Companies
+                    </p>
+
+                </div>
+
+
+
+                <div class="stat-icon bg-primary">
+
+                    <i class="fa-solid fa-building"></i>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Active Recruiters -->
+
+            <div class="stat-card">
+
+
+                <div>
+
+                    <h4>
+                        Active Recruiters
+                    </h4>
+
+                    <h2 id="activeRecruiters">
+                        0
+                    </h2>
+
+                    <p class="text-success">
+                        Currently Active
+                    </p>
+
+                </div>
+
+
+
+                <div class="stat-icon bg-success">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Inactive -->
+
+            <div class="stat-card">
+
+
+                <div>
+
+                    <h4>
+                        Inactive
+                    </h4>
+
+                    <h2 id="inactiveRecruiters">
+                        0
+                    </h2>
+
+                    <p class="text-danger">
+                        Need Verification
+                    </p>
+
+                </div>
+
+
+
+                <div class="stat-icon bg-danger">
+
+                    <i class="fa-solid fa-circle-xmark"></i>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Campus Drives -->
+
+            <div class="stat-card">
+
+
+                <div>
+
+                    <h4>
+                        Campus Drives
+                    </h4>
+
+                    <h2 id="campusDrives">
+                        0
+                    </h2>
+
+                    <p class="text-warning">
+                        This Month
+                    </p>
+
+                </div>
+
+
+
+                <div class="stat-icon bg-warning">
+
+                    <i class="fa-solid fa-briefcase"></i>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             RECRUITER LIST
+        ================================================== -->
+
+        <div class="chart-card mt-4">
+
+
+            <div
+                class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
+
+
+                <h4 class="mb-0">
+
+                    <i class="fa-solid fa-building"></i>
+
+                    Recruiter List
+
+                </h4>
+
+
+
+                <!-- Search -->
+
+                <div
+                    class="input-group"
+                    style="max-width: 320px;">
+
+
+                    <span class="input-group-text">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                    </span>
+
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="searchRecruiter"
+                        placeholder="Search Recruiter...">
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TABLE
+            ================================================== -->
+
+            <div class="table-responsive recruiter-table-wrapper">
+
+
+                <table
+                    id="recruiterTableElement"
+                    class="table table-hover table-bordered align-middle text-center">
+
+
+                    <thead class="table-dark">
+
+
+                        <tr>
+
+                            <th>
+                                #
+                            </th>
+
+                            <th>
+                                Company
+                            </th>
+
+                            <th>
+                                Recruiter
+                            </th>
+
+                            <th>
+                                Email
+                            </th>
+
+                            <th>
+                                Mobile
+                            </th>
+
+                            <th>
+                                Hiring Role
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Actions
+                            </th>
+
+                        </tr>
+
+
+                    </thead>
+
+
+
+                    <tbody id="recruiterTable">
+
+
+                        <tr>
+
+                            <td
+                                colspan="8"
+                                class="text-center py-5">
+
+                                <i
+                                    class="fa-solid fa-spinner fa-spin fa-2x">
+                                </i>
+
+                                <br>
+
+                                <span class="d-inline-block mt-2">
+
+                                    Loading recruiters...
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
 
 </div>
 
-<ul class="menu">
 
-<li>
-<a href="admin-dashboard.html">
-<i class="fa-solid fa-house"></i>
-<span>Dashboard</span>
-</a>
-</li>
 
-<li>
-<a href="teacher-list.html">
-<i class="fa-solid fa-user-tie"></i>
-<span>Teachers</span>
-</a>
-</li>
+<!-- =========================================================
+     BOOTSTRAP
+========================================================= -->
 
-<li>
-<a href="hod-list.html">
-<i class="fa-solid fa-building-user"></i>
-<span>HOD</span>
-</a>
-</li>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
 
-<li>
-<a href="student-list.html">
-<i class="fa-solid fa-user-graduate"></i>
-<span>Students</span>
-</a>
-</li>
 
-<li class="active">
-<a href="recruiter-list.html">
-<i class="fa-solid fa-building"></i>
-<span>Recruiters</span>
-</a>
-</li>
 
-<li>
-<a href="attendance.html">
-<i class="fa-solid fa-calendar-check"></i>
-<span>Attendance</span>
-</a>
-</li>
+<!-- =========================================================
+     API
+========================================================= -->
 
-<li>
-<a href="analytics.html">
-<i class="fa-solid fa-chart-line"></i>
-<span>Analytics</span>
-</a>
-</li>
+<script src="../../js/api.js"></script>
 
-<li>
-<a href="attendance-report.html">
-<i class="fa-solid fa-file-lines"></i>
-<span>Attendance Report</span>
-</a>
-</li>
 
-<li>
-<a href="notice-board.html">
-<i class="fa-solid fa-bullhorn"></i>
-<span>Notice Board</span>
-</a>
-</li>
 
-<li>
-<a href="academic-calendar.html">
-<i class="fa-solid fa-calendar-days"></i>
-<span>Academic Calendar</span>
-</a>
-</li>
+<!-- =========================================================
+     COMMON DASHBOARD JS
+========================================================= -->
 
-</ul>
-
-<div class="sidebar-bottom">
-
-<a href="settings.html">
-
-<i class="fa-solid fa-gear"></i>
-
-<span>Settings</span>
-
-</a>
-
-<a href="admin-login.html" class="logout-btn">
-
-<i class="fa-solid fa-right-from-bracket"></i>
-
-<span>Logout</span>
-
-</a>
-
-</div>
-
-</aside>
-
-<!-- ================= Main Content ================= -->
-
-<main class="main-content">
-
-<div class="topbar">
-
-<div>
-
-<h2>Recruiter Management</h2>
-
-<p>Dashboard / Recruiters</p>
-
-</div>
-<div class="topbar-actions">
-
-    <button id="themeToggle" class="theme-toggle-btn">
-        <i class="fa-solid fa-moon"></i>
-    </button>
-
-</div>
-<div>
-
-<a href="add-recruiter.html" class="btn btn-primary">
-
-<i class="fa-solid fa-plus"></i>
-
-Add Recruiter
-
-</a>
-
-</div>
-
-</div>
-
-<!-- ================= Summary Cards ================= -->
-
-<div class="stats-grid">
-
-<div class="stat-card">
-
-<div>
-
-<h4>Total Recruiters</h4>
-
-<h2>35</h2>
-
-<p class="text-primary">
-
-Registered Companies
-
-</p>
-
-</div>
-
-<div class="stat-icon bg-primary">
-
-<i class="fa-solid fa-building"></i>
-
-</div>
-
-</div>
-
-<div class="stat-card">
-
-<div>
-
-<h4>Active Recruiters</h4>
-
-<h2>30</h2>
-
-<p class="text-success">
-
-Currently Active
-
-</p>
-
-</div>
-
-<div class="stat-icon bg-success">
-
-<i class="fa-solid fa-circle-check"></i>
-
-</div>
-
-</div>
-
-<div class="stat-card">
-
-<div>
-
-<h4>Inactive</h4>
-
-<h2>5</h2>
-
-<p class="text-danger">
-
-Need Verification
-
-</p>
-
-</div>
-
-<div class="stat-icon bg-danger">
-
-<i class="fa-solid fa-circle-xmark"></i>
-
-</div>
-
-</div>
-
-<div class="stat-card">
-
-<div>
-
-<h4>Campus Drives</h4>
-
-<h2>12</h2>
-
-<p class="text-warning">
-
-This Month
-
-</p>
-
-</div>
-
-<div class="stat-icon bg-warning">
-
-<i class="fa-solid fa-briefcase"></i>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ================= Recruiter Table ================= -->
-
-<div class="chart-card mt-4">
-
-<div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
-
-<h4>
-
-<i class="fa-solid fa-building"></i>
-
-Recruiter List
-
-</h4>
-
-<div class="input-group" style="max-width:320px;">
-
-<span class="input-group-text">
-
-<i class="fa-solid fa-magnifying-glass"></i>
-
-</span>
-
-<input
-type="text"
-class="form-control"
-id="searchRecruiter"
-placeholder="Search Recruiter...">
-
-</div>
-
-</div>
-
-<div class="table-responsive">
-
-<table class="table table-hover table-bordered align-middle text-center">
-
-<thead class="table-dark">
-
-<tr>
-
-<th>#</th>
-
-<th>Company</th>
-
-<th>Recruiter</th>
-
-<th>Email</th>
-
-<th>Mobile</th>
-
-<th>Designation</th>
-
-<th>Status</th>
-
-<th>Actions</th>
-
-</tr>
-
-</thead>
-
-<tbody id="recruiterTable">
-<tr>
-
-<td>1</td>
-
-<td>Tata Consultancy Services (TCS)</td>
-
-<td>Rahul Verma</td>
-
-<td>rahul.verma@tcs.com</td>
-
-<td>9876543210</td>
-
-<td>HR Manager</td>
-
-<td>
-
-<span class="badge bg-success">
-
-Active
-
-</span>
-
-</td>
-
-<td>
-
-<a href="view-recruiter.html" class="btn btn-info btn-sm">
-
-<i class="fa-solid fa-eye"></i>
-
-</a>
-
-<a href="edit-recruiter.html" class="btn btn-warning btn-sm">
-
-<i class="fa-solid fa-pen"></i>
-
-</a>
-
-<button class="btn btn-danger btn-sm delete-btn">
-
-<i class="fa-solid fa-trash"></i>
-
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>2</td>
-
-<td>Infosys</td>
-
-<td>Anjali Sharma</td>
-
-<td>anjali@infosys.com</td>
-
-<td>9123456780</td>
-
-<td>Talent Acquisition</td>
-
-<td>
-
-<span class="badge bg-success">
-
-Active
-
-</span>
-
-</td>
-
-<td>
-
-<a href="view-recruiter.html" class="btn btn-info btn-sm">
-
-<i class="fa-solid fa-eye"></i>
-
-</a>
-
-<a href="edit-recruiter.html" class="btn btn-warning btn-sm">
-
-<i class="fa-solid fa-pen"></i>
-
-</a>
-
-<button class="btn btn-danger btn-sm delete-btn">
-
-<i class="fa-solid fa-trash"></i>
-
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>3</td>
-
-<td>Wipro</td>
-
-<td>Rohit Singh</td>
-
-<td>rohit@wipro.com</td>
-
-<td>9988776655</td>
-
-<td>Recruitment Lead</td>
-
-<td>
-
-<span class="badge bg-danger">
-
-Inactive
-
-</span>
-
-</td>
-
-<td>
-
-<a href="view-recruiter.html" class="btn btn-info btn-sm">
-
-<i class="fa-solid fa-eye"></i>
-
-</a>
-
-<a href="edit-recruiter.html" class="btn btn-warning btn-sm">
-
-<i class="fa-solid fa-pen"></i>
-
-</a>
-
-<button class="btn btn-danger btn-sm delete-btn">
-
-<i class="fa-solid fa-trash"></i>
-
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>4</td>
-
-<td>Accenture</td>
-
-<td>Priya Gupta</td>
-
-<td>priya@accenture.com</td>
-
-<td>9871203456</td>
-
-<td>Senior HR</td>
-
-<td>
-
-<span class="badge bg-success">
-
-Active
-
-</span>
-
-</td>
-
-<td>
-
-<a href="view-recruiter.html" class="btn btn-info btn-sm">
-
-<i class="fa-solid fa-eye"></i>
-
-</a>
-
-<a href="edit-recruiter.html" class="btn btn-warning btn-sm">
-
-<i class="fa-solid fa-pen"></i>
-
-</a>
-
-<button class="btn btn-danger btn-sm delete-btn">
-
-<i class="fa-solid fa-trash"></i>
-
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>5</td>
-
-<td>Capgemini</td>
-
-<td>Amit Kumar</td>
-
-<td>amit@capgemini.com</td>
-
-<td>9012345678</td>
-
-<td>Campus Recruiter</td>
-
-<td>
-
-<span class="badge bg-success">
-
-Active
-
-</span>
-
-</td>
-
-<td>
-
-<a href="view-recruiter.html" class="btn btn-info btn-sm">
-
-<i class="fa-solid fa-eye"></i>
-
-</a>
-
-<a href="edit-recruiter.html" class="btn btn-warning btn-sm">
-
-<i class="fa-solid fa-pen"></i>
-
-</a>
-
-<button class="btn btn-danger btn-sm delete-btn">
-
-<i class="fa-solid fa-trash"></i>
-
-</button>
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-<!-- ================= Pagination ================= -->
-
-<nav class="mt-4">
-
-<ul class="pagination justify-content-end">
-
-<li class="page-item disabled">
-
-<a class="page-link">Previous</a>
-
-</li>
-
-<li class="page-item active">
-
-<a class="page-link">1</a>
-
-</li>
-
-<li class="page-item">
-
-<a class="page-link">2</a>
-
-</li>
-
-<li class="page-item">
-
-<a class="page-link">3</a>
-
-</li>
-
-<li class="page-item">
-
-<a class="page-link">Next</a>
-
-</li>
-
-</ul>
-
-</nav>
-
-</div>
-<!-- ================= Bootstrap JS ================= -->
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../../js/dashboard.js"></script>
-<!-- ================= JavaScript ================= -->
+
+
+
+<!-- =========================================================
+     RECRUITER JAVASCRIPT
+========================================================= -->
 
 <script>
 
-// ================= Search Recruiter =================
 
-const searchRecruiter = document.getElementById("searchRecruiter");
+// ============================================================
+// GLOBAL RECRUITER DATA
+// ============================================================
 
-if(searchRecruiter){
+let recruiterData = [];
 
-searchRecruiter.addEventListener("keyup", function(){
 
-const filter = this.value.toLowerCase();
 
-const rows = document.querySelectorAll("#recruiterTable tr");
+// ============================================================
+// ESCAPE HTML
+// ============================================================
 
-rows.forEach(function(row){
+function escapeHtml(value) {
 
-const text = row.innerText.toLowerCase();
 
-row.style.display = text.includes(filter) ? "" : "none";
+    if (
+        value === null ||
+        value === undefined
+    ) {
 
-});
+        return "-";
 
-});
+    }
+
+
+    return String(value)
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
 
 }
 
-// ================= Delete Recruiter =================
 
-document.querySelectorAll(".delete-btn").forEach(function(button){
 
-button.addEventListener("click", function(){
+// ============================================================
+// UPDATE COUNTS
+// ============================================================
 
-const confirmDelete = confirm("Are you sure you want to delete this recruiter?");
+function updateRecruiterCounts(
+    recruiters
+) {
 
-if(confirmDelete){
 
-this.closest("tr").remove();
+    const activeCount =
+        recruiters.filter(
+            function (recruiter) {
 
-alert("Recruiter deleted successfully! (Frontend Demo)");
+
+                return (
+                    String(
+                        recruiter.status ||
+                        ""
+                    ).toLowerCase() ===
+                    "active"
+                );
+
+
+            }
+        ).length;
+
+
+
+    const inactiveCount =
+        recruiters.filter(
+            function (recruiter) {
+
+
+                return (
+                    String(
+                        recruiter.status ||
+                        ""
+                    ).toLowerCase() ===
+                    "inactive"
+                );
+
+
+            }
+        ).length;
+
+
+
+    document.getElementById(
+        "totalRecruiters"
+    ).textContent =
+        recruiters.length;
+
+
+
+    document.getElementById(
+        "activeRecruiters"
+    ).textContent =
+        activeCount;
+
+
+
+    document.getElementById(
+        "inactiveRecruiters"
+    ).textContent =
+        inactiveCount;
 
 }
 
-});
 
-});
 
-// ================= View Recruiter =================
+// ============================================================
+// DISPLAY RECRUITERS
+// ============================================================
 
-document.querySelectorAll(".btn-info").forEach(function(button){
+function displayRecruiters(
+    recruiters
+) {
 
-button.addEventListener("click", function(e){
 
-e.preventDefault();
+    const tbody =
+        document.getElementById(
+            "recruiterTable"
+        );
 
-alert("Recruiter details page will open after backend integration.");
 
-});
+    tbody.innerHTML =
+        "";
 
-});
 
-// ================= Edit Recruiter =================
 
-document.querySelectorAll(".btn-warning").forEach(function(button){
+    // ========================================================
+    // NO RECRUITERS
+    // ========================================================
 
-button.addEventListener("click", function(e){
+    if (
+        !recruiters ||
+        recruiters.length === 0
+    ) {
 
-e.preventDefault();
 
-window.location.href = "edit-recruiter.html";
+        tbody.innerHTML = `
 
-});
+            <tr>
 
-});
+                <td
+                    colspan="8"
+                    class="text-center text-muted py-5">
+
+                    <i
+                        class="fa-solid fa-building-circle-xmark fa-3x mb-3">
+                    </i>
+
+                    <br>
+
+                    <strong>
+                        No recruiter records found
+                    </strong>
+
+                    <br>
+
+                    <small>
+                        Add a recruiter to see it here.
+                    </small>
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+        return;
+
+    }
+
+
+
+    // ========================================================
+    // CREATE ROWS
+    // ========================================================
+
+    recruiters.forEach(
+        function (
+            recruiter,
+            index
+        ) {
+
+
+            const status =
+                String(
+                    recruiter.status ||
+                    "inactive"
+                ).toLowerCase();
+
+
+
+            const statusBadge =
+                status === "active"
+
+                    ? `
+
+                        <span class="badge bg-success">
+                            Active
+                        </span>
+
+                    `
+
+                    : `
+
+                        <span class="badge bg-danger">
+                            Inactive
+                        </span>
+
+                    `;
+
+
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+
+            row.innerHTML = `
+
+
+                <td>
+
+                    ${index + 1}
+
+                </td>
+
+
+
+                <td>
+
+                    ${escapeHtml(
+                        recruiter.company_name
+                    )}
+
+                </td>
+
+
+
+                <td>
+
+                    <strong>
+
+                        ${escapeHtml(
+                            recruiter.full_name
+                        )}
+
+                    </strong>
+
+                </td>
+
+
+
+                <td>
+
+                    ${escapeHtml(
+                        recruiter.email
+                    )}
+
+                </td>
+
+
+
+                <td>
+
+                    ${escapeHtml(
+                        recruiter.phone
+                    )}
+
+                </td>
+
+
+
+                <td>
+
+                    ${escapeHtml(
+
+                        recruiter.hiring_role ||
+
+                        recruiter.designation
+
+                    )}
+
+                </td>
+
+
+
+                <td>
+
+                    ${statusBadge}
+
+                </td>
+
+
+
+                <td>
+
+
+                    <!-- View -->
+
+                    <a
+                        href="view-recruiter.html?id=${recruiter.id}"
+                        class="btn btn-info btn-sm"
+                        title="View Recruiter">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </a>
+
+
+
+                    <!-- Edit -->
+
+                    <a
+                        href="edit-recruiter.html?id=${recruiter.id}"
+                        class="btn btn-warning btn-sm"
+                        title="Edit Recruiter">
+
+                        <i class="fa-solid fa-pen"></i>
+
+                    </a>
+
+
+
+                    <!-- Delete -->
+
+                    <button
+                        type="button"
+                        class="btn btn-danger btn-sm"
+                        onclick="deleteRecruiter(${recruiter.id})"
+                        title="Delete Recruiter">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                    </button>
+
+
+                </td>
+
+
+            `;
+
+
+            tbody.appendChild(
+                row
+            );
+
+
+        }
+    );
+
+}
+
+
+
+// ============================================================
+// LOAD RECRUITERS
+// ============================================================
+
+async function loadRecruiters() {
+
+
+    const tbody =
+        document.getElementById(
+            "recruiterTable"
+        );
+
+
+    tbody.innerHTML = `
+
+        <tr>
+
+            <td
+                colspan="8"
+                class="text-center py-5">
+
+                <i
+                    class="fa-solid fa-spinner fa-spin fa-2x">
+                </i>
+
+                <br>
+
+                <span class="d-inline-block mt-2">
+
+                    Loading recruiters...
+
+                </span>
+
+            </td>
+
+        </tr>
+
+    `;
+
+
+
+    try {
+
+
+        const result =
+            await API.recruiters.list();
+
+
+        console.log(
+            "Recruiter API result:",
+            result
+        );
+
+
+        if (
+            !result ||
+            result.success === false
+        ) {
+
+            throw new Error(
+                result?.message ||
+                "Failed to load recruiters."
+            );
+
+        }
+
+
+
+        recruiterData =
+            result.data || [];
+
+
+
+        updateRecruiterCounts(
+            recruiterData
+        );
+
+
+
+        displayRecruiters(
+            recruiterData
+        );
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(
+            "Recruiter Load Error:",
+            error
+        );
+
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="8"
+                    class="text-center text-danger py-5">
+
+                    <i
+                        class="fa-solid fa-circle-exclamation fa-3x mb-3">
+                    </i>
+
+                    <br>
+
+                    <strong>
+                        Failed to load recruiter data
+                    </strong>
+
+                    <br>
+
+                    <small>
+                        ${escapeHtml(error.message)}
+                    </small>
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+    }
+
+}
+
+
+
+// ============================================================
+// SEARCH RECRUITER
+// ============================================================
+
+const searchRecruiter =
+    document.getElementById(
+        "searchRecruiter"
+    );
+
+
+if (
+    searchRecruiter
+) {
+
+
+    searchRecruiter.addEventListener(
+        "input",
+        function () {
+
+
+            const searchValue =
+                this.value
+                    .toLowerCase()
+                    .trim();
+
+
+
+            if (
+                !searchValue
+            ) {
+
+
+                displayRecruiters(
+                    recruiterData
+                );
+
+
+                return;
+
+            }
+
+
+
+            const filtered =
+                recruiterData.filter(
+                    function (recruiter) {
+
+
+                        const searchable =
+                            [
+
+                                recruiter.recruiter_code,
+
+                                recruiter.company_name,
+
+                                recruiter.full_name,
+
+                                recruiter.email,
+
+                                recruiter.phone,
+
+                                recruiter.designation,
+
+                                recruiter.industry_type,
+
+                                recruiter.company_size,
+
+                                recruiter.hiring_role,
+
+                                recruiter.package_offered,
+
+                                recruiter.status
+
+                            ]
+
+                            .filter(Boolean)
+
+                            .join(" ")
+
+                            .toLowerCase();
+
+
+
+                        return searchable.includes(
+                            searchValue
+                        );
+
+
+                    }
+                );
+
+
+
+            displayRecruiters(
+                filtered
+            );
+
+
+        }
+    );
+
+
+}
+
+
+
+// ============================================================
+// DELETE RECRUITER
+// ============================================================
+
+async function deleteRecruiter(
+    recruiterId
+) {
+
+
+    const recruiter =
+        recruiterData.find(
+            function (item) {
+
+                return String(
+                    item.id
+                ) ===
+                String(
+                    recruiterId
+                );
+
+            }
+        );
+
+
+
+    const recruiterName =
+        recruiter
+
+            ? recruiter.company_name ||
+              recruiter.full_name
+
+            : "this recruiter";
+
+
+
+    const confirmed =
+        confirm(
+
+            "Are you sure you want to delete " +
+            recruiterName +
+            "?"
+
+        );
+
+
+
+    if (
+        !confirmed
+    ) {
+
+        return;
+
+    }
+
+
+
+    try {
+
+
+        const result =
+            await API.recruiters.remove(
+                recruiterId
+            );
+
+
+
+        if (
+            result &&
+            result.success === false
+        ) {
+
+            throw new Error(
+                result.message ||
+                "Failed to delete recruiter."
+            );
+
+        }
+
+
+
+        alert(
+            "Recruiter deleted successfully!"
+        );
+
+
+
+        await loadRecruiters();
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(
+            "Delete Recruiter Error:",
+            error
+        );
+
+
+        alert(
+
+            error.message ||
+            "Failed to delete recruiter."
+
+        );
+
+
+    }
+
+}
+
+
+
+// ============================================================
+// LOAD PAGE
+// ============================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        loadRecruiters();
+
+
+    }
+);
+
 
 </script>
 
-</main>
-
-</div>
 
 </body>
 

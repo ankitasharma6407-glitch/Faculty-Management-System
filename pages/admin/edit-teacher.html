@@ -8,527 +8,1906 @@
 
 <title>Edit Teacher | Faculty Management System</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
 
-<link rel="stylesheet" href="../../css/admin-dashboard.css">
+<link
+    rel="stylesheet"
+    href="../../css/admin-dashboard.css">
+
+<style>
+
+/* =========================================================
+   ONLY DARK MODE INPUT FIX
+   UI/layout is unchanged
+========================================================= */
+
+body.dark .form-control,
+body.dark .form-control:focus,
+body.dark .form-select,
+body.dark .form-select:focus,
+body.dark textarea,
+body.dark textarea:focus {
+    background-color: #111827 !important;
+    color: #ffffff !important;
+    border-color: #374151 !important;
+}
+
+body.dark .form-control[readonly] {
+    background-color: #1f2937 !important;
+    color: #cbd5e1 !important;
+}
+
+body.dark .form-select option {
+    background-color: #111827;
+    color: #ffffff;
+}
+
+body.dark input[type="date"] {
+    color-scheme: dark;
+}
+
+body.dark input:-webkit-autofill,
+body.dark input:-webkit-autofill:hover,
+body.dark input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #ffffff !important;
+
+    -webkit-box-shadow:
+        0 0 0 1000px #111827 inset !important;
+
+    box-shadow:
+        0 0 0 1000px #111827 inset !important;
+}
+
+</style>
 
 </head>
 
+
 <body>
+
 
 <div class="dashboard">
 
-<!-- ================= Sidebar ================= -->
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
 
 <aside class="sidebar">
 
-<div class="logo-box">
+    <div class="logo-box">
 
-<img src="../../images/logo.png" alt="College Logo">
+        <img
+            src="../../images/logo.png"
+            alt="College Logo">
 
-<h3>PATNA</h3>
+        <h3>PATNA</h3>
 
-<h2>WOMEN'S COLLEGE</h2>
+        <h2>WOMEN'S COLLEGE</h2>
 
-<span>(AUTONOMOUS)</span>
+        <span>(AUTONOMOUS)</span>
 
-</div>
+    </div>
 
-<ul class="menu">
 
-<li>
-<a href="admin-dashboard.html">
-<i class="fa-solid fa-house"></i>
-<span>Dashboard</span>
-</a>
-</li>
+    <ul class="menu">
 
-<li class="active">
-<a href="teacher-list.html">
-<i class="fa-solid fa-user-tie"></i>
-<span>Teachers</span>
-</a>
-</li>
+        <li>
 
-<li>
-<a href="hod-list.html">
-<i class="fa-solid fa-building-user"></i>
-<span>HOD</span>
-</a>
-</li>
+            <a href="admin-dashboard.html">
 
-<li>
-<a href="student-list.html">
-<i class="fa-solid fa-user-graduate"></i>
-<span>Students</span>
-</a>
-</li>
+                <i class="fa-solid fa-house"></i>
 
-<li>
-<a href="recruiter-list.html">
-<i class="fa-solid fa-building"></i>
-<span>Recruiters</span>
-</a>
-</li>
+                <span>Dashboard</span>
 
-<li>
-<a href="attendance.html">
-<i class="fa-solid fa-calendar-check"></i>
-<span>Attendance</span>
-</a>
-</li>
+            </a>
 
-<li>
-<a href="analytics.html">
-<i class="fa-solid fa-chart-line"></i>
-<span>Analytics</span>
-</a>
-</li>
+        </li>
 
-<li>
-<a href="attendance-report.html">
-<i class="fa-solid fa-file-lines"></i>
-<span>Attendance Report</span>
-</a>
-</li>
 
-<li>
-<a href="notice-board.html">
-<i class="fa-solid fa-bullhorn"></i>
-<span>Notice Board</span>
-</a>
-</li>
+        <li class="active">
 
-<li>
-<a href="academic-calendar.html">
-<i class="fa-solid fa-calendar-days"></i>
-<span>Academic Calendar</span>
-</a>
-</li>
+            <a href="teacher-list.html">
 
-</ul>
+                <i class="fa-solid fa-user-tie"></i>
 
-<div class="sidebar-bottom">
+                <span>Teachers</span>
 
-<a href="settings.html">
+            </a>
 
-<i class="fa-solid fa-gear"></i>
+        </li>
 
-<span>Settings</span>
 
-</a>
+        <li>
 
-<a href="admin-login.html" class="logout-btn">
+            <a href="hod-list.html">
 
-<i class="fa-solid fa-right-from-bracket"></i>
+                <i class="fa-solid fa-building-user"></i>
 
-<span>Logout</span>
+                <span>HOD</span>
 
-</a>
+            </a>
 
-</div>
+        </li>
+
+
+        <li>
+
+            <a href="student-list.html">
+
+                <i class="fa-solid fa-user-graduate"></i>
+
+                <span>Students</span>
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="recruiter-list.html">
+
+                <i class="fa-solid fa-building"></i>
+
+                <span>Recruiters</span>
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="analytics.html">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>Analytics</span>
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="reports.html">
+
+                <i class="fa-solid fa-file-lines"></i>
+
+                <span>Reports</span>
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="attendance-report.html">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <span>Attendance Report</span>
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="notice-board.html">
+
+                <i class="fa-solid fa-bullhorn"></i>
+
+                <span>Notice Board</span>
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="academic-calendar.html">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                <span>Academic Calendar</span>
+
+            </a>
+
+        </li>
+
+    </ul>
+
+
+    <div class="sidebar-bottom">
+
+        <a href="settings.html">
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>Settings</span>
+
+        </a>
+
+
+        <a
+            href="admin-login.html"
+            class="logout-btn">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>Logout</span>
+
+        </a>
+
+    </div>
 
 </aside>
 
-<!-- ================= Main Content ================= -->
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
 
 <main class="main-content">
 
+
+<!-- =========================================================
+     TOPBAR
+========================================================= -->
+
 <div class="topbar">
 
-<div>
+    <div>
 
-<h2>Edit Teacher</h2>
+        <h2>Edit Teacher</h2>
 
-<p>Dashboard / Teachers / Edit Teacher</p>
+        <p>
+            Dashboard / Teachers / Edit Teacher
+        </p>
+
+    </div>
+
+
+    <div class="topbar-actions">
+
+        <button
+            type="button"
+            id="themeToggle"
+            class="theme-toggle-btn">
+
+            <i class="fa-solid fa-moon"></i>
+
+        </button>
+
+    </div>
 
 </div>
-<div class="topbar-actions">
 
-    <button id="themeToggle" class="theme-toggle-btn">
-        <i class="fa-solid fa-moon"></i>
-    </button>
 
-</div>
-</div>
+
+<!-- =========================================================
+     EDIT FORM
+========================================================= -->
 
 <div class="row justify-content-center mt-4">
 
 <div class="col-lg-10">
 
+
 <div class="chart-card">
+
 
 <h4 class="mb-4">
 
-<i class="fa-solid fa-user-pen"></i>
+    <i class="fa-solid fa-user-pen"></i>
 
-Update Teacher Details
+    Update Teacher Details
 
 </h4>
 
-<form id="editTeacherForm">
+
+
+<!-- Loading Message -->
+
+<div
+    id="loadingMessage"
+    class="alert alert-info">
+
+    <i class="fa-solid fa-spinner fa-spin"></i>
+
+    Loading teacher details...
+
+</div>
+
+
+
+<!-- Error Message -->
+
+<div
+    id="errorMessage"
+    class="alert alert-danger d-none">
+</div>
+
+
+
+<!-- Success Message -->
+
+<div
+    id="successMessage"
+    class="alert alert-success d-none">
+</div>
+
+
+
+<form
+    id="editTeacherForm"
+    enctype="multipart/form-data"
+    style="display:none;">
+
 
 <div class="row">
 
+
+<!-- =====================================================
+     TEACHER ID
+===================================================== -->
+
 <div class="col-md-6 mb-3">
 
-<label class="form-label">Teacher ID</label>
+<label class="form-label">
+    Teacher ID
+</label>
 
 <input
-type="text"
-class="form-control"
-value="TCH001"
-readonly>
+    type="text"
+    class="form-control"
+    id="teacherId"
+    readonly>
 
 </div>
 
+
+
+<!-- =====================================================
+     FULL NAME
+===================================================== -->
+
 <div class="col-md-6 mb-3">
 
-<label class="form-label">Employee ID</label>
+<label class="form-label">
+    Full Name
+</label>
 
 <input
-type="text"
-class="form-control"
-value="EMP2001"
-required>
+    type="text"
+    class="form-control"
+    id="teacherName"
+    required>
 
 </div>
 
+
+
+<!-- =====================================================
+     EMAIL
+===================================================== -->
+
 <div class="col-md-6 mb-3">
 
-<label class="form-label">Full Name</label>
+<label class="form-label">
+    Email Address
+</label>
 
 <input
-type="text"
-class="form-control"
-value="Dr. Amit Kumar"
-required>
+    type="email"
+    class="form-control"
+    id="teacherEmail"
+    required>
 
 </div>
 
+
+
+<!-- =====================================================
+     PHONE
+===================================================== -->
+
 <div class="col-md-6 mb-3">
 
-<label class="form-label">Email Address</label>
+<label class="form-label">
+    Mobile Number
+</label>
 
 <input
-type="email"
-class="form-control"
-value="amit.kumar@pwc.edu.in"
-required>
+    type="tel"
+    class="form-control"
+    id="teacherPhone">
 
 </div>
 
-<div class="col-md-6 mb-3">
 
-<label class="form-label">Mobile Number</label>
 
-<input
-type="tel"
-class="form-control"
-value="9876543210"
-required>
-
-</div>
+<!-- =====================================================
+     GENDER
+===================================================== -->
 
 <div class="col-md-6 mb-3">
 
-<label class="form-label">Gender</label>
+<label class="form-label">
+    Gender
+</label>
 
-<select class="form-select" required>
+<select
+    class="form-select"
+    id="teacherGender">
 
-<option selected>Male</option>
+    <option value="">
+        Select Gender
+    </option>
 
-<option>Female</option>
+    <option value="Male">
+        Male
+    </option>
 
-<option>Other</option>
+    <option value="Female">
+        Female
+    </option>
+
+    <option value="Other">
+        Other
+    </option>
 
 </select>
 
 </div>
 
+
+
+<!-- =====================================================
+     DATE OF BIRTH
+===================================================== -->
+
 <div class="col-md-6 mb-3">
 
-<label class="form-label">Date of Birth</label>
+<label class="form-label">
+    Date of Birth
+</label>
 
 <input
-type="date"
-class="form-control"
-value="1988-05-20"
-required>
+    type="date"
+    class="form-control"
+    id="teacherDob">
 
 </div>
 
+
+
+<!-- =====================================================
+     BLOOD GROUP
+===================================================== -->
+
 <div class="col-md-6 mb-3">
 
-<label class="form-label">Department</label>
+<label class="form-label">
+    Blood Group
+</label>
 
-<select class="form-select" required>
+<select
+    class="form-select"
+    id="bloodGroup">
 
-<option selected>Computer Science</option>
+    <option value="">
+        Select Blood Group
+    </option>
 
-<option>Commerce</option>
-
-<option>Physics</option>
-
-<option>Chemistry</option>
-
-<option>Mathematics</option>
-
-<option>English</option>
+    <option value="A+">A+</option>
+    <option value="A-">A-</option>
+    <option value="B+">B+</option>
+    <option value="B-">B-</option>
+    <option value="AB+">AB+</option>
+    <option value="AB-">AB-</option>
+    <option value="O+">O+</option>
+    <option value="O-">O-</option>
 
 </select>
 
 </div>
 
-<div class="col-md-6 mb-3">
 
-<label class="form-label">Qualification</label>
 
-<input
-type="text"
-class="form-control"
-value="Ph.D. in Computer Science"
-required>
-
-</div>
+<!-- =====================================================
+     DEPARTMENT
+===================================================== -->
 
 <div class="col-md-6 mb-3">
 
-<label class="form-label">Experience (Years)</label>
+<label class="form-label">
+    Department
+</label>
 
-<input
-type="number"
-class="form-control"
-value="10"
-required>
+<select
+    class="form-select"
+    id="teacherDepartment"
+    required>
+
+    <option value="">
+        Loading Departments...
+    </option>
+
+</select>
 
 </div>
+
+
+
+<!-- =====================================================
+     DESIGNATION
+===================================================== -->
+
 <div class="col-md-6 mb-3">
 
-<label class="form-label">Salary</label>
+<label class="form-label">
+    Designation
+</label>
 
-<input
-type="number"
-class="form-control"
-value="65000"
-required>
+<select
+    class="form-select"
+    id="teacherDesignation">
+
+    <option value="">
+        Select Designation
+    </option>
+
+    <option value="Professor">
+        Professor
+    </option>
+
+    <option value="Associate Professor">
+        Associate Professor
+    </option>
+
+    <option value="Assistant Professor">
+        Assistant Professor
+    </option>
+
+    <option value="Lecturer">
+        Lecturer
+    </option>
+
+    <option value="Guest Faculty">
+        Guest Faculty
+    </option>
+
+</select>
 
 </div>
+
+
+
+<!-- =====================================================
+     QUALIFICATION
+===================================================== -->
 
 <div class="col-md-6 mb-3">
 
-<label class="form-label">Joining Date</label>
+<label class="form-label">
+    Qualification
+</label>
 
 <input
-type="date"
-class="form-control"
-value="2018-07-10"
-required>
+    type="text"
+    class="form-control"
+    id="teacherQualification">
 
 </div>
+
+
+
+<!-- =====================================================
+     EXPERIENCE
+===================================================== -->
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+    Experience (Years)
+</label>
+
+<input
+    type="number"
+    class="form-control"
+    id="teacherExperience"
+    min="0">
+
+</div>
+
+
+
+<!-- =====================================================
+     SALARY
+===================================================== -->
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+    Salary
+</label>
+
+<input
+    type="number"
+    class="form-control"
+    id="teacherSalary"
+    min="0"
+    step="0.01">
+
+</div>
+
+
+
+<!-- =====================================================
+     JOINING DATE
+===================================================== -->
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+    Joining Date
+</label>
+
+<input
+    type="date"
+    class="form-control"
+    id="joiningDate">
+
+</div>
+
+
+
+<!-- =====================================================
+     STATUS
+===================================================== -->
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+    Status
+</label>
+
+<select
+    class="form-select"
+    id="teacherStatus">
+
+    <option value="active">
+        Active
+    </option>
+
+    <option value="inactive">
+        Inactive
+    </option>
+
+    <option value="on leave">
+        On Leave
+    </option>
+
+</select>
+
+</div>
+
+
+
+<!-- =====================================================
+     USERNAME
+===================================================== -->
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+    Username
+</label>
+
+<input
+    type="text"
+    class="form-control"
+    id="username"
+    readonly>
+
+<small class="text-muted">
+    Username cannot be changed here.
+</small>
+
+</div>
+
+
+
+<!-- =====================================================
+     ADDRESS
+===================================================== -->
 
 <div class="col-12 mb-3">
 
-<label class="form-label">Address</label>
+<label class="form-label">
+    Address
+</label>
 
 <textarea
-class="form-control"
-rows="3"
-required>Patna, Bihar, India</textarea>
+    class="form-control"
+    id="teacherAddress"
+    rows="3"></textarea>
 
 </div>
 
-<div class="col-md-6 mb-3">
 
-<label class="form-label">Username</label>
 
-<input
-type="text"
-class="form-control"
-value="amit.kumar"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Password</label>
-
-<input
-type="password"
-class="form-control"
-value="********"
-required>
-
-</div>
+<!-- =====================================================
+     PHOTO
+===================================================== -->
 
 <div class="col-12 mb-4">
 
-<label class="form-label">Teacher Photo</label>
+<label class="form-label">
+    Teacher Photo
+</label>
 
 <input
-type="file"
-class="form-control"
-id="teacherPhotoInput"
-accept="image/*">
+    type="file"
+    class="form-control"
+    id="teacherPhotoInput"
+    accept="image/*">
+
 
 <div class="text-center mt-3">
 
 <img
-src="../../images/default-profile.png"
-id="teacherPhotoPreview"
-alt="Teacher Photo"
-class="rounded-circle border shadow"
-style="width:150px;height:150px;object-fit:cover;">
+    src="../../images/default-profile.png"
+    id="teacherPhotoPreview"
+    alt="Teacher Photo"
+    class="rounded-circle border shadow"
+    style="
+        width:150px;
+        height:150px;
+        object-fit:cover;
+    ">
 
 </div>
 
 </div>
 
+
+
 </div>
+
+
+
+<!-- =====================================================
+     BUTTONS
+===================================================== -->
 
 <div class="d-flex justify-content-end mt-3">
 
+
 <button
-type="reset"
-class="btn btn-secondary me-3">
+    type="button"
+    class="btn btn-secondary me-3"
+    onclick="window.location.href='teacher-list.html'">
 
-<i class="fa-solid fa-rotate-left"></i>
+    <i class="fa-solid fa-arrow-left"></i>
 
-Reset
+    Cancel
 
 </button>
 
+
 <button
-type="submit"
-class="btn btn-primary">
+    type="submit"
+    class="btn btn-primary"
+    id="updateTeacherBtn">
 
-<i class="fa-solid fa-floppy-disk"></i>
+    <i class="fa-solid fa-floppy-disk"></i>
 
-Update Teacher
+    Update Teacher
 
 </button>
+
 
 </div>
+
 
 </form>
 
+
 </div>
-<!-- ================= Bootstrap JS ================= -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../js/dashboard.js"></script>
-<!-- ================= JavaScript ================= -->
+</div>
 
-<script>
+</div>
 
-// ================= Teacher Photo Preview =================
-
-const teacherPhotoInput = document.getElementById("teacherPhotoInput");
-const teacherPhotoPreview = document.getElementById("teacherPhotoPreview");
-
-if(teacherPhotoInput){
-
-teacherPhotoInput.addEventListener("change", function(){
-
-const file = this.files[0];
-
-if(file){
-
-const reader = new FileReader();
-
-reader.onload = function(e){
-
-teacherPhotoPreview.src = e.target.result;
-
-};
-
-reader.readAsDataURL(file);
-
-}
-
-});
-
-}
-
-// ================= Form Validation =================
-
-const teacherForm = document.getElementById("editTeacherForm");
-
-if(teacherForm){
-
-teacherForm.addEventListener("submit", function(e){
-
-e.preventDefault();
-
-const requiredFields = teacherForm.querySelectorAll("input[required], textarea[required], select[required]");
-
-let isValid = true;
-
-requiredFields.forEach(function(field){
-
-if(field.value.trim() === ""){
-
-field.classList.add("is-invalid");
-field.classList.remove("is-valid");
-
-isValid = false;
-
-}else{
-
-field.classList.remove("is-invalid");
-field.classList.add("is-valid");
-
-}
-
-});
-
-if(!isValid){
-
-alert("Please fill all required fields.");
-
-return;
-
-}
-
-// ================= Success Modal =================
-
-const modal = new bootstrap.Modal(document.getElementById("updateTeacherModal"));
-
-modal.show();
-
-});
-
-}
-
-// ================= Reset Form =================
-
-teacherForm.addEventListener("reset", function(){
-
-setTimeout(function(){
-
-document.querySelectorAll(".is-valid, .is-invalid").forEach(function(field){
-
-field.classList.remove("is-valid");
-field.classList.remove("is-invalid");
-
-});
-
-teacherPhotoPreview.src = "../../images/default-profile.png";
-
-},100);
-
-});
-
-</script>
 
 </main>
 
 </div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+
+<script>
+
+
+// ============================================================
+// API
+// ============================================================
+
+const TEACHER_API =
+    "http://127.0.0.1:5000/api/teachers";
+
+
+const DEPARTMENT_API =
+    "http://127.0.0.1:5000/api/academic-events/departments";
+
+
+let teacherDatabaseId =
+    null;
+
+
+
+// ============================================================
+// START
+// ============================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
+
+
+        setupTheme();
+
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        teacherDatabaseId =
+            params.get("id");
+
+
+        if (!teacherDatabaseId) {
+
+
+            showLoadError(
+                "Teacher ID is missing."
+            );
+
+
+            return;
+
+        }
+
+
+        try {
+
+
+            await loadDepartments();
+
+            await loadTeacher();
+
+
+        }
+
+        catch (error) {
+
+
+            console.error(
+                "Teacher Load Error:",
+                error
+            );
+
+
+            showLoadError(
+                error.message ||
+                "Failed to load teacher details."
+            );
+
+
+        }
+
+
+        setupPhotoPreview();
+
+        setupUpdateForm();
+
+
+    }
+);
+
+
+
+// ============================================================
+// LOAD DEPARTMENTS
+// ============================================================
+
+async function loadDepartments() {
+
+
+    const departmentSelect =
+        document.getElementById(
+            "teacherDepartment"
+        );
+
+
+    const response =
+        await fetch(
+            DEPARTMENT_API
+        );
+
+
+    const result =
+        await response.json();
+
+
+    if (
+        !response.ok ||
+        result.success === false
+    ) {
+
+
+        throw new Error(
+            result.message ||
+            "Unable to load departments."
+        );
+
+
+    }
+
+
+    const departments =
+        Array.isArray(result)
+            ? result
+            : (
+                Array.isArray(result.data)
+                    ? result.data
+                    : []
+            );
+
+
+    departmentSelect.innerHTML = `
+
+        <option value="">
+            Select Department
+        </option>
+
+    `;
+
+
+    departments.forEach(
+        function (department) {
+
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                String(
+                    department.id
+                );
+
+
+            option.textContent =
+                department.name;
+
+
+            departmentSelect.appendChild(
+                option
+            );
+
+
+        }
+    );
+
+
+}
+
+
+
+// ============================================================
+// LOAD CURRENT TEACHER
+// ============================================================
+
+async function loadTeacher() {
+
+
+    const response =
+        await fetch(
+
+            TEACHER_API +
+            "/" +
+            encodeURIComponent(
+                teacherDatabaseId
+            )
+
+        );
+
+
+    const result =
+        await response.json();
+
+
+    if (
+        !response.ok ||
+        result.success === false
+    ) {
+
+
+        throw new Error(
+            result.message ||
+            "Unable to load teacher."
+        );
+
+
+    }
+
+
+    const teacher =
+        result.data;
+
+
+    if (!teacher) {
+
+
+        throw new Error(
+            "Teacher data not found."
+        );
+
+
+    }
+
+
+
+    // ========================================================
+    // FILL FORM
+    // ========================================================
+
+    document.getElementById(
+        "teacherId"
+    ).value =
+        teacher.teacher_code ||
+        "";
+
+
+    document.getElementById(
+        "teacherName"
+    ).value =
+        teacher.full_name ||
+        "";
+
+
+    document.getElementById(
+        "teacherEmail"
+    ).value =
+        teacher.email ||
+        "";
+
+
+    document.getElementById(
+        "teacherPhone"
+    ).value =
+        teacher.phone ||
+        "";
+
+
+    document.getElementById(
+        "teacherGender"
+    ).value =
+        teacher.gender ||
+        "";
+
+
+    document.getElementById(
+        "teacherDob"
+    ).value =
+        teacher.dob ||
+        "";
+
+
+    document.getElementById(
+        "bloodGroup"
+    ).value =
+        teacher.blood_group ||
+        "";
+
+
+    document.getElementById(
+        "teacherDepartment"
+    ).value =
+        teacher.department_id
+            ? String(
+                teacher.department_id
+            )
+            : "";
+
+
+    document.getElementById(
+        "teacherDesignation"
+    ).value =
+        teacher.designation ||
+        "";
+
+
+    document.getElementById(
+        "teacherQualification"
+    ).value =
+        teacher.qualification ||
+        "";
+
+
+    document.getElementById(
+        "teacherExperience"
+    ).value =
+        teacher.experience_years ??
+        "";
+
+
+    document.getElementById(
+        "teacherSalary"
+    ).value =
+        teacher.salary ??
+        "";
+
+
+    document.getElementById(
+        "joiningDate"
+    ).value =
+        teacher.joining_date ||
+        "";
+
+
+    document.getElementById(
+        "teacherStatus"
+    ).value =
+        String(
+            teacher.status ||
+            "active"
+        ).toLowerCase();
+
+
+    document.getElementById(
+        "username"
+    ).value =
+        teacher.username ||
+        "";
+
+
+    document.getElementById(
+        "teacherAddress"
+    ).value =
+        teacher.address ||
+        "";
+
+
+
+    // ========================================================
+    // PHOTO
+    // ========================================================
+
+    const photoPreview =
+        document.getElementById(
+            "teacherPhotoPreview"
+        );
+
+
+    if (
+        teacher.photo_url
+    ) {
+
+
+        let photoUrl =
+            String(
+                teacher.photo_url
+            ).replaceAll(
+                "\\",
+                "/"
+            );
+
+
+        if (
+            photoUrl.startsWith(
+                "http://"
+            ) ||
+            photoUrl.startsWith(
+                "https://"
+            )
+        ) {
+
+
+            photoPreview.src =
+                photoUrl;
+
+
+        }
+
+        else if (
+            photoUrl.startsWith("/")
+        ) {
+
+
+            photoPreview.src =
+                "http://127.0.0.1:5000" +
+                photoUrl;
+
+
+        }
+
+        else {
+
+
+            photoPreview.src =
+                "http://127.0.0.1:5000/" +
+                photoUrl;
+
+
+        }
+
+
+    }
+
+
+    photoPreview.onerror =
+        function () {
+
+
+            this.onerror =
+                null;
+
+
+            this.src =
+                "../../images/default-profile.png";
+
+
+        };
+
+
+
+    // ========================================================
+    // SHOW FORM
+    // ========================================================
+
+    document.getElementById(
+        "loadingMessage"
+    ).classList.add(
+        "d-none"
+    );
+
+
+    document.getElementById(
+        "editTeacherForm"
+    ).style.display =
+        "block";
+
+
+}
+
+
+
+// ============================================================
+// PHOTO PREVIEW
+// ============================================================
+
+function setupPhotoPreview() {
+
+
+    const input =
+        document.getElementById(
+            "teacherPhotoInput"
+        );
+
+
+    const preview =
+        document.getElementById(
+            "teacherPhotoPreview"
+        );
+
+
+    input.addEventListener(
+        "change",
+        function () {
+
+
+            const file =
+                input.files[0];
+
+
+            if (!file) {
+
+                return;
+
+            }
+
+
+            if (
+                !file.type.startsWith(
+                    "image/"
+                )
+            ) {
+
+
+                alert(
+                    "Please select a valid image."
+                );
+
+
+                input.value =
+                    "";
+
+
+                return;
+
+            }
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function (event) {
+
+
+                    preview.src =
+                        event.target.result;
+
+
+                };
+
+
+            reader.readAsDataURL(
+                file
+            );
+
+
+        }
+    );
+
+
+}
+
+
+
+// ============================================================
+// UPDATE TEACHER
+// ============================================================
+
+function setupUpdateForm() {
+
+
+    const form =
+        document.getElementById(
+            "editTeacherForm"
+        );
+
+
+    form.addEventListener(
+        "submit",
+        async function (event) {
+
+
+            event.preventDefault();
+
+
+            hideMessages();
+
+
+            const button =
+                document.getElementById(
+                    "updateTeacherBtn"
+                );
+
+
+            // =================================================
+            // CORRECT BACKEND FIELD NAMES
+            // =================================================
+
+            const formData =
+                new FormData();
+
+
+            formData.append(
+                "teacher_code",
+                document.getElementById(
+                    "teacherId"
+                ).value.trim()
+            );
+
+
+            formData.append(
+                "full_name",
+                document.getElementById(
+                    "teacherName"
+                ).value.trim()
+            );
+
+
+            formData.append(
+                "email",
+                document.getElementById(
+                    "teacherEmail"
+                ).value.trim()
+            );
+
+
+            formData.append(
+                "phone",
+                document.getElementById(
+                    "teacherPhone"
+                ).value.trim()
+            );
+
+
+            formData.append(
+                "gender",
+                document.getElementById(
+                    "teacherGender"
+                ).value
+            );
+
+
+            formData.append(
+                "dob",
+                document.getElementById(
+                    "teacherDob"
+                ).value
+            );
+
+
+            formData.append(
+                "blood_group",
+                document.getElementById(
+                    "bloodGroup"
+                ).value
+            );
+
+
+            formData.append(
+                "department_id",
+                document.getElementById(
+                    "teacherDepartment"
+                ).value
+            );
+
+
+            formData.append(
+                "designation",
+                document.getElementById(
+                    "teacherDesignation"
+                ).value
+            );
+
+
+            formData.append(
+                "qualification",
+                document.getElementById(
+                    "teacherQualification"
+                ).value.trim()
+            );
+
+
+            formData.append(
+                "experience_years",
+                document.getElementById(
+                    "teacherExperience"
+                ).value || "0"
+            );
+
+
+            formData.append(
+                "salary",
+                document.getElementById(
+                    "teacherSalary"
+                ).value
+            );
+
+
+            formData.append(
+                "joining_date",
+                document.getElementById(
+                    "joiningDate"
+                ).value
+            );
+
+
+            formData.append(
+                "status",
+                document.getElementById(
+                    "teacherStatus"
+                ).value
+            );
+
+
+            formData.append(
+                "address",
+                document.getElementById(
+                    "teacherAddress"
+                ).value.trim()
+            );
+
+
+
+            // =================================================
+            // OPTIONAL NEW PHOTO
+            // =================================================
+
+            const photoInput =
+                document.getElementById(
+                    "teacherPhotoInput"
+                );
+
+
+            if (
+                photoInput.files.length >
+                0
+            ) {
+
+
+                formData.append(
+                    "photo",
+                    photoInput.files[0]
+                );
+
+
+            }
+
+
+
+            // =================================================
+            // BUTTON LOADING
+            // =================================================
+
+            button.disabled =
+                true;
+
+
+            button.innerHTML = `
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                Updating...
+
+            `;
+
+
+
+            try {
+
+
+                const response =
+                    await fetch(
+
+                        TEACHER_API +
+                        "/" +
+                        encodeURIComponent(
+                            teacherDatabaseId
+                        ),
+
+                        {
+
+                            method:
+                                "PUT",
+
+                            body:
+                                formData
+
+                        }
+
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    result.success === false
+                ) {
+
+
+                    throw new Error(
+                        result.message ||
+                        result.error ||
+                        "Failed to update teacher."
+                    );
+
+
+                }
+
+
+
+                showSuccess(
+                    result.message ||
+                    "Teacher updated successfully!"
+                );
+
+
+                setTimeout(
+                    function () {
+
+
+                        window.location.href =
+                            "teacher-list.html";
+
+
+                    },
+                    900
+                );
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(
+                    "Update Teacher Error:",
+                    error
+                );
+
+
+                showError(
+                    error.message ||
+                    "Failed to update teacher."
+                );
+
+
+            }
+
+            finally {
+
+
+                button.disabled =
+                    false;
+
+
+                button.innerHTML = `
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Update Teacher
+
+                `;
+
+
+            }
+
+
+        }
+    );
+
+
+}
+
+
+
+// ============================================================
+// MESSAGES
+// ============================================================
+
+function showLoadError(
+    message
+) {
+
+
+    document.getElementById(
+        "loadingMessage"
+    ).classList.add(
+        "d-none"
+    );
+
+
+    showError(
+        message
+    );
+
+
+}
+
+
+
+function showError(
+    message
+) {
+
+
+    const errorBox =
+        document.getElementById(
+            "errorMessage"
+        );
+
+
+    errorBox.textContent =
+        message;
+
+
+    errorBox.classList.remove(
+        "d-none"
+    );
+
+
+}
+
+
+
+function showSuccess(
+    message
+) {
+
+
+    const successBox =
+        document.getElementById(
+            "successMessage"
+        );
+
+
+    successBox.textContent =
+        message;
+
+
+    successBox.classList.remove(
+        "d-none"
+    );
+
+
+}
+
+
+
+function hideMessages() {
+
+
+    document.getElementById(
+        "errorMessage"
+    ).classList.add(
+        "d-none"
+    );
+
+
+    document.getElementById(
+        "successMessage"
+    ).classList.add(
+        "d-none"
+    );
+
+
+}
+
+
+
+// ============================================================
+// DARK MODE
+// ============================================================
+
+function setupTheme() {
+
+
+    const button =
+        document.getElementById(
+            "themeToggle"
+        );
+
+
+    const savedTheme =
+        localStorage.getItem(
+            "fmpsTheme"
+        );
+
+
+    if (
+        savedTheme === "dark"
+    ) {
+
+
+        document.body.classList.add(
+            "dark"
+        );
+
+
+    }
+
+
+    updateThemeIcon();
+
+
+    button.addEventListener(
+        "click",
+        function () {
+
+
+            document.body.classList.toggle(
+                "dark"
+            );
+
+
+            const dark =
+                document.body.classList.contains(
+                    "dark"
+                );
+
+
+            localStorage.setItem(
+                "fmpsTheme",
+                dark
+                    ? "dark"
+                    : "light"
+            );
+
+
+            updateThemeIcon();
+
+
+        }
+    );
+
+
+}
+
+
+
+function updateThemeIcon() {
+
+
+    const icon =
+        document.querySelector(
+            "#themeToggle i"
+        );
+
+
+    if (!icon) {
+
+        return;
+
+    }
+
+
+    icon.className =
+        document.body.classList.contains(
+            "dark"
+        )
+            ? "fa-solid fa-sun"
+            : "fa-solid fa-moon";
+
+
+}
+
+
+</script>
+
 
 </body>
 

@@ -3862,9 +3862,11 @@ input:focus-visible{
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
 </script>
 <!-- =========================================================
-                    PART 3 JAVASCRIPT
-     Isko Bootstrap JS ke BAAD aur </body> se PEHLE paste karo
+                    FACE LOGIN JAVASCRIPT
 ========================================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+<script src="../../js/api.js"></script>
 
 <script>
 
@@ -3931,7 +3933,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-                    RECOGNIZED admin
+                    RECOGNIZED ADMIN
     ===================================================== */
 
     const recognitionWaiting =
@@ -3967,10 +3969,17 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     let cameraStream = null;
-
     let cameraStarted = false;
-
     let scanning = false;
+    let faceModelsReady = false;
+
+
+    /* =====================================================
+                    FACE AI MODEL
+    ===================================================== */
+
+    const FACE_MODEL_URL =
+        "https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@a86f011d72124e5fb93e59d5c4ab98f699dd5c9c/weights";
 
 
     /* =====================================================
@@ -3979,12 +3988,71 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function setStatus(element, text, className) {
 
-        if (!element) return;
+        if (!element) {
+            return;
+        }
 
         element.textContent = text;
-
         element.className =
             "status-badge " + className;
+    }
+
+
+    /* =====================================================
+                    LOAD FACE MODELS
+    ===================================================== */
+
+    async function loadFaceModels() {
+
+        try {
+
+            setStatus(
+                aiRecognitionStatus,
+                "Loading AI...",
+                "status-waiting"
+            );
+
+            await Promise.all([
+
+                faceapi.nets.tinyFaceDetector
+                    .loadFromUri(FACE_MODEL_URL),
+
+                faceapi.nets.faceLandmark68Net
+                    .loadFromUri(FACE_MODEL_URL),
+
+                faceapi.nets.faceRecognitionNet
+                    .loadFromUri(FACE_MODEL_URL)
+
+            ]);
+
+            faceModelsReady = true;
+
+            setStatus(
+                aiRecognitionStatus,
+                "Ready",
+                "status-success"
+            );
+
+            console.log(
+                "Face Login AI models loaded successfully."
+            );
+
+        }
+        catch (error) {
+
+            console.error(
+                "Face model loading error:",
+                error
+            );
+
+            faceModelsReady = false;
+
+            setStatus(
+                aiRecognitionStatus,
+                "Model Error",
+                "status-failed"
+            );
+        }
     }
 
 
@@ -4008,11 +4076,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-
-            /* ---------------------------------------------
-                        REQUEST CAMERA
-            --------------------------------------------- */
-
             cameraStream =
                 await navigator.mediaDevices.getUserMedia({
 
@@ -4027,52 +4090,26 @@ document.addEventListener("DOMContentLoaded", function () {
                         height: {
                             ideal: 720
                         }
-
                     },
 
                     audio: false
-
                 });
 
-
-            /* ---------------------------------------------
-                        SHOW CAMERA
-            --------------------------------------------- */
-
             video.srcObject = cameraStream;
-
             await video.play();
 
             video.style.display = "block";
-
             scannerPlaceholder.style.display = "none";
-
             liveCameraBadge.style.display = "flex";
-
             videoFaceFrame.style.display = "block";
-
             videoScanLine.style.display = "none";
-
 
             cameraStarted = true;
 
-
-            /* ---------------------------------------------
-                        BUTTONS
-            --------------------------------------------- */
-
             startCameraBtn.disabled = true;
-
             scanFaceBtn.disabled = false;
-
             retryFaceBtn.disabled = false;
-
             stopCameraBtn.disabled = false;
-
-
-            /* ---------------------------------------------
-                        STATUS
-            --------------------------------------------- */
 
             setStatus(
                 cameraStatus,
@@ -4080,27 +4117,35 @@ document.addEventListener("DOMContentLoaded", function () {
                 "status-success"
             );
 
-
             setStatus(
                 faceDetectionStatus,
                 "Ready",
                 "status-waiting"
             );
 
+            if (faceModelsReady) {
 
-            setStatus(
-                aiRecognitionStatus,
-                "Pending",
-                "status-pending"
-            );
+                setStatus(
+                    aiRecognitionStatus,
+                    "Ready",
+                    "status-success"
+                );
 
+            }
+            else {
+
+                setStatus(
+                    aiRecognitionStatus,
+                    "Loading AI...",
+                    "status-waiting"
+                );
+            }
 
             setStatus(
                 roleVerificationStatus,
                 "Pending",
                 "status-pending"
             );
-
 
             setStatus(
                 authenticationStatus,
@@ -4109,7 +4154,6 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
         }
-
         catch (error) {
 
             console.error(
@@ -4117,26 +4161,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 error
             );
 
-
             setStatus(
                 cameraStatus,
                 "Denied",
                 "status-failed"
             );
 
-
             alert(
                 "Camera permission denied.\n\nPlease allow camera permission and try again."
             );
-
         }
-
     }
 
-
-    /* =====================================================
-                    START CAMERA BUTTON
-    ===================================================== */
 
     startCameraBtn.addEventListener(
         "click",
@@ -4155,61 +4191,35 @@ document.addEventListener("DOMContentLoaded", function () {
             cameraStream
                 .getTracks()
                 .forEach(function (track) {
-
                     track.stop();
-
                 });
-
         }
 
-
         cameraStream = null;
-
         video.srcObject = null;
-
         video.style.display = "none";
-
 
         scannerPlaceholder.style.display =
             "flex";
 
-
         liveCameraBadge.style.display =
             "none";
-
 
         videoFaceFrame.style.display =
             "none";
 
-
         videoScanLine.style.display =
             "none";
 
-
         cameraStarted = false;
-
         scanning = false;
 
-
-        /* ---------------------------------------------
-                        BUTTONS
-        --------------------------------------------- */
-
         startCameraBtn.disabled = false;
-
         scanFaceBtn.disabled = true;
-
         retryFaceBtn.disabled = true;
-
         stopCameraBtn.disabled = true;
 
-
-        /* ---------------------------------------------
-                        STATUS
-        --------------------------------------------- */
-
         resetStatus();
-
     }
 
 
@@ -4220,85 +4230,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-                    CAPTURE CAMERA FRAME
-    ===================================================== */
-
-    function captureCameraImage() {
-
-        if (
-            !video.videoWidth ||
-            !video.videoHeight
-        ) {
-
-            return null;
-
-        }
-
-
-        canvas.width =
-            video.videoWidth;
-
-
-        canvas.height =
-            video.videoHeight;
-
-
-        const ctx =
-            canvas.getContext("2d");
-
-
-        /*
-            Video preview mirror hai.
-            Capture ko bhi same orientation me
-            draw kar rahe hain.
-        */
-
-        ctx.save();
-
-
-        ctx.translate(
-            canvas.width,
-            0
-        );
-
-
-        ctx.scale(
-            -1,
-            1
-        );
-
-
-        ctx.drawImage(
-
-            video,
-
-            0,
-            0,
-
-            canvas.width,
-            canvas.height
-
-        );
-
-
-        ctx.restore();
-
-
-        return canvas.toDataURL(
-            "image/jpeg",
-            0.90
-        );
-
-    }
-
-
-    /* =====================================================
-                        SCAN FACE
+                    REAL FACE LOGIN
     ===================================================== */
 
     scanFaceBtn.addEventListener(
         "click",
-        function () {
+        async function () {
 
             if (!cameraStarted) {
 
@@ -4307,41 +4244,32 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
                 return;
-
             }
 
+            if (!faceModelsReady) {
 
-            if (scanning) {
+                alert(
+                    "AI face models are still loading. Please wait a moment."
+                );
 
                 return;
-
             }
 
+            if (scanning) {
+                return;
+            }
 
             scanning = true;
-
             scanFaceBtn.disabled = true;
-
-
-            /* ---------------------------------------------
-                        RESET OLD RESULT
-            --------------------------------------------- */
 
             recognitionWaiting.style.display =
                 "flex";
 
-
             recognizedResult.style.display =
                 "none";
 
-
-            /* ---------------------------------------------
-                        START SCANNING
-            --------------------------------------------- */
-
             videoScanLine.style.display =
                 "block";
-
 
             setStatus(
                 faceDetectionStatus,
@@ -4349,13 +4277,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 "status-waiting"
             );
 
-
             setStatus(
                 aiRecognitionStatus,
                 "Processing...",
                 "status-waiting"
             );
-
 
             setStatus(
                 roleVerificationStatus,
@@ -4363,127 +4289,276 @@ document.addEventListener("DOMContentLoaded", function () {
                 "status-waiting"
             );
 
-
             setStatus(
                 authenticationStatus,
                 "Verifying...",
                 "status-waiting"
             );
 
+            try {
 
-            /* ---------------------------------------------
-                        CAPTURE IMAGE
-            --------------------------------------------- */
+                const detections =
+                    await faceapi
+                        .detectAllFaces(
+                            video,
+                            new faceapi.TinyFaceDetectorOptions({
+                                inputSize: 320,
+                                scoreThreshold: 0.5
+                            })
+                        )
+                        .withFaceLandmarks()
+                        .withFaceDescriptors();
 
-            const capturedImage =
-                captureCameraImage();
+                if (detections.length === 0) {
 
+                    throw new Error(
+                        "No face detected. Please position your face clearly inside the frame."
+                    );
+                }
 
-            if (!capturedImage) {
+                if (detections.length > 1) {
 
-                scanning = false;
+                    throw new Error(
+                        "Multiple faces detected. Only one person should be visible."
+                    );
+                }
 
-                scanFaceBtn.disabled = false;
+                setStatus(
+                    faceDetectionStatus,
+                    "Detected",
+                    "status-success"
+                );
+
+                setStatus(
+                    aiRecognitionStatus,
+                    "Matching...",
+                    "status-waiting"
+                );
+
+                const descriptor =
+                    Array.from(
+                        detections[0].descriptor
+                    );
+
+                /* =============================================
+                        PUBLIC FACE LOGIN REQUEST
+                ============================================= */
+
+                const response =
+                    await fetch(
+                        "http://127.0.0.1:5000/api/auth/face/login",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Accept": "application/json",
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                descriptor: descriptor
+                            })
+                        }
+                    );
+
+                const result =
+                    await response
+                        .json()
+                        .catch(function () {
+                            return {};
+                        });
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        result.message ||
+                        "Face could not be recognized."
+                    );
+                }
+
+                const data =
+                    result.data || {};
+
+                if (
+                    !data.user ||
+                    !data.access_token
+                ) {
+
+                    throw new Error(
+                        "Invalid Face Login response."
+                    );
+                }
+
+                const user =
+                    data.user;
+
+                if (
+                    String(user.role)
+                        .toLowerCase() !== "admin"
+                ) {
+
+                    throw new Error(
+                        "Access denied. Recognized user is not an Admin."
+                    );
+                }
+
+                setStatus(
+                    aiRecognitionStatus,
+                    "Recognized",
+                    "status-success"
+                );
+
+                setStatus(
+                    roleVerificationStatus,
+                    "Verified",
+                    "status-success"
+                );
+
+                setStatus(
+                    authenticationStatus,
+                    "Authenticated",
+                    "status-success"
+                );
+
+                /* =============================================
+                        SAVE REAL JWT LOGIN
+                ============================================= */
+
+                if (
+                    typeof API !== "undefined" &&
+                    API.store
+                ) {
+
+                    API.store.token =
+                        data.access_token;
+
+                    API.store.user =
+                        user;
+                }
+                else {
+
+                    localStorage.setItem(
+                        "fmps_access_token",
+                        data.access_token
+                    );
+
+                    localStorage.setItem(
+                        "fmps_user",
+                        JSON.stringify(user)
+                    );
+                }
+
+                /* =============================================
+                        DISPLAY DATA
+                ============================================= */
+
+                const profile =
+                    user.profile || {};
+
+                const adminName =
+                    profile.full_name ||
+                    user.username ||
+                    user.email ||
+                    "Administrator";
+
+                let department =
+                    "Administration";
+
+                if (profile.department) {
+
+                    if (
+                        typeof profile.department ===
+                        "object"
+                    ) {
+
+                        department =
+                            profile.department.name ||
+                            "Administration";
+                    }
+                    else {
+
+                        department =
+                            profile.department;
+                    }
+                }
+                else if (
+                    profile.department_name
+                ) {
+
+                    department =
+                        profile.department_name;
+                }
+
+                let photo =
+                    "../../images/default-profile.png";
+
+                if (profile.photo_url) {
+
+                    if (
+                        profile.photo_url
+                            .startsWith("http")
+                    ) {
+
+                        photo =
+                            profile.photo_url;
+                    }
+                    else {
+
+                        photo =
+                            "http://127.0.0.1:5000" +
+                            profile.photo_url;
+                    }
+                }
+
+                const admin = {
+                    id: user.id,
+                    name: adminName,
+                    role: user.role,
+                    department: department,
+                    photo: photo
+                };
+
+                processRecognition(
+                    admin
+                );
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Face Login Error:",
+                    error
+                );
 
                 videoScanLine.style.display =
                     "none";
 
-
-                alert(
-                    "Unable to capture image. Please try again."
+                setStatus(
+                    aiRecognitionStatus,
+                    "Not Recognized",
+                    "status-failed"
                 );
 
-                return;
+                setStatus(
+                    roleVerificationStatus,
+                    "Failed",
+                    "status-failed"
+                );
 
+                setStatus(
+                    authenticationStatus,
+                    "Authentication Failed",
+                    "status-failed"
+                );
+
+                alert(
+                    error.message ||
+                    "Face could not be recognized."
+                );
             }
+            finally {
 
-
-            /*
-            =================================================
-                    FRONTEND DEMO RECOGNITION
-
-            Abhi actual AI backend connected nahi hai.
-
-            Isliye 2.5 seconds baad demo admin
-            recognize hoga.
-
-            Later Python/OpenCV/CNN backend connect
-            karte waqt is setTimeout ko API call se
-            replace karna hai.
-            =================================================
-            */
-
-
-            setTimeout(
-                function () {
-
-
-                    /* -------------------------------------
-                        FACE DETECTED
-                    ------------------------------------- */
-
-                    setStatus(
-                        faceDetectionStatus,
-                        "Detected",
-                        "status-success"
-                    );
-
-
-                    /* -------------------------------------
-                        AI PROCESSING
-                    ------------------------------------- */
-
-                    setStatus(
-                        aiRecognitionStatus,
-                        "Matching...",
-                        "status-waiting"
-                    );
-
-
-                    setTimeout(
-                        function () {
-
-
-                            /* =============================
-                                DEMO admin
-                            ============================= */
-
-                            const admin = {
-
-                                id: "TCH001",
-
-                                name:
-                                    "Dr. Priya Sharma",
-
-                                role:
-                                    "admin",
-
-                                department:
-                                    "Computer Science",
-
-                                confidence:
-                                    97.4,
-
-                                photo:
-                                    "https://i.pravatar.cc/300?img=47"
-
-                            };
-
-
-                            processRecognition(
-                                admin
-                            );
-
-
-                        },
-                        1000
-                    );
-
-
-                },
-                1500
-            );
-
+                scanning = false;
+                scanFaceBtn.disabled = false;
+            }
         }
     );
 
@@ -4497,21 +4572,11 @@ document.addEventListener("DOMContentLoaded", function () {
         videoScanLine.style.display =
             "none";
 
-
-        /* ---------------------------------------------
-                    AI RECOGNIZED
-        --------------------------------------------- */
-
         setStatus(
             aiRecognitionStatus,
             "Recognized",
             "status-success"
         );
-
-
-        /* ---------------------------------------------
-                    ROLE CHECK
-        --------------------------------------------- */
 
         if (
             !admin.role ||
@@ -4525,28 +4590,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 "status-failed"
             );
 
-
             setStatus(
                 authenticationStatus,
                 "Access Denied",
                 "status-failed"
             );
 
-
-            scanning = false;
-
-            scanFaceBtn.disabled = false;
-
-
             alert(
-                "Access denied. Recognized account is not a admin."
+                "Access denied. Recognized account is not an Admin."
             );
 
-
             return;
-
         }
-
 
         setStatus(
             roleVerificationStatus,
@@ -4554,117 +4609,65 @@ document.addEventListener("DOMContentLoaded", function () {
             "status-success"
         );
 
-
-        /* ---------------------------------------------
-                    CONFIDENCE CHECK
-        --------------------------------------------- */
-
-        if (
-            Number(admin.confidence) < 85
-        ) {
-
-            setStatus(
-                authenticationStatus,
-                "Low Confidence",
-                "status-failed"
-            );
-
-
-            scanning = false;
-
-            scanFaceBtn.disabled = false;
-
-
-            alert(
-                "Recognition confidence is too low. Please scan again."
-            );
-
-
-            return;
-
-        }
-
-
-        /* ---------------------------------------------
-                    AUTHENTICATED
-        --------------------------------------------- */
-
         setStatus(
             authenticationStatus,
             "Authenticated",
             "status-success"
         );
 
-
         displayRecognizedadmin(
             admin
         );
-
-
-        scanning = false;
-
-        scanFaceBtn.disabled = false;
-
     }
 
 
     /* =====================================================
-                    DISPLAY admin
+                    DISPLAY ADMIN
     ===================================================== */
 
-    function displayRecognizedadmin(
-        admin
-    ) {
+    function displayRecognizedadmin(admin) {
 
         recognitionWaiting.style.display =
             "none";
 
-
         recognizedResult.style.display =
             "block";
-
 
         recognizedadminPhoto.src =
             admin.photo;
 
+        recognizedadminPhoto.onerror =
+            function () {
+
+                this.onerror = null;
+                this.src =
+                    "../../images/default-profile.png";
+            };
 
         recognizedadminName.textContent =
             admin.name;
 
-
         recognizedadminRole.textContent =
-            "Faculty Member";
-
+            "Administrator";
 
         recognizedadminId.textContent =
             admin.id;
 
-
         recognizedDepartment.textContent =
             admin.department;
 
-
         /* ---------------------------------------------
-                    CONFIDENCE
+                    VERIFIED STATUS
         --------------------------------------------- */
 
-        const confidence =
-            Number(admin.confidence);
-
-
         confidenceText.textContent =
-            confidence.toFixed(1) + "%";
-
+            "Verified";
 
         confidenceProgress.style.width =
-            Math.min(
-                confidence,
-                100
-            ) + "%";
-
+            "100%";
 
         /* ---------------------------------------------
-                SAVE LOGIN DEMO DATA
+                SAVE FACE LOGIN SESSION
         --------------------------------------------- */
 
         sessionStorage.setItem(
@@ -4672,24 +4675,20 @@ document.addEventListener("DOMContentLoaded", function () {
             "true"
         );
 
-
         sessionStorage.setItem(
             "adminName",
             admin.name
         );
-
 
         sessionStorage.setItem(
             "adminId",
             admin.id
         );
 
-
         sessionStorage.setItem(
             "adminDepartment",
             admin.department
         );
-
     }
 
 
@@ -4700,9 +4699,7 @@ document.addEventListener("DOMContentLoaded", function () {
     retryFaceBtn.addEventListener(
         "click",
         function () {
-
             resetScanner();
-
         }
     );
 
@@ -4712,17 +4709,17 @@ document.addEventListener("DOMContentLoaded", function () {
         videoScanLine.style.display =
             "none";
 
-
         recognitionWaiting.style.display =
             "flex";
-
 
         recognizedResult.style.display =
             "none";
 
-
         scanning = false;
 
+        sessionStorage.removeItem(
+            "adminFaceAuthenticated"
+        );
 
         if (cameraStarted) {
 
@@ -4732,19 +4729,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 "status-success"
             );
 
-
             setStatus(
                 faceDetectionStatus,
                 "Ready",
                 "status-waiting"
             );
 
-
             scanFaceBtn.disabled =
                 false;
-
         }
-
         else {
 
             setStatus(
@@ -4753,22 +4746,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 "status-offline"
             );
 
-
             setStatus(
                 faceDetectionStatus,
                 "Waiting...",
                 "status-waiting"
             );
-
         }
 
+        if (faceModelsReady) {
 
-        setStatus(
-            aiRecognitionStatus,
-            "Pending",
-            "status-pending"
-        );
+            setStatus(
+                aiRecognitionStatus,
+                "Ready",
+                "status-success"
+            );
+        }
+        else {
 
+            setStatus(
+                aiRecognitionStatus,
+                "Loading AI...",
+                "status-waiting"
+            );
+        }
 
         setStatus(
             roleVerificationStatus,
@@ -4776,13 +4776,11 @@ document.addEventListener("DOMContentLoaded", function () {
             "status-pending"
         );
 
-
         setStatus(
             authenticationStatus,
             "Not Authenticated",
             "status-failed"
         );
-
     }
 
 
@@ -4798,20 +4796,28 @@ document.addEventListener("DOMContentLoaded", function () {
             "status-offline"
         );
 
-
         setStatus(
             faceDetectionStatus,
             "Waiting...",
             "status-waiting"
         );
 
+        if (faceModelsReady) {
 
-        setStatus(
-            aiRecognitionStatus,
-            "Pending",
-            "status-pending"
-        );
+            setStatus(
+                aiRecognitionStatus,
+                "Ready",
+                "status-success"
+            );
+        }
+        else {
 
+            setStatus(
+                aiRecognitionStatus,
+                "Loading AI...",
+                "status-waiting"
+            );
+        }
 
         setStatus(
             roleVerificationStatus,
@@ -4819,13 +4825,11 @@ document.addEventListener("DOMContentLoaded", function () {
             "status-pending"
         );
 
-
         setStatus(
             authenticationStatus,
             "Not Authenticated",
             "status-failed"
         );
-
     }
 
 
@@ -4842,9 +4846,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     "adminFaceAuthenticated"
                 );
 
+            const token =
+                localStorage.getItem(
+                    "fmps_access_token"
+                );
 
             if (
-                authenticated !== "true"
+                authenticated !== "true" ||
+                !token
             ) {
 
                 alert(
@@ -4852,16 +4861,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
                 return;
-
             }
-
 
             stopCamera();
 
-
             window.location.href =
                 "admin-dashboard.html";
-
         }
     );
 
@@ -4875,7 +4880,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "lightModeBtn"
         );
 
-
     const darkModeBtn =
         document.getElementById(
             "darkModeBtn"
@@ -4888,28 +4892,20 @@ document.addEventListener("DOMContentLoaded", function () {
             "light-mode"
         );
 
-
         lightModeBtn.classList.add(
             "active"
         );
-
 
         darkModeBtn.classList.remove(
             "active"
         );
 
-
         localStorage.setItem(
             "faceLoginTheme",
             "light"
         );
-
     }
 
-
-    /* =====================================================
-                        DARK MODE
-    ===================================================== */
 
     function enableDarkMode() {
 
@@ -4917,22 +4913,18 @@ document.addEventListener("DOMContentLoaded", function () {
             "light-mode"
         );
 
-
         darkModeBtn.classList.add(
             "active"
         );
-
 
         lightModeBtn.classList.remove(
             "active"
         );
 
-
         localStorage.setItem(
             "faceLoginTheme",
             "dark"
         );
-
     }
 
 
@@ -4941,33 +4933,22 @@ document.addEventListener("DOMContentLoaded", function () {
         enableLightMode
     );
 
-
     darkModeBtn.addEventListener(
         "click",
         enableDarkMode
     );
 
 
-    /* =====================================================
-                    RESTORE THEME
-    ===================================================== */
-
     const savedTheme =
         localStorage.getItem(
             "faceLoginTheme"
         );
 
-
     if (savedTheme === "light") {
-
         enableLightMode();
-
     }
-
     else {
-
         enableDarkMode();
-
     }
 
 
@@ -4980,38 +4961,24 @@ document.addEventListener("DOMContentLoaded", function () {
             "faceSearch"
         );
 
-
     if (faceSearch) {
 
         faceSearch.addEventListener(
             "keydown",
             function (event) {
 
-                if (
-                    event.key !== "Enter"
-                ) {
-
+                if (event.key !== "Enter") {
                     return;
-
                 }
-
 
                 const searchValue =
                     faceSearch.value
                         .trim()
                         .toLowerCase();
 
-
                 if (!searchValue) {
-
                     return;
-
                 }
-
-
-                /* -------------------------------------
-                        SEARCH ROUTES
-                ------------------------------------- */
 
                 const pages = {
 
@@ -5053,29 +5020,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     "settings":
                         "settings.html"
-
                 };
-
 
                 if (pages[searchValue]) {
 
                     window.location.href =
                         pages[searchValue];
-
                 }
-
                 else {
 
                     alert(
                         "No page found for: " +
                         faceSearch.value
                     );
-
                 }
-
             }
         );
-
     }
 
 
@@ -5091,25 +5051,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 cameraStream
                     .getTracks()
-                    .forEach(
-                        function (track) {
-
-                            track.stop();
-
-                        }
-                    );
-
+                    .forEach(function (track) {
+                        track.stop();
+                    });
             }
-
         }
     );
 
+
+    /* =====================================================
+                    INITIALIZE AI
+    ===================================================== */
+
+    loadFaceModels();
 
 });
 
 </script>
 
-
 </body>
-
 </html>

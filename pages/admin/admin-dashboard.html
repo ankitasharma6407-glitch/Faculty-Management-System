@@ -2,156 +2,530 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faculty Management & Productivity System</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Admin Dashboard | Faculty Management & Productivity System
+    </title>
+
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet">
 
-    <!-- FullCalendar -->
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../../css/admin-dashboard.css">
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+
+    <!-- FullCalendar -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css"
+        rel="stylesheet">
+
+
+    <!-- Existing Dashboard CSS -->
+    <link
+        rel="stylesheet"
+        href="../../css/admin-dashboard.css">
+
+
+    <style>
+
+        /* =====================================================
+           ADMIN DASHBOARD PAGE FIXES
+        ===================================================== */
+
+        .profile-dropdown.show {
+            display: block !important;
+        }
+
+
+        /* =====================================================
+           STAT CARDS
+        ===================================================== */
+
+        .stats-grid {
+            margin-bottom: 25px;
+        }
+
+
+        /* =====================================================
+           CHART SECTION
+        ===================================================== */
+
+        .chart-section {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
+            gap: 24px;
+            align-items: stretch;
+        }
+
+
+        .chart-section .chart-card {
+            min-width: 0;
+            height: 100%;
+        }
+
+
+        /* =====================================================
+           ATTENDANCE CHART
+        ===================================================== */
+
+        .attendance-chart-wrapper {
+            position: relative;
+            width: 100%;
+            height: 310px;
+            margin-top: 15px;
+        }
+
+
+        .attendance-chart-wrapper canvas {
+            width: 100% !important;
+            height: 100% !important;
+            max-height: 310px !important;
+        }
+
+
+        #attendanceYear {
+            width: 115px;
+        }
+
+
+        /* =====================================================
+           PERFORMANCE CHART
+        ===================================================== */
+
+        .performance-chart-wrapper {
+            position: relative;
+            width: 245px;
+            height: 245px;
+            max-width: 100%;
+            margin: 18px auto;
+        }
+
+
+        .performance-chart-wrapper canvas {
+            width: 100% !important;
+            height: 100% !important;
+            max-height: 245px !important;
+        }
+
+
+        .performance-no-data {
+            position: absolute;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 13px;
+            padding: 25px;
+        }
+
+
+        /* =====================================================
+           PERFORMANCE LIST
+        ===================================================== */
+
+        .performance-list .item strong {
+            min-width: 55px;
+            text-align: right;
+        }
+
+
+        /* =====================================================
+           RECENT FACULTY
+        ===================================================== */
+
+        #recentFacultyTable td {
+            vertical-align: middle;
+        }
+
+
+        .dashboard-empty-row {
+            color: #8b95a7;
+            text-align: center;
+            padding: 30px !important;
+        }
+
+
+        /* =====================================================
+           ACTIVITY
+        ===================================================== */
+
+        .activity-list li {
+            align-items: flex-start;
+        }
+
+
+        .activity-list li i {
+            margin-top: 4px;
+        }
+
+
+        /* =====================================================
+           NOTIFICATIONS
+        ===================================================== */
+
+        #latestNotifications .notification-item {
+            line-height: 1.5;
+        }
+
+
+        .notification-menu {
+            max-height: 420px;
+            overflow-y: auto;
+            min-width: 320px;
+        }
+
+
+        /* =====================================================
+           CALENDAR
+        ===================================================== */
+
+        #calendar {
+            min-height: 470px;
+        }
+
+
+        .fc .fc-toolbar-title {
+            font-size: 1.1rem;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1100px) {
+
+            .chart-section {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 768px) {
+
+            .attendance-chart-wrapper {
+                height: 270px;
+            }
+
+
+            .performance-chart-wrapper {
+                width: 220px;
+                height: 220px;
+            }
+
+
+            .top-right {
+                flex-wrap: wrap;
+            }
+
+
+            .search-box {
+                width: 100%;
+            }
+
+
+            #calendar {
+                min-height: 400px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
+
 
 <div class="dashboard">
 
-    <!-- ================= SIDEBAR ================= -->
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
     <aside class="sidebar">
 
+
         <div class="logo-box">
 
-            <img src="../../images/logo.png" alt="College Logo">
+            <img
+                src="../../images/logo.png"
+                alt="College Logo">
 
-            <h3>PATNA</h3>
+            <h3>
+                PATNA
+            </h3>
 
-            <h2>WOMEN'S COLLEGE</h2>
+            <h2>
+                WOMEN'S COLLEGE
+            </h2>
 
-            <span>(AUTONOMOUS)</span>
+            <span>
+                (AUTONOMOUS)
+            </span>
 
         </div>
+
+
 
         <ul class="menu">
 
+
             <li class="active">
-    <a href="admin-dashboard.html">
-        <i class="fa-solid fa-house"></i>
-        <span>Dashboard</span>
-    </a>
-</li>
 
-<li>
-    <a href="teacher-list.html">
-        <i class="fa-solid fa-user-tie"></i>
-        <span>Teachers</span>
-    </a>
-</li>
+                <a href="admin-dashboard.html">
 
-<li>
-    <a href="hod-list.html">
-        <i class="fa-solid fa-building-user"></i>
-        <span>HOD</span>
-    </a>
-</li>
+                    <i class="fa-solid fa-house"></i>
 
-<li>
-    <a href="student-list.html">
-        <i class="fa-solid fa-user-graduate"></i>
-        <span>Students</span>
-    </a>
-</li>
+                    <span>
+                        Dashboard
+                    </span>
 
-<li>
-    <a href="recruiter-list.html">
-        <i class="fa-solid fa-building"></i>
-        <span>Recruiters</span>
-    </a>
-</li>
+                </a>
 
-<li>
-    <a href="analytics.html">
-        <i class="fa-solid fa-chart-line"></i>
-        <span>Analytics</span>
-    </a>
-</li>
+            </li>
 
-<li>
-    <a href="reports.html">
-        <i class="fa-solid fa-file-lines"></i>
-        <span>Reports</span>
-    </a>
-</li>
 
-<li>
-    <a href="attendance.html">
-        <i class="fa-solid fa-calendar-check"></i>
-        <span>Attendance</span>
-    </a>
-</li>
 
-<li>
-    <a href="notice-board.html">
-        <i class="fa-solid fa-bullhorn"></i>
-        <span>Notice Board</span>
-    </a>
-</li>
+            <li>
 
-<li>
-    <a href="academic-calendar.html">
-        <i class="fa-solid fa-calendar-days"></i>
-        <span>Academic Calendar</span>
-    </a>
-</li>
+                <a href="teacher-list.html">
+
+                    <i class="fa-solid fa-user-tie"></i>
+
+                    <span>
+                        Teachers
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="hod-list.html">
+
+                    <i class="fa-solid fa-building-user"></i>
+
+                    <span>
+                        HOD
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="student-list.html">
+
+                    <i class="fa-solid fa-user-graduate"></i>
+
+                    <span>
+                        Students
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="recruiter-list.html">
+
+                    <i class="fa-solid fa-building"></i>
+
+                    <span>
+                        Recruiters
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="analytics.html">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <span>
+                        Analytics
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="reports.html">
+
+                    <i class="fa-solid fa-file-lines"></i>
+
+                    <span>
+                        Reports
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="attendance-report.html">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                    <span>
+                        Attendance Report
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="notice-board.html">
+
+                    <i class="fa-solid fa-bullhorn"></i>
+
+                    <span>
+                        Notice Board
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="academic-calendar.html">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    <span>
+                        Academic Calendar
+                    </span>
+
+                </a>
+
+            </li>
+
 
         </ul>
 
+
+
+        <!-- =================================================
+             SIDEBAR BOTTOM
+        ================================================== -->
+
         <div class="sidebar-bottom">
 
+
             <a href="settings.html">
+
                 <i class="fa-solid fa-gear"></i>
-                <span>Settings</span>
+
+                <span>
+                    Settings
+                </span>
+
             </a>
 
-            <a href="admin-login.html" class="logout-btn">
+
+
+            <a
+                href="admin-login.html"
+                class="logout-btn">
+
                 <i class="fa-solid fa-right-from-bracket"></i>
-                <span>Logout</span>
+
+                <span>
+                    Logout
+                </span>
+
             </a>
+
 
         </div>
 
+
     </aside>
 
-    <!-- ================= MAIN CONTENT ================= -->
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
 
     <main class="main-content">
 
-        <!-- ================= TOPBAR ================= -->
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
 
         <div class="topbar">
 
+
             <div class="top-left">
 
-                <h2>Admin Dashboard</h2>
+                <h2>
+                    Admin Dashboard
+                </h2>
 
-                <p id="greeting">Welcome Back 👋</p>
+                <p id="greeting">
+                    Welcome Back 👋
+                </p>
 
             </div>
 
+
+
             <div class="top-right">
+
 
                 <!-- Search -->
 
@@ -159,104 +533,125 @@
 
                     <i class="fa-solid fa-magnifying-glass"></i>
 
-                    <input type="text"
+                    <input
+                        type="text"
                         id="searchBox"
-                        placeholder="Search teachers, students...">
+                        placeholder="Search dashboard...">
 
                 </div>
 
-                <!-- Dark Mode -->
 
-                <button id="themeToggle" class="icon-btn">
+
+                <!-- Theme -->
+
+                <button
+                    type="button"
+                    id="themeToggle"
+                    class="icon-btn"
+                    title="Dark Mode">
 
                     <i class="fa-solid fa-moon"></i>
 
                 </button>
 
+
+
                 <!-- Notification -->
 
                 <div class="dropdown">
 
-                    <button class="icon-btn"
-                        data-bs-toggle="dropdown">
+
+                    <button
+                        type="button"
+                        class="icon-btn"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
 
                         <i class="fa-regular fa-bell"></i>
 
-                        <span class="badge-count"
+                        <span
+                            class="badge-count"
                             id="notificationCount">
 
-                            5
+                            0
 
                         </span>
 
                     </button>
 
-                    <ul class="dropdown-menu dropdown-menu-end notification-menu">
+
+
+                    <ul
+                        class="dropdown-menu dropdown-menu-end notification-menu">
+
 
                         <li class="dropdown-header">
                             Notifications
                         </li>
 
-                        <li>
-                            <a class="dropdown-item notification-item" href="#">
-                                🔔 New Teacher Registered
-                            </a>
-                        </li>
 
                         <li>
-                            <a class="dropdown-item notification-item" href="#">
-                                📢 Placement Drive Updated
-                            </a>
+
+                            <div
+                                id="notificationDropdownContent"
+                                class="px-2">
+
+                                <div
+                                    class="text-center text-muted py-3">
+
+                                    Loading notices...
+
+                                </div>
+
+                            </div>
+
                         </li>
+
 
                         <li>
-                            <a class="dropdown-item notification-item" href="#">
-                                📝 Leave Approval Pending
-                            </a>
+                            <hr class="dropdown-divider">
                         </li>
+
 
                         <li>
-                            <a class="dropdown-item notification-item" href="#">
-                                🎉 Recruiter Added
-                            </a>
-                        </li>
 
-                        <li><hr></li>
+                            <a
+                                class="dropdown-item text-center fw-bold text-primary"
+                                href="notice-board.html">
 
-                        <li>
-                            <a href="#"
-                                id="markAllRead"
-                                class="dropdown-item">
+                                View Notice Board
 
-                                ✔ Mark All Read
+                                <i
+                                    class="fa-solid fa-arrow-right ms-1">
+                                </i>
 
                             </a>
+
                         </li>
-                          
 
-                        <li><hr class="dropdown-divider"></li>
 
-<li>
-    <a class="dropdown-item text-center fw-bold text-primary"
-       href="notifications.html">
-        View All Notifications
-        <i class="fa-solid fa-arrow-right ms-1"></i>
-    </a>
-</li>
                     </ul>
+
 
                 </div>
 
+
+
                 <!-- Profile -->
 
-                <div class="profile" id="profileBtn">
+                <div
+                    class="profile"
+                    id="profileBtn">
 
-                    <img src="../../images/admin.png"
+                    <img
+                        src="../../images/logo.png"
                         alt="Admin">
 
                     <div class="profile-info">
 
-                        <h6>Admin</h6>
+                        <h6>
+                            Admin
+                        </h6>
 
                     </div>
 
@@ -264,537 +659,3207 @@
 
                 </div>
 
+
+
                 <!-- Profile Dropdown -->
 
-                <div class="profile-dropdown"
+                <div
+                    class="profile-dropdown"
                     id="profileDropdown">
 
-                   <a href="profile.html">
-    <i class="fa-solid fa-user"></i>
-    My Profile
-</a>
 
-<a href="#" id="changePhoto">
-    <i class="fa-solid fa-camera"></i>
-    Change Profile Photo
-</a>
+                    <a href="profile.html">
 
-<a href="change-password.html">
-    <i class="fa-solid fa-key"></i>
-    Change Password
-</a>
+                        <i class="fa-solid fa-user"></i>
 
-<a href="settings.html">
-    <i class="fa-solid fa-gear"></i>
-    Settings
-</a>
+                        My Profile
 
-<a href="#" id="themeMenu">
-    <i class="fa-solid fa-moon"></i>
-    Dark Mode
-</a>
+                    </a>
 
-<a href="admin-login.html">
-    <i class="fa-solid fa-right-from-bracket"></i>
-    Logout
-</a>
+
+
+                    <a href="change-password.html">
+
+                        <i class="fa-solid fa-key"></i>
+
+                        Change Password
+
+                    </a>
+
+
+
+                    <a href="settings.html">
+
+                        <i class="fa-solid fa-gear"></i>
+
+                        Settings
+
+                    </a>
+
+
+
+                    <a
+                        href="#"
+                        id="themeMenu">
+
+                        <i class="fa-solid fa-moon"></i>
+
+                        Dark Mode
+
+                    </a>
+
+
+
+                    <a href="admin-login.html">
+
+                        <i class="fa-solid fa-right-from-bracket"></i>
+
+                        Logout
+
+                    </a>
+
+
                 </div>
 
-            </div>
-            <!-- top-right -->
-
-        </div>
-        <!-- topbar -->
-
-       <section class="welcome-banner">
-
-    <div class="welcome-left">
-
-        <span class="welcome-badge">
-            Admin Panel
-        </span>
-
-        <h1>
-            Faculty Management & Productivity System
-        </h1>
-
-        <p>
-            Manage teachers, HODs, recruiters, attendance,
-            reports and analytics from one modern dashboard.
-        </p>
-
-        <div class="banner-buttons">
-
-        </div>
-
-    </div>
-
-    <div class="welcome-right">
-
-        <img src="../../images/admin-banner.jpeg"
-             alt="Dashboard">
-
-    </div>
-
-</section>
-
-        <!-- ================= STATISTICS ================= -->
-
-<section class="stats-grid">
-
-    <div class="stat-card teacher-card">
-
-        <div class="stat-icon purple">
-            <i class="fa-solid fa-user-tie"></i>
-        </div>
-
-        <div class="stat-content">
-            <span>Total Teachers</span>
-            <h2>128</h2>
-            <small>+12 This Month</small>
-        </div>
-
-    </div>
-
-    <div class="stat-card department-card">
-
-        <div class="stat-icon blue">
-            <i class="fa-solid fa-building"></i>
-        </div>
-
-        <div class="stat-content">
-            <span>Departments</span>
-            <h2>18</h2>
-            <small>Academic Units</small>
-        </div>
-
-    </div>
-
-    <div class="stat-card recruiter-card">
-
-        <div class="stat-icon orange">
-            <i class="fa-solid fa-briefcase"></i>
-        </div>
-
-        <div class="stat-content">
-            <span>Recruiters</span>
-            <h2>52</h2>
-            <small>Placement Partners</small>
-        </div>
-
-    </div>
-
-</section>
-
-<section class="quick-grid">
-
-    <div class="quick-card"
-     onclick="window.location.href='add-teacher.html'"
-     style="cursor:pointer;">
-
-    <i class="fa-solid fa-user-plus"></i>
-
-    <h4>Add Teacher</h4>
-
-    <p>Create Faculty Profile</p>
-
-</div>
-
-    <div class="quick-card"
-    
-     onclick="window.location.href='add-hod.html'"
-     style="cursor:pointer;">
-
-    
-        <i class="fa-solid fa-building-user"></i>
-
-        <h4>Add HOD</h4>
-
-        <p>Assign Department Head</p>
-
-    </div>
-
-    <div class="quick-card"
-    onclick="window.location.href='analytics.html'"
-     style="cursor:pointer;">
-
-    
-
-        <i class="fa-solid fa-chart-column"></i>
-
-        <h4>Analytics</h4>
-
-        <p>View Reports</p>
-
-    </div>
-
-    <div class="quick-card"
-    onclick="window.location.href='generate-report.html'"
-     style="cursor:pointer;">
-
-    
-
-        <i class="fa-solid fa-file-lines"></i>
-
-        <h4>Generate Report</h4>
-
-        <p>Download PDF Report</p>
-
-    </div>
-
-</section>
-<!-- ================= CHART SECTION ================= -->
-
-<section class="chart-section">
-
-    <!-- Attendance -->
-
-    <div class="chart-card attendance-card">
-
-        <div class="card-header">
-
-            <div>
-
-                <h3>Attendance Analytics</h3>
-
-                <p>Monthly Faculty Attendance</p>
 
             </div>
 
-            <select class="form-select" style="width:120px;">
-
-                <option>2026</option>
-
-                <option>2025</option>
-
-            </select>
 
         </div>
 
-        <canvas id="attendanceChart"></canvas>
 
-    </div>
 
-    <!-- Performance -->
+        <!-- =================================================
+             WELCOME BANNER
+        ================================================== -->
 
-    <div class="chart-card performance-card">
+        <section class="welcome-banner">
 
-        <div class="card-header">
 
-            <div>
+            <div class="welcome-left">
 
-                <h3>Faculty Performance</h3>
 
-                <p>Overall Performance</p>
-
-            </div>
-
-        </div>
-
-        <canvas id="performanceChart"></canvas>
-
-        <div class="performance-list">
-
-            <div class="item">
-
-                <span>
-
-                    <span class="dot excellent"></span>
-
-                    Excellent
-
+                <span class="welcome-badge">
+                    Admin Panel
                 </span>
 
-                <strong>45%</strong>
+
+                <h1>
+                    Faculty Management & Productivity System
+                </h1>
+
+
+                <p>
+                    Manage teachers, HODs, students and recruiters,
+                    monitor faculty attendance, performance,
+                    notices and academic events from one dashboard.
+                </p>
+
 
             </div>
 
-            <div class="item">
 
-                <span>
 
-                    <span class="dot good"></span>
+            <div class="welcome-right">
 
-                    Good
-
-                </span>
-
-                <strong>30%</strong>
+                <img
+                    src="../../images/admin-banner.jpeg"
+                    alt="Dashboard">
 
             </div>
 
-            <div class="item">
 
-                <span>
+        </section>
 
-                    <span class="dot average"></span>
 
-                    Average
 
-                </span>
+        <!-- =================================================
+             REAL STATISTICS
+        ================================================== -->
 
-                <strong>15%</strong>
+        <section class="stats-grid">
+
+
+            <!-- Teachers -->
+
+            <div class="stat-card teacher-card">
+
+
+                <div class="stat-icon purple">
+
+                    <i class="fa-solid fa-user-tie"></i>
+
+                </div>
+
+
+                <div class="stat-content">
+
+                    <span>
+                        Total Teachers
+                    </span>
+
+                    <h2 id="totalTeachers">
+                        0
+                    </h2>
+
+                    <small>
+                        Registered Faculty
+                    </small>
+
+                </div>
+
 
             </div>
 
-            <div class="item">
 
-                <span>
 
-                    <span class="dot poor"></span>
+            <!-- HOD -->
 
-                    Poor
+            <div class="stat-card">
 
-                </span>
 
-                <strong>10%</strong>
+                <div class="stat-icon blue">
+
+                    <i class="fa-solid fa-building-user"></i>
+
+                </div>
+
+
+                <div class="stat-content">
+
+                    <span>
+                        Total HODs
+                    </span>
+
+                    <h2 id="totalHods">
+                        0
+                    </h2>
+
+                    <small>
+                        Department Heads
+                    </small>
+
+                </div>
+
 
             </div>
 
-        </div>
 
-    </div>
 
-</section>
+            <!-- Students -->
 
-<!-- ================= CALENDAR & RECENT ACTIVITIES ================= -->
+            <div class="stat-card">
 
-<section class="bottom-grid">
 
-    <!-- Calendar -->
+                <div class="stat-icon purple">
 
-    <div class="calendar-card">
+                    <i class="fa-solid fa-user-graduate"></i>
 
-        <div class="card-header">
+                </div>
 
-            <h3>Academic Calendar</h3>
 
-            <button class="btn btn-primary btn-sm"
-            onclick="window.location.href='academic-calendar.html'"
-     style="cursor:pointer;">
+                <div class="stat-content">
 
-    
-                View All
-            </button>
+                    <span>
+                        Total Students
+                    </span>
 
-        </div>
+                    <h2 id="totalStudents">
+                        0
+                    </h2>
 
-        <div id="calendar"></div>
+                    <small>
+                        Registered Students
+                    </small>
 
-    </div>
+                </div>
 
-    <!-- Activities -->
 
-    <div class="activity-card">
+            </div>
 
-        <div class="card-header">
-            <h3>Recent Activities</h3>
-        </div>
 
-        <ul class="activity-list">
 
-            <li>
+            <!-- Departments -->
+
+            <div class="stat-card department-card">
+
+
+                <div class="stat-icon blue">
+
+                    <i class="fa-solid fa-building"></i>
+
+                </div>
+
+
+                <div class="stat-content">
+
+                    <span>
+                        Departments
+                    </span>
+
+                    <h2 id="totalDepartments">
+                        0
+                    </h2>
+
+                    <small>
+                        Academic Units
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Recruiters -->
+
+            <div class="stat-card recruiter-card">
+
+
+                <div class="stat-icon orange">
+
+                    <i class="fa-solid fa-briefcase"></i>
+
+                </div>
+
+
+                <div class="stat-content">
+
+                    <span>
+                        Recruiters
+                    </span>
+
+                    <h2 id="totalRecruiters">
+                        0
+                    </h2>
+
+                    <small>
+                        Placement Partners
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             QUICK ACTIONS
+        ================================================== -->
+
+        <section class="quick-grid">
+
+
+            <div
+                class="quick-card"
+                onclick="window.location.href='add-teacher.html'"
+                style="cursor:pointer;">
+
                 <i class="fa-solid fa-user-plus"></i>
-                <div>
-                    <strong>New Faculty Added</strong>
-                    <p>Computer Science Department</p>
-                    <small>10 Minutes Ago</small>
+
+                <h4>
+                    Add Teacher
+                </h4>
+
+                <p>
+                    Create Faculty Profile
+                </p>
+
+            </div>
+
+
+
+            <div
+                class="quick-card"
+                onclick="window.location.href='add-hod.html'"
+                style="cursor:pointer;">
+
+                <i class="fa-solid fa-building-user"></i>
+
+                <h4>
+                    Add HOD
+                </h4>
+
+                <p>
+                    Assign Department Head
+                </p>
+
+            </div>
+
+
+
+            <div
+                class="quick-card"
+                onclick="window.location.href='analytics.html'"
+                style="cursor:pointer;">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                <h4>
+                    Analytics
+                </h4>
+
+                <p>
+                    View Analytics
+                </p>
+
+            </div>
+
+
+
+            <div
+                class="quick-card"
+                onclick="window.location.href='reports.html'"
+                style="cursor:pointer;">
+
+                <i class="fa-solid fa-file-lines"></i>
+
+                <h4>
+                    Reports
+                </h4>
+
+                <p>
+                    View System Reports
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             CHART SECTION
+        ================================================== -->
+
+        <section class="chart-section">
+
+
+            <!-- =================================================
+                 REAL FACULTY ATTENDANCE
+            ================================================== -->
+
+            <div class="chart-card attendance-card">
+
+
+                <div class="card-header">
+
+
+                    <div>
+
+                        <h3>
+                            Faculty Attendance
+                        </h3>
+
+                        <p>
+                            Monthly Teachers & HOD Attendance
+                        </p>
+
+                    </div>
+
+
+
+                    <select
+                        id="attendanceYear"
+                        class="form-select">
+                    </select>
+
+
                 </div>
-            </li>
 
-            <li>
-                <i class="fa-solid fa-calendar-check"></i>
-                <div>
-                    <strong>Attendance Updated</strong>
-                    <p>Today's attendance submitted</p>
-                    <small>35 Minutes Ago</small>
+
+
+                <div class="attendance-chart-wrapper">
+
+                    <canvas id="attendanceChart"></canvas>
+
                 </div>
-            </li>
 
-            <li>
-                <i class="fa-solid fa-file-circle-check"></i>
-                <div>
-                    <strong>Leave Approved</strong>
-                    <p>Physics Department</p>
-                    <small>Today</small>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 REAL FACULTY PERFORMANCE
+            ================================================== -->
+
+            <div class="chart-card performance-card">
+
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Faculty Performance
+                        </h3>
+
+                        <p>
+                            Latest Faculty Performance Records
+                        </p>
+
+                    </div>
+
                 </div>
-            </li>
 
-            <li>
-                <i class="fa-solid fa-bullhorn"></i>
-                <div>
-                    <strong>Notice Published</strong>
-                    <p>Semester Examination Schedule</p>
-                    <small>Today</small>
+
+
+                <div class="performance-chart-wrapper">
+
+
+                    <canvas id="performanceChart"></canvas>
+
+
+                    <div
+                        class="performance-no-data"
+                        id="performanceNoData">
+
+                        No performance records available
+
+                    </div>
+
+
                 </div>
-            </li>
 
-        </ul>
 
-    </div>
 
-</section>
+                <div class="performance-list">
 
-<!-- ================= RECENT FACULTY ================= -->
 
-<section class="table-card">
+                    <div class="item">
 
-    <div class="card-header">
+                        <span>
 
-        <h3>Recent Faculty Members</h3>
+                            <span class="dot excellent"></span>
 
-        <button class="btn btn-outline-primary btn-sm"
-        onclick="window.location.href='teacher-list.html'"
-     style="cursor:pointer;">
+                            Excellent
 
-    
-            View All
-        </button>
-
-    </div>
-
-    <div class="table-responsive">
-
-        <table class="table align-middle">
-
-            <thead>
-
-                <tr>
-
-                    <th>Name</th>
-                    <th>Department</th>
-                    <th>Experience</th>
-                    <th>Status</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                <tr>
-
-                    <td>Dr. Priya Sharma</td>
-                    <td>Computer Science</td>
-                    <td>8 Years</td>
-                    <td>
-                        <span class="badge bg-success">
-                            Active
                         </span>
-                    </td>
 
-                </tr>
+                        <strong id="performanceExcellent">
+                            0%
+                        </strong>
 
-                <tr>
+                    </div>
 
-                    <td>Rahul Kumar</td>
-                    <td>Mathematics</td>
-                    <td>6 Years</td>
-                    <td>
-                        <span class="badge bg-success">
-                            Active
+
+
+                    <div class="item">
+
+                        <span>
+
+                            <span class="dot good"></span>
+
+                            Good
+
                         </span>
-                    </td>
 
-                </tr>
+                        <strong id="performanceGood">
+                            0%
+                        </strong>
 
-                <tr>
+                    </div>
 
-                    <td>Neha Singh</td>
-                    <td>Commerce</td>
-                    <td>4 Years</td>
-                    <td>
-                        <span class="badge bg-warning text-dark">
-                            On Leave
+
+
+                    <div class="item">
+
+                        <span>
+
+                            <span class="dot average"></span>
+
+                            Average
+
                         </span>
-                    </td>
 
-                </tr>
+                        <strong id="performanceAverage">
+                            0%
+                        </strong>
 
-                <tr>
+                    </div>
 
-                    <td>Amit Verma</td>
-                    <td>Physics</td>
-                    <td>10 Years</td>
-                    <td>
-                        <span class="badge bg-success">
-                            Active
+
+
+                    <div class="item">
+
+                        <span>
+
+                            <span class="dot poor"></span>
+
+                            Poor
+
                         </span>
-                    </td>
 
-                </tr>
+                        <strong id="performancePoor">
+                            0%
+                        </strong>
 
-            </tbody>
+                    </div>
 
-        </table>
 
-    </div>
+                </div>
 
-</section>
 
-<!-- ================= NOTIFICATIONS ================= -->
+            </div>
 
-<section class="notification-panel">
 
-    <div class="card-header">
+        </section>
 
-        <h3>Latest Notifications</h3>
 
-    </div>
 
-    <div class="notification-item">
-        🔔 Faculty Meeting Tomorrow (10:00 AM)
-    </div>
+        <!-- =================================================
+             CALENDAR + REAL SYSTEM UPDATES
+        ================================================== -->
 
-    <div class="notification-item">
-        📢 Placement Drive Registration Open
-    </div>
+        <section class="bottom-grid">
 
-    <div class="notification-item">
-        📝 Internal Examination Starts Monday
-    </div>
 
-    <div class="notification-item">
-        🎉 Five New Recruiters Added
-    </div>
+            <!-- Calendar -->
 
-</section>
+            <div class="calendar-card">
 
-<!-- ================= FOOTER ================= -->
 
-<footer class="footer">
+                <div class="card-header">
 
-    <p>
+                    <h3>
+                        Academic Calendar
+                    </h3>
 
-        © 2026 Faculty Management & Productivity System
 
-        <br>
+                    <button
+                        type="button"
+                        class="btn btn-primary btn-sm"
+                        onclick="window.location.href='academic-calendar.html'">
 
-        Patna Women's College (Autonomous)
+                        View All
 
-    </p>
+                    </button>
 
-</footer>
+                </div>
 
-</main>
+
+                <div id="calendar"></div>
+
+
+            </div>
+
+
+
+            <!-- Real Updates -->
+
+            <div class="activity-card">
+
+
+                <div class="card-header">
+
+                    <h3>
+                        Recent Activities
+                    </h3>
+
+                </div>
+
+
+                <ul
+                    class="activity-list"
+                    id="recentActivities">
+
+
+                    <li>
+
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+
+                        <div>
+
+                            <strong>
+                                Loading activities...
+                            </strong>
+
+                        </div>
+
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             REAL RECENT FACULTY
+        ================================================== -->
+
+        <section class="table-card">
+
+
+            <div class="card-header">
+
+
+                <h3>
+                    Recent Faculty Members
+                </h3>
+
+
+                <button
+                    type="button"
+                    class="btn btn-outline-primary btn-sm"
+                    onclick="window.location.href='teacher-list.html'">
+
+                    View All
+
+                </button>
+
+
+            </div>
+
+
+
+            <div class="table-responsive">
+
+
+                <table class="table align-middle">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Name
+                            </th>
+
+                            <th>
+                                Department
+                            </th>
+
+                            <th>
+                                Experience
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="recentFacultyTable">
+
+
+                        <tr>
+
+                            <td
+                                colspan="4"
+                                class="dashboard-empty-row">
+
+                                Loading faculty...
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             REAL LATEST NOTICES
+        ================================================== -->
+
+        <section class="notification-panel">
+
+
+            <div class="card-header">
+
+                <h3>
+                    Latest Notifications
+                </h3>
+
+
+                <button
+                    type="button"
+                    class="btn btn-outline-primary btn-sm"
+                    onclick="window.location.href='notice-board.html'">
+
+                    View All
+
+                </button>
+
+            </div>
+
+
+            <div id="latestNotifications">
+
+
+                <div class="notification-item">
+                    Loading notices...
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <footer class="footer">
+
+
+            <p>
+
+                © 2026 Faculty Management & Productivity System
+
+                <br>
+
+                Patna Women's College (Autonomous)
+
+            </p>
+
+
+        </footer>
+
+
+    </main>
+
 
 </div>
 
-<!-- Bootstrap -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Chart.js -->
+<!-- =========================================================
+     LIBRARIES
+========================================================= -->
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
 
-<!-- FullCalendar -->
 
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/chart.js">
+</script>
 
-<!-- Dashboard JS -->
 
-<script src="../../js/dashboard.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js">
+</script>
+
+
+
+<!-- =========================================================
+     FRESH DASHBOARD JAVASCRIPT
+========================================================= -->
+
+<script>
+
+
+// ============================================================
+// API URLS
+// ============================================================
+
+const API = {
+
+    teachers:
+        "http://127.0.0.1:5000/api/teachers",
+
+    hods:
+        "http://127.0.0.1:5000/api/hods",
+
+    students:
+        "http://127.0.0.1:5000/api/students",
+
+    recruiters:
+        "http://127.0.0.1:5000/api/recruiters",
+
+    departments:
+        "http://127.0.0.1:5000/api/academic-events/departments",
+
+    attendance:
+        "http://127.0.0.1:5000/api/faculty-attendance",
+
+    performance:
+        "http://127.0.0.1:5000/api/performance",
+
+    notices:
+        "http://127.0.0.1:5000/api/notices",
+
+    calendar:
+        "http://127.0.0.1:5000/api/academic-events"
+
+};
+
+
+// ============================================================
+// GLOBAL DATA
+// ============================================================
+
+let dashboardTeachers = [];
+
+let dashboardHods = [];
+
+let dashboardStudents = [];
+
+let dashboardRecruiters = [];
+
+let dashboardDepartments = [];
+
+let dashboardAttendance = [];
+
+let dashboardNotices = [];
+
+let dashboardEvents = [];
+
+
+let attendanceChartInstance =
+    null;
+
+
+let performanceChartInstance =
+    null;
+
+
+let calendarInstance =
+    null;
+
+
+// ============================================================
+// SAFE API REQUEST
+// ============================================================
+
+async function fetchApi(url) {
+
+    try {
+
+        const response =
+            await fetch(url);
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.message ||
+                result.error ||
+                "Request failed"
+            );
+
+        }
+
+
+        return result;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Dashboard API Error:",
+            url,
+            error
+        );
+
+
+        return null;
+
+    }
+
+}
+
+
+// ============================================================
+// GET ARRAY FROM API RESPONSE
+// ============================================================
+
+function extractArray(result) {
+
+    if (!result) {
+        return [];
+    }
+
+
+    if (Array.isArray(result)) {
+
+        return result;
+
+    }
+
+
+    if (Array.isArray(result.data)) {
+
+        return result.data;
+
+    }
+
+
+    return [];
+
+}
+
+
+// ============================================================
+// ESCAPE HTML
+// ============================================================
+
+function escapeHtml(value) {
+
+    return String(
+        value ?? ""
+    )
+    .replaceAll(
+        "&",
+        "&amp;"
+    )
+    .replaceAll(
+        "<",
+        "&lt;"
+    )
+    .replaceAll(
+        ">",
+        "&gt;"
+    )
+    .replaceAll(
+        '"',
+        "&quot;"
+    )
+    .replaceAll(
+        "'",
+        "&#039;"
+    );
+
+}
+
+
+// ============================================================
+// INITIAL DASHBOARD LOAD
+// ============================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
+
+
+        setupTheme();
+
+        setupProfileDropdown();
+
+        setupDashboardSearch();
+
+        updateGreeting();
+
+
+        await loadDashboardData();
+
+
+    }
+);
+
+
+// ============================================================
+// LOAD ALL DASHBOARD DATA
+// ============================================================
+
+async function loadDashboardData() {
+
+
+    const [
+
+        teachersResult,
+        hodsResult,
+        studentsResult,
+        recruitersResult,
+        departmentsResult,
+        attendanceResult,
+        performanceResult,
+        noticesResult,
+        calendarResult
+
+    ] = await Promise.all([
+
+        fetchApi(
+            API.teachers
+        ),
+
+        fetchApi(
+            API.hods
+        ),
+
+        fetchApi(
+            API.students
+        ),
+
+        fetchApi(
+            API.recruiters
+        ),
+
+        fetchApi(
+            API.departments
+        ),
+
+        fetchApi(
+            API.attendance
+        ),
+
+        fetchApi(
+            API.performance
+        ),
+
+        fetchApi(
+            API.notices
+        ),
+
+        fetchApi(
+            API.calendar
+        )
+
+    ]);
+
+
+    dashboardTeachers =
+        extractArray(
+            teachersResult
+        );
+
+
+    dashboardHods =
+        extractArray(
+            hodsResult
+        );
+
+
+    dashboardStudents =
+        extractArray(
+            studentsResult
+        );
+
+
+    dashboardRecruiters =
+        extractArray(
+            recruitersResult
+        );
+
+
+    dashboardDepartments =
+        extractArray(
+            departmentsResult
+        );
+
+
+    dashboardAttendance =
+        extractArray(
+            attendanceResult
+        );
+
+
+    dashboardNotices =
+        extractArray(
+            noticesResult
+        );
+
+
+    dashboardEvents =
+        extractArray(
+            calendarResult
+        );
+
+
+    updateStatisticCards();
+
+    buildAttendanceYearDropdown();
+
+    renderAttendanceChart();
+
+    renderPerformance(
+        performanceResult
+    );
+
+    renderRecentFaculty();
+
+    renderNotifications();
+
+    renderRecentActivities();
+
+    renderAcademicCalendar();
+
+}
+
+
+// ============================================================
+// REAL STATISTIC CARDS
+// ============================================================
+
+function updateStatisticCards() {
+
+
+    document.getElementById(
+        "totalTeachers"
+    ).textContent =
+        dashboardTeachers.length;
+
+
+    document.getElementById(
+        "totalHods"
+    ).textContent =
+        dashboardHods.length;
+
+
+    document.getElementById(
+        "totalStudents"
+    ).textContent =
+        dashboardStudents.length;
+
+
+    document.getElementById(
+        "totalRecruiters"
+    ).textContent =
+        dashboardRecruiters.length;
+
+
+    document.getElementById(
+        "totalDepartments"
+    ).textContent =
+        dashboardDepartments.length;
+
+}
+
+
+// ============================================================
+// ATTENDANCE YEAR DROPDOWN
+// ============================================================
+
+function buildAttendanceYearDropdown() {
+
+
+    const select =
+        document.getElementById(
+            "attendanceYear"
+        );
+
+
+    if (!select) {
+        return;
+    }
+
+
+    const currentYear =
+        new Date().getFullYear();
+
+
+    const years =
+        new Set();
+
+
+    // Current + previous 4 years
+    for (
+        let year = currentYear;
+        year >= currentYear - 4;
+        year--
+    ) {
+
+        years.add(year);
+
+    }
+
+
+    // Add database years
+    dashboardAttendance.forEach(
+        function (record) {
+
+
+            if (!record.date) {
+                return;
+            }
+
+
+            const match =
+                String(record.date)
+                    .match(
+                        /^(\d{4})-/
+                    );
+
+
+            if (match) {
+
+                years.add(
+                    Number(match[1])
+                );
+
+            }
+
+        }
+    );
+
+
+    const sortedYears =
+        Array.from(years)
+            .sort(
+                function (a, b) {
+
+                    return b - a;
+
+                }
+            );
+
+
+    select.innerHTML =
+        "";
+
+
+    sortedYears.forEach(
+        function (year) {
+
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                String(year);
+
+
+            option.textContent =
+                String(year);
+
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
+
+
+    select.value =
+        String(currentYear);
+
+
+    select.addEventListener(
+        "change",
+        renderAttendanceChart
+    );
+
+}
+
+
+// ============================================================
+// REAL ATTENDANCE CHART
+// ============================================================
+
+function renderAttendanceChart() {
+
+
+    const canvas =
+        document.getElementById(
+            "attendanceChart"
+        );
+
+
+    const yearSelect =
+        document.getElementById(
+            "attendanceYear"
+        );
+
+
+    if (
+        !canvas ||
+        !yearSelect
+    ) {
+
+        return;
+
+    }
+
+
+    const selectedYear =
+        Number(
+            yearSelect.value
+        );
+
+
+    const present =
+        new Array(12).fill(0);
+
+
+    const absent =
+        new Array(12).fill(0);
+
+
+    const leave =
+        new Array(12).fill(0);
+
+
+
+    dashboardAttendance.forEach(
+        function (record) {
+
+
+            if (!record.date) {
+                return;
+            }
+
+
+            const match =
+                String(record.date)
+                    .match(
+                        /^(\d{4})-(\d{2})-/
+                    );
+
+
+            if (!match) {
+                return;
+            }
+
+
+            const year =
+                Number(match[1]);
+
+
+            const month =
+                Number(match[2]) - 1;
+
+
+            if (
+                year !== selectedYear ||
+                month < 0 ||
+                month > 11
+            ) {
+
+                return;
+
+            }
+
+
+            const status =
+                String(
+                    record.status || ""
+                ).toLowerCase();
+
+
+            if (
+                status === "present"
+            ) {
+
+                present[month]++;
+
+            }
+
+
+            else if (
+                status === "absent"
+            ) {
+
+                absent[month]++;
+
+            }
+
+
+            else if (
+                status === "leave"
+            ) {
+
+                leave[month]++;
+
+            }
+
+
+        }
+    );
+
+
+    const oldChart =
+        Chart.getChart(
+            canvas
+        );
+
+
+    if (oldChart) {
+
+        oldChart.destroy();
+
+    }
+
+
+    attendanceChartInstance =
+        new Chart(
+            canvas,
+            {
+
+                type:
+                    "bar",
+
+
+                data: {
+
+                    labels: [
+
+                        "Jan",
+                        "Feb",
+                        "Mar",
+                        "Apr",
+                        "May",
+                        "Jun",
+                        "Jul",
+                        "Aug",
+                        "Sep",
+                        "Oct",
+                        "Nov",
+                        "Dec"
+
+                    ],
+
+
+                    datasets: [
+
+                        {
+
+                            label:
+                                "Present",
+
+                            data:
+                                present,
+
+                            backgroundColor:
+                                "rgba(25, 135, 84, 0.78)",
+
+                            borderWidth:
+                                0,
+
+                            borderRadius:
+                                5,
+
+                            maxBarThickness:
+                                20
+
+                        },
+
+                        {
+
+                            label:
+                                "Absent",
+
+                            data:
+                                absent,
+
+                            backgroundColor:
+                                "rgba(220, 53, 69, 0.78)",
+
+                            borderWidth:
+                                0,
+
+                            borderRadius:
+                                5,
+
+                            maxBarThickness:
+                                20
+
+                        },
+
+                        {
+
+                            label:
+                                "Leave",
+
+                            data:
+                                leave,
+
+                            backgroundColor:
+                                "rgba(255, 193, 7, 0.82)",
+
+                            borderWidth:
+                                0,
+
+                            borderRadius:
+                                5,
+
+                            maxBarThickness:
+                                20
+
+                        }
+
+                    ]
+
+                },
+
+
+                options: {
+
+                    responsive:
+                        true,
+
+                    maintainAspectRatio:
+                        false,
+
+
+                    interaction: {
+
+                        mode:
+                            "index",
+
+                        intersect:
+                            false
+
+                    },
+
+
+                    plugins: {
+
+                        legend: {
+
+                            position:
+                                "top"
+
+                        }
+
+                    },
+
+
+                    scales: {
+
+                        x: {
+
+                            grid: {
+
+                                display:
+                                    false
+
+                            },
+
+                            border: {
+
+                                display:
+                                    false
+
+                            }
+
+                        },
+
+
+                        y: {
+
+                            beginAtZero:
+                                true,
+
+                            ticks: {
+
+                                precision:
+                                    0,
+
+                                stepSize:
+                                    1
+
+                            },
+
+                            border: {
+
+                                display:
+                                    false
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+}
+
+
+// ============================================================
+// REAL PERFORMANCE
+// ============================================================
+
+function renderPerformance(
+    result
+) {
+
+
+    const summary =
+        result &&
+        result.summary
+            ? result.summary
+            : {};
+
+
+    const excellent =
+        Number(
+            summary.excellent || 0
+        );
+
+
+    const good =
+        Number(
+            summary.good || 0
+        );
+
+
+    const average =
+        Number(
+            summary.average || 0
+        );
+
+
+    const poor =
+        Number(
+            summary.poor || 0
+        );
+
+
+    const total =
+        excellent +
+        good +
+        average +
+        poor;
+
+
+    const excellentPercent =
+        calculatePercentage(
+            excellent,
+            total
+        );
+
+
+    const goodPercent =
+        calculatePercentage(
+            good,
+            total
+        );
+
+
+    const averagePercent =
+        calculatePercentage(
+            average,
+            total
+        );
+
+
+    const poorPercent =
+        calculatePercentage(
+            poor,
+            total
+        );
+
+
+    document.getElementById(
+        "performanceExcellent"
+    ).textContent =
+        excellentPercent + "%";
+
+
+    document.getElementById(
+        "performanceGood"
+    ).textContent =
+        goodPercent + "%";
+
+
+    document.getElementById(
+        "performanceAverage"
+    ).textContent =
+        averagePercent + "%";
+
+
+    document.getElementById(
+        "performancePoor"
+    ).textContent =
+        poorPercent + "%";
+
+
+    const canvas =
+        document.getElementById(
+            "performanceChart"
+        );
+
+
+    const noData =
+        document.getElementById(
+            "performanceNoData"
+        );
+
+
+    if (!canvas) {
+        return;
+    }
+
+
+    const oldChart =
+        Chart.getChart(
+            canvas
+        );
+
+
+    if (oldChart) {
+
+        oldChart.destroy();
+
+    }
+
+
+    if (total === 0) {
+
+        canvas.style.display =
+            "none";
+
+
+        if (noData) {
+
+            noData.style.display =
+                "flex";
+
+        }
+
+
+        return;
+
+    }
+
+
+    canvas.style.display =
+        "block";
+
+
+    if (noData) {
+
+        noData.style.display =
+            "none";
+
+    }
+
+
+    performanceChartInstance =
+        new Chart(
+            canvas,
+            {
+
+                type:
+                    "doughnut",
+
+
+                data: {
+
+                    labels: [
+
+                        "Excellent",
+                        "Good",
+                        "Average",
+                        "Poor"
+
+                    ],
+
+
+                    datasets: [
+
+                        {
+
+                            data: [
+
+                                excellent,
+                                good,
+                                average,
+                                poor
+
+                            ],
+
+                            backgroundColor: [
+
+                                "#4f7cff",
+                                "#20c997",
+                                "#ffc107",
+                                "#ff6b6b"
+
+                            ],
+
+                            borderWidth:
+                                2,
+
+                            borderColor:
+                                "#ffffff",
+
+                            hoverOffset:
+                                5
+
+                        }
+
+                    ]
+
+                },
+
+
+                options: {
+
+                    responsive:
+                        true,
+
+                    maintainAspectRatio:
+                        false,
+
+                    cutout:
+                        "62%",
+
+
+                    plugins: {
+
+                        legend: {
+
+                            display:
+                                false
+
+                        },
+
+
+                        tooltip: {
+
+                            callbacks: {
+
+                                label:
+                                    function (
+                                        context
+                                    ) {
+
+
+                                        const value =
+                                            Number(
+                                                context.raw || 0
+                                            );
+
+
+                                        const percentage =
+                                            calculatePercentage(
+                                                value,
+                                                total
+                                            );
+
+
+                                        return (
+                                            context.label
+                                            + ": "
+                                            + value
+                                            + " Faculty ("
+                                            + percentage
+                                            + "%)"
+                                        );
+
+                                    }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+}
+
+
+// ============================================================
+// PERCENTAGE
+// ============================================================
+
+function calculatePercentage(
+    value,
+    total
+) {
+
+
+    if (
+        !total ||
+        total <= 0
+    ) {
+
+        return "0.0";
+
+    }
+
+
+    return (
+        (
+            Number(value) /
+            Number(total) *
+            100
+        ).toFixed(1)
+    );
+
+}
+
+
+// ============================================================
+// REAL RECENT FACULTY
+// ============================================================
+
+function renderRecentFaculty() {
+
+
+    const tbody =
+        document.getElementById(
+            "recentFacultyTable"
+        );
+
+
+    if (!tbody) {
+        return;
+    }
+
+
+    const recent =
+        dashboardTeachers.slice(
+            0,
+            5
+        );
+
+
+    if (
+        recent.length === 0
+    ) {
+
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="4"
+                    class="dashboard-empty-row">
+
+                    No teacher records available.
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+        return;
+
+    }
+
+
+    tbody.innerHTML =
+        recent.map(
+            function (teacher) {
+
+
+                const name =
+                    teacher.full_name ||
+                    teacher.name ||
+                    "Not Available";
+
+
+                const department =
+                    getDepartmentName(
+                        teacher
+                    );
+
+
+                const experience =
+                    teacher.experience
+                        ? (
+                            teacher.experience
+                            + (
+                                String(
+                                    teacher.experience
+                                )
+                                .toLowerCase()
+                                .includes(
+                                    "year"
+                                )
+                                    ? ""
+                                    : " Years"
+                            )
+                        )
+                        : "—";
+
+
+                const status =
+                    String(
+                        teacher.status ||
+                        "active"
+                    ).toLowerCase();
+
+
+                let badgeClass =
+                    "bg-secondary";
+
+
+                if (
+                    status === "active"
+                ) {
+
+                    badgeClass =
+                        "bg-success";
+
+                }
+
+
+                else if (
+                    status.includes(
+                        "leave"
+                    )
+                ) {
+
+                    badgeClass =
+                        "bg-warning text-dark";
+
+                }
+
+
+                else if (
+                    status === "inactive"
+                ) {
+
+                    badgeClass =
+                        "bg-danger";
+
+                }
+
+
+                return `
+
+                    <tr>
+
+                        <td>
+                            ${escapeHtml(name)}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(department)}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(experience)}
+                        </td>
+
+                        <td>
+
+                            <span
+                                class="badge ${badgeClass}">
+
+                                ${escapeHtml(
+                                    capitalize(status)
+                                )}
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+// ============================================================
+// DEPARTMENT HELPER
+// ============================================================
+
+function getDepartmentName(record) {
+
+
+    if (!record) {
+        return "Not Assigned";
+    }
+
+
+    if (
+        typeof record.department ===
+        "string" &&
+        record.department.trim()
+    ) {
+
+        return record.department.trim();
+
+    }
+
+
+    if (
+        record.department &&
+        typeof record.department ===
+        "object" &&
+        record.department.name
+    ) {
+
+        return String(
+            record.department.name
+        );
+
+    }
+
+
+    return (
+        record.department_name ||
+        "Not Assigned"
+    );
+
+}
+
+
+// ============================================================
+// REAL NOTIFICATIONS
+// ============================================================
+
+function renderNotifications() {
+
+
+    const publishedNotices =
+        dashboardNotices.filter(
+            function (notice) {
+
+
+                const status =
+                    String(
+                        notice.status ||
+                        "published"
+                    ).toLowerCase();
+
+
+                return (
+                    status ===
+                    "published"
+                );
+
+            }
+        );
+
+
+    const recentNotices =
+        publishedNotices.slice(
+            0,
+            5
+        );
+
+
+    const count =
+        document.getElementById(
+            "notificationCount"
+        );
+
+
+    if (count) {
+
+        count.textContent =
+            publishedNotices.length >
+            99
+                ? "99+"
+                : publishedNotices.length;
+
+    }
+
+
+    const dropdown =
+        document.getElementById(
+            "notificationDropdownContent"
+        );
+
+
+    if (dropdown) {
+
+
+        if (
+            recentNotices.length ===
+            0
+        ) {
+
+            dropdown.innerHTML = `
+
+                <div
+                    class="text-center text-muted py-3">
+
+                    No published notices.
+
+                </div>
+
+            `;
+
+        }
+
+
+        else {
+
+
+            dropdown.innerHTML =
+                recentNotices.map(
+                    function (notice) {
+
+
+                        return `
+
+                            <a
+                                class="dropdown-item notification-item"
+                                href="notice-board.html">
+
+                                <i
+                                    class="fa-solid fa-bullhorn me-2">
+                                </i>
+
+                                ${escapeHtml(
+                                    notice.title ||
+                                    "Notice"
+                                )}
+
+                            </a>
+
+                        `;
+
+                    }
+                )
+                .join("");
+
+        }
+
+    }
+
+
+    const panel =
+        document.getElementById(
+            "latestNotifications"
+        );
+
+
+    if (!panel) {
+        return;
+    }
+
+
+    if (
+        recentNotices.length === 0
+    ) {
+
+        panel.innerHTML = `
+
+            <div class="notification-item">
+
+                No published notices available.
+
+            </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
+    panel.innerHTML =
+        recentNotices.map(
+            function (notice) {
+
+
+                const priority =
+                    String(
+                        notice.priority ||
+                        "normal"
+                    ).toLowerCase();
+
+
+                let icon =
+                    "📢";
+
+
+                if (
+                    priority === "urgent"
+                ) {
+
+                    icon =
+                        "🚨";
+
+                }
+
+
+                else if (
+                    priority ===
+                    "important"
+                ) {
+
+                    icon =
+                        "🔔";
+
+                }
+
+
+                return `
+
+                    <div class="notification-item">
+
+                        ${icon}
+
+                        ${escapeHtml(
+                            notice.title ||
+                            "Notice"
+                        )}
+
+                    </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+// ============================================================
+// REAL RECENT ACTIVITIES
+//
+// Uses actual Notices + Academic Events.
+// No fake activity rows.
+// ============================================================
+
+function renderRecentActivities() {
+
+
+    const container =
+        document.getElementById(
+            "recentActivities"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    const activities =
+        [];
+
+
+    dashboardNotices.forEach(
+        function (notice) {
+
+
+            const status =
+                String(
+                    notice.status ||
+                    ""
+                ).toLowerCase();
+
+
+            if (
+                status &&
+                status !== "published"
+            ) {
+
+                return;
+
+            }
+
+
+            activities.push({
+
+                icon:
+                    "fa-solid fa-bullhorn",
+
+                title:
+                    "Notice Published",
+
+                description:
+                    notice.title ||
+                    "College Notice",
+
+                date:
+                    notice.created_at ||
+                    notice.updated_at ||
+                    null
+
+            });
+
+        }
+    );
+
+
+    dashboardEvents.forEach(
+        function (event) {
+
+
+            activities.push({
+
+                icon:
+                    "fa-solid fa-calendar-days",
+
+                title:
+                    "Academic Event",
+
+                description:
+                    event.title ||
+                    "Academic Event",
+
+                date:
+                    event.created_at ||
+                    event.start_date ||
+                    null
+
+            });
+
+        }
+    );
+
+
+    activities.sort(
+        function (a, b) {
+
+            return (
+                getTimestamp(b.date) -
+                getTimestamp(a.date)
+            );
+
+        }
+    );
+
+
+    const recent =
+        activities.slice(
+            0,
+            5
+        );
+
+
+    if (
+        recent.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <li>
+
+                <i
+                    class="fa-regular fa-circle-info">
+                </i>
+
+                <div>
+
+                    <strong>
+                        No recent activities
+                    </strong>
+
+                    <p>
+                        New notices and academic events will appear here.
+                    </p>
+
+                </div>
+
+            </li>
+
+        `;
+
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        recent.map(
+            function (activity) {
+
+
+                return `
+
+                    <li>
+
+                        <i
+                            class="${activity.icon}">
+                        </i>
+
+                        <div>
+
+                            <strong>
+                                ${escapeHtml(
+                                    activity.title
+                                )}
+                            </strong>
+
+                            <p>
+                                ${escapeHtml(
+                                    activity.description
+                                )}
+                            </p>
+
+                            <small>
+                                ${escapeHtml(
+                                    formatDisplayDate(
+                                        activity.date
+                                    )
+                                )}
+                            </small>
+
+                        </div>
+
+                    </li>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+// ============================================================
+// REAL ACADEMIC CALENDAR
+// ============================================================
+
+function renderAcademicCalendar() {
+
+
+    const calendarElement =
+        document.getElementById(
+            "calendar"
+        );
+
+
+    if (
+        !calendarElement ||
+        typeof FullCalendar ===
+        "undefined"
+    ) {
+
+        return;
+
+    }
+
+
+    calendarElement.innerHTML =
+        "";
+
+
+    const events =
+        dashboardEvents.map(
+            function (event) {
+
+
+                return {
+
+                    id:
+                        String(
+                            event.id || ""
+                        ),
+
+                    title:
+                        event.title ||
+                        "Academic Event",
+
+                    start:
+                        event.start_date,
+
+                    end:
+                        getExclusiveEndDate(
+                            event.end_date ||
+                            event.start_date
+                        ),
+
+                    allDay:
+                        true
+
+                };
+
+            }
+        );
+
+
+    calendarInstance =
+        new FullCalendar.Calendar(
+            calendarElement,
+            {
+
+                initialView:
+                    "dayGridMonth",
+
+                height:
+                    "auto",
+
+                headerToolbar: {
+
+                    left:
+                        "prev,next today",
+
+                    center:
+                        "title",
+
+                    right:
+                        ""
+
+                },
+
+                events:
+                    events,
+
+                dayMaxEvents:
+                    true,
+
+                eventDisplay:
+                    "block",
+
+                eventClick:
+                    function (info) {
+
+                        info.jsEvent
+                            .preventDefault();
+
+
+                        window.location.href =
+                            "academic-calendar.html";
+
+                    }
+
+            }
+        );
+
+
+    calendarInstance.render();
+
+}
+
+
+// ============================================================
+// FULLCALENDAR EXCLUSIVE END DATE
+// ============================================================
+
+function getExclusiveEndDate(
+    dateValue
+) {
+
+
+    if (!dateValue) {
+
+        return null;
+
+    }
+
+
+    const match =
+        String(dateValue)
+            .match(
+                /^(\d{4})-(\d{2})-(\d{2})/
+            );
+
+
+    if (!match) {
+
+        return dateValue;
+
+    }
+
+
+    const date =
+        new Date(
+
+            Number(match[1]),
+
+            Number(match[2]) - 1,
+
+            Number(match[3])
+
+        );
+
+
+    date.setDate(
+        date.getDate() + 1
+    );
+
+
+    const year =
+        date.getFullYear();
+
+
+    const month =
+        String(
+            date.getMonth() + 1
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    return (
+        year
+        + "-"
+        + month
+        + "-"
+        + day
+    );
+
+}
+
+
+// ============================================================
+// DATE HELPERS
+// ============================================================
+
+function getTimestamp(value) {
+
+
+    if (!value) {
+
+        return 0;
+
+    }
+
+
+    const date =
+        new Date(value);
+
+
+    return Number.isNaN(
+        date.getTime()
+    )
+        ? 0
+        : date.getTime();
+
+}
+
+
+function formatDisplayDate(value) {
+
+
+    if (!value) {
+
+        return "Date not available";
+
+    }
+
+
+    const date =
+        new Date(value);
+
+
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return String(value);
+
+    }
+
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+
+            day:
+                "2-digit",
+
+            month:
+                "short",
+
+            year:
+                "numeric"
+
+        }
+    );
+
+}
+
+
+// ============================================================
+// GREETING
+// ============================================================
+
+function updateGreeting() {
+
+
+    const greeting =
+        document.getElementById(
+            "greeting"
+        );
+
+
+    if (!greeting) {
+        return;
+    }
+
+
+    const hour =
+        new Date().getHours();
+
+
+    let text =
+        "Welcome Back 👋";
+
+
+    if (
+        hour < 12
+    ) {
+
+        text =
+            "Good Morning, Admin 👋";
+
+    }
+
+
+    else if (
+        hour < 17
+    ) {
+
+        text =
+            "Good Afternoon, Admin 👋";
+
+    }
+
+
+    else {
+
+        text =
+            "Good Evening, Admin 👋";
+
+    }
+
+
+    greeting.textContent =
+        text;
+
+}
+
+
+// ============================================================
+// THEME
+// ============================================================
+
+function setupTheme() {
+
+    const themeToggle =
+        document.getElementById("themeToggle");
+
+    const themeMenu =
+        document.getElementById("themeMenu");
+
+    const savedTheme =
+        localStorage.getItem("theme") || "light";
+
+
+    // Apply saved theme correctly
+    document.body.classList.toggle(
+        "dark",
+        savedTheme === "dark"
+    );
+
+
+    updateThemeIcons();
+
+
+    if (themeToggle) {
+
+        themeToggle.addEventListener(
+            "click",
+            toggleTheme
+        );
+
+    }
+
+
+    if (themeMenu) {
+
+        themeMenu.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                toggleTheme();
+
+            }
+        );
+
+    }
+
+}
+
+
+
+// ============================================================
+// TOGGLE THEME
+// ============================================================
+
+function toggleTheme() {
+
+    const currentTheme =
+        localStorage.getItem("theme") || "light";
+
+    const newTheme =
+        currentTheme === "dark"
+            ? "light"
+            : "dark";
+
+
+    localStorage.setItem(
+        "theme",
+        newTheme
+    );
+
+
+    document.body.classList.toggle(
+        "dark",
+        newTheme === "dark"
+    );
+
+
+    updateThemeIcons();
+
+}
+
+
+
+// ============================================================
+// UPDATE THEME ICONS
+// ============================================================
+
+function updateThemeIcons() {
+
+    const dark =
+        document.body.classList.contains("dark");
+
+
+    const icon =
+        document.querySelector(
+            "#themeToggle i"
+        );
+
+
+    if (icon) {
+
+        icon.className =
+            dark
+                ? "fa-solid fa-sun"
+                : "fa-solid fa-moon";
+
+    }
+
+
+    const themeMenu =
+        document.getElementById("themeMenu");
+
+
+    if (themeMenu) {
+
+        themeMenu.innerHTML =
+            dark
+                ? '<i class="fa-solid fa-sun"></i> Light Mode'
+                : '<i class="fa-solid fa-moon"></i> Dark Mode';
+
+    }
+
+}
+
+
+// ============================================================
+// PROFILE DROPDOWN
+// ============================================================
+
+function setupProfileDropdown() {
+
+
+    const button =
+        document.getElementById(
+            "profileBtn"
+        );
+
+
+    const dropdown =
+        document.getElementById(
+            "profileDropdown"
+        );
+
+
+    if (
+        !button ||
+        !dropdown
+    ) {
+
+        return;
+
+    }
+
+
+    button.addEventListener(
+        "click",
+        function (event) {
+
+
+            event.stopPropagation();
+
+
+            dropdown.classList.toggle(
+                "show"
+            );
+
+
+        }
+    );
+
+
+    document.addEventListener(
+        "click",
+        function () {
+
+            dropdown.classList.remove(
+                "show"
+            );
+
+        }
+    );
+
+
+    dropdown.addEventListener(
+        "click",
+        function (event) {
+
+            event.stopPropagation();
+
+        }
+    );
+
+}
+
+
+// ============================================================
+// DASHBOARD SEARCH
+// ============================================================
+
+function setupDashboardSearch() {
+
+
+    const input =
+        document.getElementById(
+            "searchBox"
+        );
+
+
+    if (!input) {
+        return;
+    }
+
+
+    input.addEventListener(
+        "keyup",
+        function () {
+
+
+            const query =
+                input.value
+                    .trim()
+                    .toLowerCase();
+
+
+            const rows =
+                document.querySelectorAll(
+                    "#recentFacultyTable tr"
+                );
+
+
+            rows.forEach(
+                function (row) {
+
+
+                    const text =
+                        row.textContent
+                            .toLowerCase();
+
+
+                    row.style.display =
+                        text.includes(
+                            query
+                        )
+                            ? ""
+                            : "none";
+
+
+                }
+            );
+
+
+        }
+    );
+
+}
+
+
+// ============================================================
+// CAPITALIZE
+// ============================================================
+
+function capitalize(value) {
+
+
+    const text =
+        String(
+            value || ""
+        );
+
+
+    if (!text) {
+
+        return "Unknown";
+
+    }
+
+
+    return (
+        text.charAt(0)
+            .toUpperCase()
+        +
+        text.slice(1)
+    );
+
+}
+
+
+</script>
+
 
 </body>
 

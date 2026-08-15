@@ -2627,3 +2627,427 @@ font-size:14px;
 }
 
 }
+
+/* ============================================================
+   ADMIN PANEL - GLOBAL LAYOUT FIX
+   Keeps sidebar and right content identical on every admin page
+============================================================ */
+
+:root {
+    --admin-sidebar-width: 270px;
+    --admin-page-padding: 30px;
+}
+
+
+/* ============================================================
+   PAGE
+============================================================ */
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.dashboard {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+
+
+/* ============================================================
+   SIDEBAR - FIXED SIZE
+============================================================ */
+
+.sidebar {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+
+    width: var(--admin-sidebar-width) !important;
+    min-width: var(--admin-sidebar-width) !important;
+    max-width: var(--admin-sidebar-width) !important;
+
+    height: 100vh !important;
+
+    padding: 25px 18px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    z-index: 1050 !important;
+}
+
+
+/* Prevent sidebar content from changing its width */
+
+.sidebar *,
+.sidebar *::before,
+.sidebar *::after {
+    box-sizing: border-box;
+}
+
+
+.logo-box {
+    flex-shrink: 0;
+}
+
+
+.menu {
+    width: 100%;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+
+.menu li {
+    width: 100%;
+}
+
+
+.menu li a {
+    width: 100%;
+}
+
+
+.sidebar-bottom {
+    width: 100%;
+    margin-top: auto;
+}
+
+
+/* ============================================================
+   MAIN / RIGHT PANEL - SAME POSITION ON EVERY PAGE
+============================================================ */
+
+.main-content {
+    position: relative !important;
+
+    margin-left: var(--admin-sidebar-width) !important;
+
+    width: calc(
+        100% - var(--admin-sidebar-width)
+    ) !important;
+
+    max-width: calc(
+        100% - var(--admin-sidebar-width)
+    ) !important;
+
+    min-height: 100vh !important;
+
+    padding: var(--admin-page-padding) !important;
+
+    overflow-x: hidden !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* Prevent Bootstrap containers from shifting the page */
+
+.main-content > .container,
+.main-content > .container-fluid {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+
+/* ============================================================
+   TOPBAR
+============================================================ */
+
+.topbar {
+    width: 100% !important;
+
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+
+    box-sizing: border-box !important;
+
+    position: relative !important;
+
+    overflow: visible !important;
+}
+
+
+/* ============================================================
+   CONTENT ELEMENTS
+============================================================ */
+
+.chart-card,
+.table-card,
+.form-card,
+.notification-panel,
+.welcome-banner,
+.stats-grid,
+.quick-grid,
+.chart-section,
+.bottom-grid {
+    width: 100%;
+    max-width: 100%;
+
+    box-sizing: border-box;
+}
+
+
+/* ============================================================
+   TABLE
+============================================================ */
+
+.table-responsive {
+    width: 100%;
+    max-width: 100%;
+
+    overflow-x: auto;
+}
+
+
+/* ============================================================
+   ROW FIX
+   Bootstrap .row uses negative margins.
+   Do not allow it to move entire main panel.
+============================================================ */
+
+.main-content > .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+
+/* ============================================================
+   DARK MODE
+============================================================ */
+
+body.dark .main-content {
+    background: #0f172a;
+}
+
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 992px) {
+
+    :root {
+        --admin-sidebar-width: 90px;
+        --admin-page-padding: 22px;
+    }
+
+    .sidebar {
+        width: var(--admin-sidebar-width) !important;
+        min-width: var(--admin-sidebar-width) !important;
+        max-width: var(--admin-sidebar-width) !important;
+
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+    .logo-box h2,
+    .logo-box h3,
+    .logo-box span,
+    .menu li a span,
+    .sidebar-bottom span {
+        display: none !important;
+    }
+
+    .menu li a,
+    .sidebar-bottom a {
+        justify-content: center !important;
+
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+    .menu li a i,
+    .sidebar-bottom a i {
+        margin: 0 !important;
+    }
+
+    .main-content {
+        margin-left: var(--admin-sidebar-width) !important;
+
+        width: calc(
+            100% - var(--admin-sidebar-width)
+        ) !important;
+
+        max-width: calc(
+            100% - var(--admin-sidebar-width)
+        ) !important;
+    }
+
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 576px) {
+
+    :root {
+        --admin-sidebar-width: 0px;
+        --admin-page-padding: 15px;
+    }
+
+    .sidebar {
+        display: none !important;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+
+        width: 100% !important;
+        max-width: 100% !important;
+
+        padding: var(--admin-page-padding) !important;
+    }
+
+}
+
+
+/* =========================================
+   ATTENDANCE ANALYTICS CHART FIX
+========================================= */
+
+.attendance-card {
+    align-self: start;
+    height: auto !important;
+}
+
+.attendance-chart-wrapper {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    padding: 15px 10px 10px;
+}
+
+.attendance-chart-wrapper canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* =========================================================
+   FACULTY PERFORMANCE CHART FIX
+========================================================= */
+
+.performance-chart-wrapper {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    max-width: 100%;
+    margin: 20px auto 15px;
+}
+
+.performance-chart-wrapper #performanceChart {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
+@media (max-width: 576px) {
+
+    .performance-chart-wrapper {
+        width: 220px;
+        height: 220px;
+    }
+
+    .performance-chart-wrapper #performanceChart {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+}
+
+/* =========================================================
+   DARK MODE FORM INPUT FIX
+   Prevent filled/autofill inputs from becoming light
+========================================================= */
+
+body.dark .form-control,
+body.dark .form-control:focus,
+body.dark .form-control:active,
+body.dark .form-select,
+body.dark .form-select:focus,
+body.dark textarea,
+body.dark textarea:focus {
+    background-color: #111827 !important;
+    color: #ffffff !important;
+    border-color: #374151 !important;
+}
+
+
+/* Placeholder */
+
+body.dark .form-control::placeholder,
+body.dark textarea::placeholder {
+    color: #94a3b8 !important;
+    opacity: 1 !important;
+}
+
+
+/* Chrome / Edge Autofill Fix */
+
+body.dark input:-webkit-autofill,
+body.dark input:-webkit-autofill:hover,
+body.dark input:-webkit-autofill:focus,
+body.dark input:-webkit-autofill:active {
+    -webkit-text-fill-color: #ffffff !important;
+    caret-color: #ffffff !important;
+
+    -webkit-box-shadow:
+        0 0 0 1000px #111827 inset !important;
+
+    box-shadow:
+        0 0 0 1000px #111827 inset !important;
+
+    border: 1px solid #374151 !important;
+
+    transition:
+        background-color 9999s ease-out 0s;
+}
+
+
+/* Filled input should remain dark */
+
+body.dark input.form-control:not(:placeholder-shown),
+body.dark textarea.form-control:not(:placeholder-shown) {
+    background-color: #111827 !important;
+    color: #ffffff !important;
+}
+
+
+/* Date input */
+
+body.dark input[type="date"] {
+    color-scheme: dark;
+    background-color: #111827 !important;
+    color: #ffffff !important;
+}
+
+
+/* Select options */
+
+body.dark .form-select option {
+    background-color: #111827;
+    color: #ffffff;
+}

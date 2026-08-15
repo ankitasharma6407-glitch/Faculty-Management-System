@@ -8,612 +8,1448 @@
 
 <title>Edit Student | Faculty Management System</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
 
-<link rel="stylesheet" href="../../css/admin-dashboard.css">
+<link
+    rel="stylesheet"
+    href="../../css/admin-dashboard.css">
 
 </head>
+
 
 <body>
 
 <div class="dashboard">
 
-<!-- ================= Sidebar ================= -->
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
 
 <aside class="sidebar">
 
-<div class="logo-box">
+    <div class="logo-box">
 
-<img src="../../images/logo.png" alt="College Logo">
+        <img
+            src="../../images/logo.png"
+            alt="College Logo">
 
-<h3>PATNA</h3>
+        <h3>PATNA</h3>
 
-<h2>WOMEN'S COLLEGE</h2>
+        <h2>WOMEN'S COLLEGE</h2>
 
-<span>(AUTONOMOUS)</span>
+        <span>(AUTONOMOUS)</span>
 
-</div>
+    </div>
 
-<ul class="menu">
 
-<li>
-<a href="admin-dashboard.html">
-<i class="fa-solid fa-house"></i>
-<span>Dashboard</span>
-</a>
-</li>
+    <ul class="menu">
 
-<li>
-<a href="teacher-list.html">
-<i class="fa-solid fa-user-tie"></i>
-<span>Teachers</span>
-</a>
-</li>
+        <li>
+            <a href="admin-dashboard.html">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
 
-<li>
-<a href="hod-list.html">
-<i class="fa-solid fa-building-user"></i>
-<span>HOD</span>
-</a>
-</li>
 
-<li class="active">
-<a href="student-list.html">
-<i class="fa-solid fa-user-graduate"></i>
-<span>Students</span>
-</a>
-</li>
+        <li>
+            <a href="teacher-list.html">
+                <i class="fa-solid fa-user-tie"></i>
+                <span>Teachers</span>
+            </a>
+        </li>
 
-<li>
-<a href="recruiter-list.html">
-<i class="fa-solid fa-building"></i>
-<span>Recruiters</span>
-</a>
-</li>
 
-<li>
-<a href="attendance.html">
-<i class="fa-solid fa-calendar-check"></i>
-<span>Attendance</span>
-</a>
-</li>
+        <li>
+            <a href="hod-list.html">
+                <i class="fa-solid fa-building-user"></i>
+                <span>HOD</span>
+            </a>
+        </li>
 
-<li>
-<a href="analytics.html">
-<i class="fa-solid fa-chart-line"></i>
-<span>Analytics</span>
-</a>
-</li>
 
-<li>
-<a href="attendance-report.html">
-<i class="fa-solid fa-file-lines"></i>
-<span>Attendance Report</span>
-</a>
-</li>
+        <li class="active">
+            <a href="student-list.html">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>Students</span>
+            </a>
+        </li>
 
-<li>
-<a href="notice-board.html">
-<i class="fa-solid fa-bullhorn"></i>
-<span>Notice Board</span>
-</a>
-</li>
 
-<li>
-<a href="academic-calendar.html">
-<i class="fa-solid fa-calendar-days"></i>
-<span>Academic Calendar</span>
-</a>
-</li>
+        <li>
+            <a href="recruiter-list.html">
+                <i class="fa-solid fa-building"></i>
+                <span>Recruiters</span>
+            </a>
+        </li>
 
-</ul>
 
-<div class="sidebar-bottom">
+        <li>
+            <a href="attendance.html">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Attendance</span>
+            </a>
+        </li>
 
-<a href="settings.html">
 
-<i class="fa-solid fa-gear"></i>
+        <li>
+            <a href="analytics.html">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Analytics</span>
+            </a>
+        </li>
 
-<span>Settings</span>
 
-</a>
+        <li>
+            <a href="attendance-report.html">
+                <i class="fa-solid fa-file-lines"></i>
+                <span>Attendance Report</span>
+            </a>
+        </li>
 
-<a href="admin-login.html" class="logout-btn">
 
-<i class="fa-solid fa-right-from-bracket"></i>
+        <li>
+            <a href="notice-board.html">
+                <i class="fa-solid fa-bullhorn"></i>
+                <span>Notice Board</span>
+            </a>
+        </li>
 
-<span>Logout</span>
 
-</a>
+        <li>
+            <a href="academic-calendar.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Academic Calendar</span>
+            </a>
+        </li>
 
-</div>
+    </ul>
+
+
+    <div class="sidebar-bottom">
+
+        <a href="settings.html">
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>Settings</span>
+
+        </a>
+
+
+        <a
+            href="admin-login.html"
+            class="logout-btn">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>Logout</span>
+
+        </a>
+
+    </div>
 
 </aside>
 
-<!-- ================= Main Content ================= -->
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
 
 <main class="main-content">
 
+
+<!-- TOPBAR -->
+
 <div class="topbar">
 
-<div>
+    <div>
 
-<h2>Edit Student</h2>
+        <h2>Edit Student</h2>
 
-<p>Dashboard / Students / Edit Student</p>
+        <p>Dashboard / Students / Edit Student</p>
+
+    </div>
+
+
+    <div class="topbar-actions">
+
+        <button
+            id="themeToggle"
+            class="theme-toggle-btn">
+
+            <i class="fa-solid fa-moon"></i>
+
+        </button>
+
+    </div>
 
 </div>
-<div class="topbar-actions">
 
-    <button id="themeToggle" class="theme-toggle-btn">
-        <i class="fa-solid fa-moon"></i>
-    </button>
 
-</div>
-</div>
+
+<!-- =========================================================
+     EDIT FORM
+========================================================= -->
 
 <div class="row justify-content-center mt-4">
 
-<div class="col-lg-10">
+    <div class="col-lg-10">
 
-<div class="chart-card">
+        <div class="chart-card">
 
-<h4 class="mb-4">
 
-<i class="fa-solid fa-user-pen"></i>
+            <h4 class="mb-4">
 
-Update Student Details
+                <i class="fa-solid fa-user-pen"></i>
 
-</h4>
+                Update Student Details
 
-<form id="editStudentForm">
+            </h4>
 
-<div class="row">
 
-<div class="col-md-6 mb-3">
+            <!-- Loading -->
 
-<label class="form-label">Student ID</label>
+            <div
+                id="loadingMessage"
+                class="alert alert-info">
 
-<input
-type="text"
-class="form-control"
-value="STU001"
-readonly>
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                Loading student details...
+
+            </div>
+
+
+            <!-- Error -->
+
+            <div
+                id="errorMessage"
+                class="alert alert-danger d-none">
+            </div>
+
+
+
+            <form
+                id="editStudentForm"
+                style="display:none;">
+
+                <div class="row">
+
+
+                    <!-- =================================================
+                         STUDENT ID
+                    ================================================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Student ID
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="studentId"
+                            readonly>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         ROLL NUMBER
+                    ================================================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Roll Number
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="rollNumber"
+                            readonly>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         FULL NAME
+                    ================================================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="studentName"
+                            required>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         EMAIL
+                    ================================================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="studentEmail"
+                            required>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         PHONE
+                    ================================================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Mobile Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            class="form-control"
+                            id="studentPhone">
+
+                    </div>
+
+
+                    <!-- =================================================
+                         GENDER
+                    ================================================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Gender
+                        </label>
+
+                        <select
+                            class="form-select"
+                            id="studentGender">
+
+                            <option value="">
+                                Select Gender
+                            </option>
+
+                            <option value="Male">
+                                Male
+                            </option>
+
+                            <option value="Female">
+                                Female
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         DOB
+                    ================================================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Date of Birth
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            id="studentDob">
+
+                    </div>
+
+
+                    <!-- =================================================
+                         BLOOD GROUP
+                    ================================================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Blood Group
+                        </label>
+
+                        <select
+                            class="form-select"
+                            id="bloodGroup">
+
+                            <option value="">
+                                Select Blood Group
+                            </option>
+
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         COURSE
+                    ================================================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Course
+                        </label>
+
+                        <select
+                            class="form-select"
+                            id="course"
+                            required>
+
+                            <option value="">
+                                Select Course
+                            </option>
+
+                            <option value="BCA">BCA</option>
+                            <option value="BBA">BBA</option>
+                            <option value="B.Sc">B.Sc</option>
+                            <option value="B.Com">B.Com</option>
+                            <option value="BA">BA</option>
+                            <option value="MCA">MCA</option>
+                            <option value="MBA">MBA</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         DEPARTMENT
+                    ================================================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Department
+                        </label>
+
+                        <select
+                            class="form-select"
+                            id="department"
+                            required>
+
+                            <option value="">
+                                Select Department
+                            </option>
+
+                            <option value="1">
+                                Computer Science
+                            </option>
+
+                            <option value="2">
+                                Mathematics
+                            </option>
+
+                            <option value="3">
+                                Physics
+                            </option>
+
+                            <option value="4">
+                                Chemistry
+                            </option>
+
+                            <option value="5">
+                                Commerce
+                            </option>
+
+                            <option value="6">
+                                English
+                            </option>
+
+                            <option value="7">
+                                Economics
+                            </option>
+
+                            <option value="8">
+                                Hindi
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         SEMESTER
+                    ================================================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Semester
+                        </label>
+
+                        <select
+                            class="form-select"
+                            id="semester">
+
+                            <option value="">
+                                Select Semester
+                            </option>
+
+                            <option value="1st Semester">
+                                1st Semester
+                            </option>
+
+                            <option value="2nd Semester">
+                                2nd Semester
+                            </option>
+
+                            <option value="3rd Semester">
+                                3rd Semester
+                            </option>
+
+                            <option value="4th Semester">
+                                4th Semester
+                            </option>
+
+                            <option value="5th Semester">
+                                5th Semester
+                            </option>
+
+                            <option value="6th Semester">
+                                6th Semester
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         SECTION
+                    ================================================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Section
+                        </label>
+
+                        <select
+                            class="form-select"
+                            id="section">
+
+                            <option value="">
+                                Select Section
+                            </option>
+
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         ADMISSION DATE
+                    ================================================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Admission Date
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            id="admissionDate">
+
+                    </div>
+
+
+                    <!-- =================================================
+                         GUARDIAN NAME
+                    ================================================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Guardian Name
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="guardianName">
+
+                    </div>
+
+
+                    <!-- =================================================
+                         GUARDIAN PHONE
+                    ================================================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Guardian Mobile
+                        </label>
+
+                        <input
+                            type="tel"
+                            class="form-control"
+                            id="guardianPhone">
+
+                    </div>
+
+
+                    <!-- =================================================
+                         ADDRESS
+                    ================================================= -->
+
+                    <div class="col-12 mb-3">
+
+                        <label class="form-label">
+                            Address
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            id="studentAddress"
+                            rows="3"></textarea>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         USERNAME
+                    ================================================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Username
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="username"
+                            required>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         PASSWORD
+                    ================================================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            New Password
+                        </label>
+
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="password"
+                            placeholder="Leave blank to keep current password">
+
+                    </div>
+
+
+                    <!-- =================================================
+                         STATUS
+                    ================================================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Status
+                        </label>
+
+                        <select
+                            class="form-select"
+                            id="studentStatus">
+
+                            <option value="active">
+                                Active
+                            </option>
+
+                            <option value="inactive">
+                                Inactive
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         PHOTO
+                    ================================================= -->
+
+                    <div class="col-md-6 mb-4">
+
+                        <label class="form-label">
+                            Student Photo
+                        </label>
+
+                        <input
+                            type="file"
+                            class="form-control"
+                            id="studentPhotoInput"
+                            accept="image/*">
+
+
+                        <div class="text-center mt-3">
+
+                            <img
+                                src="../../images/default-profile.png"
+                                id="studentPhotoPreview"
+                                alt="Student Photo"
+                                class="rounded-circle border shadow"
+                                style="
+                                    width:150px;
+                                    height:150px;
+                                    object-fit:cover;
+                                ">
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- =================================================
+                     BUTTONS
+                ================================================= -->
+
+                <div
+                    class="d-flex justify-content-end mt-3">
+
+                    <a
+                        href="student-list.html"
+                        class="btn btn-secondary me-3">
+
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                        Cancel
+
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        id="updateStudentButton">
+
+                        <i class="fa-solid fa-floppy-disk"></i>
+
+                        Update Student
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
 
 </div>
 
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Enrollment Number</label>
-
-<input
-type="text"
-class="form-control"
-value="PWC2026001"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Full Name</label>
-
-<input
-type="text"
-class="form-control"
-value="Anjali Kumari"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Email Address</label>
-
-<input
-type="email"
-class="form-control"
-value="anjali@gmail.com"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Mobile Number</label>
-
-<input
-type="tel"
-class="form-control"
-value="9876543210"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Gender</label>
-
-<select class="form-select" required>
-
-<option>Male</option>
-
-<option selected>Female</option>
-
-<option>Other</option>
-
-</select>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Date of Birth</label>
-
-<input
-type="date"
-class="form-control"
-value="2005-03-15"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Department</label>
-
-<select class="form-select" required>
-
-<option selected>Computer Science</option>
-
-<option>Commerce</option>
-
-<option>Physics</option>
-
-<option>Chemistry</option>
-
-<option>Mathematics</option>
-
-<option>English</option>
-
-</select>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Course</label>
-
-<input
-type="text"
-class="form-control"
-value="MCA"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Semester</label>
-
-<select class="form-select" required>
-
-<option>1</option>
-
-<option>2</option>
-
-<option>3</option>
-
-<option selected>4</option>
-
-<option>5</option>
-
-<option>6</option>
-
-</select>
-
-</div>
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Section</label>
-
-<select class="form-select" required>
-
-<option>A</option>
-
-<option selected>B</option>
-
-<option>C</option>
-
-<option>D</option>
-
-</select>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Admission Date</label>
-
-<input
-type="date"
-class="form-control"
-value="2024-08-01"
-required>
-
-</div>
-
-<div class="col-12 mb-3">
-
-<label class="form-label">Address</label>
-
-<textarea
-class="form-control"
-rows="3"
-required>Patna, Bihar, India</textarea>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Username</label>
-
-<input
-type="text"
-class="form-control"
-value="anjali.kumari"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">Password</label>
-
-<input
-type="password"
-class="form-control"
-value="********"
-required>
-
-</div>
-
-<div class="col-12 mb-4">
-
-<label class="form-label">Student Photo</label>
-
-<input
-type="file"
-class="form-control"
-id="studentPhotoInput"
-accept="image/*">
-
-<div class="text-center mt-3">
-
-<img
-src="../../images/default-profile.png"
-id="studentPhotoPreview"
-alt="Student Photo"
-class="rounded-circle border shadow"
-style="width:150px;height:150px;object-fit:cover;">
-
-</div>
-
-</div>
-
-</div>
-
-<div class="d-flex justify-content-end mt-3">
-
-<button
-type="reset"
-class="btn btn-secondary me-3">
-
-<i class="fa-solid fa-rotate-left"></i>
-
-Reset
-
-</button>
-
-<button
-type="submit"
-class="btn btn-primary">
-
-<i class="fa-solid fa-floppy-disk"></i>
-
-Update Student
-
-</button>
-
-</div>
-
-</form>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ================= Success Modal ================= -->
-
-<div
-class="modal fade"
-id="updateStudentModal"
-tabindex="-1"
-aria-hidden="true">
-
-<div class="modal-dialog modal-dialog-centered">
-
-<div class="modal-content">
-
-<div class="modal-header bg-success text-white">
-
-<h5 class="modal-title">
-
-<i class="fa-solid fa-circle-check me-2"></i>
-
-Student Updated
-
-</h5>
-
-<button
-type="button"
-class="btn-close btn-close-white"
-data-bs-dismiss="modal">
-
-</button>
-
-</div>
-
-<div class="modal-body text-center">
-
-<i class="fa-solid fa-user-graduate fa-4x text-success mb-3"></i>
-
-<h4>Student Details Updated Successfully!</h4>
-
-<p class="text-muted">
-
-The student information has been updated successfully.
-Changes will be saved permanently after backend integration.
-
-</p>
-
-</div>
-
-<div class="modal-footer">
-
-<button
-type="button"
-class="btn btn-success"
-data-bs-dismiss="modal">
-
-OK
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<!-- ================= Bootstrap JS ================= -->
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../js/dashboard.js"></script>
-<!-- ================= JavaScript ================= -->
-
-<script>
-
-// ================= Student Photo Preview =================
-
-const studentPhotoInput = document.getElementById("studentPhotoInput");
-const studentPhotoPreview = document.getElementById("studentPhotoPreview");
-
-if(studentPhotoInput){
-
-studentPhotoInput.addEventListener("change", function(){
-
-const file = this.files[0];
-
-if(file){
-
-const reader = new FileReader();
-
-reader.onload = function(e){
-
-studentPhotoPreview.src = e.target.result;
-
-};
-
-reader.readAsDataURL(file);
-
-}
-
-});
-
-}
-
-// ================= Form Validation =================
-
-const studentForm = document.getElementById("editStudentForm");
-
-if(studentForm){
-
-studentForm.addEventListener("submit", function(e){
-
-e.preventDefault();
-
-const requiredFields = studentForm.querySelectorAll("input[required], textarea[required], select[required]");
-
-let isValid = true;
-
-requiredFields.forEach(function(field){
-
-if(field.value.trim() === ""){
-
-field.classList.add("is-invalid");
-field.classList.remove("is-valid");
-
-isValid = false;
-
-}else{
-
-field.classList.remove("is-invalid");
-field.classList.add("is-valid");
-
-}
-
-});
-
-if(!isValid){
-
-alert("Please fill all required fields.");
-
-return;
-
-}
-
-// ================= Success Modal =================
-
-const modal = new bootstrap.Modal(document.getElementById("updateStudentModal"));
-
-modal.show();
-
-});
-
-}
-
-// ================= Reset Form =================
-
-studentForm.addEventListener("reset", function(){
-
-setTimeout(function(){
-
-document.querySelectorAll(".is-valid, .is-invalid").forEach(function(field){
-
-field.classList.remove("is-valid");
-field.classList.remove("is-invalid");
-
-});
-
-studentPhotoPreview.src = "../../images/default-profile.png";
-
-},100);
-
-});
-
-</script>
 
 </main>
 
 </div>
+
+
+
+<!-- =========================================================
+     SCRIPTS
+========================================================= -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+<script src="../../js/api.js"></script>
+
+<script src="../../js/dashboard.js"></script>
+
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
+
+
+        // ====================================================
+        // GET STUDENT ID FROM URL
+        // ====================================================
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const studentId =
+            params.get("id");
+
+
+        const form =
+            document.getElementById(
+                "editStudentForm"
+            );
+
+
+        const loadingMessage =
+            document.getElementById(
+                "loadingMessage"
+            );
+
+
+        const errorMessage =
+            document.getElementById(
+                "errorMessage"
+            );
+
+
+        // ====================================================
+        // CHECK ID
+        // ====================================================
+
+        if (!studentId) {
+
+            loadingMessage.style.display =
+                "none";
+
+            errorMessage.classList.remove(
+                "d-none"
+            );
+
+            errorMessage.textContent =
+                "Student ID is missing.";
+
+            return;
+
+        }
+
+
+        // ====================================================
+        // LOAD STUDENT
+        // ====================================================
+
+        try {
+
+
+            const response =
+                await fetch(
+                    "http://127.0.0.1:5000/api/students/" +
+                    studentId
+                );
+
+
+            const result =
+                await response.json();
+
+
+            console.log(
+                "Student details:",
+                result
+            );
+
+
+            if (
+                !response.ok ||
+                !result.success ||
+                !result.data
+            ) {
+
+                throw new Error(
+                    result.message ||
+                    "Student details not found."
+                );
+
+            }
+
+
+            const student =
+                result.data;
+
+
+            // =================================================
+            // FILL FORM
+            // =================================================
+
+            document.getElementById(
+                "studentId"
+            ).value =
+                student.student_code || "";
+
+
+            document.getElementById(
+                "rollNumber"
+            ).value =
+                student.roll_number || "";
+
+
+            document.getElementById(
+                "studentName"
+            ).value =
+                student.full_name || "";
+
+
+            document.getElementById(
+                "studentEmail"
+            ).value =
+                student.email || "";
+
+
+            document.getElementById(
+                "studentPhone"
+            ).value =
+                student.phone || "";
+
+
+            document.getElementById(
+                "studentGender"
+            ).value =
+                student.gender || "";
+
+
+            document.getElementById(
+                "studentDob"
+            ).value =
+                student.dob || "";
+
+
+            document.getElementById(
+                "bloodGroup"
+            ).value =
+                student.blood_group || "";
+
+
+            document.getElementById(
+                "course"
+            ).value =
+                student.course || "";
+
+
+            document.getElementById(
+                "department"
+            ).value =
+                student.department_id || "";
+
+
+            document.getElementById(
+                "semester"
+            ).value =
+                student.semester || "";
+
+
+            document.getElementById(
+                "section"
+            ).value =
+                student.section || "";
+
+
+            document.getElementById(
+                "admissionDate"
+            ).value =
+                student.admission_date || "";
+
+
+            document.getElementById(
+                "guardianName"
+            ).value =
+                student.guardian_name || "";
+
+
+            document.getElementById(
+                "guardianPhone"
+            ).value =
+                student.guardian_phone || "";
+
+
+            document.getElementById(
+                "studentAddress"
+            ).value =
+                student.address || "";
+
+
+            document.getElementById(
+                "username"
+            ).value =
+                student.username || "";
+
+
+            document.getElementById(
+                "studentStatus"
+            ).value =
+                student.status || "active";
+
+
+            // =================================================
+            // PHOTO
+            // =================================================
+
+            if (student.photo_url) {
+
+                let photoUrl =
+                    student.photo_url.replace(
+                        /\\/g,
+                        "/"
+                    );
+
+
+                if (
+                    !photoUrl.startsWith("http")
+                ) {
+
+                    photoUrl =
+                        "http://127.0.0.1:5000" +
+                        photoUrl;
+
+                }
+
+
+                document.getElementById(
+                    "studentPhotoPreview"
+                ).src =
+                    photoUrl;
+
+            }
+
+
+            // =================================================
+            // SHOW FORM
+            // =================================================
+
+            loadingMessage.style.display =
+                "none";
+
+            form.style.display =
+                "block";
+
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Load student error:",
+                error
+            );
+
+
+            loadingMessage.style.display =
+                "none";
+
+
+            errorMessage.classList.remove(
+                "d-none"
+            );
+
+
+            errorMessage.textContent =
+                error.message ||
+                "Failed to load student details.";
+
+        }
+
+
+
+        // ====================================================
+        // PHOTO PREVIEW
+        // ====================================================
+
+        const photoInput =
+            document.getElementById(
+                "studentPhotoInput"
+            );
+
+
+        const photoPreview =
+            document.getElementById(
+                "studentPhotoPreview"
+            );
+
+
+        photoInput.addEventListener(
+            "change",
+            function () {
+
+
+                const file =
+                    this.files[0];
+
+
+                if (file) {
+
+                    const reader =
+                        new FileReader();
+
+
+                    reader.onload =
+                        function (e) {
+
+                            photoPreview.src =
+                                e.target.result;
+
+                        };
+
+
+                    reader.readAsDataURL(
+                        file
+                    );
+
+                }
+
+            }
+        );
+
+
+
+        // ====================================================
+        // UPDATE STUDENT
+        // ====================================================
+
+        form.addEventListener(
+            "submit",
+            async function (e) {
+
+                e.preventDefault();
+
+
+                const updateButton =
+                    document.getElementById(
+                        "updateStudentButton"
+                    );
+
+
+                updateButton.disabled =
+                    true;
+
+
+                updateButton.innerHTML =
+                    '<i class="fa-solid fa-spinner fa-spin"></i> Updating...';
+
+
+                try {
+
+
+                    // ==========================================
+                    // FORM DATA
+                    // ==========================================
+
+                    const formData =
+                        new FormData();
+
+
+                    formData.append(
+                        "full_name",
+                        document.getElementById(
+                            "studentName"
+                        ).value.trim()
+                    );
+
+
+                    formData.append(
+                        "email",
+                        document.getElementById(
+                            "studentEmail"
+                        ).value.trim()
+                    );
+
+
+                    formData.append(
+                        "phone",
+                        document.getElementById(
+                            "studentPhone"
+                        ).value.trim()
+                    );
+
+
+                    formData.append(
+                        "gender",
+                        document.getElementById(
+                            "studentGender"
+                        ).value
+                    );
+
+
+                    formData.append(
+                        "blood_group",
+                        document.getElementById(
+                            "bloodGroup"
+                        ).value
+                    );
+
+
+                    formData.append(
+                        "dob",
+                        document.getElementById(
+                            "studentDob"
+                        ).value
+                    );
+
+
+                    formData.append(
+                        "department_id",
+                        document.getElementById(
+                            "department"
+                        ).value
+                    );
+
+
+                    formData.append(
+                        "course",
+                        document.getElementById(
+                            "course"
+                        ).value
+                    );
+
+
+                    formData.append(
+                        "semester",
+                        document.getElementById(
+                            "semester"
+                        ).value
+                    );
+
+
+                    formData.append(
+                        "section",
+                        document.getElementById(
+                            "section"
+                        ).value
+                    );
+
+
+                    formData.append(
+                        "admission_date",
+                        document.getElementById(
+                            "admissionDate"
+                        ).value
+                    );
+
+
+                    formData.append(
+                        "guardian_name",
+                        document.getElementById(
+                            "guardianName"
+                        ).value.trim()
+                    );
+
+
+                    formData.append(
+                        "guardian_phone",
+                        document.getElementById(
+                            "guardianPhone"
+                        ).value.trim()
+                    );
+
+
+                    formData.append(
+                        "address",
+                        document.getElementById(
+                            "studentAddress"
+                        ).value.trim()
+                    );
+
+
+                    formData.append(
+                        "username",
+                        document.getElementById(
+                            "username"
+                        ).value.trim()
+                    );
+
+
+                    formData.append(
+                        "status",
+                        document.getElementById(
+                            "studentStatus"
+                        ).value
+                    );
+
+
+                    // ==========================================
+                    // OPTIONAL PASSWORD
+                    // ==========================================
+
+                    const password =
+                        document.getElementById(
+                            "password"
+                        ).value;
+
+
+                    if (password) {
+
+                        formData.append(
+                            "password",
+                            password
+                        );
+
+                    }
+
+
+                    // ==========================================
+                    // PHOTO
+                    // ==========================================
+
+                    const photo =
+                        photoInput.files[0];
+
+
+                    if (photo) {
+
+                        formData.append(
+                            "photo",
+                            photo
+                        );
+
+                    }
+
+
+                    console.log(
+                        "Updating student..."
+                    );
+
+
+                    // ==========================================
+                    // SEND PUT REQUEST
+                    // ==========================================
+
+                    const response =
+                        await fetch(
+                            "http://127.0.0.1:5000/api/students/" +
+                            studentId,
+                            {
+                                method: "PUT",
+                                body: formData
+                            }
+                        );
+
+
+                    const result =
+                        await response.json();
+
+
+                    console.log(
+                        "Update response:",
+                        result
+                    );
+
+
+                    if (
+                        !response.ok ||
+                        !result.success
+                    ) {
+
+                        throw new Error(
+                            result.message ||
+                            "Student update failed."
+                        );
+
+                    }
+
+
+                    alert(
+                        "Student updated successfully!"
+                    );
+
+
+                    // Go back to student list
+
+                    window.location.href =
+                        "student-list.html";
+
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Update student error:",
+                        error
+                    );
+
+
+                    alert(
+                        error.message ||
+                        "Failed to update student."
+                    );
+
+
+                    updateButton.disabled =
+                        false;
+
+
+                    updateButton.innerHTML =
+                        '<i class="fa-solid fa-floppy-disk"></i> Update Student';
+
+                }
+
+            }
+        );
+
+    }
+);
+
+</script>
+
 
 </body>
 

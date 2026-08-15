@@ -3,666 +3,2936 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>Analytics | Faculty Management System</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>
+        Analytics | Faculty Management System
+    </title>
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 
-<link rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css">
 
-<link rel="stylesheet"
-href="../../css/admin-dashboard.css">
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Dashboard CSS -->
+    <link
+        rel="stylesheet"
+        href="../../css/admin-dashboard.css">
+
+
+    <style>
+
+        /* =====================================================
+           ANALYTICS PAGE
+        ===================================================== */
+
+        .analytics-page-title h2 {
+            margin-bottom: 4px;
+        }
+
+
+        .analytics-page-title p {
+            margin-bottom: 0;
+            color: #777;
+        }
+
+
+        body.dark .analytics-page-title p {
+            color: #cbd5e1 !important;
+        }
+
+
+        .analytics-chart-card {
+            height: 100%;
+        }
+
+
+        /* =====================================================
+           ATTENDANCE BAR CHART
+        ===================================================== */
+
+        .attendance-chart-wrapper {
+            position: relative;
+            width: 100%;
+            height: 285px;
+            margin-top: 10px;
+        }
+
+
+        .attendance-chart-wrapper canvas {
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
+        }
+
+
+        /* =====================================================
+           DEPARTMENT DOUGHNUT CHART
+        ===================================================== */
+
+        .department-chart-wrapper {
+            position: relative;
+            width: 260px;
+            height: 260px;
+            max-width: 100%;
+            margin: 18px auto 0;
+        }
+
+
+        .department-chart-wrapper canvas {
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 768px) {
+
+            .analytics-top-actions {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+
+            .attendance-chart-wrapper {
+                height: 250px;
+            }
+
+
+            .department-chart-wrapper {
+                width: 230px;
+                height: 230px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
+
 
 <div class="dashboard">
 
-<!-- ================= Sidebar ================= -->
-
-<aside class="sidebar">
 
-<div class="logo-box">
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
-<img src="../../images/logo.png" alt="College Logo">
+    <aside class="sidebar">
 
-<h3>PATNA</h3>
 
-<h2>WOMEN'S COLLEGE</h2>
+        <div class="logo-box">
 
-<span>(AUTONOMOUS)</span>
+            <img
+                src="../../images/logo.png"
+                alt="College Logo">
 
-</div>
+            <h3>
+                PATNA
+            </h3>
 
-<ul class="menu">
+            <h2>
+                WOMEN'S COLLEGE
+            </h2>
 
-<li>
-<a href="admin-dashboard.html">
-<i class="fa-solid fa-house"></i>
-<span>Dashboard</span>
-</a>
-</li>
+            <span>
+                (AUTONOMOUS)
+            </span>
 
-<li>
-<a href="teacher-list.html">
-<i class="fa-solid fa-user-tie"></i>
-<span>Teachers</span>
-</a>
-</li>
+        </div>
 
-<li>
-<a href="hod-list.html">
-<i class="fa-solid fa-building-user"></i>
-<span>HOD</span>
-</a>
-</li>
 
-<li>
-<a href="student-list.html">
-<i class="fa-solid fa-user-graduate"></i>
-<span>Students</span>
-</a>
-</li>
 
-<li>
-<a href="recruiter-list.html">
-<i class="fa-solid fa-building"></i>
-<span>Recruiters</span>
-</a>
-</li>
+        <ul class="menu">
 
-<li>
-<a href="attendance.html">
-<i class="fa-solid fa-calendar-check"></i>
-<span>Attendance</span>
-</a>
-</li>
 
-<li class="active">
-<a href="analytics.html">
-<i class="fa-solid fa-chart-line"></i>
-<span>Analytics</span>
-</a>
-</li>
+            <!-- Dashboard -->
 
-<li>
-<a href="reports.html">
-<i class="fa-solid fa-file-lines"></i>
-<span>Reports</span>
-</a>
-</li>
+            <li>
 
-<li>
-<a href="notice-board.html">
-<i class="fa-solid fa-bullhorn"></i>
-<span>Notice Board</span>
-</a>
-</li>
+                <a href="admin-dashboard.html">
 
-<li>
-<a href="academic-calendar.html">
-<i class="fa-solid fa-calendar-days"></i>
-<span>Academic Calendar</span>
-</a>
-</li>
+                    <i class="fa-solid fa-house"></i>
 
-</ul>
+                    <span>
+                        Dashboard
+                    </span>
 
-<div class="sidebar-bottom">
+                </a>
 
-<a href="settings.html">
+            </li>
 
-<i class="fa-solid fa-gear"></i>
 
-<span>Settings</span>
 
-</a>
+            <!-- Teachers -->
 
-<a href="admin-login.html" class="logout-btn">
+            <li>
 
-<i class="fa-solid fa-right-from-bracket"></i>
+                <a href="teacher-list.html">
 
-<span>Logout</span>
+                    <i class="fa-solid fa-user-tie"></i>
 
-</a>
+                    <span>
+                        Teachers
+                    </span>
 
-</div>
+                </a>
 
-</aside>
+            </li>
 
-<!-- ================= Main Content ================= -->
 
-<main class="main-content">
 
-<div class="topbar">
+            <!-- HOD -->
 
-<div>
+            <li>
 
-<h2>Analytics Dashboard</h2>
+                <a href="hod-list.html">
 
-<p>Dashboard / Analytics</p>
+                    <i class="fa-solid fa-building-user"></i>
 
-</div>
-<div class="topbar-actions">
+                    <span>
+                        HOD
+                    </span>
 
-    <button id="themeToggle" class="theme-toggle-btn">
-        <i class="fa-solid fa-moon"></i>
-    </button>
+                </a>
 
-</div>
-<div>
+            </li>
 
-<button class="btn btn-primary">
 
-<i class="fa-solid fa-download"></i>
 
-Export Report
+            <!-- Students -->
 
-</button>
+            <li>
 
-</div>
+                <a href="student-list.html">
 
-</div>
+                    <i class="fa-solid fa-user-graduate"></i>
 
-<!-- ================= Statistics Cards ================= -->
+                    <span>
+                        Students
+                    </span>
 
-<div class="stats-grid">
+                </a>
 
-<div class="stat-card">
+            </li>
 
-<div>
 
-<h4>Total Teachers</h4>
 
-<h2>120</h2>
+            <!-- Recruiters -->
 
-<p class="text-success">
-+12 This Month
-</p>
+            <li>
 
-</div>
+                <a href="recruiter-list.html">
 
-<div class="stat-icon bg-primary">
+                    <i class="fa-solid fa-building"></i>
 
-<i class="fa-solid fa-user-tie"></i>
+                    <span>
+                        Recruiters
+                    </span>
 
-</div>
+                </a>
 
-</div>
+            </li>
 
-<div class="stat-card">
 
-<div>
 
-<h4>Total Students</h4>
+            <!-- Analytics -->
 
-<h2>2,450</h2>
+            <li class="active">
 
-<p class="text-success">
-+96 This Month
-</p>
+                <a href="analytics.html">
 
-</div>
+                    <i class="fa-solid fa-chart-line"></i>
 
-<div class="stat-icon bg-success">
+                    <span>
+                        Analytics
+                    </span>
 
-<i class="fa-solid fa-user-graduate"></i>
+                </a>
 
-</div>
+            </li>
 
-</div>
 
-<div class="stat-card">
 
-<div>
+            <!-- Reports -->
 
-<h4>Total HODs</h4>
+            <li>
 
-<h2>12</h2>
+                <a href="reports.html">
 
-<p class="text-info">
-All Departments
-</p>
+                    <i class="fa-solid fa-file-lines"></i>
 
-</div>
+                    <span>
+                        Reports
+                    </span>
 
-<div class="stat-icon bg-warning">
+                </a>
 
-<i class="fa-solid fa-building-user"></i>
+            </li>
 
-</div>
 
-</div>
 
-<div class="stat-card">
+            <!-- Attendance Report -->
 
-<div>
+            <li>
 
-<h4>Total Recruiters</h4>
+                <a href="attendance-report.html">
 
-<h2>48</h2>
+                    <i class="fa-solid fa-calendar-check"></i>
 
-<p class="text-primary">
-+5 New Companies
-</p>
+                    <span>
+                        Attendance Report
+                    </span>
 
-</div>
+                </a>
 
-<div class="stat-icon bg-danger">
+            </li>
 
-<i class="fa-solid fa-building"></i>
 
-</div>
 
-</div>
+            <!-- Notice Board -->
 
-</div>
+            <li>
 
-<!-- ================= Charts Section ================= -->
+                <a href="notice-board.html">
 
-<div class="row mt-4">
+                    <i class="fa-solid fa-bullhorn"></i>
 
-<div class="col-lg-8">
+                    <span>
+                        Notice Board
+                    </span>
 
-<div class="chart-card">
+                </a>
 
-<div class="d-flex justify-content-between align-items-center mb-3">
+            </li>
 
-<h4>
 
-<i class="fa-solid fa-chart-line"></i>
 
-Monthly Attendance Analytics
+            <!-- Academic Calendar -->
 
-</h4>
+            <li>
 
-<select class="form-select w-auto">
+                <a href="academic-calendar.html">
 
-<option>2026</option>
-<option>2025</option>
+                    <i class="fa-solid fa-calendar-days"></i>
 
-</select>
+                    <span>
+                        Academic Calendar
+                    </span>
 
-</div>
+                </a>
 
-<canvas id="attendanceChart" height="120"></canvas>
+            </li>
 
-</div>
 
-</div>
+        </ul>
 
-<div class="col-lg-4">
 
-<div class="chart-card">
 
-<h4 class="mb-3">
+        <!-- =================================================
+             SIDEBAR BOTTOM
+        ================================================== -->
 
-<i class="fa-solid fa-chart-pie"></i>
+        <div class="sidebar-bottom">
 
-Department Distribution
 
-</h4>
+            <!-- Settings -->
 
-<canvas id="departmentChart"></canvas>
+            <a href="settings.html">
 
-</div>
+                <i class="fa-solid fa-gear"></i>
 
-</div>
+                <span>
+                    Settings
+                </span>
 
-</div>
+            </a>
 
-<!-- ================= Performance Cards ================= -->
 
-<div class="row mt-4">
 
-<div class="col-md-4">
+            <!-- Logout -->
 
-<div class="chart-card text-center">
+            <a
+                href="admin-login.html"
+                class="logout-btn">
 
-<i class="fa-solid fa-award fa-3x text-warning mb-3"></i>
+                <i class="fa-solid fa-right-from-bracket"></i>
 
-<h3>96%</h3>
+                <span>
+                    Logout
+                </span>
 
-<p>Overall Attendance</p>
+            </a>
 
-</div>
 
-</div>
+        </div>
 
-<div class="col-md-4">
 
-<div class="chart-card text-center">
+    </aside>
 
-<i class="fa-solid fa-user-check fa-3x text-success mb-3"></i>
 
-<h3>2250</h3>
 
-<p>Present Today</p>
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
 
-</div>
+    <main class="main-content">
 
-</div>
 
-<div class="col-md-4">
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
 
-<div class="chart-card text-center">
+        <div class="topbar">
 
-<i class="fa-solid fa-user-xmark fa-3x text-danger mb-3"></i>
 
-<h3>200</h3>
+            <div class="top-left analytics-page-title">
 
-<p>Absent Today</p>
+                <h2>
+                    Analytics Dashboard
+                </h2>
 
-</div>
+                <p>
+                    Dashboard / Analytics
+                </p>
 
-</div>
+            </div>
 
-</div>
 
-<!-- ================= Recent Activities ================= -->
 
-<div class="chart-card mt-4">
+            <div class="top-right analytics-top-actions">
 
-<div class="d-flex justify-content-between align-items-center mb-3">
 
-<h4>
+                <!-- Dark Mode -->
 
-<i class="fa-solid fa-clock-rotate-left"></i>
+                <button
+                    type="button"
+                    id="themeToggle"
+                    class="icon-btn"
+                    title="Dark Mode">
 
-Recent Activities
+                    <i class="fa-solid fa-moon"></i>
 
-</h4>
+                </button>
 
-<button class="btn btn-outline-primary btn-sm">
 
-View All
 
-</button>
+                <!-- Reports -->
 
-</div>
+                <a
+                    href="reports.html"
+                    class="btn btn-primary">
 
-<div class="table-responsive">
+                    <i class="fa-solid fa-file-lines me-1"></i>
 
-<table class="table table-hover align-middle">
+                    View Reports
 
-<thead>
+                </a>
 
-<tr>
 
-<th>Date</th>
+            </div>
 
-<th>User</th>
 
-<th>Activity</th>
+        </div>
 
-<th>Status</th>
 
-</tr>
 
-</thead>
+        <!-- =================================================
+             STATISTICS CARDS
+        ================================================== -->
 
-<tbody>
+        <div class="stats-grid">
 
-<tr>
 
-<td>30 Jul 2026</td>
+            <!-- Total Teachers -->
 
-<td>Admin</td>
+            <div class="stat-card">
 
-<td>Added New Teacher</td>
 
-<td>
+                <div>
 
-<span class="badge bg-success">
+                    <h4>
+                        Total Teachers
+                    </h4>
 
-Completed
+                    <h2 id="analyticsTotalTeachers">
+                        0
+                    </h2>
 
-</span>
+                    <p class="text-success">
+                        Current Faculty Records
+                    </p>
 
-</td>
+                </div>
 
-</tr>
 
-<tr>
 
-<td>30 Jul 2026</td>
+                <div class="stat-icon bg-primary">
 
-<td>HOD</td>
+                    <i class="fa-solid fa-user-tie"></i>
 
-<td>Updated Attendance</td>
+                </div>
 
-<td>
 
-<span class="badge bg-primary">
+            </div>
 
-Updated
 
-</span>
 
-</td>
+            <!-- Total Students -->
 
-</tr>
+            <div class="stat-card">
 
-<tr>
 
-<td>29 Jul 2026</td>
+                <div>
 
-<td>Recruiter</td>
+                    <h4>
+                        Total Students
+                    </h4>
 
-<td>Campus Drive Scheduled</td>
+                    <h2 id="analyticsTotalStudents">
+                        0
+                    </h2>
 
-<td>
+                    <p class="text-success">
+                        Registered Students
+                    </p>
 
-<span class="badge bg-warning text-dark">
+                </div>
 
-Pending
 
-</span>
 
-</td>
+                <div class="stat-icon bg-success">
 
-</tr>
+                    <i class="fa-solid fa-user-graduate"></i>
 
-<tr>
+                </div>
 
-<td>29 Jul 2026</td>
 
-<td>Teacher</td>
+            </div>
 
-<td>Uploaded Marks</td>
 
-<td>
 
-<span class="badge bg-success">
+            <!-- Total HODs -->
 
-Completed
+            <div class="stat-card">
 
-</span>
 
-</td>
+                <div>
 
-</tr>
+                    <h4>
+                        Total HODs
+                    </h4>
 
-<tr>
+                    <h2 id="analyticsTotalHods">
+                        0
+                    </h2>
 
-<td>28 Jul 2026</td>
+                    <p class="text-info">
+                        All Departments
+                    </p>
 
-<td>Admin</td>
+                </div>
 
-<td>Added New Student</td>
 
-<td>
 
-<span class="badge bg-info">
+                <div class="stat-icon bg-warning">
 
-Success
+                    <i class="fa-solid fa-building-user"></i>
 
-</span>
+                </div>
 
-</td>
 
-</tr>
+            </div>
 
+
+
+            <!-- Total Recruiters -->
+
+            <div class="stat-card">
+
+
+                <div>
+
+                    <h4>
+                        Total Recruiters
+                    </h4>
+
+                    <h2 id="analyticsTotalRecruiters">
+                        0
+                    </h2>
+
+                    <p class="text-primary">
+                        Registered Recruiters
+                    </p>
+
+                </div>
+
+
+
+                <div class="stat-icon bg-danger">
+
+                    <i class="fa-solid fa-building"></i>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             CHARTS
+        ================================================== -->
+
+        <div class="row mt-4 g-4">
+
+
+            <!-- Faculty Attendance -->
+
+            <div class="col-lg-8">
+
+
+                <div class="chart-card analytics-chart-card">
+
+
+                    <div
+                        class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+
+
+                        <div>
+
+                            <h4 class="mb-1">
+
+                                <i class="fa-solid fa-chart-column"></i>
+
+                                Faculty Attendance Analytics
+
+                            </h4>
+
+
+                            <small class="text-muted">
+
+                                Monthly attendance of Teachers and HODs
+
+                            </small>
+
+                        </div>
+
+
+
+                        <!--
+                            Initial options are provided here so the
+                            dropdown never shows only 2026.
+
+                            JavaScript will also add any additional
+                            years found in the database.
+                        -->
+
+                        <select
+                            class="form-select w-auto"
+                            id="attendanceYear">
+
+                            <option value="2026">
+                                2026
+                            </option>
+
+                            <option value="2025">
+                                2025
+                            </option>
+
+                            <option value="2024">
+                                2024
+                            </option>
+
+                            <option value="2023">
+                                2023
+                            </option>
+
+                            <option value="2022">
+                                2022
+                            </option>
+
+                        </select>
+
+
+                    </div>
+
+
+
+                    <div class="attendance-chart-wrapper">
+
+                        <canvas id="attendanceChart"></canvas>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Department Distribution -->
+
+            <div class="col-lg-4">
+
+
+                <div class="chart-card analytics-chart-card">
+
+
+                    <h4 class="mb-1">
+
+                        <i class="fa-solid fa-chart-pie"></i>
+
+                        Department Distribution
+
+                    </h4>
+
+
+                    <small class="text-muted">
+
+                        Teachers and HODs by department
+
+                    </small>
+
+
+
+                    <div class="department-chart-wrapper">
+
+                        <canvas id="departmentChart"></canvas>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             ATTENDANCE SUMMARY
+        ================================================== -->
+
+        <div class="row mt-4 g-4">
+
+
+            <!-- Overall Attendance -->
+
+            <div class="col-md-4">
+
+
+                <div class="chart-card text-center">
+
+
+                    <i
+                        class="fa-solid fa-chart-pie fa-3x text-warning mb-3">
+                    </i>
+
+
+                    <h3 id="overallFacultyAttendance">
+                        0%
+                    </h3>
+
+
+                    <p class="mb-0">
+                        Overall Faculty Attendance
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Teacher Present -->
+
+            <div class="col-md-4">
+
+
+                <div class="chart-card text-center">
+
+
+                    <i
+                        class="fa-solid fa-user-check fa-3x text-success mb-3">
+                    </i>
+
+
+                    <h3 id="teachersPresentToday">
+                        0
+                    </h3>
+
+
+                    <p class="mb-0">
+                        Teachers Present Today
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- HOD Present -->
+
+            <div class="col-md-4">
+
+
+                <div class="chart-card text-center">
+
+
+                    <i
+                        class="fa-solid fa-building-circle-check fa-3x text-primary mb-3">
+                    </i>
+
+
+                    <h3 id="hodsPresentToday">
+                        0
+                    </h3>
+
+
+                    <p class="mb-0">
+                        HODs Present Today
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             RECENT ACTIVITIES
+        ================================================== -->
+
+        <div class="chart-card mt-4">
+
+
+            <div
+                class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+
+
+                <h4 class="mb-0">
+
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+
+                    Recent Activities
+
+                </h4>
+
+
+            </div>
+
+
+
+            <div class="table-responsive">
+
+
+                <table class="table table-hover align-middle">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                User
+                            </th>
+
+                            <th>
+                                Activity
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+<tbody id="recentActivitiesBody">
+
+    <tr>
+        <td colspan="4" class="text-center py-4">
+
+            <i class="fa-solid fa-spinner fa-spin"></i>
+
+            Loading recent activities...
+
+        </td>
+    </tr>
+
+    
 </tbody>
 
-</table>
+
+                </table>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
 
 </div>
 
-</div>
-<!-- ================= Chart.js ================= -->
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- ================= Bootstrap JS ================= -->
+<!-- =========================================================
+     CHART.JS
+========================================================= -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/chart.js">
+</script>
+
+
+
+<!-- =========================================================
+     BOOTSTRAP JS
+========================================================= -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+
+<!-- =========================================================
+     COMMON DASHBOARD JS
+========================================================= -->
+
 <script src="../../js/dashboard.js"></script>
-<!-- ================= Attendance Line Chart ================= -->
+
+
+
+<!-- =========================================================
+     REAL ANALYTICS STATISTICS
+========================================================= -->
 
 <script>
 
-const attendanceCtx = document.getElementById("attendanceChart");
 
-if(attendanceCtx){
+const ANALYTICS_TEACHERS_API =
+    "http://127.0.0.1:5000/api/teachers";
 
-new Chart(attendanceCtx,{
 
-type:"line",
+const ANALYTICS_STUDENTS_API =
+    "http://127.0.0.1:5000/api/students";
 
-data:{
 
-labels:[
-"Jan",
-"Feb",
-"Mar",
-"Apr",
-"May",
-"Jun",
-"Jul",
-"Aug",
-"Sep",
-"Oct",
-"Nov",
-"Dec"
-],
+const ANALYTICS_HODS_API =
+    "http://127.0.0.1:5000/api/hods";
 
-datasets:[{
 
-label:"Attendance %",
+const ANALYTICS_RECRUITERS_API =
+    "http://127.0.0.1:5000/api/recruiters";
 
-data:[
-92,
-94,
-91,
-95,
-96,
-94,
-97,
-98,
-96,
-97,
-99,
-98
-],
 
-borderWidth:3,
 
-fill:true,
+// ============================================================
+// GET ARRAY FROM API
+// ============================================================
 
-tension:0.4
+async function getAnalyticsRecords(url) {
 
-}]
 
-},
+    try {
 
-options:{
 
-responsive:true,
+        const response =
+            await fetch(url);
 
-plugins:{
 
-legend:{
-display:true
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.message ||
+                "Unable to load records."
+            );
+
+        }
+
+
+        if (Array.isArray(result)) {
+
+            return result;
+
+        }
+
+
+        if (Array.isArray(result.data)) {
+
+            return result.data;
+
+        }
+
+
+        return [];
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(
+            "Analytics API Error:",
+            url,
+            error
+        );
+
+
+        return [];
+
+
+    }
+
+
 }
 
-}
+
+
+// ============================================================
+// LOAD COUNTS
+// ============================================================
+
+async function loadAnalyticsStatistics() {
+
+
+    const [
+        teachers,
+        students,
+        hods,
+        recruiters
+    ] = await Promise.all([
+
+
+        getAnalyticsRecords(
+            ANALYTICS_TEACHERS_API
+        ),
+
+
+        getAnalyticsRecords(
+            ANALYTICS_STUDENTS_API
+        ),
+
+
+        getAnalyticsRecords(
+            ANALYTICS_HODS_API
+        ),
+
+
+        getAnalyticsRecords(
+            ANALYTICS_RECRUITERS_API
+        )
+
+
+    ]);
+
+
+    document.getElementById(
+        "analyticsTotalTeachers"
+    ).textContent =
+        teachers.length;
+
+
+    document.getElementById(
+        "analyticsTotalStudents"
+    ).textContent =
+        students.length;
+
+
+    document.getElementById(
+        "analyticsTotalHods"
+    ).textContent =
+        hods.length;
+
+
+    document.getElementById(
+        "analyticsTotalRecruiters"
+    ).textContent =
+        recruiters.length;
+
 
 }
 
-});
 
-}
+document.addEventListener(
+    "DOMContentLoaded",
+    loadAnalyticsStatistics
+);
+
 
 </script>
 
-<!-- ================= Department Pie Chart ================= -->
+
+
+<!-- =========================================================
+     REAL FACULTY ATTENDANCE ANALYTICS
+========================================================= -->
 
 <script>
 
-const departmentCtx = document.getElementById("departmentChart");
 
-if(departmentCtx){
+const FACULTY_ATTENDANCE_API =
+    "http://127.0.0.1:5000/api/faculty-attendance";
 
-new Chart(departmentCtx,{
 
-type:"pie",
+let analyticsAttendanceRecords = [];
 
-data:{
+let analyticsAttendanceChart = null;
 
-labels:[
-"Computer Science",
-"Commerce",
-"Mathematics",
-"Physics",
-"Chemistry",
-"English"
-],
 
-datasets:[{
 
-data:[
-650,
-540,
-350,
-280,
-220,
-410
-]
+// ============================================================
+// GET YEAR FROM ATTENDANCE DATE
+// ============================================================
 
-}]
+function getAttendanceYear(dateValue) {
 
-},
 
-options:{
+    if (!dateValue) {
+        return null;
+    }
 
-responsive:true,
 
-plugins:{
+    const value =
+        String(dateValue).trim();
 
-legend:{
-position:"bottom"
+
+    // Expected API format:
+    // YYYY-MM-DD
+
+    const isoMatch =
+        value.match(
+            /^(\d{4})-(\d{2})-(\d{2})/
+        );
+
+
+    if (isoMatch) {
+
+        return Number(
+            isoMatch[1]
+        );
+
+    }
+
+
+    // Fallback for another valid date format
+
+    const parsedDate =
+        new Date(value);
+
+
+    if (
+        !Number.isNaN(
+            parsedDate.getTime()
+        )
+    ) {
+
+        return parsedDate.getFullYear();
+
+    }
+
+
+    return null;
+
+
 }
 
-}
+
+
+// ============================================================
+// GET MONTH FROM ATTENDANCE DATE
+// 0 = January
+// 11 = December
+// ============================================================
+
+function getAttendanceMonth(dateValue) {
+
+
+    if (!dateValue) {
+        return null;
+    }
+
+
+    const value =
+        String(dateValue).trim();
+
+
+    const isoMatch =
+        value.match(
+            /^(\d{4})-(\d{2})-(\d{2})/
+        );
+
+
+    if (isoMatch) {
+
+        return (
+            Number(isoMatch[2]) - 1
+        );
+
+    }
+
+
+    const parsedDate =
+        new Date(value);
+
+
+    if (
+        !Number.isNaN(
+            parsedDate.getTime()
+        )
+    ) {
+
+        return parsedDate.getMonth();
+
+    }
+
+
+    return null;
+
 
 }
 
-});
+
+
+// ============================================================
+// BUILD YEAR DROPDOWN
+//
+// Always shows:
+// 2026
+// 2025
+// 2024
+// 2023
+// 2022
+//
+// Also adds other database years.
+// ============================================================
+
+function buildAttendanceYearOptions() {
+
+
+    const yearSelect =
+        document.getElementById(
+            "attendanceYear"
+        );
+
+
+    if (!yearSelect) {
+        return;
+    }
+
+
+    const previousValue =
+        yearSelect.value;
+
+
+    const currentYear =
+        new Date().getFullYear();
+
+
+    const years =
+        new Set();
+
+
+    // Current year + previous 4 years
+
+    for (
+        let year = currentYear;
+        year >= currentYear - 4;
+        year--
+    ) {
+
+        years.add(year);
+
+    }
+
+
+    // Add any years stored in database
+
+    analyticsAttendanceRecords.forEach(
+        function (record) {
+
+
+            const year =
+                getAttendanceYear(
+                    record.date
+                );
+
+
+            if (
+                year !== null &&
+                !Number.isNaN(year)
+            ) {
+
+                years.add(year);
+
+            }
+
+
+        }
+    );
+
+
+    const sortedYears =
+        Array.from(years)
+            .sort(
+                function (a, b) {
+
+                    return b - a;
+
+                }
+            );
+
+
+    yearSelect.innerHTML =
+        "";
+
+
+    sortedYears.forEach(
+        function (year) {
+
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                String(year);
+
+
+            option.textContent =
+                String(year);
+
+
+            yearSelect.appendChild(
+                option
+            );
+
+
+        }
+    );
+
+
+    // Keep user's selected year
+
+    if (
+        previousValue &&
+        sortedYears.includes(
+            Number(previousValue)
+        )
+    ) {
+
+        yearSelect.value =
+            previousValue;
+
+    }
+
+    else {
+
+        yearSelect.value =
+            String(currentYear);
+
+    }
+
 
 }
+
+
+
+// ============================================================
+// LOAD FACULTY ATTENDANCE
+// ============================================================
+
+async function loadFacultyAttendanceAnalytics() {
+
+
+    // Build dropdown immediately
+
+    buildAttendanceYearOptions();
+
+
+    try {
+
+
+        const response =
+            await fetch(
+                FACULTY_ATTENDANCE_API
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            result.success === false
+        ) {
+
+            throw new Error(
+                result.message ||
+                "Unable to load faculty attendance."
+            );
+
+        }
+
+
+        analyticsAttendanceRecords =
+            Array.isArray(result.data)
+                ? result.data
+                : [];
+
+
+        buildAttendanceYearOptions();
+
+        updateAttendanceSummary();
+
+        renderAttendanceBarChart();
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(
+            "Faculty Attendance Analytics Error:",
+            error
+        );
+
+
+        analyticsAttendanceRecords =
+            [];
+
+
+        buildAttendanceYearOptions();
+
+        updateAttendanceSummary();
+
+        renderAttendanceBarChart();
+
+
+    }
+
+
+}
+
+
+
+// ============================================================
+// ATTENDANCE SUMMARY
+// ============================================================
+
+function updateAttendanceSummary() {
+
+
+    const totalRecords =
+        analyticsAttendanceRecords.length;
+
+
+    const presentRecords =
+        analyticsAttendanceRecords.filter(
+            function (record) {
+
+
+                return (
+                    String(
+                        record.status || ""
+                    ).toLowerCase()
+                    === "present"
+                );
+
+
+            }
+        ).length;
+
+
+
+    const attendancePercentage =
+        totalRecords > 0
+
+            ? (
+                presentRecords /
+                totalRecords *
+                100
+            )
+
+            : 0;
+
+
+
+    document.getElementById(
+        "overallFacultyAttendance"
+    ).textContent =
+        attendancePercentage.toFixed(1)
+        + "%";
+
+
+
+    const today =
+        getAnalyticsToday();
+
+
+
+    const teachersPresent =
+        analyticsAttendanceRecords.filter(
+            function (record) {
+
+
+                return (
+
+                    normalizeAttendanceDate(
+                        record.date
+                    )
+                    === today
+
+                    &&
+
+                    String(
+                        record.role || ""
+                    ).toLowerCase()
+                    === "teacher"
+
+                    &&
+
+                    String(
+                        record.status || ""
+                    ).toLowerCase()
+                    === "present"
+
+                );
+
+
+            }
+        ).length;
+
+
+
+    const hodsPresent =
+        analyticsAttendanceRecords.filter(
+            function (record) {
+
+
+                return (
+
+                    normalizeAttendanceDate(
+                        record.date
+                    )
+                    === today
+
+                    &&
+
+                    String(
+                        record.role || ""
+                    ).toLowerCase()
+                    === "hod"
+
+                    &&
+
+                    String(
+                        record.status || ""
+                    ).toLowerCase()
+                    === "present"
+
+                );
+
+
+            }
+        ).length;
+
+
+
+    document.getElementById(
+        "teachersPresentToday"
+    ).textContent =
+        teachersPresent;
+
+
+
+    document.getElementById(
+        "hodsPresentToday"
+    ).textContent =
+        hodsPresent;
+
+
+}
+
+
+
+// ============================================================
+// NORMALIZE DATE TO YYYY-MM-DD
+// ============================================================
+
+function normalizeAttendanceDate(dateValue) {
+
+
+    if (!dateValue) {
+        return "";
+    }
+
+
+    const value =
+        String(dateValue).trim();
+
+
+    const isoMatch =
+        value.match(
+            /^(\d{4})-(\d{2})-(\d{2})/
+        );
+
+
+    if (isoMatch) {
+
+        return (
+            isoMatch[1]
+            + "-"
+            + isoMatch[2]
+            + "-"
+            + isoMatch[3]
+        );
+
+    }
+
+
+    const parsedDate =
+        new Date(value);
+
+
+    if (
+        Number.isNaN(
+            parsedDate.getTime()
+        )
+    ) {
+
+        return "";
+
+    }
+
+
+    const year =
+        parsedDate.getFullYear();
+
+
+    const month =
+        String(
+            parsedDate.getMonth() + 1
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    const day =
+        String(
+            parsedDate.getDate()
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    return (
+        year
+        + "-"
+        + month
+        + "-"
+        + day
+    );
+
+
+}
+
+
+
+// ============================================================
+// REAL MONTHLY ATTENDANCE BAR CHART
+// ============================================================
+
+function renderAttendanceBarChart() {
+
+
+    const canvas =
+        document.getElementById(
+            "attendanceChart"
+        );
+
+
+    const yearSelect =
+        document.getElementById(
+            "attendanceYear"
+        );
+
+
+    if (
+        !canvas ||
+        !yearSelect
+    ) {
+
+        return;
+
+    }
+
+
+
+    const selectedYear =
+        Number(
+            yearSelect.value
+        );
+
+
+
+    // ========================================================
+    // DESTROY OLD / DUMMY CHART
+    // ========================================================
+
+    const oldChart =
+        Chart.getChart(
+            canvas
+        );
+
+
+    if (oldChart) {
+
+        oldChart.destroy();
+
+    }
+
+
+    analyticsAttendanceChart =
+        null;
+
+
+
+    // ========================================================
+    // MONTHLY ARRAYS
+    // ========================================================
+
+    const monthlyTotal =
+        new Array(12).fill(0);
+
+
+    const monthlyPresent =
+        new Array(12).fill(0);
+
+
+
+    // ========================================================
+    // REAL DATABASE DATA
+    // ========================================================
+
+    analyticsAttendanceRecords.forEach(
+        function (record) {
+
+
+            const year =
+                getAttendanceYear(
+                    record.date
+                );
+
+
+            const month =
+                getAttendanceMonth(
+                    record.date
+                );
+
+
+            if (
+                year !== selectedYear ||
+                month === null ||
+                month < 0 ||
+                month > 11
+            ) {
+
+                return;
+
+            }
+
+
+            monthlyTotal[month]++;
+
+
+            if (
+                String(
+                    record.status || ""
+                ).toLowerCase()
+                === "present"
+            ) {
+
+                monthlyPresent[month]++;
+
+            }
+
+
+        }
+    );
+
+
+
+    // ========================================================
+    // MONTHLY PERCENTAGES
+    // ========================================================
+
+    const monthlyPercentage =
+        monthlyTotal.map(
+            function (total, index) {
+
+
+                if (total === 0) {
+
+                    return 0;
+
+                }
+
+
+                return Number(
+                    (
+                        monthlyPresent[index]
+                        /
+                        total
+                        *
+                        100
+                    ).toFixed(1)
+                );
+
+
+            }
+        );
+
+
+
+    // ========================================================
+    // CREATE CLEAN BAR CHART
+    // ========================================================
+
+    analyticsAttendanceChart =
+        new Chart(
+            canvas,
+            {
+
+                type:
+                    "bar",
+
+
+                data: {
+
+                    labels: [
+
+                        "Jan",
+                        "Feb",
+                        "Mar",
+                        "Apr",
+                        "May",
+                        "Jun",
+                        "Jul",
+                        "Aug",
+                        "Sep",
+                        "Oct",
+                        "Nov",
+                        "Dec"
+
+                    ],
+
+
+                    datasets: [
+
+                        {
+
+                            label:
+                                "Faculty Attendance %",
+
+                            data:
+                                monthlyPercentage,
+
+                            backgroundColor:
+                                "rgba(111, 82, 232, 0.82)",
+
+                            hoverBackgroundColor:
+                                "rgba(111, 82, 232, 1)",
+
+                            borderWidth:
+                                0,
+
+                            borderRadius:
+                                6,
+
+                            borderSkipped:
+                                false,
+
+                            maxBarThickness:
+                                22,
+
+                            minBarLength:
+                                0,
+
+                            barPercentage:
+                                0.65,
+
+                            categoryPercentage:
+                                0.62
+
+                        }
+
+                    ]
+
+                },
+
+
+                options: {
+
+                    responsive:
+                        true,
+
+                    maintainAspectRatio:
+                        false,
+
+
+                    interaction: {
+
+                        intersect:
+                            false,
+
+                        mode:
+                            "index"
+
+                    },
+
+
+                    animation: {
+
+                        duration:
+                            400
+
+                    },
+
+
+                    plugins: {
+
+
+                        legend: {
+
+                            display:
+                                false
+
+                        },
+
+
+                        tooltip: {
+
+                            displayColors:
+                                false,
+
+
+                            callbacks: {
+
+                                title:
+                                    function (items) {
+
+                                        if (
+                                            !items.length
+                                        ) {
+
+                                            return "";
+
+                                        }
+
+
+                                        return (
+                                            items[0].label
+                                            + " "
+                                            + selectedYear
+                                        );
+
+                                    },
+
+
+                                label:
+                                    function (context) {
+
+                                        return (
+                                            "Attendance: "
+                                            + context.raw
+                                            + "%"
+                                        );
+
+                                    }
+
+                            }
+
+                        }
+
+
+                    },
+
+
+                    scales: {
+
+
+                        x: {
+
+                            offset:
+                                true,
+
+
+                            grid: {
+
+                                display:
+                                    false
+
+                            },
+
+
+                            border: {
+
+                                display:
+                                    false
+
+                            },
+
+
+                            ticks: {
+
+                                padding:
+                                    8
+
+                            }
+
+                        },
+
+
+                        y: {
+
+                            beginAtZero:
+                                true,
+
+                            min:
+                                0,
+
+                            max:
+                                100,
+
+
+                            ticks: {
+
+                                stepSize:
+                                    20,
+
+                                padding:
+                                    8,
+
+
+                                callback:
+                                    function (value) {
+
+                                        return (
+                                            value + "%"
+                                        );
+
+                                    }
+
+                            },
+
+
+                            grid: {
+
+                                color:
+                                    "rgba(148, 163, 184, 0.15)",
+
+                                drawTicks:
+                                    false
+
+                            },
+
+
+                            border: {
+
+                                display:
+                                    false
+
+                            }
+
+                        }
+
+
+                    }
+
+
+                }
+
+
+            }
+        );
+
+
+}
+
+
+
+// ============================================================
+// TODAY
+// ============================================================
+
+function getAnalyticsToday() {
+
+
+    const today =
+        new Date();
+
+
+    const year =
+        today.getFullYear();
+
+
+    const month =
+        String(
+            today.getMonth() + 1
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    const day =
+        String(
+            today.getDate()
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    return (
+        year
+        + "-"
+        + month
+        + "-"
+        + day
+    );
+
+
+}
+
+
+
+// ============================================================
+// YEAR CHANGE
+// ============================================================
+
+document.getElementById(
+    "attendanceYear"
+).addEventListener(
+    "change",
+    renderAttendanceBarChart
+);
+
+
+
+// ============================================================
+// START
+// ============================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadFacultyAttendanceAnalytics
+);
+
 
 </script>
+
+
+
+<!-- =========================================================
+     REAL DEPARTMENT DISTRIBUTION
+========================================================= -->
+
+<script>
+
+
+let analyticsDepartmentChart =
+    null;
+
+
+
+// ============================================================
+// GET DEPARTMENT NAME
+// ============================================================
+
+function getDepartmentName(record) {
+
+
+    if (
+        record.department &&
+        typeof record.department ===
+        "string"
+    ) {
+
+        const name =
+            record.department.trim();
+
+
+        if (name) {
+
+            return name;
+
+        }
+
+    }
+
+
+
+    if (
+        record.department &&
+        typeof record.department ===
+        "object"
+    ) {
+
+
+        if (
+            record.department.name
+        ) {
+
+            return String(
+                record.department.name
+            ).trim();
+
+        }
+
+    }
+
+
+
+    if (
+        record.department_name
+    ) {
+
+        return String(
+            record.department_name
+        ).trim();
+
+    }
+
+
+    return "Not Assigned";
+
+
+}
+
+
+
+// ============================================================
+// LOAD REAL DEPARTMENT DATA
+// ============================================================
+
+async function loadDepartmentDistribution() {
+
+
+    try {
+
+
+        const [
+            teachers,
+            hods
+        ] = await Promise.all([
+
+
+            getAnalyticsRecords(
+                ANALYTICS_TEACHERS_API
+            ),
+
+
+            getAnalyticsRecords(
+                ANALYTICS_HODS_API
+            )
+
+
+        ]);
+
+
+
+        const departmentCounts =
+            {};
+
+
+
+        // Teachers
+
+        teachers.forEach(
+            function (teacher) {
+
+
+                const department =
+                    getDepartmentName(
+                        teacher
+                    );
+
+
+                departmentCounts[department] =
+                    (
+                        departmentCounts[department]
+                        || 0
+                    ) + 1;
+
+
+            }
+        );
+
+
+
+        // HODs
+
+        hods.forEach(
+            function (hod) {
+
+
+                const department =
+                    getDepartmentName(
+                        hod
+                    );
+
+
+                departmentCounts[department] =
+                    (
+                        departmentCounts[department]
+                        || 0
+                    ) + 1;
+
+
+            }
+        );
+
+
+
+        // Largest departments first
+
+        const entries =
+            Object.entries(
+                departmentCounts
+            )
+            .sort(
+                function (a, b) {
+
+                    return (
+                        b[1] - a[1]
+                    );
+
+                }
+            );
+
+
+
+        const labels =
+            entries.map(
+                function (entry) {
+
+                    return entry[0];
+
+                }
+            );
+
+
+
+        const values =
+            entries.map(
+                function (entry) {
+
+                    return entry[1];
+
+                }
+            );
+
+
+
+        renderDepartmentChart(
+            labels,
+            values
+        );
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(
+            "Department Distribution Error:",
+            error
+        );
+
+
+        renderDepartmentChart(
+            [],
+            []
+        );
+
+
+    }
+
+
+}
+
+
+
+// ============================================================
+// RENDER CLEAN DOUGHNUT
+// ============================================================
+
+function renderDepartmentChart(
+    labels,
+    values
+) {
+
+
+    const canvas =
+        document.getElementById(
+            "departmentChart"
+        );
+
+
+    if (!canvas) {
+        return;
+    }
+
+
+
+    // Destroy any old dummy chart
+
+    const oldChart =
+        Chart.getChart(
+            canvas
+        );
+
+
+    if (oldChart) {
+
+        oldChart.destroy();
+
+    }
+
+
+    analyticsDepartmentChart =
+        null;
+
+
+
+    const colors = [
+
+        "#6f52e8",
+        "#38bdf8",
+        "#22c55e",
+        "#f59e0b",
+        "#ec4899",
+        "#14b8a6",
+        "#ef4444",
+        "#8b5cf6",
+        "#84cc16",
+        "#f97316"
+
+    ];
+
+
+
+    analyticsDepartmentChart =
+        new Chart(
+            canvas,
+            {
+
+                type:
+                    "doughnut",
+
+
+                data: {
+
+                    labels:
+                        labels,
+
+
+                    datasets: [
+
+                        {
+
+                            label:
+                                "Faculty Members",
+
+                            data:
+                                values,
+
+                            backgroundColor:
+                                colors,
+
+                            borderWidth:
+                                2,
+
+                            borderColor:
+                                "#ffffff",
+
+                            hoverOffset:
+                                5
+
+                        }
+
+                    ]
+
+                },
+
+
+                options: {
+
+                    responsive:
+                        true,
+
+                    maintainAspectRatio:
+                        false,
+
+                    cutout:
+                        "62%",
+
+
+                    layout: {
+
+                        padding: {
+
+                            top:
+                                5,
+
+                            bottom:
+                                5
+
+                        }
+
+                    },
+
+
+                    plugins: {
+
+
+                        legend: {
+
+                            position:
+                                "bottom",
+
+
+                            labels: {
+
+                                usePointStyle:
+                                    true,
+
+                                pointStyle:
+                                    "circle",
+
+                                boxWidth:
+                                    9,
+
+                                boxHeight:
+                                    9,
+
+                                padding:
+                                    12
+
+                            }
+
+                        },
+
+
+                        tooltip: {
+
+                            displayColors:
+                                true,
+
+
+                            callbacks: {
+
+                                label:
+                                    function (context) {
+
+
+                                        const value =
+                                            context.raw || 0;
+
+
+                                        const total =
+                                            context.dataset.data
+                                                .reduce(
+                                                    function (
+                                                        sum,
+                                                        item
+                                                    ) {
+
+                                                        return (
+                                                            sum
+                                                            +
+                                                            Number(
+                                                                item
+                                                            )
+                                                        );
+
+                                                    },
+                                                    0
+                                                );
+
+
+                                        const percentage =
+                                            total > 0
+
+                                                ? (
+                                                    value
+                                                    /
+                                                    total
+                                                    *
+                                                    100
+                                                ).toFixed(1)
+
+                                                : "0.0";
+
+
+                                        return (
+                                            context.label
+                                            + ": "
+                                            + value
+                                            + " Faculty ("
+                                            + percentage
+                                            + "%)"
+                                        );
+
+                                    }
+
+                            }
+
+                        }
+
+
+                    }
+
+
+                }
+
+
+            }
+        );
+
+
+}
+
+
+
+// ============================================================
+// START
+// ============================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadDepartmentDistribution
+);
+
+</script>
+
+
+<!-- =========================================================
+     REAL RECENT ACTIVITIES
+========================================================= -->
+
+<script>
+
+const AUDIT_LOGS_API =
+    "http://127.0.0.1:5000/api/audit-logs?limit=10";
+
+
+async function loadRecentActivities() {
+
+    const tbody =
+        document.getElementById(
+            "recentActivitiesBody"
+        );
+
+    if (!tbody) return;
+
+
+    try {
+
+        const response =
+            await fetch(
+                AUDIT_LOGS_API
+            );
+
+        const result =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            result.success === false
+        ) {
+
+            throw new Error(
+                result.message ||
+                "Unable to load recent activities"
+            );
+
+        }
+
+
+        const activities =
+            Array.isArray(result.data)
+                ? result.data
+                : [];
+
+
+        if (activities.length === 0) {
+
+            tbody.innerHTML = `
+                <tr>
+                    <td
+                        colspan="4"
+                        class="text-center text-muted py-4">
+
+                        No recent activities found.
+
+                    </td>
+                </tr>
+            `;
+
+            return;
+        }
+
+
+        tbody.innerHTML = "";
+
+
+        activities.forEach(
+            function (activity) {
+
+                const row =
+                    document.createElement("tr");
+
+                const action =
+                    String(
+                        activity.action || ""
+                    ).toUpperCase();
+
+                const date =
+                    formatAuditDate(
+                        activity.created_at
+                    );
+
+                const actor =
+                    escapeAuditHtml(
+                        activity.actor || "Admin"
+                    );
+
+                const details =
+                    escapeAuditHtml(
+                        activity.details ||
+                        "Activity performed"
+                    );
+
+                const badge =
+                    getAuditBadge(action);
+
+
+                row.innerHTML = `
+
+                    <td>
+                        ${date}
+                    </td>
+
+                    <td>
+                        ${actor}
+                    </td>
+
+                    <td>
+                        ${details}
+                    </td>
+
+                    <td>
+                        ${badge}
+                    </td>
+
+                `;
+
+
+                tbody.appendChild(row);
+
+            }
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Recent Activities Error:",
+            error
+        );
+
+        tbody.innerHTML = `
+            <tr>
+                <td
+                    colspan="4"
+                    class="text-center text-danger py-4">
+
+                    Failed to load recent activities.
+
+                </td>
+            </tr>
+        `;
+
+    }
+
+}
+
+
+function getAuditBadge(action) {
+
+    if (action === "CREATE") {
+
+        return `
+            <span class="badge bg-success">
+                Created
+            </span>
+        `;
+
+    }
+
+
+    if (action === "UPDATE") {
+
+        return `
+            <span class="badge bg-primary">
+                Updated
+            </span>
+        `;
+
+    }
+
+
+    if (action === "DELETE") {
+
+        return `
+            <span class="badge bg-danger">
+                Deleted
+            </span>
+        `;
+
+    }
+
+
+    return `
+        <span class="badge bg-secondary">
+            Completed
+        </span>
+    `;
+
+}
+
+
+function formatAuditDate(value) {
+
+    if (!value) return "-";
+
+    const date =
+        new Date(value);
+
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return "-";
+
+    }
+
+
+    return date.toLocaleString(
+        "en-IN",
+        {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+        }
+    );
+
+}
+
+
+function escapeAuditHtml(value) {
+
+    return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadRecentActivities
+);
+
+</script>
+
 
 </body>
 

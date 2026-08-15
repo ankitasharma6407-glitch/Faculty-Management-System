@@ -209,25 +209,85 @@ if (localStorage.getItem("theme") === "dark") {
 }
 
 // Toggle Theme
-themeToggle.addEventListener("click", function () {
 
-    document.body.classList.toggle("dark");
 
-    if (document.body.classList.contains("dark")) {
+// ============================================================
+// GLOBAL INDEX THEME
+// ============================================================
 
-        localStorage.setItem("theme", "dark");
+(function () {
 
-        themeToggle.innerHTML =
-            '<i class="fa-solid fa-sun"></i>';
+    const themeToggle =
+        document.getElementById("themeToggle");
 
-    } else {
-
-        localStorage.setItem("theme", "light");
-
-        themeToggle.innerHTML =
-            '<i class="fa-solid fa-moon"></i>';
-
+    if (!themeToggle) {
+        return;
     }
 
-});
+    function applyIndexTheme() {
 
+        const theme =
+            localStorage.getItem("theme") || "light";
+
+        document.body.classList.toggle(
+            "dark",
+            theme === "dark"
+        );
+
+        const icon =
+            themeToggle.querySelector("i");
+
+        if (icon) {
+            icon.className =
+                theme === "dark"
+                    ? "fa-solid fa-sun"
+                    : "fa-solid fa-moon";
+        }
+    }
+
+
+    themeToggle.addEventListener(
+        "click",
+        function () {
+
+            const currentTheme =
+                localStorage.getItem("theme") || "light";
+
+            const newTheme =
+                currentTheme === "dark"
+                    ? "light"
+                    : "dark";
+
+            localStorage.setItem(
+                "theme",
+                newTheme
+            );
+
+            applyIndexTheme();
+        }
+    );
+
+
+    // Apply theme when page opens
+    applyIndexTheme();
+
+
+    // Useful when returning with Back button
+    window.addEventListener(
+        "pageshow",
+        applyIndexTheme
+    );
+
+
+    // Sync if another tab changes theme
+    window.addEventListener(
+        "storage",
+        function (event) {
+
+            if (event.key === "theme") {
+                applyIndexTheme();
+            }
+        }
+    );
+
+})();

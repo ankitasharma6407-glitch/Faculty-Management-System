@@ -3,694 +3,3074 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>Academic Calendar | Faculty Management System</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>
+        Academic Calendar | Faculty Management System
+    </title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 
-<link rel="stylesheet" href="../../css/admin-dashboard.css">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Dashboard CSS -->
+    <link
+        rel="stylesheet"
+        href="../../css/admin-dashboard.css">
+
+
+    <style>
+
+        /* =====================================================
+           ACADEMIC CALENDAR PAGE ONLY
+        ===================================================== */
+
+        .calendar-page-title h2 {
+            margin-bottom: 4px;
+        }
+
+
+        .calendar-page-title p {
+            margin-bottom: 0;
+            color: #777;
+        }
+
+
+        body.dark .calendar-page-title p {
+            color: #cbd5e1 !important;
+        }
+
+
+        .calendar-summary-card {
+            min-height: 135px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .calendar-summary-card h3 {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+
+        .calendar-summary-card p {
+            margin-bottom: 0;
+        }
+
+
+        .calendar-table-wrapper {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+
+        #eventTable {
+            width: 100%;
+            min-width: 1000px;
+        }
+
+
+        #eventTable th {
+            white-space: nowrap;
+        }
+
+
+        #eventTable td {
+            vertical-align: middle;
+        }
+
+
+        #eventTable td:last-child {
+            white-space: nowrap;
+        }
+
+
+        #eventTable td:last-child .btn {
+            margin: 2px;
+        }
+
+
+        .empty-events {
+            text-align: center;
+            padding: 35px;
+            color: #777;
+        }
+
+
+        body.dark .empty-events {
+            color: #cbd5e1;
+        }
+
+
+        @media (max-width: 768px) {
+
+            .calendar-top-actions {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+
+            #searchEvent {
+                width: 100% !important;
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
+
 
 <div class="dashboard">
 
-<!-- Sidebar -->
 
-<aside class="sidebar">
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
-<div class="logo-box">
+    <aside class="sidebar">
 
-<img src="../../images/logo.png">
 
-<h3>PATNA</h3>
+        <div class="logo-box">
 
-<h2>WOMEN'S COLLEGE</h2>
+            <img
+                src="../../images/logo.png"
+                alt="College Logo">
 
-<span>(AUTONOMOUS)</span>
+            <h3>
+                PATNA
+            </h3>
+
+            <h2>
+                WOMEN'S COLLEGE
+            </h2>
+
+            <span>
+                (AUTONOMOUS)
+            </span>
+
+        </div>
+
+
+
+        <ul class="menu">
+
+
+            <li>
+
+                <a href="admin-dashboard.html">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <span>
+                        Dashboard
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="teacher-list.html">
+
+                    <i class="fa-solid fa-user-tie"></i>
+
+                    <span>
+                        Teachers
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="hod-list.html">
+
+                    <i class="fa-solid fa-building-user"></i>
+
+                    <span>
+                        HOD
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="student-list.html">
+
+                    <i class="fa-solid fa-user-graduate"></i>
+
+                    <span>
+                        Students
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="recruiter-list.html">
+
+                    <i class="fa-solid fa-building"></i>
+
+                    <span>
+                        Recruiters
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="analytics.html">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <span>
+                        Analytics
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="reports.html">
+
+                    <i class="fa-solid fa-file-lines"></i>
+
+                    <span>
+                        Reports
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="attendance-report.html">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                    <span>
+                        Attendance Report
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li>
+
+                <a href="notice-board.html">
+
+                    <i class="fa-solid fa-bullhorn"></i>
+
+                    <span>
+                        Notice Board
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <li class="active">
+
+                <a href="academic-calendar.html">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    <span>
+                        Academic Calendar
+                    </span>
+
+                </a>
+
+            </li>
+
+
+        </ul>
+
+
+
+        <div class="sidebar-bottom">
+
+
+            <a href="settings.html">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+
+
+            <a
+                href="admin-login.html"
+                class="logout-btn">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+
+        <div class="topbar">
+
+
+            <div class="top-left calendar-page-title">
+
+                <h2>
+                    Academic Calendar
+                </h2>
+
+                <p>
+                    Dashboard / Academic Calendar
+                </p>
+
+            </div>
+
+
+
+            <div class="top-right calendar-top-actions">
+
+
+                <button
+                    type="button"
+                    id="refreshEventsBtn"
+                    class="btn btn-outline-primary">
+
+                    <i class="fa-solid fa-rotate"></i>
+
+                    Refresh
+
+                </button>
+
+
+                <button
+                    type="button"
+                    id="themeToggle"
+                    class="icon-btn"
+                    title="Dark Mode">
+
+                    <i class="fa-solid fa-moon"></i>
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             SUMMARY CARDS
+        ================================================== -->
+
+        <div class="row g-3 mb-4">
+
+
+            <div class="col-xl-3 col-md-6">
+
+
+                <div
+                    class="chart-card text-center calendar-summary-card">
+
+
+                    <div>
+
+
+                        <i
+                            class="fa-solid fa-calendar-days fa-2x text-primary mb-3">
+                        </i>
+
+
+                        <h3 id="totalEvents">
+                            0
+                        </h3>
+
+
+                        <p>
+                            Total Events
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="col-xl-3 col-md-6">
+
+
+                <div
+                    class="chart-card text-center calendar-summary-card">
+
+
+                    <div>
+
+
+                        <i
+                            class="fa-solid fa-graduation-cap fa-2x text-success mb-3">
+                        </i>
+
+
+                        <h3 id="semesterEvents">
+                            0
+                        </h3>
+
+
+                        <p>
+                            Semesters
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="col-xl-3 col-md-6">
+
+
+                <div
+                    class="chart-card text-center calendar-summary-card">
+
+
+                    <div>
+
+
+                        <i
+                            class="fa-solid fa-book-open fa-2x text-warning mb-3">
+                        </i>
+
+
+                        <h3 id="examinationEvents">
+                            0
+                        </h3>
+
+
+                        <p>
+                            Examinations
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="col-xl-3 col-md-6">
+
+
+                <div
+                    class="chart-card text-center calendar-summary-card">
+
+
+                    <div>
+
+
+                        <i
+                            class="fa-solid fa-star fa-2x text-danger mb-3">
+                        </i>
+
+
+                        <h3 id="upcomingEvents">
+                            0
+                        </h3>
+
+
+                        <p>
+                            Upcoming Events
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             ADD / EDIT ACADEMIC EVENT
+        ================================================== -->
+
+        <div class="chart-card">
+
+
+            <h4
+                class="mb-4"
+                id="eventFormHeading">
+
+                <i class="fa-solid fa-plus-circle me-2"></i>
+
+                Add Academic Event
+
+            </h4>
+
+
+
+            <form id="eventForm">
+
+
+                <input
+                    type="hidden"
+                    id="editingEventId">
+
+
+                <div class="row g-3">
+
+
+                    <!-- Event Title -->
+
+                    <div class="col-md-4">
+
+
+                        <label
+                            for="eventTitle"
+                            class="form-label">
+
+                            Event Title
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="eventTitle"
+                            class="form-control"
+                            placeholder="Enter Event Title"
+                            required>
+
+
+                    </div>
+
+
+
+                    <!-- Event Type -->
+
+                    <div class="col-md-4">
+
+
+                        <label
+                            for="eventType"
+                            class="form-label">
+
+                            Event Type
+
+                        </label>
+
+
+                        <select
+                            id="eventType"
+                            class="form-select">
+
+                            <option value="semester">
+                                Semester
+                            </option>
+
+                            <option value="examination">
+                                Examination
+                            </option>
+
+                            <option value="holiday">
+                                Holiday
+                            </option>
+
+                            <option value="workshop">
+                                Workshop
+                            </option>
+
+                            <option value="placement">
+                                Placement Drive
+                            </option>
+
+                            <option value="seminar">
+                                Seminar
+                            </option>
+
+                            <option value="event">
+                                Other Event
+                            </option>
+
+                        </select>
+
+
+                    </div>
+
+
+
+                    <!-- Department -->
+
+                    <div class="col-md-4">
+
+
+                        <label
+                            for="eventDepartment"
+                            class="form-label">
+
+                            Department
+
+                        </label>
+
+
+                        <select
+                            id="eventDepartment"
+                            class="form-select">
+
+                            <option value="">
+                                All Departments
+                            </option>
+
+                        </select>
+
+
+                    </div>
+
+
+
+                    <!-- Start Date -->
+
+                    <div class="col-md-3">
+
+
+                        <label
+                            for="startDate"
+                            class="form-label">
+
+                            Start Date
+
+                        </label>
+
+
+                        <input
+                            type="date"
+                            id="startDate"
+                            class="form-control"
+                            required>
+
+
+                    </div>
+
+
+
+                    <!-- End Date -->
+
+                    <div class="col-md-3">
+
+
+                        <label
+                            for="endDate"
+                            class="form-label">
+
+                            End Date
+
+                        </label>
+
+
+                        <input
+                            type="date"
+                            id="endDate"
+                            class="form-control"
+                            required>
+
+
+                    </div>
+
+
+
+                    <!-- Description -->
+
+                    <div class="col-md-6">
+
+
+                        <label
+                            for="eventDescription"
+                            class="form-label">
+
+                            Description
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="eventDescription"
+                            class="form-control"
+                            placeholder="Enter short event description">
+
+
+                    </div>
+
+
+
+                    <!-- Add / Update Event -->
+
+                    <div class="col-md-3 d-flex align-items-end">
+
+
+                        <button
+                            type="submit"
+                            id="saveEventBtn"
+                            class="btn btn-primary w-100">
+
+                            <i class="fa-solid fa-calendar-plus me-1"></i>
+
+                            Add Event
+
+                        </button>
+
+
+                    </div>
+
+
+
+                    <div
+                        class="col-md-3 d-flex align-items-end">
+
+
+                        <button
+                            type="button"
+                            id="cancelEditBtn"
+                            class="btn btn-secondary w-100 d-none">
+
+                            <i class="fa-solid fa-xmark me-1"></i>
+
+                            Cancel Edit
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             ACADEMIC EVENTS
+        ================================================== -->
+
+        <div class="chart-card mt-4">
+
+
+            <div
+                class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+
+
+                <h4 class="mb-0">
+
+                    <i class="fa-solid fa-calendar-days me-2"></i>
+
+                    Academic Events
+
+                </h4>
+
+
+
+                <div
+                    class="input-group"
+                    style="max-width: 320px;">
+
+
+                    <span class="input-group-text">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                    </span>
+
+
+                    <input
+                        type="text"
+                        id="searchEvent"
+                        class="form-control"
+                        placeholder="Search Event...">
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TABLE
+            ================================================== -->
+
+            <div class="table-responsive calendar-table-wrapper">
+
+
+                <table
+                    id="eventTable"
+                    class="table table-hover table-bordered text-center align-middle">
+
+
+                    <thead class="table-dark">
+
+
+                        <tr>
+
+                            <th>
+                                Event ID
+                            </th>
+
+                            <th>
+                                Event Title
+                            </th>
+
+                            <th>
+                                Type
+                            </th>
+
+                            <th>
+                                Department
+                            </th>
+
+                            <th>
+                                Start Date
+                            </th>
+
+                            <th>
+                                End Date
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Actions
+                            </th>
+
+                        </tr>
+
+
+                    </thead>
+
+
+
+                    <tbody id="eventTableBody">
+
+
+                        <tr>
+
+                            <td colspan="8">
+
+                                Loading events...
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PAGINATION
+            ================================================== -->
+
+            <div
+                class="d-flex justify-content-between align-items-center flex-wrap gap-3 mt-4">
+
+
+                <p
+                    class="mb-0"
+                    id="paginationInfo">
+
+                    Showing 0 Events
+
+                </p>
+
+
+
+                <nav>
+
+
+                    <ul
+                        class="pagination mb-0"
+                        id="paginationList">
+                    </ul>
+
+
+                </nav>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
 
 </div>
 
-<ul class="menu">
 
-<li><a href="admin-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
 
-<li><a href="teacher-list.html"><i class="fa-solid fa-user-tie"></i> Teachers</a></li>
+<!-- =========================================================
+     EVENT DETAILS MODAL
+========================================================= -->
 
-<li><a href="hod-list.html"><i class="fa-solid fa-building-user"></i> HOD</a></li>
+<div
+    class="modal fade"
+    id="eventModal"
+    tabindex="-1"
+    aria-hidden="true">
 
-<li><a href="student-list.html"><i class="fa-solid fa-user-graduate"></i> Students</a></li>
 
-<li><a href="recruiter-list.html"><i class="fa-solid fa-building"></i> Recruiters</a></li>
+    <div class="modal-dialog modal-lg modal-dialog-centered">
 
-<li><a href="attendance.html"><i class="fa-solid fa-calendar-check"></i> Attendance</a></li>
 
-<li><a href="analytics.html"><i class="fa-solid fa-chart-line"></i> Analytics</a></li>
+        <div class="modal-content">
 
-<li><a href="reports.html"><i class="fa-solid fa-file-lines"></i> Reports</a></li>
 
-<li><a href="notice-board.html"><i class="fa-solid fa-bullhorn"></i> Notice Board</a></li>
+            <div class="modal-header bg-primary text-white">
 
-<li class="active">
 
-<a href="academic-calendar.html">
+                <h5 class="modal-title">
 
-<i class="fa-solid fa-calendar-days"></i>
+                    <i class="fa-solid fa-calendar-days me-2"></i>
 
-Academic Calendar
+                    Academic Event Details
 
-</a>
+                </h5>
 
-</li>
 
-</ul>
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal">
+                </button>
 
-<div class="sidebar-bottom">
 
-    <a href="settings.html">
-        <i class="fa-solid fa-gear"></i>
-        <span>Settings</span>
-    </a>
+            </div>
 
-    <a href="admin-login.html" class="logout-btn">
-        <i class="fa-solid fa-right-from-bracket"></i>
-        <span>Logout</span>
-    </a>
 
-</div>
 
-</aside>
+            <div class="modal-body">
 
-<!-- Main Content -->
 
-<main class="main-content">
+                <h4 id="modalEventTitle">
+                    -
+                </h4>
 
-<div class="topbar">
 
-    <div>
-        <h2>Academic Calendar</h2>
-        <p>Dashboard / Academic Calendar</p>
+                <hr>
+
+
+                <p>
+
+                    <strong>
+                        Event ID :
+                    </strong>
+
+                    <span id="modalEventId">
+                        -
+                    </span>
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Department :
+                    </strong>
+
+                    <span id="modalDepartment">
+                        -
+                    </span>
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Event Type :
+                    </strong>
+
+                    <span id="modalEventType">
+                        -
+                    </span>
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Start Date :
+                    </strong>
+
+                    <span id="modalStartDate">
+                        -
+                    </span>
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        End Date :
+                    </strong>
+
+                    <span id="modalEndDate">
+                        -
+                    </span>
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Status :
+                    </strong>
+
+                    <span id="modalStatus">
+                        -
+                    </span>
+
+                </p>
+
+
+                <hr>
+
+
+                <p>
+
+                    <strong>
+                        Description :
+                    </strong>
+
+                </p>
+
+
+                <p
+                    class="mb-0"
+                    id="modalDescription">
+
+                    No description available.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div class="modal-footer">
+
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+
+                    Close
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
     </div>
 
-   <div class="topbar-actions">
-
-    <button id="themeToggle" class="theme-toggle-btn">
-        <i class="fa-solid fa-moon"></i>
-    </button>
 
 </div>
 
-</div>
 
-<!-- Summary Cards -->
 
-<div class="row g-4 mb-4">
+<!-- =========================================================
+     BOOTSTRAP JS
+========================================================= -->
 
-<div class="col-md-3">
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
 
-<div class="chart-card text-center">
 
-<i class="fa-solid fa-calendar-days fa-2x text-primary mb-3"></i>
 
-<h3>38</h3>
+<!-- =========================================================
+     COMMON DASHBOARD JS
+========================================================= -->
 
-<p>Total Events</p>
+<script src="../../js/dashboard.js"></script>
 
-</div>
 
-</div>
 
-<div class="col-md-3">
+<!-- =========================================================
+     ACADEMIC CALENDAR JAVASCRIPT
+========================================================= -->
 
-<div class="chart-card text-center">
-
-<i class="fa-solid fa-graduation-cap fa-2x text-success mb-3"></i>
-
-<h3>2</h3>
-
-<p>Semesters</p>
-
-</div>
-
-</div>
-
-<div class="col-md-3">
-
-<div class="chart-card text-center">
-
-<i class="fa-solid fa-book-open fa-2x text-warning mb-3"></i>
-
-<h3>12</h3>
-
-<p>Examinations</p>
-
-</div>
-
-</div>
-
-<div class="col-md-3">
-
-<div class="chart-card text-center">
-
-<i class="fa-solid fa-star fa-2x text-danger mb-3"></i>
-
-<h3>8</h3>
-
-<p>Upcoming Events</p>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- Add Academic Event -->
-
-<div class="chart-card">
-
-<h4 class="mb-4">
-
-<i class="fa-solid fa-plus-circle"></i>
-
-Add Academic Event
-
-</h4>
-
-<div class="row g-3">
-
-<div class="col-md-4">
-
-<label class="form-label">Event Title</label>
-
-<input type="text" class="form-control" placeholder="Enter Event Title">
-
-</div>
-
-<div class="col-md-4">
-
-<label class="form-label">Event Type</label>
-
-<select class="form-select">
-
-<option>Semester</option>
-
-<option>Examination</option>
-
-<option>Holiday</option>
-
-<option>Workshop</option>
-
-<option>Placement Drive</option>
-
-<option>Seminar</option>
-
-</select>
-
-</div>
-
-<div class="col-md-4">
-
-<label class="form-label">Department</label>
-
-<select class="form-select">
-
-<option>All Departments</option>
-
-<option>Computer Science</option>
-
-<option>Commerce</option>
-
-<option>Physics</option>
-
-<option>Mathematics</option>
-
-</select>
-
-</div>
-
-<div class="col-md-3">
-
-<label class="form-label">Start Date</label>
-
-<input type="date" class="form-control">
-
-</div>
-
-<div class="col-md-3">
-
-<label class="form-label">End Date</label>
-
-<input type="date" class="form-control">
-
-</div>
-
-<div class="col-md-3">
-
-<label class="form-label">Status</label>
-
-<select class="form-select">
-
-<option>Upcoming</option>
-
-<option>Ongoing</option>
-
-<option>Completed</option>
-
-</select>
-
-</div>
-
-<div class="col-md-3 d-flex align-items-end">
-
-<button type="button" class="btn btn-primary w-100">
-
-<i class="fa-solid fa-calendar-plus"></i>
-
-Add Event
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-<!-- Academic Events -->
-
-<div class="chart-card mt-4">
-
-<div class="d-flex justify-content-between align-items-center mb-4">
-
-<h4>
-<i class="fa-solid fa-calendar-days"></i>
-Academic Events
-</h4>
-
-<input
-type="text"
-class="form-control w-25"
-placeholder="Search Event...">
-
-</div>
-
-<div class="table-responsive">
-
-<table class="table table-hover table-bordered text-center align-middle">
-
-<thead class="table-dark">
-
-<tr>
-
-<th>Event ID</th>
-<th>Event Title</th>
-<th>Type</th>
-<th>Department</th>
-<th>Start Date</th>
-<th>End Date</th>
-<th>Status</th>
-<th>Actions</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td>EVT001</td>
-
-<td>Odd Semester Begins</td>
-
-<td><span class="badge bg-primary">Semester</span></td>
-
-<td>All Departments</td>
-
-<td>01 Aug 2026</td>
-
-<td>15 Dec 2026</td>
-
-<td><span class="badge bg-success">Upcoming</span></td>
-
-<td>
-
-<button class="btn btn-info btn-sm">
-<i class="fa-solid fa-eye"></i>
-</button>
-
-<button class="btn btn-warning btn-sm">
-<i class="fa-solid fa-pen"></i>
-</button>
-
-<button class="btn btn-danger btn-sm">
-<i class="fa-solid fa-trash"></i>
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>EVT002</td>
-
-<td>Mid Semester Examination</td>
-
-<td><span class="badge bg-warning text-dark">Exam</span></td>
-
-<td>All Departments</td>
-
-<td>20 Sep 2026</td>
-
-<td>28 Sep 2026</td>
-
-<td><span class="badge bg-success">Upcoming</span></td>
-
-<td>
-
-<button class="btn btn-info btn-sm">
-<i class="fa-solid fa-eye"></i>
-</button>
-
-<button class="btn btn-warning btn-sm">
-<i class="fa-solid fa-pen"></i>
-</button>
-
-<button class="btn btn-danger btn-sm">
-<i class="fa-solid fa-trash"></i>
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>EVT003</td>
-
-<td>Independence Day Holiday</td>
-
-<td><span class="badge bg-danger">Holiday</span></td>
-
-<td>All Departments</td>
-
-<td>15 Aug 2026</td>
-
-<td>15 Aug 2026</td>
-
-<td><span class="badge bg-success">Upcoming</span></td>
-
-<td>
-
-<button class="btn btn-info btn-sm">
-<i class="fa-solid fa-eye"></i>
-</button>
-
-<button class="btn btn-warning btn-sm">
-<i class="fa-solid fa-pen"></i>
-</button>
-
-<button class="btn btn-danger btn-sm">
-<i class="fa-solid fa-trash"></i>
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>EVT004</td>
-
-<td>AI & ML Workshop</td>
-
-<td><span class="badge bg-info">Workshop</span></td>
-
-<td>Computer Science</td>
-
-<td>10 Aug 2026</td>
-
-<td>10 Aug 2026</td>
-
-<td><span class="badge bg-primary">Ongoing</span></td>
-
-<td>
-
-<button class="btn btn-info btn-sm">
-<i class="fa-solid fa-eye"></i>
-</button>
-
-<button class="btn btn-warning btn-sm">
-<i class="fa-solid fa-pen"></i>
-</button>
-
-<button class="btn btn-danger btn-sm">
-<i class="fa-solid fa-trash"></i>
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>EVT005</td>
-
-<td>TCS Campus Placement Drive</td>
-
-<td><span class="badge bg-success">Placement</span></td>
-
-<td>Computer Science</td>
-
-<td>18 Oct 2026</td>
-
-<td>19 Oct 2026</td>
-
-<td><span class="badge bg-secondary">Scheduled</span></td>
-
-<td>
-
-<button type="button" class="btn btn-info btn-sm">
-    <i class="fa-solid fa-eye"></i>
-</button>
-
-<button type="button" class="btn btn-warning btn-sm">
-    <i class="fa-solid fa-pen"></i>
-</button>
-
-<button type="button" class="btn btn-danger btn-sm">
-    <i class="fa-solid fa-trash"></i>
-</button>
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-<!-- Pagination -->
-
-<div class="d-flex justify-content-between align-items-center mt-4">
-
-<p class="mb-0">
-
-Showing 1 to 5 of 38 Events
-
-</p>
-
-<nav>
-
-<ul class="pagination mb-0">
-
-<li class="page-item disabled">
-<a class="page-link" href="#">Previous</a>
-</li>
-
-<li class="page-item active">
-<a class="page-link" href="#">1</a>
-</li>
-
-<li class="page-item">
-<a class="page-link" href="#">2</a>
-</li>
-
-<li class="page-item">
-<a class="page-link" href="#">3</a>
-</li>
-
-<li class="page-item">
-<a class="page-link" href="#">Next</a>
-</li>
-
-</ul>
-
-</nav>
-
-</div>
-
-</div></main>
-
-</div>
-
-<!-- Event Details Modal -->
-
-<div class="modal fade" id="eventModal" tabindex="-1">
-
-<div class="modal-dialog modal-lg">
-
-<div class="modal-content">
-
-<div class="modal-header bg-primary text-white">
-
-<h5 class="modal-title">
-
-<i class="fa-solid fa-calendar-days"></i>
-
-Academic Event Details
-
-</h5>
-
-<button
-type="button"
-class="btn-close btn-close-white"
-data-bs-dismiss="modal">
-</button>
-
-</div>
-
-<div class="modal-body">
-
-<h4>Odd Semester Begins</h4>
-
-<hr>
-
-<p><strong>Event ID :</strong> EVT001</p>
-
-<p><strong>Department :</strong> All Departments</p>
-
-<p><strong>Event Type :</strong>
-<span class="badge bg-primary">Semester</span>
-</p>
-
-<p><strong>Start Date :</strong> 01 Aug 2026</p>
-
-<p><strong>End Date :</strong> 15 Dec 2026</p>
-
-<p><strong>Status :</strong>
-<span class="badge bg-success">Upcoming</span>
-</p>
-
-<hr>
-
-<p>
-
-The Odd Semester for the academic session will begin on
-<strong>01 August 2026</strong>. All students and faculty members are
-requested to follow the academic schedule and attend classes regularly.
-
-</p>
-
-</div>
-
-<div class="modal-footer">
-
-<button
-class="btn btn-secondary"
-data-bs-dismiss="modal">
-
-Close
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- Bootstrap JS -->
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script  src="../../js/admin-dashboard.js"></script>
 <script>
 
-// Search Events
 
-// Search Events
+// ============================================================
+// API
+// ============================================================
 
-const searchEvent = document.querySelector("input[placeholder='Search Event...']");
-const eventRows = document.querySelectorAll("tbody tr");
+const ACADEMIC_EVENTS_API =
+    "http://127.0.0.1:5000/api/academic-events";
 
-if (searchEvent) {
 
-    searchEvent.addEventListener("keyup", function () {
+const DEPARTMENTS_API =
+    "http://127.0.0.1:5000/api/academic-events/departments";
 
-        const value = this.value.toLowerCase();
 
-        eventRows.forEach(row => {
 
-            row.style.display = row.innerText.toLowerCase().includes(value)
-                ? ""
-                : "none";
+// ============================================================
+// DATA
+// ============================================================
+
+let allEvents = [];
+
+let filteredEvents = [];
+
+let currentPage = 1;
+
+const eventsPerPage = 5;
+
+
+
+// ============================================================
+// ELEMENTS
+// ============================================================
+
+const eventForm =
+    document.getElementById(
+        "eventForm"
+    );
+
+
+const eventTitle =
+    document.getElementById(
+        "eventTitle"
+    );
+
+
+const eventType =
+    document.getElementById(
+        "eventType"
+    );
+
+
+const eventDepartment =
+    document.getElementById(
+        "eventDepartment"
+    );
+
+
+const startDate =
+    document.getElementById(
+        "startDate"
+    );
+
+
+const endDate =
+    document.getElementById(
+        "endDate"
+    );
+
+
+const eventDescription =
+    document.getElementById(
+        "eventDescription"
+    );
+
+
+const editingEventId =
+    document.getElementById(
+        "editingEventId"
+    );
+
+
+const saveEventBtn =
+    document.getElementById(
+        "saveEventBtn"
+    );
+
+
+const cancelEditBtn =
+    document.getElementById(
+        "cancelEditBtn"
+    );
+
+
+const eventFormHeading =
+    document.getElementById(
+        "eventFormHeading"
+    );
+
+
+const eventTableBody =
+    document.getElementById(
+        "eventTableBody"
+    );
+
+
+const searchEvent =
+    document.getElementById(
+        "searchEvent"
+    );
+
+
+
+// ============================================================
+// LOAD DEPARTMENTS
+// ============================================================
+
+async function loadDepartments() {
+
+
+    try {
+
+
+        const response =
+            await fetch(
+                DEPARTMENTS_API
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            result.success === false
+        ) {
+
+            throw new Error(
+                result.message ||
+                "Unable to load departments."
+            );
+
+        }
+
+
+        eventDepartment.innerHTML = `
+
+            <option value="">
+                All Departments
+            </option>
+
+        `;
+
+
+        result.data.forEach(
+            function (department) {
+
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                option.value =
+                    department.id;
+
+
+                option.textContent =
+                    department.name;
+
+
+                eventDepartment.appendChild(
+                    option
+                );
+
+
+            }
+        );
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(
+            "Department Load Error:",
+            error
+        );
+
+
+    }
+
+
+}
+
+
+
+// ============================================================
+// LOAD EVENTS
+// ============================================================
+
+async function loadEvents() {
+
+
+    eventTableBody.innerHTML = `
+
+        <tr>
+
+            <td colspan="8">
+
+                <i class="fa-solid fa-spinner fa-spin me-2"></i>
+
+                Loading events...
+
+            </td>
+
+        </tr>
+
+    `;
+
+
+    try {
+
+
+        const response =
+            await fetch(
+                ACADEMIC_EVENTS_API
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            result.success === false
+        ) {
+
+            throw new Error(
+                result.message ||
+                "Unable to load academic events."
+            );
+
+        }
+
+
+        allEvents =
+            Array.isArray(
+                result.data
+            )
+                ? result.data
+                : [];
+
+
+        updateSummary();
+
+
+        applySearch();
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(
+            "Event Load Error:",
+            error
+        );
+
+
+        allEvents = [];
+
+        filteredEvents = [];
+
+
+        updateSummary();
+
+
+        eventTableBody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="8"
+                    class="text-danger">
+
+                    Unable to load academic events.
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+    }
+
+
+}
+
+
+
+// ============================================================
+// SUMMARY
+// ============================================================
+
+function updateSummary() {
+
+
+    const total =
+        allEvents.length;
+
+
+    const semesters =
+        allEvents.filter(
+            function (event) {
+
+                return (
+                    String(
+                        event.event_type ||
+                        ""
+                    ).toLowerCase()
+                    === "semester"
+                );
+
+            }
+        ).length;
+
+
+    const examinations =
+        allEvents.filter(
+            function (event) {
+
+                return (
+                    String(
+                        event.event_type ||
+                        ""
+                    ).toLowerCase()
+                    === "examination"
+                );
+
+            }
+        ).length;
+
+
+    const upcoming =
+        allEvents.filter(
+            function (event) {
+
+                return (
+                    String(
+                        event.status ||
+                        ""
+                    ).toLowerCase()
+                    === "upcoming"
+                );
+
+            }
+        ).length;
+
+
+    document.getElementById(
+        "totalEvents"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "semesterEvents"
+    ).textContent =
+        semesters;
+
+
+    document.getElementById(
+        "examinationEvents"
+    ).textContent =
+        examinations;
+
+
+    document.getElementById(
+        "upcomingEvents"
+    ).textContent =
+        upcoming;
+
+
+}
+
+
+
+// ============================================================
+// SEARCH
+// ============================================================
+
+function applySearch() {
+
+
+    const value =
+        searchEvent.value
+            .trim()
+            .toLowerCase();
+
+
+    filteredEvents =
+        allEvents.filter(
+            function (event) {
+
+
+                const text =
+                    [
+                        event.title || "",
+                        event.event_type || "",
+                        event.department || "",
+                        event.start_date || "",
+                        event.end_date || "",
+                        event.status || "",
+                        event.description || ""
+                    ]
+                    .join(" ")
+                    .toLowerCase();
+
+
+                return (
+                    !value ||
+                    text.includes(value)
+                );
+
+
+            }
+        );
+
+
+    currentPage = 1;
+
+
+    renderEvents();
+
+
+}
+
+
+
+// ============================================================
+// RENDER EVENTS
+// ============================================================
+
+function renderEvents() {
+
+
+    eventTableBody.innerHTML =
+        "";
+
+
+    if (
+        filteredEvents.length === 0
+    ) {
+
+
+        eventTableBody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="8"
+                    class="empty-events">
+
+                    <i class="fa-regular fa-calendar-xmark fa-2x mb-2"></i>
+
+                    <div>
+                        No academic events found.
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+        renderPagination();
+
+
+        return;
+
+    }
+
+
+
+    const startIndex =
+        (
+            currentPage - 1
+        ) * eventsPerPage;
+
+
+    const endIndex =
+        startIndex +
+        eventsPerPage;
+
+
+    const pageEvents =
+        filteredEvents.slice(
+            startIndex,
+            endIndex
+        );
+
+
+
+    pageEvents.forEach(
+        function (event) {
+
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            row.innerHTML = `
+
+                <td>
+                    EVT${String(
+                        event.id
+                    ).padStart(3, "0")}
+                </td>
+
+
+                <td>
+                    ${escapeHtml(
+                        event.title
+                    )}
+                </td>
+
+
+                <td>
+                    ${getEventTypeBadge(
+                        event.event_type
+                    )}
+                </td>
+
+
+                <td>
+                    ${escapeHtml(
+                        event.department ||
+                        "All Departments"
+                    )}
+                </td>
+
+
+                <td>
+                    ${formatDate(
+                        event.start_date
+                    )}
+                </td>
+
+
+                <td>
+                    ${formatDate(
+                        event.end_date ||
+                        event.start_date
+                    )}
+                </td>
+
+
+                <td>
+                    ${getStatusBadge(
+                        event.status
+                    )}
+                </td>
+
+
+                <td>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-info btn-sm"
+                        onclick="viewEvent(${event.id})"
+                        title="View Event">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-warning btn-sm"
+                        onclick="editEvent(${event.id})"
+                        title="Edit Event">
+
+                        <i class="fa-solid fa-pen"></i>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-danger btn-sm"
+                        onclick="deleteEvent(${event.id})"
+                        title="Delete Event">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                    </button>
+
+
+                </td>
+
+            `;
+
+
+            eventTableBody.appendChild(
+                row
+            );
+
+
+        }
+    );
+
+
+    renderPagination();
+
+
+}
+
+
+
+// ============================================================
+// PAGINATION
+// ============================================================
+
+function renderPagination() {
+
+
+    const paginationList =
+        document.getElementById(
+            "paginationList"
+        );
+
+
+    const paginationInfo =
+        document.getElementById(
+            "paginationInfo"
+        );
+
+
+    paginationList.innerHTML =
+        "";
+
+
+    const totalEvents =
+        filteredEvents.length;
+
+
+    const totalPages =
+        Math.ceil(
+            totalEvents /
+            eventsPerPage
+        );
+
+
+    if (
+        totalEvents === 0
+    ) {
+
+
+        paginationInfo.textContent =
+            "Showing 0 Events";
+
+
+        return;
+
+    }
+
+
+    const start =
+        (
+            currentPage - 1
+        ) * eventsPerPage + 1;
+
+
+    const end =
+        Math.min(
+            currentPage * eventsPerPage,
+            totalEvents
+        );
+
+
+    paginationInfo.textContent =
+        `Showing ${start} to ${end} of ${totalEvents} Events`;
+
+
+
+    const previousItem =
+        document.createElement(
+            "li"
+        );
+
+
+    previousItem.className =
+        "page-item" +
+        (
+            currentPage === 1
+                ? " disabled"
+                : ""
+        );
+
+
+    previousItem.innerHTML = `
+
+        <a
+            class="page-link"
+            href="#">
+            Previous
+        </a>
+
+    `;
+
+
+    previousItem.addEventListener(
+        "click",
+        function (event) {
+
+
+            event.preventDefault();
+
+
+            if (
+                currentPage > 1
+            ) {
+
+                currentPage--;
+
+                renderEvents();
+
+            }
+
+
+        }
+    );
+
+
+    paginationList.appendChild(
+        previousItem
+    );
+
+
+
+    for (
+        let page = 1;
+        page <= totalPages;
+        page++
+    ) {
+
+
+        const pageItem =
+            document.createElement(
+                "li"
+            );
+
+
+        pageItem.className =
+            "page-item" +
+            (
+                page === currentPage
+                    ? " active"
+                    : ""
+            );
+
+
+        pageItem.innerHTML = `
+
+            <a
+                class="page-link"
+                href="#">
+                ${page}
+            </a>
+
+        `;
+
+
+        pageItem.addEventListener(
+            "click",
+            function (event) {
+
+
+                event.preventDefault();
+
+
+                currentPage =
+                    page;
+
+
+                renderEvents();
+
+
+            }
+        );
+
+
+        paginationList.appendChild(
+            pageItem
+        );
+
+
+    }
+
+
+
+    const nextItem =
+        document.createElement(
+            "li"
+        );
+
+
+    nextItem.className =
+        "page-item" +
+        (
+            currentPage === totalPages
+                ? " disabled"
+                : ""
+        );
+
+
+    nextItem.innerHTML = `
+
+        <a
+            class="page-link"
+            href="#">
+            Next
+        </a>
+
+    `;
+
+
+    nextItem.addEventListener(
+        "click",
+        function (event) {
+
+
+            event.preventDefault();
+
+
+            if (
+                currentPage < totalPages
+            ) {
+
+                currentPage++;
+
+                renderEvents();
+
+            }
+
+
+        }
+    );
+
+
+    paginationList.appendChild(
+        nextItem
+    );
+
+
+}
+
+
+
+// ============================================================
+// CREATE / UPDATE EVENT
+// ============================================================
+
+eventForm.addEventListener(
+    "submit",
+    async function (event) {
+
+
+        event.preventDefault();
+
+
+        const title =
+            eventTitle.value.trim();
+
+
+        const start =
+            startDate.value;
+
+
+        const end =
+            endDate.value;
+
+
+        if (
+            !title ||
+            !start ||
+            !end
+        ) {
+
+
+            alert(
+                "Please fill all required event details."
+            );
+
+
+            return;
+
+        }
+
+
+        if (
+            end < start
+        ) {
+
+
+            alert(
+                "End Date cannot be before Start Date."
+            );
+
+
+            return;
+
+        }
+
+
+
+        const eventData = {
+
+            title:
+                title,
+
+            description:
+                eventDescription.value.trim(),
+
+            event_type:
+                eventType.value,
+
+            start_date:
+                start,
+
+            end_date:
+                end,
+
+            department_id:
+                eventDepartment.value || null
+
+        };
+
+
+        const eventId =
+            editingEventId.value;
+
+
+        const isEditing =
+            Boolean(
+                eventId
+            );
+
+
+        const url =
+            isEditing
+
+                ? `${ACADEMIC_EVENTS_API}/${eventId}`
+
+                : ACADEMIC_EVENTS_API;
+
+
+        const method =
+            isEditing
+                ? "PUT"
+                : "POST";
+
+
+        saveEventBtn.disabled =
+            true;
+
+
+        saveEventBtn.innerHTML = `
+
+            <i class="fa-solid fa-spinner fa-spin me-1"></i>
+
+            Saving...
+
+        `;
+
+
+        try {
+
+
+            const response =
+                await fetch(
+                    url,
+                    {
+
+                        method:
+                            method,
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify(
+                                eventData
+                            )
+
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (
+                !response.ok ||
+                result.success === false
+            ) {
+
+                throw new Error(
+                    result.message ||
+                    "Unable to save academic event."
+                );
+
+            }
+
+
+            alert(
+                isEditing
+
+                    ? "Academic event updated successfully!"
+
+                    : "Academic event added successfully!"
+            );
+
+
+            resetEventForm();
+
+
+            await loadEvents();
+
+
+        }
+
+        catch (error) {
+
+
+            console.error(
+                "Save Event Error:",
+                error
+            );
+
+
+            alert(
+                error.message ||
+                "Unable to save academic event."
+            );
+
+
+        }
+
+        finally {
+
+
+            saveEventBtn.disabled =
+                false;
+
+
+            if (
+                !editingEventId.value
+            ) {
+
+                saveEventBtn.innerHTML = `
+
+                    <i class="fa-solid fa-calendar-plus me-1"></i>
+
+                    Add Event
+
+                `;
+
+            }
+
+
+        }
+
+
+    }
+);
+
+
+
+// ============================================================
+// VIEW EVENT
+// ============================================================
+
+async function viewEvent(
+    eventId
+) {
+
+
+    try {
+
+
+        const response =
+            await fetch(
+                `${ACADEMIC_EVENTS_API}/${eventId}`
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            result.success === false
+        ) {
+
+            throw new Error(
+                result.message ||
+                "Unable to load academic event."
+            );
+
+        }
+
+
+        const event =
+            result.data;
+
+
+        document.getElementById(
+            "modalEventId"
+        ).textContent =
+            `EVT${String(
+                event.id
+            ).padStart(3, "0")}`;
+
+
+        document.getElementById(
+            "modalEventTitle"
+        ).textContent =
+            event.title || "-";
+
+
+        document.getElementById(
+            "modalDepartment"
+        ).textContent =
+            event.department ||
+            "All Departments";
+
+
+        document.getElementById(
+            "modalEventType"
+        ).textContent =
+            formatEventType(
+                event.event_type
+            );
+
+
+        document.getElementById(
+            "modalStartDate"
+        ).textContent =
+            formatDate(
+                event.start_date
+            );
+
+
+        document.getElementById(
+            "modalEndDate"
+        ).textContent =
+            formatDate(
+                event.end_date ||
+                event.start_date
+            );
+
+
+        document.getElementById(
+            "modalStatus"
+        ).textContent =
+            capitalize(
+                event.status
+            );
+
+
+        document.getElementById(
+            "modalDescription"
+        ).textContent =
+            event.description ||
+            "No description available.";
+
+
+
+        const modal =
+            new bootstrap.Modal(
+                document.getElementById(
+                    "eventModal"
+                )
+            );
+
+
+        modal.show();
+
+
+    }
+
+    catch (error) {
+
+
+        alert(
+            error.message ||
+            "Unable to load academic event."
+        );
+
+
+    }
+
+
+}
+
+
+
+// ============================================================
+// EDIT EVENT
+// ============================================================
+
+async function editEvent(
+    eventId
+) {
+
+
+    try {
+
+
+        const response =
+            await fetch(
+                `${ACADEMIC_EVENTS_API}/${eventId}`
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            result.success === false
+        ) {
+
+            throw new Error(
+                result.message ||
+                "Unable to load academic event."
+            );
+
+        }
+
+
+        const event =
+            result.data;
+
+
+        editingEventId.value =
+            event.id;
+
+
+        eventTitle.value =
+            event.title || "";
+
+
+        eventType.value =
+            event.event_type ||
+            "event";
+
+
+        eventDepartment.value =
+            event.department_id ||
+            "";
+
+
+        startDate.value =
+            event.start_date ||
+            "";
+
+
+        endDate.value =
+            event.end_date ||
+            event.start_date ||
+            "";
+
+
+        eventDescription.value =
+            event.description ||
+            "";
+
+
+        eventFormHeading.innerHTML = `
+
+            <i class="fa-solid fa-pen me-2"></i>
+
+            Edit Academic Event
+
+        `;
+
+
+        saveEventBtn.innerHTML = `
+
+            <i class="fa-solid fa-floppy-disk me-1"></i>
+
+            Update Event
+
+        `;
+
+
+        cancelEditBtn.classList.remove(
+            "d-none"
+        );
+
+
+        eventForm.scrollIntoView({
+
+            behavior:
+                "smooth",
+
+            block:
+                "start"
 
         });
 
-    });
+
+    }
+
+    catch (error) {
+
+
+        alert(
+            error.message ||
+            "Unable to edit academic event."
+        );
+
+
+    }
+
 
 }
 
-// View Event
 
-document.querySelectorAll(".fa-eye").forEach(icon => {
 
-icon.parentElement.setAttribute("data-bs-toggle", "modal");
+// ============================================================
+// DELETE EVENT
+// ============================================================
 
-icon.parentElement.setAttribute("data-bs-target", "#eventModal");
+async function deleteEvent(
+    eventId
+) {
 
-});
 
-// Delete Event
+    const confirmed =
+        confirm(
+            "Are you sure you want to delete this academic event?"
+        );
 
-document.querySelectorAll(".fa-trash").forEach(icon => {
 
-icon.parentElement.addEventListener("click", function () {
+    if (
+        !confirmed
+    ) {
 
-if (confirm("Are you sure you want to delete this event?")) {
+        return;
 
-this.closest("tr").remove();
+    }
+
+
+    try {
+
+
+        const response =
+            await fetch(
+                `${ACADEMIC_EVENTS_API}/${eventId}`,
+                {
+
+                    method:
+                        "DELETE"
+
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            result.success === false
+        ) {
+
+            throw new Error(
+                result.message ||
+                "Unable to delete academic event."
+            );
+
+        }
+
+
+        alert(
+            "Academic event deleted successfully!"
+        );
+
+
+        if (
+            String(
+                editingEventId.value
+            ) === String(eventId)
+        ) {
+
+            resetEventForm();
+
+        }
+
+
+        await loadEvents();
+
+
+    }
+
+    catch (error) {
+
+
+        alert(
+            error.message ||
+            "Unable to delete academic event."
+        );
+
+
+    }
+
 
 }
 
-});
 
-});
 
-// Edit Event Demo
+// ============================================================
+// RESET FORM
+// ============================================================
 
-document.querySelectorAll(".fa-pen").forEach(icon => {
+function resetEventForm() {
 
-icon.parentElement.addEventListener("click", function () {
 
-alert("Edit Event feature will be available after backend integration.");
+    eventForm.reset();
 
-});
 
-});
+    editingEventId.value =
+        "";
+
+
+    eventType.value =
+        "semester";
+
+
+    eventDepartment.value =
+        "";
+
+
+    eventFormHeading.innerHTML = `
+
+        <i class="fa-solid fa-plus-circle me-2"></i>
+
+        Add Academic Event
+
+    `;
+
+
+    saveEventBtn.innerHTML = `
+
+        <i class="fa-solid fa-calendar-plus me-1"></i>
+
+        Add Event
+
+    `;
+
+
+    cancelEditBtn.classList.add(
+        "d-none"
+    );
+
+
+}
+
+
+
+// ============================================================
+// EVENT TYPE BADGE
+// ============================================================
+
+function getEventTypeBadge(
+    type
+) {
+
+
+    const value =
+        String(
+            type ||
+            "event"
+        ).toLowerCase();
+
+
+    let badgeClass =
+        "bg-secondary";
+
+
+    if (
+        value === "semester"
+    ) {
+
+        badgeClass =
+            "bg-primary";
+
+    }
+
+    else if (
+        value === "examination"
+    ) {
+
+        badgeClass =
+            "bg-warning text-dark";
+
+    }
+
+    else if (
+        value === "holiday"
+    ) {
+
+        badgeClass =
+            "bg-danger";
+
+    }
+
+    else if (
+        value === "workshop"
+    ) {
+
+        badgeClass =
+            "bg-info text-dark";
+
+    }
+
+    else if (
+        value === "placement"
+    ) {
+
+        badgeClass =
+            "bg-success";
+
+    }
+
+    else if (
+        value === "seminar"
+    ) {
+
+        badgeClass =
+            "bg-dark";
+
+    }
+
+
+    return `
+
+        <span class="badge ${badgeClass}">
+
+            ${escapeHtml(
+                formatEventType(value)
+            )}
+
+        </span>
+
+    `;
+
+
+}
+
+
+
+// ============================================================
+// STATUS BADGE
+// ============================================================
+
+function getStatusBadge(
+    status
+) {
+
+
+    const value =
+        String(
+            status ||
+            ""
+        ).toLowerCase();
+
+
+    if (
+        value === "upcoming"
+    ) {
+
+        return `
+
+            <span class="badge bg-success">
+                Upcoming
+            </span>
+
+        `;
+
+    }
+
+
+    if (
+        value === "ongoing"
+    ) {
+
+        return `
+
+            <span class="badge bg-primary">
+                Ongoing
+            </span>
+
+        `;
+
+    }
+
+
+    if (
+        value === "completed"
+    ) {
+
+        return `
+
+            <span class="badge bg-secondary">
+                Completed
+            </span>
+
+        `;
+
+    }
+
+
+    return `
+
+        <span class="badge bg-secondary">
+            -
+        </span>
+
+    `;
+
+
+}
+
+
+
+// ============================================================
+// HELPERS
+// ============================================================
+
+function formatEventType(
+    value
+) {
+
+
+    const type =
+        String(
+            value ||
+            ""
+        ).toLowerCase();
+
+
+    if (
+        type === "placement"
+    ) {
+
+        return "Placement Drive";
+
+    }
+
+
+    if (
+        type === "examination"
+    ) {
+
+        return "Examination";
+
+    }
+
+
+    return capitalize(
+        type
+    );
+
+
+}
+
+
+
+function capitalize(
+    value
+) {
+
+
+    if (!value) {
+        return "-";
+    }
+
+
+    return (
+        value.charAt(0).toUpperCase() +
+        value.slice(1)
+    );
+
+
+}
+
+
+
+function formatDate(
+    value
+) {
+
+
+    if (!value) {
+        return "-";
+    }
+
+
+    const parts =
+        value.split("-");
+
+
+    if (
+        parts.length !== 3
+    ) {
+
+        return value;
+
+    }
+
+
+    const date =
+        new Date(
+            Number(parts[0]),
+            Number(parts[1]) - 1,
+            Number(parts[2])
+        );
+
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+
+            day:
+                "2-digit",
+
+            month:
+                "short",
+
+            year:
+                "numeric"
+
+        }
+    );
+
+
+}
+
+
+
+function escapeHtml(
+    value
+) {
+
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        value === null ||
+        value === undefined
+
+            ? ""
+
+            : String(value);
+
+
+    return div.innerHTML;
+
+
+}
+
+
+
+// ============================================================
+// EVENTS
+// ============================================================
+
+searchEvent.addEventListener(
+    "input",
+    applySearch
+);
+
+
+cancelEditBtn.addEventListener(
+    "click",
+    resetEventForm
+);
+
+
+document.getElementById(
+    "refreshEventsBtn"
+).addEventListener(
+    "click",
+    loadEvents
+);
+
+
+
+// ============================================================
+// INITIAL LOAD
+// ============================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
+
+
+        await loadDepartments();
+
+        await loadEvents();
+
+
+    }
+);
+
 
 </script>
+
 
 </body>
 

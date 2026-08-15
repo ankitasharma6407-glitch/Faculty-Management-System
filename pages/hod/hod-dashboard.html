@@ -3,870 +3,1307 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>HOD Dashboard</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>HOD Dashboard</title>
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-<link rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 
-<link rel="stylesheet" href="../../css/hod-dashboard.css">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+    <!-- Full Calendar CSS -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css">
+
+
+    <!-- HOD Dashboard CSS -->
+    <link
+        rel="stylesheet"
+        href="../../css/hod-dashboard.css">
 
 </head>
 
+
 <body>
+
 
 <div class="wrapper">
 
-<!-- ================= Sidebar ================= -->
 
-<!-- ================= Sidebar ================= -->
+    <!-- =====================================================
+                        SIDEBAR
+    ====================================================== -->
 
-<aside class="sidebar">
+    <aside class="sidebar">
 
-    <div class="logo">
 
-        <img src="../../images/logo.png" alt="Logo">
+        <div class="logo">
 
-        <h3>HOD Panel</h3>
+            <img
+                src="../../images/logo.png"
+                alt="Logo">
 
-    </div>
+            <h3>
+                HOD Panel
+            </h3>
 
-    <ul class="menu">
+        </div>
 
-        <!-- Dashboard -->
 
-        <li class="active">
+        <ul class="menu">
 
-            <a href="hod-dashboard.html">
 
-                <i class="fa-solid fa-house"></i>
+            <!-- Dashboard -->
 
-                Dashboard
+            <li class="active">
 
-            </a>
+                <a href="hod-dashboard.html">
 
-        </li>
+                    <i class="fa-solid fa-house"></i>
 
+                    Dashboard
 
-        <!-- Teachers -->
-
-        <li>
-
-            <a href="teacher-list.html">
-
-                <i class="fa-solid fa-users"></i>
-
-                Teachers
-
-            </a>
-
-        </li>
-
-
-        <!-- Students -->
-
-        <li>
-
-            <a href="student-list.html">
-
-                <i class="fa-solid fa-user-graduate"></i>
-
-                Students
-
-            </a>
-
-        </li>
-
-
-        <!-- Timetable -->
-
-        <li>
-
-            <a href="timetable.html">
-
-                <i class="fa-solid fa-calendar-days"></i>
-
-                Timetable
-
-            </a>
-
-        </li>
-
-
-        <!-- Leave Requests -->
-
-        <li>
-
-            <a href="leave-requests.html">
-
-                <i class="fa-solid fa-file-circle-check"></i>
-
-                Leave Requests
-
-            </a>
-
-        </li>
-
-
-        <!-- Face Attendance -->
-
-        <li>
-
-            <a href="face-attendance.html">
-
-                <i class="fa-solid fa-face-smile"></i>
-
-                Face Attendance
-
-            </a>
-
-        </li>
-
-
-        <!-- Attendance Report -->
-
-        <li>
-
-            <a href="attendance-report.html">
-
-                <i class="fa-solid fa-clipboard-list"></i>
-
-                Attendance Report
-
-            </a>
-
-        </li>
-
-
-        <!-- Academic Calendar -->
-
-        <li>
-
-            <a href="academic-calendar.html">
-
-                <i class="fa-solid fa-calendar-check"></i>
-
-                Academic Calendar
-
-            </a>
-
-        </li>
-
-
-        <!-- Analytics -->
-
-        <li>
-
-            <a href="analytics.html">
-
-                <i class="fa-solid fa-chart-line"></i>
-
-                Analytics
-
-            </a>
-
-        </li>
-
-
-        <!-- Notices -->
-
-        <li>
-
-            <a href="notice-board.html">
-
-                <i class="fa-solid fa-bullhorn"></i>
-
-                Notices
-
-            </a>
-
-        </li>
-
-
-        <!-- Settings -->
-
-        <li>
-
-            <a href="settings.html">
-
-                <i class="fa-solid fa-gear"></i>
-
-                Settings
-
-            </a>
-
-        </li>
-
-
-        <!-- Logout -->
-
-        <li>
-
-            <a href="hod-login.html">
-
-                <i class="fa-solid fa-right-from-bracket"></i>
-
-                Logout
-
-            </a>
-
-        </li>
-
-    </ul>
-
-</aside>
-<!-- ================= Main ================= -->
-
-<main class="main-content">
-
-<!-- ================= Top Navbar ================= -->
-
-<nav class="top-navbar">
-
-<h3>Head of Department Dashboard</h3>
-
-<div class="top-right">
-
-<div class="search-box">
-
-<i class="fa-solid fa-magnifying-glass"></i>
-
-<input
-type="text"
-id="searchBox"
-placeholder="Search...">
-
-</div>
-
-<button id="themeToggle" class="icon-btn">
-
-<i class="fa-solid fa-moon"></i>
-
-</button>
-
-<div class="dropdown">
-
-<button
-class="icon-btn position-relative"
-data-bs-toggle="dropdown">
-
-<i class="fa-regular fa-bell"></i>
-
-<span class="badge-count"
-id="notificationCount">
-
-4
-
-</span>
-
-</button>
-
-<ul class="dropdown-menu dropdown-menu-end notification-menu">
-
-<li class="dropdown-header">
-
-Notifications
-
-</li>
-
-<li>
-<a class="dropdown-item" href="notifications.html">
-📢 Faculty Meeting Tomorrow
-</a>
-</li>
-
-<li>
-<a class="dropdown-item" href="notifications.html">
-📄 Leave Request Pending
-</a>
-</li>
-
-<li>
-<a class="dropdown-item" href="notifications.html">
-🎉 Result Uploaded
-</a>
-</li>
-
-</ul>
-
-</div>
-
-<div class="dropdown">
-
-<div
-class="profile"
-data-bs-toggle="dropdown">
-
-<img src="https://i.pravatar.cc/50?img=12">
-
-<span>Welcome, HOD</span>
-
-<i class="fa-solid fa-angle-down"></i>
-
-</div>
-
-<ul class="dropdown-menu dropdown-menu-end profile-menu">
-
-<li>
-<a class="dropdown-item" href="profile.html">
-<i class="fa-solid fa-user"></i>
-My Profile
-</a>
-</li>
-
-<li>
-<a class="dropdown-item" href="change-password.html">
-<i class="fa-solid fa-lock"></i>
-Change Password
-</a>
-</li>
-
-<li>
-<a class="dropdown-item" href="settings.html">
-<i class="fa-solid fa-gear"></i>
-Settings
-</a>
-</li>
-
-<li>
-<hr class="dropdown-divider">
-</li>
-
-<li>
-
-<a
-class="dropdown-item text-danger"
-href="hod-login.html">
-
-<i class="fa-solid fa-right-from-bracket"></i>
-
-Logout
-
-</a>
-
-</li>
-
-</ul>
-
-</div>
-
-</div>
-
-</nav>
-
-<!-- ================= Premium Welcome Banner ================= -->
-
-<section class="welcome-banner">
-
-<div class="welcome-left">
-
-<span class="welcome-badge">
-
-<i class="fa-solid fa-crown"></i>
-
-HOD DASHBOARD
-
-</span>
-
-<h1>
-
-Welcome Back, HOD 👋
-
-</h1>
-
-<p>
-
-Manage teachers, monitor attendance,
-approve leave requests, publish notices,
-track department performance and
-generate department reports from one dashboard.
-
-</p>
-
-<div class="banner-buttons">
-
-
-
-</div>
-
-</div>
-
-<div class="welcome-right">
-
-
-
-<img src="../../images/hod-banner.jpeg" alt="HOD Banner" class="banner-image">
-
-</div>
-
-</section>
-
-<!-- Statistics Cards yahi se continue honge -->
-
-<!-- ================= Statistics Cards ================= -->
-
-<section class="dashboard-cards">
-
-    <div class="card-box">
-        <i class="fa-solid fa-chalkboard-user"></i>
-        <h3 class="counter" data-target="32">0</h3>
-        <p>Total Teachers</p>
-    </div>
-
-    <div class="card-box">
-        <i class="fa-solid fa-user-graduate"></i>
-        <h3 class="counter" data-target="860">0</h3>
-        <p>Total Students</p>
-    </div>
-
-    <div class="card-box">
-        <i class="fa-solid fa-building"></i>
-        <h3 class="counter" data-target="8">0</h3>
-        <p>Departments</p>
-    </div>
-
-    <div class="card-box">
-        <i class="fa-solid fa-file-circle-check"></i>
-        <h3 class="counter" data-target="12">0</h3>
-        <p>Pending Requests</p>
-    </div>
-
-</section>
-
-<!-- ================= Main Grid ================= -->
-
-<section class="content-grid">
-
-    <!-- Teacher Performance -->
-
-    <div class="dashboard-card">
-
-        <h4>Teacher Performance</h4>
-
-        <table class="table table-hover">
-
-            <thead>
-
-                <tr>
-
-                    <th>Name</th>
-                    <th>Subject</th>
-                    <th>Performance</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                <tr>
-
-                    <td>Rahul Kumar</td>
-                    <td>Java</td>
-                    <td>
-                        <span class="badge bg-success">
-                            Excellent
-                        </span>
-                    </td>
-
-                </tr>
-
-                <tr>
-
-                    <td>Priya Singh</td>
-                    <td>DBMS</td>
-                    <td>
-                        <span class="badge bg-primary">
-                            Very Good
-                        </span>
-                    </td>
-
-                </tr>
-
-                <tr>
-
-                    <td>Amit Raj</td>
-                    <td>Python</td>
-                    <td>
-                        <span class="badge bg-warning text-dark">
-                            Good
-                        </span>
-                    </td>
-
-                </tr>
-
-                <tr>
-
-                    <td>Neha Kumari</td>
-                    <td>Operating System</td>
-                    <td>
-                        <span class="badge bg-info">
-                            Excellent
-                        </span>
-                    </td>
-
-                </tr>
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-    <!-- Attendance -->
-
-    <div class="dashboard-card">
-
-        <h4>Department Attendance</h4>
-
-        <canvas id="attendanceChart"></canvas>
-
-    </div>
-
-    <!-- Recent Activity -->
-
-    <div class="dashboard-card">
-
-        <h4>Recent Activities</h4>
-
-        <ul class="activity-list">
-
-            <li>
-
-                <i class="fa-solid fa-user-plus text-primary"></i>
-
-                New Faculty Joined
+                </a>
 
             </li>
 
-            <li>
 
-                <i class="fa-solid fa-calendar-check text-success"></i>
-
-                Faculty Meeting Scheduled
-
-            </li>
+            <!-- Teachers -->
 
             <li>
 
-                <i class="fa-solid fa-file-circle-check text-warning"></i>
+                <a href="teacher-list.html">
 
-                Leave Request Approved
+                    <i class="fa-solid fa-users"></i>
+
+                    Teachers
+
+                </a>
 
             </li>
+
+
+            <!-- Students -->
 
             <li>
 
-                <i class="fa-solid fa-bullhorn text-danger"></i>
+                <a href="student-list.html">
 
-                New Notice Published
+                    <i class="fa-solid fa-user-graduate"></i>
+
+                    Students
+
+                </a>
 
             </li>
+
+
+            <!-- Timetable -->
+
+            <li>
+
+                <a href="timetable.html">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    Timetable
+
+                </a>
+
+            </li>
+
+
+            <!-- Leave Requests -->
+
+            <li>
+
+                <a href="leave-requests.html">
+
+                    <i class="fa-solid fa-file-circle-check"></i>
+
+                    Leave Requests
+
+                </a>
+
+            </li>
+
+
+            <!-- Face Attendance -->
+
+            <li>
+
+                <a href="face-attendance.html">
+
+                    <i class="fa-solid fa-face-smile"></i>
+
+                    Face Attendance
+
+                </a>
+
+            </li>
+
+
+            <!-- Attendance Report -->
+
+            <li>
+
+                <a href="attendance-report.html">
+
+                    <i class="fa-solid fa-clipboard-list"></i>
+
+                    Attendance Report
+
+                </a>
+
+            </li>
+
+
+            <!-- Academic Calendar -->
+
+            <li>
+
+                <a href="academic-calendar.html">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                    Academic Calendar
+
+                </a>
+
+            </li>
+
+
+            <!-- Analytics -->
+
+            <li>
+
+                <a href="analytics.html">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    Analytics
+
+                </a>
+
+            </li>
+
+
+            <!-- Notices -->
+
+            <li>
+
+                <a href="notice-board.html">
+
+                    <i class="fa-solid fa-bullhorn"></i>
+
+                    Notices
+
+                </a>
+
+            </li>
+
+
+            <!-- Settings -->
+
+            <li>
+
+                <a href="settings.html">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    Settings
+
+                </a>
+
+            </li>
+
+
+            <!-- Logout -->
+
+            <li>
+
+                <a
+                    href="hod-login.html"
+                    class="hod-logout-link">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    Logout
+
+                </a>
+
+            </li>
+
 
         </ul>
 
-    </div>
 
-</section>
+    </aside>
 
-<!-- ================= Performance Charts ================= -->
 
-<div class="row mt-4">
 
-    <div class="col-lg-6">
+    <!-- =====================================================
+                        MAIN CONTENT
+    ====================================================== -->
 
-        <section class="dashboard-card performance-card">
+    <main class="main-content">
 
-            <h4>Faculty Performance</h4>
 
-            <div class="performance-chart">
+        <!-- =================================================
+                        TOP NAVBAR
+        ================================================== -->
 
-                <canvas id="performanceChart"></canvas>
+        <nav class="top-navbar">
 
-            </div>
 
-        </section>
+            <h3>
+                Head of Department Dashboard
+            </h3>
 
-    </div>
 
-    <div class="col-lg-6">
+            <div class="top-right">
 
-        <section class="dashboard-card teacher-overview-card">
 
-            <h4>Teacher Overview</h4>
+                <!-- Search -->
 
-            <canvas id="teacherOverviewChart"></canvas>
+                <div class="search-box">
 
-        </section>
+                    <i class="fa-solid fa-magnifying-glass"></i>
 
-    </div>
-
-</div>
-
-<!-- ================= Pending Leave ================= -->
-
-<section class="dashboard-card mt-4">
-
-    <h4>Pending Leave Requests</h4>
-
-    <table class="table table-striped">
-
-        <thead>
-
-            <tr>
-
-                <th>Teacher</th>
-                <th>Date</th>
-                <th>Reason</th>
-                <th>Action</th>
-
-            </tr>
-
-        </thead>
-
-        <tbody>
-
-            <tr>
-
-                <td>Anjali Sharma</td>
-
-                <td>24 Jul</td>
-
-                <td>Medical Leave</td>
-
-                <td>
-
-                    <button class="btn btn-success btn-sm">
-
-                        Approve
-
-                    </button>
-
-                    <button class="btn btn-danger btn-sm">
-
-                        Reject
-
-                    </button>
-
-                </td>
-
-            </tr>
-
-            <tr>
-
-                <td>Rohit Kumar</td>
-
-                <td>26 Jul</td>
-
-                <td>Personal Work</td>
-
-                <td>
-
-                    <button class="btn btn-success btn-sm">
-
-                        Approve
-
-                    </button>
-
-                    <button class="btn btn-danger btn-sm">
-
-                        Reject
-
-                    </button>
-
-                </td>
-
-            </tr>
-
-        </tbody>
-
-    </table>
-
-</section>
-<!-- ================= Academic Calendar + Right Panel ================= -->
-
-<div class="row mt-4">
-
-    <!-- Academic Calendar -->
-
-    <div class="col-lg-8">
-
-        <section class="dashboard-card">
-
-            <h4>
-                <i class="fa-solid fa-calendar-days"></i>
-                Academic Calendar
-            </h4>
-
-            <div id="calendar"></div>
-
-        </section>
-
-    </div>
-
-    <!-- Right Side -->
-
-    <div class="col-lg-4">
-
-        <!-- Live Time -->
-
-        <section class="dashboard-card time-card">
-
-            <h4>
-                <i class="fa-solid fa-clock"></i>
-                Current Date & Time
-            </h4>
-
-            <div class="time-box">
-
-                <i class="fa-solid fa-clock clock-icon"></i>
-
-                <div>
-
-                    <h2 id="liveTime"></h2>
-
-                    <p id="liveDate"></p>
+                    <input
+                        type="text"
+                        id="searchBox"
+                        placeholder="Search...">
 
                 </div>
 
+
+                <!-- Theme -->
+
+                <button
+                    id="themeToggle"
+                    class="icon-btn"
+                    type="button">
+
+                    <i class="fa-solid fa-moon"></i>
+
+                </button>
+
+
+                <!-- Notifications -->
+
+                <div class="dropdown">
+
+
+                    <button
+                        class="icon-btn position-relative"
+                        type="button"
+                        data-bs-toggle="dropdown">
+
+                        <i class="fa-regular fa-bell"></i>
+
+                        <span
+                            class="badge-count"
+                            id="notificationCount">
+
+                            4
+
+                        </span>
+
+                    </button>
+
+
+                    <ul
+                        class="dropdown-menu dropdown-menu-end notification-menu">
+
+
+                        <li class="dropdown-header">
+
+                            Notifications
+
+                        </li>
+
+
+                        <li>
+
+                            <a
+                                class="dropdown-item notification-item"
+                                href="notifications.html">
+
+                                📢 Faculty Meeting Tomorrow
+
+                            </a>
+
+                        </li>
+
+
+                        <li>
+
+                            <a
+                                class="dropdown-item notification-item"
+                                href="notifications.html">
+
+                                📄 Leave Request Pending
+
+                            </a>
+
+                        </li>
+
+
+                        <li>
+
+                            <a
+                                class="dropdown-item notification-item"
+                                href="notifications.html">
+
+                                🎉 Result Uploaded
+
+                            </a>
+
+                        </li>
+
+
+                        <li>
+
+                            <hr class="dropdown-divider">
+
+                        </li>
+
+
+                        <li>
+
+                            <a
+                                href="#"
+                                class="dropdown-item text-center"
+                                id="markAllRead">
+
+                                Mark All as Read
+
+                            </a>
+
+                        </li>
+
+
+                    </ul>
+
+
+                </div>
+
+
+                <!-- Profile -->
+
+                <div class="dropdown">
+
+
+                    <div
+                        class="profile"
+                        data-bs-toggle="dropdown">
+
+
+                        <img
+                            src="https://i.pravatar.cc/50?img=12"
+                            alt="HOD">
+
+
+                        <span>
+                            Welcome, HOD
+                        </span>
+
+
+                        <i class="fa-solid fa-angle-down"></i>
+
+
+                    </div>
+
+
+                    <ul
+                        class="dropdown-menu dropdown-menu-end profile-menu">
+
+
+                        <li>
+
+                            <a
+                                class="dropdown-item"
+                                href="profile.html">
+
+                                <i class="fa-solid fa-user"></i>
+
+                                My Profile
+
+                            </a>
+
+                        </li>
+
+
+                        <li>
+
+                            <a
+                                class="dropdown-item"
+                                href="change-password.html">
+
+                                <i class="fa-solid fa-lock"></i>
+
+                                Change Password
+
+                            </a>
+
+                        </li>
+
+
+                        <li>
+
+                            <a
+                                class="dropdown-item"
+                                href="settings.html">
+
+                                <i class="fa-solid fa-gear"></i>
+
+                                Settings
+
+                            </a>
+
+                        </li>
+
+
+                        <li>
+
+                            <hr class="dropdown-divider">
+
+                        </li>
+
+
+                        <li>
+
+                            <a
+                                class="dropdown-item text-danger hod-logout-link"
+                                href="hod-login.html">
+
+                                <i class="fa-solid fa-right-from-bracket"></i>
+
+                                Logout
+
+                            </a>
+
+                        </li>
+
+
+                    </ul>
+
+
+                </div>
+
+
             </div>
+
+
+        </nav>
+
+
+
+        <!-- =================================================
+                    WELCOME BANNER
+        ================================================== -->
+
+        <section class="welcome-banner">
+
+
+            <div class="welcome-left">
+
+
+                <span class="welcome-badge">
+
+                    <i class="fa-solid fa-crown"></i>
+
+                    HOD DASHBOARD
+
+                </span>
+
+
+                <h1 id="hodWelcomeHeading">
+
+                    Welcome Back, HOD 👋
+
+                </h1>
+
+
+                <p id="hodWelcomeDescription">
+
+                    Manage teachers, monitor attendance,
+                    approve leave requests, publish notices,
+                    track department performance and
+                    generate department reports from one dashboard.
+
+                </p>
+
+
+                <div class="banner-buttons">
+
+                </div>
+
+
+            </div>
+
+
+            <div class="welcome-right">
+
+
+                <img
+                    src="../../images/hod-banner.jpeg"
+                    alt="HOD Banner"
+                    class="banner-image">
+
+
+            </div>
+
 
         </section>
 
-        <!-- Notifications -->
+
+
+        <!-- =================================================
+                    STATISTICS CARDS
+        ================================================== -->
+
+        <section class="dashboard-cards">
+
+
+            <!-- Teachers -->
+
+            <div class="card-box">
+
+                <i class="fa-solid fa-chalkboard-user"></i>
+
+                <h3
+                    id="hodTotalTeachers"
+                    class="counter"
+                    data-target="0">
+
+                    0
+
+                </h3>
+
+                <p>
+                    Total Teachers
+                </p>
+
+            </div>
+
+
+            <!-- Students -->
+
+            <div class="card-box">
+
+                <i class="fa-solid fa-user-graduate"></i>
+
+                <h3
+                    id="hodTotalStudents"
+                    class="counter"
+                    data-target="0">
+
+                    0
+
+                </h3>
+
+                <p>
+                    Total Students
+                </p>
+
+            </div>
+
+
+            <!-- Department -->
+
+            <div class="card-box">
+
+                <i class="fa-solid fa-building"></i>
+
+                <h3
+                    id="hodTotalDepartments"
+                    class="counter"
+                    data-target="0">
+
+                    0
+
+                </h3>
+
+                <p>
+                    Departments
+                </p>
+
+            </div>
+
+
+            <!-- Pending Requests -->
+
+            <div class="card-box">
+
+                <i class="fa-solid fa-file-circle-check"></i>
+
+                <h3
+                    id="hodPendingRequests"
+                    class="counter"
+                    data-target="0">
+
+                    0
+
+                </h3>
+
+                <p>
+                    Pending Requests
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+                        MAIN GRID
+        ================================================== -->
+
+        <section class="content-grid">
+
+
+            <!-- Teacher Performance -->
+
+            <div class="dashboard-card">
+
+
+                <h4>
+                    Teacher Performance
+                </h4>
+
+
+                <table class="table table-hover">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Name</th>
+
+                            <th>Subject</th>
+
+                            <th>Performance</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        <tr>
+
+                            <td>Rahul Kumar</td>
+
+                            <td>Java</td>
+
+                            <td>
+
+                                <span class="badge bg-success">
+
+                                    Excellent
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>Priya Singh</td>
+
+                            <td>DBMS</td>
+
+                            <td>
+
+                                <span class="badge bg-primary">
+
+                                    Very Good
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>Amit Raj</td>
+
+                            <td>Python</td>
+
+                            <td>
+
+                                <span class="badge bg-warning text-dark">
+
+                                    Good
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>Neha Kumari</td>
+
+                            <td>Operating System</td>
+
+                            <td>
+
+                                <span class="badge bg-info">
+
+                                    Excellent
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+
+            <!-- Attendance -->
+
+            <div class="dashboard-card">
+
+
+                <h4>
+                    Department Attendance
+                </h4>
+
+
+                <canvas id="attendanceChart"></canvas>
+
+
+            </div>
+
+
+
+            <!-- Recent Activity -->
+
+            <div class="dashboard-card">
+
+
+                <h4>
+                    Recent Activities
+                </h4>
+
+
+                <ul class="activity-list">
+
+
+                    <li>
+
+                        <i class="fa-solid fa-user-plus text-primary"></i>
+
+                        New Faculty Joined
+
+                    </li>
+
+
+                    <li>
+
+                        <i class="fa-solid fa-calendar-check text-success"></i>
+
+                        Faculty Meeting Scheduled
+
+                    </li>
+
+
+                    <li>
+
+                        <i class="fa-solid fa-file-circle-check text-warning"></i>
+
+                        Leave Request Approved
+
+                    </li>
+
+
+                    <li>
+
+                        <i class="fa-solid fa-bullhorn text-danger"></i>
+
+                        New Notice Published
+
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+                    PERFORMANCE CHARTS
+        ================================================== -->
+
+        <div class="row mt-4">
+
+
+            <div class="col-lg-6">
+
+
+                <section class="dashboard-card performance-card">
+
+
+                    <h4>
+                        Faculty Performance
+                    </h4>
+
+
+                    <div class="performance-chart">
+
+                        <canvas id="performanceChart"></canvas>
+
+                    </div>
+
+
+                </section>
+
+
+            </div>
+
+
+            <div class="col-lg-6">
+
+
+                <section class="dashboard-card teacher-overview-card">
+
+
+                    <h4>
+                        Teacher Overview
+                    </h4>
+
+
+                    <canvas id="teacherOverviewChart"></canvas>
+
+
+                </section>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+                    PENDING LEAVE REQUESTS
+        ================================================== -->
 
         <section class="dashboard-card mt-4">
 
+
             <h4>
-                <i class="fa-solid fa-bell"></i>
-                Notifications
+                Pending Leave Requests
             </h4>
 
-            <ul class="activity-list">
 
-                <li>
+            <table class="table table-striped">
 
-                    🔔 Faculty Meeting Tomorrow
 
-                </li>
+                <thead>
 
-                <li>
 
-                    📢 Semester Exam Notice Published
+                    <tr>
 
-                </li>
+                        <th>Teacher</th>
 
-                <li>
+                        <th>Date</th>
 
-                    📄 2 Leave Requests Pending
+                        <th>Reason</th>
 
-                </li>
+                        <th>Action</th>
 
-                <li>
+                    </tr>
 
-                    ✅ Attendance Updated Successfully
 
-                </li>
+                </thead>
 
-                <li>
 
-                    🎉 Department Result Uploaded
+                <tbody>
 
-                </li>
 
-            </ul>
+                    <tr>
+
+                        <td>
+                            Anjali Sharma
+                        </td>
+
+                        <td>
+                            24 Jul
+                        </td>
+
+                        <td>
+                            Medical Leave
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="btn btn-success btn-sm">
+
+                                Approve
+
+                            </button>
+
+
+                            <button
+                                class="btn btn-danger btn-sm">
+
+                                Reject
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Rohit Kumar
+                        </td>
+
+                        <td>
+                            26 Jul
+                        </td>
+
+                        <td>
+                            Personal Work
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="btn btn-success btn-sm">
+
+                                Approve
+
+                            </button>
+
+
+                            <button
+                                class="btn btn-danger btn-sm">
+
+                                Reject
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+
+            </table>
+
 
         </section>
 
-    </div>
+
+
+        <!-- =================================================
+                ACADEMIC CALENDAR + RIGHT PANEL
+        ================================================== -->
+
+        <div class="row mt-4">
+
+
+            <!-- Calendar -->
+
+            <div class="col-lg-8">
+
+
+                <section class="dashboard-card">
+
+
+                    <h4>
+
+                        <i class="fa-solid fa-calendar-days"></i>
+
+                        Academic Calendar
+
+                    </h4>
+
+
+                    <div id="calendar"></div>
+
+
+                </section>
+
+
+            </div>
+
+
+
+            <!-- Right Side -->
+
+            <div class="col-lg-4">
+
+
+                <!-- Live Time -->
+
+                <section class="dashboard-card time-card">
+
+
+                    <h4>
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        Current Date & Time
+
+                    </h4>
+
+
+                    <div class="time-box">
+
+
+                        <i class="fa-solid fa-clock clock-icon"></i>
+
+
+                        <div>
+
+                            <h2 id="liveTime"></h2>
+
+                            <p id="liveDate"></p>
+
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- Notifications -->
+
+                <section class="dashboard-card mt-4">
+
+
+                    <h4>
+
+                        <i class="fa-solid fa-bell"></i>
+
+                        Notifications
+
+                    </h4>
+
+
+                    <ul class="activity-list">
+
+
+                        <li>
+                            🔔 Faculty Meeting Tomorrow
+                        </li>
+
+
+                        <li>
+                            📢 Semester Exam Notice Published
+                        </li>
+
+
+                        <li>
+                            📄 Leave Requests
+                        </li>
+
+
+                        <li>
+                            ✅ Attendance Updated Successfully
+                        </li>
+
+
+                        <li>
+                            🎉 Department Result Uploaded
+                        </li>
+
+
+                    </ul>
+
+
+                </section>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+                        QUICK ACTIONS
+        ================================================== -->
+
+        <section class="quick-actions mt-4">
+
+
+            <h4>
+
+                <i class="fa-solid fa-bolt"></i>
+
+                Quick Actions
+
+            </h4>
+
+
+            <div class="action-buttons">
+
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="window.location.href='teacher-list.html'">
+
+                    <i class="fa-solid fa-user-plus"></i>
+
+                    Teachers
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn btn-success"
+                    onclick="window.location.href='notice-board.html'">
+
+                    <i class="fa-solid fa-bullhorn"></i>
+
+                    Publish Notice
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn btn-warning"
+                    onclick="window.location.href='attendance-report.html'">
+
+                    <i class="fa-solid fa-chart-column"></i>
+
+                    View Reports
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn btn-danger">
+
+                    <i class="fa-solid fa-file-export"></i>
+
+                    Export Data
+
+                </button>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+                            FOOTER
+        ================================================== -->
+
+        <footer class="footer">
+
+            © 2026 Faculty Management & Productivity System |
+            Head of Department Dashboard
+
+        </footer>
+
+
+    </main>
+
 
 </div>
 
-<!-- ================= Quick Actions ================= -->
 
-<section class="quick-actions mt-4">
 
-    <h4>
+<!-- =========================================================
+                        JAVASCRIPT
+========================================================= -->
 
-        <i class="fa-solid fa-bolt"></i>
 
-        Quick Actions
+<!-- Bootstrap -->
 
-    </h4>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
 
-    <div class="action-buttons">
 
-        <button class="btn btn-primary">
+<!-- Chart JS -->
 
-            <i class="fa-solid fa-user-plus"></i>
+<script
+    src="https://cdn.jsdelivr.net/npm/chart.js">
+</script>
 
-            Add Teacher
 
-        </button>
+<!-- Full Calendar -->
 
-        <button class="btn btn-success">
+<script
+    src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js">
+</script>
 
-            <i class="fa-solid fa-bullhorn"></i>
 
-            Publish Notice
+<!-- FMPS API - MUST LOAD BEFORE HOD DASHBOARD -->
 
-        </button>
+<script src="../../js/api.js"></script>
 
-        <button class="btn btn-warning">
 
-            <i class="fa-solid fa-chart-column"></i>
-
-            View Reports
-
-        </button>
-
-        <button class="btn btn-danger">
-
-            <i class="fa-solid fa-file-export"></i>
-
-            Export Data
-
-        </button>
-
-    </div>
-
-</section>
-
-<!-- ================= Footer ================= -->
-
-<footer class="footer">
-
-    © 2026 Faculty Management & Productivity System |
-    Head of Department Dashboard
-
-</footer>
-
-</main>
-
-</div>
-
-<!-- ================= Bootstrap ================= -->
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- ================= Chart JS ================= -->
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<!-- ================= Full Calendar ================= -->
-
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
-
-<!-- ================= Dashboard JS ================= -->
+<!-- HOD Dashboard -->
 
 <script src="../../js/hod-dashboard.js"></script>
+
 
 </body>
 

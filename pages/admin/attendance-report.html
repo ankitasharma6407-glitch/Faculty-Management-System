@@ -3,806 +3,2310 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>Attendance Report | Faculty Management System</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>
+        Attendance Report | Faculty Management System
+    </title>
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 
-<link rel="stylesheet"
-href="../../css/admin-dashboard.css">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Admin CSS -->
+    <link
+        rel="stylesheet"
+        href="../../css/admin-dashboard.css">
+
+
+    <!-- Excel Export -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js">
+    </script>
+
+
+    <!-- PDF Export -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+    </script>
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js">
+    </script>
 
 </head>
+
 
 <body>
 
 <div class="dashboard">
 
-<!-- ================= Sidebar ================= -->
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
 
 <aside class="sidebar">
 
-<div class="logo-box">
 
-<img src="../../images/logo.png" alt="College Logo">
+    <div class="logo-box">
 
-<h3>PATNA</h3>
+        <img
+            src="../../images/logo.png"
+            alt="College Logo">
 
-<h2>WOMEN'S COLLEGE</h2>
+        <h3>PATNA</h3>
 
-<span>(AUTONOMOUS)</span>
+        <h2>WOMEN'S COLLEGE</h2>
 
-</div>
+        <span>
+            (AUTONOMOUS)
+        </span>
 
-<ul class="menu">
+    </div>
 
-<li>
-<a href="admin-dashboard.html">
-<i class="fa-solid fa-house"></i>
-<span>Dashboard</span>
-</a>
-</li>
 
-<li>
-<a href="teacher-list.html">
-<i class="fa-solid fa-user-tie"></i>
-<span>Teachers</span>
-</a>
-</li>
 
-<li>
-<a href="hod-list.html">
-<i class="fa-solid fa-building-user"></i>
-<span>HOD</span>
-</a>
-</li>
+    <ul class="menu">
 
-<li>
-<a href="student-list.html">
-<i class="fa-solid fa-user-graduate"></i>
-<span>Students</span>
-</a>
-</li>
 
-<li>
-<a href="recruiter-list.html">
-<i class="fa-solid fa-building"></i>
-<span>Recruiters</span>
-</a>
-</li>
+        <li>
 
-<li class="active">
-<a href="attendance-report.html">
-<i class="fa-solid fa-calendar-check"></i>
-<span>Attendance Report</span>
-</a>
-</li>
+            <a href="admin-dashboard.html">
 
-<li>
-<a href="analytics.html">
-<i class="fa-solid fa-chart-line"></i>
-<span>Analytics</span>
-</a>
-</li>
+                <i class="fa-solid fa-house"></i>
 
-<li>
-<a href="reports.html">
-<i class="fa-solid fa-file-lines"></i>
-<span>Reports</span>
-</a>
-</li>
+                <span>
+                    Dashboard
+                </span>
 
-<li>
-<a href="notice-board.html">
-<i class="fa-solid fa-bullhorn"></i>
-<span>Notice Board</span>
-</a>
-</li>
+            </a>
 
-<li>
-<a href="academic-calendar.html">
-<i class="fa-solid fa-calendar-days"></i>
-<span>Academic Calendar</span>
-</a>
-</li>
+        </li>
 
-</ul>
 
-<div class="sidebar-bottom">
 
-<a href="settings.html">
+        <li>
 
-<i class="fa-solid fa-gear"></i>
+            <a href="teacher-list.html">
 
-<span>Settings</span>
+                <i class="fa-solid fa-user-tie"></i>
 
-</a>
+                <span>
+                    Teachers
+                </span>
 
-<a href="admin-login.html" class="logout-btn">
+            </a>
 
-<i class="fa-solid fa-right-from-bracket"></i>
+        </li>
 
-<span>Logout</span>
 
-</a>
 
-</div>
+        <li>
+
+            <a href="hod-list.html">
+
+                <i class="fa-solid fa-building-user"></i>
+
+                <span>
+                    HOD
+                </span>
+
+            </a>
+
+        </li>
+
+
+
+        <li>
+
+            <a href="student-list.html">
+
+                <i class="fa-solid fa-user-graduate"></i>
+
+                <span>
+                    Students
+                </span>
+
+            </a>
+
+        </li>
+
+
+
+        <li>
+
+            <a href="recruiter-list.html">
+
+                <i class="fa-solid fa-building"></i>
+
+                <span>
+                    Recruiters
+                </span>
+
+            </a>
+
+        </li>
+
+
+
+        <li>
+
+            <a href="analytics.html">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>
+                    Analytics
+                </span>
+
+            </a>
+
+        </li>
+
+
+
+        <li>
+
+            <a href="reports.html">
+
+                <i class="fa-solid fa-file-lines"></i>
+
+                <span>
+                    Reports
+                </span>
+
+            </a>
+
+        </li>
+
+
+
+        <li class="active">
+
+            <a href="attendance-report.html">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <span>
+                    Attendance Report
+                </span>
+
+            </a>
+
+        </li>
+
+
+
+        <li>
+
+            <a href="notice-board.html">
+
+                <i class="fa-solid fa-bullhorn"></i>
+
+                <span>
+                    Notice Board
+                </span>
+
+            </a>
+
+        </li>
+
+
+
+        <li>
+
+            <a href="academic-calendar.html">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                <span>
+                    Academic Calendar
+                </span>
+
+            </a>
+
+        </li>
+
+
+    </ul>
+
+
+
+    <div class="sidebar-bottom">
+
+
+        <a href="settings.html">
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>
+                Settings
+            </span>
+
+        </a>
+
+
+        <a
+            href="admin-login.html"
+            class="logout-btn">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>
+                Logout
+            </span>
+
+        </a>
+
+
+    </div>
+
 
 </aside>
 
-<!-- ================= Main Content ================= -->
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
 
 <main class="main-content">
 
-<div class="topbar">
 
-<div>
 
-<h2>Attendance Report</h2>
+    <!-- =====================================================
+         TOPBAR
+    ====================================================== -->
 
-<p>Dashboard / Attendance / Attendance Report</p>
+    <div class="topbar">
+
+
+        <div>
+
+            <h2>
+                Faculty Attendance Report
+            </h2>
+
+            <p>
+                Dashboard / Attendance Report
+            </p>
+
+        </div>
+
+
+
+        <div class="topbar-actions">
+
+
+            <button
+                id="refreshAttendanceBtn"
+                class="btn btn-outline-primary">
+
+                <i class="fa-solid fa-rotate"></i>
+
+                Refresh
+
+            </button>
+
+
+            <button
+                id="themeToggle"
+                class="theme-toggle-btn">
+
+                <i class="fa-solid fa-moon"></i>
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FILTERS
+    ====================================================== -->
+
+    <div class="chart-card mb-4">
+
+
+        <h4 class="mb-4">
+
+            <i class="fa-solid fa-filter"></i>
+
+            Attendance Filters
+
+        </h4>
+
+
+
+        <div class="row g-3">
+
+
+
+            <!-- FROM DATE -->
+
+            <div class="col-xl-2 col-md-4">
+
+                <label class="form-label">
+                    From Date
+                </label>
+
+                <input
+                    type="date"
+                    id="fromDate"
+                    class="form-control">
+
+            </div>
+
+
+
+            <!-- TO DATE -->
+
+            <div class="col-xl-2 col-md-4">
+
+                <label class="form-label">
+                    To Date
+                </label>
+
+                <input
+                    type="date"
+                    id="toDate"
+                    class="form-control">
+
+            </div>
+
+
+
+            <!-- DEPARTMENT -->
+
+            <div class="col-xl-2 col-md-4">
+
+                <label class="form-label">
+                    Department
+                </label>
+
+                <select
+                    id="departmentFilter"
+                    class="form-select">
+
+                    <option value="">
+                        All Departments
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- ROLE -->
+
+            <div class="col-xl-2 col-md-4">
+
+                <label class="form-label">
+                    Role
+                </label>
+
+                <select
+                    id="roleFilter"
+                    class="form-select">
+
+                    <option value="">
+                        All Roles
+                    </option>
+
+                    <option value="teacher">
+                        Teacher
+                    </option>
+
+                    <option value="hod">
+                        HOD
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- STATUS -->
+
+            <div class="col-xl-2 col-md-4">
+
+                <label class="form-label">
+                    Status
+                </label>
+
+                <select
+                    id="statusFilter"
+                    class="form-select">
+
+                    <option value="">
+                        All Status
+                    </option>
+
+                    <option value="present">
+                        Present
+                    </option>
+
+                    <option value="absent">
+                        Absent
+                    </option>
+
+                    <option value="leave">
+                        Leave
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- BUTTON -->
+
+            <div
+                class="col-xl-2 col-md-4 d-flex align-items-end gap-2">
+
+
+                <button
+                    id="applyFilterBtn"
+                    class="btn btn-primary w-100">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    Apply
+
+                </button>
+
+
+                <button
+                    id="resetFilterBtn"
+                    class="btn btn-secondary">
+
+                    <i class="fa-solid fa-rotate-left"></i>
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SUMMARY CARDS
+    ====================================================== -->
+
+    <div class="row g-4 mb-4">
+
+
+
+        <!-- TOTAL -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="chart-card text-center">
+
+                <i
+                    class="fa-solid fa-database fa-2x text-primary mb-3">
+                </i>
+
+                <h5>
+                    Total Records
+                </h5>
+
+                <h2
+                    id="totalRecords"
+                    class="text-primary">
+
+                    0
+
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PRESENT -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="chart-card text-center">
+
+                <i
+                    class="fa-solid fa-user-check fa-2x text-success mb-3">
+                </i>
+
+                <h5>
+                    Present
+                </h5>
+
+                <h2
+                    id="presentRecords"
+                    class="text-success">
+
+                    0
+
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ABSENT -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="chart-card text-center">
+
+                <i
+                    class="fa-solid fa-user-xmark fa-2x text-danger mb-3">
+                </i>
+
+                <h5>
+                    Absent
+                </h5>
+
+                <h2
+                    id="absentRecords"
+                    class="text-danger">
+
+                    0
+
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LEAVE -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="chart-card text-center">
+
+                <i
+                    class="fa-solid fa-calendar-minus fa-2x text-warning mb-3">
+                </i>
+
+                <h5>
+                    Leave
+                </h5>
+
+                <h2
+                    id="leaveRecords"
+                    class="text-warning">
+
+                    0
+
+                </h2>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         ATTENDANCE TABLE
+    ====================================================== -->
+
+    <div class="chart-card">
+
+
+
+        <div
+            class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+
+
+            <div>
+
+                <h4 class="mb-1">
+
+                    <i class="fa-solid fa-table"></i>
+
+                    Attendance Records
+
+                </h4>
+
+                <small class="text-muted">
+
+                    Faculty attendance data from the database
+
+                </small>
+
+            </div>
+
+
+
+            <div class="d-flex gap-2 flex-wrap">
+
+
+                <!-- SEARCH -->
+
+                <div
+                    class="input-group"
+                    style="max-width:280px;">
+
+                    <span class="input-group-text">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                    </span>
+
+                    <input
+                        type="text"
+                        id="searchAttendance"
+                        class="form-control"
+                        placeholder="Search faculty...">
+
+                </div>
+
+
+
+                <!-- PDF -->
+
+                <button
+                    id="pdfBtn"
+                    class="btn btn-danger">
+
+                    <i class="fa-solid fa-file-pdf"></i>
+
+                    PDF
+
+                </button>
+
+
+
+                <!-- EXCEL -->
+
+                <button
+                    id="excelBtn"
+                    class="btn btn-success">
+
+                    <i class="fa-solid fa-file-excel"></i>
+
+                    Excel
+
+                </button>
+
+
+
+                <!-- PRINT -->
+
+                <button
+                    id="printBtn"
+                    class="btn btn-primary">
+
+                    <i class="fa-solid fa-print"></i>
+
+                    Print
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="table-responsive">
+
+
+            <table
+                id="attendanceReportTable"
+                class="table table-hover table-bordered align-middle text-center">
+
+
+                <thead class="table-dark">
+
+
+                    <tr>
+
+                        <th>#</th>
+
+                        <th>Faculty ID</th>
+
+                        <th>Name</th>
+
+                        <th>Role</th>
+
+                        <th>Department</th>
+
+                        <th>Date</th>
+
+                        <th>Status</th>
+
+                        <th>Remarks</th>
+
+                        <th>Marked By</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+
+                </thead>
+
+
+
+                <tbody id="attendanceTableBody">
+
+
+                    <tr>
+
+                        <td
+                            colspan="10"
+                            class="text-center py-5">
+
+                            <i
+                                class="fa-solid fa-spinner fa-spin fa-2x">
+                            </i>
+
+                            <br>
+
+                            <span class="d-inline-block mt-2">
+
+                                Loading attendance records...
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
 
 </div>
-<div class="topbar-actions">
 
-    <button id="themeToggle" class="theme-toggle-btn">
-        <i class="fa-solid fa-moon"></i>
-    </button>
 
-</div>
-<div>
 
-<button class="btn btn-primary">
+<!-- =========================================================
+     ATTENDANCE DETAILS MODAL
+========================================================= -->
 
-<i class="fa-solid fa-file-arrow-down"></i>
+<div
+    class="modal fade"
+    id="attendanceDetailsModal"
+    tabindex="-1"
+    aria-hidden="true">
 
-Export Report
 
-</button>
+    <div class="modal-dialog modal-dialog-centered">
 
-</div>
 
-</div>
+        <div class="modal-content">
 
-<!-- ================= Filter Card ================= -->
 
-<div class="chart-card mb-4">
+            <div class="modal-header">
 
-<h4 class="mb-4">
 
-<i class="fa-solid fa-filter"></i>
+                <h5 class="modal-title">
 
-Attendance Filters
+                    <i class="fa-solid fa-calendar-check"></i>
 
-</h4>
+                    Attendance Details
 
-<div class="row">
+                </h5>
 
-<div class="col-md-3 mb-3">
 
-<label class="form-label">From Date</label>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
 
-<input type="date" class="form-control">
 
-</div>
+            </div>
 
-<div class="col-md-3 mb-3">
 
-<label class="form-label">To Date</label>
 
-<input type="date" class="form-control">
+            <div
+                class="modal-body"
+                id="attendanceDetailsBody">
 
-</div>
+            </div>
 
-<div class="col-md-3 mb-3">
 
-<label class="form-label">Department</label>
 
-<select class="form-select">
+            <div class="modal-footer">
 
-<option>All Departments</option>
-<option>Computer Science</option>
-<option>Commerce</option>
-<option>Mathematics</option>
-<option>Physics</option>
-<option>Chemistry</option>
-<option>English</option>
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
 
-</select>
+                    Close
 
-</div>
+                </button>
 
-<div class="col-md-3 mb-3">
+            </div>
 
-<label class="form-label">Role</label>
 
-<select class="form-select">
+        </div>
 
-<option>All</option>
-<option>Teacher</option>
-<option>Student</option>
-<option>HOD</option>
 
-</select>
+    </div>
+
 
 </div>
 
-<div class="col-12 text-end">
 
-<button class="btn btn-success">
 
-<i class="fa-solid fa-magnifying-glass"></i>
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
 
-Generate Report
 
-</button>
+<!-- Bootstrap -->
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
 
-<button class="btn btn-secondary ms-2">
 
-<i class="fa-solid fa-rotate"></i>
-
-Reset
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ================= Summary Cards ================= -->
-
-<div class="stats-grid">
-
-<div class="stat-card">
-
-<div>
-
-<h4>Total Records</h4>
-
-<h2>2,450</h2>
-
-<p class="text-primary">
-
-Attendance Entries
-
-</p>
-
-</div>
-
-<div class="stat-icon bg-primary">
-
-<i class="fa-solid fa-database"></i>
-
-</div>
-
-</div>
-
-<div class="stat-card">
-
-<div>
-
-<h4>Present</h4>
-
-<h2>2,180</h2>
-
-<p class="text-success">
-
-89%
-
-</p>
-
-</div>
-
-<div class="stat-icon bg-success">
-
-<i class="fa-solid fa-user-check"></i>
-
-</div>
-
-</div>
-
-<div class="stat-card">
-
-<div>
-
-<h4>Absent</h4>
-
-<h2>270</h2>
-
-<p class="text-danger">
-
-11%
-
-</p>
-
-</div>
-
-<div class="stat-icon bg-danger">
-
-<i class="fa-solid fa-user-xmark"></i>
-
-</div>
-
-</div>
-
-<div class="stat-card">
-
-<div>
-
-<h4>Late Entries</h4>
-
-<h2>48</h2>
-
-<p class="text-warning">
-
-Today
-
-</p>
-
-</div>
-
-<div class="stat-icon bg-warning">
-
-<i class="fa-solid fa-clock"></i>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ================= Attendance Table Starts ================= -->
-
-<div class="chart-card mt-4">
-
-<h4 class="mb-4">
-
-<i class="fa-solid fa-table"></i>
-
-Attendance Report
-
-</h4>
-
-<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
-
-<div class="input-group" style="max-width:350px;">
-
-<span class="input-group-text">
-
-<i class="fa-solid fa-magnifying-glass"></i>
-
-</span>
-
-<input
-type="text"
-id="searchInput"
-class="form-control"
-placeholder="Search by Name or ID">
-
-</div>
-
-<div class="mt-2 mt-md-0">
-
-<button class="btn btn-danger me-2">
-
-<i class="fa-solid fa-file-pdf"></i>
-
-Export PDF
-
-</button>
-
-<button class="btn btn-success me-2">
-
-<i class="fa-solid fa-file-excel"></i>
-
-Export Excel
-
-</button>
-
-<button class="btn btn-primary">
-
-<i class="fa-solid fa-print"></i>
-
-Print
-
-</button>
-
-</div>
-
-</div>
-
-<div class="table-responsive">
-
-<table class="table table-hover table-bordered align-middle text-center">
-
-<thead class="table-dark">
-
-<tr>
-
-<th>ID</th>
-
-<th>Name</th>
-
-<th>Role</th>
-
-<th>Department</th>
-
-<th>Date</th>
-
-<th>Check In</th>
-
-<th>Check Out</th>
-
-<th>Status</th>
-
-<th>Action</th>
-
-</tr>
-
-</thead>
-
-<tbody id="attendanceTable">
-
-<tr>
-
-<td>STU001</td>
-
-<td>Rahul Kumar</td>
-
-<td>Student</td>
-
-<td>Computer Science</td>
-
-<td>30-07-2026</td>
-
-<td>09:05 AM</td>
-
-<td>04:10 PM</td>
-
-<td>
-
-<span class="badge bg-success">
-
-Present
-
-</span>
-
-</td>
-
-<td>
-
-<button class="btn btn-info btn-sm">
-
-<i class="fa-solid fa-eye"></i>
-
-View
-
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>TCH004</td>
-
-<td>Priya Sharma</td>
-
-<td>Teacher</td>
-
-<td>Commerce</td>
-
-<td>30-07-2026</td>
-
-<td>09:18 AM</td>
-
-<td>04:02 PM</td>
-
-<td>
-
-<span class="badge bg-warning text-dark">
-
-Late
-
-</span>
-
-</td>
-
-<td>
-
-<button class="btn btn-info btn-sm">
-
-<i class="fa-solid fa-eye"></i>
-
-View
-
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>HOD002</td>
-
-<td>Rakesh Singh</td>
-
-<td>HOD</td>
-
-<td>Mathematics</td>
-
-<td>30-07-2026</td>
-
-<td>08:55 AM</td>
-
-<td>04:30 PM</td>
-
-<td>
-
-<span class="badge bg-success">
-
-Present
-
-</span>
-
-</td>
-
-<td>
-
-<button class="btn btn-info btn-sm">
-
-<i class="fa-solid fa-eye"></i>
-
-View
-
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>STU054</td>
-
-<td>Anjali Kumari</td>
-
-<td>Student</td>
-
-<td>Physics</td>
-
-<td>30-07-2026</td>
-
-<td>--</td>
-
-<td>--</td>
-
-<td>
-
-<span class="badge bg-danger">
-
-Absent
-
-</span>
-
-</td>
-
-<td>
-
-<button class="btn btn-info btn-sm">
-
-<i class="fa-solid fa-eye"></i>
-
-View
-
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>TCH010</td>
-
-<td>Amit Verma</td>
-
-<td>Teacher</td>
-
-<td>Chemistry</td>
-
-<td>30-07-2026</td>
-
-<td>09:00 AM</td>
-
-<td>04:05 PM</td>
-
-<td>
-
-<span class="badge bg-success">
-
-Present
-
-</span>
-
-</td>
-
-<td>
-
-<button class="btn btn-info btn-sm">
-
-<i class="fa-solid fa-eye"></i>
-
-View
-
-</button>
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-<nav class="mt-4">
-
-<ul class="pagination justify-content-end">
-
-<li class="page-item disabled">
-
-<a class="page-link">
-
-Previous
-
-</a>
-
-</li>
-
-<li class="page-item active">
-
-<a class="page-link">
-
-1
-
-</a>
-
-</li>
-
-<li class="page-item">
-
-<a class="page-link">
-
-2
-
-</a>
-
-</li>
-
-<li class="page-item">
-
-<a class="page-link">
-
-3
-
-</a>
-
-</li>
-
-<li class="page-item">
-
-<a class="page-link">
-
-Next
-
-</a>
-
-</li>
-
-</ul>
-
-</nav>
-
-</div>
-<!-- ================= Bootstrap JS ================= -->
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Common Dashboard JS -->
 <script src="../../js/dashboard.js"></script>
-<!-- ================= JavaScript ================= -->
+
 
 <script>
 
-// ================= Search Attendance =================
 
-const searchInput = document.getElementById("searchInput");
+// ============================================================
+// API
+// ============================================================
 
-if(searchInput){
+const ATTENDANCE_API_URL =
+    "http://127.0.0.1:5000/api/faculty-attendance";
 
-searchInput.addEventListener("keyup", function(){
 
-let filter = this.value.toLowerCase();
 
-let rows = document.querySelectorAll("#attendanceTable tr");
+// ============================================================
+// DATA
+// ============================================================
 
-rows.forEach(function(row){
+let allAttendanceRecords = [];
 
-let text = row.innerText.toLowerCase();
+let filteredAttendanceRecords = [];
 
-row.style.display = text.includes(filter) ? "" : "none";
 
-});
 
-});
+// ============================================================
+// DOM
+// ============================================================
+
+const attendanceTableBody =
+    document.getElementById(
+        "attendanceTableBody"
+    );
+
+
+const fromDate =
+    document.getElementById(
+        "fromDate"
+    );
+
+
+const toDate =
+    document.getElementById(
+        "toDate"
+    );
+
+
+const departmentFilter =
+    document.getElementById(
+        "departmentFilter"
+    );
+
+
+const roleFilter =
+    document.getElementById(
+        "roleFilter"
+    );
+
+
+const statusFilter =
+    document.getElementById(
+        "statusFilter"
+    );
+
+
+const searchAttendance =
+    document.getElementById(
+        "searchAttendance"
+    );
+
+
+
+// ============================================================
+// LOAD ATTENDANCE
+// ============================================================
+
+async function loadAttendance() {
+
+
+    attendanceTableBody.innerHTML = `
+
+        <tr>
+
+            <td
+                colspan="10"
+                class="text-center py-5">
+
+                <i
+                    class="fa-solid fa-spinner fa-spin fa-2x">
+                </i>
+
+                <br>
+
+                <span class="d-inline-block mt-2">
+
+                    Loading attendance records...
+
+                </span>
+
+            </td>
+
+        </tr>
+
+    `;
+
+
+    try {
+
+
+        const response =
+            await fetch(
+                ATTENDANCE_API_URL
+            );
+
+
+        const result =
+            await response.json();
+
+
+        console.log(
+            "Attendance API Response:",
+            result
+        );
+
+
+        if (
+            !response.ok ||
+            result.success === false
+        ) {
+
+            throw new Error(
+                result.message ||
+                "Failed to load attendance records"
+            );
+
+        }
+
+
+        allAttendanceRecords =
+            Array.isArray(result.data)
+                ? result.data
+                : [];
+
+
+        populateDepartmentFilter();
+
+
+        applyFilters();
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(
+            "Attendance load error:",
+            error
+        );
+
+
+        allAttendanceRecords = [];
+
+        filteredAttendanceRecords = [];
+
+
+        updateSummary(
+            []
+        );
+
+
+        attendanceTableBody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="10"
+                    class="text-center text-danger py-5">
+
+                    <i
+                        class="fa-solid fa-triangle-exclamation fa-2x mb-3">
+                    </i>
+
+                    <br>
+
+                    <strong>
+                        Unable to load attendance records
+                    </strong>
+
+                    <br>
+
+                    <small>
+                        ${escapeHtml(error.message)}
+                    </small>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
 
 }
 
-// ================= Print Report =================
 
-const printBtn = document.querySelector(".btn-primary");
 
-if(printBtn){
+// ============================================================
+// POPULATE DEPARTMENTS
+// ============================================================
 
-printBtn.addEventListener("click", function(){
+function populateDepartmentFilter() {
 
-window.print();
 
-});
+    const currentValue =
+        departmentFilter.value;
+
+
+    const departments =
+        [
+            ...new Set(
+                allAttendanceRecords
+                    .map(
+                        record =>
+                            record.department
+                    )
+                    .filter(Boolean)
+            )
+        ].sort();
+
+
+    departmentFilter.innerHTML = `
+
+        <option value="">
+            All Departments
+        </option>
+
+    `;
+
+
+    departments.forEach(
+        function(department) {
+
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                department;
+
+
+            option.textContent =
+                department;
+
+
+            departmentFilter.appendChild(
+                option
+            );
+
+        }
+    );
+
+
+    if (
+        departments.includes(
+            currentValue
+        )
+    ) {
+
+        departmentFilter.value =
+            currentValue;
+
+    }
 
 }
 
-// ================= Export Buttons (Frontend Demo) =================
 
-const pdfBtn = document.querySelector(".btn-danger");
 
-if(pdfBtn){
+// ============================================================
+// APPLY FILTERS
+// ============================================================
 
-pdfBtn.addEventListener("click", function(){
+function applyFilters() {
 
-alert("PDF Export will be available after backend integration.");
 
-});
+    const startDate =
+        fromDate.value;
+
+
+    const endDate =
+        toDate.value;
+
+
+    const department =
+        departmentFilter.value
+            .trim()
+            .toLowerCase();
+
+
+    const role =
+        roleFilter.value
+            .trim()
+            .toLowerCase();
+
+
+    const status =
+        statusFilter.value
+            .trim()
+            .toLowerCase();
+
+
+    const search =
+        searchAttendance.value
+            .trim()
+            .toLowerCase();
+
+
+
+    filteredAttendanceRecords =
+        allAttendanceRecords.filter(
+            function(record) {
+
+
+                const recordDate =
+                    record.date || "";
+
+
+                const recordDepartment =
+                    (
+                        record.department ||
+                        ""
+                    ).toLowerCase();
+
+
+                const recordRole =
+                    (
+                        record.role ||
+                        ""
+                    ).toLowerCase();
+
+
+                const recordStatus =
+                    (
+                        record.status ||
+                        ""
+                    ).toLowerCase();
+
+
+                const facultyName =
+                    (
+                        record.faculty_name ||
+                        record.full_name ||
+                        ""
+                    ).toLowerCase();
+
+
+                const facultyCode =
+                    (
+                        record.faculty_code ||
+                        ""
+                    ).toLowerCase();
+
+
+                const searchableText =
+                    [
+                        facultyName,
+                        facultyCode,
+                        recordRole,
+                        recordDepartment,
+                        recordStatus,
+                        record.remarks || ""
+                    ]
+                    .join(" ")
+                    .toLowerCase();
+
+
+
+                const matchesFromDate =
+                    !startDate ||
+                    recordDate >= startDate;
+
+
+                const matchesToDate =
+                    !endDate ||
+                    recordDate <= endDate;
+
+
+                const matchesDepartment =
+                    !department ||
+                    recordDepartment ===
+                    department;
+
+
+                const matchesRole =
+                    !role ||
+                    recordRole === role;
+
+
+                const matchesStatus =
+                    !status ||
+                    recordStatus === status;
+
+
+                const matchesSearch =
+                    !search ||
+                    searchableText.includes(
+                        search
+                    );
+
+
+                return (
+                    matchesFromDate &&
+                    matchesToDate &&
+                    matchesDepartment &&
+                    matchesRole &&
+                    matchesStatus &&
+                    matchesSearch
+                );
+
+            }
+        );
+
+
+    renderAttendance(
+        filteredAttendanceRecords
+    );
+
+
+    updateSummary(
+        filteredAttendanceRecords
+    );
 
 }
 
-const excelBtn = document.querySelector(".btn-success");
 
-if(excelBtn){
 
-excelBtn.addEventListener("click", function(){
+// ============================================================
+// RENDER TABLE
+// ============================================================
 
-alert("Excel Export will be available after backend integration.");
+function renderAttendance(records) {
 
-});
+
+    attendanceTableBody.innerHTML =
+        "";
+
+
+    if (
+        records.length === 0
+    ) {
+
+
+        attendanceTableBody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="10"
+                    class="text-center text-muted py-5">
+
+                    <i
+                        class="fa-solid fa-calendar-xmark fa-3x mb-3">
+                    </i>
+
+                    <br>
+
+                    <strong>
+                        No attendance records found
+                    </strong>
+
+                    <br>
+
+                    <small>
+                        Attendance records will appear here
+                        when they are available.
+                    </small>
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+        return;
+
+    }
+
+
+
+    records.forEach(
+        function(record, index) {
+
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            const facultyCode =
+                record.faculty_code ||
+                `FAC${String(
+                    record.faculty_user_id || ""
+                ).padStart(3, "0")}`;
+
+
+            const facultyName =
+                record.faculty_name ||
+                record.full_name ||
+                "-";
+
+
+            const role =
+                capitalize(
+                    record.role ||
+                    "-"
+                );
+
+
+            const department =
+                record.department ||
+                "-";
+
+
+            const date =
+                formatDate(
+                    record.date
+                );
+
+
+            const status =
+                (
+                    record.status ||
+                    ""
+                ).toLowerCase();
+
+
+            const remarks =
+                record.remarks ||
+                "-";
+
+
+            const markedBy =
+                record.marked_by_name ||
+                record.marked_by_username ||
+                (
+                    record.marked_by
+                        ? `User #${record.marked_by}`
+                        : "-"
+                );
+
+
+            let statusBadge =
+                `<span class="badge bg-secondary">
+                    -
+                </span>`;
+
+
+            if (
+                status === "present"
+            ) {
+
+                statusBadge = `
+
+                    <span class="badge bg-success">
+                        Present
+                    </span>
+
+                `;
+
+            }
+
+            else if (
+                status === "absent"
+            ) {
+
+                statusBadge = `
+
+                    <span class="badge bg-danger">
+                        Absent
+                    </span>
+
+                `;
+
+            }
+
+            else if (
+                status === "leave"
+            ) {
+
+                statusBadge = `
+
+                    <span class="badge bg-warning text-dark">
+                        Leave
+                    </span>
+
+                `;
+
+            }
+
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${index + 1}
+                </td>
+
+                <td>
+                    ${escapeHtml(facultyCode)}
+                </td>
+
+                <td>
+                    ${escapeHtml(facultyName)}
+                </td>
+
+                <td>
+                    ${escapeHtml(role)}
+                </td>
+
+                <td>
+                    ${escapeHtml(department)}
+                </td>
+
+                <td>
+                    ${escapeHtml(date)}
+                </td>
+
+                <td>
+                    ${statusBadge}
+                </td>
+
+                <td>
+                    ${escapeHtml(remarks)}
+                </td>
+
+                <td>
+                    ${escapeHtml(markedBy)}
+                </td>
+
+                <td>
+
+                    <button
+                        type="button"
+                        class="btn btn-info btn-sm"
+                        onclick="viewAttendance(${record.id})"
+                        title="View Attendance">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </button>
+
+                </td>
+
+            `;
+
+
+            attendanceTableBody.appendChild(
+                row
+            );
+
+        }
+    );
 
 }
 
-// ================= View Buttons =================
 
-document.querySelectorAll(".btn-info").forEach(function(btn){
 
-btn.addEventListener("click", function(){
+// ============================================================
+// SUMMARY
+// ============================================================
 
-alert("Attendance details will open after backend integration.");
+function updateSummary(records) {
 
-});
 
-});
+    const total =
+        records.length;
+
+
+    const present =
+        records.filter(
+            record =>
+                (
+                    record.status ||
+                    ""
+                ).toLowerCase()
+                === "present"
+        ).length;
+
+
+    const absent =
+        records.filter(
+            record =>
+                (
+                    record.status ||
+                    ""
+                ).toLowerCase()
+                === "absent"
+        ).length;
+
+
+    const leave =
+        records.filter(
+            record =>
+                (
+                    record.status ||
+                    ""
+                ).toLowerCase()
+                === "leave"
+        ).length;
+
+
+
+    document.getElementById(
+        "totalRecords"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "presentRecords"
+    ).textContent =
+        present;
+
+
+    document.getElementById(
+        "absentRecords"
+    ).textContent =
+        absent;
+
+
+    document.getElementById(
+        "leaveRecords"
+    ).textContent =
+        leave;
+
+}
+
+
+
+// ============================================================
+// RESET FILTERS
+// ============================================================
+
+function resetFilters() {
+
+
+    fromDate.value =
+        "";
+
+
+    toDate.value =
+        "";
+
+
+    departmentFilter.value =
+        "";
+
+
+    roleFilter.value =
+        "";
+
+
+    statusFilter.value =
+        "";
+
+
+    searchAttendance.value =
+        "";
+
+
+    applyFilters();
+
+}
+
+
+
+// ============================================================
+// VIEW SINGLE ATTENDANCE
+// ============================================================
+
+async function viewAttendance(
+    attendanceId
+) {
+
+
+    try {
+
+
+        const response =
+            await fetch(
+                `${ATTENDANCE_API_URL}/${attendanceId}`
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            result.success === false
+        ) {
+
+            throw new Error(
+                result.message ||
+                "Attendance record not found"
+            );
+
+        }
+
+
+        const record =
+            result.data;
+
+
+        const facultyName =
+            record.faculty_name ||
+            record.full_name ||
+            "-";
+
+
+        const facultyCode =
+            record.faculty_code ||
+            "-";
+
+
+        const markedBy =
+            record.marked_by_name ||
+            record.marked_by_username ||
+            (
+                record.marked_by
+                    ? `User #${record.marked_by}`
+                    : "-"
+            );
+
+
+        document.getElementById(
+            "attendanceDetailsBody"
+        ).innerHTML = `
+
+            <div class="row g-3">
+
+
+                <div class="col-md-6">
+
+                    <strong>
+                        Faculty ID
+                    </strong>
+
+                    <p>
+                        ${escapeHtml(facultyCode)}
+                    </p>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <strong>
+                        Name
+                    </strong>
+
+                    <p>
+                        ${escapeHtml(facultyName)}
+                    </p>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <strong>
+                        Role
+                    </strong>
+
+                    <p>
+                        ${escapeHtml(
+                            capitalize(
+                                record.role || "-"
+                            )
+                        )}
+                    </p>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <strong>
+                        Department
+                    </strong>
+
+                    <p>
+                        ${escapeHtml(
+                            record.department ||
+                            "-"
+                        )}
+                    </p>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <strong>
+                        Date
+                    </strong>
+
+                    <p>
+                        ${escapeHtml(
+                            formatDate(
+                                record.date
+                            )
+                        )}
+                    </p>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <strong>
+                        Status
+                    </strong>
+
+                    <p>
+                        ${escapeHtml(
+                            capitalize(
+                                record.status ||
+                                "-"
+                            )
+                        )}
+                    </p>
+
+                </div>
+
+
+                <div class="col-12">
+
+                    <strong>
+                        Remarks
+                    </strong>
+
+                    <p>
+                        ${escapeHtml(
+                            record.remarks ||
+                            "-"
+                        )}
+                    </p>
+
+                </div>
+
+
+                <div class="col-12">
+
+                    <strong>
+                        Marked By
+                    </strong>
+
+                    <p>
+                        ${escapeHtml(
+                            markedBy
+                        )}
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        `;
+
+
+        const modal =
+            new bootstrap.Modal(
+                document.getElementById(
+                    "attendanceDetailsModal"
+                )
+            );
+
+
+        modal.show();
+
+    }
+
+    catch (error) {
+
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+
+// ============================================================
+// PDF EXPORT
+// ============================================================
+
+document.getElementById(
+    "pdfBtn"
+).addEventListener(
+    "click",
+    function() {
+
+
+        if (
+            filteredAttendanceRecords.length
+            === 0
+        ) {
+
+            alert(
+                "No attendance records available to export."
+            );
+
+            return;
+
+        }
+
+
+        const {
+            jsPDF
+        } =
+            window.jspdf;
+
+
+        const pdf =
+            new jsPDF(
+                "landscape"
+            );
+
+
+        pdf.text(
+            "Faculty Attendance Report",
+            14,
+            15
+        );
+
+
+        const rows =
+            filteredAttendanceRecords.map(
+                function(record, index) {
+
+
+                    return [
+
+                        index + 1,
+
+                        record.faculty_code ||
+                        record.faculty_user_id ||
+                        "-",
+
+                        record.faculty_name ||
+                        record.full_name ||
+                        "-",
+
+                        capitalize(
+                            record.role ||
+                            "-"
+                        ),
+
+                        record.department ||
+                        "-",
+
+                        formatDate(
+                            record.date
+                        ),
+
+                        capitalize(
+                            record.status ||
+                            "-"
+                        ),
+
+                        record.remarks ||
+                        "-"
+
+                    ];
+
+                }
+            );
+
+
+        pdf.autoTable({
+
+            startY: 22,
+
+            head: [[
+                "#",
+                "Faculty ID",
+                "Name",
+                "Role",
+                "Department",
+                "Date",
+                "Status",
+                "Remarks"
+            ]],
+
+            body: rows
+
+        });
+
+
+        pdf.save(
+            "Faculty_Attendance_Report.pdf"
+        );
+
+    }
+);
+
+
+
+// ============================================================
+// EXCEL EXPORT
+// ============================================================
+
+document.getElementById(
+    "excelBtn"
+).addEventListener(
+    "click",
+    function() {
+
+
+        if (
+            filteredAttendanceRecords.length
+            === 0
+        ) {
+
+            alert(
+                "No attendance records available to export."
+            );
+
+            return;
+
+        }
+
+
+        const excelData =
+            filteredAttendanceRecords.map(
+                function(record, index) {
+
+
+                    return {
+
+                        "S.No":
+                            index + 1,
+
+                        "Faculty ID":
+                            record.faculty_code ||
+                            record.faculty_user_id ||
+                            "-",
+
+                        "Name":
+                            record.faculty_name ||
+                            record.full_name ||
+                            "-",
+
+                        "Role":
+                            capitalize(
+                                record.role ||
+                                "-"
+                            ),
+
+                        "Department":
+                            record.department ||
+                            "-",
+
+                        "Date":
+                            formatDate(
+                                record.date
+                            ),
+
+                        "Status":
+                            capitalize(
+                                record.status ||
+                                "-"
+                            ),
+
+                        "Remarks":
+                            record.remarks ||
+                            "-",
+
+                        "Marked By":
+                            record.marked_by_name ||
+                            record.marked_by_username ||
+                            record.marked_by ||
+                            "-"
+
+                    };
+
+                }
+            );
+
+
+        const worksheet =
+            XLSX.utils.json_to_sheet(
+                excelData
+            );
+
+
+        const workbook =
+            XLSX.utils.book_new();
+
+
+        XLSX.utils.book_append_sheet(
+            workbook,
+            worksheet,
+            "Attendance Report"
+        );
+
+
+        XLSX.writeFile(
+            workbook,
+            "Faculty_Attendance_Report.xlsx"
+        );
+
+    }
+);
+
+
+
+// ============================================================
+// PRINT
+// ============================================================
+
+document.getElementById(
+    "printBtn"
+).addEventListener(
+    "click",
+    function() {
+
+        window.print();
+
+    }
+);
+
+
+
+// ============================================================
+// BUTTON EVENTS
+// ============================================================
+
+document.getElementById(
+    "applyFilterBtn"
+).addEventListener(
+    "click",
+    applyFilters
+);
+
+
+document.getElementById(
+    "resetFilterBtn"
+).addEventListener(
+    "click",
+    resetFilters
+);
+
+
+document.getElementById(
+    "refreshAttendanceBtn"
+).addEventListener(
+    "click",
+    loadAttendance
+);
+
+
+searchAttendance.addEventListener(
+    "input",
+    applyFilters
+);
+
+
+departmentFilter.addEventListener(
+    "change",
+    applyFilters
+);
+
+
+roleFilter.addEventListener(
+    "change",
+    applyFilters
+);
+
+
+statusFilter.addEventListener(
+    "change",
+    applyFilters
+);
+
+
+
+// ============================================================
+// HELPERS
+// ============================================================
+
+function capitalize(value) {
+
+
+    if (
+        !value ||
+        value === "-"
+    ) {
+
+        return value || "-";
+
+    }
+
+
+    return (
+        value.charAt(0).toUpperCase() +
+        value.slice(1)
+    );
+
+}
+
+
+function formatDate(value) {
+
+
+    if (!value) {
+
+        return "-";
+
+    }
+
+
+    const parts =
+        value.split("-");
+
+
+    if (
+        parts.length !== 3
+    ) {
+
+        return value;
+
+    }
+
+
+    return (
+        `${parts[2]}-${parts[1]}-${parts[0]}`
+    );
+
+}
+
+
+function escapeHtml(value) {
+
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        value === null ||
+        value === undefined
+            ? ""
+            : String(value);
+
+
+    return div.innerHTML;
+
+}
+
+
+
+// ============================================================
+// INITIAL LOAD
+// ============================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadAttendance
+);
+
 
 </script>
 
+
 </body>
 
-</html>
+</html>  

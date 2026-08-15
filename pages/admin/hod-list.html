@@ -3,774 +3,1746 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>HOD List | Faculty Management System</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>
+        HOD Management | Faculty Management System
+    </title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
 
-<link rel="stylesheet" href="../../css/admin-dashboard.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+
+    <!-- Google Fonts -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Dashboard CSS -->
+
+    <link
+        rel="stylesheet"
+        href="../../css/admin-dashboard.css">
+
+
+    <!-- Excel -->
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js">
+    </script>
+
+
+    <!-- jsPDF -->
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+    </script>
+
+
+    <!-- jsPDF AutoTable -->
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js">
+    </script>
+
+
+    <style>
+
+        /* =====================================================
+           HOD PAGE ONLY
+        ===================================================== */
+
+        .hod-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+
+        #hodTable {
+            width: 100%;
+            min-width: 1100px;
+        }
+
+
+        #hodTable th {
+            white-space: nowrap;
+        }
+
+
+        #hodTable td {
+            vertical-align: middle;
+        }
+
+
+        #hodTable td:last-child {
+            white-space: nowrap;
+        }
+
+
+        #hodTable td:last-child .btn {
+            margin: 2px;
+        }
+
+
+        .hod-photo {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+
+        .hod-page-title h2 {
+            margin-bottom: 4px;
+        }
+
+
+        .hod-page-title p {
+            margin-bottom: 0;
+            color: #777;
+        }
+
+
+        body.dark .hod-page-title p {
+            color: #cbd5e1 !important;
+        }
+
+
+        @media (max-width: 768px) {
+
+            .hod-top-actions {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
+
 <div class="dashboard">
 
-<!-- ================= Sidebar ================= -->
 
-<aside class="sidebar">
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
-<div class="logo-box">
+    <aside class="sidebar">
 
-<img src="../../images/logo.png" alt="College Logo">
 
-<h3>PATNA</h3>
+        <div class="logo-box">
 
-<h2>WOMEN'S COLLEGE</h2>
+            <img
+                src="../../images/logo.png"
+                alt="College Logo">
 
-<span>(AUTONOMOUS)</span>
+            <h3>
+                PATNA
+            </h3>
+
+            <h2>
+                WOMEN'S COLLEGE
+            </h2>
+
+            <span>
+                (AUTONOMOUS)
+            </span>
+
+        </div>
+
+
+
+        <ul class="menu">
+
+
+            <!-- Dashboard -->
+
+            <li>
+
+                <a href="admin-dashboard.html">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <span>
+                        Dashboard
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Teachers -->
+
+            <li>
+
+                <a href="teacher-list.html">
+
+                    <i class="fa-solid fa-user-tie"></i>
+
+                    <span>
+                        Teachers
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- HOD -->
+
+            <li class="active">
+
+                <a href="hod-list.html">
+
+                    <i class="fa-solid fa-building-user"></i>
+
+                    <span>
+                        HOD
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Students -->
+
+            <li>
+
+                <a href="student-list.html">
+
+                    <i class="fa-solid fa-user-graduate"></i>
+
+                    <span>
+                        Students
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Recruiters -->
+
+            <li>
+
+                <a href="recruiter-list.html">
+
+                    <i class="fa-solid fa-building"></i>
+
+                    <span>
+                        Recruiters
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Analytics -->
+
+            <li>
+
+                <a href="analytics.html">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <span>
+                        Analytics
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Reports -->
+
+            <li>
+
+                <a href="reports.html">
+
+                    <i class="fa-solid fa-file-lines"></i>
+
+                    <span>
+                        Reports
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Attendance Report -->
+
+            <li>
+
+                <a href="attendance-report.html">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                    <span>
+                        Attendance Report
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Notice Board -->
+
+            <li>
+
+                <a href="notice-board.html">
+
+                    <i class="fa-solid fa-bullhorn"></i>
+
+                    <span>
+                        Notice Board
+                    </span>
+
+                </a>
+
+            </li>
+
+
+
+            <!-- Academic Calendar -->
+
+            <li>
+
+                <a href="academic-calendar.html">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    <span>
+                        Academic Calendar
+                    </span>
+
+                </a>
+
+            </li>
+
+
+        </ul>
+
+
+
+        <!-- =================================================
+             SIDEBAR BOTTOM
+        ================================================== -->
+
+        <div class="sidebar-bottom">
+
+
+            <a href="settings.html">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+
+
+            <a
+                href="admin-login.html"
+                class="logout-btn">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+
+        <div class="topbar">
+
+
+            <div class="top-left hod-page-title">
+
+                <h2>
+                    HOD Management
+                </h2>
+
+                <p>
+                    Dashboard / HOD
+                </p>
+
+            </div>
+
+
+
+            <div class="top-right hod-top-actions">
+
+
+                <!-- Theme -->
+
+                <button
+                    type="button"
+                    id="themeToggle"
+                    class="icon-btn"
+                    title="Dark Mode">
+
+                    <i class="fa-solid fa-moon"></i>
+
+                </button>
+
+
+
+                <!-- Add HOD -->
+
+                <a
+                    href="add-hod.html"
+                    class="btn btn-primary">
+
+                    <i class="fa-solid fa-plus me-1"></i>
+
+                    Add HOD
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             SEARCH / EXPORT CARD
+        ================================================== -->
+
+        <div class="chart-card mb-4">
+
+
+            <div
+                class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+
+
+                <h3 class="mb-0">
+
+                    <i class="fa-solid fa-building-user"></i>
+
+                    Head of Department List
+
+                </h3>
+
+
+            </div>
+
+
+
+            <div class="row g-3 align-items-center">
+
+
+                <!-- Search -->
+
+                <div class="col-lg-6">
+
+
+                    <div class="input-group">
+
+
+                        <span class="input-group-text">
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                        </span>
+
+
+                        <input
+                            type="text"
+                            id="searchHod"
+                            class="form-control"
+                            placeholder="Search by Name, ID, Department or Email">
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- Export -->
+
+                <div class="col-lg-6">
+
+
+                    <div
+                        class="d-flex justify-content-lg-end gap-2 flex-wrap">
+
+
+                        <button
+                            type="button"
+                            id="excelBtn"
+                            class="btn btn-success">
+
+                            <i class="fa-solid fa-file-excel"></i>
+
+                            Export Excel
+
+                        </button>
+
+
+
+                        <button
+                            type="button"
+                            id="pdfBtn"
+                            class="btn btn-danger">
+
+                            <i class="fa-solid fa-file-pdf"></i>
+
+                            Export PDF
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             HOD TABLE
+        ================================================== -->
+
+        <div class="chart-card">
+
+
+            <div class="table-responsive hod-table-wrapper">
+
+
+                <table
+                    id="hodTable"
+                    class="table table-hover table-bordered align-middle text-center">
+
+
+                    <thead class="table-dark">
+
+
+                        <tr>
+
+                            <th>Photo</th>
+
+                            <th>HOD ID</th>
+
+                            <th>Name</th>
+
+                            <th>Email</th>
+
+                            <th>Mobile</th>
+
+                            <th>Department</th>
+
+                            <th>Joining Date</th>
+
+                            <th>Status</th>
+
+                            <th>Actions</th>
+
+                        </tr>
+
+
+                    </thead>
+
+
+
+                    <tbody id="hodTableBody">
+
+
+                        <tr>
+
+                            <td
+                                colspan="9"
+                                class="text-center py-5">
+
+                                <i
+                                    class="fa-solid fa-spinner fa-spin fa-2x">
+                                </i>
+
+                                <br>
+
+                                <span class="d-inline-block mt-2">
+
+                                    Loading HOD records...
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
 
 </div>
 
-<ul class="menu">
 
-<li>
-<a href="admin-dashboard.html">
-<i class="fa-solid fa-house"></i>
-<span>Dashboard</span>
-</a>
-</li>
 
-<li>
-<a href="teacher-list.html">
-<i class="fa-solid fa-user-tie"></i>
-<span>Teachers</span>
-</a>
-</li>
-
-<li class="active">
-<a href="hod-list.html">
-<i class="fa-solid fa-building-user"></i>
-<span>HOD List</span>
-</a>
-</li>
-
-<li>
-<a href="student-list.html">
-<i class="fa-solid fa-user-graduate"></i>
-<span>Students</span>
-</a>
-</li>
-
-<li>
-<a href="recruiter-list.html">
-<i class="fa-solid fa-building"></i>
-<span>Recruiters</span>
-</a>
-</li>
-
-<li>
-<a href="attendance-report.html">
-<i class="fa-solid fa-file-lines"></i>
-<span>Attendance Report</span>
-</a>
-</li>
-
-<li>
-<a href="analytics.html">
-<i class="fa-solid fa-chart-line"></i>
-<span>Analytics</span>
-</a>
-</li>
-
-<li>
-<a href="academic-calendar.html">
-<i class="fa-solid fa-calendar-days"></i>
-<span>Academic Calendar</span>
-</a>
-</li>
-
-<li>
-<a href="settings.html">
-<i class="fa-solid fa-gear"></i>
-<span>Settings</span>
-</a>
-</li>
-
-</ul>
-
-<div class="sidebar-bottom">
-
-<a href="admin-login.html" class="logout-btn">
-
-<i class="fa-solid fa-right-from-bracket"></i>
-
-<span>Logout</span>
-
-</a>
-
-</div>
-
-</aside>
-
-<!-- ================= Main Content ================= -->
-
-<main class="main-content">
-
-<div class="topbar">
-
-<div>
-
-<h2>HOD Management</h2>
-
-<p>Dashboard / HOD List</p>
-
-</div>
-<div class="topbar-actions">
-
-    <button id="themeToggle" class="theme-toggle-btn">
-        <i class="fa-solid fa-moon"></i>
-    </button>
-
-</div>
-</div>
-
-<!-- ================= Header ================= -->
-
-<div class="chart-card mt-4">
-
-<div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
-
-<h3>
-
-<i class="fa-solid fa-building-user"></i>
-
-Head of Department List
-
-</h3>
-
-<a href="add-hod.html" class="btn btn-primary">
-
-<i class="fa-solid fa-plus"></i>
-
-Add HOD
-
-</a>
-
-</div>
-
-<div class="row">
-
-<div class="col-md-6">
-
-<div class="input-group">
-
-<span class="input-group-text">
-
-<i class="fa-solid fa-magnifying-glass"></i>
-
-</span>
-
-<input
-type="text"
-id="searchHod"
-class="form-control"
-placeholder="Search by Name, ID, Department or Email">
-
-</div>
-
-</div>
-
-<div class="col-md-6 text-md-end mt-3 mt-md-0">
-
-<button id="excelBtn" class="btn btn-success me-2">
-
-<i class="fa-solid fa-file-excel"></i>
-
-Export Excel
-
-</button>
-
-<button id="pdfBtn" class="btn btn-danger">
-
-<i class="fa-solid fa-file-pdf"></i>
-
-Export PDF
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ================= HOD Table Starts Below ================= -->
-
-<div class="chart-card">
-
-<div class="table-responsive">
-
-<table id="hodTable" class="table table-hover table-bordered align-middle text-center">
-
-<thead class="table-dark">
-
-<tr>
-
-<th>Photo</th>
-<th>HOD ID</th>
-<th>Name</th>
-<th>Email</th>
-<th>Mobile</th>
-<th>Department</th>
-<th>Joining Date</th>
-<th>Status</th>
-<th width="180">Action</th>
-
-</tr>
-
-</thead>
-
-<tbody id="hodTable">
-
-<tr>
-
-<td>
-
-<img
-src="../../images/default-profile.png"
-class="rounded-circle"
-width="55"
-height="55"
-alt="HOD">
-
-</td>
-
-<td>HOD001</td>
-
-<td>Dr. Priya Sharma</td>
-
-<td>priya@college.edu</td>
-
-<td>9876543210</td>
-
-<td>Computer Science</td>
-
-<td>15-07-2022</td>
-
-<td>
-
-<span class="badge bg-success">
-
-Active
-
-</span>
-
-</td>
-
-<td>
-
-<a href="view-hod.html" class="btn btn-info btn-sm">
-
-<i class="fa-solid fa-eye"></i>
-
-</a>
-
-<a href="edit-hod.html" class="btn btn-warning btn-sm">
-
-<i class="fa-solid fa-pen"></i>
-
-</a>
-
-<button
-class="btn btn-danger btn-sm deleteBtn">
-
-<i class="fa-solid fa-trash"></i>
-
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-
-<img
-src="../../images/default-profile.png"
-class="rounded-circle"
-width="55"
-height="55">
-
-</td>
-
-<td>HOD002</td>
-
-<td>Dr. Amit Kumar</td>
-
-<td>amit@college.edu</td>
-
-<td>9876501234</td>
-
-<td>Mathematics</td>
-
-<td>20-01-2021</td>
-
-<td>
-
-<span class="badge bg-success">
-
-Active
-
-</span>
-
-</td>
-
-<td>
-
-<a href="view-hod.html" class="btn btn-info btn-sm">
-
-<i class="fa-solid fa-eye"></i>
-
-</a>
-
-<a href="edit-hod.html" class="btn btn-warning btn-sm">
-
-<i class="fa-solid fa-pen"></i>
-
-</a>
-
-<button
-class="btn btn-danger btn-sm deleteBtn">
-
-<i class="fa-solid fa-trash"></i>
-
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-
-<img
-src="../../images/default-profile.png"
-class="rounded-circle"
-width="55"
-height="55">
-
-</td>
-
-<td>HOD003</td>
-
-<td>Dr. Neha Singh</td>
-
-<td>neha@college.edu</td>
-
-<td>9123456789</td>
-
-<td>Physics</td>
-
-<td>10-03-2023</td>
-
-<td>
-
-<span class="badge bg-secondary">
-
-Inactive
-
-</span>
-
-</td>
-
-<td>
-
-<a href="view-hod.html" class="btn btn-info btn-sm">
-
-<i class="fa-solid fa-eye"></i>
-
-</a>
-
-<a href="edit-hod.html" class="btn btn-warning btn-sm">
-
-<i class="fa-solid fa-pen"></i>
-
-</a>
-
-<button
-class="btn btn-danger btn-sm deleteBtn">
-
-<i class="fa-solid fa-trash"></i>
-
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-
-<img
-src="../../images/default-profile.png"
-class="rounded-circle"
-width="55"
-height="55">
-
-</td>
-
-<td>HOD004</td>
-
-<td>Dr. Rakesh Verma</td>
-
-<td>rakesh@college.edu</td>
-
-<td>9988776655</td>
-
-<td>Chemistry</td>
-
-<td>18-08-2020</td>
-
-<td>
-
-<span class="badge bg-success">
-
-Active
-
-</span>
-
-</td>
-
-<td>
-
-<a href="view-hod.html" class="btn btn-info btn-sm">
-
-<i class="fa-solid fa-eye"></i>
-
-</a>
-
-<a href="edit-hod.html" class="btn btn-warning btn-sm">
-
-<i class="fa-solid fa-pen"></i>
-
-</a>
-
-<button
-class="btn btn-danger btn-sm deleteBtn">
-
-<i class="fa-solid fa-trash"></i>
-
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-
-<img
-src="../../images/default-profile.png"
-class="rounded-circle"
-width="55"
-height="55">
-
-</td>
-
-<td>HOD005</td>
-
-<td>Dr. Anjali Gupta</td>
-
-<td>anjali@college.edu</td>
-
-<td>9011223344</td>
-
-<td>Commerce</td>
-
-<td>11-12-2021</td>
-
-<td>
-
-<span class="badge bg-success">
-
-Active
-
-</span>
-
-</td>
-
-<td>
-
-<a href="view-hod.html" class="btn btn-info btn-sm">
-
-<i class="fa-solid fa-eye"></i>
-
-</a>
-
-<a href="edit-hod.html" class="btn btn-warning btn-sm">
-
-<i class="fa-solid fa-pen"></i>
-
-</a>
-
-<button
-class="btn btn-danger btn-sm deleteBtn">
-
-<i class="fa-solid fa-trash"></i>
-
-</button>
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-<!-- ================= Pagination ================= -->
-
-<nav class="mt-4">
-
-<ul class="pagination justify-content-end">
-
-<li class="page-item disabled">
-
-<a class="page-link">Previous</a>
-
-</li>
-
-<li class="page-item active">
-
-<a class="page-link">1</a>
-
-</li>
-
-<li class="page-item">
-
-<a class="page-link">2</a>
-
-</li>
-
-<li class="page-item">
-
-<a class="page-link">3</a>
-
-</li>
-
-<li class="page-item">
-
-<a class="page-link">Next</a>
-
-</li>
-
-</ul>
-
-</nav>
-
-</div>
-
-<!-- ================= Delete Confirmation Modal ================= -->
+<!-- =========================================================
+     DELETE MODAL
+========================================================= -->
 
 <div
-class="modal fade"
-id="deleteHodModal"
-tabindex="-1">
+    class="modal fade"
+    id="deleteHodModal"
+    tabindex="-1"
+    aria-hidden="true">
 
-<div class="modal-dialog modal-dialog-centered">
 
-<div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered">
 
-<div class="modal-header bg-danger text-white">
 
-<h5 class="modal-title">
+        <div class="modal-content">
 
-<i class="fa-solid fa-trash"></i>
 
-Delete HOD
+            <div class="modal-header bg-danger text-white">
 
-</h5>
 
-<button
-type="button"
-class="btn-close btn-close-white"
-data-bs-dismiss="modal">
+                <h5 class="modal-title">
 
-</button>
+                    <i class="fa-solid fa-trash me-2"></i>
+
+                    Delete HOD
+
+                </h5>
+
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal">
+                </button>
+
+
+            </div>
+
+
+
+            <div class="modal-body text-center">
+
+
+                <i
+                    class="fa-solid fa-triangle-exclamation fa-4x text-danger mb-3">
+                </i>
+
+
+                <h4>
+                    Are you sure?
+                </h4>
+
+
+                <p>
+
+                    Do you really want to delete this HOD?
+
+                    <br>
+
+                    This action cannot be undone.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div class="modal-footer">
+
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+
+                    Cancel
+
+                </button>
+
+
+
+                <button
+                    type="button"
+                    id="confirmDeleteBtn"
+                    class="btn btn-danger">
+
+                    Delete
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
 
 </div>
 
-<div class="modal-body text-center">
 
-<i class="fa-solid fa-triangle-exclamation fa-4x text-danger mb-3"></i>
 
-<h4>Are you sure?</h4>
+<!-- =========================================================
+     BOOTSTRAP
+========================================================= -->
 
-<p>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
 
-Do you really want to delete this HOD? This action cannot be undone.
 
-</p>
 
-</div>
+<!-- =========================================================
+     API CLIENT
+========================================================= -->
 
-<div class="modal-footer">
+<script src="../../js/api.js"></script>
 
-<button
-type="button"
-class="btn btn-secondary"
-data-bs-dismiss="modal">
 
-Cancel
 
-</button>
+<!-- =========================================================
+     COMMON DASHBOARD JS
+========================================================= -->
 
-<button
-type="button"
-id="confirmDeleteBtn"
-class="btn btn-danger">
-
-Delete
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<!-- ================= Bootstrap JS ================= -->
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../../js/dashboard.js"></script>
-<!-- ================= JavaScript ================= -->
+
+
+
+<!-- =========================================================
+     HOD JAVASCRIPT
+========================================================= -->
 
 <script>
 
-// ================= Search HOD =================
 
-const searchHod = document.getElementById("searchHod");
+// ============================================================
+// GLOBAL DATA
+// ============================================================
 
-if(searchHod){
+let allHods = [];
 
-searchHod.addEventListener("keyup", function(){
+let selectedHodId = null;
 
-const filter = this.value.toLowerCase();
 
-const rows = document.querySelectorAll("#hodTable tr");
 
-rows.forEach(function(row){
+// ============================================================
+// LOAD HODS
+// ============================================================
 
-const text = row.innerText.toLowerCase();
+async function loadHods() {
 
-row.style.display = text.includes(filter) ? "" : "none";
 
-});
+    const tbody =
+        document.getElementById(
+            "hodTableBody"
+        );
 
-});
+
+    tbody.innerHTML = `
+
+        <tr>
+
+            <td
+                colspan="9"
+                class="text-center py-5">
+
+                <i
+                    class="fa-solid fa-spinner fa-spin fa-2x">
+                </i>
+
+                <br>
+
+                <span class="mt-2 d-inline-block">
+                    Loading HOD records...
+                </span>
+
+            </td>
+
+        </tr>
+
+    `;
+
+
+    try {
+
+
+        const result =
+            await API.hods.list();
+
+
+        console.log(
+            "HOD API Response:",
+            result
+        );
+
+
+        if (
+            !result ||
+            !result.success
+        ) {
+
+            throw new Error(
+                result?.message ||
+                "Failed to load HOD records"
+            );
+
+        }
+
+
+        allHods =
+            result.data || [];
+
+
+        renderHods(
+            allHods
+        );
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(
+            "Error loading HODs:",
+            error
+        );
+
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="9"
+                    class="text-center text-danger py-5">
+
+                    <i
+                        class="fa-solid fa-circle-exclamation fa-3x mb-3">
+                    </i>
+
+                    <br>
+
+                    <strong>
+                        Failed to load HOD data
+                    </strong>
+
+                    <br>
+
+                    <small>
+                        ${escapeHtml(error.message)}
+                    </small>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
 
 }
 
-// ================= Delete HOD =================
 
-let selectedRow = null;
 
-const deleteButtons = document.querySelectorAll(".deleteBtn");
+// ============================================================
+// RENDER HODS
+// ============================================================
 
-deleteButtons.forEach(function(button){
+function renderHods(hods) {
 
-button.addEventListener("click", function(){
 
-selectedRow = this.closest("tr");
+    const tbody =
+        document.getElementById(
+            "hodTableBody"
+        );
 
-const modal = new bootstrap.Modal(document.getElementById("deleteHodModal"));
 
-modal.show();
+    tbody.innerHTML =
+        "";
 
-});
 
-});
+    if (
+        !hods ||
+        hods.length === 0
+    ) {
 
-// ================= Confirm Delete =================
 
-const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+        tbody.innerHTML = `
 
-if(confirmDeleteBtn){
+            <tr>
 
-confirmDeleteBtn.addEventListener("click", function(){
+                <td
+                    colspan="9"
+                    class="text-center text-muted py-5">
 
-if(selectedRow){
+                    <i
+                        class="fa-solid fa-users-slash fa-3x mb-3">
+                    </i>
 
-selectedRow.remove();
+                    <br>
+
+                    <strong>
+                        No HOD records found
+                    </strong>
+
+                    <br>
+
+                    <small>
+                        Add a HOD to see the record here.
+                    </small>
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+        return;
+
+    }
+
+
+
+    hods.forEach(
+        function (hod) {
+
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+
+            // =================================================
+            // PHOTO
+            // =================================================
+
+            let photo =
+                "../../images/default-profile.png";
+
+
+            if (
+                hod.photo_url
+            ) {
+
+
+                let photoPath =
+                    String(
+                        hod.photo_url
+                    ).replaceAll(
+                        "\\",
+                        "/"
+                    );
+
+
+                if (
+                    photoPath.startsWith(
+                        "http://"
+                    ) ||
+                    photoPath.startsWith(
+                        "https://"
+                    )
+                ) {
+
+                    photo =
+                        photoPath;
+
+                }
+
+
+                else if (
+                    photoPath.startsWith(
+                        "/uploads/"
+                    )
+                ) {
+
+                    photo =
+                        "http://127.0.0.1:5000" +
+                        photoPath;
+
+                }
+
+
+                else if (
+                    photoPath.startsWith(
+                        "uploads/"
+                    )
+                ) {
+
+                    photo =
+                        "http://127.0.0.1:5000/" +
+                        photoPath;
+
+                }
+
+            }
+
+
+
+            // =================================================
+            // STATUS
+            // =================================================
+
+            const status =
+                String(
+                    hod.status ||
+                    "active"
+                ).toLowerCase();
+
+
+            const statusBadge =
+                status === "active"
+
+                    ? `
+                        <span class="badge bg-success">
+                            Active
+                        </span>
+                    `
+
+                    : `
+                        <span class="badge bg-secondary">
+                            Inactive
+                        </span>
+                    `;
+
+
+
+            // =================================================
+            // ROW
+            // =================================================
+
+            row.innerHTML = `
+
+
+                <td>
+
+                    <img
+                        src="${escapeHtml(photo)}"
+                        class="hod-photo"
+                        alt="HOD Photo"
+                        onerror="this.src='../../images/default-profile.png';">
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHtml(
+                        hod.hod_code ||
+                        "-"
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    <strong>
+
+                        ${escapeHtml(
+                            hod.full_name ||
+                            "-"
+                        )}
+
+                    </strong>
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHtml(
+                        hod.email ||
+                        "-"
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHtml(
+                        hod.phone ||
+                        "-"
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHtml(
+                        hod.department ||
+                        "-"
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHtml(
+                        formatDate(
+                            hod.joining_date
+                        )
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${statusBadge}
+
+                </td>
+
+
+                <td>
+
+
+                    <!-- VIEW -->
+
+                    <a
+                        href="view-hod.html?id=${hod.id}"
+                        class="btn btn-info btn-sm"
+                        title="View HOD">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </a>
+
+
+
+                    <!-- EDIT -->
+
+                    <a
+                        href="edit-hod.html?id=${hod.id}"
+                        class="btn btn-warning btn-sm"
+                        title="Edit HOD">
+
+                        <i class="fa-solid fa-pen"></i>
+
+                    </a>
+
+
+
+                    <!-- DELETE -->
+
+                    <button
+                        type="button"
+                        class="btn btn-danger btn-sm deleteBtn"
+                        data-id="${hod.id}"
+                        title="Delete HOD">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                    </button>
+
+
+                </td>
+
+
+            `;
+
+
+            tbody.appendChild(
+                row
+            );
+
+        }
+    );
+
+
+    attachDeleteEvents();
 
 }
 
-const modalElement = document.getElementById("deleteHodModal");
 
-const modal = bootstrap.Modal.getInstance(modalElement);
 
-if(modal){
+// ============================================================
+// FORMAT DATE
+// ============================================================
 
-modal.hide();
+function formatDate(dateString) {
+
+
+    if (!dateString) {
+
+        return "-";
+
+    }
+
+
+    const parts =
+        String(
+            dateString
+        ).split("-");
+
+
+    if (
+        parts.length === 3
+    ) {
+
+        return (
+            parts[2] +
+            "/" +
+            parts[1] +
+            "/" +
+            parts[0]
+        );
+
+    }
+
+
+    return dateString;
 
 }
 
-alert("HOD deleted successfully! (Frontend Demo)");
 
-});
-// Export Excel
-document.getElementById("excelBtn").addEventListener("click", function () {
 
-    const table = document.getElementById("hodTable");
+// ============================================================
+// SEARCH
+// ============================================================
 
-    const workbook = XLSX.utils.table_to_book(table, {
-        sheet: "HOD List"
-    });
+const searchHod =
+    document.getElementById(
+        "searchHod"
+    );
 
-    XLSX.writeFile(workbook, "HOD_List.xlsx");
 
-});
+if (searchHod) {
 
-// Export PDF
-document.getElementById("pdfBtn").addEventListener("click", function () {
 
-    const { jsPDF } = window.jspdf;
+    searchHod.addEventListener(
+        "input",
+        function () {
 
-    const pdf = new jsPDF();
 
-    pdf.autoTable({
-        html: "#hodTable"
-    });
+            const value =
+                this.value
+                    .trim()
+                    .toLowerCase();
 
-    pdf.save("HOD_List.pdf");
 
-});
+            if (!value) {
+
+                renderHods(
+                    allHods
+                );
+
+                return;
+
+            }
+
+
+            const filtered =
+                allHods.filter(
+                    function (hod) {
+
+
+                        const searchable =
+                            [
+
+                                hod.hod_code,
+                                hod.full_name,
+                                hod.email,
+                                hod.phone,
+                                hod.department,
+                                hod.status
+
+                            ]
+
+                            .filter(Boolean)
+
+                            .join(" ")
+
+                            .toLowerCase();
+
+
+                        return searchable.includes(
+                            value
+                        );
+
+                    }
+                );
+
+
+            renderHods(
+                filtered
+            );
+
+        }
+    );
+
 }
+
+
+
+// ============================================================
+// DELETE BUTTON EVENTS
+// ============================================================
+
+function attachDeleteEvents() {
+
+
+    const deleteButtons =
+        document.querySelectorAll(
+            ".deleteBtn"
+        );
+
+
+    deleteButtons.forEach(
+        function (button) {
+
+
+            button.addEventListener(
+                "click",
+                function () {
+
+
+                    selectedHodId =
+                        this.getAttribute(
+                            "data-id"
+                        );
+
+
+                    const modal =
+                        new bootstrap.Modal(
+                            document.getElementById(
+                                "deleteHodModal"
+                            )
+                        );
+
+
+                    modal.show();
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+
+// ============================================================
+// CONFIRM DELETE
+// ============================================================
+
+const confirmDeleteBtn =
+    document.getElementById(
+        "confirmDeleteBtn"
+    );
+
+
+if (confirmDeleteBtn) {
+
+
+    confirmDeleteBtn.addEventListener(
+        "click",
+        async function () {
+
+
+            if (
+                !selectedHodId
+            ) {
+
+                return;
+
+            }
+
+
+            try {
+
+
+                confirmDeleteBtn.disabled =
+                    true;
+
+
+                confirmDeleteBtn.innerHTML =
+                    '<i class="fa-solid fa-spinner fa-spin"></i> Deleting...';
+
+
+
+                const result =
+                    await API.hods.remove(
+                        selectedHodId
+                    );
+
+
+                if (
+                    result &&
+                    result.success === false
+                ) {
+
+                    throw new Error(
+                        result.message ||
+                        "Failed to delete HOD"
+                    );
+
+                }
+
+
+
+                const modalElement =
+                    document.getElementById(
+                        "deleteHodModal"
+                    );
+
+
+                const modal =
+                    bootstrap.Modal.getInstance(
+                        modalElement
+                    );
+
+
+                if (modal) {
+
+                    modal.hide();
+
+                }
+
+
+                alert(
+                    "HOD deleted successfully!"
+                );
+
+
+                selectedHodId =
+                    null;
+
+
+                await loadHods();
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(
+                    "Delete error:",
+                    error
+                );
+
+
+                alert(
+                    error.message ||
+                    "Failed to delete HOD."
+                );
+
+
+            }
+
+            finally {
+
+
+                confirmDeleteBtn.disabled =
+                    false;
+
+
+                confirmDeleteBtn.innerHTML =
+                    "Delete";
+
+            }
+
+        }
+    );
+
+}
+
+
+
+// ============================================================
+// EXPORT EXCEL
+// ============================================================
+
+const excelBtn =
+    document.getElementById(
+        "excelBtn"
+    );
+
+
+if (excelBtn) {
+
+
+    excelBtn.addEventListener(
+        "click",
+        function () {
+
+
+            if (
+                typeof XLSX ===
+                "undefined"
+            ) {
+
+                alert(
+                    "Excel library is not loaded."
+                );
+
+                return;
+
+            }
+
+
+            const table =
+                document.getElementById(
+                    "hodTable"
+                );
+
+
+            const workbook =
+                XLSX.utils.table_to_book(
+                    table,
+                    {
+                        sheet:
+                            "HOD List"
+                    }
+                );
+
+
+            XLSX.writeFile(
+                workbook,
+                "HOD_List.xlsx"
+            );
+
+        }
+    );
+
+}
+
+
+
+// ============================================================
+// EXPORT PDF
+// ============================================================
+
+const pdfBtn =
+    document.getElementById(
+        "pdfBtn"
+    );
+
+
+if (pdfBtn) {
+
+
+    pdfBtn.addEventListener(
+        "click",
+        function () {
+
+
+            if (
+                !window.jspdf
+            ) {
+
+                alert(
+                    "PDF library is not loaded."
+                );
+
+                return;
+
+            }
+
+
+            const {
+                jsPDF
+            } =
+                window.jspdf;
+
+
+            const pdf =
+                new jsPDF(
+                    "landscape"
+                );
+
+
+            pdf.text(
+                "HOD List",
+                14,
+                15
+            );
+
+
+            pdf.autoTable({
+
+                html:
+                    "#hodTable",
+
+                startY:
+                    20,
+
+                theme:
+                    "grid",
+
+                headStyles: {
+
+                    fillColor:
+                        [33, 37, 41]
+
+                }
+
+            });
+
+
+            pdf.save(
+                "HOD_List.pdf"
+            );
+
+        }
+    );
+
+}
+
+
+
+// ============================================================
+// ESCAPE HTML
+// ============================================================
+
+function escapeHtml(value) {
+
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+
+        return "";
+
+    }
+
+
+    return String(value)
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
+}
+
+
+
+// ============================================================
+// LOAD PAGE
+// ============================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        loadHods();
+
+    }
+);
+
 
 </script>
 
-</main>
-
-</div>
 
 </body>
 

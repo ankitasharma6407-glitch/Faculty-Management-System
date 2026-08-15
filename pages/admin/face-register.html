@@ -4,136 +4,419 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Face Registration | Faculty Management System</title>
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>
+    Face Registration | Faculty Management System
+</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Bootstrap -->
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+>
 
-<link rel="stylesheet" href="../../css/admin-dashboard.css">
+
+<!-- Font Awesome -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+>
+
+
+<!-- Google Font -->
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+>
+
+
+<!-- Existing Admin CSS -->
+<link
+    rel="stylesheet"
+    href="../../css/admin-dashboard.css"
+>
+
+
+<style>
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+
+/* =========================================================
+   CAMERA PREVIEW
+========================================================= */
+
+#cameraPreview {
+    position: relative;
+    overflow: hidden;
+}
+
+
+#faceRegisterVideo {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transform: scaleX(-1);
+
+    display: none;
+}
+
+
+#cameraPlaceholder {
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   CAMERA FRAME
+========================================================= */
+
+.face-guide {
+
+    position: absolute;
+
+    z-index: 3;
+
+    width: 230px;
+    height: 300px;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border:
+        3px solid #22c55e;
+
+    border-radius:
+        46% 46% 42% 42%;
+
+    box-shadow:
+        0 0 25px
+        rgba(34, 197, 94, 0.35);
+
+    pointer-events: none;
+
+    display: none;
+}
+
+
+/* =========================================================
+   CAMERA BADGE
+========================================================= */
+
+.live-badge {
+
+    position: absolute;
+
+    top: 15px;
+    left: 15px;
+
+    z-index: 4;
+
+    display: none;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding:
+        7px 12px;
+
+    background:
+        rgba(0,0,0,.65);
+
+    border-radius:
+        20px;
+
+    color: white;
+
+    font-size: 12px;
+}
+
+
+.live-dot {
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background:
+        #22c55e;
+
+    box-shadow:
+        0 0 8px #22c55e;
+}
+
+
+</style>
 
 </head>
 
+
 <body>
+
 
 <div class="container-fluid py-4">
 
+
 <div class="row justify-content-center">
+
 
 <div class="col-xl-11">
 
+
 <div class="card shadow-lg border-0 rounded-4">
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
 
 <div class="card-header bg-primary text-white py-3">
 
+
 <h3 class="mb-0">
+
 
 <i class="fa-solid fa-face-smile"></i>
 
+
 AI Face Registration
+
 
 </h3>
 
+
 </div>
 
+
+
 <div class="card-body">
+
 
 <div class="row">
 
-<!-- ================= Camera Section ================= -->
+
+<!-- =========================================================
+     CAMERA SECTION
+========================================================= -->
 
 <div class="col-lg-7">
 
+
 <h4 class="mb-3">
 
+
 <i class="fa-solid fa-camera"></i>
+
 
 Live Camera
 
+
 </h4>
 
+
+
 <div
-id="cameraPreview"
-class="border rounded-4 bg-dark d-flex justify-content-center align-items-center text-white"
-style="height:430px;">
+    id="cameraPreview"
+    class="border rounded-4 bg-dark d-flex justify-content-center align-items-center text-white"
+    style="height:430px;"
+>
 
-<div class="text-center">
 
-<i class="fa-solid fa-video fa-5x text-primary mb-3"></i>
+<!-- REAL CAMERA -->
 
-<h4>Camera Preview</h4>
+<video
+    id="faceRegisterVideo"
+    autoplay
+    muted
+    playsinline
+>
+</video>
 
-<p>
 
-Live camera feed will appear here after backend integration.
+
+<!-- FACE GUIDE -->
+
+<div
+    id="faceGuide"
+    class="face-guide"
+>
+</div>
+
+
+
+<!-- LIVE BADGE -->
+
+<div
+    id="liveBadge"
+    class="live-badge"
+>
+
+<span class="live-dot"></span>
+
+LIVE
+
+</div>
+
+
+
+<!-- PLACEHOLDER -->
+
+<div
+    id="cameraPlaceholder"
+    class="text-center"
+>
+
+
+<i
+    class="fa-solid fa-video fa-5x text-primary mb-3">
+</i>
+
+
+<h4>
+    Camera Preview
+</h4>
+
+
+<p class="mb-0">
+
+Click Start Camera to begin
+face registration.
 
 </p>
 
-</div>
 
 </div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     CAMERA BUTTONS
+========================================================= -->
 
 <div class="text-center mt-4">
 
+
 <button
-id="startCameraBtn"
-class="btn btn-success me-2">
+    type="button"
+    id="startCameraBtn"
+    class="btn btn-success me-2"
+>
+
 
 <i class="fa-solid fa-play"></i>
 
+
 Start Camera
+
 
 </button>
 
+
+
 <button
-id="captureFaceBtn"
-class="btn btn-primary me-2">
+    type="button"
+    id="captureFaceBtn"
+    class="btn btn-primary me-2"
+    disabled
+>
+
 
 <i class="fa-solid fa-camera"></i>
 
+
 Capture Face
+
 
 </button>
 
+
+
 <button
-id="retakeBtn"
-class="btn btn-warning text-dark">
+    type="button"
+    id="retakeBtn"
+    class="btn btn-warning text-dark"
+    disabled
+>
+
 
 <i class="fa-solid fa-rotate-right"></i>
 
+
 Retake
+
 
 </button>
 
-</div>
 
 </div>
 
-<!-- ================= Face Detection Status ================= -->
+
+</div>
+
+
+
+<!-- =========================================================
+     DETECTION STATUS
+========================================================= -->
 
 <div class="col-lg-5">
 
+
 <h4 class="mb-3">
+
 
 <i class="fa-solid fa-microchip"></i>
 
+
 Detection Status
+
 
 </h4>
 
+
+
 <div class="card border-0 shadow-sm mb-3">
+
 
 <div class="card-body">
 
+
 <p>
 
-<strong>Camera :</strong>
+<strong>
+Camera :
+</strong>
 
-<span class="badge bg-secondary">
+<span
+    id="cameraStatus"
+    class="badge bg-secondary"
+>
 
 Offline
 
@@ -141,11 +424,37 @@ Offline
 
 </p>
 
+
+
 <p>
 
-<strong>Face Detection :</strong>
+<strong>
+AI Models :
+</strong>
 
-<span class="badge bg-warning text-dark">
+<span
+    id="modelStatus"
+    class="badge bg-warning text-dark"
+>
+
+Loading...
+
+</span>
+
+</p>
+
+
+
+<p>
+
+<strong>
+Face Detection :
+</strong>
+
+<span
+    id="faceDetectionStatus"
+    class="badge bg-warning text-dark"
+>
 
 Waiting...
 
@@ -153,17 +462,29 @@ Waiting...
 
 </p>
 
+
+
 <p>
 
-<strong>Detected Faces :</strong>
+<strong>
+Detected Faces :
+</strong>
+
+<span id="detectedFaces">
 
 0
 
+</span>
+
 </p>
+
+
 
 <p>
 
-<strong>Captured Images :</strong>
+<strong>
+Captured Images :
+</strong>
 
 <span id="captureCount">
 
@@ -173,68 +494,158 @@ Waiting...
 
 </p>
 
+
+
 <p>
 
-<strong>Quality :</strong>
+<strong>
+Quality :
+</strong>
+
+<span id="qualityStatus">
 
 Pending
 
+</span>
+
 </p>
 
-</div>
 
 </div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     INSTRUCTIONS
+========================================================= -->
 
 <div class="card border-0 shadow-sm">
 
+
 <div class="card-body">
+
 
 <h5>
 
+
 <i class="fa-solid fa-circle-info"></i>
+
 
 Instructions
 
+
 </h5>
+
+
 
 <ul class="mb-0">
 
-<li>Face should be clearly visible.</li>
 
-<li>Remove mask or sunglasses.</li>
+<li>
+Face should be clearly visible.
+</li>
 
-<li>Maintain good lighting.</li>
 
-<li>Capture at least <strong>20 images</strong>.</li>
+<li>
+Remove mask or sunglasses.
+</li>
 
-<li>Look in different directions while capturing.</li>
+
+<li>
+Maintain good lighting.
+</li>
+
+
+<li>
+
+Capture at least
+
+<strong>
+5 face samples
+</strong>.
+
+</li>
+
+
+<li>
+
+Look straight, slightly left,
+right, up and down.
+
+</li>
+
+
+<li>
+
+Only one person should be
+visible in the camera.
+
+</li>
+
 
 </ul>
 
-</div>
 
 </div>
 
-<!-- Registration Form Starts Below -->
+
+</div>
+
+
+
+<!-- =========================================================
+     REGISTRATION FORM
+========================================================= -->
+
 <div class="mt-4">
+
 
 <div class="card border-0 shadow-sm">
 
+
 <div class="card-body">
+
 
 <h4 class="mb-4">
 
+
 <i class="fa-solid fa-id-card"></i>
+
 
 User Registration
 
+
 </h4>
+
+
+
+<div
+    class="alert alert-info py-2"
+    style="font-size:13px;"
+>
+
+<i class="fa-solid fa-circle-info me-1"></i>
+
+Face will be linked to the
+<strong>currently logged-in account</strong>.
+
+</div>
+
+
 
 <form id="faceRegisterForm">
 
+
 <div class="row">
 
+
+<!-- Full Name -->
+
 <div class="col-md-6 mb-3">
+
 
 <label class="form-label">
 
@@ -242,33 +653,48 @@ Full Name
 
 </label>
 
+
 <input
-type="text"
-id="fullName"
-class="form-control"
-placeholder="Enter Full Name"
-required>
+    type="text"
+    id="fullName"
+    class="form-control"
+    placeholder="Enter Full Name"
+>
+
 
 </div>
 
+
+
+<!-- User ID -->
+
 <div class="col-md-6 mb-3">
+
 
 <label class="form-label">
 
-User ID
+Username / User ID
 
 </label>
 
+
 <input
-type="text"
-id="userId"
-class="form-control"
-placeholder="Enter User ID"
-required>
+    type="text"
+    id="userId"
+    class="form-control"
+    placeholder="Logged-in User ID"
+    readonly
+>
+
 
 </div>
 
+
+
+<!-- Role -->
+
 <div class="col-md-6 mb-3">
+
 
 <label class="form-label">
 
@@ -276,26 +702,55 @@ Role
 
 </label>
 
+
 <select
-id="userRole"
-class="form-select"
-required>
+    id="userRole"
+    class="form-select"
+    disabled
+>
 
-<option value="">Select Role</option>
 
-<option>Student</option>
+<option value="">
+Select Role
+</option>
 
-<option>Teacher</option>
 
-<option>HOD</option>
+<option value="student">
+Student
+</option>
 
-<option>Admin</option>
+
+<option value="teacher">
+Teacher
+</option>
+
+
+<option value="hod">
+HOD
+</option>
+
+
+<option value="admin">
+Admin
+</option>
+
+
+<option value="recruiter">
+Recruiter
+</option>
+
 
 </select>
 
+
 </div>
 
+
+
+<!-- Department -->
+
 <div class="col-md-6 mb-3">
+
 
 <label class="form-label">
 
@@ -303,30 +758,59 @@ Department
 
 </label>
 
+
 <select
-id="department"
-class="form-select"
-required>
+    id="department"
+    class="form-select"
+>
 
-<option value="">Select Department</option>
 
-<option>Computer Science</option>
+<option value="">
+Select Department
+</option>
 
-<option>Mathematics</option>
 
-<option>Commerce</option>
+<option>
+Computer Science
+</option>
 
-<option>Physics</option>
 
-<option>Chemistry</option>
+<option>
+Mathematics
+</option>
 
-<option>English</option>
+
+<option>
+Commerce
+</option>
+
+
+<option>
+Physics
+</option>
+
+
+<option>
+Chemistry
+</option>
+
+
+<option>
+English
+</option>
+
 
 </select>
 
+
 </div>
 
+
+
+<!-- Email -->
+
 <div class="col-md-6 mb-3">
+
 
 <label class="form-label">
 
@@ -334,16 +818,24 @@ Email
 
 </label>
 
+
 <input
-type="email"
-id="email"
-class="form-control"
-placeholder="Enter Email"
-required>
+    type="email"
+    id="email"
+    class="form-control"
+    placeholder="Logged-in Email"
+    readonly
+>
+
 
 </div>
 
+
+
+<!-- Mobile -->
+
 <div class="col-md-6 mb-3">
+
 
 <label class="form-label">
 
@@ -351,18 +843,28 @@ Mobile Number
 
 </label>
 
+
 <input
-type="tel"
-id="mobile"
-class="form-control"
-placeholder="Enter Mobile Number"
-required>
+    type="tel"
+    id="mobile"
+    class="form-control"
+    placeholder="Enter Mobile Number"
+>
+
 
 </div>
 
+
 </div>
+
+
+
+<!-- =====================================================
+     CAPTURE PROGRESS
+====================================================== -->
 
 <div class="mt-4">
+
 
 <label class="form-label fw-semibold">
 
@@ -370,232 +872,1871 @@ Face Capture Progress
 
 </label>
 
-<div class="progress" style="height:24px;">
+
 
 <div
-id="captureProgress"
-class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-role="progressbar"
-style="width:0%;">
+    class="progress"
+    style="height:24px;"
+>
+
+
+<div
+    id="captureProgress"
+    class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+    role="progressbar"
+    style="width:0%;"
+>
 
 0%
 
 </div>
 
+
 </div>
+
+
 
 <small class="text-muted">
 
-Capture at least <strong>20 face images</strong> before registration.
+Capture
+
+<strong>
+5 valid face samples
+</strong>
+
+before registration.
 
 </small>
 
+
 </div>
+
+
+
+<!-- =====================================================
+     REGISTER BUTTON
+====================================================== -->
 
 <div class="d-grid gap-2 mt-4">
 
+
 <button
-type="submit"
-id="registerFaceBtn"
-class="btn btn-success">
+    type="submit"
+    id="registerFaceBtn"
+    class="btn btn-success"
+    disabled
+>
+
 
 <i class="fa-solid fa-user-plus"></i>
 
+
 Register Face
+
 
 </button>
 
+
 </div>
+
 
 </form>
 
-</div>
 
 </div>
 
-</div>
 
 </div>
 
-</div>
 
 </div>
 
+
 </div>
 
-<!-- ================= Registration Success Modal ================= -->
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     SUCCESS MODAL
+========================================================= -->
 
 <div
-class="modal fade"
-id="registerSuccessModal"
-tabindex="-1">
+    class="modal fade"
+    id="registerSuccessModal"
+    tabindex="-1"
+>
+
 
 <div class="modal-dialog modal-dialog-centered">
 
+
 <div class="modal-content">
+
 
 <div class="modal-header bg-success text-white">
 
+
 <h5 class="modal-title">
+
 
 <i class="fa-solid fa-circle-check"></i>
 
+
 Registration Successful
+
 
 </h5>
 
-<button
-type="button"
-class="btn-close btn-close-white"
-data-bs-dismiss="modal">
 
+
+<button
+    type="button"
+    class="btn-close btn-close-white"
+    data-bs-dismiss="modal"
+>
 </button>
 
+
 </div>
+
+
 
 <div class="modal-body text-center">
 
-<i class="fa-solid fa-face-smile fa-4x text-success mb-3"></i>
 
-<h4>Face Registered Successfully!</h4>
+<i
+    class="fa-solid fa-face-smile fa-4x text-success mb-3">
+</i>
+
+
+<h4>
+
+Face Registered Successfully!
+
+</h4>
+
 
 <p>
 
-The face dataset has been captured successfully.
-The user is now ready for Face Login and Face Attendance.
+Your face descriptor has been
+securely linked to your account.
+
+You can now use Face Login.
 
 </p>
 
+
 </div>
+
+
 
 <div class="modal-footer">
 
+
 <button
-type="button"
-class="btn btn-success"
-data-bs-dismiss="modal">
+    type="button"
+    class="btn btn-success"
+    data-bs-dismiss="modal"
+>
 
 Done
 
 </button>
 
-</div>
+
+<a
+    href="face-login.html"
+    class="btn btn-primary"
+>
+
+Face Login
+
+</a>
+
 
 </div>
 
-</div>
 
 </div>
-<!-- ================= Bootstrap JS ================= -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     BOOTSTRAP
+========================================================= -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+
+<!-- =========================================================
+     FACE API
+========================================================= -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js">
+</script>
+
+
+
+<!-- =========================================================
+     EXISTING DASHBOARD JS
+========================================================= -->
+
 <script src="../../js/dashboard.js"></script>
-<!-- ================= JavaScript ================= -->
+
+
+
+<!-- =========================================================
+     FACE REGISTRATION JAVASCRIPT
+========================================================= -->
 
 <script>
 
-// ================= Elements =================
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-const startCameraBtn = document.getElementById("startCameraBtn");
-const captureFaceBtn = document.getElementById("captureFaceBtn");
-const retakeBtn = document.getElementById("retakeBtn");
 
-const captureCount = document.getElementById("captureCount");
-const captureProgress = document.getElementById("captureProgress");
+        // ====================================================
+        // CONFIGURATION
+        // ====================================================
 
-const faceRegisterForm = document.getElementById("faceRegisterForm");
+        const API_URL =
+            "http://127.0.0.1:5000/api";
 
-let capturedImages = 0;
 
-// ================= Start Camera =================
+        const MODEL_URL =
+            "https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@a86f011d72124e5fb93e59d5c4ab98f699dd5c9c/weights";
 
-if(startCameraBtn){
 
-startCameraBtn.addEventListener("click",function(){
+        const REQUIRED_CAPTURES =
+            5;
 
-alert("Camera started successfully! (Frontend Demo)");
 
-});
 
-}
+        // ====================================================
+        // ELEMENTS
+        // ====================================================
 
-// ================= Capture Face =================
+        const video =
+            document.getElementById(
+                "faceRegisterVideo"
+            );
 
-if(captureFaceBtn){
 
-captureFaceBtn.addEventListener("click",function(){
+        const cameraPlaceholder =
+            document.getElementById(
+                "cameraPlaceholder"
+            );
 
-if(capturedImages >= 20){
 
-alert("Required face images already captured.");
+        const faceGuide =
+            document.getElementById(
+                "faceGuide"
+            );
 
-return;
 
-}
+        const liveBadge =
+            document.getElementById(
+                "liveBadge"
+            );
 
-capturedImages++;
 
-captureCount.innerHTML = capturedImages + " / 20";
+        const startCameraBtn =
+            document.getElementById(
+                "startCameraBtn"
+            );
 
-const progress = (capturedImages / 20) * 100;
 
-captureProgress.style.width = progress + "%";
-captureProgress.innerHTML = Math.round(progress) + "%";
+        const captureFaceBtn =
+            document.getElementById(
+                "captureFaceBtn"
+            );
 
-if(capturedImages === 20){
 
-alert("Face dataset completed successfully!");
+        const retakeBtn =
+            document.getElementById(
+                "retakeBtn"
+            );
 
-}
 
-});
+        const registerFaceBtn =
+            document.getElementById(
+                "registerFaceBtn"
+            );
 
-}
 
-// ================= Retake =================
+        const cameraStatus =
+            document.getElementById(
+                "cameraStatus"
+            );
 
-if(retakeBtn){
 
-retakeBtn.addEventListener("click",function(){
+        const modelStatus =
+            document.getElementById(
+                "modelStatus"
+            );
 
-capturedImages = 0;
 
-captureCount.innerHTML = "0 / 20";
+        const faceDetectionStatus =
+            document.getElementById(
+                "faceDetectionStatus"
+            );
 
-captureProgress.style.width = "0%";
-captureProgress.innerHTML = "0%";
 
-alert("Captured images have been reset.");
+        const detectedFaces =
+            document.getElementById(
+                "detectedFaces"
+            );
 
-});
 
-}
+        const captureCount =
+            document.getElementById(
+                "captureCount"
+            );
 
-// ================= Register Face =================
 
-if(faceRegisterForm){
+        const qualityStatus =
+            document.getElementById(
+                "qualityStatus"
+            );
 
-faceRegisterForm.addEventListener("submit",function(e){
 
-e.preventDefault();
+        const captureProgress =
+            document.getElementById(
+                "captureProgress"
+            );
 
-if(capturedImages < 20){
 
-alert("Please capture at least 20 face images before registration.");
+        const faceRegisterForm =
+            document.getElementById(
+                "faceRegisterForm"
+            );
 
-return;
 
-}
+        const fullName =
+            document.getElementById(
+                "fullName"
+            );
 
-const modal = new bootstrap.Modal(document.getElementById("registerSuccessModal"));
 
-modal.show();
+        const userId =
+            document.getElementById(
+                "userId"
+            );
 
-});
 
-}
+        const userRole =
+            document.getElementById(
+                "userRole"
+            );
+
+
+        const email =
+            document.getElementById(
+                "email"
+            );
+
+
+        const mobile =
+            document.getElementById(
+                "mobile"
+            );
+
+
+        const department =
+            document.getElementById(
+                "department"
+            );
+
+
+
+        // ====================================================
+        // VARIABLES
+        // ====================================================
+
+        let cameraStream =
+            null;
+
+
+        let modelsReady =
+            false;
+
+
+        let cameraStarted =
+            false;
+
+
+        let capturing =
+            false;
+
+
+        let descriptors =
+            [];
+
+
+
+        // ====================================================
+        // AUTH CHECK
+        // ====================================================
+
+        const accessToken =
+            localStorage.getItem(
+                "fmps_access_token"
+            );
+
+
+        if (!accessToken) {
+
+
+            alert(
+                "Please login manually before registering your face."
+            );
+
+
+            window.location.href =
+                "admin-login.html";
+
+
+            return;
+
+        }
+
+
+
+        // ====================================================
+        // LOAD CURRENT USER
+        // ====================================================
+
+        function loadCurrentUser() {
+
+
+            try {
+
+
+                const stored =
+                    localStorage.getItem(
+                        "fmps_user"
+                    );
+
+
+                if (!stored) {
+                    return;
+                }
+
+
+                const user =
+                    JSON.parse(stored);
+
+
+                if (!user) {
+                    return;
+                }
+
+
+                userId.value =
+                    user.username ||
+                    user.id ||
+                    "";
+
+
+                email.value =
+                    user.email ||
+                    "";
+
+
+                if (user.role) {
+
+
+                    userRole.value =
+                        String(
+                            user.role
+                        ).toLowerCase();
+
+
+                }
+
+
+                if (
+                    user.profile
+                ) {
+
+
+                    fullName.value =
+                        user.profile.full_name ||
+                        user.username ||
+                        "";
+
+
+                    mobile.value =
+                        user.profile.phone ||
+                        "";
+
+
+                    const dept =
+                        user.profile.department;
+
+
+                    if (dept) {
+
+
+                        const departmentName =
+                            typeof dept ===
+                            "object"
+
+                                ? dept.name
+
+                                : dept;
+
+
+                        const option =
+                            Array.from(
+                                department.options
+                            ).find(
+                                function (item) {
+
+
+                                    return (
+                                        item.text
+                                            .toLowerCase()
+                                        ===
+                                        String(
+                                            departmentName
+                                        )
+                                            .toLowerCase()
+                                    );
+
+
+                                }
+                            );
+
+
+                        if (option) {
+
+
+                            department.value =
+                                option.value;
+
+
+                        }
+
+
+                    }
+
+
+                }
+
+
+                else {
+
+
+                    fullName.value =
+                        user.username ||
+                        "";
+
+
+                }
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(
+                    "User load error:",
+                    error
+                );
+
+
+            }
+
+
+        }
+
+
+
+        // ====================================================
+        // LOAD FACE MODELS
+        // ====================================================
+
+        async function loadFaceModels() {
+
+
+            try {
+
+
+                modelStatus.textContent =
+                    "Loading...";
+
+
+                modelStatus.className =
+                    "badge bg-warning text-dark";
+
+
+                await Promise.all([
+
+
+                    faceapi.nets
+                        .tinyFaceDetector
+                        .loadFromUri(
+                            MODEL_URL
+                        ),
+
+
+                    faceapi.nets
+                        .faceLandmark68Net
+                        .loadFromUri(
+                            MODEL_URL
+                        ),
+
+
+                    faceapi.nets
+                        .faceRecognitionNet
+                        .loadFromUri(
+                            MODEL_URL
+                        )
+
+
+                ]);
+
+
+                modelsReady =
+                    true;
+
+
+                modelStatus.textContent =
+                    "Ready";
+
+
+                modelStatus.className =
+                    "badge bg-success";
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(
+                    "Face model error:",
+                    error
+                );
+
+
+                modelStatus.textContent =
+                    "Failed";
+
+
+                modelStatus.className =
+                    "badge bg-danger";
+
+
+                alert(
+                    "Face recognition models could not be loaded. Check your internet connection."
+                );
+
+
+            }
+
+
+        }
+
+
+
+        // ====================================================
+        // START CAMERA
+        // ====================================================
+
+        async function startCamera() {
+
+
+            if (!modelsReady) {
+
+
+                alert(
+                    "AI models are still loading. Please wait a few seconds."
+                );
+
+
+                return;
+
+
+            }
+
+
+            try {
+
+
+                if (
+                    !navigator.mediaDevices ||
+                    !navigator.mediaDevices
+                        .getUserMedia
+                ) {
+
+
+                    alert(
+                        "Camera is not supported in this browser."
+                    );
+
+
+                    return;
+
+
+                }
+
+
+                cameraStream =
+                    await navigator.mediaDevices
+                        .getUserMedia(
+                            {
+
+
+                                video: {
+
+
+                                    facingMode:
+                                        "user",
+
+
+                                    width: {
+                                        ideal:
+                                            1280
+                                    },
+
+
+                                    height: {
+                                        ideal:
+                                            720
+                                    }
+
+
+                                },
+
+
+                                audio:
+                                    false
+
+
+                            }
+                        );
+
+
+                video.srcObject =
+                    cameraStream;
+
+
+                await video.play();
+
+
+                video.style.display =
+                    "block";
+
+
+                cameraPlaceholder
+                    .style.display =
+                    "none";
+
+
+                faceGuide.style.display =
+                    "block";
+
+
+                liveBadge.style.display =
+                    "flex";
+
+
+                cameraStarted =
+                    true;
+
+
+                startCameraBtn.disabled =
+                    true;
+
+
+                captureFaceBtn.disabled =
+                    false;
+
+
+                retakeBtn.disabled =
+                    false;
+
+
+                cameraStatus.textContent =
+                    "Online";
+
+
+                cameraStatus.className =
+                    "badge bg-success";
+
+
+                faceDetectionStatus
+                    .textContent =
+                    "Ready";
+
+
+                faceDetectionStatus
+                    .className =
+                    "badge bg-primary";
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(
+                    "Camera error:",
+                    error
+                );
+
+
+                cameraStatus.textContent =
+                    "Denied";
+
+
+                cameraStatus.className =
+                    "badge bg-danger";
+
+
+                alert(
+                    "Camera permission denied. Please allow camera permission and try again."
+                );
+
+
+            }
+
+
+        }
+
+
+
+        // ====================================================
+        // STOP CAMERA
+        // ====================================================
+
+        function stopCamera() {
+
+
+            if (cameraStream) {
+
+
+                cameraStream
+                    .getTracks()
+                    .forEach(
+                        function (track) {
+
+
+                            track.stop();
+
+
+                        }
+                    );
+
+
+            }
+
+
+            cameraStream =
+                null;
+
+
+            video.srcObject =
+                null;
+
+
+            cameraStarted =
+                false;
+
+
+            video.style.display =
+                "none";
+
+
+            cameraPlaceholder
+                .style.display =
+                "block";
+
+
+            faceGuide.style.display =
+                "none";
+
+
+            liveBadge.style.display =
+                "none";
+
+
+            cameraStatus.textContent =
+                "Offline";
+
+
+            cameraStatus.className =
+                "badge bg-secondary";
+
+
+        }
+
+
+
+        // ====================================================
+        // UPDATE PROGRESS
+        // ====================================================
+
+        function updateProgress() {
+
+
+            const total =
+                descriptors.length;
+
+
+            captureCount.textContent =
+                total +
+                " / " +
+                REQUIRED_CAPTURES;
+
+
+            const percentage =
+                Math.min(
+                    100,
+                    (
+                        total /
+                        REQUIRED_CAPTURES
+                    ) * 100
+                );
+
+
+            captureProgress
+                .style.width =
+                percentage + "%";
+
+
+            captureProgress
+                .textContent =
+                Math.round(
+                    percentage
+                ) + "%";
+
+
+            registerFaceBtn.disabled =
+                total <
+                REQUIRED_CAPTURES;
+
+
+        }
+
+
+
+        // ====================================================
+        // CAPTURE FACE
+        // ====================================================
+
+        async function captureFace() {
+
+
+            if (!cameraStarted) {
+
+
+                alert(
+                    "Please start the camera first."
+                );
+
+
+                return;
+
+
+            }
+
+
+            if (
+                descriptors.length >=
+                REQUIRED_CAPTURES
+            ) {
+
+
+                alert(
+                    "Required 5 face samples are already captured."
+                );
+
+
+                return;
+
+
+            }
+
+
+            if (capturing) {
+                return;
+            }
+
+
+            capturing =
+                true;
+
+
+            captureFaceBtn.disabled =
+                true;
+
+
+            faceDetectionStatus
+                .textContent =
+                "Scanning...";
+
+
+            faceDetectionStatus
+                .className =
+                "badge bg-warning text-dark";
+
+
+            try {
+
+
+                const options =
+                    new faceapi
+                        .TinyFaceDetectorOptions(
+                            {
+
+
+                                inputSize:
+                                    320,
+
+
+                                scoreThreshold:
+                                    0.5
+
+
+                            }
+                        );
+
+
+                const results =
+                    await faceapi
+                        .detectAllFaces(
+                            video,
+                            options
+                        )
+                        .withFaceLandmarks()
+                        .withFaceDescriptors();
+
+
+                detectedFaces.textContent =
+                    results.length;
+
+
+                // No face
+                if (
+                    results.length ===
+                    0
+                ) {
+
+
+                    faceDetectionStatus
+                        .textContent =
+                        "No Face";
+
+
+                    faceDetectionStatus
+                        .className =
+                        "badge bg-danger";
+
+
+                    qualityStatus
+                        .textContent =
+                        "Failed";
+
+
+                    alert(
+                        "No face detected. Please look directly at the camera."
+                    );
+
+
+                    return;
+
+
+                }
+
+
+                // More than one face
+                if (
+                    results.length >
+                    1
+                ) {
+
+
+                    faceDetectionStatus
+                        .textContent =
+                        "Multiple Faces";
+
+
+                    faceDetectionStatus
+                        .className =
+                        "badge bg-danger";
+
+
+                    qualityStatus
+                        .textContent =
+                        "Invalid";
+
+
+                    alert(
+                        "Multiple faces detected. Only one person should be visible."
+                    );
+
+
+                    return;
+
+
+                }
+
+
+                const result =
+                    results[0];
+
+
+                const confidence =
+                    Number(
+                        result
+                            .detection
+                            .score
+                    );
+
+
+                // Quality display
+
+                if (
+                    confidence >=
+                    0.80
+                ) {
+
+
+                    qualityStatus
+                        .textContent =
+                        "Excellent";
+
+
+                }
+
+                else if (
+                    confidence >=
+                    0.65
+                ) {
+
+
+                    qualityStatus
+                        .textContent =
+                        "Good";
+
+
+                }
+
+                else {
+
+
+                    qualityStatus
+                        .textContent =
+                        "Acceptable";
+
+
+                }
+
+
+                descriptors.push(
+                    Array.from(
+                        result.descriptor
+                    )
+                );
+
+
+                faceDetectionStatus
+                    .textContent =
+                    "Detected";
+
+
+                faceDetectionStatus
+                    .className =
+                    "badge bg-success";
+
+
+                updateProgress();
+
+
+                if (
+                    descriptors.length ===
+                    REQUIRED_CAPTURES
+                ) {
+
+
+                    alert(
+                        "5 face samples captured successfully. You can now register your face."
+                    );
+
+
+                }
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(
+                    "Face capture error:",
+                    error
+                );
+
+
+                faceDetectionStatus
+                    .textContent =
+                    "Error";
+
+
+                faceDetectionStatus
+                    .className =
+                    "badge bg-danger";
+
+
+                alert(
+                    "Unable to detect face. Please try again."
+                );
+
+
+            }
+
+            finally {
+
+
+                capturing =
+                    false;
+
+
+                if (
+                    descriptors.length <
+                    REQUIRED_CAPTURES
+                ) {
+
+
+                    captureFaceBtn.disabled =
+                        false;
+
+
+                }
+
+
+            }
+
+
+        }
+
+
+
+        // ====================================================
+        // EUCLIDEAN DISTANCE
+        // ====================================================
+
+        function descriptorDistance(
+            first,
+            second
+        ) {
+
+
+            let total =
+                0;
+
+
+            for (
+                let i = 0;
+                i < first.length;
+                i++
+            ) {
+
+
+                const difference =
+                    first[i] -
+                    second[i];
+
+
+                total +=
+                    difference *
+                    difference;
+
+
+            }
+
+
+            return Math.sqrt(
+                total
+            );
+
+
+        }
+
+
+
+        // ====================================================
+        // SELECT BEST DESCRIPTOR
+        //
+        // We captured 20 samples.
+        // Backend stores one descriptor.
+        //
+        // Choose the descriptor closest
+        // to all other captured samples.
+        // ====================================================
+
+        function getBestDescriptor() {
+
+
+            if (
+                descriptors.length ===
+                0
+            ) {
+
+
+                return null;
+
+
+            }
+
+
+            let bestIndex =
+                0;
+
+
+            let bestTotalDistance =
+                Infinity;
+
+
+            for (
+                let i = 0;
+                i < descriptors.length;
+                i++
+            ) {
+
+
+                let totalDistance =
+                    0;
+
+
+                for (
+                    let j = 0;
+                    j < descriptors.length;
+                    j++
+                ) {
+
+
+                    if (i === j) {
+                        continue;
+                    }
+
+
+                    totalDistance +=
+                        descriptorDistance(
+                            descriptors[i],
+                            descriptors[j]
+                        );
+
+
+                }
+
+
+                if (
+                    totalDistance <
+                    bestTotalDistance
+                ) {
+
+
+                    bestTotalDistance =
+                        totalDistance;
+
+
+                    bestIndex =
+                        i;
+
+
+                }
+
+
+            }
+
+
+            return descriptors[
+                bestIndex
+            ];
+
+
+        }
+
+
+
+        // ====================================================
+        // RETAKE
+        // ====================================================
+
+        function resetCaptures() {
+
+
+            descriptors =
+                [];
+
+
+            detectedFaces.textContent =
+                "0";
+
+
+            qualityStatus.textContent =
+                "Pending";
+
+
+            faceDetectionStatus
+                .textContent =
+                cameraStarted
+                    ? "Ready"
+                    : "Waiting...";
+
+
+            faceDetectionStatus
+                .className =
+                cameraStarted
+                    ? "badge bg-primary"
+                    : "badge bg-warning text-dark";
+
+
+            captureFaceBtn.disabled =
+                !cameraStarted;
+
+
+            registerFaceBtn.disabled =
+                true;
+
+
+            updateProgress();
+
+
+        }
+
+
+
+        // ====================================================
+        // REGISTER FACE IN BACKEND
+        // ====================================================
+
+        async function registerFace(
+            event
+        ) {
+
+
+            event.preventDefault();
+
+
+            if (
+                descriptors.length <
+                REQUIRED_CAPTURES
+            ) {
+
+
+                alert(
+                    "Please capture 5 valid face samples before registration."
+                );
+
+
+                return;
+
+
+            }
+
+
+            const token =
+                localStorage.getItem(
+                    "fmps_access_token"
+                );
+
+
+            if (!token) {
+
+
+                alert(
+                    "Your login session is missing. Please login again."
+                );
+
+
+                window.location.href =
+                    "admin-login.html";
+
+
+                return;
+
+
+            }
+
+
+            const descriptor =
+                getBestDescriptor();
+
+
+            if (
+                !descriptor ||
+                descriptor.length !==
+                128
+            ) {
+
+
+                alert(
+                    "Unable to prepare face descriptor. Please retake the face samples."
+                );
+
+
+                return;
+
+
+            }
+
+
+            const originalContent =
+                registerFaceBtn
+                    .innerHTML;
+
+
+            try {
+
+
+                registerFaceBtn.disabled =
+                    true;
+
+
+                captureFaceBtn.disabled =
+                    true;
+
+
+                registerFaceBtn.innerHTML = `
+
+                    <i
+                        class="fa-solid fa-spinner fa-spin">
+                    </i>
+
+                    Registering...
+
+                `;
+
+
+                const response =
+                    await fetch(
+                        API_URL +
+                        "/auth/face/register",
+                        {
+
+
+                            method:
+                                "POST",
+
+
+                            headers: {
+
+
+                                "Content-Type":
+                                    "application/json",
+
+
+                                "Authorization":
+                                    "Bearer " +
+                                    token
+
+
+                            },
+
+
+                            body:
+                                JSON.stringify(
+                                    {
+
+
+                                        descriptor:
+                                            descriptor
+
+
+                                    }
+                                )
+
+
+                        }
+                    );
+
+
+                let result =
+                    {};
+
+
+                try {
+
+
+                    result =
+                        await response
+                            .json();
+
+
+                }
+
+                catch (error) {
+
+
+                    result =
+                        {};
+
+
+                }
+
+
+                if (
+                    !response.ok ||
+                    result.success ===
+                    false
+                ) {
+
+
+                    const error =
+                        new Error(
+                            result.message ||
+                            "Unable to register face."
+                        );
+
+
+                    error.status =
+                        response.status;
+
+
+                    throw error;
+
+
+                }
+
+
+                stopCamera();
+
+
+                const modalElement =
+                    document.getElementById(
+                        "registerSuccessModal"
+                    );
+
+
+                const modal =
+                    bootstrap.Modal
+                        .getOrCreateInstance(
+                            modalElement
+                        );
+
+
+                modal.show();
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(
+                    "Face registration error:",
+                    error
+                );
+
+
+                if (
+                    error.status ===
+                    401
+                ) {
+
+
+                    alert(
+                        "Your login session has expired. Please login again."
+                    );
+
+
+                    window.location.href =
+                        "admin-login.html";
+
+
+                    return;
+
+
+                }
+
+
+                alert(
+                    error.message ||
+                    "Unable to register face. Please try again."
+                );
+
+
+            }
+
+            finally {
+
+
+                registerFaceBtn
+                    .innerHTML =
+                    originalContent;
+
+
+                if (
+                    descriptors.length >=
+                    REQUIRED_CAPTURES
+                ) {
+
+
+                    registerFaceBtn.disabled =
+                        false;
+
+
+                }
+
+
+                if (
+                    cameraStarted &&
+                    descriptors.length <
+                    REQUIRED_CAPTURES
+                ) {
+
+
+                    captureFaceBtn.disabled =
+                        false;
+
+
+                }
+
+
+            }
+
+
+        }
+
+
+
+        // ====================================================
+        // EVENTS
+        // ====================================================
+
+        startCameraBtn
+            .addEventListener(
+                "click",
+                startCamera
+            );
+
+
+        captureFaceBtn
+            .addEventListener(
+                "click",
+                captureFace
+            );
+
+
+        retakeBtn
+            .addEventListener(
+                "click",
+                function () {
+
+
+                    if (
+                        confirm(
+                            "Reset all captured face samples?"
+                        )
+                    ) {
+
+
+                        resetCaptures();
+
+
+                    }
+
+
+                }
+            );
+
+
+        faceRegisterForm
+            .addEventListener(
+                "submit",
+                registerFace
+            );
+
+
+
+        // ====================================================
+        // STOP CAMERA WHEN PAGE CLOSES
+        // ====================================================
+
+        window.addEventListener(
+            "beforeunload",
+            function () {
+
+
+                if (cameraStream) {
+
+
+                    cameraStream
+                        .getTracks()
+                        .forEach(
+                            function (
+                                track
+                            ) {
+
+
+                                track.stop();
+
+
+                            }
+                        );
+
+
+                }
+
+
+            }
+        );
+
+
+
+        // ====================================================
+        // START PAGE
+        // ====================================================
+
+        loadCurrentUser();
+
+
+        updateProgress();
+
+
+        loadFaceModels();
+
+
+    }
+);
 
 </script>
+
 
 </body>
 
