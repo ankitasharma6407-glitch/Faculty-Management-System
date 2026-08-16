@@ -2,9 +2,19 @@ from datetime import datetime
 
 from flask import Blueprint, jsonify, request
 
-from ..extensions import db
-from ..models import Notice, User
+from flask_jwt_extended import (
+    jwt_required,
+    get_jwt_identity,
+)
 
+from ..extensions import db
+
+from ..models import (
+    Notice,
+    User,
+    Hod,
+    Notification,
+)
 
 # ============================================================
 # BLUEPRINT
@@ -74,6 +84,133 @@ def get_json_data():
         silent=True
     ) or {}
 
+
+# ============================================================
+# HELPER - ADMIN NOTICE NOTIFICATIONS
+# ============================================================
+
+def create_admin_notice_notifications(
+    notice,
+    creator
+):
+
+    # Only Admin published notices generate notifications
+    if not creator:
+        return 0
+
+    if (
+        str(creator.role or "")
+        .strip()
+        .lower()
+        != "admin"
+    ):
+        return 0
+
+    if (
+        str(notice.status or "")
+        .strip()
+        .lower()
+        != "published"
+    ):
+        return 0
+
+
+    audience = (
+        str(notice.audience or "all")
+        .strip()
+        .lower()
+    )
+
+
+    # --------------------------------------------------------
+    # TARGET ROLES
+    # --------------------------------------------------------
+
+    audience_roles = {
+
+        "all": (
+            "hod",
+            "teacher",
+            "student",
+        ),
+
+        "hod": (
+            "hod",
+        ),
+
+        "teacher": (
+            "teacher",
+        ),
+
+        "student": (
+            "student",
+        ),
+    }
+
+
+    target_roles = (
+        audience_roles.get(
+            audience,
+            ()
+        )
+    )
+
+
+    if not target_roles:
+        return 0
+
+
+    # --------------------------------------------------------
+    # ACTIVE TARGET USERS
+    # --------------------------------------------------------
+
+    users = (
+        User.query
+        .filter(
+            User.role.in_(
+                target_roles
+            ),
+            User.is_active.is_(True)
+        )
+        .all()
+    )
+
+
+    notification_count = 0
+
+
+    for target_user in users:
+
+        notification = Notification(
+
+            user_id=
+                target_user.id,
+
+            title=
+                f"New Notice: {notice.title}",
+
+            message=
+                notice.message,
+
+            category=
+                "notice",
+
+            link=
+                None,
+
+            is_read=
+                False
+        )
+
+
+        db.session.add(
+            notification
+        )
+
+        notification_count += 1
+
+
+    return notification_count
 
 # ============================================================
 # GET ALL NOTICES
@@ -363,7 +500,9 @@ def get_notice(notice_id):
 # ============================================================
 
 @bp.post("")
+@jwt_required()
 def create_notice():
+
 
     try:
 
@@ -430,9 +569,55 @@ def create_notice():
         ).strip()
 
 
-        created_by = data.get(
-            "created_by"
+        # ====================================================
+        # CURRENT LOGGED-IN ADMIN
+        # ====================================================
+
+        identity = get_jwt_identity()
+
+        try:
+            user_id = int(identity)
+
+        except (TypeError, ValueError):
+            return jsonify({
+                "success": False,
+                "message": "Invalid login session"
+            }), 401
+
+
+        creator = db.session.get(
+            User,
+            user_id
         )
+
+
+        if not creator:
+            return jsonify({
+                "success": False,
+                "message": "User not found"
+            }), 404
+
+
+        if (
+            str(creator.role or "")
+            .strip()
+            .lower()
+            != "admin"
+        ):
+            return jsonify({
+                "success": False,
+                "message": "Admin access required"
+            }), 403
+
+
+        if not creator.is_active:
+            return jsonify({
+                "success": False,
+                "message": "Admin account is inactive"
+            }), 403
+
+
+        created_by = creator.id
 
 
         # ====================================================
@@ -628,8 +813,39 @@ def create_notice():
             notice
         )
 
+        # Generate notice ID before final commit
+        db.session.flush()
+
+
+        # ========================================================
+        # CREATE NOTIFICATIONS
+        # ========================================================
+
+        notification_count = create_admin_notice_notifications(
+            notice,
+            creator
+        )
+
+
+        # ========================================================
+        # SAVE NOTICE + NOTIFICATIONS TOGETHER
+        # ========================================================
 
         db.session.commit()
+
+
+        return jsonify({
+
+            "success": True,
+
+            "message":
+                "Notice created successfully.",
+                 
+
+            "data":
+                notice.to_dict(),
+
+        }), 201
 
 
         return jsonify({
@@ -1070,3 +1286,1079 @@ def delete_notice(notice_id):
                 str(error),
 
         }), 500
+
+
+# ============================================================
+# HOD NOTICE HELPER
+# ============================================================
+
+def get_current_hod_for_notices():
+
+    identity = get_jwt_identity()
+
+    try:
+        user_id = int(identity)
+
+    except (TypeError, ValueError):
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "Invalid login session"
+            }),
+            401
+        )
+
+
+    user = db.session.get(
+        User,
+        user_id
+    )
+
+
+    if not user:
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "User not found"
+            }),
+            404
+        )
+
+
+    if (
+        str(user.role or "")
+        .strip()
+        .lower()
+        != "hod"
+    ):
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "HOD access required"
+            }),
+            403
+        )
+
+
+    if not user.is_active:
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "HOD account is inactive"
+            }),
+            403
+        )
+
+
+    hod = (
+        Hod.query
+        .filter_by(
+            user_id=user.id
+        )
+        .first()
+    )
+
+
+    if not hod:
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "HOD profile not found"
+            }),
+            404
+        )
+
+
+    if not hod.department_id:
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message":
+                    "No department is assigned to this HOD"
+            }),
+            403
+        )
+
+
+    return user, hod, None
+
+
+# ============================================================
+# HOD - GET NOTICES
+#
+# GET /api/notices/hod
+#
+# HOD can see:
+# 1. Global Admin/System notices for all or HOD
+# 2. Notices created by this HOD
+# 3. Same-department HOD notices
+# ============================================================
+
+@bp.get("/hod")
+@jwt_required()
+def get_hod_notices():
+
+    try:
+
+        user, hod, error_response = (
+            get_current_hod_for_notices()
+        )
+
+
+        if error_response:
+
+            return error_response
+
+
+        notices = (
+            Notice.query
+            .order_by(
+                Notice.created_at.desc(),
+                Notice.id.desc()
+            )
+            .all()
+        )
+
+
+        today = (
+            datetime.now().date()
+        )
+
+
+        data = []
+
+
+        for notice in notices:
+
+            is_own_notice = (
+                notice.created_by
+                == user.id
+            )
+
+
+            include_notice = False
+
+
+            # =================================================
+            # OWN HOD NOTICE
+            #
+            # Own drafts / published / archived are visible
+            # so HOD can manage them later.
+            # =================================================
+
+            if is_own_notice:
+
+                include_notice = True
+
+
+            else:
+
+                notice_status = (
+                    str(
+                        notice.status or ""
+                    )
+                    .strip()
+                    .lower()
+                )
+
+
+                notice_audience = (
+                    str(
+                        notice.audience or ""
+                    )
+                    .strip()
+                    .lower()
+                )
+
+
+                # ---------------------------------------------
+                # Other notices must be published
+                # ---------------------------------------------
+
+                if (
+                    notice_status
+                    != "published"
+                ):
+
+                    continue
+
+
+                # ---------------------------------------------
+                # HOD only receives all/hod notices
+                # ---------------------------------------------
+
+                if (
+                    notice_audience
+                    not in (
+                        "all",
+                        "hod",
+                    )
+                ):
+
+                    continue
+
+
+                # ---------------------------------------------
+                # Ignore expired notices
+                # ---------------------------------------------
+
+                if (
+                    notice.expiry_date
+                    and
+                    notice.expiry_date
+                    < today
+                ):
+
+                    continue
+
+
+                creator = (
+                    notice.creator
+                )
+
+
+                # ---------------------------------------------
+                # SYSTEM NOTICE
+                # ---------------------------------------------
+
+                if creator is None:
+
+                    include_notice = True
+
+
+                else:
+
+                    creator_role = (
+                        str(
+                            creator.role or ""
+                        )
+                        .strip()
+                        .lower()
+                    )
+
+
+                    # -----------------------------------------
+                    # ADMIN NOTICE = GLOBAL
+                    # -----------------------------------------
+
+                    if (
+                        creator_role
+                        == "admin"
+                    ):
+
+                        include_notice = True
+
+
+                    # -----------------------------------------
+                    # HOD NOTICE =
+                    # ONLY SAME DEPARTMENT
+                    # -----------------------------------------
+
+                    elif (
+                        creator_role
+                        == "hod"
+                    ):
+
+                        creator_hod = (
+                            Hod.query
+                            .filter_by(
+                                user_id=
+                                    creator.id
+                            )
+                            .first()
+                        )
+
+
+                        if (
+                            creator_hod
+                            and
+                            creator_hod.department_id
+                            == hod.department_id
+                        ):
+
+                            include_notice = True
+
+
+            if not include_notice:
+
+                continue
+
+
+            item = (
+                notice.to_dict()
+            )
+
+
+            # =================================================
+            # EXTRA HOD INFORMATION
+            # =================================================
+
+            item["is_own"] = (
+                is_own_notice
+            )
+
+
+            item["can_edit"] = (
+                is_own_notice
+            )
+
+
+            item["can_delete"] = (
+                is_own_notice
+            )
+
+
+            item["source"] = (
+                "department"
+                if is_own_notice
+                else "system"
+            )
+
+
+            data.append(
+                item
+            )
+
+
+        # ====================================================
+        # SUMMARY
+        # ====================================================
+
+        summary = {
+
+            "total":
+                len(data),
+
+            "published":
+                sum(
+                    1
+                    for item in data
+                    if (
+                        str(
+                            item.get(
+                                "status",
+                                ""
+                            )
+                        ).lower()
+                        == "published"
+                    )
+                ),
+
+            "draft":
+                sum(
+                    1
+                    for item in data
+                    if (
+                        str(
+                            item.get(
+                                "status",
+                                ""
+                            )
+                        ).lower()
+                        == "draft"
+                    )
+                ),
+
+            "urgent":
+                sum(
+                    1
+                    for item in data
+                    if (
+                        str(
+                            item.get(
+                                "priority",
+                                ""
+                            )
+                        ).lower()
+                        == "urgent"
+                    )
+                ),
+
+            "created_by_me":
+                sum(
+                    1
+                    for item in data
+                    if item.get(
+                        "is_own"
+                    )
+                )
+        }
+
+
+        return jsonify({
+
+            "success": True,
+
+            "department_id":
+                hod.department_id,
+
+            "department":
+                (
+                    hod.department.name
+                    if hod.department
+                    else None
+                ),
+
+            "summary":
+                summary,
+
+            "data":
+                data
+
+        }), 200
+
+
+    except Exception as error:
+
+        return jsonify({
+
+            "success": False,
+
+            "message":
+                "Unable to load HOD notices.",
+
+            "error":
+                str(error)
+
+        }), 500
+
+
+    
+# ============================================================
+# HOD - CREATE NOTICE
+#
+# POST /api/notices/hod
+# ============================================================
+
+@bp.post("/hod")
+@jwt_required()
+def create_hod_notice():
+
+    try:
+
+        user, hod, error_response = (
+            get_current_hod_for_notices()
+        )
+
+        if error_response:
+            return error_response
+
+
+        data = get_json_data()
+
+
+        # ----------------------------------------------------
+        # BASIC VALUES
+        # ----------------------------------------------------
+
+        title = str(
+            data.get(
+                "title",
+                ""
+            ) or ""
+        ).strip()
+
+
+        message = str(
+            data.get(
+                "message",
+                ""
+            ) or ""
+        ).strip()
+
+
+        category = str(
+            data.get(
+                "category",
+                "general"
+            ) or "general"
+        ).strip().lower()
+
+
+        audience = str(
+            data.get(
+                "audience",
+                "all"
+            ) or "all"
+        ).strip().lower()
+
+
+        priority = str(
+            data.get(
+                "priority",
+                "normal"
+            ) or "normal"
+        ).strip().lower()
+
+
+        status = str(
+            data.get(
+                "status",
+                "published"
+            ) or "published"
+        ).strip().lower()
+
+
+        expiry_date_value = str(
+            data.get(
+                "expiry_date",
+                ""
+            ) or ""
+        ).strip()
+
+
+        # ----------------------------------------------------
+        # REQUIRED
+        # ----------------------------------------------------
+
+        if not title:
+
+            return jsonify({
+                "success": False,
+                "message":
+                    "Notice title is required."
+            }), 400
+
+
+        if not message:
+
+            return jsonify({
+                "success": False,
+                "message":
+                    "Notice message is required."
+            }), 400
+
+
+        # ----------------------------------------------------
+        # VALIDATION
+        # ----------------------------------------------------
+
+        if category not in VALID_CATEGORIES:
+
+            return jsonify({
+                "success": False,
+                "message":
+                    "Invalid notice category."
+            }), 400
+
+
+        if audience not in VALID_AUDIENCES:
+
+            return jsonify({
+                "success": False,
+                "message":
+                    "Invalid notice audience."
+            }), 400
+
+
+        if priority not in VALID_PRIORITIES:
+
+            return jsonify({
+                "success": False,
+                "message":
+                    "Invalid notice priority."
+            }), 400
+
+
+        if status not in VALID_STATUSES:
+
+            return jsonify({
+                "success": False,
+                "message":
+                    "Invalid notice status."
+            }), 400
+
+
+        # ----------------------------------------------------
+        # EXPIRY DATE
+        # ----------------------------------------------------
+
+        expiry_date = None
+
+
+        if expiry_date_value:
+
+            expiry_date = parse_date(
+                expiry_date_value
+            )
+
+
+            if not expiry_date:
+
+                return jsonify({
+                    "success": False,
+                    "message":
+                        "Invalid expiry_date. Use YYYY-MM-DD."
+                }), 400
+
+
+        # ----------------------------------------------------
+        # IMPORTANT:
+        # created_by comes from JWT.
+        # HOD cannot send another user id.
+        # ----------------------------------------------------
+
+        notice = Notice(
+
+            title=title,
+
+            message=message,
+
+            category=category,
+
+            audience=audience,
+
+            priority=priority,
+
+            status=status,
+
+            expiry_date=expiry_date,
+
+            created_by=user.id
+        )
+
+
+        db.session.add(
+            notice
+        )
+
+        db.session.commit()
+
+
+        item = notice.to_dict()
+
+        item["is_own"] = True
+        item["can_edit"] = True
+        item["can_delete"] = True
+        item["source"] = "department"
+
+
+        return jsonify({
+
+            "success": True,
+
+            "message":
+                "HOD notice created successfully.",
+
+            "department_id":
+                hod.department_id,
+
+            "department":
+                (
+                    hod.department.name
+                    if hod.department
+                    else None
+                ),
+
+            "data":
+                item
+
+        }), 201
+
+
+    except Exception as error:
+
+        db.session.rollback()
+
+
+        return jsonify({
+
+            "success": False,
+
+            "message":
+                "Unable to create HOD notice.",
+
+            "error":
+                str(error)
+
+        }), 500
+
+
+# ============================================================
+# HOD - UPDATE OWN NOTICE
+#
+# PATCH /api/notices/hod/<notice_id>
+# ============================================================
+
+@bp.patch("/hod/<int:notice_id>")
+@jwt_required()
+def update_hod_notice(
+    notice_id
+):
+
+    try:
+
+        user, hod, error_response = (
+            get_current_hod_for_notices()
+        )
+
+        if error_response:
+            return error_response
+
+
+        notice = db.session.get(
+            Notice,
+            notice_id
+        )
+
+
+        if not notice:
+
+            return jsonify({
+                "success": False,
+                "message":
+                    "Notice not found."
+            }), 404
+
+
+        # ----------------------------------------------------
+        # HOD CAN UPDATE ONLY OWN NOTICE
+        # ----------------------------------------------------
+
+        if notice.created_by != user.id:
+
+            return jsonify({
+                "success": False,
+                "message":
+                    "You can only update notices created by you."
+            }), 403
+
+
+        data = get_json_data()
+
+
+        if not data:
+
+            return jsonify({
+                "success": False,
+                "message":
+                    "No notice data provided."
+            }), 400
+
+
+        # ----------------------------------------------------
+        # TITLE
+        # ----------------------------------------------------
+
+        if "title" in data:
+
+            title = str(
+                data.get(
+                    "title",
+                    ""
+                ) or ""
+            ).strip()
+
+
+            if not title:
+
+                return jsonify({
+                    "success": False,
+                    "message":
+                        "Notice title cannot be empty."
+                }), 400
+
+
+            notice.title = title
+
+
+        # ----------------------------------------------------
+        # MESSAGE
+        # ----------------------------------------------------
+
+        if "message" in data:
+
+            message = str(
+                data.get(
+                    "message",
+                    ""
+                ) or ""
+            ).strip()
+
+
+            if not message:
+
+                return jsonify({
+                    "success": False,
+                    "message":
+                        "Notice message cannot be empty."
+                }), 400
+
+
+            notice.message = message
+
+
+        # ----------------------------------------------------
+        # CATEGORY
+        # ----------------------------------------------------
+
+        if "category" in data:
+
+            category = str(
+                data.get(
+                    "category",
+                    ""
+                ) or ""
+            ).strip().lower()
+
+
+            if category not in VALID_CATEGORIES:
+
+                return jsonify({
+                    "success": False,
+                    "message":
+                        "Invalid notice category."
+                }), 400
+
+
+            notice.category = category
+
+
+        # ----------------------------------------------------
+        # AUDIENCE
+        # ----------------------------------------------------
+
+        if "audience" in data:
+
+            audience = str(
+                data.get(
+                    "audience",
+                    ""
+                ) or ""
+            ).strip().lower()
+
+
+            if audience not in VALID_AUDIENCES:
+
+                return jsonify({
+                    "success": False,
+                    "message":
+                        "Invalid notice audience."
+                }), 400
+
+
+            notice.audience = audience
+
+
+        # ----------------------------------------------------
+        # PRIORITY
+        # ----------------------------------------------------
+
+        if "priority" in data:
+
+            priority = str(
+                data.get(
+                    "priority",
+                    ""
+                ) or ""
+            ).strip().lower()
+
+
+            if priority not in VALID_PRIORITIES:
+
+                return jsonify({
+                    "success": False,
+                    "message":
+                        "Invalid notice priority."
+                }), 400
+
+
+            notice.priority = priority
+
+
+        # ----------------------------------------------------
+        # STATUS
+        # ----------------------------------------------------
+
+        if "status" in data:
+
+            status = str(
+                data.get(
+                    "status",
+                    ""
+                ) or ""
+            ).strip().lower()
+
+
+            if status not in VALID_STATUSES:
+
+                return jsonify({
+                    "success": False,
+                    "message":
+                        "Invalid notice status."
+                }), 400
+
+
+            notice.status = status
+
+
+        # ----------------------------------------------------
+        # EXPIRY DATE
+        # ----------------------------------------------------
+
+        if "expiry_date" in data:
+
+            expiry_date_value = str(
+                data.get(
+                    "expiry_date",
+                    ""
+                ) or ""
+            ).strip()
+
+
+            if not expiry_date_value:
+
+                notice.expiry_date = None
+
+            else:
+
+                expiry_date = parse_date(
+                    expiry_date_value
+                )
+
+
+                if not expiry_date:
+
+                    return jsonify({
+                        "success": False,
+                        "message":
+                            "Invalid expiry_date. Use YYYY-MM-DD."
+                    }), 400
+
+
+                notice.expiry_date = (
+                    expiry_date
+                )
+
+
+        db.session.commit()
+
+
+        item = notice.to_dict()
+
+        item["is_own"] = True
+        item["can_edit"] = True
+        item["can_delete"] = True
+        item["source"] = "department"
+
+
+        return jsonify({
+
+            "success": True,
+
+            "message":
+                "HOD notice updated successfully.",
+
+            "data":
+                item
+
+        }), 200
+
+
+    except Exception as error:
+
+        db.session.rollback()
+
+
+        return jsonify({
+
+            "success": False,
+
+            "message":
+                "Unable to update HOD notice.",
+
+            "error":
+                str(error)
+
+        }), 500
+
+
+# ============================================================
+# HOD - DELETE OWN NOTICE
+#
+# DELETE /api/notices/hod/<notice_id>
+# ============================================================
+
+@bp.delete("/hod/<int:notice_id>")
+@jwt_required()
+def delete_hod_notice(
+    notice_id
+):
+
+    try:
+
+        user, hod, error_response = (
+            get_current_hod_for_notices()
+        )
+
+        if error_response:
+            return error_response
+
+
+        notice = db.session.get(
+            Notice,
+            notice_id
+        )
+
+
+        if not notice:
+
+            return jsonify({
+                "success": False,
+                "message":
+                    "Notice not found."
+            }), 404
+
+
+        # ----------------------------------------------------
+        # HOD CAN DELETE ONLY OWN NOTICE
+        # ----------------------------------------------------
+
+        if notice.created_by != user.id:
+
+            return jsonify({
+                "success": False,
+                "message":
+                    "You can only delete notices created by you."
+            }), 403
+
+
+        db.session.delete(
+            notice
+        )
+
+        db.session.commit()
+
+
+        return jsonify({
+
+            "success": True,
+
+            "message":
+                "HOD notice deleted successfully."
+
+        }), 200
+
+
+    except Exception as error:
+
+        db.session.rollback()
+
+
+        return jsonify({
+
+            "success": False,
+
+            "message":
+                "Unable to delete HOD notice.",
+
+            "error":
+                str(error)
+
+        }), 500    

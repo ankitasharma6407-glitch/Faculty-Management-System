@@ -716,7 +716,7 @@ Dashboard / Teacher Performance
 <div>
 
 <h3 id="totalTeachers">
-6
+0
 </h3>
 
 <p>Total Teachers</p>
@@ -737,7 +737,7 @@ Dashboard / Teacher Performance
 <div>
 
 <h3 id="excellentTeachers">
-3
+0
 </h3>
 
 <p>Excellent</p>
@@ -757,8 +757,8 @@ Dashboard / Teacher Performance
 
 <div>
 
-<h3>
-89%
+<h3 id="averagePerformance">
+0%
 </h3>
 
 <p>Average Performance</p>
@@ -778,11 +778,11 @@ Dashboard / Teacher Performance
 
 <div>
 
-<h3>
-4.5
+<h3 id="needsImprovement">
+0
 </h3>
 
-<p>Average Feedback</p>
+<p>Needs Improvement</p>
 
 </div>
 
@@ -815,38 +815,13 @@ Filter Performance
 <label class="form-label fw-semibold">
 Subject
 </label>
-
 <select
 id="subjectFilter"
 class="form-select">
 
-<option value="">
-All Subjects
-</option>
-
-<option value="Java">
-Java
-</option>
-
-<option value="DBMS">
-DBMS
-</option>
-
-<option value="Python">
-Python
-</option>
-
-<option value="Operating System">
-Operating System
-</option>
-
-<option value="Computer Network">
-Computer Network
-</option>
-
-<option value="Data Structure">
-Data Structure
-</option>
+    <option value="">
+        All Subjects
+    </option>
 
 </select>
 
@@ -858,30 +833,29 @@ Data Structure
 <label class="form-label fw-semibold">
 Performance
 </label>
-
 <select
 id="performanceFilter"
 class="form-select">
 
-<option value="">
-All Performance
-</option>
+    <option value="">
+        All Performance
+    </option>
 
-<option value="Excellent">
-Excellent
-</option>
+    <option value="Excellent">
+        Excellent
+    </option>
 
-<option value="Very Good">
-Very Good
-</option>
+    <option value="Good">
+        Good
+    </option>
 
-<option value="Good">
-Good
-</option>
+    <option value="Average">
+        Average
+    </option>
 
-<option value="Average">
-Average
-</option>
+    <option value="Poor">
+        Poor
+    </option>
 
 </select>
 
@@ -891,28 +865,16 @@ Average
 <div>
 
 <label class="form-label fw-semibold">
-Minimum Attendance
+Term / Semester
 </label>
 
 <select
-id="attendanceFilter"
+id="termFilter"
 class="form-select">
 
-<option value="0">
-All Attendance
-</option>
-
-<option value="90">
-90%+
-</option>
-
-<option value="80">
-80%+
-</option>
-
-<option value="70">
-70%+
-</option>
+    <option value="">
+        All Terms
+    </option>
 
 </select>
 
@@ -1052,16 +1014,16 @@ class="table table-bordered table-hover performance-table text-center align-midd
 
 <tr>
 
-<th>ID</th>
-<th>Teacher</th>
-<th>Subject</th>
-<th>Attendance</th>
-<th>Classes</th>
-<th>Syllabus</th>
-<th>Feedback</th>
-<th>Score</th>
-<th>Performance</th>
-<th>Action</th>
+    <th>Teacher ID</th>
+    <th>Teacher</th>
+    <th>Subject</th>
+    <th>Term</th>
+    <th>Score</th>
+    <th>Maximum Score</th>
+    <th>Grade</th>
+    <th>Performance</th>
+    <th>Remarks</th>
+    <th>Action</th>
 
 </tr>
 
@@ -1070,622 +1032,17 @@ class="table table-bordered table-hover performance-table text-center align-midd
 
 <tbody id="performanceTableBody">
 
+    <tr>
 
-<!-- ================= TEACHER 1 ================= -->
+        <td
+            colspan="10"
+            class="text-center text-muted py-4">
 
-<tr
-data-subject="Java"
-data-performance="Excellent"
-data-attendance="96">
+            Loading performance records...
 
-<td>TCH001</td>
+        </td>
 
-<td class="text-start">
-
-<img
-src="https://i.pravatar.cc/100?img=11"
-class="teacher-photo"
-alt="">
-
-Rahul Kumar
-
-</td>
-
-<td>Java</td>
-
-<td>
-
-<strong>96%</strong>
-
-<div class="progress progress-small mt-1">
-
-<div
-class="progress-bar bg-success"
-style="width:96%;">
-</div>
-
-</div>
-
-</td>
-
-<td>82 / 85</td>
-
-<td>
-
-<strong>95%</strong>
-
-<div class="progress progress-small mt-1">
-
-<div
-class="progress-bar bg-success"
-style="width:95%;">
-</div>
-
-</div>
-
-</td>
-
-<td>
-
-<i class="fa-solid fa-star text-warning"></i>
-
-4.8
-
-</td>
-
-<td>
-
-<span class="score-circle score-excellent">
-
-94
-
-</span>
-
-</td>
-
-<td>
-
-<span class="badge bg-success">
-
-Excellent
-
-</span>
-
-</td>
-
-<td>
-
-<button
-class="btn btn-info btn-sm view-performance"
-
-data-id="TCH001"
-data-name="Rahul Kumar"
-data-subject="Java"
-data-attendance="96%"
-data-classes="82 / 85"
-data-syllabus="95%"
-data-feedback="4.8 / 5"
-data-score="94 / 100"
-data-performance="Excellent">
-
-<i class="fa-solid fa-eye"></i>
-
-</button>
-
-</td>
-
-</tr>
-
-
-<!-- ================= TEACHER 2 ================= -->
-
-<tr
-data-subject="DBMS"
-data-performance="Excellent"
-data-attendance="94">
-
-<td>TCH002</td>
-
-<td class="text-start">
-
-<img
-src="https://i.pravatar.cc/100?img=47"
-class="teacher-photo"
-alt="">
-
-Priya Singh
-
-</td>
-
-<td>DBMS</td>
-
-<td>
-
-<strong>94%</strong>
-
-<div class="progress progress-small mt-1">
-
-<div
-class="progress-bar bg-success"
-style="width:94%;">
-</div>
-
-</div>
-
-</td>
-
-<td>78 / 82</td>
-
-<td>
-
-<strong>92%</strong>
-
-<div class="progress progress-small mt-1">
-
-<div
-class="progress-bar bg-success"
-style="width:92%;">
-</div>
-
-</div>
-
-</td>
-
-<td>
-
-<i class="fa-solid fa-star text-warning"></i>
-
-4.7
-
-</td>
-
-<td>
-
-<span class="score-circle score-excellent">
-92
-</span>
-
-</td>
-
-<td>
-
-<span class="badge bg-success">
-Excellent
-</span>
-
-</td>
-
-<td>
-
-<button
-class="btn btn-info btn-sm view-performance"
-
-data-id="TCH002"
-data-name="Priya Singh"
-data-subject="DBMS"
-data-attendance="94%"
-data-classes="78 / 82"
-data-syllabus="92%"
-data-feedback="4.7 / 5"
-data-score="92 / 100"
-data-performance="Excellent">
-
-<i class="fa-solid fa-eye"></i>
-
-</button>
-
-</td>
-
-</tr>
-
-
-<!-- ================= TEACHER 3 ================= -->
-
-<tr
-data-subject="Python"
-data-performance="Very Good"
-data-attendance="91">
-
-<td>TCH003</td>
-
-<td class="text-start">
-
-<img
-src="https://i.pravatar.cc/100?img=13"
-class="teacher-photo"
-alt="">
-
-Amit Raj
-
-</td>
-
-<td>Python</td>
-
-<td>
-
-<strong>91%</strong>
-
-<div class="progress progress-small mt-1">
-
-<div
-class="progress-bar bg-primary"
-style="width:91%;">
-</div>
-
-</div>
-
-</td>
-
-<td>75 / 80</td>
-
-<td>
-
-<strong>88%</strong>
-
-<div class="progress progress-small mt-1">
-
-<div
-class="progress-bar bg-primary"
-style="width:88%;">
-</div>
-
-</div>
-
-</td>
-
-<td>
-
-<i class="fa-solid fa-star text-warning"></i>
-
-4.5
-
-</td>
-
-<td>
-
-<span class="score-circle score-good">
-88
-</span>
-
-</td>
-
-<td>
-
-<span class="badge bg-primary">
-Very Good
-</span>
-
-</td>
-
-<td>
-
-<button
-class="btn btn-info btn-sm view-performance"
-
-data-id="TCH003"
-data-name="Amit Raj"
-data-subject="Python"
-data-attendance="91%"
-data-classes="75 / 80"
-data-syllabus="88%"
-data-feedback="4.5 / 5"
-data-score="88 / 100"
-data-performance="Very Good">
-
-<i class="fa-solid fa-eye"></i>
-
-</button>
-
-</td>
-
-</tr>
-
-
-<!-- ================= TEACHER 4 ================= -->
-
-<tr
-data-subject="Operating System"
-data-performance="Excellent"
-data-attendance="95">
-
-<td>TCH004</td>
-
-<td class="text-start">
-
-<img
-src="https://i.pravatar.cc/100?img=44"
-class="teacher-photo"
-alt="">
-
-Neha Kumari
-
-</td>
-
-<td>Operating System</td>
-
-<td>
-
-<strong>95%</strong>
-
-<div class="progress progress-small mt-1">
-
-<div
-class="progress-bar bg-success"
-style="width:95%;">
-</div>
-
-</div>
-
-</td>
-
-<td>80 / 84</td>
-
-<td>
-
-<strong>94%</strong>
-
-<div class="progress progress-small mt-1">
-
-<div
-class="progress-bar bg-success"
-style="width:94%;">
-</div>
-
-</div>
-
-</td>
-
-<td>
-
-<i class="fa-solid fa-star text-warning"></i>
-
-4.9
-
-</td>
-
-<td>
-
-<span class="score-circle score-excellent">
-95
-</span>
-
-</td>
-
-<td>
-
-<span class="badge bg-success">
-Excellent
-</span>
-
-</td>
-
-<td>
-
-<button
-class="btn btn-info btn-sm view-performance"
-
-data-id="TCH004"
-data-name="Neha Kumari"
-data-subject="Operating System"
-data-attendance="95%"
-data-classes="80 / 84"
-data-syllabus="94%"
-data-feedback="4.9 / 5"
-data-score="95 / 100"
-data-performance="Excellent">
-
-<i class="fa-solid fa-eye"></i>
-
-</button>
-
-</td>
-
-</tr>
-
-
-<!-- ================= TEACHER 5 ================= -->
-
-<tr
-data-subject="Computer Network"
-data-performance="Good"
-data-attendance="84">
-
-<td>TCH005</td>
-
-<td class="text-start">
-
-<img
-src="https://i.pravatar.cc/100?img=5"
-class="teacher-photo"
-alt="">
-
-Rohit Kumar
-
-</td>
-
-<td>Computer Network</td>
-
-<td>
-
-<strong>84%</strong>
-
-<div class="progress progress-small mt-1">
-
-<div
-class="progress-bar bg-warning"
-style="width:84%;">
-</div>
-
-</div>
-
-</td>
-
-<td>69 / 80</td>
-
-<td>
-
-<strong>81%</strong>
-
-<div class="progress progress-small mt-1">
-
-<div
-class="progress-bar bg-warning"
-style="width:81%;">
-</div>
-
-</div>
-
-</td>
-
-<td>
-
-<i class="fa-solid fa-star text-warning"></i>
-
-4.1
-
-</td>
-
-<td>
-
-<span class="score-circle score-average">
-80
-</span>
-
-</td>
-
-<td>
-
-<span class="badge bg-warning text-dark">
-Good
-</span>
-
-</td>
-
-<td>
-
-<button
-class="btn btn-info btn-sm view-performance"
-
-data-id="TCH005"
-data-name="Rohit Kumar"
-data-subject="Computer Network"
-data-attendance="84%"
-data-classes="69 / 80"
-data-syllabus="81%"
-data-feedback="4.1 / 5"
-data-score="80 / 100"
-data-performance="Good">
-
-<i class="fa-solid fa-eye"></i>
-
-</button>
-
-</td>
-
-</tr>
-
-
-<!-- ================= TEACHER 6 ================= -->
-
-<tr
-data-subject="Data Structure"
-data-performance="Very Good"
-data-attendance="89">
-
-<td>TCH006</td>
-
-<td class="text-start">
-
-<img
-src="https://i.pravatar.cc/100?img=25"
-class="teacher-photo"
-alt="">
-
-Sneha Sharma
-
-</td>
-
-<td>Data Structure</td>
-
-<td>
-
-<strong>89%</strong>
-
-<div class="progress progress-small mt-1">
-
-<div
-class="progress-bar bg-primary"
-style="width:89%;">
-</div>
-
-</div>
-
-</td>
-
-<td>73 / 80</td>
-
-<td>
-
-<strong>87%</strong>
-
-<div class="progress progress-small mt-1">
-
-<div
-class="progress-bar bg-primary"
-style="width:87%;">
-</div>
-
-</div>
-
-</td>
-
-<td>
-
-<i class="fa-solid fa-star text-warning"></i>
-
-4.4
-
-</td>
-
-<td>
-
-<span class="score-circle score-good">
-86
-</span>
-
-</td>
-
-<td>
-
-<span class="badge bg-primary">
-Very Good
-</span>
-
-</td>
-
-<td>
-
-<button
-class="btn btn-info btn-sm view-performance"
-
-data-id="TCH006"
-data-name="Sneha Sharma"
-data-subject="Data Structure"
-data-attendance="89%"
-data-classes="73 / 80"
-data-syllabus="87%"
-data-feedback="4.4 / 5"
-data-score="86 / 100"
-data-performance="Very Good">
-
-<i class="fa-solid fa-eye"></i>
-
-</button>
-
-</td>
-
-</tr>
-
+    </tr>
 
 </tbody>
 
@@ -1776,12 +1133,12 @@ Top Performing Faculty
 
 <i class="fa-solid fa-medal fa-2x text-warning mb-2"></i>
 
-<h4>Neha Kumari</h4>
+<h4>No Data</h4>
 
-<p>Operating System</p>
+<p>--</p>
 
 <strong class="text-success">
-95 / 100
+--
 </strong>
 
 </div>
@@ -1795,12 +1152,12 @@ Top Performing Faculty
 
 <i class="fa-solid fa-medal fa-2x text-secondary mb-2"></i>
 
-<h4>Rahul Kumar</h4>
+<h4>No Data</h4>
 
-<p>Java</p>
+<p>--</p>
 
 <strong class="text-success">
-94 / 100
+--
 </strong>
 
 </div>
@@ -1817,12 +1174,12 @@ class="fa-solid fa-medal fa-2x mb-2"
 style="color:#cd7f32;">
 </i>
 
-<h4>Priya Singh</h4>
+<h4>No Data</h4>
 
-<p>DBMS</p>
+<p>--</p>
 
 <strong class="text-success">
-92 / 100
+--
 </strong>
 
 </div>
@@ -2072,6 +1429,10 @@ Close
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 
+<!-- FMPS API CLIENT -->
+<script src="../../js/api.js"></script>
+
+
 <!-- =====================================================
                     HOD DASHBOARD JS
 ===================================================== -->
@@ -2082,849 +1443,7 @@ Close
 <!-- =====================================================
                     PAGE JAVASCRIPT
 ===================================================== -->
-
-<script>
-
-/* =====================================================
-                    ELEMENTS
-===================================================== */
-
-const teacherSearch =
-document.getElementById("teacherSearch");
-
-const subjectFilter =
-document.getElementById("subjectFilter");
-
-const performanceFilter =
-document.getElementById("performanceFilter");
-
-const attendanceFilter =
-document.getElementById("attendanceFilter");
-
-const teacherRows =
-document.querySelectorAll(
-"#performanceTableBody tr"
-);
-
-
-/* =====================================================
-                    SEARCH
-===================================================== */
-
-teacherSearch.addEventListener(
-"keyup",
-function(){
-
-const value =
-this.value.toLowerCase();
-
-teacherRows.forEach(function(row){
-
-const text =
-row.innerText.toLowerCase();
-
-row.style.display =
-text.includes(value)
-? ""
-: "none";
-
-});
-
-updateTeacherCount();
-
-});
-
-
-/* =====================================================
-                    FILTER
-===================================================== */
-
-document
-.getElementById("applyFilterBtn")
-.addEventListener(
-"click",
-function(){
-
-const subject =
-subjectFilter.value;
-
-const performance =
-performanceFilter.value;
-
-const minimumAttendance =
-Number(attendanceFilter.value);
-
-teacherRows.forEach(function(row){
-
-const rowSubject =
-row.dataset.subject;
-
-const rowPerformance =
-row.dataset.performance;
-
-const rowAttendance =
-Number(row.dataset.attendance);
-
-let visible = true;
-
-if(
-subject &&
-rowSubject !== subject
-){
-
-visible = false;
-
-}
-
-if(
-performance &&
-rowPerformance !== performance
-){
-
-visible = false;
-
-}
-
-if(
-rowAttendance < minimumAttendance
-){
-
-visible = false;
-
-}
-
-row.style.display =
-visible ? "" : "none";
-
-});
-
-updateTeacherCount();
-
-});
-
-
-/* =====================================================
-                    RESET
-===================================================== */
-
-document
-.getElementById("resetFilterBtn")
-.addEventListener(
-"click",
-function(){
-
-subjectFilter.value="";
-
-performanceFilter.value="";
-
-attendanceFilter.value="0";
-
-teacherSearch.value="";
-
-teacherRows.forEach(function(row){
-
-row.style.display="";
-
-});
-
-updateTeacherCount();
-
-});
-
-
-/* =====================================================
-                    UPDATE CARDS
-===================================================== */
-
-function updateTeacherCount(){
-
-let total = 0;
-
-let excellent = 0;
-
-teacherRows.forEach(function(row){
-
-if(
-row.style.display !== "none"
-){
-
-total++;
-
-if(
-row.dataset.performance ===
-"Excellent"
-){
-
-excellent++;
-
-}
-
-}
-
-});
-
-document
-.getElementById("totalTeachers")
-.innerText = total;
-
-document
-.getElementById("excellentTeachers")
-.innerText = excellent;
-
-}
-
-
-/* =====================================================
-                    VIEW MODAL
-===================================================== */
-
-document
-.querySelectorAll(".view-performance")
-.forEach(function(button){
-
-button.addEventListener(
-"click",
-function(){
-
-document
-.getElementById("modalTeacherId")
-.innerText =
-this.dataset.id;
-
-document
-.getElementById("modalName")
-.innerText =
-this.dataset.name;
-
-document
-.getElementById("modalSubject")
-.innerText =
-this.dataset.subject;
-
-document
-.getElementById("modalTeacherName")
-.innerText =
-this.dataset.name;
-
-document
-.getElementById("modalTeacherSubject")
-.innerText =
-this.dataset.subject;
-
-document
-.getElementById("modalAttendance")
-.innerText =
-this.dataset.attendance;
-
-document
-.getElementById("modalClasses")
-.innerText =
-this.dataset.classes;
-
-document
-.getElementById("modalSyllabus")
-.innerText =
-this.dataset.syllabus;
-
-document
-.getElementById("modalFeedback")
-.innerText =
-this.dataset.feedback;
-
-document
-.getElementById("modalScore")
-.innerText =
-this.dataset.score;
-
-document
-.getElementById("modalPerformance")
-.innerText =
-this.dataset.performance;
-
-
-const modal =
-new bootstrap.Modal(
-document.getElementById(
-"performanceModal"
-)
-);
-
-modal.show();
-
-});
-
-});
-
-
-/* =====================================================
-                    EXCEL
-===================================================== */
-
-document
-.getElementById("excelBtn")
-.addEventListener(
-"click",
-function(){
-
-if(typeof XLSX === "undefined"){
-
-alert(
-"Excel library could not be loaded."
-);
-
-return;
-
-}
-
-const rows = [];
-
-document
-.querySelectorAll(
-"#performanceTableBody tr"
-)
-.forEach(function(row){
-
-if(
-row.style.display === "none"
-){
-
-return;
-
-}
-
-const cells =
-row.querySelectorAll("td");
-
-rows.push([
-
-cells[0].innerText.trim(),
-
-cells[1].innerText.trim(),
-
-cells[2].innerText.trim(),
-
-cells[3].innerText.trim(),
-
-cells[4].innerText.trim(),
-
-cells[5].innerText.trim(),
-
-cells[6].innerText.trim(),
-
-cells[7].innerText.trim(),
-
-cells[8].innerText.trim()
-
-]);
-
-});
-
-
-const worksheet =
-XLSX.utils.aoa_to_sheet([
-
-[
-"Teacher ID",
-"Teacher",
-"Subject",
-"Attendance",
-"Classes",
-"Syllabus",
-"Feedback",
-"Score",
-"Performance"
-],
-
-...rows
-
-]);
-
-
-const workbook =
-XLSX.utils.book_new();
-
-
-XLSX.utils.book_append_sheet(
-workbook,
-worksheet,
-"Performance"
-);
-
-
-XLSX.writeFile(
-workbook,
-"HOD_Teacher_Performance.xlsx"
-);
-
-});
-
-
-/* =====================================================
-                    PDF
-===================================================== */
-
-document
-.getElementById("pdfBtn")
-.addEventListener(
-"click",
-function(){
-
-if(!window.jspdf){
-
-alert(
-"PDF library could not be loaded."
-);
-
-return;
-
-}
-
-
-const { jsPDF } =
-window.jspdf;
-
-
-const pdf =
-new jsPDF(
-"landscape"
-);
-
-
-pdf.setFontSize(18);
-
-pdf.text(
-"Teacher Performance Report",
-14,
-15
-);
-
-
-pdf.setFontSize(10);
-
-pdf.text(
-"Faculty Management & Productivity System",
-14,
-22
-);
-
-
-const rows = [];
-
-
-document
-.querySelectorAll(
-"#performanceTableBody tr"
-)
-.forEach(function(row){
-
-if(
-row.style.display === "none"
-){
-
-return;
-
-}
-
-const cells =
-row.querySelectorAll("td");
-
-rows.push([
-
-cells[0].innerText.trim(),
-
-cells[1].innerText.trim(),
-
-cells[2].innerText.trim(),
-
-cells[3].innerText.trim(),
-
-cells[4].innerText.trim(),
-
-cells[5].innerText.trim(),
-
-cells[6].innerText.trim(),
-
-cells[7].innerText.trim(),
-
-cells[8].innerText.trim()
-
-]);
-
-});
-
-
-pdf.autoTable({
-
-startY:28,
-
-head:[[
-
-"ID",
-"Teacher",
-"Subject",
-"Attendance",
-"Classes",
-"Syllabus",
-"Feedback",
-"Score",
-"Performance"
-
-]],
-
-body:rows,
-
-styles:{
-fontSize:8,
-halign:"center"
-},
-
-headStyles:{
-fillColor:[108,76,255]
-}
-
-});
-
-
-pdf.save(
-"HOD_Teacher_Performance.pdf"
-);
-
-});
-
-
-/* =====================================================
-                    PRINT
-===================================================== */
-
-document
-.getElementById("printBtn")
-.addEventListener(
-"click",
-function(){
-
-const table =
-document
-.getElementById("performanceTable")
-.cloneNode(true);
-
-
-/*
-Remove Action column
-*/
-
-table
-.querySelectorAll("tr")
-.forEach(function(row){
-
-if(row.lastElementChild){
-
-row.removeChild(
-row.lastElementChild
-);
-
-}
-
-});
-
-
-const printWindow =
-window.open(
-"",
-"",
-"width=1200,height=800"
-);
-
-
-printWindow.document.write(`
-
-<html>
-
-<head>
-
-<title>
-Teacher Performance
-</title>
-
-<link
-href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-rel="stylesheet">
-
-<style>
-
-body{
-padding:30px;
-font-family:Arial,sans-serif;
-}
-
-h2{
-text-align:center;
-margin-bottom:5px;
-}
-
-p{
-text-align:center;
-margin-bottom:25px;
-}
-
-table{
-font-size:12px;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<h2>
-Teacher Performance Report
-</h2>
-
-<p>
-Faculty Management & Productivity System
-</p>
-
-${table.outerHTML}
-
-</body>
-
-</html>
-
-`);
-
-
-printWindow.document.close();
-
-
-printWindow.onload =
-function(){
-
-printWindow.print();
-
-printWindow.close();
-
-};
-
-});
-
-
-/* =====================================================
-            PERFORMANCE BAR CHART
-===================================================== */
-
-const performanceChartCanvas =
-document.getElementById(
-"teacherPerformanceChart"
-);
-
-
-if(performanceChartCanvas){
-
-new Chart(
-performanceChartCanvas,
-{
-
-type:"bar",
-
-data:{
-
-labels:[
-"Rahul",
-"Priya",
-"Amit",
-"Neha",
-"Rohit",
-"Sneha"
-],
-
-datasets:[{
-
-label:"Performance Score",
-
-data:[
-94,
-92,
-88,
-95,
-80,
-86
-],
-
-backgroundColor:[
-"#6c4cff",
-"#2563eb",
-"#16a34a",
-"#7c3aed",
-"#f59e0b",
-"#06b6d4"
-],
-
-borderRadius:8
-
-}]
-
-},
-
-options:{
-
-responsive:true,
-
-maintainAspectRatio:false,
-
-scales:{
-
-y:{
-
-beginAtZero:true,
-
-max:100
-
-}
-
-}
-
-}
-
-}
-);
-
-}
-
-
-/* =====================================================
-            PERFORMANCE DOUGHNUT
-===================================================== */
-
-const distributionCanvas =
-document.getElementById(
-"performanceDistributionChart"
-);
-
-
-if(distributionCanvas){
-
-new Chart(
-distributionCanvas,
-{
-
-type:"doughnut",
-
-data:{
-
-labels:[
-"Excellent",
-"Very Good",
-"Good",
-"Average"
-],
-
-datasets:[{
-
-data:[
-3,
-2,
-1,
-0
-],
-
-backgroundColor:[
-"#16a34a",
-"#2563eb",
-"#f59e0b",
-"#dc2626"
-],
-
-borderWidth:2
-
-}]
-
-},
-
-options:{
-
-responsive:true,
-
-maintainAspectRatio:false,
-
-plugins:{
-
-legend:{
-
-position:"bottom"
-
-}
-
-}
-
-}
-
-}
-);
-
-}
-
-
-/* =====================================================
-                BACKEND INTEGRATION LATER
-===================================================== */
-
-/*
-
-Later HOD ke department ke actual teachers backend se:
-
-GET
-/api/hod/teachers/performance
-
-
-Example response:
-
-[
-    {
-        "teacherId":"TCH001",
-        "name":"Rahul Kumar",
-        "subject":"Java",
-        "attendance":96,
-        "classesTaken":82,
-        "totalClasses":85,
-        "syllabusProgress":95,
-        "studentFeedback":4.8,
-        "performanceScore":94,
-        "performance":"Excellent"
-    }
-]
-
-
-Individual teacher:
-
-GET
-/api/hod/teachers/TCH001/performance
-
-
-Performance calculation backend me ho sakta hai:
-
-Attendance
-+
-Classes Taken
-+
-Syllabus Completion
-+
-Student Feedback
-+
-Other Academic Metrics
-
-
-Important:
-
-HOD ko sirf apne department ke teachers ka
-performance data backend return karega.
-
-Frontend par department manually select
-karne ki zarurat nahi hogi.
-
-*/
-
-</script>
-
+<script src="../../js/hod-performance.js"></script>
 
 </body>
 

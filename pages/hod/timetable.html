@@ -1353,7 +1353,7 @@ Add Class
 
 <div>
 
-<h3>8</h3>
+<h3 id="facultyAssignedCount">0</h3>
 
 <p>Faculty Assigned</p>
 
@@ -1391,7 +1391,7 @@ Add Class
 
 <div>
 
-<h3>6</h3>
+<h3 id="classroomCount">0</h3>
 
 <p>Classrooms</p>
 
@@ -1491,20 +1491,12 @@ Faculty
 </label>
 
 <select
-class="form-select"
-id="facultyFilter">
+id="facultyFilter"
+class="form-select">
 
-<option value="all">All Faculty</option>
-
-<option value="Dr. Sharma">Dr. Sharma</option>
-
-<option value="Prof. Verma">Prof. Verma</option>
-
-<option value="Dr. Singh">Dr. Singh</option>
-
-<option value="Prof. Gupta">Prof. Gupta</option>
-
-<option value="Dr. Mehta">Dr. Mehta</option>
+<option value="all">
+All Faculty
+</option>
 
 </select>
 
@@ -1563,7 +1555,7 @@ Weekly Timetable
 </h4>
 
 
-<span class="badge bg-primary p-2">
+<span class="badge bg-primary p-2" id="timetableFilterBadge">
 
 Semester 6 - Section A
 
@@ -1606,862 +1598,11 @@ Semester 6 - Section A
 
 <tbody id="timetableBody">
 
-
-<!-- ================= MONDAY ================= -->
-
 <tr>
-
-<td class="day-column">Monday</td>
-
-
-<td>
-
-<div
-class="class-box"
-data-type="lecture"
-data-subject="Machine Learning"
-data-code="CS601"
-data-faculty="Dr. Sharma"
-data-room="Room 301"
-data-time="09:00 AM - 10:00 AM"
-data-day="Monday">
-
-<span class="subject-code">CS601</span>
-
-<h6>Machine Learning</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Dr. Sharma
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Room 301
-</p>
-
-</div>
-
+<td colspan="8" class="text-center py-5 text-muted">
+Loading timetable...
 </td>
-
-
-<td>
-
-<div
-class="class-box"
-data-type="lecture"
-data-subject="Cloud Computing"
-data-code="CS602"
-data-faculty="Prof. Verma"
-data-room="Room 302"
-data-time="10:00 AM - 11:00 AM"
-data-day="Monday">
-
-<span class="subject-code">CS602</span>
-
-<h6>Cloud Computing</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Prof. Verma
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Room 302
-</p>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div class="empty-slot">Free</div>
-
-</td>
-
-
-<td>
-
-<div
-class="class-box tutorial"
-data-type="tutorial"
-data-subject="Machine Learning Tutorial"
-data-code="CS601T"
-data-faculty="Dr. Sharma"
-data-room="Room 301"
-data-time="12:00 PM - 01:00 PM"
-data-day="Monday">
-
-<span class="subject-code">CS601T</span>
-
-<h6>ML Tutorial</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Dr. Sharma
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Room 301
-</p>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div class="empty-slot">
-
-Lunch
-
-</div>
-
-</td>
-
-
-<td colspan="2">
-
-<div
-class="class-box lab"
-data-type="lab"
-data-subject="Machine Learning Lab"
-data-code="CS651"
-data-faculty="Dr. Singh"
-data-room="AI Lab"
-data-time="02:00 PM - 04:00 PM"
-data-day="Monday">
-
-<span class="subject-code">CS651</span>
-
-<h6>Machine Learning Lab</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Dr. Singh
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-AI Lab
-</p>
-
-</div>
-
-</td>
-
 </tr>
-
-
-<!-- ================= TUESDAY ================= -->
-
-<tr>
-
-<td class="day-column">Tuesday</td>
-
-
-<td>
-
-<div
-class="class-box"
-data-type="lecture"
-data-subject="Big Data Analytics"
-data-code="CS603"
-data-faculty="Prof. Gupta"
-data-room="Room 303"
-data-time="09:00 AM - 10:00 AM"
-data-day="Tuesday">
-
-<span class="subject-code">CS603</span>
-
-<h6>Big Data Analytics</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Prof. Gupta
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Room 303
-</p>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div class="empty-slot">Free</div>
-
-</td>
-
-
-<td>
-
-<div
-class="class-box"
-data-type="lecture"
-data-subject="Cloud Computing"
-data-code="CS602"
-data-faculty="Prof. Verma"
-data-room="Room 302"
-data-time="11:00 AM - 12:00 PM"
-data-day="Tuesday">
-
-<span class="subject-code">CS602</span>
-
-<h6>Cloud Computing</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Prof. Verma
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Room 302
-</p>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div
-class="class-box"
-data-type="lecture"
-data-subject="Data Mining"
-data-code="CS604"
-data-faculty="Dr. Mehta"
-data-room="Room 304"
-data-time="12:00 PM - 01:00 PM"
-data-day="Tuesday">
-
-<span class="subject-code">CS604</span>
-
-<h6>Data Mining</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Dr. Mehta
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Room 304
-</p>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div class="empty-slot">Lunch</div>
-
-</td>
-
-
-<td colspan="2">
-
-<div
-class="class-box lab"
-data-type="lab"
-data-subject="Big Data Lab"
-data-code="CS652"
-data-faculty="Prof. Gupta"
-data-room="Data Lab"
-data-time="02:00 PM - 04:00 PM"
-data-day="Tuesday">
-
-<span class="subject-code">CS652</span>
-
-<h6>Big Data Lab</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Prof. Gupta
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Data Lab
-</p>
-
-</div>
-
-</td>
-
-</tr>
-
-
-<!-- ================= WEDNESDAY ================= -->
-
-<tr>
-
-<td class="day-column">Wednesday</td>
-
-
-<td>
-
-<div
-class="class-box"
-data-type="lecture"
-data-subject="Machine Learning"
-data-code="CS601"
-data-faculty="Dr. Sharma"
-data-room="Room 301"
-data-time="09:00 AM - 10:00 AM"
-data-day="Wednesday">
-
-<span class="subject-code">CS601</span>
-
-<h6>Machine Learning</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Dr. Sharma
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Room 301
-</p>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div
-class="class-box"
-data-type="lecture"
-data-subject="Data Mining"
-data-code="CS604"
-data-faculty="Dr. Mehta"
-data-room="Room 304"
-data-time="10:00 AM - 11:00 AM"
-data-day="Wednesday">
-
-<span class="subject-code">CS604</span>
-
-<h6>Data Mining</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Dr. Mehta
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Room 304
-</p>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div
-class="class-box"
-data-type="lecture"
-data-subject="Big Data Analytics"
-data-code="CS603"
-data-faculty="Prof. Gupta"
-data-room="Room 303"
-data-time="11:00 AM - 12:00 PM"
-data-day="Wednesday">
-
-<span class="subject-code">CS603</span>
-
-<h6>Big Data Analytics</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Prof. Gupta
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Room 303
-</p>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div class="empty-slot">Free</div>
-
-</td>
-
-
-<td>
-
-<div class="empty-slot">Lunch</div>
-
-</td>
-
-
-<td>
-
-<div
-class="class-box seminar"
-data-type="seminar"
-data-subject="Technical Seminar"
-data-code="SEM601"
-data-faculty="Department Faculty"
-data-room="Seminar Hall"
-data-time="02:00 PM - 03:00 PM"
-data-day="Wednesday">
-
-<span class="subject-code">SEM601</span>
-
-<h6>Technical Seminar</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Department Faculty
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Seminar Hall
-</p>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div class="empty-slot">Free</div>
-
-</td>
-
-</tr>
-
-
-<!-- ================= THURSDAY ================= -->
-
-<tr>
-
-<td class="day-column">Thursday</td>
-
-
-<td>
-
-<div
-class="class-box"
-data-type="lecture"
-data-subject="Cloud Computing"
-data-code="CS602"
-data-faculty="Prof. Verma"
-data-room="Room 302"
-data-time="09:00 AM - 10:00 AM"
-data-day="Thursday">
-
-<span class="subject-code">CS602</span>
-
-<h6>Cloud Computing</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Prof. Verma
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Room 302
-</p>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div
-class="class-box"
-data-type="lecture"
-data-subject="Machine Learning"
-data-code="CS601"
-data-faculty="Dr. Sharma"
-data-room="Room 301"
-data-time="10:00 AM - 11:00 AM"
-data-day="Thursday">
-
-<span class="subject-code">CS601</span>
-
-<h6>Machine Learning</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Dr. Sharma
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Room 301
-</p>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div class="empty-slot">Free</div>
-
-</td>
-
-
-<td>
-
-<div
-class="class-box tutorial"
-data-type="tutorial"
-data-subject="Data Mining Tutorial"
-data-code="CS604T"
-data-faculty="Dr. Mehta"
-data-room="Room 304"
-data-time="12:00 PM - 01:00 PM"
-data-day="Thursday">
-
-<span class="subject-code">CS604T</span>
-
-<h6>Data Mining Tutorial</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Dr. Mehta
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Room 304
-</p>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div class="empty-slot">Lunch</div>
-
-</td>
-
-
-<td colspan="2">
-
-<div
-class="class-box lab"
-data-type="lab"
-data-subject="Cloud Computing Lab"
-data-code="CS653"
-data-faculty="Prof. Verma"
-data-room="Cloud Lab"
-data-time="02:00 PM - 04:00 PM"
-data-day="Thursday">
-
-<span class="subject-code">CS653</span>
-
-<h6>Cloud Computing Lab</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Prof. Verma
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Cloud Lab
-</p>
-
-</div>
-
-</td>
-
-</tr>
-
-
-<!-- ================= FRIDAY ================= -->
-
-<tr>
-
-<td class="day-column">Friday</td>
-
-
-<td>
-
-<div
-class="class-box"
-data-type="lecture"
-data-subject="Big Data Analytics"
-data-code="CS603"
-data-faculty="Prof. Gupta"
-data-room="Room 303"
-data-time="09:00 AM - 10:00 AM"
-data-day="Friday">
-
-<span class="subject-code">CS603</span>
-
-<h6>Big Data Analytics</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Prof. Gupta
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Room 303
-</p>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div
-class="class-box"
-data-type="lecture"
-data-subject="Data Mining"
-data-code="CS604"
-data-faculty="Dr. Mehta"
-data-room="Room 304"
-data-time="10:00 AM - 11:00 AM"
-data-day="Friday">
-
-<span class="subject-code">CS604</span>
-
-<h6>Data Mining</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Dr. Mehta
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Room 304
-</p>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div
-class="class-box"
-data-type="lecture"
-data-subject="Machine Learning"
-data-code="CS601"
-data-faculty="Dr. Sharma"
-data-room="Room 301"
-data-time="11:00 AM - 12:00 PM"
-data-day="Friday">
-
-<span class="subject-code">CS601</span>
-
-<h6>Machine Learning</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Dr. Sharma
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Room 301
-</p>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div class="empty-slot">Free</div>
-
-</td>
-
-
-<td>
-
-<div class="empty-slot">Lunch</div>
-
-</td>
-
-
-<td>
-
-<div
-class="class-box seminar"
-data-type="seminar"
-data-subject="Project Review"
-data-code="PR601"
-data-faculty="Department Faculty"
-data-room="Project Lab"
-data-time="02:00 PM - 03:00 PM"
-data-day="Friday">
-
-<span class="subject-code">PR601</span>
-
-<h6>Project Review</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Department Faculty
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Project Lab
-</p>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div class="empty-slot">Free</div>
-
-</td>
-
-</tr>
-
-
-<!-- ================= SATURDAY ================= -->
-
-<tr>
-
-<td class="day-column">Saturday</td>
-
-
-<td>
-
-<div
-class="class-box tutorial"
-data-type="tutorial"
-data-subject="Aptitude & Placement"
-data-code="APT601"
-data-faculty="Training Cell"
-data-room="Room 305"
-data-time="09:00 AM - 10:00 AM"
-data-day="Saturday">
-
-<span class="subject-code">APT601</span>
-
-<h6>Aptitude & Placement</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Training Cell
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Room 305
-</p>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div class="empty-slot">Free</div>
-
-</td>
-
-
-<td>
-
-<div
-class="class-box seminar"
-data-type="seminar"
-data-subject="Guest Lecture"
-data-code="GL601"
-data-faculty="Guest Faculty"
-data-room="Seminar Hall"
-data-time="11:00 AM - 12:00 PM"
-data-day="Saturday">
-
-<span class="subject-code">GL601</span>
-
-<h6>Guest Lecture</h6>
-
-<p>
-<i class="fa-solid fa-user-tie"></i>
-Guest Faculty
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-Seminar Hall
-</p>
-
-</div>
-
-</td>
-
-
-<td>
-
-<div class="empty-slot">Free</div>
-
-</td>
-
-
-<td>
-
-<div class="empty-slot">Lunch</div>
-
-</td>
-
-
-<td colspan="2">
-
-<div class="empty-slot">
-
-No Scheduled Class
-
-</div>
-
-</td>
-
-</tr>
-
 
 </tbody>
 
@@ -2706,23 +1847,14 @@ Faculty
 
 </label>
 
-
 <select
 id="classFaculty"
 class="form-select"
 required>
 
-<option value="">Select Faculty</option>
-
-<option>Dr. Sharma</option>
-
-<option>Prof. Verma</option>
-
-<option>Dr. Singh</option>
-
-<option>Prof. Gupta</option>
-
-<option>Dr. Mehta</option>
+<option value="">
+Select Faculty
+</option>
 
 </select>
 
@@ -3093,12 +2225,11 @@ Head of Department Timetable
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
 </script>
 
+<!-- FMPS API -->
+<script src="../../js/api.js"></script>
 
 <!-- Common HOD JS -->
-
 <script src="../../js/hod-dashboard.js"></script>
-
-
 <script>
 
 document.addEventListener(
@@ -3124,6 +2255,9 @@ document.getElementById("semesterFilter");
 const sectionFilter =
 document.getElementById("sectionFilter");
 
+const timetableFilterBadge =
+document.getElementById("timetableFilterBadge");
+
 const addClassForm =
 document.getElementById("addClassForm");
 
@@ -3142,6 +2276,131 @@ document.getElementById("labCount");
 
 let selectedClass = null;
 
+
+// =========================================================
+// LOAD REAL DEPARTMENT TEACHERS
+// =========================================================
+
+async function loadTimetableTeachers(){
+
+    const classFaculty =
+        document.getElementById(
+            "classFaculty"
+        );
+
+    const facultyFilter =
+        document.getElementById(
+            "facultyFilter"
+        );
+
+
+    if(!classFaculty){
+        return;
+    }
+
+
+    try{
+
+        const result =
+            await API.request(
+                "GET",
+                "/hods/teachers"
+            );
+
+
+        const teachers =
+            Array.isArray(result.data)
+                ? result.data
+                : [];
+
+
+        // Add Class dropdown
+        classFaculty.innerHTML = `
+            <option value="">
+                Select Faculty
+            </option>
+        `;
+
+
+        teachers.forEach(function(teacher){
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            // IMPORTANT:
+            // value = actual teacher database ID
+            option.value =
+                teacher.id;
+
+            option.textContent =
+                teacher.full_name
+                + (
+                    teacher.teacher_code
+                        ? " (" + teacher.teacher_code + ")"
+                        : ""
+                );
+
+            classFaculty.appendChild(
+                option
+            );
+
+        });
+
+
+        // Timetable filter dropdown
+        if(facultyFilter){
+
+            facultyFilter.innerHTML = `
+                <option value="all">
+                    All Faculty
+                </option>
+            `;
+
+
+            teachers.forEach(function(teacher){
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+                option.value =
+                    teacher.full_name;
+
+                option.textContent =
+                    teacher.full_name;
+
+                facultyFilter.appendChild(
+                    option
+                );
+
+            });
+
+        }
+
+
+        console.log(
+            "TIMETABLE TEACHERS LOADED:",
+            teachers
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "TEACHER LOAD ERROR:",
+            error
+        );
+
+    }
+
+}
+
+
+loadTimetableTeachers();
 
 /* =========================================================
                     CLASS CLICK
@@ -3414,351 +2673,398 @@ applyFilters
 
 
 /* =========================================================
-            SEMESTER / SECTION FILTER
+            SEMESTER / SECTION FILTER - REAL BACKEND
 ========================================================= */
 
 if(semesterFilter){
 
-semesterFilter.addEventListener(
-"change",
-function(){
-
-console.log(
-"Semester selected:",
-this.value
-);
-
-
-/*
-Backend integration:
-
-fetch(
-"/api/hod/timetable?semester="
-+ this.value
-+ "&section="
-+ sectionFilter.value
-)
-
-*/
-
-});
+    semesterFilter.addEventListener(
+        "change",
+        function(){
+            loadRealTimetable();
+        }
+    );
 
 }
 
 
 if(sectionFilter){
 
-sectionFilter.addEventListener(
-"change",
-function(){
-
-console.log(
-"Section selected:",
-this.value
-);
-
-});
+    sectionFilter.addEventListener(
+        "change",
+        function(){
+            loadRealTimetable();
+        }
+    );
 
 }
 
 
+// =========================================================
+// UPDATE CURRENT SEMESTER / SECTION BADGE
+// =========================================================
+
+function updateTimetableFilterBadge(){
+
+    if(!timetableFilterBadge){
+        return;
+    }
+
+    const semesterValue =
+        semesterFilter
+            ? semesterFilter.value
+            : "all";
+
+    const sectionValue =
+        sectionFilter
+            ? sectionFilter.value
+            : "all";
+
+    const semesterText =
+        semesterValue === "all"
+            ? "All Semesters"
+            : "Semester " + semesterValue;
+
+    const sectionText =
+        sectionValue === "all"
+            ? "All Sections"
+            : "Section " + sectionValue;
+
+    timetableFilterBadge.textContent =
+        semesterText + " - " + sectionText;
+}
+
+
 /* =========================================================
-                    ADD CLASS
+                    ADD CLASS - REAL BACKEND
 ========================================================= */
 
 if(addClassForm){
 
-addClassForm.addEventListener(
-"submit",
-function(e){
+    addClassForm.addEventListener(
+        "submit",
+        async function(e){
 
-e.preventDefault();
-
-
-const subject =
-document.getElementById(
-"subjectName"
-).value.trim();
+            e.preventDefault();
 
 
-const code =
-document.getElementById(
-"subjectCode"
-).value.trim();
+            const subject =
+                document.getElementById(
+                    "subjectName"
+                ).value.trim();
 
 
-const type =
-document.getElementById(
-"classType"
-).value;
+            const code =
+                document.getElementById(
+                    "subjectCode"
+                ).value.trim();
 
 
-const semester =
-document.getElementById(
-"classSemester"
-).value;
+            const type =
+                document.getElementById(
+                    "classType"
+                ).value;
 
 
-const section =
-document.getElementById(
-"classSection"
-).value;
+            const semester =
+                document.getElementById(
+                    "classSemester"
+                ).value;
 
 
-const faculty =
-document.getElementById(
-"classFaculty"
-).value;
+            const section =
+                document.getElementById(
+                    "classSection"
+                ).value;
 
 
-const room =
-document.getElementById(
-"classRoom"
-).value.trim();
+            // Real database teacher ID
+            const teacherId =
+                document.getElementById(
+                    "classFaculty"
+                ).value;
 
 
-const day =
-document.getElementById(
-"classDay"
-).value;
+            const room =
+                document.getElementById(
+                    "classRoom"
+                ).value.trim();
 
 
-const startTime =
-document.getElementById(
-"classStartTime"
-).value;
+            const day =
+                document.getElementById(
+                    "classDay"
+                ).value;
 
 
-const endTime =
-document.getElementById(
-"classEndTime"
-).value;
+            const startTime =
+                document.getElementById(
+                    "classStartTime"
+                ).value;
 
 
-const notify =
-document.getElementById(
-"notifyFaculty"
-).checked;
+            const endTime =
+                document.getElementById(
+                    "classEndTime"
+                ).value;
 
 
-/* ================= VALIDATION ================= */
+            /* ================= VALIDATION ================= */
 
-if(
-!subject ||
-!code ||
-!type ||
-!semester ||
-!section ||
-!faculty ||
-!room ||
-!day ||
-!startTime ||
-!endTime
-){
+            if(
+                !subject ||
+                !code ||
+                !type ||
+                !semester ||
+                !section ||
+                !teacherId ||
+                !room ||
+                !day ||
+                !startTime ||
+                !endTime
+            ){
 
-alert(
-"Please fill all required fields."
-);
+                alert(
+                    "Please fill all required fields."
+                );
 
-return;
+                return;
+            }
 
-}
+
+            if(endTime <= startTime){
+
+                alert(
+                    "End time must be after start time."
+                );
+
+                return;
+            }
 
 
-if(endTime <= startTime){
+            /* =================================================
+                        BACKEND PAYLOAD
+            ================================================= */
 
-alert(
-"End time must be after start time."
-);
+            const classData = {
 
-return;
+                subject_name:
+                    subject,
+
+                subject_code:
+                    code,
+
+                teacher_id:
+                    Number(teacherId),
+
+                semester:
+                    semester,
+
+                section:
+                    section,
+
+                class_type:
+                    type,
+
+                day_of_week:
+                    day,
+
+                start_time:
+                    startTime,
+
+                end_time:
+                    endTime,
+
+                room:
+                    room
+            };
+
+
+            console.log(
+                "ADDING CLASS:",
+                classData
+            );
+
+
+            try{
+
+                const result =
+                    await API.request(
+                        "POST",
+                        "/hod/timetable",
+                        classData
+                    );
+
+
+                console.log(
+                    "CLASS ADDED:",
+                    result
+                );
+
+
+                alert(
+                    result.message ||
+                    "Class added successfully."
+                );
+
+
+                // Make the newly added class visible immediately.
+                // If the user added Semester 3 / Section B while the page
+                // was showing Semester 6 / Section A, switch the page
+                // filters to the new class before reloading from the DB.
+                if(semesterFilter){
+                    semesterFilter.value = semester;
+                }
+
+                if(sectionFilter){
+                    sectionFilter.value = section;
+                }
+
+                if(facultyFilter){
+                    facultyFilter.value = "all";
+                }
+
+                if(typeFilter){
+                    typeFilter.value = "all";
+                }
+
+                if(searchBox){
+                    searchBox.value = "";
+                }
+
+                updateTimetableFilterBadge();
+
+
+                // Clear form
+                addClassForm.reset();
+
+
+                // Close modal
+                const modalElement =
+                    document.getElementById(
+                        "addClassModal"
+                    );
+
+
+                const modal =
+                    bootstrap.Modal.getInstance(
+                        modalElement
+                    );
+
+
+                if(modal){
+                    modal.hide();
+                }
+
+
+                // Reload timetable directly from DB
+                await loadRealTimetable();
+
+            }
+
+            catch(error){
+
+                console.error(
+                    "ADD CLASS ERROR:",
+                    error
+                );
+
+
+                alert(
+                    error.message ||
+                    "Unable to add class."
+                );
+
+            }
+
+        }
+    );
 
 }
 
 
 /* =========================================================
-            BACKEND READY CLASS OBJECT
-========================================================= */
-
-const classData = {
-
-id:
-Date.now().toString(),
-
-subject:subject,
-
-code:code,
-
-type:type,
-
-semester:semester,
-
-section:section,
-
-faculty:faculty,
-
-room:room,
-
-day:day,
-
-startTime:startTime,
-
-endTime:endTime,
-
-notify:notify
-
-};
-
-
-console.log(
-"New Class:",
-classData
-);
-
-
-/*
-=========================================================
-BACKEND INTEGRATION
-
-fetch("/api/hod/timetable",{
-
-    method:"POST",
-
-    headers:{
-        "Content-Type":"application/json"
-    },
-
-    body:JSON.stringify(classData)
-
-})
-.then(response => response.json())
-.then(data => {
-
-    console.log(data);
-
-});
-
-=========================================================
-*/
-
-
-alert(
-"Class added successfully!\n\n" +
-"Backend integration ke baad ye class database me save hogi."
-);
-
-
-addClassForm.reset();
-
-
-const modalElement =
-document.getElementById(
-"addClassModal"
-);
-
-
-const modal =
-bootstrap.Modal.getInstance(
-modalElement
-);
-
-
-if(modal){
-
-modal.hide();
-
-}
-
-
-});
-
-}
-
-
-/* =========================================================
-                    DELETE CLASS
+                    DELETE CLASS - REAL BACKEND
 ========================================================= */
 
 if(deleteClassBtn){
 
-deleteClassBtn.addEventListener(
-"click",
-function(){
+    deleteClassBtn.addEventListener(
+        "click",
+        async function(){
 
-if(!selectedClass){
+            if(!selectedClass){
+                return;
+            }
 
-return;
+            const classId =
+                selectedClass.dataset.id;
 
-}
+            const subject =
+                selectedClass.dataset.subject || "Class";
 
+            if(!classId){
+                alert("Unable to identify this timetable class.");
+                return;
+            }
 
-const confirmDelete =
-confirm(
-"Are you sure you want to delete this class?"
-);
+            const confirmDelete =
+                confirm(
+                    "Are you sure you want to delete this class?"
+                );
 
+            if(!confirmDelete){
+                return;
+            }
 
-if(!confirmDelete){
+            try{
 
-return;
+                const result =
+                    await API.request(
+                        "DELETE",
+                        "/hod/timetable/" + classId
+                    );
 
-}
+                const modalElement =
+                    document.getElementById(
+                        "classDetailsModal"
+                    );
 
+                const modal =
+                    bootstrap.Modal.getInstance(
+                        modalElement
+                    );
 
-const subject =
-selectedClass.dataset.subject;
+                if(modal){
+                    modal.hide();
+                }
 
+                selectedClass = null;
 
-/*
-=========================================================
-BACKEND:
+                await loadRealTimetable();
 
-fetch(
-"/api/hod/timetable/" + classId,
-{
-    method:"DELETE"
-}
-);
+                alert(
+                    result.message ||
+                    subject + " deleted successfully."
+                );
 
-=========================================================
-*/
+            }
+            catch(error){
 
+                console.error(
+                    "DELETE CLASS ERROR:",
+                    error
+                );
 
-selectedClass.remove();
+                alert(
+                    error.message ||
+                    "Unable to delete class."
+                );
 
+            }
 
-selectedClass = null;
-
-
-const modalElement =
-document.getElementById(
-"classDetailsModal"
-);
-
-
-const modal =
-bootstrap.Modal.getInstance(
-modalElement
-);
-
-
-if(modal){
-
-modal.hide();
-
-}
-
-
-updateStatistics();
-
-
-alert(
-subject +
-" deleted successfully."
-);
-
-
-});
+        }
+    );
 
 }
 
@@ -3936,6 +3242,495 @@ Today
 
 highlightCurrentDay();
 
+
+// =========================================================
+// REAL TIMETABLE - BACKEND DATA
+// =========================================================
+
+function formatTimetableTime(time){
+
+    if(!time){
+        return "--";
+    }
+
+    const parts = time.split(":");
+
+    let hour = Number(parts[0]);
+    const minute = parts[1] || "00";
+
+    const period =
+        hour >= 12
+            ? "PM"
+            : "AM";
+
+    hour = hour % 12;
+
+    if(hour === 0){
+        hour = 12;
+    }
+
+    return (
+        String(hour).padStart(2, "0")
+        + ":"
+        + minute
+        + " "
+        + period
+    );
+}
+
+
+// =========================================================
+// CREATE CLASS BOX
+// =========================================================
+
+function createTimetableClassBox(item){
+
+    const type =
+        item.class_type || "lecture";
+
+    const extraClass =
+        type === "lecture"
+            ? ""
+            : " " + type;
+
+
+    return `
+        <div
+            class="class-box${extraClass}"
+
+            data-id="${item.id}"
+
+            data-type="${type}"
+
+            data-subject="${item.subject || ""}"
+
+            data-code="${item.subject_code || ""}"
+
+            data-faculty="${item.faculty || ""}"
+
+            data-teacher-id="${item.teacher_id || ""}"
+
+            data-semester="${item.semester || ""}"
+
+            data-section="${item.section || ""}"
+
+            data-room="${item.room || ""}"
+
+            data-day="${item.day_of_week || ""}"
+
+            data-time="${
+                formatTimetableTime(
+                    item.start_time
+                )
+            } - ${
+                formatTimetableTime(
+                    item.end_time
+                )
+            }"
+        >
+
+            <span class="subject-code">
+                ${item.subject_code || "-"}
+            </span>
+
+            <h6>
+                ${item.subject || "-"}
+            </h6>
+
+            <p>
+                <i class="fa-solid fa-user-tie"></i>
+                ${item.faculty || "-"}
+            </p>
+
+            <p>
+                <i class="fa-solid fa-location-dot"></i>
+                ${item.room || "-"}
+            </p>
+
+        </div>
+    `;
+}
+
+
+// =========================================================
+// TIME TO MINUTES
+// =========================================================
+
+function timetableTimeToMinutes(time){
+
+    if(!time){
+        return 0;
+    }
+
+    const parts =
+        time.split(":");
+
+    return (
+        Number(parts[0]) * 60
+        +
+        Number(parts[1] || 0)
+    );
+}
+
+
+// =========================================================
+// RENDER REAL TIMETABLE
+// =========================================================
+
+function renderRealTimetable(records){
+
+    const timetableBody =
+        document.getElementById(
+            "timetableBody"
+        );
+
+    if(!timetableBody){
+        return;
+    }
+
+
+    const days = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+    ];
+
+
+    const slots = [
+        "09:00",
+        "10:00",
+        "11:00",
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00"
+    ];
+
+
+    timetableBody.innerHTML =
+        "";
+
+
+    days.forEach(function(day){
+
+        const row =
+            document.createElement(
+                "tr"
+            );
+
+
+        let rowHtml = `
+            <td class="day-column">
+                ${day}
+            </td>
+        `;
+
+
+        const dayClasses =
+            records.filter(
+                function(item){
+
+                    return (
+                        item.day_of_week
+                        === day
+                    );
+
+                }
+            );
+
+
+        let slotIndex = 0;
+
+
+        while(
+            slotIndex < slots.length
+        ){
+
+            const slot =
+                slots[slotIndex];
+
+
+            const slotMinutes =
+                timetableTimeToMinutes(
+                    slot
+                );
+
+
+            const classItem =
+                dayClasses.find(
+                    function(item){
+
+                        const itemStart =
+                            timetableTimeToMinutes(
+                                item.start_time
+                            );
+
+                        return (
+                            itemStart >= slotMinutes
+                            &&
+                            itemStart < slotMinutes + 60
+                        );
+
+                    }
+                );
+
+
+            if(classItem){
+
+                const startMinutes =
+                    timetableTimeToMinutes(
+                        classItem.start_time
+                    );
+
+
+                const endMinutes =
+                    timetableTimeToMinutes(
+                        classItem.end_time
+                    );
+
+
+                // Span enough visible hourly cells even when a class
+                // starts at a non-hour time such as 10:30.
+                let duration =
+                    Math.ceil(
+                        (
+                            endMinutes
+                            -
+                            slotMinutes
+                        )
+                        /
+                        60
+                    );
+
+
+                if(duration < 1){
+                    duration = 1;
+                }
+
+
+                duration =
+                    Math.min(
+                        duration,
+                        slots.length
+                        -
+                        slotIndex
+                    );
+
+
+                const colspan =
+                    duration > 1
+                        ? ` colspan="${duration}"`
+                        : "";
+
+
+                rowHtml += `
+                    <td${colspan}>
+                        ${
+                            createTimetableClassBox(
+                                classItem
+                            )
+                        }
+                    </td>
+                `;
+
+
+                slotIndex +=
+                    duration;
+
+            }
+
+            else{
+
+                const label =
+                    slot === "13:00"
+                        ? "Lunch"
+                        : "Free";
+
+
+                rowHtml += `
+                    <td>
+                        <div class="empty-slot">
+                            ${label}
+                        </div>
+                    </td>
+                `;
+
+
+                slotIndex++;
+
+            }
+
+        }
+
+
+        row.innerHTML =
+            rowHtml;
+
+
+        timetableBody.appendChild(
+            row
+        );
+
+    });
+
+
+    const facultyAssignedCount =
+        document.getElementById(
+            "facultyAssignedCount"
+        );
+
+    const classroomCount =
+        document.getElementById(
+            "classroomCount"
+        );
+
+    if(facultyAssignedCount){
+
+        const facultyIds =
+            new Set(
+                records
+                    .map(function(item){
+                        return item.teacher_id;
+                    })
+                    .filter(Boolean)
+            );
+
+        facultyAssignedCount.innerText =
+            facultyIds.size;
+    }
+
+    if(classroomCount){
+
+        const rooms =
+            new Set(
+                records
+                    .map(function(item){
+                        return item.room;
+                    })
+                    .filter(Boolean)
+            );
+
+        classroomCount.innerText =
+            rooms.size;
+    }
+
+
+    // Newly created class boxes
+    // need click events again
+    attachClassEvents();
+
+
+    // Update Total Classes
+    // and Lab Sessions
+    updateStatistics();
+
+
+    // Highlight today's row
+    highlightCurrentDay();
+}
+
+
+// =========================================================
+// LOAD REAL TIMETABLE
+// =========================================================
+
+async function loadRealTimetable(){
+
+    try{
+
+        updateTimetableFilterBadge();
+
+        const semester =
+            semesterFilter
+                ? semesterFilter.value
+                : "all";
+
+        const section =
+            sectionFilter
+                ? sectionFilter.value
+                : "all";
+
+        const params =
+            new URLSearchParams();
+
+        if(semester && semester !== "all"){
+            params.set("semester", semester);
+        }
+
+        if(section && section !== "all"){
+            params.set("section", section);
+        }
+
+        const queryString =
+            params.toString();
+
+        const endpoint =
+            "/hod/timetable"
+            + (
+                queryString
+                    ? "?" + queryString
+                    : ""
+            );
+
+        const result =
+            await API.request(
+                "GET",
+                endpoint
+            );
+
+        console.log(
+            "REAL TIMETABLE DATA:",
+            result
+        );
+
+        const records =
+            Array.isArray(result.data)
+                ? result.data
+                : [];
+
+        renderRealTimetable(
+            records
+        );
+
+        // Re-apply search, faculty and type filters
+        // after server-side semester/section reload.
+        applyFilters();
+
+    }
+
+    catch(error){
+
+        console.error(
+            "REAL TIMETABLE ERROR:",
+            error
+        );
+
+        const timetableBody =
+            document.getElementById(
+                "timetableBody"
+            );
+
+        if(timetableBody){
+
+            timetableBody.innerHTML = `
+                <tr>
+                    <td colspan="8"
+                        class="text-center py-5 text-danger">
+                        Unable to load timetable.
+                    </td>
+                </tr>
+            `;
+        }
+
+    }
+
+}
+
+
+loadRealTimetable();
 
 /* =========================================================
                     BACKEND LOAD

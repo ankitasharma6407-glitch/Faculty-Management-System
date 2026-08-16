@@ -19,6 +19,27 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 <!-- HOD CSS -->
 <link rel="stylesheet" href="../../css/hod-dashboard.css">
 
+<style>
+.teacher-filter-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 2fr) minmax(180px, 1fr) minmax(160px, 1fr);
+    gap: 20px;
+    align-items: end;
+    width: 100% !important;
+}
+
+.teacher-filter-grid > div {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+@media (max-width: 768px) {
+    .teacher-filter-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
 </head>
 
 <body>
@@ -140,7 +161,7 @@ Settings
 </li>
 
 <li>
-<a href="hod-login.html">
+<a href="hod-login.html" class="hod-logout-link">
 <i class="fa-solid fa-right-from-bracket"></i>
 Logout
 </a>
@@ -213,9 +234,10 @@ data-bs-toggle="dropdown">
 
 <span
 class="badge-count"
-id="notificationCount">
+id="notificationCount"
+style="display:none;">
 
-4
+0
 
 </span>
 
@@ -228,27 +250,9 @@ Notifications
 </li>
 
 <li>
-<a class="dropdown-item" href="notification.html">
-📢 Faculty Meeting Tomorrow
-</a>
-</li>
-
-<li>
-<a class="dropdown-item" href="notification.html">
-📄 Leave Request Pending
-</a>
-</li>
-
-<li>
-<a class="dropdown-item" href="notification.html">
-✅ Attendance Updated
-</a>
-</li>
-
-<li>
-<a class="dropdown-item" href="notification.html">
-🎉 Result Uploaded
-</a>
+<div class="dropdown-item text-muted text-center">
+Loading notifications...
+</div>
 </li>
 
 </ul>
@@ -265,7 +269,7 @@ data-bs-toggle="dropdown"
 style="cursor:pointer;">
 
 <img
-src="https://i.pravatar.cc/50?img=12"
+src="../../images/logo.png"
 alt="HOD">
 
 <span>
@@ -324,7 +328,7 @@ Settings
 <li>
 
 <a
-class="dropdown-item text-danger"
+class="dropdown-item text-danger hod-logout-link"
 href="hod-login.html">
 
 <i class="fa-solid fa-right-from-bracket me-2"></i>
@@ -362,7 +366,7 @@ Department Teachers
 
 <p class="text-muted mb-0">
 
-Manage teachers, attendance, face registration and performance.
+View department teachers and manage their attendance and performance.
 
 </p>
 
@@ -370,17 +374,6 @@ Manage teachers, attendance, face registration and performance.
 
 <div>
 
-<button
-class="btn btn-primary"
-id="addTeacherBtn"
-data-bs-toggle="modal"
-data-bs-target="#addTeacherModal">
-
-<i class="fa-solid fa-user-plus me-2"></i>
-
-Add Teacher
-
-</button>
 
 </div>
 
@@ -398,7 +391,7 @@ Add Teacher
 
 <i class="fa-solid fa-users"></i>
 
-<h3>32</h3>
+<h3>0</h3>
 
 <p>Total Teachers</p>
 
@@ -408,7 +401,7 @@ Add Teacher
 
 <i class="fa-solid fa-user-check"></i>
 
-<h3>29</h3>
+<h3>0</h3>
 
 <p>Active Teachers</p>
 
@@ -418,7 +411,7 @@ Add Teacher
 
 <i class="fa-solid fa-face-smile"></i>
 
-<h3>26</h3>
+<h3>--</h3>
 
 <p>Face Registered</p>
 
@@ -428,7 +421,7 @@ Add Teacher
 
 <i class="fa-solid fa-calendar-check"></i>
 
-<h3>94%</h3>
+<h3>--</h3>
 
 <p>Average Attendance</p>
 
@@ -442,113 +435,87 @@ Add Teacher
 
 <section class="dashboard-card mb-4">
 
-<div class="row g-3 align-items-end">
+    <div class="teacher-filter-grid">
 
-<div class="col-lg-4 col-md-6">
+        <!-- Search Teacher -->
+        <div>
 
-<label class="form-label fw-semibold">
+            <label
+                for="teacherSearch"
+                class="form-label fw-semibold">
 
-Search Teacher
+                Search Teacher
 
-</label>
+            </label>
 
-<div class="input-group">
+            <div class="input-group">
 
-<span class="input-group-text">
+                <span class="input-group-text">
 
-<i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-solid fa-magnifying-glass"></i>
 
-</span>
+                </span>
 
-<input
-type="text"
-id="teacherSearch"
-class="form-control"
-placeholder="Name, ID, email or subject">
+                <input
+                    type="text"
+                    id="teacherSearch"
+                    class="form-control"
+                    placeholder="Name, Teacher ID or email">
 
-</div>
+            </div>
 
-</div>
+        </div>
 
-<div class="col-lg-3 col-md-6">
 
-<label class="form-label fw-semibold">
-Department
-</label>
+        <!-- Status Filter -->
+        <div>
 
-<select
-id="departmentFilter"
-class="form-select">
+            <label
+                for="statusFilter"
+                class="form-label fw-semibold">
 
-<option value="all">
-All Departments
-</option>
+                Status
 
-<option value="Computer Science">
-Computer Science
-</option>
+            </label>
 
-<option value="Mathematics">
-Mathematics
-</option>
+            <select
+                id="statusFilter"
+                class="form-select">
 
-<option value="Physics">
-Physics
-</option>
+                <option value="all">
+                    All Status
+                </option>
 
-<option value="Chemistry">
-Chemistry
-</option>
+                <option value="Active">
+                    Active
+                </option>
 
-<option value="Commerce">
-Commerce
-</option>
+                <option value="Inactive">
+                    Inactive
+                </option>
 
-</select>
+            </select>
 
-</div>
+        </div>
 
-<div class="col-lg-3 col-md-6">
 
-<label class="form-label fw-semibold">
-Status
-</label>
+        <!-- Reset Button -->
+        <div>
 
-<select
-id="statusFilter"
-class="form-select">
+            <button
+                type="button"
+                id="resetFilterBtn"
+                class="btn btn-outline-secondary w-100">
 
-<option value="all">
-All Status
-</option>
+                <i class="fa-solid fa-rotate-right me-1"></i>
 
-<option value="Active">
-Active
-</option>
+                Reset
 
-<option value="Inactive">
-Inactive
-</option>
+            </button>
 
-</select>
+        </div>
 
-</div>
-
-<div class="col-lg-2 col-md-6">
-
-<button
-id="resetFilterBtn"
-class="btn btn-outline-secondary w-100">
-
-<i class="fa-solid fa-rotate-right me-1"></i>
-
-Reset
-
-</button>
-
-</div>
-
-</div>
+    </div>
 
 </section>
 
@@ -639,354 +606,10 @@ id="teacherTable">
 
 <tbody>
 
-<!-- Teacher 1 -->
-
-<tr
-data-department="Computer Science"
-data-status="Active">
-
-<td>
-
-<img
-src="https://i.pravatar.cc/45?img=11"
-width="45"
-height="45"
-class="rounded-circle"
-alt="Teacher">
-
+<tr>
+<td colspan="10" class="text-center text-muted py-4">
+Loading teachers...
 </td>
-
-<td>TCH001</td>
-
-<td>Dr. Rahul Sharma</td>
-
-<td>rahul@college.edu</td>
-
-<td>Java</td>
-
-<td>Computer Science</td>
-
-<td>
-
-<span class="badge bg-success">
-96%
-</span>
-
-</td>
-
-<td>
-
-<span class="badge bg-success">
-
-<i class="fa-solid fa-circle-check me-1"></i>
-
-Registered
-
-</span>
-
-</td>
-
-<td>
-
-<span class="badge bg-success">
-Active
-</span>
-
-</td>
-
-<td>
-
-<div class="d-flex gap-1">
-
-<button
-class="btn btn-info btn-sm text-white viewTeacherBtn"
-title="View">
-
-<i class="fa-solid fa-eye"></i>
-
-</button>
-
-<button
-class="btn btn-warning btn-sm editTeacherBtn"
-title="Edit">
-
-<i class="fa-solid fa-pen"></i>
-
-</button>
-
-<a
-href="performance.html"
-class="btn btn-primary btn-sm"
-title="Performance">
-
-<i class="fa-solid fa-chart-line"></i>
-
-</a>
-
-<button
-class="btn btn-danger btn-sm deleteTeacherBtn"
-title="Delete">
-
-<i class="fa-solid fa-trash"></i>
-
-</button>
-
-</div>
-
-</td>
-
-</tr>
-
-<!-- Teacher 2 -->
-
-<tr
-data-department="Computer Science"
-data-status="Active">
-
-<td>
-
-<img
-src="https://i.pravatar.cc/45?img=32"
-width="45"
-height="45"
-class="rounded-circle"
-alt="Teacher">
-
-</td>
-
-<td>TCH002</td>
-
-<td>Dr. Priya Singh</td>
-
-<td>priya@college.edu</td>
-
-<td>DBMS</td>
-
-<td>Computer Science</td>
-
-<td>
-
-<span class="badge bg-success">
-94%
-</span>
-
-</td>
-
-<td>
-
-<span class="badge bg-success">
-
-<i class="fa-solid fa-circle-check me-1"></i>
-
-Registered
-
-</span>
-
-</td>
-
-<td>
-
-<span class="badge bg-success">
-Active
-</span>
-
-</td>
-
-<td>
-
-<div class="d-flex gap-1">
-
-<button class="btn btn-info btn-sm text-white viewTeacherBtn">
-<i class="fa-solid fa-eye"></i>
-</button>
-
-<button class="btn btn-warning btn-sm editTeacherBtn">
-<i class="fa-solid fa-pen"></i>
-</button>
-
-<a href="performance.html"
-class="btn btn-primary btn-sm">
-
-<i class="fa-solid fa-chart-line"></i>
-
-</a>
-
-<button class="btn btn-danger btn-sm deleteTeacherBtn">
-<i class="fa-solid fa-trash"></i>
-</button>
-
-</div>
-
-</td>
-
-</tr>
-
-<!-- Teacher 3 -->
-
-<tr
-data-department="Computer Science"
-data-status="Active">
-
-<td>
-
-<img
-src="https://i.pravatar.cc/45?img=14"
-width="45"
-height="45"
-class="rounded-circle"
-alt="Teacher">
-
-</td>
-
-<td>TCH003</td>
-
-<td>Prof. Amit Raj</td>
-
-<td>amit@college.edu</td>
-
-<td>Python</td>
-
-<td>Computer Science</td>
-
-<td>
-
-<span class="badge bg-warning text-dark">
-88%
-</span>
-
-</td>
-
-<td>
-
-<span class="badge bg-warning text-dark">
-
-<i class="fa-solid fa-triangle-exclamation me-1"></i>
-
-Pending
-
-</span>
-
-</td>
-
-<td>
-
-<span class="badge bg-success">
-Active
-</span>
-
-</td>
-
-<td>
-
-<div class="d-flex gap-1">
-
-<button class="btn btn-info btn-sm text-white viewTeacherBtn">
-<i class="fa-solid fa-eye"></i>
-</button>
-
-<button class="btn btn-warning btn-sm editTeacherBtn">
-<i class="fa-solid fa-pen"></i>
-</button>
-
-<a href="performance.html"
-class="btn btn-primary btn-sm">
-
-<i class="fa-solid fa-chart-line"></i>
-
-</a>
-
-<button class="btn btn-danger btn-sm deleteTeacherBtn">
-<i class="fa-solid fa-trash"></i>
-</button>
-
-</div>
-
-</td>
-
-</tr>
-
-<!-- Teacher 4 -->
-
-<tr
-data-department="Computer Science"
-data-status="Inactive">
-
-<td>
-
-<img
-src="https://i.pravatar.cc/45?img=47"
-width="45"
-height="45"
-class="rounded-circle"
-alt="Teacher">
-
-</td>
-
-<td>TCH004</td>
-
-<td>Dr. Neha Kumari</td>
-
-<td>neha@college.edu</td>
-
-<td>Operating System</td>
-
-<td>Computer Science</td>
-
-<td>
-
-<span class="badge bg-success">
-92%
-</span>
-
-</td>
-
-<td>
-
-<span class="badge bg-success">
-
-<i class="fa-solid fa-circle-check me-1"></i>
-
-Registered
-
-</span>
-
-</td>
-
-<td>
-
-<span class="badge bg-secondary">
-Inactive
-</span>
-
-</td>
-
-<td>
-
-<div class="d-flex gap-1">
-
-<button class="btn btn-info btn-sm text-white viewTeacherBtn">
-<i class="fa-solid fa-eye"></i>
-</button>
-
-<button class="btn btn-warning btn-sm editTeacherBtn">
-<i class="fa-solid fa-pen"></i>
-</button>
-
-<a href="performance.html"
-class="btn btn-primary btn-sm">
-
-<i class="fa-solid fa-chart-line"></i>
-
-</a>
-
-<button class="btn btn-danger btn-sm deleteTeacherBtn">
-<i class="fa-solid fa-trash"></i>
-</button>
-
-</div>
-
-</td>
-
 </tr>
 
 </tbody>
@@ -994,56 +617,6 @@ class="btn btn-primary btn-sm">
 </table>
 
 </div>
-
-<!-- Pagination -->
-
-<nav class="mt-4">
-
-<ul class="pagination justify-content-end mb-0">
-
-<li class="page-item disabled">
-
-<a class="page-link" href="#">
-Previous
-</a>
-
-</li>
-
-<li class="page-item active">
-
-<a class="page-link" href="#">
-1
-</a>
-
-</li>
-
-<li class="page-item">
-
-<a class="page-link" href="#">
-2
-</a>
-
-</li>
-
-<li class="page-item">
-
-<a class="page-link" href="#">
-3
-</a>
-
-</li>
-
-<li class="page-item">
-
-<a class="page-link" href="#">
-Next
-</a>
-
-</li>
-
-</ul>
-
-</nav>
 
 </section>
 
@@ -1062,219 +635,6 @@ Head of Department Panel
 
 </div>
 
-<!-- ==================================================
-                ADD TEACHER MODAL
-================================================== -->
-
-<div
-class="modal fade"
-id="addTeacherModal"
-tabindex="-1">
-
-<div class="modal-dialog modal-lg modal-dialog-centered">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<h5 class="modal-title">
-
-<i class="fa-solid fa-user-plus me-2"></i>
-
-Add New Teacher
-
-</h5>
-
-<button
-type="button"
-class="btn-close"
-data-bs-dismiss="modal">
-</button>
-
-</div>
-
-<form id="addTeacherForm">
-
-<div class="modal-body">
-
-<div class="row">
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">
-Teacher ID
-</label>
-
-<input
-type="text"
-id="newTeacherId"
-class="form-control"
-placeholder="TCH005"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">
-Full Name
-</label>
-
-<input
-type="text"
-id="newTeacherName"
-class="form-control"
-placeholder="Enter full name"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">
-Email
-</label>
-
-<input
-type="email"
-id="newTeacherEmail"
-class="form-control"
-placeholder="teacher@college.edu"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">
-Mobile
-</label>
-
-<input
-type="tel"
-class="form-control"
-placeholder="Enter mobile number"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">
-Subject
-</label>
-
-<input
-type="text"
-id="newTeacherSubject"
-class="form-control"
-placeholder="Enter subject"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">
-Department
-</label>
-
-<select
-id="newTeacherDepartment"
-class="form-select"
-required>
-
-<option value="">
-Select Department
-</option>
-
-<option>
-Computer Science
-</option>
-
-<option>
-Mathematics
-</option>
-
-<option>
-Physics
-</option>
-
-<option>
-Chemistry
-</option>
-
-<option>
-Commerce
-</option>
-
-</select>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">
-Joining Date
-</label>
-
-<input
-type="date"
-class="form-control"
-required>
-
-</div>
-
-<div class="col-md-6 mb-3">
-
-<label class="form-label">
-Status
-</label>
-
-<select
-class="form-select">
-
-<option>Active</option>
-<option>Inactive</option>
-
-</select>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="modal-footer">
-
-<button
-type="button"
-class="btn btn-secondary"
-data-bs-dismiss="modal">
-
-Cancel
-
-</button>
-
-<button
-type="submit"
-class="btn btn-primary">
-
-<i class="fa-solid fa-floppy-disk me-2"></i>
-
-Save Teacher
-
-</button>
-
-</div>
-
-</form>
-
-</div>
-
-</div>
-
-</div>
 
 <!-- ==================================================
                  VIEW TEACHER MODAL
@@ -1368,474 +728,24 @@ Close
 </div>
 
 <!-- ==================================================
-                     BOOTSTRAP
+                     JAVASCRIPT
 ================================================== -->
 
+<!-- Bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Existing HOD JS -->
+<!-- FMPS API -->
+<script src="../../js/api.js"></script>
 
+<!-- Common HOD JS -->
 <script src="../../js/hod-dashboard.js"></script>
 
-<!-- ==================================================
-              TEACHER PAGE JAVASCRIPT
-================================================== -->
-
-<script>
-
-/* ==================================================
-                    ELEMENTS
-================================================== */
-
-const teacherSearch =
-document.getElementById("teacherSearch");
-
-const departmentFilter =
-document.getElementById("departmentFilter");
-
-const statusFilter =
-document.getElementById("statusFilter");
-
-const resetFilterBtn =
-document.getElementById("resetFilterBtn");
-
-const teacherTable =
-document.getElementById("teacherTable");
-
-const teacherRows =
-teacherTable.querySelectorAll("tbody tr");
-
-
-/* ==================================================
-                  SEARCH + FILTER
-================================================== */
-
-function filterTeachers(){
-
-const searchValue =
-teacherSearch.value.toLowerCase().trim();
-
-const department =
-departmentFilter.value;
-
-const status =
-statusFilter.value;
-
-teacherRows.forEach(function(row){
-
-const rowText =
-row.innerText.toLowerCase();
-
-const rowDepartment =
-row.dataset.department;
-
-const rowStatus =
-row.dataset.status;
-
-const searchMatch =
-rowText.includes(searchValue);
-
-const departmentMatch =
-department === "all" ||
-rowDepartment === department;
-
-const statusMatch =
-status === "all" ||
-rowStatus === status;
-
-if(
-searchMatch &&
-departmentMatch &&
-statusMatch
-){
-
-row.style.display = "";
-
-}else{
-
-row.style.display = "none";
-
-}
-
-});
-
-}
-
-teacherSearch.addEventListener(
-"keyup",
-filterTeachers
-);
-
-departmentFilter.addEventListener(
-"change",
-filterTeachers
-);
-
-statusFilter.addEventListener(
-"change",
-filterTeachers
-);
-
-
-/* ==================================================
-                    RESET FILTER
-================================================== */
-
-resetFilterBtn.addEventListener(
-"click",
-function(){
-
-teacherSearch.value = "";
-
-departmentFilter.value = "all";
-
-statusFilter.value = "all";
-
-filterTeachers();
-
-}
-);
-
-
-/* ==================================================
-                   VIEW TEACHER
-================================================== */
-
-document.querySelectorAll(
-".viewTeacherBtn"
-).forEach(function(button){
-
-button.addEventListener(
-"click",
-function(){
-
-const row =
-this.closest("tr");
-
-const cells =
-row.querySelectorAll("td");
-
-document.getElementById(
-"viewTeacherId"
-).innerText =
-cells[1].innerText;
-
-document.getElementById(
-"viewTeacherName"
-).innerText =
-cells[2].innerText;
-
-document.getElementById(
-"viewTeacherEmail"
-).innerText =
-cells[3].innerText;
-
-document.getElementById(
-"viewTeacherSubject"
-).innerText =
-cells[4].innerText;
-
-document.getElementById(
-"viewTeacherDepartment"
-).innerText =
-cells[5].innerText;
-
-document.getElementById(
-"viewTeacherAttendance"
-).innerText =
-cells[6].innerText;
-
-const modal =
-new bootstrap.Modal(
-document.getElementById(
-"viewTeacherModal"
-)
-);
-
-modal.show();
-
-});
-
-});
-
-
-/* ==================================================
-                   EDIT TEACHER
-================================================== */
-
-document.querySelectorAll(
-".editTeacherBtn"
-).forEach(function(button){
-
-button.addEventListener(
-"click",
-function(){
-
-alert(
-"Edit Teacher form will be connected with backend/database."
-);
-
-});
-
-});
-
-
-/* ==================================================
-                  DELETE TEACHER
-================================================== */
-
-document.querySelectorAll(
-".deleteTeacherBtn"
-).forEach(function(button){
-
-button.addEventListener(
-"click",
-function(){
-
-const row =
-this.closest("tr");
-
-const teacherName =
-row.children[2].innerText;
-
-const confirmDelete =
-confirm(
-"Are you sure you want to delete " +
-teacherName +
-"?"
-);
-
-if(confirmDelete){
-
-row.remove();
-
-alert(
-"Teacher removed successfully! (Frontend Demo)"
-);
-
-}
-
-});
-
-});
-
-
-/* ==================================================
-                   ADD TEACHER
-================================================== */
-
-document.getElementById(
-"addTeacherForm"
-).addEventListener(
-"submit",
-function(event){
-
-event.preventDefault();
-
-const id =
-document.getElementById(
-"newTeacherId"
-).value;
-
-const name =
-document.getElementById(
-"newTeacherName"
-).value;
-
-const email =
-document.getElementById(
-"newTeacherEmail"
-).value;
-
-const subject =
-document.getElementById(
-"newTeacherSubject"
-).value;
-
-const department =
-document.getElementById(
-"newTeacherDepartment"
-).value;
-
-const tbody =
-teacherTable.querySelector("tbody");
-
-const row =
-document.createElement("tr");
-
-row.dataset.department =
-department;
-
-row.dataset.status =
-"Active";
-
-row.innerHTML = `
-
-<td>
-
-<i class="fa-solid fa-circle-user fa-2x text-primary"></i>
-
-</td>
-
-<td>${id}</td>
-
-<td>${name}</td>
-
-<td>${email}</td>
-
-<td>${subject}</td>
-
-<td>${department}</td>
-
-<td>
-
-<span class="badge bg-secondary">
---
-</span>
-
-</td>
-
-<td>
-
-<span class="badge bg-warning text-dark">
-Pending
-</span>
-
-</td>
-
-<td>
-
-<span class="badge bg-success">
-Active
-</span>
-
-</td>
-
-<td>
-
-<span class="text-muted">
-Save backend to enable actions
-</span>
-
-</td>
-
-`;
-
-tbody.appendChild(row);
-
-const modal =
-bootstrap.Modal.getInstance(
-document.getElementById(
-"addTeacherModal"
-)
-);
-
-modal.hide();
-
-this.reset();
-
-alert(
-"Teacher added successfully! (Frontend Demo)"
-);
-
-}
-);
-
-
-/* ==================================================
-                    EXPORT EXCEL
-================================================== */
-
-document.getElementById(
-"exportExcelBtn"
-).addEventListener(
-"click",
-function(){
-
-let csv = [];
-
-const rows =
-teacherTable.querySelectorAll("tr");
-
-rows.forEach(function(row){
-
-if(row.style.display === "none"){
-return;
-}
-
-const columns =
-row.querySelectorAll("th, td");
-
-let rowData = [];
-
-columns.forEach(
-function(column, index){
-
-/* Skip photo and action */
-
-if(index !== 0 && index !== 9){
-
-rowData.push(
-'"' +
-column.innerText
-.replace(/"/g,'""')
-.trim() +
-'"'
-);
-
-}
-
-}
-);
-
-csv.push(
-rowData.join(",")
-);
-
-});
-
-const blob =
-new Blob(
-[csv.join("\n")],
-{
-type:
-"text/csv;charset=utf-8;"
-}
-);
-
-const link =
-document.createElement("a");
-
-link.href =
-URL.createObjectURL(blob);
-
-link.download =
-"hod-teacher-list.csv";
-
-link.click();
-
-URL.revokeObjectURL(
-link.href
-);
-
-});
-
-
-/* ==================================================
-                    EXPORT PDF
-================================================== */
-
-document.getElementById(
-"exportPdfBtn"
-).addEventListener(
-"click",
-function(){
-
-window.print();
-
-});
-
-</script>
+<!-- PDF Export -->
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.5.31/dist/jspdf.plugin.autotable.min.js"></script>
+
+<!-- HOD Teacher List JS -->
+<script src="../../js/hod-teacher-list.js"></script>
 
 </body>
 

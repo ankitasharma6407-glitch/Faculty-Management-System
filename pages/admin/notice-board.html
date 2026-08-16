@@ -1852,28 +1852,50 @@ noticeForm.addEventListener(
         try {
 
 
-            const response =
-                await fetch(
-                    apiUrl,
-                    {
+            const token =
+    localStorage.getItem(
+        "fmps_access_token"
+    );
 
-                        method:
-                            method,
 
-                        headers: {
+if (!token) {
 
-                            "Content-Type":
-                                "application/json"
+    alert(
+        "Admin login session not found. Please login again."
+    );
 
-                        },
+    window.location.href =
+        "admin-login.html";
 
-                        body:
-                            JSON.stringify(
-                                noticeData
-                            )
+    return;
+}
 
-                    }
-                );
+
+const response =
+    await fetch(
+        apiUrl,
+        {
+
+            method:
+                method,
+
+            headers: {
+
+                "Content-Type":
+                    "application/json",
+
+                "Authorization":
+                    `Bearer ${token}`
+
+            },
+
+            body:
+                JSON.stringify(
+                    noticeData
+                )
+
+        }
+    );
 
 
             const result =

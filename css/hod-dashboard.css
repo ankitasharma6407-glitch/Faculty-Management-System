@@ -1552,3 +1552,127 @@ body.dark::-webkit-scrollbar-thumb{
 body.dark::-webkit-scrollbar-thumb:hover{
     background:#6b7280;
 }
+
+
+/* =========================================================
+        FULLCALENDAR EVENT VISIBILITY FIX
+========================================================= */
+
+/* Remove blue underline from calendar dates */
+#calendar .fc a{
+    text-decoration:none !important;
+}
+
+
+/* Day numbers - Light Mode */
+#calendar .fc-daygrid-day-number{
+    color:#374151 !important;
+    font-weight:600;
+}
+
+
+/* Week headings - Light Mode */
+#calendar .fc-col-header-cell-cushion{
+    color:#374151 !important;
+    text-decoration:none !important;
+    font-weight:700;
+}
+
+
+/* Real calendar event box */
+#calendar .fc-daygrid-event{
+    background:#6c4cff !important;
+    border:1px solid #6c4cff !important;
+    border-radius:5px !important;
+
+    padding:3px 6px !important;
+    margin:2px 3px !important;
+
+    cursor:pointer;
+}
+
+
+/* Event text */
+#calendar .fc-event-main,
+#calendar .fc-event-title,
+#calendar .fc-event-time{
+    color:#ffffff !important;
+    font-weight:600 !important;
+}
+
+
+/* Event title should be clearly visible */
+#calendar .fc-daygrid-event .fc-event-title{
+    color:#ffffff !important;
+}
+
+
+/* FullCalendar "more" link */
+#calendar .fc-daygrid-more-link{
+    color:#6c4cff !important;
+    font-weight:700;
+    text-decoration:none !important;
+}
+
+
+/* =========================================================
+                    DARK MODE
+========================================================= */
+
+body.dark #calendar .fc-daygrid-day-number{
+    color:#e5e7eb !important;
+}
+
+
+body.dark #calendar .fc-col-header-cell-cushion{
+    color:#f3f4f6 !important;
+}
+
+
+/* Events in dark mode */
+body.dark #calendar .fc-daygrid-event{
+    background:#6d5dfc !important;
+    border-color:#8b7cff !important;
+
+    box-shadow:
+        0 2px 8px
+        rgba(108,76,255,.35);
+}
+
+
+body.dark #calendar .fc-event-main,
+body.dark #calendar .fc-event-title,
+body.dark #calendar .fc-event-time{
+    color:#ffffff !important;
+}
+
+
+/* + more text in dark mode */
+body.dark #calendar .fc-daygrid-more-link{
+    color:#a78bfa !important;
+}
+
+
+/* Today cell */
+body.dark #calendar .fc-day-today{
+    background:#312e81 !important;
+}
+
+
+/* Calendar toolbar buttons */
+body.dark #calendar .fc-button{
+    background:#334155 !important;
+    border-color:#475569 !important;
+    color:#ffffff !important;
+}
+
+
+body.dark #calendar .fc-button:hover{
+    background:#475569 !important;
+}
+
+
+/* Current month title */
+body.dark #calendar .fc-toolbar-title{
+    color:#ffffff !important;
+}

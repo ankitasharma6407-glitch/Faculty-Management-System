@@ -1,41 +1,39 @@
-# Python
+# Python cache
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
 
-# Virtual Environment
-venv/
+# Virtual environments
 .venv/
+venv/
 env/
 
-# Environment / Secrets
+# Environment secrets
 .env
 .flaskenv
 
-# Database
+# Local databases
 *.db
 *.sqlite
 *.sqlite3
 
 # Uploads
 uploads/
+backend/uploads/
 
 # Logs
 *.log
 
-# VS Code
+# IDE
 .vscode/
-
-# PyCharm
 .idea/
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Flask
-instance/
-
-# Python cache
+# Testing/cache
 .pytest_cache/
+.mypy_cache/
+
+# Flask instance
+instance/

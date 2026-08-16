@@ -810,6 +810,203 @@ class Subject(TimestampMixin, db.Model):
 
 
 # ============================================================
+# TIMETABLE
+# ============================================================
+
+class Timetable(TimestampMixin, db.Model):
+
+    __tablename__ = "timetable"
+
+    id = db.Column(
+        db.Integer,
+        primary_key=True
+    )
+
+    # Department whose timetable this class belongs to
+    department_id = db.Column(
+        db.Integer,
+        db.ForeignKey("departments.id"),
+        nullable=False,
+        index=True
+    )
+
+    # Subject being taught
+    subject_id = db.Column(
+        db.Integer,
+        db.ForeignKey("subjects.id"),
+        nullable=False,
+        index=True
+    )
+
+    # Assigned faculty
+    teacher_id = db.Column(
+        db.Integer,
+        db.ForeignKey("teachers.id"),
+        nullable=False,
+        index=True
+    )
+
+    # Semester
+    semester = db.Column(
+        db.String(20),
+        nullable=False,
+        index=True
+    )
+
+    # Section A / B / C
+    section = db.Column(
+        db.String(20),
+        nullable=False,
+        index=True
+    )
+
+    # lecture / lab / tutorial / seminar
+    class_type = db.Column(
+        db.String(30),
+        nullable=False,
+        default="lecture"
+    )
+
+    # Monday / Tuesday / etc.
+    day_of_week = db.Column(
+        db.String(20),
+        nullable=False,
+        index=True
+    )
+
+    start_time = db.Column(
+        db.Time,
+        nullable=False
+    )
+
+    end_time = db.Column(
+        db.Time,
+        nullable=False
+    )
+
+    room = db.Column(
+        db.String(120),
+        nullable=False
+    )
+
+    # HOD/Admin user who created timetable entry
+    created_by = db.Column(
+        db.Integer,
+        db.ForeignKey("users.id"),
+        nullable=False
+    )
+
+    # --------------------------------------------------------
+    # RELATIONSHIPS
+    # --------------------------------------------------------
+
+    department = db.relationship(
+        "Department"
+    )
+
+    subject = db.relationship(
+        "Subject"
+    )
+
+    teacher = db.relationship(
+        "Teacher"
+    )
+
+    creator = db.relationship(
+        "User",
+        foreign_keys=[created_by]
+    )
+
+    # --------------------------------------------------------
+    # JSON
+    # --------------------------------------------------------
+
+    def to_dict(self):
+
+        return {
+            "id": self.id,
+
+            "department_id": self.department_id,
+
+            "department": (
+                self.department.name
+                if self.department
+                else None
+            ),
+
+            "subject_id": self.subject_id,
+
+            "subject": (
+                self.subject.name
+                if self.subject
+                else None
+            ),
+
+            "subject_code": (
+                self.subject.code
+                if self.subject
+                else None
+            ),
+
+            "teacher_id": self.teacher_id,
+
+            "faculty": (
+                self.teacher.full_name
+                if self.teacher
+                else None
+            ),
+
+            "teacher_code": (
+                self.teacher.teacher_code
+                if self.teacher
+                else None
+            ),
+
+            "semester": self.semester,
+
+            "section": self.section,
+
+            "class_type": self.class_type,
+
+            "day_of_week": self.day_of_week,
+
+            "start_time": (
+                self.start_time.strftime("%H:%M")
+                if self.start_time
+                else None
+            ),
+
+            "end_time": (
+                self.end_time.strftime("%H:%M")
+                if self.end_time
+                else None
+            ),
+
+            "room": self.room,
+
+            "created_by": self.created_by,
+
+            "created_by_name": (
+                self.creator.username
+                if self.creator
+                else None
+            ),
+
+            "created_at": (
+                self.created_at.isoformat()
+                if self.created_at
+                else None
+            ),
+
+            "updated_at": (
+                self.updated_at.isoformat()
+                if self.updated_at
+                else None
+            )
+        }
+
+
+# ============================================================
 # ATTENDANCE
 # ============================================================
 
@@ -1418,6 +1615,145 @@ class PerformanceRecord(TimestampMixin, db.Model):
             ),
             "grade": self.grade,
             "remarks": self.remarks,
+        }
+
+
+# ============================================================
+# LEAVE REQUEST
+# ============================================================
+
+class LeaveRequest(TimestampMixin, db.Model):
+
+    __tablename__ = "leave_requests"
+
+    id = db.Column(
+        db.Integer,
+        primary_key=True
+    )
+
+    teacher_id = db.Column(
+        db.Integer,
+        db.ForeignKey(
+            "teachers.id",
+            ondelete="CASCADE"
+        ),
+        nullable=False,
+        index=True
+    )
+
+    leave_type = db.Column(
+        db.String(60),
+        nullable=False
+    )
+
+    start_date = db.Column(
+        db.Date,
+        nullable=False
+    )
+
+    end_date = db.Column(
+        db.Date,
+        nullable=False
+    )
+
+    reason = db.Column(
+        db.Text,
+        nullable=False
+    )
+
+    status = db.Column(
+        db.String(20),
+        default="pending",
+        nullable=False,
+        index=True
+    )
+
+    hod_remarks = db.Column(
+        db.Text
+    )
+
+    reviewed_by = db.Column(
+        db.Integer,
+        db.ForeignKey("users.id")
+    )
+
+    reviewed_at = db.Column(
+        db.DateTime
+    )
+
+    teacher = db.relationship(
+        "Teacher",
+        backref="leave_requests"
+    )
+
+    reviewer = db.relationship(
+        "User",
+        foreign_keys=[reviewed_by]
+    )
+
+    def to_dict(self):
+
+        return {
+            "id": self.id,
+
+            "teacher_id": self.teacher_id,
+
+            "teacher_name": (
+                self.teacher.full_name
+                if self.teacher
+                else None
+            ),
+
+            "teacher_code": (
+                self.teacher.teacher_code
+                if self.teacher
+                else None
+            ),
+
+            "department_id": (
+                self.teacher.department_id
+                if self.teacher
+                else None
+            ),
+
+            "department": (
+                self.teacher.department.name
+                if self.teacher
+                and self.teacher.department
+                else None
+            ),
+
+            "leave_type": self.leave_type,
+
+            "start_date": (
+                self.start_date.isoformat()
+                if self.start_date
+                else None
+            ),
+
+            "end_date": (
+                self.end_date.isoformat()
+                if self.end_date
+                else None
+            ),
+
+            "reason": self.reason,
+
+            "status": self.status,
+
+            "hod_remarks": self.hod_remarks,
+
+            "reviewed_by": self.reviewed_by,
+
+            "reviewed_at": (
+                self.reviewed_at.isoformat()
+                if self.reviewed_at
+                else None
+            ),
+
+            "created_at": self.created_at.isoformat(),
+
+            "updated_at": self.updated_at.isoformat(),
         }
 
 
