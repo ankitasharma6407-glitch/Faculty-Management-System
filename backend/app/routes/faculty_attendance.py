@@ -83,6 +83,48 @@ def calculate_face_distance(
     )
 
 
+def calculate_face_similarity(
+    descriptor_one,
+    descriptor_two
+):
+
+    if (
+        descriptor_one is None
+        or descriptor_two is None
+        or len(descriptor_one) != len(descriptor_two)
+    ):
+        return None
+
+    dot_product = sum(
+        first * second
+        for first, second in zip(
+            descriptor_one,
+            descriptor_two
+        )
+    )
+
+    first_norm = math.sqrt(
+        sum(value ** 2 for value in descriptor_one)
+    )
+
+    second_norm = math.sqrt(
+        sum(value ** 2 for value in descriptor_two)
+    )
+
+    if first_norm == 0 or second_norm == 0:
+        return None
+
+    cosine_similarity = (
+        dot_product /
+        (first_norm * second_norm)
+    )
+
+    return round(
+        max(0.0, min(100.0, cosine_similarity * 100.0)),
+        1
+    )
+
+
 # ============================================================
 # HELPER - DATE PARSING
 # ============================================================
@@ -671,6 +713,48 @@ def get_single_attendance(
 
 
 # ============================================================
+# HOD - GET TEACHERS IN OWN DEPARTMENT
+#
+# GET /api/faculty-attendance/hod/teachers
+# ============================================================
+
+@bp.get("/hod/teachers")
+@jwt_required()
+def get_hod_department_teachers():
+
+    try:
+
+        _, hod, error_response = get_current_hod()
+
+        if error_response:
+            return error_response
+
+        teachers = (
+            Teacher.query
+            .filter_by(department_id=hod.department_id)
+            .order_by(Teacher.full_name.asc())
+            .all()
+        )
+
+        return jsonify({
+            "success": True,
+            "department_id": hod.department_id,
+            "data": [
+                teacher.to_dict()
+                for teacher in teachers
+            ]
+        }), 200
+
+    except Exception as error:
+
+        return jsonify({
+            "success": False,
+            "message": "Unable to load department teachers.",
+            "error": str(error)
+        }), 500
+
+
+# ============================================================
 # HOD - GET OWN ATTENDANCE FOR TODAY
 #
 # GET /api/faculty-attendance/hod/self/today
@@ -818,10 +902,18 @@ def mark_hod_self_attendance_by_face():
             .first()
         )
 
-        confidence = round(
-            max(0.0, min(100.0, (1.0 - distance) * 100.0)),
-            1
+        # Euclidean distance remains the security decision. Cosine similarity
+        # is returned only as a clearer UI match score, not as a probability.
+        confidence = calculate_face_similarity(
+            captured_descriptor,
+            stored_descriptor
         )
+
+        if confidence is None:
+            confidence = round(
+                max(0.0, min(100.0, (1.0 - distance) * 100.0)),
+                1
+            )
 
         hod_data = {
             "user_id": user.id,

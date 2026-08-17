@@ -349,30 +349,99 @@ async function protectHodDashboard() {
             error
         );
 
-
-        if (
-            typeof API !== "undefined" &&
-            API.auth
-        ) {
-
-            API.auth.logout();
-        }
-
-        else {
-
-            localStorage.removeItem(
+        const accessToken =
+            localStorage.getItem(
                 "fmps_access_token"
             );
 
-            localStorage.removeItem(
-                "fmps_user"
+        const refreshToken =
+            localStorage.getItem(
+                "fmps_refresh_token"
             );
+
+        const authenticationRejected =
+            error &&
+            (
+                error.status === 401 ||
+                error.status === 403
+            );
+
+
+        /*
+         * Redirect only after a genuine authentication rejection or after
+         * api.js has confirmed refresh-token expiry and cleared the tokens.
+         * A temporary network/backend error must not log out an active user.
+         */
+        if (
+            authenticationRejected ||
+            !accessToken ||
+            !refreshToken
+        ) {
+            if (
+                typeof API !== "undefined" &&
+                API.auth
+            ) {
+                API.auth.logout();
+            }
+            else {
+                localStorage.removeItem(
+                    "fmps_access_token"
+                );
+
+                localStorage.removeItem(
+                    "fmps_refresh_token"
+                );
+
+                localStorage.removeItem(
+                    "fmps_user"
+                );
+            }
+
+            window.location.replace(
+                "hod-login.html"
+            );
+
+            return false;
         }
 
 
-        window.location.replace(
-            "hod-login.html"
-        );
+        let cachedUser = null;
+
+        try {
+            cachedUser = JSON.parse(
+                localStorage.getItem(
+                    "fmps_user"
+                ) || "null"
+            );
+        }
+        catch (parseError) {
+            cachedUser = null;
+        }
+
+
+        const cachedRole = String(
+            cachedUser?.role || ""
+        )
+            .trim()
+            .toLowerCase();
+
+
+        if (
+            cachedUser &&
+            cachedRole === "hod" &&
+            cachedUser.is_active !== false &&
+            cachedUser.is_active !== 0
+        ) {
+            console.warn(
+                "Using cached HOD session until the server is reachable again."
+            );
+
+            displayAuthenticatedUser(
+                cachedUser
+            );
+
+            return true;
+        }
 
 
         return false;

@@ -146,6 +146,10 @@ justify-content:center;
 
 color:#fff;
 
+transform:none !important;
+
+-webkit-transform:none !important;
+
 }
 
 .camera-placeholder{
@@ -179,9 +183,31 @@ color:#cbd5e1;
 }
 
 
-/* Actual Video */
+/* Raw video is kept hidden for face-api recognition. */
 
 #cameraVideo{
+
+position:absolute;
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+/* Force the raw, non-mirrored camera direction. */
+transform:scaleX(1) !important;
+
+-webkit-transform:scaleX(1) !important;
+
+display:none !important;
+
+}
+
+
+/* This canvas is the visible camera preview. It is deliberately flipped once
+   so the OS/browser mirror feed is displayed in normal left-right direction. */
+#cameraPreview{
 
 position:absolute;
 
@@ -629,197 +655,144 @@ padding:18px;
 <!-- =========================================================
                         SIDEBAR
 ========================================================= -->
-
 <aside class="sidebar">
 
-
-<div class="logo">
-
-<img
-src="../../images/logo.png"
-alt="Logo">
-
-<h3>HOD Panel</h3>
-
-</div>
-
-
-<ul class="menu">
-
-
-<li>
-
-<a href="hod-dashboard.html">
-
-<i class="fa-solid fa-house"></i>
-
-Dashboard
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="teacher-list.html">
-
-<i class="fa-solid fa-users"></i>
-
-Teachers
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="student-list.html">
-
-<i class="fa-solid fa-user-graduate"></i>
-
-Students
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="timetable.html">
-
-<i class="fa-solid fa-calendar-days"></i>
-
-Timetable
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="leave-requests.html">
-
-<i class="fa-solid fa-file-circle-check"></i>
-
-Leave Requests
-
-</a>
-
-</li>
-
-
-<li class="active">
-
-<a href="face-attendance.html">
-
-<i class="fa-solid fa-face-smile"></i>
-
-Face Attendance
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="attendance-report.html">
-
-<i class="fa-solid fa-clipboard-user"></i>
-
-Attendance Report
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="reports.html">
-
-<i class="fa-solid fa-chart-line"></i>
-
-Reports
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="notice-board.html">
-
-<i class="fa-solid fa-bullhorn"></i>
-
-Notices
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="academic-calendar.html">
-
-<i class="fa-solid fa-calendar-check"></i>
-
-Academic Calendar
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="analytics.html">
-
-<i class="fa-solid fa-chart-pie"></i>
-
-Analytics
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="settings.html">
-
-<i class="fa-solid fa-gear"></i>
-
-Settings
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="hod-login.html">
-
-<i class="fa-solid fa-right-from-bracket"></i>
-
-Logout
-
-</a>
-
-</li>
-
-
-</ul>
+    <div class="logo">
+        <img src="../../images/logo.png" alt="College Logo">
+        <h3>HOD Panel</h3>
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="hod-dashboard.html">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="teacher-list.html">
+                <i class="fa-solid fa-users"></i>
+                Teachers
+            </a>
+        </li>
+
+        <li>
+            <a href="student-list.html">
+                <i class="fa-solid fa-user-graduate"></i>
+                Students
+            </a>
+        </li>
+
+        <li>
+            <a href="timetable.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                Timetable
+            </a>
+        </li>
+
+        <li>
+            <a href="attendance.html">
+                <i class="fa-solid fa-calendar-check"></i>
+                Attendance
+            </a>
+        </li>
+
+        <li>
+            <a href="leave-requests.html">
+                <i class="fa-solid fa-file-circle-check"></i>
+                Leave Requests
+            </a>
+        </li>
+
+        <li>
+            <a href="performance.html">
+                <i class="fa-solid fa-chart-line"></i>
+                Performance
+            </a>
+        </li>
+
+        <li>
+            <a href="face-register.html">
+                <i class="fa-solid fa-user-plus"></i>
+                Face Registration
+            </a>
+        </li>
+
+        <li class="active">
+            <a href="face-attendance.html">
+                <i class="fa-solid fa-face-smile"></i>
+                Face Attendance
+            </a>
+        </li>
+
+        <li>
+            <a href="attendance-report.html">
+                <i class="fa-solid fa-clipboard-list"></i>
+                Attendance Report
+            </a>
+        </li>
+
+        <li>
+            <a href="academic-calendar.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                Academic Calendar
+            </a>
+        </li>
+
+        <li>
+            <a href="analytics.html">
+                <i class="fa-solid fa-chart-pie"></i>
+                Analytics
+            </a>
+        </li>
+
+        <li>
+            <a href="reports.html">
+                <i class="fa-solid fa-file-lines"></i>
+                Reports
+            </a>
+        </li>
+
+        <li>
+            <a href="notice-board.html">
+                <i class="fa-solid fa-bullhorn"></i>
+                Notice Board
+            </a>
+        </li>
+
+        <li>
+            <a href="notification.html">
+                <i class="fa-solid fa-bell"></i>
+                Notifications
+            </a>
+        </li>
+
+        <li>
+            <a href="profile.html">
+                <i class="fa-solid fa-user"></i>
+                Profile
+            </a>
+        </li>
+
+        <li>
+            <a href="settings.html">
+                <i class="fa-solid fa-gear"></i>
+                Settings
+            </a>
+        </li>
+
+        <li>
+            <a href="hod-login.html">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
+        </li>
+
+    </ul>
 
 </aside>
-
 
 <!-- =========================================================
                     MAIN CONTENT
@@ -1170,6 +1143,12 @@ id="cameraVideo"
 autoplay
 playsinline>
 </video>
+
+
+<canvas
+id="cameraPreview"
+aria-label="Normal camera preview">
+</canvas>
 
 
 <canvas
@@ -1607,7 +1586,7 @@ alt="Recognized User">
 
 <h3 id="recognizedUserName">
 
-Dr. Rahul Sharma
+--
 
 </h3>
 
@@ -1616,7 +1595,7 @@ Dr. Rahul Sharma
 id="recognizedUserRole"
 class="text-muted">
 
-Teacher
+HOD
 
 </p>
 
@@ -1634,7 +1613,7 @@ User ID
 
 <strong id="recognizedUserId">
 
-TCH001
+--
 
 </strong>
 
@@ -1651,7 +1630,7 @@ Department
 
 <strong id="recognizedDepartment">
 
-Computer Science
+--
 
 </strong>
 
@@ -1706,7 +1685,7 @@ class="d-flex justify-content-between mb-2">
 
 <span>
 
-Recognition Confidence
+Face Similarity
 
 </span>
 
@@ -2169,1293 +2148,448 @@ src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.j
 
 
 <!-- =========================================================
-                    COMMON HOD JS
+                    API + COMMON HOD JS
 ========================================================= -->
 
+<script src="../../js/api.js"></script>
 <script src="../../js/hod-dashboard.js"></script>
 
 
+<!-- Face descriptor engine. Models are loaded when camera starts. -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js">
+</script>
+
+
 <!-- =========================================================
-                FACE ATTENDANCE JAVASCRIPT
+                REAL HOD FACE ATTENDANCE
+                No separate JS file is required.
 ========================================================= -->
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
+    "use strict";
+
+    const MODEL_URL =
+        "https://justadudewhohacks.github.io/face-api.js/models";
+
+    const cameraVideo = document.getElementById("cameraVideo");
+    const cameraPreview = document.getElementById("cameraPreview");
+    const captureCanvas = document.getElementById("captureCanvas");
+    const cameraPlaceholder = document.getElementById("cameraPlaceholder");
+    const faceScanFrame = document.getElementById("faceScanFrame");
+    const scanLine = document.getElementById("scanLine");
+
+    const startCameraBtn = document.getElementById("startCameraBtn");
+    const scanFaceBtn = document.getElementById("scanFaceBtn");
+    const stopCameraBtn = document.getElementById("stopCameraBtn");
+
+    const cameraStatus = document.getElementById("cameraStatus");
+    const faceDetectionStatus = document.getElementById("faceDetectionStatus");
+    const recognitionStatus = document.getElementById("recognitionStatus");
+    const attendanceStatus = document.getElementById("attendanceStatus");
+
+    const waitingUser = document.getElementById("waitingUser");
+    const recognizedUser = document.getElementById("recognizedUser");
+    const recognizedUserPhoto = document.getElementById("recognizedUserPhoto");
+    const recognizedUserName = document.getElementById("recognizedUserName");
+    const recognizedUserRole = document.getElementById("recognizedUserRole");
+    const recognizedUserId = document.getElementById("recognizedUserId");
+    const recognizedDepartment = document.getElementById("recognizedDepartment");
+    const recognizedTime = document.getElementById("recognizedTime");
+    const confidenceText = document.getElementById("confidenceText");
+    const confidenceBar = document.getElementById("confidenceBar");
+    const attendanceSuccess = document.getElementById("attendanceSuccess");
+
+    const faceLiveTime = document.getElementById("faceLiveTime");
+    const faceLiveDate = document.getElementById("faceLiveDate");
+    const faceErrorMessage = document.getElementById("faceErrorMessage");
+    const previousCheckIn = document.getElementById("previousCheckIn");
+
+    let cameraStream = null;
+    let modelsLoaded = false;
+    let scanning = false;
+    let previewAnimationFrame = null;
+
+
+    /* The webcam can be mirrored by the browser/driver. Draw a single flipped
+       copy for display, while face-api continues to read the untouched video. */
+    function drawNormalPreview() {
+        if (!cameraStream || !cameraVideo.videoWidth) {
+            return;
+        }
+
+        if (
+            cameraPreview.width !== cameraVideo.videoWidth ||
+            cameraPreview.height !== cameraVideo.videoHeight
+        ) {
+            cameraPreview.width = cameraVideo.videoWidth;
+            cameraPreview.height = cameraVideo.videoHeight;
+        }
+
+        const context = cameraPreview.getContext("2d");
+
+        context.setTransform(-1, 0, 0, 1, cameraPreview.width, 0);
+        context.drawImage(
+            cameraVideo,
+            0,
+            0,
+            cameraPreview.width,
+            cameraPreview.height
+        );
+        context.setTransform(1, 0, 0, 1, 0, 0);
+
+        previewAnimationFrame = requestAnimationFrame(drawNormalPreview);
+    }
+
+
+    function setBadge(element, text, className) {
+        if (!element) {
+            return;
+        }
+
+        element.textContent = text;
+        element.className = "badge " + className;
+    }
+
+
+    function updateClock() {
+        const now = new Date();
+
+        faceLiveTime.textContent = now.toLocaleTimeString();
+        faceLiveDate.textContent = now.toLocaleDateString([], {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
+    }
+
+
+    function getLoggedInHod() {
+        let user = null;
+
+        try {
+            user = JSON.parse(
+                localStorage.getItem("fmps_user") || "null"
+            );
+        } catch (error) {
+            user = null;
+        }
 
+        const token = localStorage.getItem("fmps_access_token");
 
-/* =========================================================
-                        ELEMENTS
-========================================================= */
+        if (!token || !user) {
+            throw new Error("Please login as HOD first.");
+        }
 
-const cameraVideo =
-document.getElementById("cameraVideo");
+        if (String(user.role || "").toLowerCase() !== "hod") {
+            throw new Error("Only the logged-in HOD can mark attendance here.");
+        }
 
-const captureCanvas =
-document.getElementById("captureCanvas");
+        if (!window.API || typeof window.API.request !== "function") {
+            throw new Error("API client load nahi hua. api.js path check karein.");
+        }
 
-const cameraPlaceholder =
-document.getElementById("cameraPlaceholder");
+        return user;
+    }
 
-const faceScanFrame =
-document.getElementById("faceScanFrame");
 
-const scanLine =
-document.getElementById("scanLine");
+    function showModal(id) {
+        const element = document.getElementById(id);
 
+        if (element && window.bootstrap) {
+            bootstrap.Modal.getOrCreateInstance(element).show();
+        }
+    }
 
-const startCameraBtn =
-document.getElementById("startCameraBtn");
 
-const scanFaceBtn =
-document.getElementById("scanFaceBtn");
+    function showError(message) {
+        faceErrorMessage.textContent =
+            message || "Face attendance failed. Please try again.";
 
-const stopCameraBtn =
-document.getElementById("stopCameraBtn");
+        setBadge(faceDetectionStatus, "Try Again", "bg-danger");
+        setBadge(recognitionStatus, "Failed", "bg-danger");
+        setBadge(attendanceStatus, "Not Marked", "bg-danger");
+        showModal("faceAttendanceErrorModal");
+    }
 
 
-const cameraStatus =
-document.getElementById("cameraStatus");
+    function formatCheckIn(value) {
+        if (!value) {
+            return "--";
+        }
 
-const faceDetectionStatus =
-document.getElementById("faceDetectionStatus");
+        const parsed = new Date(value);
 
-const recognitionStatus =
-document.getElementById("recognitionStatus");
+        if (Number.isNaN(parsed.getTime())) {
+            return "--";
+        }
 
-const attendanceStatus =
-document.getElementById("attendanceStatus");
-
-
-const waitingUser =
-document.getElementById("waitingUser");
-
-const recognizedUser =
-document.getElementById("recognizedUser");
-
-
-const recognizedUserName =
-document.getElementById("recognizedUserName");
-
-const recognizedUserRole =
-document.getElementById("recognizedUserRole");
-
-const recognizedUserId =
-document.getElementById("recognizedUserId");
-
-const recognizedDepartment =
-document.getElementById("recognizedDepartment");
-
-const recognizedTime =
-document.getElementById("recognizedTime");
-
-
-const confidenceText =
-document.getElementById("confidenceText");
-
-const confidenceBar =
-document.getElementById("confidenceBar");
-
-const attendanceSuccess =
-document.getElementById("attendanceSuccess");
-
-
-const faceLiveTime =
-document.getElementById("faceLiveTime");
-
-const faceLiveDate =
-document.getElementById("faceLiveDate");
-
-
-let cameraStream = null;
-
-let cameraStarted = false;
-
-let scanning = false;
-
-
-/* =========================================================
-                    LIVE DATE & TIME
-========================================================= */
-
-function updateFaceClock(){
-
-const now =
-new Date();
-
-
-faceLiveTime.innerText =
-now.toLocaleTimeString(
-"en-IN",
-{
-
-hour:"2-digit",
-
-minute:"2-digit",
-
-second:"2-digit"
-
-}
-);
-
-
-faceLiveDate.innerText =
-now.toLocaleDateString(
-"en-IN",
-{
-
-weekday:"long",
-
-day:"2-digit",
-
-month:"long",
-
-year:"numeric"
-
-}
-);
-
-}
-
-
-updateFaceClock();
-
-
-setInterval(
-updateFaceClock,
-1000
-);
-
-
-/* =========================================================
-                    START CAMERA
-========================================================= */
-
-async function startCamera(){
-
-try{
-
-
-/* =========================================================
-        CHECK BROWSER CAMERA SUPPORT
-========================================================= */
-
-if(
-!navigator.mediaDevices ||
-!navigator.mediaDevices.getUserMedia
-){
-
-showFaceError(
-"Your browser does not support camera access."
-);
-
-return;
-
-}
-
-
-/* =========================================================
-                    CAMERA PERMISSION
-========================================================= */
-
-cameraStream =
-await navigator.mediaDevices.getUserMedia({
-
-video:{
-
-facingMode:"user",
-
-width:{
-
-ideal:1280
-
-},
-
-height:{
-
-ideal:720
-
-}
-
-},
-
-audio:false
-
-});
-
-
-/* =========================================================
-                    SET VIDEO
-========================================================= */
-
-cameraVideo.srcObject =
-cameraStream;
-
-
-cameraVideo.style.display =
-"block";
-
-
-cameraPlaceholder.style.display =
-"none";
-
-
-faceScanFrame.style.display =
-"block";
-
-
-cameraStarted =
-true;
-
-
-/* =========================================================
-                    BUTTON STATUS
-========================================================= */
-
-startCameraBtn.disabled =
-true;
-
-
-scanFaceBtn.disabled =
-false;
-
-
-stopCameraBtn.disabled =
-false;
-
-
-/* =========================================================
-                    STATUS
-========================================================= */
-
-cameraStatus.innerText =
-"Online";
-
-
-cameraStatus.className =
-"badge bg-success";
-
-
-faceDetectionStatus.innerText =
-"Ready";
-
-
-faceDetectionStatus.className =
-"badge bg-info text-dark";
-
-
-recognitionStatus.innerText =
-"Pending";
-
-
-recognitionStatus.className =
-"badge bg-secondary";
-
-
-attendanceStatus.innerText =
-"Not Marked";
-
-
-attendanceStatus.className =
-"badge bg-secondary";
-
-
-}
-
-catch(error){
-
-
-console.error(
-"Camera Error:",
-error
-);
-
-
-cameraStatus.innerText =
-"Permission Denied";
-
-
-cameraStatus.className =
-"badge bg-danger";
-
-
-showFaceError(
-"Camera access was denied. Please allow camera permission and try again."
-);
-
-
-}
-
-}
-
-
-/* =========================================================
-                START CAMERA BUTTON
-========================================================= */
-
-startCameraBtn.addEventListener(
-"click",
-startCamera
-);
-
-
-/* =========================================================
-                    STOP CAMERA
-========================================================= */
-
-function stopCamera(){
-
-if(cameraStream){
-
-cameraStream
-.getTracks()
-.forEach(
-function(track){
-
-track.stop();
-
-}
-);
-
-}
-
-
-cameraStream =
-null;
-
-
-cameraVideo.srcObject =
-null;
-
-
-cameraVideo.style.display =
-"none";
-
-
-cameraPlaceholder.style.display =
-"block";
-
-
-faceScanFrame.style.display =
-"none";
-
-
-scanLine.style.display =
-"none";
-
-
-cameraStarted =
-false;
-
-
-scanning =
-false;
-
-
-startCameraBtn.disabled =
-false;
-
-
-scanFaceBtn.disabled =
-true;
-
-
-stopCameraBtn.disabled =
-true;
-
-
-cameraStatus.innerText =
-"Offline";
-
-
-cameraStatus.className =
-"badge bg-secondary";
-
-
-faceDetectionStatus.innerText =
-"Waiting...";
-
-
-faceDetectionStatus.className =
-"badge bg-warning text-dark";
-
-
-recognitionStatus.innerText =
-"Pending";
-
-
-recognitionStatus.className =
-"badge bg-secondary";
-
-}
-
-
-/* =========================================================
-                    STOP BUTTON
-========================================================= */
-
-stopCameraBtn.addEventListener(
-"click",
-stopCamera
-);
-
-
-/* =========================================================
-                    CAPTURE FRAME
-========================================================= */
-
-function captureCurrentFrame(){
-
-const context =
-captureCanvas.getContext("2d");
-
-
-captureCanvas.width =
-cameraVideo.videoWidth;
-
-
-captureCanvas.height =
-cameraVideo.videoHeight;
-
-
-context.drawImage(
-
-cameraVideo,
-
-0,
-
-0,
-
-captureCanvas.width,
-
-captureCanvas.height
-
-);
-
-
-/* =========================================================
-                IMAGE AS DATA URL
-========================================================= */
-
-return captureCanvas.toDataURL(
-"image/jpeg",
-0.90
-);
-
-}
-
-
-/* =========================================================
-                    SCAN FACE
-========================================================= */
-
-scanFaceBtn.addEventListener(
-"click",
-async function(){
-
-
-if(!cameraStarted){
-
-showFaceError(
-"Please start the camera first."
-);
-
-return;
-
-}
-
-
-if(scanning){
-
-return;
-
-}
-
-
-scanning =
-true;
-
-
-scanFaceBtn.disabled =
-true;
-
-
-/* =========================================================
-                    SCANNING UI
-========================================================= */
-
-scanLine.style.display =
-"block";
-
-
-faceDetectionStatus.innerText =
-"Scanning...";
-
-
-faceDetectionStatus.className =
-"badge bg-primary";
-
-
-recognitionStatus.innerText =
-"Processing...";
-
-
-recognitionStatus.className =
-"badge bg-warning text-dark";
-
-
-attendanceStatus.innerText =
-"Waiting";
-
-
-attendanceStatus.className =
-"badge bg-secondary";
-
-
-waitingUser.style.display =
-"block";
-
-
-recognizedUser.style.display =
-"none";
-
-
-attendanceSuccess.style.display =
-"none";
-
-
-/* =========================================================
-                CAPTURE CAMERA FRAME
-========================================================= */
-
-let capturedImage = null;
-
-
-try{
-
-capturedImage =
-captureCurrentFrame();
-
-}
-
-catch(error){
-
-console.error(
-"Image Capture Error:",
-error
-);
-
-}
-
-
-/* =========================================================
-        FRONTEND DEMO FACE RECOGNITION
-========================================================= */
-
-/*
-
-IMPORTANT:
-
-Browser JavaScript abhi kisi actual person ko
-identify nahi kar raha.
-
-Neeche ka setTimeout sirf UI demo hai.
-
-Actual Face Recognition backend me CNN /
-OpenCV / Face Recognition model karega.
-
-*/
-
-
-setTimeout(
-function(){
-
-
-scanLine.style.display =
-"none";
-
-
-faceDetectionStatus.innerText =
-"Face Detected";
-
-
-faceDetectionStatus.className =
-"badge bg-success";
-
-
-/* =========================================================
-                DEMO RECOGNIZED USER
-========================================================= */
-
-const demoUser = {
-
-userId:"TCH001",
-
-name:"Dr. Rahul Sharma",
-
-role:"Teacher",
-
-department:"Computer Science",
-
-confidence:97.8,
-
-method:"Face Recognition"
-
-};
-
-
-/* =========================================================
-                DISPLAY RECOGNIZED USER
-========================================================= */
-
-showRecognizedUser(
-demoUser
-);
-
-
-scanning =
-false;
-
-
-scanFaceBtn.disabled =
-false;
-
-
-},
-2500
-);
-
-
-}
-);
-
-
-/* =========================================================
-                SHOW RECOGNIZED USER
-========================================================= */
-
-function showRecognizedUser(user){
-
-
-waitingUser.style.display =
-"none";
-
-
-recognizedUser.style.display =
-"block";
-
-
-recognizedUserName.innerText =
-user.name;
-
-
-recognizedUserRole.innerText =
-user.role;
-
-
-recognizedUserId.innerText =
-user.userId;
-
-
-recognizedDepartment.innerText =
-user.department;
-
-
-const currentTime =
-new Date().toLocaleTimeString(
-"en-IN",
-{
-
-hour:"2-digit",
-
-minute:"2-digit",
-
-second:"2-digit"
-
-}
-);
-
-
-recognizedTime.innerText =
-currentTime;
-
-
-/* =========================================================
-                    CONFIDENCE
-========================================================= */
-
-confidenceText.innerText =
-user.confidence + "%";
-
-
-confidenceBar.style.width =
-user.confidence + "%";
-
-
-if(user.confidence >= 90){
-
-confidenceBar.className =
-"progress-bar bg-success";
-
-}
-
-else if(user.confidence >= 75){
-
-confidenceBar.className =
-"progress-bar bg-warning";
-
-}
-
-else{
-
-confidenceBar.className =
-"progress-bar bg-danger";
-
-}
-
-
-/* =========================================================
-                    STATUS
-========================================================= */
-
-recognitionStatus.innerText =
-"Recognized";
-
-
-recognitionStatus.className =
-"badge bg-success";
-
-
-/* =========================================================
-                DEMO DUPLICATE CHECK
-========================================================= */
-
-/*
-
-Backend me duplicate attendance database se
-check hogi.
-
-Frontend demo me false rakha hai.
-
-true karoge to "Attendance Already Marked"
-modal dikhega.
-
-*/
-
-const alreadyMarked =
-false;
-
-
-if(alreadyMarked){
-
-attendanceStatus.innerText =
-"Already Marked";
-
-
-attendanceStatus.className =
-"badge bg-warning text-dark";
-
-
-document.getElementById(
-"previousCheckIn"
-).innerText =
-"09:02 AM";
-
-
-const duplicateModal =
-new bootstrap.Modal(
-document.getElementById(
-"duplicateAttendanceModal"
-)
-);
-
-
-duplicateModal.show();
-
-
-return;
-
-}
-
-
-/* =========================================================
-                    MARK ATTENDANCE
-========================================================= */
-
-markAttendance(
-user,
-currentTime
-);
-
-
-}
-
-
-/* =========================================================
-                    MARK ATTENDANCE
-========================================================= */
-
-function markAttendance(
-user,
-time
-){
-
-
-attendanceStatus.innerText =
-"Present";
-
-
-attendanceStatus.className =
-"badge bg-success";
-
-
-attendanceSuccess.style.display =
-"block";
-
-
-/* =========================================================
-                SUCCESS MODAL DATA
-========================================================= */
-
-document.getElementById(
-"modalAttendanceName"
-).innerText =
-user.name;
-
-
-document.getElementById(
-"modalAttendanceId"
-).innerText =
-user.userId;
-
-
-document.getElementById(
-"modalAttendanceTime"
-).innerText =
-time;
-
-
-document.getElementById(
-"modalAttendanceConfidence"
-).innerText =
-user.confidence + "%";
-
-
-/* =========================================================
-                    SUCCESS MODAL
-========================================================= */
-
-const successModal =
-new bootstrap.Modal(
-document.getElementById(
-"faceAttendanceSuccessModal"
-)
-);
-
-
-successModal.show();
-
-}
-
-
-/* =========================================================
-                    ERROR MODAL
-========================================================= */
-
-function showFaceError(message){
-
-document.getElementById(
-"faceErrorMessage"
-).innerText =
-message;
-
-
-const errorModal =
-new bootstrap.Modal(
-document.getElementById(
-"faceAttendanceErrorModal"
-)
-);
-
-
-errorModal.show();
-
-}
-
-
-/* =========================================================
-                ACTUAL BACKEND INTEGRATION
-========================================================= */
-
-/*
-
-=========================================================
-              FACE ATTENDANCE BACKEND
-=========================================================
-
-Frontend flow:
-
-Camera
-   ↓
-Capture Image
-   ↓
-Send image to backend
-   ↓
-Face Detection
-   ↓
-Face Recognition
-   ↓
-Registered Face Dataset
-   ↓
-User Identified
-   ↓
-Duplicate Attendance Check
-   ↓
-Attendance Save
-   ↓
-Response Frontend
-   ↓
-Attendance Report Updated
-
-
-Backend API example:
-
-POST /api/face/attendance
-
-
-Example JavaScript:
-
-
-async function recognizeFaceWithBackend(){
-
-try{
-
-
-const imageData =
-captureCurrentFrame();
-
-
-const response =
-await fetch(
-"/api/face/attendance",
-{
-
-method:"POST",
-
-headers:{
-
-"Content-Type":"application/json"
-
-},
-
-credentials:"include",
-
-body:JSON.stringify({
-
-image:imageData
-
-})
-
-}
-);
-
-
-const data =
-await response.json();
-
-
-if(!response.ok){
-
-showFaceError(
-data.message ||
-"Face recognition failed."
-);
-
-return;
-
-}
-
-
-if(data.alreadyMarked){
-
-
-document.getElementById(
-"previousCheckIn"
-).innerText =
-data.checkIn || "--";
-
-
-attendanceStatus.innerText =
-"Already Marked";
-
-
-attendanceStatus.className =
-"badge bg-warning text-dark";
-
-
-const duplicateModal =
-new bootstrap.Modal(
-document.getElementById(
-"duplicateAttendanceModal"
-)
-);
-
-
-duplicateModal.show();
-
-
-return;
-
-}
-
-
-const recognizedUserData = {
-
-userId:data.userId,
-
-name:data.name,
-
-role:data.role,
-
-department:data.department,
-
-confidence:data.confidence,
-
-method:"Face Recognition"
-
-};
-
-
-showRecognizedUser(
-recognizedUserData
-);
-
-
-}
-
-catch(error){
-
-
-console.error(
-"Face Recognition Error:",
-error
-);
-
-
-showFaceError(
-"Unable to connect to Face Recognition Server."
-);
-
-
-}
-
-}
-
-
-=========================================================
-*/
-
-
-/* =========================================================
-        ALTERNATIVE BACKEND USING IMAGE FILE
-========================================================= */
-
-/*
-
-Agar Python / Flask / FastAPI backend image file
-(FormData) expect karega, to ye better rahega:
-
-
-function captureImageBlob(){
-
-return new Promise(function(resolve){
-
-captureCanvas.width =
-cameraVideo.videoWidth;
-
-captureCanvas.height =
-cameraVideo.videoHeight;
-
-
-const context =
-captureCanvas.getContext("2d");
-
-
-context.drawImage(
-
-cameraVideo,
-
-0,
-
-0,
-
-captureCanvas.width,
-
-captureCanvas.height
-
-);
-
-
-captureCanvas.toBlob(
-
-function(blob){
-
-resolve(blob);
-
-},
-
-"image/jpeg",
-
-0.9
-
-);
-
-});
-
-}
-
-
-async function sendFaceToBackend(){
-
-const imageBlob =
-await captureImageBlob();
-
-
-const formData =
-new FormData();
-
-
-formData.append(
-"face_image",
-imageBlob,
-"face.jpg"
-);
-
-
-const response =
-await fetch(
-"/api/face/attendance",
-{
-
-method:"POST",
-
-body:formData,
-
-credentials:"include"
-
-}
-);
-
-
-const result =
-await response.json();
-
-
-console.log(result);
-
-}
-
-
-=========================================================
-*/
-
-
-/* =========================================================
-            EXPECTED BACKEND RESPONSE
-========================================================= */
-
-/*
-
-Backend successful response example:
-
-
-{
-    "success": true,
-
-    "recognized": true,
-
-    "alreadyMarked": false,
-
-    "userId": "TCH001",
-
-    "name": "Dr. Rahul Sharma",
-
-    "role": "Teacher",
-
-    "department": "Computer Science",
-
-    "confidence": 97.8,
-
-    "attendanceStatus": "Present",
-
-    "checkIn": "09:12:45 AM",
-
-    "date": "2026-08-02",
-
-    "method": "Face Recognition"
-}
-
-
-Agar face registered nahi hai:
-
-
-{
-    "success": false,
-
-    "recognized": false,
-
-    "message": "Face not registered."
-}
-
-
-Agar attendance already mark hai:
-
-
-{
-    "success": true,
-
-    "recognized": true,
-
-    "alreadyMarked": true,
-
-    "userId": "TCH001",
-
-    "checkIn": "09:02 AM",
-
-    "message": "Attendance already marked."
-}
-
-
-=========================================================
-*/
-
-
-/* =========================================================
-                PAGE CLOSE CAMERA
-========================================================= */
-
-window.addEventListener(
-"beforeunload",
-function(){
-
-if(cameraStream){
-
-cameraStream
-.getTracks()
-.forEach(
-function(track){
-
-track.stop();
-
-}
-);
-
-}
-
-}
-);
-
-
+        return parsed.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
+    }
+
+
+    function showRecognizedHod(response) {
+        const hod = response.hod || {};
+        const record = response.data || {};
+        const confidence = Number(response.confidence || 0);
+
+        waitingUser.style.display = "none";
+        recognizedUser.style.display = "block";
+
+        recognizedUserName.textContent = hod.full_name || "HOD";
+        recognizedUserRole.textContent = "HOD";
+        recognizedUserId.textContent = hod.hod_code || hod.user_id || "--";
+        recognizedDepartment.textContent = hod.department || "--";
+        recognizedTime.textContent = formatCheckIn(record.created_at);
+
+        if (hod.photo_url) {
+            recognizedUserPhoto.src = hod.photo_url;
+        }
+
+        confidenceText.textContent = confidence.toFixed(1) + "%";
+        confidenceBar.style.width = confidence + "%";
+
+        setBadge(faceDetectionStatus, "Face Detected", "bg-success");
+        setBadge(recognitionStatus, "HOD Verified", "bg-success");
+
+        if (response.already_marked) {
+            setBadge(attendanceStatus, "Already Marked", "bg-warning text-dark");
+            attendanceSuccess.style.display = "none";
+            previousCheckIn.textContent = formatCheckIn(record.created_at);
+            showModal("duplicateAttendanceModal");
+        } else {
+            setBadge(attendanceStatus, "Present", "bg-success");
+            attendanceSuccess.style.display = "block";
+        }
+    }
+
+
+    async function loadModels() {
+        if (modelsLoaded) {
+            return;
+        }
+
+        if (!window.faceapi) {
+            throw new Error(
+                "Face recognition library load nahi hui. Internet check karein."
+            );
+        }
+
+        setBadge(faceDetectionStatus, "Loading AI...", "bg-info text-dark");
+
+        await Promise.all([
+            faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
+            faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
+            faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL)
+        ]);
+
+        modelsLoaded = true;
+        setBadge(faceDetectionStatus, "Ready", "bg-primary");
+    }
+
+
+    async function startCamera() {
+        try {
+            getLoggedInHod();
+
+            startCameraBtn.disabled = true;
+            startCameraBtn.innerHTML =
+                '<i class="fa-solid fa-spinner fa-spin me-2"></i>Loading...';
+
+            await loadModels();
+
+            cameraStream = await navigator.mediaDevices.getUserMedia({
+                video: {
+                    facingMode: "user",
+                    width: { ideal: 640 },
+                    height: { ideal: 480 }
+                },
+                audio: false
+            });
+
+            cameraVideo.srcObject = cameraStream;
+            await cameraVideo.play();
+
+            cameraPlaceholder.style.display = "none";
+            cameraPreview.style.display = "block";
+            drawNormalPreview();
+            faceScanFrame.style.display = "block";
+
+            scanFaceBtn.disabled = false;
+            stopCameraBtn.disabled = false;
+
+            setBadge(cameraStatus, "Online", "bg-success");
+            setBadge(faceDetectionStatus, "Ready", "bg-primary");
+            setBadge(recognitionStatus, "Pending", "bg-secondary");
+        } catch (error) {
+            console.error("Camera start error:", error);
+            showError(error.message || "Camera start nahi ho saka.");
+            stopCamera();
+        } finally {
+            startCameraBtn.innerHTML =
+                '<i class="fa-solid fa-video me-2"></i>Start Camera';
+
+            if (!cameraStream) {
+                startCameraBtn.disabled = false;
+            }
+        }
+    }
+
+
+    function stopCamera() {
+        if (previewAnimationFrame) {
+            cancelAnimationFrame(previewAnimationFrame);
+            previewAnimationFrame = null;
+        }
+
+        if (cameraStream) {
+            cameraStream.getTracks().forEach(function (track) {
+                track.stop();
+            });
+        }
+
+        cameraStream = null;
+        cameraVideo.srcObject = null;
+        cameraPreview.style.display = "none";
+        cameraPlaceholder.style.display = "flex";
+        faceScanFrame.style.display = "none";
+        scanLine.style.display = "none";
+
+        startCameraBtn.disabled = false;
+        scanFaceBtn.disabled = true;
+        stopCameraBtn.disabled = true;
+
+        setBadge(cameraStatus, "Offline", "bg-secondary");
+    }
+
+
+    async function scanFace() {
+        if (scanning || !cameraStream) {
+            return;
+        }
+
+        scanning = true;
+        scanFaceBtn.disabled = true;
+        scanLine.style.display = "block";
+        attendanceSuccess.style.display = "none";
+
+        setBadge(faceDetectionStatus, "Scanning...", "bg-warning text-dark");
+        setBadge(recognitionStatus, "Matching...", "bg-info text-dark");
+        setBadge(attendanceStatus, "Processing", "bg-info text-dark");
+
+        try {
+            getLoggedInHod();
+            await loadModels();
+
+            const detections = await faceapi
+                .detectAllFaces(
+                    cameraVideo,
+                    new faceapi.TinyFaceDetectorOptions({
+                        inputSize: 320,
+                        scoreThreshold: 0.5
+                    })
+                )
+                .withFaceLandmarks()
+                .withFaceDescriptors();
+
+            if (detections.length === 0) {
+                throw new Error(
+                    "Face detect nahi hua. Seedha camera dekhein aur light improve karein."
+                );
+            }
+
+            if (detections.length > 1) {
+                throw new Error(
+                    "Camera frame mein sirf ek person hona chahiye."
+                );
+            }
+
+            captureCanvas.width = cameraVideo.videoWidth;
+            captureCanvas.height = cameraVideo.videoHeight;
+            captureCanvas.getContext("2d").drawImage(
+                cameraVideo,
+                0,
+                0,
+                captureCanvas.width,
+                captureCanvas.height
+            );
+
+            const descriptor = Array.from(
+                detections[0].descriptor
+            );
+
+            if (descriptor.length !== 128) {
+                throw new Error("Valid face descriptor generate nahi hua.");
+            }
+
+            const response = await API.request(
+                "POST",
+                "/faculty-attendance/hod/self/face",
+                { descriptor: descriptor }
+            );
+
+            if (!response || !response.success || !response.recognized) {
+                throw new Error(
+                    response && response.message
+                        ? response.message
+                        : "Face verify nahi hua."
+                );
+            }
+
+            showRecognizedHod(response);
+            stopCamera();
+        } catch (error) {
+            console.error("HOD face attendance error:", error);
+            showError(error.message || "Face attendance mark nahi hui.");
+        } finally {
+            scanning = false;
+            scanLine.style.display = "none";
+
+            if (cameraStream) {
+                scanFaceBtn.disabled = false;
+            }
+        }
+    }
+
+
+    async function loadTodayStatus() {
+        try {
+            getLoggedInHod();
+
+            const response = await API.request(
+                "GET",
+                "/faculty-attendance/hod/self/today"
+            );
+
+            if (response && response.success && response.marked) {
+                setBadge(attendanceStatus, "Already Marked", "bg-warning text-dark");
+                previousCheckIn.textContent = formatCheckIn(
+                    response.data && response.data.created_at
+                );
+            }
+        } catch (error) {
+            console.warn("Today's HOD attendance status:", error.message);
+        }
+    }
+
+
+    startCameraBtn.addEventListener("click", startCamera);
+    scanFaceBtn.addEventListener("click", scanFace);
+    stopCameraBtn.addEventListener("click", stopCamera);
+
+    window.addEventListener("beforeunload", stopCamera);
+
+    updateClock();
+    setInterval(updateClock, 1000);
+    loadTodayStatus();
 });
 
 </script>

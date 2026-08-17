@@ -937,6 +937,11 @@ async function loadAdminDashboard() {
         }
 
 
+        // HOD face attendance is stored in FacultyAttendance and is shown
+        // directly on the Admin dashboard for the current day.
+        await loadTodayHodAttendance();
+
+
     }
 
     catch (error) {
@@ -1009,6 +1014,214 @@ function openDashboard(role) {
                 "Unknown dashboard role:",
                 role
             );
+
+    }
+
+}
+
+
+// ============================================================
+// TODAY'S HOD FACE ATTENDANCE
+// ============================================================
+
+function getLocalDateValue() {
+
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+
+    return year + "-" + month + "-" + day;
+
+}
+
+
+function escapeDashboardText(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+function formatAttendanceCheckIn(value) {
+
+    if (!value) {
+        return "--";
+    }
+
+    const parsed = new Date(value);
+
+    if (Number.isNaN(parsed.getTime())) {
+        return "--";
+    }
+
+    return parsed.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+
+}
+
+
+function getHodAttendanceCard() {
+
+    let card = document.getElementById(
+        "todayHodAttendanceCard"
+    );
+
+    if (card) {
+        return card;
+    }
+
+    card = document.createElement("section");
+    card.id = "todayHodAttendanceCard";
+    card.className = "card shadow-sm border-0 mt-4";
+    card.style.borderRadius = "18px";
+    card.style.overflow = "hidden";
+
+    const chart = document.getElementById("attendanceChart");
+    const chartSection = chart
+        ? chart.closest("section, .card, .dashboard-card, .chart-card")
+        : null;
+
+    if (chartSection && chartSection.parentNode) {
+        chartSection.insertAdjacentElement("afterend", card);
+    } else {
+        const mainArea = document.querySelector(
+            "main, .main-content, .dashboard-content, .content"
+        );
+
+        (mainArea || document.body).appendChild(card);
+    }
+
+    return card;
+
+}
+
+
+async function loadTodayHodAttendance() {
+
+    const card = getHodAttendanceCard();
+
+    card.innerHTML =
+        '<div class="p-4 text-center text-muted">' +
+        '<i class="fa-solid fa-spinner fa-spin me-2"></i>' +
+        "Loading today's HOD attendance..." +
+        "</div>";
+
+    try {
+
+        const today = getLocalDateValue();
+
+        const response = await API.request(
+            "GET",
+            "/faculty-attendance",
+            null,
+            {
+                role: "hod",
+                from_date: today,
+                to_date: today
+            }
+        );
+
+        const records = (
+            response && Array.isArray(response.data)
+                ? response.data
+                : []
+        );
+
+        const rows = records.map(function (record) {
+
+            const status = String(
+                record.status || "present"
+            ).toLowerCase();
+
+            const badgeClass =
+                status === "present"
+                    ? "bg-success"
+                    : status === "leave"
+                        ? "bg-warning text-dark"
+                        : "bg-danger";
+
+            return (
+                "<tr>" +
+                    "<td>" +
+                        escapeDashboardText(record.faculty_code || "--") +
+                    "</td>" +
+                    "<td class=\"fw-semibold\">" +
+                        escapeDashboardText(record.faculty_name || "HOD") +
+                    "</td>" +
+                    "<td>" +
+                        escapeDashboardText(record.department || "--") +
+                    "</td>" +
+                    "<td>" +
+                        formatAttendanceCheckIn(record.created_at) +
+                    "</td>" +
+                    "<td>" +
+                        '<span class="badge ' + badgeClass + '">' +
+                            escapeDashboardText(status.toUpperCase()) +
+                        "</span>" +
+                    "</td>" +
+                    "<td>Face Recognition</td>" +
+                "</tr>"
+            );
+
+        }).join("");
+
+        card.innerHTML =
+            '<div class="card-header bg-white border-0 p-4 pb-2">' +
+                '<div class="d-flex justify-content-between align-items-center gap-3 flex-wrap">' +
+                    "<div>" +
+                        '<h5 class="mb-1 fw-bold">' +
+                            '<i class="fa-solid fa-user-check text-success me-2"></i>' +
+                            "Today's HOD Attendance" +
+                        "</h5>" +
+                        '<small class="text-muted">' +
+                            escapeDashboardText(today) +
+                        "</small>" +
+                    "</div>" +
+                    '<span class="badge bg-primary rounded-pill">' +
+                        records.length + " Marked" +
+                    "</span>" +
+                "</div>" +
+            "</div>" +
+            (
+                records.length
+                    ? '<div class="table-responsive p-3 pt-2">' +
+                        '<table class="table table-hover align-middle mb-0">' +
+                            "<thead><tr>" +
+                                "<th>HOD ID</th>" +
+                                "<th>Name</th>" +
+                                "<th>Department</th>" +
+                                "<th>Check-In</th>" +
+                                "<th>Status</th>" +
+                                "<th>Method</th>" +
+                            "</tr></thead>" +
+                            "<tbody>" + rows + "</tbody>" +
+                        "</table>" +
+                    "</div>"
+                    : '<div class="p-4 pt-2 text-muted">' +
+                        "No HOD attendance has been marked today." +
+                    "</div>"
+            );
+
+    } catch (error) {
+
+        console.error(
+            "HOD attendance dashboard error:",
+            error
+        );
+
+        card.innerHTML =
+            '<div class="p-4 text-danger">' +
+                '<i class="fa-solid fa-circle-exclamation me-2"></i>' +
+                "Unable to load today's HOD attendance." +
+            "</div>";
 
     }
 

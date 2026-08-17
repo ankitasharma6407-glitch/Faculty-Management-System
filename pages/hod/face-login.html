@@ -2,5114 +2,2263 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>HOD Face Login | FMPS</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    >
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: #080d19;
+            --card: #111827;
+            --card-light: #172033;
+            --border: rgba(148, 163, 184, 0.18);
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --purple: #635bff;
+            --purple-light: #8b7cff;
+            --green: #22c55e;
+            --yellow: #fbbf24;
+            --red: #ef4444;
+        }
+
+        body {
+            min-height: 100vh;
+
+            font-family: "Poppins", sans-serif;
+            color: var(--text);
+
+            background:
+                radial-gradient(
+                    circle at 50% -10%,
+                    rgba(99, 91, 255, 0.16),
+                    transparent 38%
+                ),
+                linear-gradient(
+                    135deg,
+                    #080d19,
+                    #0b1220
+                );
+        }
+
+        /* ===============================
+                    NAVBAR
+        =============================== */
+
+        .main-navbar {
+            width: calc(100% - 30px);
+            min-height: 82px;
+
+            margin: 15px;
+            padding: 14px 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            background: rgba(17, 24, 39, 0.96);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .brand-icon {
+            width: 52px;
+            height: 52px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 15px;
+
+            color: #a99cff;
+            font-size: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(99, 91, 255, 0.28),
+                    rgba(139, 124, 255, 0.12)
+                );
+
+            border:
+                1px solid rgba(139, 124, 255, 0.45);
+        }
+
+        .brand h1 {
+            margin: 0;
+
+            font-size: 19px;
+            font-weight: 700;
+        }
+
+        .brand p {
+            margin: 3px 0 0;
+
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .navbar-button {
+            min-height: 42px;
+            padding: 10px 16px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            border-radius: 12px;
+
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 500;
+            text-decoration: none;
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>AI Face Login | HOD Panel</title>
-
-<!-- Bootstrap -->
-<link
-href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-rel="stylesheet">
-
-<!-- Font Awesome -->
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-<!-- Google Font -->
-<link
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet">
-
-
-
-<style>
-
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-:root{
-    --bg:#080d19;
-    --bg-2:#0c1220;
-    --card:#111827;
-    --card-2:#141c2b;
-
-    --border:rgba(148,163,184,.18);
-
-    --text:#f8fafc;
-    --muted:#94a3b8;
-
-    --purple:#635bff;
-    --purple-light:#8b7cff;
-
-    --green:#22c55e;
-    --yellow:#fbbf24;
-    --red:#ef4444;
-
-    --navbar:#101725;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    margin:0;
-    min-height:100vh;
-
-    font-family:'Poppins',sans-serif;
-
-    background:
-        radial-gradient(
-            circle at 50% -10%,
-            rgba(79,70,229,.10),
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #080d19,
-            #0a101d
-        );
-
-    color:var(--text);
-}
-
-
-/* =========================================================
-                    PAGE WRAPPER
-========================================================= */
-
-.face-page{
-    width:100%;
-    min-height:100vh;
-    background:transparent;
-}
-
-
-/* =========================================================
-                        NAVBAR
-========================================================= */
-
-.face-navbar{
-    width:calc(100% - 24px);
-
-    min-height:92px;
-
-    margin:10px 12px 0;
-
-    padding:15px 30px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    gap:25px;
-
-    position:relative;
-    z-index:1000;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(18,26,42,.98),
-            rgba(13,20,34,.98)
-        );
-
-    border:
-        1px solid rgba(148,163,184,.08);
-
-    border-radius:17px;
-
-    box-shadow:
-        0 8px 35px rgba(0,0,0,.24);
-}
-
-
-/* =========================================================
-                    NAVBAR BRAND
-========================================================= */
-
-.face-navbar-brand{
-    display:flex;
-    align-items:center;
-    gap:17px;
-
-    flex-shrink:0;
-}
-
-.brand-icon{
-    width:58px;
-    height:58px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:17px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(99,91,255,.25),
-            rgba(139,124,255,.15)
-        );
-
-    border:
-        1px solid rgba(139,124,255,.45);
-
-    box-shadow:
-        0 0 25px rgba(99,91,255,.18);
-}
-
-.brand-icon i{
-    font-size:29px;
-    color:#a99cff;
-}
-
-.face-navbar-brand h2{
-    margin:0;
-
-    font-size:22px;
-    font-weight:700;
-
-    color:#ffffff;
-}
-
-.face-navbar-brand span{
-    display:block;
-
-    margin-top:2px;
-
-    color:#94a3b8;
-
-    font-size:13px;
-}
-
-
-/* =========================================================
-                    NAVBAR RIGHT
-========================================================= */
-
-.face-navbar-right{
-    display:flex;
-    align-items:center;
-
-    gap:15px;
-}
-
-
-/* =========================================================
-                        SEARCH
-========================================================= */
-
-.face-search-box{
-    width:260px;
-    height:45px;
-
-    display:flex;
-    align-items:center;
-
-    padding:0 16px;
-
-    border-radius:25px;
-
-    background:
-        rgba(255,255,255,.035);
-
-    border:
-        1px solid rgba(148,163,184,.15);
-
-    transition:.3s;
-}
-
-.face-search-box:focus-within{
-    border-color:
-        rgba(99,91,255,.70);
-
-    box-shadow:
-        0 0 0 3px rgba(99,91,255,.08);
-}
-
-.face-search-box input{
-    width:100%;
-
-    border:none;
-    outline:none;
-
-    background:transparent;
-
-    color:#ffffff;
-
-    font-family:'Poppins',sans-serif;
-
-    font-size:13px;
-}
-
-.face-search-box input::placeholder{
-    color:#7f8b9e;
-}
-
-.face-search-box i{
-    color:#e2e8f0;
-    font-size:16px;
-}
-
-
-/* =========================================================
-                    THEME SWITCHER
-========================================================= */
-
-.theme-switcher{
-    height:44px;
-
-    display:flex;
-    align-items:center;
-
-    gap:2px;
-
-    padding:4px;
-
-    border-radius:25px;
-
-    background:
-        rgba(255,255,255,.04);
-
-    border:
-        1px solid rgba(148,163,184,.12);
-}
-
-.theme-option{
-    width:34px;
-    height:34px;
-
-    border:none;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:50%;
-
-    background:transparent;
-
-    color:#cbd5e1;
-
-    cursor:pointer;
-
-    transition:.25s;
-}
-
-.theme-option:hover{
-    color:#ffffff;
-
-    background:
-        rgba(255,255,255,.07);
-}
-
-.theme-option.active{
-    color:#8b7cff;
-
-    background:
-        rgba(99,91,255,.18);
-
-    box-shadow:
-        0 0 12px rgba(99,91,255,.18);
-}
-
-
-/* =========================================================
-                    NAVBAR ICON BUTTON
-========================================================= */
-
-.navbar-icon-btn{
-    position:relative;
-
-    width:44px;
-    height:44px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:
-        rgba(255,255,255,.04);
-
-    color:#ffffff;
-
-    cursor:pointer;
-
-    transition:.25s;
-}
-
-.navbar-icon-btn:hover{
-    background:
-        rgba(99,91,255,.15);
-
-    color:#9f93ff;
-
-    transform:translateY(-2px);
-}
-
-.navbar-icon-btn i{
-    font-size:18px;
-}
-
-
-/* =========================================================
-                    NOTIFICATION BADGE
-========================================================= */
-
-.notification-count{
-    position:absolute;
-
-    top:-5px;
-    right:-3px;
-
-    min-width:21px;
-    height:21px;
-
-    padding:0 5px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:20px;
-
-    background:#ef3340;
-
-    border:
-        2px solid #111827;
-
-    color:#ffffff;
-
-    font-size:10px;
-    font-weight:700;
-}
-
-
-/* =========================================================
-                    PROFILE
-========================================================= */
-
-.hod-profile{
-    display:flex;
-    align-items:center;
-
-    gap:10px;
-
-    padding:5px 10px 5px 5px;
-
-    border:none;
-
-    background:transparent;
-
-    color:#ffffff;
-
-    cursor:pointer;
-
-    border-radius:25px;
-
-    transition:.25s;
-}
-
-.hod-profile:hover{
-    background:
-        rgba(255,255,255,.04);
-}
-
-.hod-profile img{
-    width:40px;
-    height:40px;
-
-    object-fit:cover;
-
-    border-radius:50%;
-
-    border:
-        2px solid rgba(255,255,255,.25);
-}
-
-.hod-profile span{
-    font-size:13px;
-    font-weight:600;
-
-    white-space:nowrap;
-}
-
-.hod-profile > i{
-    color:#94a3b8;
-    font-size:11px;
-}
-
-
-/* =========================================================
-                    DROPDOWN
-========================================================= */
-
-.premium-dropdown{
-    min-width:245px;
-
-    margin-top:12px !important;
-
-    padding:10px;
-
-    background:#151d2c;
-
-    border:
-        1px solid rgba(148,163,184,.15);
-
-    border-radius:14px;
-
-    box-shadow:
-        0 20px 50px rgba(0,0,0,.45);
-}
-
-.premium-dropdown .dropdown-header{
-    color:#ffffff;
-
-    font-weight:700;
-}
-
-.premium-dropdown .dropdown-item{
-    padding:10px 12px;
-
-    border-radius:9px;
-
-    color:#cbd5e1;
-
-    font-size:13px;
-
-    transition:.2s;
-}
-
-.premium-dropdown .dropdown-item:hover{
-    background:
-        rgba(99,91,255,.13);
-
-    color:#ffffff;
-}
-
-.premium-dropdown .dropdown-divider{
-    border-color:
-        rgba(148,163,184,.15);
-}
-
-
-/* =========================================================
-                    MAIN CONTENT
-========================================================= */
-
-.face-main-content{
-    width:100%;
-
-    max-width:1320px;
-
-    margin:0 auto;
-
-    padding:42px 36px 35px;
-}
-
-
-/* =========================================================
-                    PAGE HEADER
-========================================================= */
-
-.face-page-header{
-    width:100%;
-
-    display:flex;
-
-    justify-content:space-between;
-    align-items:flex-end;
-
-    gap:30px;
-
-    margin-bottom:25px;
-}
-
-
-/* =========================================================
-                    AI BADGE
-========================================================= */
-
-.ai-smart-badge{
-    width:max-content;
-
-    display:flex;
-    align-items:center;
-
-    gap:7px;
-
-    margin-bottom:13px;
-
-    padding:7px 12px;
-
-    border-radius:20px;
-
-    background:
-        rgba(99,91,255,.10);
-
-    border:
-        1px solid rgba(99,91,255,.50);
-
-    color:#b5acff;
-
-    font-size:10px;
-    font-weight:700;
-
-    box-shadow:
-        0 0 15px rgba(99,91,255,.08);
-}
-
-
-/* =========================================================
-                    TITLE
-========================================================= */
-
-.face-title{
-    display:flex;
-    align-items:center;
-
-    gap:14px;
-}
-
-.face-title > i{
-    color:#665cff;
-
-    font-size:30px;
-}
-
-.face-title h1{
-    margin:0;
-
-    color:#ffffff;
-
-    font-size:31px;
-    font-weight:700;
-}
-
-.face-heading-content > p{
-    margin:
-        8px 0 0;
-
-    color:#a8b1c1;
-
-    font-size:14px;
-}
-
-
-/* =========================================================
-                    HEADER BUTTONS
-========================================================= */
-
-.face-header-actions{
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-}
-
-.register-face-btn,
-.manual-login-btn{
-    min-width:155px;
-
-    height:48px;
-
-    padding:0 20px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    gap:9px;
-
-    border-radius:9px;
-
-    text-decoration:none;
-
-    font-size:13px;
-    font-weight:600;
-
-    transition:.25s;
-}
-
-.register-face-btn{
-    color:#8d82ff;
-
-    border:
-        1px solid #6258ff;
-
-    background:
-        rgba(99,91,255,.035);
-}
-
-.register-face-btn:hover{
-    color:#ffffff;
-
-    background:
-        rgba(99,91,255,.18);
-
-    transform:translateY(-2px);
-}
-
-.manual-login-btn{
-    color:#ffffff;
-
-    border:
-        1px solid #655bff;
-
-    background:
-        linear-gradient(
-            135deg,
-            #5448ef,
-            #6758ff
-        );
-
-    box-shadow:
-        0 7px 20px rgba(84,72,239,.20);
-}
-
-.manual-login-btn:hover{
-    color:#ffffff;
-
-    transform:translateY(-2px);
-
-    box-shadow:
-        0 10px 27px rgba(84,72,239,.30);
-}
-
-
-/* =========================================================
-                AI AUTHENTICATION CARD
-========================================================= */
-
-.ai-authentication-card{
-    width:64%;
-
-    min-height:122px;
-
-    padding:22px 25px;
-
-    margin-bottom:14px;
-
-    display:flex;
-    align-items:center;
-
-    gap:22px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(21,29,45,.95),
-            rgba(17,24,39,.95)
-        );
-
-    border:
-        1px solid rgba(148,163,184,.18);
-
-    border-radius:15px;
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,.10);
-}
-
-.ai-brain-icon{
-    width:60px;
-
-    flex-shrink:0;
-
-    display:flex;
-
-    justify-content:center;
-    align-items:center;
-}
-
-.ai-brain-icon i{
-    color:#655cff;
-
-    font-size:52px;
-
-    filter:
-        drop-shadow(
-            0 0 10px rgba(99,91,255,.30)
-        );
-}
-
-.ai-authentication-card h3{
-    margin:
-        0 0 5px;
-
-    color:#8f84ff;
-
-    font-size:15px;
-    font-weight:700;
-}
-
-.ai-authentication-card p{
-    margin:0;
-
-    color:#c0c8d4;
-
-    font-size:12.5px;
-
-    line-height:1.75;
-}
-
-
-/* =========================================================
+            transition: 0.3s;
+        }
+
+        .register-link {
+            background: rgba(99, 91, 255, 0.14);
+            border: 1px solid rgba(139, 124, 255, 0.4);
+        }
+
+        .manual-link {
+            background: var(--purple);
+            border: 1px solid var(--purple);
+        }
+
+        .navbar-button:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        /* ===============================
+                    PAGE
+        =============================== */
+
+        .page-container {
+            width: min(1350px, calc(100% - 30px));
+            margin: 25px auto 45px;
+        }
+
+        .page-header {
+            margin-bottom: 25px;
+            padding: 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            background: rgba(17, 24, 39, 0.88);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 17px;
+        }
+
+        .title-icon {
+            width: 60px;
+            height: 60px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 18px;
+
+            color: #ffffff;
+            font-size: 27px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--purple),
+                    var(--purple-light)
+                );
+        }
+
+        .page-title h2 {
+            margin: 0;
+
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        .page-title p {
+            margin: 5px 0 0;
+
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .security-badge {
+            padding: 10px 16px;
+
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            border-radius: 30px;
+
+            color: #86efac;
+            background: rgba(34, 197, 94, 0.12);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+
+            font-size: 12px;
+        }
+
+        /* ===============================
                     MAIN GRID
-========================================================= */
+        =============================== */
+
+        .login-grid {
+            display: grid;
+            grid-template-columns: 1.35fr 0.85fr;
+            gap: 25px;
+        }
 
-.face-login-grid{
-    width:100%;
+        .premium-card {
+            padding: 24px;
 
-    display:grid;
+            background: rgba(17, 24, 39, 0.94);
+            border: 1px solid var(--border);
+            border-radius: 20px;
 
-    grid-template-columns:
-        minmax(0,1.75fr)
-        minmax(330px,1fr);
+            box-shadow:
+                0 18px 45px rgba(0, 0, 0, 0.24);
+        }
 
-    gap:20px;
+        .card-heading {
+            margin-bottom: 20px;
 
-    align-items:start;
-}
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
 
+        .card-heading h3 {
+            margin: 0;
 
-/* =========================================================
-                    COMMON CARDS
-========================================================= */
+            font-size: 17px;
+            font-weight: 600;
+        }
 
-.scanner-card,
-.status-card,
-.recognized-card{
-    background:
-        linear-gradient(
-            145deg,
-            rgba(18,26,41,.98),
-            rgba(15,22,35,.98)
-        );
+        .card-heading p {
+            margin: 5px 0 0;
 
-    border:
-        1px solid rgba(148,163,184,.18);
+            color: var(--muted);
+            font-size: 12px;
+        }
 
-    border-radius:15px;
+        /* ===============================
+                    CAMERA
+        =============================== */
 
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.12);
-}
+        .camera-box {
+            width: 100%;
+            min-height: 440px;
 
+            position: relative;
+            overflow: hidden;
 
-/* =========================================================
-                    CARD HEADING
-========================================================= */
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-.card-heading{
-    display:flex;
+            border-radius: 18px;
 
-    align-items:center;
+            background:
+                linear-gradient(
+                    135deg,
+                    #080d19,
+                    #10192a
+                );
 
-    gap:12px;
+            border:
+                1px solid rgba(148, 163, 184, 0.18);
+        }
 
-    padding:
-        20px 22px 17px;
-}
+        #faceLoginVideo {
+            width: 100%;
+            height: 440px;
 
-.card-heading i{
-    width:25px;
+            display: none;
 
-    color:#665cff;
+            object-fit: cover;
+            transform: scaleX(-1);
+        }
 
-    font-size:18px;
+        .camera-placeholder {
+            padding: 30px;
+            text-align: center;
+        }
 
-    text-align:center;
-}
+        .camera-placeholder i {
+            margin-bottom: 17px;
 
-.card-heading h3{
-    margin:0;
+            color: var(--purple-light);
+            font-size: 65px;
+        }
 
-    color:#f8fafc;
+        .camera-placeholder h4 {
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
 
-    font-size:16px;
+        .camera-placeholder p {
+            color: var(--muted);
+            font-size: 13px;
+        }
 
-    font-weight:700;
-}
+        .live-badge {
+            display: none;
 
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            z-index: 10;
 
-/* =========================================================
-                    SCANNER CARD
-========================================================= */
+            padding: 8px 13px;
 
-.scanner-card{
-    padding-bottom:20px;
-}
+            border-radius: 25px;
 
+            color: #86efac;
+            background: rgba(8, 13, 25, 0.8);
+            border: 1px solid rgba(34, 197, 94, 0.35);
 
-/* =========================================================
-                    CAMERA SCANNER
-========================================================= */
+            font-size: 11px;
+        }
 
-.camera-scanner{
-    position:relative;
+        .live-dot {
+            width: 7px;
+            height: 7px;
 
-    height:425px;
+            display: inline-block;
+            margin-right: 7px;
 
-    margin:
-        0 22px;
+            border-radius: 50%;
+            background: var(--green);
 
-    display:flex;
+            box-shadow:
+                0 0 10px rgba(34, 197, 94, 0.8);
+        }
 
-    align-items:center;
-    justify-content:center;
+        .face-frame {
+            width: 220px;
+            height: 280px;
 
-    overflow:hidden;
+            display: none;
 
-    border-radius:13px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 5;
 
-    background:
-        radial-gradient(
-            circle at center,
-            #151d2a 0%,
-            #0c121e 60%,
-            #080d16 100%
-        );
+            transform: translate(-50%, -50%);
 
-    border:
-        1px solid rgba(148,163,184,.18);
+            border:
+                2px solid rgba(139, 124, 255, 0.8);
 
-    box-shadow:
-        inset 0 0 50px rgba(0,0,0,.30);
-}
+            border-radius: 45%;
 
+            box-shadow:
+                0 0 35px rgba(99, 91, 255, 0.35);
+        }
 
-/* =========================================================
-                        VIDEO
-========================================================= */
+        .scan-line {
+            width: 90%;
+            height: 3px;
 
-#faceLoginVideo{
-    position:absolute;
+            display: none;
 
-    inset:0;
+            position: absolute;
+            top: 10%;
+            left: 5%;
 
-    width:100%;
-    height:100%;
+            border-radius: 5px;
 
-    object-fit:cover;
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--green),
+                    transparent
+                );
 
-    display:none;
+            box-shadow:
+                0 0 18px rgba(34, 197, 94, 0.8);
 
-    transform:scaleX(-1);
+            animation:
+                scanAnimation 2s linear infinite;
+        }
 
-    z-index:2;
-}
+        @keyframes scanAnimation {
+            0% {
+                top: 10%;
+            }
 
-#faceLoginCanvas{
-    display:none;
-}
+            50% {
+                top: 88%;
+            }
 
+            100% {
+                top: 10%;
+            }
+        }
 
-/* =========================================================
-                    LIVE CAMERA
-========================================================= */
+        /* ===============================
+                    BUTTONS
+        =============================== */
 
-.live-camera-badge{
-    position:absolute;
+        .camera-actions {
+            margin-top: 20px;
 
-    top:18px;
-    left:18px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
 
-    z-index:20;
+        .action-button {
+            min-height: 47px;
+            padding: 11px 12px;
 
-    display:none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
 
-    align-items:center;
+            border: none;
+            border-radius: 12px;
 
-    gap:8px;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 500;
 
-    padding:
-        8px 12px;
+            transition: 0.25s;
+        }
 
-    border-radius:20px;
+        .action-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
 
-    background:
-        rgba(5,10,17,.85);
+        .action-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.45;
+        }
 
-    border:
-        1px solid rgba(255,255,255,.12);
+        .start-button {
+            background: var(--purple);
+        }
 
-    color:#ffffff;
+        .scan-button {
+            background: var(--green);
+        }
 
-    font-size:10px;
+        .retry-button {
+            background: #f59e0b;
+        }
 
-    font-weight:600;
+        .stop-button {
+            background: var(--red);
+        }
 
-    backdrop-filter:
-        blur(10px);
-}
+        /* ===============================
+                    STATUS
+        =============================== */
 
-.live-dot{
-    width:9px;
-    height:9px;
+        .status-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-    border-radius:50%;
+        .status-item {
+            padding: 14px 15px;
 
-    background:#35df75;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
 
-    box-shadow:
-        0 0 10px #35df75;
+            border-radius: 12px;
 
-    animation:
-        liveDotPulse 1.3s infinite;
-}
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(148, 163, 184, 0.12);
+        }
 
-@keyframes liveDotPulse{
+        .status-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
 
-    0%,
-    100%{
-        opacity:1;
-    }
+            color: #dbe4f0;
+            font-size: 12px;
+        }
 
-    50%{
-        opacity:.35;
-    }
-}
+        .status-label i {
+            width: 18px;
 
+            color: #a99cff;
+            text-align: center;
+        }
 
-/* =========================================================
-                    PLACEHOLDER
-========================================================= */
+        .status-value {
+            padding: 6px 10px;
 
-.scanner-placeholder{
-    position:relative;
+            border-radius: 20px;
 
-    z-index:5;
+            font-size: 10px;
+            font-weight: 600;
+        }
 
-    width:100%;
+        .status-offline {
+            color: #cbd5e1;
+            background: rgba(148, 163, 184, 0.14);
+        }
 
-    text-align:center;
+        .status-pending {
+            color: #fde68a;
+            background: rgba(251, 191, 36, 0.12);
+        }
 
-    display:flex;
+        .status-success {
+            color: #86efac;
+            background: rgba(34, 197, 94, 0.14);
+        }
 
-    flex-direction:column;
+        .status-failed {
+            color: #fca5a5;
+            background: rgba(239, 68, 68, 0.14);
+        }
 
-    align-items:center;
+        /* ===============================
+                    RESULT
+        =============================== */
 
-    justify-content:center;
-}
+        .waiting-box {
+            min-height: 240px;
+            margin-top: 22px;
+            padding: 25px;
 
-.scanner-placeholder h2{
-    margin:
-        20px 0 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
 
-    color:#f8fafc;
+            border-radius: 16px;
 
-    font-size:18px;
+            color: var(--muted);
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px dashed rgba(148, 163, 184, 0.2);
 
-    font-weight:700;
-}
+            text-align: center;
+        }
 
-.scanner-placeholder p{
-    margin:0;
+        .waiting-box i {
+            margin-bottom: 15px;
 
-    color:#9ba6b6;
+            color: #64748b;
+            font-size: 45px;
+        }
 
-    font-size:12px;
+        .waiting-box h4 {
+            margin-bottom: 7px;
 
-    line-height:1.7;
-}
+            color: #e2e8f0;
+            font-size: 16px;
+        }
 
+        .waiting-box p {
+            margin: 0;
 
-/* =========================================================
-                    FACE SCAN FRAME
-========================================================= */
+            font-size: 12px;
+            line-height: 1.7;
+        }
 
-.face-scan-frame{
-    position:relative;
+        .recognized-result {
+            margin-top: 22px;
+            padding: 22px;
 
-    width:330px;
-    height:255px;
+            display: none;
 
-    display:flex;
+            border-radius: 16px;
 
-    align-items:center;
-    justify-content:center;
-}
+            background: rgba(34, 197, 94, 0.06);
+            border: 1px solid rgba(34, 197, 94, 0.25);
 
+            text-align: center;
+        }
 
-/* =========================================================
-                    FACE OUTLINE
-========================================================= */
+        .recognized-avatar {
+            width: 90px;
+            height: 90px;
 
-.face-outline{
-    position:relative;
+            margin: 0 auto 15px;
 
-    width:150px;
-    height:225px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    border:
-        3px solid #41e56e;
+            overflow: hidden;
+            border-radius: 50%;
 
-    border-radius:
-        48% 48% 45% 45%;
+            color: #ffffff;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--purple),
+                    var(--purple-light)
+                );
 
-    box-shadow:
-        0 0 14px rgba(65,229,110,.25);
-}
+            border:
+                3px solid rgba(34, 197, 94, 0.6);
 
-.face-head{
-    position:absolute;
-    inset:0;
-}
+            font-size: 34px;
+        }
 
-.face-ear{
-    position:absolute;
+        .recognized-avatar img {
+            width: 100%;
+            height: 100%;
 
-    top:94px;
+            display: none;
+            object-fit: cover;
+        }
 
-    width:12px;
-    height:42px;
+        .recognized-result h3 {
+            margin-bottom: 5px;
 
-    border:
-        3px solid #41e56e;
-}
+            font-size: 19px;
+            font-weight: 600;
+        }
 
-.face-ear-left{
-    left:-11px;
+        .recognized-role {
+            margin-bottom: 18px;
 
-    border-right:0;
+            color: #86efac;
+            font-size: 12px;
+        }
 
-    border-radius:
-        10px 0 0 10px;
-}
+        .hod-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 11px;
+        }
 
-.face-ear-right{
-    right:-11px;
+        .detail-box {
+            padding: 12px;
 
-    border-left:0;
+            border-radius: 11px;
 
-    border-radius:
-        0 10px 10px 0;
-}
+            background: rgba(255, 255, 255, 0.04);
+            text-align: left;
+        }
 
+        .detail-box span {
+            display: block;
+            margin-bottom: 5px;
 
-/* =========================================================
-                    GREEN CORNERS
-========================================================= */
+            color: var(--muted);
+            font-size: 10px;
+        }
 
-.corner{
-    position:absolute;
+        .detail-box strong {
+            color: #ffffff;
+            font-size: 12px;
+            word-break: break-word;
+        }
 
-    width:30px;
-    height:30px;
+        .match-result {
+            margin-top: 15px;
+            padding: 11px;
 
-    border-color:#43e774;
+            border-radius: 11px;
 
-    border-style:solid;
+            color: #86efac;
+            background: rgba(34, 197, 94, 0.09);
 
-    filter:
-        drop-shadow(
-            0 0 5px rgba(67,231,116,.45)
-        );
-}
+            font-size: 11px;
+        }
 
-.top-left{
-    left:55px;
-    top:13px;
+        .continue-button {
+            width: 100%;
+            min-height: 49px;
+            margin-top: 17px;
 
-    border-width:
-        4px 0 0 4px;
+            border: none;
+            border-radius: 12px;
 
-    border-radius:
-        6px 0 0 0;
-}
+            color: #ffffff;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--green),
+                    #16a34a
+                );
 
-.top-right{
-    right:55px;
-    top:13px;
+            font-size: 13px;
+            font-weight: 600;
 
-    border-width:
-        4px 4px 0 0;
+            transition: 0.3s;
+        }
 
-    border-radius:
-        0 6px 0 0;
-}
+        .continue-button:hover {
+            transform: translateY(-2px);
+        }
 
-.bottom-left{
-    left:55px;
-    bottom:13px;
+        .security-note {
+            margin-top: 20px;
+            padding: 15px;
 
-    border-width:
-        0 0 4px 4px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
 
-    border-radius:
-        0 0 0 6px;
-}
+            border-radius: 13px;
 
-.bottom-right{
-    right:55px;
-    bottom:13px;
+            color: #cbd5e1;
+            background: rgba(99, 91, 255, 0.08);
+            border: 1px solid rgba(99, 91, 255, 0.2);
 
-    border-width:
-        0 4px 4px 0;
+            font-size: 11px;
+            line-height: 1.7;
+        }
 
-    border-radius:
-        0 0 6px 0;
-}
+        .security-note i {
+            margin-top: 3px;
 
+            color: #a99cff;
+            font-size: 18px;
+        }
 
-/* =========================================================
-                    SCANNER LINE
-========================================================= */
+        footer {
+            padding: 24px;
 
-.scanner-line{
-    position:absolute;
+            color: var(--muted);
+            font-size: 11px;
+            text-align: center;
+        }
 
-    left:25px;
-    right:25px;
+        /* ===============================
+                    RESPONSIVE
+        =============================== */
 
-    top:50%;
+        @media (max-width: 1050px) {
+            .login-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
-    height:2px;
+        @media (max-width: 700px) {
+            .main-navbar,
+            .page-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
 
-    background:#42e56f;
+            .navbar-actions {
+                width: 100%;
+                flex-direction: column;
+            }
 
-    box-shadow:
-        0 0 8px #42e56f,
-        0 0 25px rgba(66,229,111,.75),
-        0 0 45px rgba(66,229,111,.35);
+            .navbar-button {
+                width: 100%;
+            }
 
-    animation:
-        faceScannerMove 2.4s ease-in-out infinite;
-}
+            .camera-actions {
+                grid-template-columns: 1fr 1fr;
+            }
 
-@keyframes faceScannerMove{
+            .camera-box,
+            #faceLoginVideo {
+                min-height: 360px;
+                height: 360px;
+            }
 
-    0%{
-        top:18%;
-    }
+            .security-badge {
+                width: 100%;
+                justify-content: center;
+            }
+        }
 
-    50%{
-        top:80%;
-    }
-
-    100%{
-        top:18%;
-    }
-}
-
-
-/* =========================================================
-                VIDEO FACE FRAME
-========================================================= */
-
-.video-face-frame{
-    position:absolute;
-
-    z-index:10;
-
-    width:240px;
-    height:315px;
-
-    display:none;
-
-    border:
-        3px solid #41e56e;
-
-    border-radius:
-        47% 47% 44% 44%;
-
-    box-shadow:
-        0 0 22px rgba(65,229,110,.35);
-}
-
-.video-corner{
-    position:absolute;
-
-    width:35px;
-    height:35px;
-
-    border-style:solid;
-
-    border-color:#42e56f;
-}
-
-.corner-one{
-    top:-18px;
-    left:-18px;
-
-    border-width:
-        4px 0 0 4px;
-}
-
-.corner-two{
-    top:-18px;
-    right:-18px;
-
-    border-width:
-        4px 4px 0 0;
-}
-
-.corner-three{
-    bottom:-18px;
-    left:-18px;
-
-    border-width:
-        0 0 4px 4px;
-}
-
-.corner-four{
-    bottom:-18px;
-    right:-18px;
-
-    border-width:
-        0 4px 4px 0;
-}
-
-.video-scan-line{
-    position:absolute;
-
-    left:-60px;
-    right:-60px;
-
-    top:20%;
-
-    height:2px;
-
-    background:#42e56f;
-
-    box-shadow:
-        0 0 15px #42e56f;
-
-    animation:
-        videoScanAnimation
-        2s linear infinite;
-}
-
-@keyframes videoScanAnimation{
-
-    0%{
-        top:15%;
-    }
-
-    50%{
-        top:85%;
-    }
-
-    100%{
-        top:15%;
-    }
-}
-
-
-/* =========================================================
-                    SCANNER BUTTONS
-========================================================= */
-
-.scanner-buttons{
-    padding:
-        20px 22px 0;
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:16px;
-}
-
-.scanner-btn{
-    height:48px;
-
-    border:none;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    gap:9px;
-
-    border-radius:9px;
-
-    color:#ffffff;
-
-    font-family:'Poppins',sans-serif;
-
-    font-size:12px;
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:
-        transform .25s,
-        box-shadow .25s,
-        filter .25s;
-}
-
-.scanner-btn:hover:not(:disabled){
-    transform:
-        translateY(-3px);
-
-    filter:
-        brightness(1.08);
-}
-
-.scanner-btn:active:not(:disabled){
-    transform:
-        scale(.97);
-}
-
-.scanner-btn:disabled{
-    cursor:not-allowed;
-
-    opacity:.50;
-}
-
-
-/* START CAMERA */
-
-.start-camera-btn{
-    background:
-        linear-gradient(
-            135deg,
-            #1eae52,
-            #2bc865
-        );
-
-    box-shadow:
-        0 7px 20px rgba(34,197,94,.18);
-}
-
-
-/* SCAN */
-
-.scan-face-btn{
-    background:
-        linear-gradient(
-            135deg,
-            #4f46e5,
-            #665cff
-        );
-
-    box-shadow:
-        0 7px 20px rgba(79,70,229,.20);
-}
-
-
-/* RETRY */
-
-.retry-face-btn{
-    color:#171717;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f6ae15,
-            #ffc42d
-        );
-
-    box-shadow:
-        0 7px 20px rgba(251,191,36,.17);
-}
-
-
-/* STOP */
-
-.stop-camera-btn{
-    background:
-        linear-gradient(
-            135deg,
-            #dc3545,
-            #ef4454
-        );
-
-    box-shadow:
-        0 7px 20px rgba(239,68,68,.17);
-}
-
-
-/* =========================================================
-                    STATUS CARD
-========================================================= */
-
-.status-card{
-    margin-bottom:18px;
-
-    padding-bottom:8px;
-}
-
-.status-list{
-    padding:
-        0 22px 10px;
-}
-
-.status-item{
-    min-height:56px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:space-between;
-
-    gap:15px;
-
-    border-top:
-        1px solid rgba(148,163,184,.12);
-}
-
-.status-name{
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    color:#e2e8f0;
-
-    font-size:13px;
-
-    font-weight:600;
-}
-
-.status-name i{
-    width:20px;
-
-    color:#665cff;
-
-    text-align:center;
-}
-
-
-/* =========================================================
-                    STATUS BADGES
-========================================================= */
-
-.status-badge{
-    min-width:72px;
-
-    padding:
-        6px 11px;
-
-    border-radius:20px;
-
-    text-align:center;
-
-    font-size:10px;
-
-    font-weight:600;
-}
-
-.status-offline,
-.status-pending{
-    color:#e2e8f0;
-
-    background:
-        linear-gradient(
-            135deg,
-            #64748b,
-            #8491a5
-        );
-}
-
-.status-waiting{
-    color:#211600;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f0a900,
-            #ffc326
-        );
-}
-
-.status-success{
-    color:#ffffff;
-
-    background:
-        linear-gradient(
-            135deg,
-            #16a34a,
-            #22c55e
-        );
-}
-
-.status-failed{
-    color:#ffffff;
-
-    background:
-        linear-gradient(
-            135deg,
-            #b92e3c,
-            #d33b4a
-        );
-}
-
-
-/* =========================================================
-                    RECOGNIZED CARD
-========================================================= */
-
-.recognized-card{
-    min-height:345px;
-}
-
-.recognition-waiting{
-    min-height:275px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-    justify-content:center;
-
-    padding:25px;
-
-    text-align:center;
-}
-
-.waiting-face{
-    width:90px;
-    height:90px;
-
-    margin-bottom:22px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    border:
-        5px solid #475166;
-        
-
-    border-radius:50%;
-
-    color:#59647b;
-
-    font-size:45px;
-
-    background:
-        rgba(71,81,102,.08);
-
-    box-shadow:
-        inset 0 0 25px rgba(0,0,0,.18);
-}
-
-.recognition-waiting h3{
-    margin:
-        0 0 9px;
-
-    color:#f8fafc;
-
-    font-size:17px;
-    font-weight:600;
-}
-
-.recognition-waiting p{
-    max-width:270px;
-
-    margin:0;
-
-    color:#94a3b8;
-
-    font-size:12px;
-    line-height:1.7;
-}
-
-
-/* =========================================================
-                    RECOGNIZED RESULT
-========================================================= */
-
-.recognized-result{
-    display:none;
-
-    padding:
-        15px 25px 28px;
-
-    text-align:center;
-}
-
-.recognized-photo-wrapper{
-    position:relative;
-
-    width:100px;
-    height:100px;
-
-    margin:
-        5px auto 15px;
-}
-
-.recognized-photo-wrapper img{
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    border-radius:50%;
-
-    border:
-        4px solid #22c55e;
-
-    padding:3px;
-
-    box-shadow:
-        0 0 25px rgba(34,197,94,.25);
-}
-
-.verified-icon{
-    position:absolute;
-
-    right:-2px;
-    bottom:4px;
-
-    width:29px;
-    height:29px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    border-radius:50%;
-
-    background:#22c55e;
-
-    border:
-        3px solid #111827;
-
-    color:#ffffff;
-
-    font-size:12px;
-}
-
-.recognized-result h3{
-    margin:
-        0 0 3px;
-
-    color:#ffffff;
-
-    font-size:19px;
-    font-weight:700;
-}
-
-.recognized-role{
-    margin:
-        0 0 18px;
-
-    color:#94a3b8;
-
-    font-size:12px;
-}
-
-
-/* =========================================================
-                RECOGNIZED hod INFO
-========================================================= */
-
-.recognized-info-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:10px;
-
-    margin-top:15px;
-
-    text-align:left;
-}
-
-.recognized-info-box{
-    padding:
-        11px 13px;
-
-    background:
-        rgba(255,255,255,.025);
-
-    border:
-        1px solid rgba(148,163,184,.12);
-
-    border-radius:9px;
-}
-
-.recognized-info-box span{
-    display:block;
-
-    margin-bottom:4px;
-
-    color:#7f8a9d;
-
-    font-size:9px;
-    font-weight:500;
-
-    text-transform:uppercase;
-
-    letter-spacing:.5px;
-}
-
-.recognized-info-box strong{
-    display:block;
-
-    color:#e2e8f0;
-
-    font-size:11px;
-    font-weight:600;
-
-    word-break:break-word;
-}
-
-
-/* =========================================================
-                RECOGNITION CONFIDENCE
-========================================================= */
-
-.confidence-section{
-    margin-top:20px;
-
-    text-align:left;
-}
-
-.confidence-header{
-    display:flex;
-
-    justify-content:space-between;
-    align-items:center;
-
-    margin-bottom:8px;
-}
-
-.confidence-header span{
-    color:#cbd5e1;
-
-    font-size:11px;
-    font-weight:500;
-}
-
-.confidence-header strong{
-    color:#22c55e;
-
-    font-size:12px;
-    font-weight:700;
-}
-
-.confidence-track{
-    width:100%;
-    height:8px;
-
-    overflow:hidden;
-
-    border-radius:20px;
-
-    background:
-        rgba(148,163,184,.14);
-}
-
-.confidence-progress{
-    width:0%;
-    height:100%;
-
-    border-radius:20px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #16a34a,
-            #22c55e,
-            #4ade80
-        );
-
-    box-shadow:
-        0 0 10px rgba(34,197,94,.30);
-
-    transition:
-        width .8s ease;
-}
-
-
-/* =========================================================
-                AUTHENTICATION SUCCESS
-========================================================= */
-
-.authentication-success{
-    margin-top:18px;
-
-    padding:13px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    gap:9px;
-
-    border-radius:9px;
-
-    color:#4ade80;
-
-    background:
-        rgba(34,197,94,.08);
-
-    border:
-        1px solid rgba(34,197,94,.20);
-
-    font-size:11px;
-    font-weight:600;
-}
-
-.authentication-success i{
-    font-size:15px;
-}
-
-
-/* =========================================================
-                CONTINUE DASHBOARD BUTTON
-========================================================= */
-
-.continue-dashboard-btn{
-    width:100%;
-    height:43px;
-
-    margin-top:14px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    gap:8px;
-
-    border:none;
-
-    border-radius:9px;
-
-    color:#ffffff;
-
-    background:
-        linear-gradient(
-            135deg,
-            #16a34a,
-            #22c55e
-        );
-
-    font-family:'Poppins',sans-serif;
-
-    font-size:11px;
-    font-weight:600;
-
-    cursor:pointer;
-
-    box-shadow:
-        0 7px 20px rgba(34,197,94,.18);
-
-    transition:
-        transform .25s,
-        box-shadow .25s,
-        filter .25s;
-}
-
-.continue-dashboard-btn:hover{
-    transform:
-        translateY(-2px);
-
-    filter:
-        brightness(1.08);
-
-    box-shadow:
-        0 10px 25px rgba(34,197,94,.25);
-}
-
-.continue-dashboard-btn:active{
-    transform:
-        scale(.98);
-}
-
-
-/* =========================================================
-                    NOTIFICATION DROPDOWN
-========================================================= */
-
-.notification-dropdown{
-    min-width:300px;
-
-    padding:10px;
-
-    margin-top:12px !important;
-
-    background:#151d2c;
-
-    border:
-        1px solid rgba(148,163,184,.15);
-
-    border-radius:14px;
-
-    box-shadow:
-        0 20px 50px rgba(0,0,0,.45);
-}
-
-.notification-dropdown .dropdown-header{
-    padding:
-        9px 12px 12px;
-
-    color:#ffffff;
-
-    font-size:13px;
-    font-weight:700;
-
-    border-bottom:
-        1px solid rgba(148,163,184,.12);
-}
-
-.notification-dropdown .dropdown-item{
-    padding:
-        11px 12px;
-
-    display:flex;
-
-    align-items:flex-start;
-
-    gap:10px;
-
-    color:#cbd5e1;
-
-    border-radius:9px;
-
-    white-space:normal;
-
-    font-size:11px;
-
-    line-height:1.5;
-
-    transition:.2s;
-}
-
-.notification-dropdown .dropdown-item:hover{
-    color:#ffffff;
-
-    background:
-        rgba(99,91,255,.12);
-}
-
-.notification-dropdown .dropdown-item i{
-    width:18px;
-
-    margin-top:2px;
-
-    color:#766cff;
-
-    text-align:center;
-}
-
-
-/* =========================================================
-                    PROFILE DROPDOWN
-========================================================= */
-
-.profile-dropdown{
-    min-width:220px;
-
-    padding:9px;
-
-    margin-top:12px !important;
-
-    background:#151d2c;
-
-    border:
-        1px solid rgba(148,163,184,.15);
-
-    border-radius:14px;
-
-    box-shadow:
-        0 20px 50px rgba(0,0,0,.45);
-}
-
-.profile-dropdown .dropdown-item{
-    padding:
-        10px 12px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    border-radius:8px;
-
-    color:#cbd5e1;
-
-    font-size:12px;
-
-    transition:.2s;
-}
-
-.profile-dropdown .dropdown-item i{
-    width:18px;
-
-    color:#776dff;
-
-    text-align:center;
-}
-
-.profile-dropdown .dropdown-item:hover{
-    color:#ffffff;
-
-    background:
-        rgba(99,91,255,.12);
-}
-
-.profile-dropdown .dropdown-item.text-danger{
-    color:#f87171 !important;
-}
-
-.profile-dropdown .dropdown-item.text-danger i{
-    color:#f87171;
-}
-
-.profile-dropdown .dropdown-divider{
-    border-color:
-        rgba(148,163,184,.15);
-}
-
-
-/* =========================================================
-                    FOOTER
-========================================================= */
-
-.face-footer{
-    max-width:1320px;
-
-    margin:
-        20px auto 0;
-
-    padding:
-        20px 35px 30px;
-
-    text-align:center;
-
-    color:#64748b;
-
-    font-size:11px;
-}
-
-.face-footer span{
-    color:#8b7cff;
-
-    font-weight:600;
-}
-
-
-/* =========================================================
-                    LIGHT MODE
-========================================================= */
-
-body.light-mode{
-    --bg:#f4f7fc;
-    --bg-2:#eef2f8;
-    --card:#ffffff;
-    --card-2:#f8fafc;
-
-    --border:
-        rgba(15,23,42,.10);
-
-    --text:#111827;
-    --muted:#64748b;
-
-    --navbar:#ffffff;
-
-    background:
-        radial-gradient(
-            circle at 50% -10%,
-            rgba(99,91,255,.08),
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #f4f7fc,
-            #edf2f9
-        );
-
-    color:#111827;
-}
-
-
-/* =========================================================
-                LIGHT MODE NAVBAR
-========================================================= */
-
-body.light-mode .face-navbar{
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.98),
-            rgba(248,250,252,.98)
-        );
-
-    border-color:
-        rgba(15,23,42,.08);
-
-    box-shadow:
-        0 8px 30px rgba(15,23,42,.08);
-}
-
-body.light-mode
-.face-navbar-brand h2{
-    color:#111827;
-}
-
-body.light-mode
-.face-navbar-brand span{
-    color:#64748b;
-}
-
-body.light-mode
-.face-search-box{
-    background:#f1f5f9;
-
-    border-color:
-        rgba(15,23,42,.10);
-}
-
-body.light-mode
-.face-search-box input{
-    color:#111827;
-}
-
-body.light-mode
-.face-search-box input::placeholder{
-    color:#94a3b8;
-}
-
-body.light-mode
-.face-search-box i{
-    color:#475569;
-}
-
-body.light-mode
-.theme-switcher{
-    background:#f1f5f9;
-
-    border-color:
-        rgba(15,23,42,.08);
-}
-
-body.light-mode
-.theme-option{
-    color:#64748b;
-}
-
-body.light-mode
-.theme-option:hover{
-    color:#111827;
-
-    background:#e2e8f0;
-}
-
-body.light-mode
-.navbar-icon-btn{
-    color:#334155;
-
-    background:#f1f5f9;
-}
-
-body.light-mode
-.navbar-icon-btn:hover{
-    color:#635bff;
-
-    background:
-        rgba(99,91,255,.10);
-}
-
-body.light-mode
-.hod-profile{
-    color:#111827;
-}
-
-body.light-mode
-.hod-profile:hover{
-    background:#f1f5f9;
-}
-
-
-/* =========================================================
-                LIGHT MODE PAGE HEADER
-========================================================= */
-
-body.light-mode
-.face-title h1{
-    color:#111827;
-}
-
-body.light-mode
-.face-heading-content > p{
-    color:#64748b;
-}
-
-
-/* =========================================================
-                    LIGHT MODE CARDS
-========================================================= */
-
-body.light-mode
-.ai-authentication-card,
-body.light-mode
-.scanner-card,
-body.light-mode
-.status-card,
-body.light-mode
-.recognized-card{
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #f8fafc
-        );
-
-    border-color:
-        rgba(15,23,42,.09);
-
-    box-shadow:
-        0 10px 30px rgba(15,23,42,.06);
-}
-
-body.light-mode
-.ai-authentication-card p{
-    color:#64748b;
-}
-
-body.light-mode
-.card-heading h3{
-    color:#111827;
-}
-
-body.light-mode
-.status-item{
-    border-color:
-        rgba(15,23,42,.08);
-}
-
-body.light-mode
-.status-name{
-    color:#334155;
-}
-
-
-/* =========================================================
-                LIGHT MODE SCANNER
-========================================================= */
-
-body.light-mode
-.camera-scanner{
-    background:
-        radial-gradient(
-            circle at center,
-            #172033 0%,
-            #0d1421 65%,
-            #080d16 100%
-        );
-
-    border-color:
-        rgba(15,23,42,.10);
-}
-
-
-/*
-Scanner dark hi rakha gaya hai light mode me bhi,
-kyunki green face recognition effect dark background
-par premium dikhta hai.
-*/
-
-
-/* =========================================================
-            LIGHT MODE RECOGNIZED hod
-========================================================= */
-
-body.light-mode
-.recognition-waiting h3{
-    color:#111827;
-}
-
-body.light-mode
-.recognition-waiting p{
-    color:#64748b;
-}
-
-body.light-mode
-.recognized-result h3{
-    color:#111827;
-}
-
-body.light-mode
-.recognized-role{
-    color:#64748b;
-}
-
-body.light-mode
-.recognized-info-box{
-    background:#f8fafc;
-
-    border-color:
-        rgba(15,23,42,.08);
-}
-
-body.light-mode
-.recognized-info-box span{
-    color:#64748b;
-}
-
-body.light-mode
-.recognized-info-box strong{
-    color:#1e293b;
-}
-
-body.light-mode
-.confidence-header span{
-    color:#475569;
-}
-
-
-/* =========================================================
-                LIGHT MODE DROPDOWNS
-========================================================= */
-
-body.light-mode
-.premium-dropdown,
-body.light-mode
-.notification-dropdown,
-body.light-mode
-.profile-dropdown{
-    background:#ffffff;
-
-    border-color:
-        rgba(15,23,42,.10);
-
-    box-shadow:
-        0 20px 45px rgba(15,23,42,.12);
-}
-
-body.light-mode
-.premium-dropdown .dropdown-header,
-body.light-mode
-.notification-dropdown .dropdown-header{
-    color:#111827;
-}
-
-body.light-mode
-.premium-dropdown .dropdown-item,
-body.light-mode
-.notification-dropdown .dropdown-item,
-body.light-mode
-.profile-dropdown .dropdown-item{
-    color:#475569;
-}
-
-body.light-mode
-.premium-dropdown .dropdown-item:hover,
-body.light-mode
-.notification-dropdown .dropdown-item:hover,
-body.light-mode
-.profile-dropdown .dropdown-item:hover{
-    color:#111827;
-
-    background:
-        rgba(99,91,255,.08);
-}
-
-
-/* =========================================================
-                    RESPONSIVE 1200PX
-========================================================= */
-
-@media(max-width:1200px){
-
-    .face-main-content{
-        padding:
-            35px 25px;
-    }
-
-    .face-login-grid{
-        grid-template-columns:
-            minmax(0,1.55fr)
-            minmax(300px,1fr);
-    }
-
-    .camera-scanner{
-        height:400px;
-    }
-
-    .scanner-buttons{
-        gap:10px;
-    }
-
-    .scanner-btn{
-        font-size:11px;
-    }
-
-}
-
-
-/* =========================================================
-                    RESPONSIVE 1050PX
-========================================================= */
-
-@media(max-width:1050px){
-
-    .face-search-box{
-        width:210px;
-    }
-
-    .hod-profile span{
-        display:none;
-    }
-
-    .ai-authentication-card{
-        width:100%;
-    }
-
-    .face-login-grid{
-        grid-template-columns:1fr;
-    }
-
-    .recognized-card{
-        min-height:auto;
-    }
-
-    .recognition-waiting{
-        min-height:250px;
-    }
-
-}
-
-
-/* =========================================================
-                    RESPONSIVE 850PX
-========================================================= */
-
-@media(max-width:850px){
-
-    .face-navbar{
-        padding:
-            14px 20px;
-    }
-
-    .face-navbar-brand h2{
-        font-size:18px;
-    }
-
-    .brand-icon{
-        width:50px;
-        height:50px;
-    }
-
-    .face-search-box{
-        display:none;
-    }
-
-    .face-page-header{
-        align-items:flex-start;
-
-        flex-direction:column;
-    }
-
-    .face-header-actions{
-        width:100%;
-    }
-
-    .register-face-btn,
-    .manual-login-btn{
-        flex:1;
-    }
-
-}
-
-
-/* =========================================================
-                    RESPONSIVE 650PX
-========================================================= */
-
-@media(max-width:650px){
-
-    .face-navbar{
-        width:
-            calc(100% - 16px);
-
-        margin:
-            8px 8px 0;
-
-        min-height:75px;
-
-        padding:
-            12px 15px;
-    }
-
-    .brand-icon{
-        width:45px;
-        height:45px;
-
-        border-radius:13px;
-    }
-
-    .brand-icon i{
-        font-size:23px;
-    }
-
-    .face-navbar-brand{
-        gap:10px;
-    }
-
-    .face-navbar-brand h2{
-        font-size:16px;
-    }
-
-    .face-navbar-brand span{
-        font-size:10px;
-    }
-
-    .face-navbar-right{
-        gap:7px;
-    }
-
-    .hod-profile{
-        display:none;
-    }
-
-    .face-main-content{
-        padding:
-            28px 15px;
-    }
-
-    .face-title h1{
-        font-size:24px;
-    }
-
-    .face-title > i{
-        font-size:25px;
-    }
-
-    .face-heading-content > p{
-        font-size:12px;
-    }
-
-    .face-header-actions{
-        flex-direction:column;
-    }
-
-    .register-face-btn,
-    .manual-login-btn{
-        width:100%;
-    }
-
-    .ai-authentication-card{
-        padding:
-            18px;
-
-        align-items:flex-start;
-    }
-
-    .ai-brain-icon{
-        width:45px;
-    }
-
-    .ai-brain-icon i{
-        font-size:38px;
-    }
-
-    .camera-scanner{
-        height:380px;
-
-        margin:
-            0 15px;
-    }
-
-    .scanner-buttons{
-        padding:
-            15px 15px 0;
-
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .card-heading{
-        padding:
-            18px 16px 15px;
-    }
-
-    .status-list{
-        padding:
-            0 16px 10px;
-    }
-
-}
-
-
-/* =========================================================
-                    RESPONSIVE 480PX
-========================================================= */
-
-@media(max-width:480px){
-
-    .face-navbar-brand span{
-        display:none;
-    }
-
-    .face-navbar-brand h2{
-        font-size:14px;
-    }
-
-    .brand-icon{
-        width:40px;
-        height:40px;
-    }
-
-    .theme-switcher{
-        height:40px;
-    }
-
-    .theme-option{
-        width:30px;
-        height:30px;
-    }
-
-    .navbar-icon-btn{
-        width:40px;
-        height:40px;
-    }
-
-    .face-title{
-        align-items:flex-start;
-    }
-
-    .face-title h1{
-        font-size:21px;
-    }
-
-    .ai-authentication-card{
-        gap:12px;
-    }
-
-    .ai-authentication-card h3{
-        font-size:13px;
-    }
-
-    .ai-authentication-card p{
-        font-size:11px;
-    }
-
-    .camera-scanner{
-        height:350px;
-    }
-
-    .face-scan-frame{
-        transform:
-            scale(.82);
-    }
-
-    .scanner-placeholder h2{
-        font-size:16px;
-    }
-
-    .scanner-placeholder p{
-        max-width:270px;
-
-        padding:
-            0 15px;
-    }
-
-    .scanner-buttons{
-        grid-template-columns:1fr;
-    }
-
-    .scanner-btn{
-        height:45px;
-    }
-
-    .status-item{
-        min-height:54px;
-    }
-
-    .status-name{
-        font-size:11px;
-    }
-
-    .status-badge{
-        min-width:65px;
-
-        font-size:9px;
-    }
-
-    .recognized-info-grid{
-        grid-template-columns:1fr;
-    }
-
-}
-
-
-/* =========================================================
-                VERY SMALL MOBILE
-========================================================= */
-
-@media(max-width:370px){
-
-    .face-navbar-right{
-        gap:4px;
-    }
-
-    .theme-switcher{
-        display:none;
-    }
-
-    .face-title h1{
-        font-size:19px;
-    }
-
-    .camera-scanner{
-        height:325px;
-    }
-
-    .face-scan-frame{
-        transform:
-            scale(.72);
-    }
-
-}
-
-
-/* =========================================================
-                    CUSTOM SCROLLBAR
-========================================================= */
-
-::-webkit-scrollbar{
-    width:8px;
-    height:8px;
-}
-
-::-webkit-scrollbar-track{
-    background:#080d19;
-}
-
-::-webkit-scrollbar-thumb{
-    background:
-        linear-gradient(
-            #4f46e5,
-            #665cff
-        );
-
-    border-radius:20px;
-}
-
-::-webkit-scrollbar-thumb:hover{
-    background:#766dff;
-}
-
-body.light-mode::-webkit-scrollbar-track{
-    background:#edf2f7;
-}
-
-
-/* =========================================================
-                    SELECTION
-========================================================= */
-
-::selection{
-    color:#ffffff;
-
-    background:#635bff;
-}
-
-
-/* =========================================================
-                    FOCUS
-========================================================= */
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible{
-    outline:
-        2px solid #766dff;
-
-    outline-offset:3px;
-}
-
-
-/* =========================================================
-                    ANIMATIONS
-========================================================= */
-
-@keyframes cardFadeUp{
-
-    from{
-        opacity:0;
-
-        transform:
-            translateY(15px);
-    }
-
-    to{
-        opacity:1;
-
-        transform:
-            translateY(0);
-    }
-
-}
-
-.ai-authentication-card,
-.scanner-card,
-.status-card,
-.recognized-card{
-    animation:
-        cardFadeUp
-        .55s ease both;
-}
-
-.scanner-card{
-    animation-delay:.05s;
-}
-
-.status-card{
-    animation-delay:.10s;
-}
-
-.recognized-card{
-    animation-delay:.15s;
-}
-
-
-
-
-</style>
-
+        @media (max-width: 450px) {
+            .camera-actions,
+            .hod-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
+    <!-- NAVBAR -->
 
-<!-- =====================================================
-                    PAGE WRAPPER
-===================================================== -->
+    <nav class="main-navbar">
 
-<div class="face-page">
+        <div class="brand">
 
+            <div class="brand-icon">
+                <i class="fa-solid fa-face-viewfinder"></i>
+            </div>
 
-<!-- =====================================================
-                    TOP NAVBAR
-===================================================== -->
-
-<nav class="face-navbar">
-
-    <!-- LEFT -->
-
-    <div class="face-navbar-brand">
-
-        <div class="brand-icon">
-
-            <i class="fa-solid fa-face-viewfinder"></i>
+            <div>
+                <h1>Faculty Management System</h1>
+                <p>HOD Secure Face Authentication</p>
+            </div>
 
         </div>
 
-        <div>
+        <div class="navbar-actions">
 
-            <h2>AI Face Login</h2>
+            <a
+                href="hod-face-register.html"
+                class="navbar-button register-link"
+            >
+                <i class="fa-solid fa-user-plus"></i>
+                Register Face
+            </a>
 
-            <span>hod Panel</span>
-
-        </div>
-
-    </div>
-
-
-    <!-- RIGHT -->
-
-    <div class="face-navbar-right">
-
-
-        <!-- SEARCH -->
-
-        <div class="face-search-box">
-
-            <input
-                type="text"
-                id="faceSearch"
-                placeholder="Search...">
-
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <a
+                href="hod-login.html"
+                class="navbar-button manual-link"
+            >
+                <i class="fa-solid fa-key"></i>
+                Manual Login
+            </a>
 
         </div>
 
+    </nav>
 
-        <!-- THEME SWITCH -->
 
-        <div class="theme-switcher">
+    <main class="page-container">
 
-            <button
-                type="button"
-                id="lightModeBtn"
-                class="theme-option active"
-                title="Light Mode">
+        <!-- PAGE HEADER -->
 
-                <i class="fa-solid fa-sun"></i>
+        <section class="page-header">
 
-            </button>
+            <div class="page-title">
 
-
-            <button
-                type="button"
-                id="darkModeBtn"
-                class="theme-option"
-                title="Dark Mode">
-
-                <i class="fa-solid fa-moon"></i>
-
-            </button>
-
-        </div>
-
-
-        <!-- NOTIFICATION -->
-
-        <div class="dropdown">
-
-            <button
-                class="navbar-icon-btn notification-button"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false">
-
-                <i class="fa-regular fa-bell"></i>
-
-                <span class="notification-count">
-                    4
-                </span>
-
-            </button>
-
-
-            <ul class="dropdown-menu dropdown-menu-end premium-dropdown">
-
-                <li>
-
-                    <h6 class="dropdown-header">
-                        Notifications
-                    </h6>
-
-                </li>
-
-                <li>
-
-                    <a
-                        class="dropdown-item"
-                        href="notices.html">
-
-                        📢 Faculty Meeting Tomorrow
-
-                    </a>
-
-                </li>
-
-                <li>
-
-                    <a
-                        class="dropdown-item"
-                        href="assignments.html">
-
-                        📄 Assignment Deadline Today
-
-                    </a>
-
-                </li>
-
-                <li>
-
-                    <a
-                        class="dropdown-item"
-                        href="attendance.html">
-
-                        ✅ Attendance Updated
-
-                    </a>
-
-                </li>
-
-                <li>
-
-                    <a
-                        class="dropdown-item"
-                        href="academic-calendar.html">
-
-                        📅 Academic Event Added
-
-                    </a>
-
-                </li>
-
-            </ul>
-
-        </div>
-
-
-        <!-- PROFILE -->
-
-        <div class="dropdown">
-
-            <button
-                class="hod-profile"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false">
-
-                <img
-                    src="https://i.pravatar.cc/100?img=47"
-                    alt="hod">
-
-                <span>
-                    Welcome, hod
-                </span>
-
-                <i class="fa-solid fa-chevron-down"></i>
-
-            </button>
-
-
-            <ul class="dropdown-menu dropdown-menu-end premium-dropdown">
-
-                <li>
-
-                    <a
-                        class="dropdown-item"
-                        href="profile.html">
-
-                        <i class="fa-solid fa-user me-2"></i>
-                        My Profile
-
-                    </a>
-
-                </li>
-
-                <li>
-
-                    <a
-                        class="dropdown-item"
-                        href="change-password.html">
-
-                        <i class="fa-solid fa-lock me-2"></i>
-                        Change Password
-
-                    </a>
-
-                </li>
-
-                <li>
-
-                    <a
-                        class="dropdown-item"
-                        href="settings.html">
-
-                        <i class="fa-solid fa-gear me-2"></i>
-                        Settings
-
-                    </a>
-
-                </li>
-
-                <li>
-
-                    <hr class="dropdown-divider">
-
-                </li>
-
-                <li>
-
-                    <a
-                        class="dropdown-item text-danger"
-                        href="hod-login.html">
-
-                        <i class="fa-solid fa-right-from-bracket me-2"></i>
-                        Logout
-
-                    </a>
-
-                </li>
-
-            </ul>
-
-        </div>
-
-    </div>
-
-</nav>
-
-
-<!-- =====================================================
-                    MAIN CONTENT
-===================================================== -->
-
-<main class="face-main-content">
-
-
-<!-- =====================================================
-                    PAGE HEADER
-===================================================== -->
-
-<section class="face-page-header">
-
-    <div class="face-heading-content">
-
-
-        <!-- AI BADGE -->
-
-        <div class="ai-smart-badge">
-
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
-
-            <span>
-                AI SMART FEATURE
-            </span>
-
-        </div>
-
-
-        <!-- TITLE -->
-
-        <div class="face-title">
-
-            <i class="fa-solid fa-face-viewfinder"></i>
-
-            <h1>
-                hod Face Login
-            </h1>
-
-        </div>
-
-
-        <p>
-            Securely verify hod identity using
-            AI-powered Face Recognition.
-        </p>
-
-    </div>
-
-
-    <!-- HEADER BUTTONS -->
-
-    <div class="face-header-actions">
-
-        <a
-            href="face-register.html"
-            class="register-face-btn">
-
-            <i class="fa-solid fa-user-plus"></i>
-
-            Register Face
-
-        </a>
-
-
-        <a
-            href="hod-login.html"
-            class="manual-login-btn">
-
-            <i class="fa-solid fa-key"></i>
-
-            Manual Login
-
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-            AI AUTHENTICATION INFORMATION
-===================================================== -->
-
-<section class="ai-authentication-card">
-
-    <div class="ai-brain-icon">
-
-        <i class="fa-solid fa-brain"></i>
-
-    </div>
-
-
-    <div>
-
-        <h3>
-            AI-Powered hod Authentication
-        </h3>
-
-        <p>
-
-            The Face Login system captures a live camera image,
-            detects the hod's face, compares it with the
-            registered facial dataset and verifies identity before
-            allowing access to the hod Dashboard.
-
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-                    MAIN GRID
-===================================================== -->
-
-<div class="face-login-grid">
-
-
-<!-- =====================================================
-                    LEFT COLUMN
-===================================================== -->
-
-<div class="face-left-column">
-
-
-<!-- =====================================================
-                FACE RECOGNITION SCANNER
-===================================================== -->
-
-<section class="scanner-card">
-
-
-    <div class="card-heading">
-
-        <i class="fa-solid fa-camera-retro"></i>
-
-        <h3>
-            AI Face Recognition Scanner
-        </h3>
-
-    </div>
-
-
-    <!-- CAMERA -->
-
-    <div
-        class="camera-scanner"
-        id="cameraScanner">
-
-
-        <!-- VIDEO -->
-
-        <video
-            id="faceLoginVideo"
-            autoplay
-            muted
-            playsinline>
-        </video>
-
-
-        <!-- CAPTURE CANVAS -->
-
-        <canvas
-            id="faceLoginCanvas">
-        </canvas>
-
-
-        <!-- LIVE CAMERA BADGE -->
-
-        <div
-            class="live-camera-badge"
-            id="liveCameraBadge">
-
-            <span class="live-dot"></span>
-
-            LIVE CAMERA
-
-        </div>
-
-
-        <!-- PLACEHOLDER -->
-
-        <div
-            class="scanner-placeholder"
-            id="scannerPlaceholder">
-
-
-            <!-- FACE FRAME -->
-
-            <div class="face-scan-frame">
-
-
-                <!-- CORNERS -->
-
-                <span class="corner top-left"></span>
-
-                <span class="corner top-right"></span>
-
-                <span class="corner bottom-left"></span>
-
-                <span class="corner bottom-right"></span>
-
-
-                <!-- FACE -->
-
-                <div class="face-outline">
-
-                    <div class="face-ear face-ear-left"></div>
-
-                    <div class="face-head"></div>
-
-                    <div class="face-ear face-ear-right"></div>
-
+                <div class="title-icon">
+                    <i class="fa-solid fa-user-lock"></i>
                 </div>
 
+                <div>
+                    <h2>HOD Face Login</h2>
 
-                <!-- SCAN LINE -->
-
-                <div
-                    class="scanner-line"
-                    id="scannerLine">
+                    <p>
+                        Verify your registered HOD account using
+                        live face recognition.
+                    </p>
                 </div>
 
-
             </div>
 
-
-            <h2>
-                hod Face Login Ready
-            </h2>
-
-
-            <p>
-
-                Start the camera and position your face inside
-                <br>
-
-                the recognition frame for secure AI-based
-                authentication.
-
-            </p>
-
-        </div>
-
-
-        <!-- VIDEO FACE FRAME -->
-
-        <div
-            class="video-face-frame"
-            id="videoFaceFrame">
-
-            <span class="video-corner corner-one"></span>
-
-            <span class="video-corner corner-two"></span>
-
-            <span class="video-corner corner-three"></span>
-
-            <span class="video-corner corner-four"></span>
-
-            <div
-                class="video-scan-line"
-                id="videoScanLine">
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-    <!-- =================================================
-                    CAMERA BUTTONS
-    ================================================= -->
-
-    <div class="scanner-buttons">
-
-
-        <!-- START -->
-
-        <button
-            type="button"
-            id="startCameraBtn"
-            class="scanner-btn start-camera-btn">
-
-            <i class="fa-solid fa-video"></i>
-
-            <span>
-                Start Camera
-            </span>
-
-        </button>
-
-
-        <!-- SCAN -->
-
-        <button
-            type="button"
-            id="scanFaceBtn"
-            class="scanner-btn scan-face-btn"
-            disabled>
-
-            <i class="fa-solid fa-expand"></i>
-
-            <span>
-                Scan Face
-            </span>
-
-        </button>
-
-
-        <!-- RETRY -->
-
-        <button
-            type="button"
-            id="retryFaceBtn"
-            class="scanner-btn retry-face-btn"
-            disabled>
-
-            <i class="fa-solid fa-rotate-right"></i>
-
-            <span>
-                Retry
-            </span>
-
-        </button>
-
-
-        <!-- STOP -->
-
-        <button
-            type="button"
-            id="stopCameraBtn"
-            class="scanner-btn stop-camera-btn"
-            disabled>
-
-            <i class="fa-solid fa-video-slash"></i>
-
-            <span>
-                Stop Camera
-            </span>
-
-        </button>
-
-
-    </div>
-
-
-</section>
-
-
-</div>
-
-
-<!-- =====================================================
-                    RIGHT COLUMN
-===================================================== -->
-
-<div class="face-right-column">
-
-
-<!-- =====================================================
-                    RECOGNITION STATUS
-===================================================== -->
-
-<section class="status-card">
-
-
-    <div class="card-heading">
-
-        <i class="fa-solid fa-microchip"></i>
-
-        <h3>
-            Recognition Status
-        </h3>
-
-    </div>
-
-
-    <div class="status-list">
-
-
-        <!-- CAMERA -->
-
-        <div class="status-item">
-
-            <div class="status-name">
-
-                <i class="fa-solid fa-camera"></i>
-
-                <span>
-                    Camera
-                </span>
-
-            </div>
-
-
-            <span
-                id="cameraStatus"
-                class="status-badge status-offline">
-
-                Offline
-
-            </span>
-
-        </div>
-
-
-        <!-- FACE DETECTION -->
-
-        <div class="status-item">
-
-            <div class="status-name">
-
-                <i class="fa-solid fa-circle-user"></i>
-
-                <span>
-                    Face Detection
-                </span>
-
-            </div>
-
-
-            <span
-                id="faceDetectionStatus"
-                class="status-badge status-waiting">
-
-                Waiting...
-
-            </span>
-
-        </div>
-
-
-        <!-- AI RECOGNITION -->
-
-        <div class="status-item">
-
-            <div class="status-name">
-
-                <i class="fa-solid fa-brain"></i>
-
-                <span>
-                    AI Recognition
-                </span>
-
-            </div>
-
-
-            <span
-                id="aiRecognitionStatus"
-                class="status-badge status-pending">
-
-                Pending
-
-            </span>
-
-        </div>
-
-
-        <!-- ROLE -->
-
-        <div class="status-item">
-
-            <div class="status-name">
-
-                <i class="fa-solid fa-user-tag"></i>
-
-                <span>
-                    Role Verification
-                </span>
-
-            </div>
-
-
-            <span
-                id="roleVerificationStatus"
-                class="status-badge status-pending">
-
-                Pending
-
-            </span>
-
-        </div>
-
-
-        <!-- AUTHENTICATION -->
-
-        <div class="status-item">
-
-            <div class="status-name">
-
+            <div class="security-badge">
                 <i class="fa-solid fa-shield-halved"></i>
-
-                <span>
-                    Authentication
-                </span>
-
+                Secure Authentication
             </div>
 
+        </section>
 
-            <span
-                id="authenticationStatus"
-                class="status-badge status-failed">
 
-                Not Authenticated
+        <div class="login-grid">
 
-            </span>
+            <!-- CAMERA SECTION -->
 
-        </div>
+            <section class="premium-card">
 
+                <div class="card-heading">
 
-    </div>
+                    <div>
+                        <h3>
+                            <i class="fa-solid fa-camera me-2"></i>
+                            Live Camera Scanner
+                        </h3>
 
-</section>
+                        <p>
+                            Keep only one face clearly visible.
+                        </p>
+                    </div>
 
+                    <span
+                        id="cameraTopStatus"
+                        class="status-value status-offline"
+                    >
+                        Offline
+                    </span>
 
-<!-- =====================================================
-                    RECOGNIZED hod
-===================================================== -->
-
-<section class="recognized-card">
-
-
-    <div class="card-heading">
-
-        <i class="fa-solid fa-user"></i>
-
-        <h3>
-            Recognized hod
-        </h3>
-
-    </div>
-
-
-    <!-- WAITING -->
-
-    <div
-        class="recognition-waiting"
-        id="recognitionWaiting">
-
-
-        <div class="waiting-face">
-
-            <i class="fa-regular fa-face-smile"></i>
-
-        </div>
-
-
-        <h3>
-            Waiting for Recognition
-        </h3>
-
-
-        <p>
-
-            Start the camera and scan your face
-            <br>
-
-            to verify your hod account.
-
-        </p>
-
-    </div>
-
-
-    <!-- =================================================
-                    RECOGNIZED RESULT
-    ================================================= -->
-
-    <div
-        class="recognized-result"
-        id="recognizedResult">
-
-
-        <img
-            id="recognizedhodPhoto"
-            src="https://i.pravatar.cc/200?img=47"
-            alt="hod">
-
-
-        <h2 id="recognizedhodName">
-
-            Dr. Priya Sharma
-
-        </h2>
-
-
-        <p id="recognizedhodRole">
-
-            Faculty Member
-
-        </p>
-
-
-        <div class="hod-details">
-
-
-            <div>
-
-                <span>
-                    hod ID
-                </span>
-
-                <strong id="recognizedhodId">
-                    TCH001
-                </strong>
-
-            </div>
-
-
-            <div>
-
-                <span>
-                    Department
-                </span>
-
-                <strong id="recognizedDepartment">
-                    Computer Science
-                </strong>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- CONFIDENCE -->
-
-        <div class="confidence-section">
-
-
-            <div class="confidence-heading">
-
-                <span>
-                    Recognition Confidence
-                </span>
-
-                <strong id="confidenceText">
-                    97.4%
-                </strong>
-
-            </div>
-
-
-            <div class="confidence-track">
-
-                <div
-                    class="confidence-progress"
-                    id="confidenceProgress">
                 </div>
 
-            </div>
 
+                <div class="camera-box">
+
+                    <video
+                        id="faceLoginVideo"
+                        autoplay
+                        muted
+                        playsinline
+                    ></video>
+
+                    <div
+                        id="scannerPlaceholder"
+                        class="camera-placeholder"
+                    >
+                        <i class="fa-solid fa-camera"></i>
+
+                        <h4>Camera Not Started</h4>
+
+                        <p>
+                            Click Start Camera to begin HOD face login.
+                        </p>
+                    </div>
+
+                    <div
+                        id="liveCameraBadge"
+                        class="live-badge"
+                    >
+                        <span class="live-dot"></span>
+                        LIVE
+                    </div>
+
+                    <div
+                        id="videoFaceFrame"
+                        class="face-frame"
+                    >
+                        <div
+                            id="videoScanLine"
+                            class="scan-line"
+                        ></div>
+                    </div>
+
+                </div>
+
+
+                <!-- CAMERA BUTTONS -->
+
+                <div class="camera-actions">
+
+                    <button
+                        type="button"
+                        id="startCameraBtn"
+                        class="action-button start-button"
+                    >
+                        <i class="fa-solid fa-video"></i>
+                        Start Camera
+                    </button>
+
+                    <button
+                        type="button"
+                        id="scanFaceBtn"
+                        class="action-button scan-button"
+                        disabled
+                    >
+                        <i class="fa-solid fa-face-viewfinder"></i>
+                        Scan Face
+                    </button>
+
+                    <button
+                        type="button"
+                        id="retryFaceBtn"
+                        class="action-button retry-button"
+                        disabled
+                    >
+                        <i class="fa-solid fa-rotate-right"></i>
+                        Retry
+                    </button>
+
+                    <button
+                        type="button"
+                        id="stopCameraBtn"
+                        class="action-button stop-button"
+                        disabled
+                    >
+                        <i class="fa-solid fa-video-slash"></i>
+                        Stop Camera
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- STATUS AND RESULT -->
+
+            <aside class="premium-card">
+
+                <div class="card-heading">
+
+                    <div>
+                        <h3>
+                            <i class="fa-solid fa-fingerprint me-2"></i>
+                            Authentication Status
+                        </h3>
+
+                        <p>
+                            Live backend verification result
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="status-list">
+
+                    <div class="status-item">
+
+                        <div class="status-label">
+                            <i class="fa-solid fa-camera"></i>
+                            Camera
+                        </div>
+
+                        <span
+                            id="cameraStatus"
+                            class="status-value status-offline"
+                        >
+                            Offline
+                        </span>
+
+                    </div>
+
+                    <div class="status-item">
+
+                        <div class="status-label">
+                            <i class="fa-solid fa-face-smile"></i>
+                            Face Detection
+                        </div>
+
+                        <span
+                            id="faceDetectionStatus"
+                            class="status-value status-pending"
+                        >
+                            Waiting
+                        </span>
+
+                    </div>
+
+                    <div class="status-item">
+
+                        <div class="status-label">
+                            <i class="fa-solid fa-brain"></i>
+                            AI Recognition
+                        </div>
+
+                        <span
+                            id="aiRecognitionStatus"
+                            class="status-value status-pending"
+                        >
+                            Pending
+                        </span>
+
+                    </div>
+
+                    <div class="status-item">
+
+                        <div class="status-label">
+                            <i class="fa-solid fa-user-shield"></i>
+                            HOD Role
+                        </div>
+
+                        <span
+                            id="roleVerificationStatus"
+                            class="status-value status-pending"
+                        >
+                            Pending
+                        </span>
+
+                    </div>
+
+                    <div class="status-item">
+
+                        <div class="status-label">
+                            <i class="fa-solid fa-lock"></i>
+                            Authentication
+                        </div>
+
+                        <span
+                            id="authenticationStatus"
+                            class="status-value status-failed"
+                        >
+                            Not Authenticated
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- WAITING -->
+
+                <div
+                    id="recognitionWaiting"
+                    class="waiting-box"
+                >
+                    <i class="fa-solid fa-user-clock"></i>
+
+                    <h4>Waiting for Recognition</h4>
+
+                    <p>
+                        Start the camera and scan your face
+                        to verify your registered HOD account.
+                    </p>
+                </div>
+
+
+                <!-- REAL RESULT -->
+
+                <div
+                    id="recognizedResult"
+                    class="recognized-result"
+                >
+
+                    <div class="recognized-avatar">
+
+                        <i
+                            id="recognizedDefaultIcon"
+                            class="fa-solid fa-user"
+                        ></i>
+
+                        <img
+                            id="recognizedHodPhoto"
+                            alt="Recognized HOD"
+                        >
+
+                    </div>
+
+                    <h3 id="recognizedHodName">
+                        --
+                    </h3>
+
+                    <div class="recognized-role">
+                        Head of Department
+                    </div>
+
+                    <div class="hod-details">
+
+                        <div class="detail-box">
+
+                            <span>HOD ID</span>
+
+                            <strong id="recognizedHodId">
+                                --
+                            </strong>
+
+                        </div>
+
+                        <div class="detail-box">
+
+                            <span>Department</span>
+
+                            <strong id="recognizedDepartment">
+                                --
+                            </strong>
+
+                        </div>
+
+                        <div class="detail-box">
+
+                            <span>Email</span>
+
+                            <strong id="recognizedEmail">
+                                --
+                            </strong>
+
+                        </div>
+
+                        <div class="detail-box">
+
+                            <span>Role</span>
+
+                            <strong>
+                                HOD
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                    <div class="match-result">
+
+                        <i class="fa-solid fa-circle-check me-2"></i>
+
+                        Face successfully matched and verified.
+
+                        <span id="faceDistanceText"></span>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        id="continueDashboardBtn"
+                        class="continue-button"
+                    >
+                        <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>
+                        Continue to Dashboard
+                    </button>
+
+                </div>
+
+
+                <div class="security-note">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <div>
+                        Face authentication uses the registered numerical
+                        descriptor. The captured camera image is not stored
+                        in localStorage.
+                    </div>
+
+                </div>
+
+            </aside>
 
         </div>
 
+    </main>
 
-        <!-- CONTINUE -->
 
-        <button
-            type="button"
-            id="continueDashboardBtn"
-            class="continue-dashboard-btn">
+    <footer>
+        © 2026 Faculty Management & Productivity System |
+        HOD Face Login
+    </footer>
 
-            <i class="fa-solid fa-circle-check"></i>
 
-            Continue to Dashboard
+    <!-- Bootstrap -->
 
-        </button>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
 
 
-    </div>
+    <!-- Face Recognition Library -->
 
+    <script
+        src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"
+    ></script>
 
-</section>
 
+    <!-- REAL HOD FACE LOGIN -->
 
-</div>
+    <script>
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+                "use strict";
 
+                /* ===============================
+                            CONFIGURATION
+                =============================== */
 
-</div>
+                const API_BASE =
+                    "http://127.0.0.1:5000/api";
 
+                const MODEL_URL =
+                    "https://justadudewhohacks.github.io/face-api.js/models";
 
-</main>
+                const ACCESS_TOKEN_KEY =
+                    "fmps_access_token";
 
+                const REFRESH_TOKEN_KEY =
+                    "fmps_refresh_token";
 
-<!-- =====================================================
-                    FOOTER
-===================================================== -->
+                const USER_KEY =
+                    "fmps_user";
 
-<footer class="face-footer">
 
-    © 2026 Faculty Management & Productivity System |
-    AI hod Face Login
+                /* ===============================
+                            ELEMENTS
+                =============================== */
 
-</footer>
+                const video =
+                    document.getElementById(
+                        "faceLoginVideo"
+                    );
 
+                const placeholder =
+                    document.getElementById(
+                        "scannerPlaceholder"
+                    );
 
-</div>
+                const liveBadge =
+                    document.getElementById(
+                        "liveCameraBadge"
+                    );
 
+                const faceFrame =
+                    document.getElementById(
+                        "videoFaceFrame"
+                    );
 
-<!-- =====================================================
-                    BOOTSTRAP JS
-===================================================== -->
+                const scanLine =
+                    document.getElementById(
+                        "videoScanLine"
+                    );
 
-<script
-src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-</script>
-<!-- =========================================================
-                    PART 3 JAVASCRIPT
-     Isko Bootstrap JS ke BAAD aur </body> se PEHLE paste karo
-========================================================= -->
 
-<script>
+                const startButton =
+                    document.getElementById(
+                        "startCameraBtn"
+                    );
 
-document.addEventListener("DOMContentLoaded", function () {
+                const scanButton =
+                    document.getElementById(
+                        "scanFaceBtn"
+                    );
 
-    /* =====================================================
-                        ELEMENTS
-    ===================================================== */
+                const retryButton =
+                    document.getElementById(
+                        "retryFaceBtn"
+                    );
 
-    const video = document.getElementById("faceLoginVideo");
-    const canvas = document.getElementById("faceLoginCanvas");
+                const stopButton =
+                    document.getElementById(
+                        "stopCameraBtn"
+                    );
 
-    const scannerPlaceholder =
-        document.getElementById("scannerPlaceholder");
+                const continueButton =
+                    document.getElementById(
+                        "continueDashboardBtn"
+                    );
 
-    const liveCameraBadge =
-        document.getElementById("liveCameraBadge");
 
-    const videoFaceFrame =
-        document.getElementById("videoFaceFrame");
+                const cameraStatus =
+                    document.getElementById(
+                        "cameraStatus"
+                    );
 
-    const videoScanLine =
-        document.getElementById("videoScanLine");
+                const cameraTopStatus =
+                    document.getElementById(
+                        "cameraTopStatus"
+                    );
 
-
-    /* =====================================================
-                        BUTTONS
-    ===================================================== */
-
-    const startCameraBtn =
-        document.getElementById("startCameraBtn");
-
-    const scanFaceBtn =
-        document.getElementById("scanFaceBtn");
-
-    const retryFaceBtn =
-        document.getElementById("retryFaceBtn");
-
-    const stopCameraBtn =
-        document.getElementById("stopCameraBtn");
-
-    const continueDashboardBtn =
-        document.getElementById("continueDashboardBtn");
-
-
-    /* =====================================================
-                        STATUS
-    ===================================================== */
-
-    const cameraStatus =
-        document.getElementById("cameraStatus");
-
-    const faceDetectionStatus =
-        document.getElementById("faceDetectionStatus");
-
-    const aiRecognitionStatus =
-        document.getElementById("aiRecognitionStatus");
-
-    const roleVerificationStatus =
-        document.getElementById("roleVerificationStatus");
-
-    const authenticationStatus =
-        document.getElementById("authenticationStatus");
-
-
-    /* =====================================================
-                    RECOGNIZED hod
-    ===================================================== */
-
-    const recognitionWaiting =
-        document.getElementById("recognitionWaiting");
-
-    const recognizedResult =
-        document.getElementById("recognizedResult");
-
-    const recognizedhodPhoto =
-        document.getElementById("recognizedhodPhoto");
-
-    const recognizedhodName =
-        document.getElementById("recognizedhodName");
-
-    const recognizedhodRole =
-        document.getElementById("recognizedhodRole");
-
-    const recognizedhodId =
-        document.getElementById("recognizedhodId");
-
-    const recognizedDepartment =
-        document.getElementById("recognizedDepartment");
-
-    const confidenceText =
-        document.getElementById("confidenceText");
-
-    const confidenceProgress =
-        document.getElementById("confidenceProgress");
-
-
-    /* =====================================================
-                        VARIABLES
-    ===================================================== */
-
-    let cameraStream = null;
-
-    let cameraStarted = false;
-
-    let scanning = false;
-
-
-    /* =====================================================
-                    STATUS HELPER
-    ===================================================== */
-
-    function setStatus(element, text, className) {
-
-        if (!element) return;
-
-        element.textContent = text;
-
-        element.className =
-            "status-badge " + className;
-    }
-
-
-    /* =====================================================
-                    START CAMERA
-    ===================================================== */
-
-    async function startCamera() {
-
-        try {
-
-            if (
-                !navigator.mediaDevices ||
-                !navigator.mediaDevices.getUserMedia
-            ) {
-
-                alert(
-                    "Camera is not supported by this browser."
-                );
-
-                return;
-            }
-
-
-            /* ---------------------------------------------
-                        REQUEST CAMERA
-            --------------------------------------------- */
-
-            cameraStream =
-                await navigator.mediaDevices.getUserMedia({
-
-                    video: {
-
-                        facingMode: "user",
-
-                        width: {
-                            ideal: 1280
-                        },
-
-                        height: {
-                            ideal: 720
+                const faceDetectionStatus =
+                    document.getElementById(
+                        "faceDetectionStatus"
+                    );
+
+                const aiRecognitionStatus =
+                    document.getElementById(
+                        "aiRecognitionStatus"
+                    );
+
+                const roleVerificationStatus =
+                    document.getElementById(
+                        "roleVerificationStatus"
+                    );
+
+                const authenticationStatus =
+                    document.getElementById(
+                        "authenticationStatus"
+                    );
+
+
+                const waitingBox =
+                    document.getElementById(
+                        "recognitionWaiting"
+                    );
+
+                const resultBox =
+                    document.getElementById(
+                        "recognizedResult"
+                    );
+
+
+                let cameraStream = null;
+                let scanning = false;
+                let authenticatedUser = null;
+                let modelsLoaded = false;
+
+
+                /* ===============================
+                        STATUS HELPER
+                =============================== */
+
+                function setStatus(
+                    element,
+                    text,
+                    statusClass
+                ) {
+                    if (!element) return;
+
+                    element.textContent = text;
+
+                    element.className =
+                        "status-value " +
+                        statusClass;
+                }
+
+
+                /* ===============================
+                        LOAD AI MODELS
+                =============================== */
+
+                async function loadModels() {
+                    if (modelsLoaded) return;
+
+                    if (!window.faceapi) {
+                        throw new Error(
+                            "Face recognition library load nahi hui. Internet connection check karein."
+                        );
+                    }
+
+                    await Promise.all([
+                        faceapi.nets
+                            .tinyFaceDetector
+                            .loadFromUri(MODEL_URL),
+
+                        faceapi.nets
+                            .faceLandmark68Net
+                            .loadFromUri(MODEL_URL),
+
+                        faceapi.nets
+                            .faceRecognitionNet
+                            .loadFromUri(MODEL_URL)
+                    ]);
+
+                    modelsLoaded = true;
+                }
+
+
+                /* ===============================
+                        START CAMERA
+                =============================== */
+
+                async function startCamera() {
+                    try {
+                        if (
+                            !navigator.mediaDevices ||
+                            !navigator.mediaDevices
+                                .getUserMedia
+                        ) {
+                            throw new Error(
+                                "Camera is not supported in this browser."
+                            );
                         }
 
-                    },
+                        setStatus(
+                            cameraStatus,
+                            "Loading AI",
+                            "status-pending"
+                        );
+
+                        setStatus(
+                            cameraTopStatus,
+                            "Loading AI",
+                            "status-pending"
+                        );
+
+                        await loadModels();
+
+                        cameraStream =
+                            await navigator.mediaDevices
+                                .getUserMedia({
+                                    video: {
+                                        facingMode: "user",
+
+                                        width: {
+                                            ideal: 1280
+                                        },
+
+                                        height: {
+                                            ideal: 720
+                                        }
+                                    },
+
+                                    audio: false
+                                });
+
+                        video.srcObject =
+                            cameraStream;
+
+                        await video.play();
+
+                        video.style.display =
+                            "block";
+
+                        placeholder.style.display =
+                            "none";
+
+                        liveBadge.style.display =
+                            "block";
+
+                        faceFrame.style.display =
+                            "block";
+
+                        startButton.disabled =
+                            true;
+
+                        scanButton.disabled =
+                            false;
+
+                        retryButton.disabled =
+                            false;
+
+                        stopButton.disabled =
+                            false;
+
+                        setStatus(
+                            cameraStatus,
+                            "Online",
+                            "status-success"
+                        );
+
+                        setStatus(
+                            cameraTopStatus,
+                            "Online",
+                            "status-success"
+                        );
+
+                        setStatus(
+                            faceDetectionStatus,
+                            "Ready",
+                            "status-pending"
+                        );
+                    } catch (error) {
+                        console.error(
+                            "Camera error:",
+                            error
+                        );
+
+                        setStatus(
+                            cameraStatus,
+                            "Unavailable",
+                            "status-failed"
+                        );
+
+                        setStatus(
+                            cameraTopStatus,
+                            "Unavailable",
+                            "status-failed"
+                        );
+
+                        alert(
+                            error.message ||
+                            "Camera start nahi hua."
+                        );
+                    }
+                }
 
-                    audio: false
 
-                });
+                /* ===============================
+                        STOP CAMERA
+                =============================== */
 
+                function stopCamera(
+                    resetAuthentication
+                ) {
+                    if (cameraStream) {
+                        cameraStream
+                            .getTracks()
+                            .forEach(
+                                function (track) {
+                                    track.stop();
+                                }
+                            );
+                    }
 
-            /* ---------------------------------------------
-                        SHOW CAMERA
-            --------------------------------------------- */
+                    cameraStream = null;
 
-            video.srcObject = cameraStream;
+                    video.pause();
+                    video.srcObject = null;
+                    video.style.display = "none";
 
-            await video.play();
+                    placeholder.style.display =
+                        "flex";
 
-            video.style.display = "block";
+                    liveBadge.style.display =
+                        "none";
 
-            scannerPlaceholder.style.display = "none";
+                    faceFrame.style.display =
+                        "none";
 
-            liveCameraBadge.style.display = "flex";
+                    scanLine.style.display =
+                        "none";
 
-            videoFaceFrame.style.display = "block";
+                    startButton.disabled =
+                        false;
 
-            videoScanLine.style.display = "none";
+                    scanButton.disabled =
+                        true;
 
+                    retryButton.disabled =
+                        true;
 
-            cameraStarted = true;
+                    stopButton.disabled =
+                        true;
 
+                    setStatus(
+                        cameraStatus,
+                        "Offline",
+                        "status-offline"
+                    );
 
-            /* ---------------------------------------------
-                        BUTTONS
-            --------------------------------------------- */
+                    setStatus(
+                        cameraTopStatus,
+                        "Offline",
+                        "status-offline"
+                    );
 
-            startCameraBtn.disabled = true;
+                    if (resetAuthentication) {
+                        resetResult();
+                    }
+                }
 
-            scanFaceBtn.disabled = false;
 
-            retryFaceBtn.disabled = false;
+                /* ===============================
+                        RESET RESULT
+                =============================== */
 
-            stopCameraBtn.disabled = false;
+                function resetResult() {
+                    authenticatedUser = null;
+                    scanning = false;
 
+                    waitingBox.style.display =
+                        "flex";
 
-            /* ---------------------------------------------
-                        STATUS
-            --------------------------------------------- */
+                    resultBox.style.display =
+                        "none";
 
-            setStatus(
-                cameraStatus,
-                "Online",
-                "status-success"
-            );
-
-
-            setStatus(
-                faceDetectionStatus,
-                "Ready",
-                "status-waiting"
-            );
-
-
-            setStatus(
-                aiRecognitionStatus,
-                "Pending",
-                "status-pending"
-            );
-
-
-            setStatus(
-                roleVerificationStatus,
-                "Pending",
-                "status-pending"
-            );
-
-
-            setStatus(
-                authenticationStatus,
-                "Not Authenticated",
-                "status-failed"
-            );
-
-        }
-
-        catch (error) {
-
-            console.error(
-                "Camera Error:",
-                error
-            );
-
-
-            setStatus(
-                cameraStatus,
-                "Denied",
-                "status-failed"
-            );
-
-
-            alert(
-                "Camera permission denied.\n\nPlease allow camera permission and try again."
-            );
-
-        }
-
-    }
-
-
-    /* =====================================================
-                    START CAMERA BUTTON
-    ===================================================== */
-
-    startCameraBtn.addEventListener(
-        "click",
-        startCamera
-    );
-
-
-    /* =====================================================
-                    STOP CAMERA
-    ===================================================== */
-
-    function stopCamera() {
-
-        if (cameraStream) {
-
-            cameraStream
-                .getTracks()
-                .forEach(function (track) {
-
-                    track.stop();
-
-                });
-
-        }
-
-
-        cameraStream = null;
-
-        video.srcObject = null;
-
-        video.style.display = "none";
-
-
-        scannerPlaceholder.style.display =
-            "flex";
-
-
-        liveCameraBadge.style.display =
-            "none";
-
-
-        videoFaceFrame.style.display =
-            "none";
-
-
-        videoScanLine.style.display =
-            "none";
-
-
-        cameraStarted = false;
-
-        scanning = false;
-
-
-        /* ---------------------------------------------
-                        BUTTONS
-        --------------------------------------------- */
-
-        startCameraBtn.disabled = false;
-
-        scanFaceBtn.disabled = true;
-
-        retryFaceBtn.disabled = true;
-
-        stopCameraBtn.disabled = true;
-
-
-        /* ---------------------------------------------
-                        STATUS
-        --------------------------------------------- */
-
-        resetStatus();
-
-    }
-
-
-    stopCameraBtn.addEventListener(
-        "click",
-        stopCamera
-    );
-
-
-    /* =====================================================
-                    CAPTURE CAMERA FRAME
-    ===================================================== */
-
-    function captureCameraImage() {
-
-        if (
-            !video.videoWidth ||
-            !video.videoHeight
-        ) {
-
-            return null;
-
-        }
-
-
-        canvas.width =
-            video.videoWidth;
-
-
-        canvas.height =
-            video.videoHeight;
-
-
-        const ctx =
-            canvas.getContext("2d");
-
-
-        /*
-            Video preview mirror hai.
-            Capture ko bhi same orientation me
-            draw kar rahe hain.
-        */
-
-        ctx.save();
-
-
-        ctx.translate(
-            canvas.width,
-            0
-        );
-
-
-        ctx.scale(
-            -1,
-            1
-        );
-
-
-        ctx.drawImage(
-
-            video,
-
-            0,
-            0,
-
-            canvas.width,
-            canvas.height
-
-        );
-
-
-        ctx.restore();
-
-
-        return canvas.toDataURL(
-            "image/jpeg",
-            0.90
-        );
-
-    }
-
-
-    /* =====================================================
-                        SCAN FACE
-    ===================================================== */
-
-    scanFaceBtn.addEventListener(
-        "click",
-        function () {
-
-            if (!cameraStarted) {
-
-                alert(
-                    "Please start the camera first."
-                );
-
-                return;
-
-            }
-
-
-            if (scanning) {
-
-                return;
-
-            }
-
-
-            scanning = true;
-
-            scanFaceBtn.disabled = true;
-
-
-            /* ---------------------------------------------
-                        RESET OLD RESULT
-            --------------------------------------------- */
-
-            recognitionWaiting.style.display =
-                "flex";
-
-
-            recognizedResult.style.display =
-                "none";
-
-
-            /* ---------------------------------------------
-                        START SCANNING
-            --------------------------------------------- */
-
-            videoScanLine.style.display =
-                "block";
-
-
-            setStatus(
-                faceDetectionStatus,
-                "Scanning...",
-                "status-waiting"
-            );
-
-
-            setStatus(
-                aiRecognitionStatus,
-                "Processing...",
-                "status-waiting"
-            );
-
-
-            setStatus(
-                roleVerificationStatus,
-                "Waiting...",
-                "status-waiting"
-            );
-
-
-            setStatus(
-                authenticationStatus,
-                "Verifying...",
-                "status-waiting"
-            );
-
-
-            /* ---------------------------------------------
-                        CAPTURE IMAGE
-            --------------------------------------------- */
-
-            const capturedImage =
-                captureCameraImage();
-
-
-            if (!capturedImage) {
-
-                scanning = false;
-
-                scanFaceBtn.disabled = false;
-
-                videoScanLine.style.display =
-                    "none";
-
-
-                alert(
-                    "Unable to capture image. Please try again."
-                );
-
-                return;
-
-            }
-
-
-            /*
-            =================================================
-                    FRONTEND DEMO RECOGNITION
-
-            Abhi actual AI backend connected nahi hai.
-
-            Isliye 2.5 seconds baad demo hod
-            recognize hoga.
-
-            Later Python/OpenCV/CNN backend connect
-            karte waqt is setTimeout ko API call se
-            replace karna hai.
-            =================================================
-            */
-
-
-            setTimeout(
-                function () {
-
-
-                    /* -------------------------------------
-                        FACE DETECTED
-                    ------------------------------------- */
+                    scanLine.style.display =
+                        "none";
 
                     setStatus(
                         faceDetectionStatus,
-                        "Detected",
-                        "status-success"
+                        cameraStream
+                            ? "Ready"
+                            : "Waiting",
+                        "status-pending"
                     );
-
-
-                    /* -------------------------------------
-                        AI PROCESSING
-                    ------------------------------------- */
 
                     setStatus(
                         aiRecognitionStatus,
-                        "Matching...",
-                        "status-waiting"
+                        "Pending",
+                        "status-pending"
                     );
 
+                    setStatus(
+                        roleVerificationStatus,
+                        "Pending",
+                        "status-pending"
+                    );
 
-                    setTimeout(
-                        function () {
+                    setStatus(
+                        authenticationStatus,
+                        "Not Authenticated",
+                        "status-failed"
+                    );
+
+                    if (cameraStream) {
+                        scanButton.disabled =
+                            false;
+                    }
+                }
 
 
-                            /* =============================
-                                DEMO hod
-                            ============================= */
+                /* ===============================
+                        FACE LOGIN API
+                =============================== */
 
-                            const hod = {
+                async function faceLoginRequest(
+                    descriptor
+                ) {
+                    const response =
+                        await fetch(
+                            API_BASE +
+                            "/auth/face/login",
+                            {
+                                method: "POST",
 
-                                id: "TCH001",
+                                headers: {
+                                    "Accept":
+                                        "application/json",
 
-                                name:
-                                    "Dr. Priya Sharma",
+                                    "Content-Type":
+                                        "application/json"
+                                },
 
-                                role:
-                                    "hod",
+                                body: JSON.stringify({
+                                    descriptor:
+                                        descriptor,
 
-                                department:
-                                    "Computer Science",
+                                    role: "hod"
+                                })
+                            }
+                        );
 
-                                confidence:
-                                    97.4,
+                    const responseData =
+                        await response
+                            .json()
+                            .catch(
+                                function () {
+                                    return {};
+                                }
+                            );
 
-                                photo:
-                                    "https://i.pravatar.cc/300?img=47"
+                    if (!response.ok) {
+                        throw new Error(
+                            responseData.message ||
+                            "Face not recognized"
+                        );
+                    }
 
+                    const loginData =
+                        responseData.data ||
+                        responseData;
+
+                    if (!loginData.user) {
+                        throw new Error(
+                            "User data backend se receive nahi hua."
+                        );
+                    }
+
+                    if (
+                        String(
+                            loginData.user.role ||
+                            ""
+                        ).toLowerCase() !== "hod"
+                    ) {
+                        throw new Error(
+                            "Recognized face HOD account ka nahi hai. HOD Face Login par sirf HOD access allowed hai."
+                        );
+                    }
+
+                    if (
+                        !loginData.access_token ||
+                        !loginData.refresh_token
+                    ) {
+                        throw new Error(
+                            "Backend se login tokens receive nahi hue."
+                        );
+                    }
+
+                    return loginData;
+                }
+
+
+                /* ===============================
+                        PROFILE HELPER
+                =============================== */
+
+                function getUserValue(
+                    user,
+                    fieldNames
+                ) {
+                    const sources = [
+                        user,
+                        user.profile,
+                        user.hod,
+                        user.hod_profile
+                    ];
+
+                    for (
+                        const source of sources
+                    ) {
+                        if (
+                            !source ||
+                            typeof source !==
+                                "object"
+                        ) {
+                            continue;
+                        }
+
+                        for (
+                            const fieldName
+                            of fieldNames
+                        ) {
+                            const value =
+                                source[fieldName];
+
+                            if (
+                                value !== undefined &&
+                                value !== null &&
+                                value !== ""
+                            ) {
+                                return value;
+                            }
+                        }
+                    }
+
+                    return "";
+                }
+
+
+                function getDepartment(user) {
+                    const department =
+                        getUserValue(
+                            user,
+                            [
+                                "department_name",
+                                "department",
+                                "dept_name"
+                            ]
+                        );
+
+                    if (
+                        department &&
+                        typeof department ===
+                            "object"
+                    ) {
+                        return (
+                            department.name ||
+                            department
+                                .department_name ||
+                            "--"
+                        );
+                    }
+
+                    return department || "--";
+                }
+
+
+                /* ===============================
+                        DISPLAY RESULT
+                =============================== */
+
+                function displayHod(
+                    user,
+                    faceDistance
+                ) {
+                    const name =
+                        getUserValue(
+                            user,
+                            [
+                                "full_name",
+                                "name",
+                                "username"
+                            ]
+                        ) || "HOD";
+
+                    const hodId =
+                        getUserValue(
+                            user,
+                            [
+                                "hod_id",
+                                "employee_id",
+                                "faculty_id",
+                                "username",
+                                "id"
+                            ]
+                        ) || "--";
+
+                    const email =
+                        getUserValue(
+                            user,
+                            ["email"]
+                        ) || "--";
+
+                    const photoUrl =
+                        getUserValue(
+                            user,
+                            [
+                                "profile_photo",
+                                "profile_picture",
+                                "photo_url",
+                                "image_url",
+                                "photo"
+                            ]
+                        );
+
+                    document.getElementById(
+                        "recognizedHodName"
+                    ).textContent = name;
+
+                    document.getElementById(
+                        "recognizedHodId"
+                    ).textContent = hodId;
+
+                    document.getElementById(
+                        "recognizedDepartment"
+                    ).textContent =
+                        getDepartment(user);
+
+                    document.getElementById(
+                        "recognizedEmail"
+                    ).textContent = email;
+
+
+                    const photo =
+                        document.getElementById(
+                            "recognizedHodPhoto"
+                        );
+
+                    const defaultIcon =
+                        document.getElementById(
+                            "recognizedDefaultIcon"
+                        );
+
+                    if (photoUrl) {
+                        photo.src = photoUrl;
+                        photo.style.display =
+                            "block";
+
+                        defaultIcon.style.display =
+                            "none";
+
+                        photo.onerror =
+                            function () {
+                                photo.style.display =
+                                    "none";
+
+                                defaultIcon.style
+                                    .display =
+                                    "block";
                             };
+                    }
 
 
-                            processRecognition(
-                                hod
+                    const distanceText =
+                        document.getElementById(
+                            "faceDistanceText"
+                        );
+
+                    if (
+                        Number.isFinite(
+                            Number(faceDistance)
+                        )
+                    ) {
+                        distanceText.textContent =
+                            " Match distance: " +
+                            Number(faceDistance)
+                                .toFixed(4);
+                    } else {
+                        distanceText.textContent =
+                            "";
+                    }
+
+                    waitingBox.style.display =
+                        "none";
+
+                    resultBox.style.display =
+                        "block";
+                }
+
+
+                /* ===============================
+                        SCAN FACE
+                =============================== */
+
+                async function scanFace() {
+                    if (
+                        !cameraStream ||
+                        !video.videoWidth
+                    ) {
+                        alert(
+                            "Pehle camera start karein."
+                        );
+
+                        return;
+                    }
+
+                    if (scanning) {
+                        return;
+                    }
+
+                    scanning = true;
+                    scanButton.disabled = true;
+
+                    scanLine.style.display =
+                        "block";
+
+                    setStatus(
+                        faceDetectionStatus,
+                        "Detecting",
+                        "status-pending"
+                    );
+
+                    setStatus(
+                        aiRecognitionStatus,
+                        "Matching",
+                        "status-pending"
+                    );
+
+                    setStatus(
+                        roleVerificationStatus,
+                        "Waiting",
+                        "status-pending"
+                    );
+
+                    setStatus(
+                        authenticationStatus,
+                        "Verifying",
+                        "status-pending"
+                    );
+
+                    try {
+                        const detections =
+                            await faceapi
+                                .detectAllFaces(
+                                    video,
+
+                                    new faceapi
+                                        .TinyFaceDetectorOptions({
+                                            inputSize:
+                                                320,
+
+                                            scoreThreshold:
+                                                0.5
+                                        })
+                                )
+                                .withFaceLandmarks()
+                                .withFaceDescriptors();
+
+
+                        if (
+                            detections.length === 0
+                        ) {
+                            throw new Error(
+                                "Face detect nahi hua. Camera ke saamne seedha dekhein aur light improve karein."
+                            );
+                        }
+
+
+                        if (
+                            detections.length > 1
+                        ) {
+                            throw new Error(
+                                "Camera frame mein sirf ek person hona chahiye."
+                            );
+                        }
+
+
+                        setStatus(
+                            faceDetectionStatus,
+                            "Detected",
+                            "status-success"
+                        );
+
+
+                        const descriptor =
+                            Array.from(
+                                detections[0]
+                                    .descriptor
                             );
 
 
-                        },
-                        1000
-                    );
+                        const loginData =
+                            await faceLoginRequest(
+                                descriptor
+                            );
 
 
-                },
-                1500
-            );
+                        authenticatedUser =
+                            loginData.user;
 
-        }
-    );
 
+                        localStorage.setItem(
+                            ACCESS_TOKEN_KEY,
+                            loginData.access_token
+                        );
 
-    /* =====================================================
-                    PROCESS RECOGNITION
-    ===================================================== */
 
-    function processRecognition(hod) {
+                        localStorage.setItem(
+                            REFRESH_TOKEN_KEY,
+                            loginData.refresh_token
+                        );
 
-        videoScanLine.style.display =
-            "none";
 
+                        localStorage.setItem(
+                            USER_KEY,
+                            JSON.stringify(
+                                loginData.user
+                            )
+                        );
 
-        /* ---------------------------------------------
-                    AI RECOGNIZED
-        --------------------------------------------- */
 
-        setStatus(
-            aiRecognitionStatus,
-            "Recognized",
-            "status-success"
-        );
+                        setStatus(
+                            aiRecognitionStatus,
+                            "Recognized",
+                            "status-success"
+                        );
 
 
-        /* ---------------------------------------------
-                    ROLE CHECK
-        --------------------------------------------- */
+                        setStatus(
+                            roleVerificationStatus,
+                            "HOD Verified",
+                            "status-success"
+                        );
 
-        if (
-            !hod.role ||
-            hod.role.toLowerCase() !==
-            "hod"
-        ) {
 
-            setStatus(
-                roleVerificationStatus,
-                "Denied",
-                "status-failed"
-            );
+                        setStatus(
+                            authenticationStatus,
+                            "Authenticated",
+                            "status-success"
+                        );
 
 
-            setStatus(
-                authenticationStatus,
-                "Access Denied",
-                "status-failed"
-            );
+                        displayHod(
+                            loginData.user,
+                            loginData.face_distance
+                        );
 
 
-            scanning = false;
+                        stopCamera(false);
+                    } catch (error) {
+                        console.error(
+                            "Face login failed:",
+                            error
+                        );
 
-            scanFaceBtn.disabled = false;
+                        setStatus(
+                            aiRecognitionStatus,
+                            "Not Recognized",
+                            "status-failed"
+                        );
 
+                        setStatus(
+                            roleVerificationStatus,
+                            "Not Verified",
+                            "status-failed"
+                        );
 
-            alert(
-                "Access denied. Recognized account is not a hod."
-            );
+                        setStatus(
+                            authenticationStatus,
+                            "Login Failed",
+                            "status-failed"
+                        );
 
+                        alert(
+                            error.message ||
+                            "Face login failed."
+                        );
+                    } finally {
+                        scanning = false;
 
-            return;
+                        scanLine.style.display =
+                            "none";
 
-        }
-
-
-        setStatus(
-            roleVerificationStatus,
-            "Verified",
-            "status-success"
-        );
-
-
-        /* ---------------------------------------------
-                    CONFIDENCE CHECK
-        --------------------------------------------- */
-
-        if (
-            Number(hod.confidence) < 85
-        ) {
-
-            setStatus(
-                authenticationStatus,
-                "Low Confidence",
-                "status-failed"
-            );
-
-
-            scanning = false;
-
-            scanFaceBtn.disabled = false;
-
-
-            alert(
-                "Recognition confidence is too low. Please scan again."
-            );
-
-
-            return;
-
-        }
-
-
-        /* ---------------------------------------------
-                    AUTHENTICATED
-        --------------------------------------------- */
-
-        setStatus(
-            authenticationStatus,
-            "Authenticated",
-            "status-success"
-        );
-
-
-        displayRecognizedhod(
-            hod
-        );
-
-
-        scanning = false;
-
-        scanFaceBtn.disabled = false;
-
-    }
-
-
-    /* =====================================================
-                    DISPLAY hod
-    ===================================================== */
-
-    function displayRecognizedhod(
-        hod
-    ) {
-
-        recognitionWaiting.style.display =
-            "none";
-
-
-        recognizedResult.style.display =
-            "block";
-
-
-        recognizedhodPhoto.src =
-            hod.photo;
-
-
-        recognizedhodName.textContent =
-            hod.name;
-
-
-        recognizedhodRole.textContent =
-            "Faculty Member";
-
-
-        recognizedhodId.textContent =
-            hod.id;
-
-
-        recognizedDepartment.textContent =
-            hod.department;
-
-
-        /* ---------------------------------------------
-                    CONFIDENCE
-        --------------------------------------------- */
-
-        const confidence =
-            Number(hod.confidence);
-
-
-        confidenceText.textContent =
-            confidence.toFixed(1) + "%";
-
-
-        confidenceProgress.style.width =
-            Math.min(
-                confidence,
-                100
-            ) + "%";
-
-
-        /* ---------------------------------------------
-                SAVE LOGIN DEMO DATA
-        --------------------------------------------- */
-
-        sessionStorage.setItem(
-            "hodFaceAuthenticated",
-            "true"
-        );
-
-
-        sessionStorage.setItem(
-            "hodName",
-            hod.name
-        );
-
-
-        sessionStorage.setItem(
-            "hodId",
-            hod.id
-        );
-
-
-        sessionStorage.setItem(
-            "hodDepartment",
-            hod.department
-        );
-
-    }
-
-
-    /* =====================================================
-                        RETRY
-    ===================================================== */
-
-    retryFaceBtn.addEventListener(
-        "click",
-        function () {
-
-            resetScanner();
-
-        }
-    );
-
-
-    function resetScanner() {
-
-        videoScanLine.style.display =
-            "none";
-
-
-        recognitionWaiting.style.display =
-            "flex";
-
-
-        recognizedResult.style.display =
-            "none";
-
-
-        scanning = false;
-
-
-        if (cameraStarted) {
-
-            setStatus(
-                cameraStatus,
-                "Online",
-                "status-success"
-            );
-
-
-            setStatus(
-                faceDetectionStatus,
-                "Ready",
-                "status-waiting"
-            );
-
-
-            scanFaceBtn.disabled =
-                false;
-
-        }
-
-        else {
-
-            setStatus(
-                cameraStatus,
-                "Offline",
-                "status-offline"
-            );
-
-
-            setStatus(
-                faceDetectionStatus,
-                "Waiting...",
-                "status-waiting"
-            );
-
-        }
-
-
-        setStatus(
-            aiRecognitionStatus,
-            "Pending",
-            "status-pending"
-        );
-
-
-        setStatus(
-            roleVerificationStatus,
-            "Pending",
-            "status-pending"
-        );
-
-
-        setStatus(
-            authenticationStatus,
-            "Not Authenticated",
-            "status-failed"
-        );
-
-    }
-
-
-    /* =====================================================
-                    RESET STATUS
-    ===================================================== */
-
-    function resetStatus() {
-
-        setStatus(
-            cameraStatus,
-            "Offline",
-            "status-offline"
-        );
-
-
-        setStatus(
-            faceDetectionStatus,
-            "Waiting...",
-            "status-waiting"
-        );
-
-
-        setStatus(
-            aiRecognitionStatus,
-            "Pending",
-            "status-pending"
-        );
-
-
-        setStatus(
-            roleVerificationStatus,
-            "Pending",
-            "status-pending"
-        );
-
-
-        setStatus(
-            authenticationStatus,
-            "Not Authenticated",
-            "status-failed"
-        );
-
-    }
-
-
-    /* =====================================================
-                    CONTINUE DASHBOARD
-    ===================================================== */
-
-    continueDashboardBtn.addEventListener(
-        "click",
-        function () {
-
-            const authenticated =
-                sessionStorage.getItem(
-                    "hodFaceAuthenticated"
-                );
-
-
-            if (
-                authenticated !== "true"
-            ) {
-
-                alert(
-                    "Please complete Face Recognition first."
-                );
-
-                return;
-
-            }
-
-
-            stopCamera();
-
-
-            window.location.href =
-                "hod-dashboard.html";
-
-        }
-    );
-
-
-    /* =====================================================
-                        LIGHT MODE
-    ===================================================== */
-
-    const lightModeBtn =
-        document.getElementById(
-            "lightModeBtn"
-        );
-
-
-    const darkModeBtn =
-        document.getElementById(
-            "darkModeBtn"
-        );
-
-
-    function enableLightMode() {
-
-        document.body.classList.add(
-            "light-mode"
-        );
-
-
-        lightModeBtn.classList.add(
-            "active"
-        );
-
-
-        darkModeBtn.classList.remove(
-            "active"
-        );
-
-
-        localStorage.setItem(
-            "faceLoginTheme",
-            "light"
-        );
-
-    }
-
-
-    /* =====================================================
-                        DARK MODE
-    ===================================================== */
-
-    function enableDarkMode() {
-
-        document.body.classList.remove(
-            "light-mode"
-        );
-
-
-        darkModeBtn.classList.add(
-            "active"
-        );
-
-
-        lightModeBtn.classList.remove(
-            "active"
-        );
-
-
-        localStorage.setItem(
-            "faceLoginTheme",
-            "dark"
-        );
-
-    }
-
-
-    lightModeBtn.addEventListener(
-        "click",
-        enableLightMode
-    );
-
-
-    darkModeBtn.addEventListener(
-        "click",
-        enableDarkMode
-    );
-
-
-    /* =====================================================
-                    RESTORE THEME
-    ===================================================== */
-
-    const savedTheme =
-        localStorage.getItem(
-            "faceLoginTheme"
-        );
-
-
-    if (savedTheme === "light") {
-
-        enableLightMode();
-
-    }
-
-    else {
-
-        enableDarkMode();
-
-    }
-
-
-    /* =====================================================
-                        SEARCH
-    ===================================================== */
-
-    const faceSearch =
-        document.getElementById(
-            "faceSearch"
-        );
-
-
-    if (faceSearch) {
-
-        faceSearch.addEventListener(
-            "keydown",
-            function (event) {
-
-                if (
-                    event.key !== "Enter"
-                ) {
-
-                    return;
-
-                }
-
-
-                const searchValue =
-                    faceSearch.value
-                        .trim()
-                        .toLowerCase();
-
-
-                if (!searchValue) {
-
-                    return;
-
-                }
-
-
-                /* -------------------------------------
-                        SEARCH ROUTES
-                ------------------------------------- */
-
-                const pages = {
-
-                    "dashboard":
-                        "hod-dashboard.html",
-
-                    "profile":
-                        "profile.html",
-
-                    "attendance":
-                        "attendance.html",
-
-                    "face attendance":
-                        "face-attendance.html",
-
-                    "register face":
-                        "face-register.html",
-
-                    "assignment":
-                        "assignments.html",
-
-                    "assignments":
-                        "assignments.html",
-
-                    "timetable":
-                        "timetable.html",
-
-                    "notice":
-                        "notices.html",
-
-                    "notices":
-                        "notices.html",
-
-                    "report":
-                        "attendance-report.html",
-
-                    "reports":
-                        "attendance-report.html",
-
-                    "settings":
-                        "settings.html"
-
-                };
-
-
-                if (pages[searchValue]) {
-
-                    window.location.href =
-                        pages[searchValue];
-
-                }
-
-                else {
-
-                    alert(
-                        "No page found for: " +
-                        faceSearch.value
-                    );
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-            STOP CAMERA WHEN LEAVING PAGE
-    ===================================================== */
-
-    window.addEventListener(
-        "beforeunload",
-        function () {
-
-            if (cameraStream) {
-
-                cameraStream
-                    .getTracks()
-                    .forEach(
-                        function (track) {
-
-                            track.stop();
-
+                        if (cameraStream) {
+                            scanButton.disabled =
+                                false;
                         }
-                    );
+                    }
+                }
 
+
+                /* ===============================
+                        BUTTON EVENTS
+                =============================== */
+
+                startButton.addEventListener(
+                    "click",
+                    startCamera
+                );
+
+
+                scanButton.addEventListener(
+                    "click",
+                    scanFace
+                );
+
+
+                retryButton.addEventListener(
+                    "click",
+                    resetResult
+                );
+
+
+                stopButton.addEventListener(
+                    "click",
+                    function () {
+                        stopCamera(true);
+                    }
+                );
+
+
+                continueButton.addEventListener(
+                    "click",
+                    function () {
+                        if (!authenticatedUser) {
+                            alert(
+                                "Pehle HOD face authentication complete karein."
+                            );
+
+                            return;
+                        }
+
+                        window.location.href =
+                            "hod-dashboard.html";
+                    }
+                );
+
+
+                /* ===============================
+                        PAGE EXIT
+                =============================== */
+
+                window.addEventListener(
+                    "beforeunload",
+                    function () {
+                        if (cameraStream) {
+                            cameraStream
+                                .getTracks()
+                                .forEach(
+                                    function (track) {
+                                        track.stop();
+                                    }
+                                );
+                        }
+                    }
+                );
+
+
+                resetResult();
             }
-
-        }
-    );
-
-
-});
-
-</script>
-
+        );
+    </script>
 
 </body>
-
 </html>

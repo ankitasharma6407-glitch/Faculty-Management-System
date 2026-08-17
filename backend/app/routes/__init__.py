@@ -24,6 +24,7 @@ def register_blueprints(app, modules: Iterable[str] = None):
             "notices",
             "notifications",
             "timetable",
+            "faculty_attendance",
         ]
 
     for mod_name in modules:

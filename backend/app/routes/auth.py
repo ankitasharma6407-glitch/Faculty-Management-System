@@ -471,6 +471,20 @@ def face_login():
 
     data = body()
 
+    # Keep the existing Admin face-login flow backward compatible: older
+    # Admin pages do not send a role, so Admin remains the safe default.
+    # The HOD face-login page sends {"role": "hod"}, which limits matching
+    # to registered HOD accounts and prevents Admin/HOD biometric mix-ups.
+    requested_role = str(
+        data.get("role") or "admin"
+    ).strip().lower()
+
+    if requested_role not in {"admin", "hod"}:
+        return fail(
+            "Face login role must be admin or hod",
+            422
+        )
+
     descriptor = normalize_face_descriptor(
         data.get("descriptor")
     )
@@ -483,7 +497,7 @@ def face_login():
 
 
     # =========================================================
-    # GET ALL ACTIVE ADMINS WITH REGISTERED FACE
+    # GET ACTIVE USERS OF THE REQUESTED ROLE WITH REGISTERED FACE
     # =========================================================
 
     candidates = (
@@ -496,7 +510,7 @@ def face_login():
             User.id == FaceEncoding.user_id
         )
         .filter(
-            User.role == "admin",
+            User.role == requested_role,
             User.is_active.is_(True)
         )
         .all()
@@ -505,7 +519,7 @@ def face_login():
 
     if not candidates:
         return fail(
-            "No registered Admin face found",
+            f"No registered {requested_role.upper()} face found",
             404
         )
 
@@ -555,7 +569,7 @@ def face_login():
         or best_distance is None
     ):
         return fail(
-            "No valid registered Admin face found",
+            f"No valid registered {requested_role.upper()} face found",
             404
         )
 
