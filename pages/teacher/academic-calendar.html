@@ -1907,6 +1907,287 @@ body.dark .modal-content{
 
 </style>
 
+<style id="teacher-sidebar-consistency">
+/* Shared Teacher Panel sidebar — same structure on every teacher page. */
+:root{
+    --sidebar-width:324px;
+}
+
+body{
+    font-family:"Poppins",sans-serif;
+}
+
+.sidebar{
+    position:fixed;
+    inset:0 auto 0 0;
+    z-index:1050;
+    width:var(--sidebar-width);
+    min-height:100vh;
+    padding:0;
+    overflow-y:auto;
+    border-right:0;
+    background:
+        radial-gradient(circle at 6% 0%,rgba(124,103,170,.12),transparent 31%),
+        linear-gradient(180deg,#303a4b 0%,#263650 46%,#1a2d51 100%);
+    color:#f7f9ff;
+    scrollbar-width:auto;
+    scrollbar-color:#4567ff #f1f3f7;
+}
+
+.sidebar::-webkit-scrollbar{width:10px;}
+.sidebar::-webkit-scrollbar-track{background:#f1f3f7;}
+.sidebar::-webkit-scrollbar-thumb{
+    min-height:115px;
+    border-radius:8px;
+    background:linear-gradient(180deg,#7047ff,#3b69ff);
+}
+
+.brand-block{
+    padding:29px 24px 27px;
+    text-align:center;
+}
+
+.brand-logo-wrap{
+    width:103px;
+    height:103px;
+    margin:0 auto 17px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:#fff;
+    box-shadow:0 12px 28px rgba(0,0,0,.22);
+}
+
+.brand-logo-wrap img{
+    width:91px;
+    height:91px;
+    object-fit:contain;
+    border-radius:50%;
+}
+
+.brand-block h2,
+.brand-block h3{
+    margin:0;
+    color:#fff;
+    font-weight:800;
+    letter-spacing:.35px;
+}
+
+.brand-block h2{
+    margin-bottom:3px;
+    font-size:22px;
+}
+
+.brand-block h3{
+    margin-bottom:14px;
+    font-size:20px;
+}
+
+.brand-block p{
+    margin:0;
+    color:#d2d8e5;
+    font-size:14px;
+    font-weight:600;
+}
+
+.sidebar-menu{
+    margin:0;
+    padding:19px 17px 42px 28px;
+    list-style:none;
+}
+
+.sidebar-menu li{
+    margin:0 0 10px;
+}
+
+.sidebar-menu a{
+    min-height:61px;
+    padding:15px 20px;
+    display:flex;
+    align-items:center;
+    gap:17px;
+    border-radius:13px;
+    background:transparent;
+    color:#dce2ed;
+    font-size:17px;
+    font-weight:600;
+    text-decoration:none;
+    transition:.2s ease;
+}
+
+.sidebar-menu a i{
+    width:26px;
+    color:#dce2ed;
+    font-size:19px;
+    text-align:center;
+}
+
+.sidebar-menu a:hover{
+    color:#fff;
+    background:rgba(255,255,255,.08);
+    transform:none;
+}
+
+.sidebar-menu a:hover i{color:#fff;}
+
+.sidebar-menu li.active a{
+    color:#fff;
+    background:linear-gradient(100deg,#7742ff,#6634f4);
+    box-shadow:0 12px 28px rgba(91,47,226,.42);
+}
+
+.sidebar-menu li.active a i{color:#fff;}
+.sidebar-menu .logout-link{color:#ffb7be;}
+
+.sidebar-overlay{
+    position:fixed;
+    inset:0;
+    z-index:1040;
+    display:none;
+    border:0;
+    background:rgba(5,10,23,.68);
+}
+
+.main-content{
+    width:calc(100% - var(--sidebar-width));
+    min-height:100vh;
+    margin-left:var(--sidebar-width);
+}
+
+@media(max-width:1500px){
+    :root{--sidebar-width:300px;}
+    .sidebar-menu{padding-right:20px;padding-left:20px;}
+}
+
+@media(max-width:1050px){
+    :root{--sidebar-width:270px;}
+    .sidebar-menu a{min-height:55px;padding:13px 16px;font-size:15px;}
+}
+
+@media(max-width:900px){
+    .sidebar{
+        width:min(310px,86vw);
+        transform:translateX(-105%);
+        transition:transform .25s ease;
+    }
+    body.sidebar-open .sidebar{transform:translateX(0);}
+    body.sidebar-open .sidebar-overlay{display:block;}
+    .main-content{width:100%;margin-left:0;}
+}
+</style>
+
+<style id="teacher-hod-theme-alignment">
+:root{--primary:#6f36ff;--primary-light:#7c55ff;}
+
+body:not(.dark) .sidebar{
+    background:
+        radial-gradient(circle at 8% 0%,rgba(255,255,255,.14),transparent 32%),
+        linear-gradient(180deg,#5a27ec 0%,#6735f4 48%,#7549ff 100%);
+    border-right:0;box-shadow:none;scrollbar-color:#a88fff #f1f3f7;
+}
+
+body.dark .sidebar{
+    background:
+        radial-gradient(circle at 8% 0%,rgba(111,54,255,.09),transparent 31%),
+        linear-gradient(180deg,#111111 0%,#0e0e0e 100%);
+    border-right:0;box-shadow:none;scrollbar-color:#7656ff #f1f3f7;
+}
+
+.sidebar-menu a,.sidebar-menu a i,
+body.dark .sidebar-menu a,body.dark .sidebar-menu a i{color:#fff;}
+
+body:not(.dark) .sidebar-menu li.active a{
+    background:rgba(255,255,255,.20);
+    box-shadow:0 10px 24px rgba(50,21,151,.20);
+}
+
+body.dark .sidebar-menu li.active a{
+    background:linear-gradient(100deg,#7742ff,#6634f4);
+    box-shadow:0 10px 24px rgba(91,47,226,.28);
+}
+
+.sidebar-menu a:hover,body.dark .sidebar-menu a:hover{
+    color:#fff;background:rgba(255,255,255,.11);transform:none;
+}
+
+.top-navbar{
+    min-height:100px;height:auto;padding:18px 28px;
+    background:#fff;border:1px solid #e5e7eb;border-radius:22px;
+    box-shadow:0 10px 26px rgba(28,37,61,.07);
+}
+
+body.dark .top-navbar{
+    background:#111a2b;border:1px solid #263247;
+    box-shadow:0 10px 28px rgba(0,0,0,.16);
+}
+
+.navbar-search{
+    width:clamp(200px,19vw,310px);border-radius:24px;box-shadow:none;
+}
+
+.navbar-search:focus-within{box-shadow:none;}
+
+.navbar-icon-btn,body.dark .navbar-icon-btn{
+    color:#1f2937;background:#f5f7fb;border:1px solid #e5e7eb;
+    border-radius:50%;box-shadow:none;
+}
+
+body.dark .navbar-icon-btn{color:#fff;background:#18243a;border-color:#30405c;}
+
+.navbar-icon-btn:hover,body.dark .navbar-icon-btn:hover{
+    color:#6f36ff;background:#f5f7fb;border-color:#8a67ff;
+    box-shadow:none;transform:none;
+}
+
+body.dark .navbar-icon-btn:hover{background:#18243a;}
+
+.teacher-profile-btn{
+    min-height:50px;padding:5px 12px 5px 6px;
+    border:1px solid #e5e7eb;border-radius:50px;box-shadow:none;
+}
+
+body.dark .teacher-profile-btn{border-color:#30405c;}
+
+body:not(.dark) .calendar-page-header{
+    position:relative;overflow:hidden;color:#fff;
+    background:
+        radial-gradient(circle at 91% 12%,rgba(255,255,255,.17),transparent 28%),
+        linear-gradient(135deg,#6942ff 0%,#7445f6 56%,#813ee8 100%);
+    border:0;box-shadow:0 10px 26px rgba(55,30,133,.12);
+}
+
+body:not(.dark) .calendar-page-header h2,
+body:not(.dark) .calendar-page-header h2 i,
+body:not(.dark) .calendar-page-header p{color:#fff !important;}
+
+body.dark .calendar-page-header{
+    position:relative;overflow:hidden;
+    background:
+        radial-gradient(circle at 91% 12%,rgba(126,78,255,.17),transparent 28%),
+        linear-gradient(135deg,#1b283c 0%,#1d2b42 60%,#24324b 100%);
+    border:1px solid #293750;box-shadow:0 10px 28px rgba(0,0,0,.16);
+}
+
+body:not(.dark) .calendar-page-header .btn-outline-primary{
+    color:#fff;background:rgba(255,255,255,.14);
+    border-color:rgba(255,255,255,.38);
+}
+
+body:not(.dark) .calendar-page-header .btn-primary{
+    color:#5f32e8;background:#fff;border-color:#fff;
+}
+
+.calendar-page-header .btn,.calendar-page-header .btn:hover,
+.month-navigation button,.month-navigation button:hover,
+.calendar-filter-btn,.calendar-filter-btn:hover{
+    box-shadow:none;transform:none;
+}
+
+@media(max-width:900px){
+    .top-navbar{min-height:auto;padding:16px 18px;}
+}
+</style>
+
 </head>
 
 
@@ -1924,247 +2205,45 @@ body.dark .modal-content{
                         SIDEBAR
 ========================================================= -->
 
-<aside class="sidebar">
+<aside class="sidebar" id="teacherSidebar">
 
 
     <!-- ================= LOGO ================= -->
 
-    <div class="logo">
-
-        <img
-            src="../../images/logo.png"
-            alt="Logo">
-
-        <h3>
-            Teacher Panel
-        </h3>
-
+    <div class="brand-block">
+        <div class="brand-logo-wrap">
+            <img src="../../images/logo.png" alt="Patna Women's College logo">
+        </div>
+        <h2>PATNA</h2>
+        <h3>WOMEN'S COLLEGE</h3>
+        <p>(AUTONOMOUS)</p>
     </div>
 
 
     <!-- ================= MENU ================= -->
 
-    <ul class="menu">
-
-
-        <li>
-
-            <a href="teacher-dashboard.html">
-
-                <i class="fa-solid fa-house"></i>
-
-                Dashboard
-
-            </a>
-
-        </li>
-
-
-        <li>
-
-            <a href="profile.html">
-
-                <i class="fa-solid fa-user"></i>
-
-                My Profile
-
-            </a>
-
-        </li>
-
-
-        <li>
-
-            <a href="my-classes.html">
-
-                <i class="fa-solid fa-chalkboard"></i>
-
-                My Classes
-
-            </a>
-
-        </li>
-
-
-        <li>
-
-            <a href="timetable.html">
-
-                <i class="fa-solid fa-calendar-days"></i>
-
-                Timetable
-
-            </a>
-
-        </li>
-
-
-        <li>
-
-            <a href="attendance-report.html">
-
-                <i class="fa-solid fa-clipboard-user"></i>
-
-                Attendance
-
-            </a>
-
-        </li>
-
-
-        <li>
-
-            <a href="face-attendance.html">
-
-                <i class="fa-solid fa-face-smile"></i>
-
-                Face Attendance
-
-            </a>
-
-        </li>
-
-
-        <li>
-
-            <a href="students.html">
-
-                <i class="fa-solid fa-user-graduate"></i>
-
-                Students
-
-            </a>
-
-        </li>
-
-
-        <li>
-
-            <a href="assignments.html">
-
-                <i class="fa-solid fa-file-pen"></i>
-
-                Assignments
-
-            </a>
-
-        </li>
-
-
-        <li>
-
-            <a href="leave-request.html">
-
-                <i class="fa-solid fa-file-circle-check"></i>
-
-                Leave
-
-            </a>
-
-        </li>
-
-
-        <li>
-
-            <a href="notices.html">
-
-                <i class="fa-solid fa-bullhorn"></i>
-
-                Notices
-
-            </a>
-
-        </li>
-
-
-        <!-- Academic Calendar Active -->
-
-        <li>
-
-            <a
-                href="academic-calendar.html"
-                class="active">
-
-                <i class="fa-solid fa-calendar-check"></i>
-
-                Academic Calendar
-
-            </a>
-
-        </li>
-
-
-        <li>
-
-            <a href="reports.html">
-
-                <i class="fa-solid fa-chart-line"></i>
-
-                Reports
-
-            </a>
-
-        </li>
-
-
-        <!-- ================= AI FEATURES ================= -->
-
-        <li>
-
-            <a href="ai-assistant.html">
-
-                <i class="fa-solid fa-robot"></i>
-
-                AI Assistant
-
-            </a>
-
-        </li>
-
-
-        <li>
-
-            <a href="ai-performance.html">
-
-                <i class="fa-solid fa-brain"></i>
-
-                AI Performance
-
-            </a>
-
-        </li>
-
-
-        <li>
-
-            <a href="settings.html">
-
-                <i class="fa-solid fa-gear"></i>
-
-                Settings
-
-            </a>
-
-        </li>
-
-
-        <li>
-
-            <a href="teacher-login.html">
-
-                <i class="fa-solid fa-right-from-bracket"></i>
-
-                Logout
-
-            </a>
-
-        </li>
-
-
+    <nav aria-label="Teacher navigation">
+    <ul class="sidebar-menu">
+        <li><a href="teacher-dashboard.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a></li>
+        <li><a href="my-classes.html"><i class="fa-solid fa-chalkboard-user"></i><span>My Classes</span></a></li>
+        <li><a href="timetable.html"><i class="fa-solid fa-calendar-days"></i><span>Timetable</span></a></li>
+        <li><a href="face-register.html"><i class="fa-solid fa-user-plus"></i><span>Face Registration</span></a></li>
+        <li><a href="face-attendance.html"><i class="fa-solid fa-camera"></i><span>Face Attendance</span></a></li>
+        <li><a href="leave-request.html"><i class="fa-solid fa-file-circle-check"></i><span>Leave Request</span></a></li>
+        <li><a href="performance.html"><i class="fa-solid fa-chart-line"></i><span>Performance</span></a></li>
+        <li><a href="notices.html"><i class="fa-solid fa-bullhorn"></i><span>Notices</span></a></li>
+        <li class="active"><a href="academic-calendar.html"><i class="fa-solid fa-calendar-check"></i><span>Academic Calendar</span></a></li>
+        <li><a href="notification.html"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></li>
+        <li><a href="profile.html"><i class="fa-solid fa-user"></i><span>My Profile</span></a></li>
+        <li><a href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a></li>
+        <li><a href="teacher-login.html" class="logout-link"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a></li>
     </ul>
+    </nav>
 
 
 </aside>
+
+<button type="button" class="sidebar-overlay" id="sidebarOverlay" aria-label="Close navigation"></button>
 
 
 <!-- =========================================================
@@ -2255,8 +2334,6 @@ body.dark .modal-content{
                 <span
                     class="navbar-badge"
                     id="notificationCount">
-
-                    4
 
                 </span>
 
@@ -2568,23 +2645,6 @@ body.dark .modal-content{
                 </li>
 
 
-                <!-- CHANGE PASSWORD -->
-
-                <li>
-
-                    <a
-                        class="dropdown-item"
-                        href="change-password.html">
-
-                        <i class="fa-solid fa-lock"></i>
-
-                        Change Password
-
-                    </a>
-
-                </li>
-
-
                 <li>
                     <hr class="dropdown-divider">
                 </li>
@@ -2628,8 +2688,7 @@ body.dark .modal-content{
         <h2>
 
             <i
-                class="fa-solid fa-calendar-check me-2"
-                style="color:#6c4cff;">
+                class="fa-solid fa-calendar-check me-2">
             </i>
 
             Academic Calendar
@@ -2704,7 +2763,7 @@ body.dark .modal-content{
 
             <h3 id="totalEventsCount">
 
-                12
+                --
 
             </h3>
 
@@ -2736,7 +2795,7 @@ body.dark .modal-content{
 
             <h3 id="examCount">
 
-                4
+                --
 
             </h3>
 
@@ -2768,7 +2827,7 @@ body.dark .modal-content{
 
             <h3 id="holidayCount">
 
-                6
+                --
 
             </h3>
 
@@ -2800,7 +2859,7 @@ body.dark .modal-content{
 
             <h3 id="deadlineCount">
 
-                3
+                --
 
             </h3>
 
@@ -2993,33 +3052,10 @@ body.dark .modal-content{
             </thead>
 
 
-            <!--
-                PART 2 ME:
-
-                1. Calendar tbody
-                2. Dynamic calendar rendering
-                3. Upcoming events
-                4. Academic information
-                5. Event details modal
-                6. Calendar info modal
-                7. Bootstrap JS
-                8. teacher-dashboard.js
-                9. Complete Academic Calendar JavaScript
-                10. </main>
-                11. </div>
-                12. </body>
-                13. </html>
-
-                SAB CONTINUE HOGA.
-            -->
-
-
             <tbody id="calendarBody">
 <!-- =========================================================
                     CALENDAR BODY
 ========================================================= -->
-
-<!-- Calendar days JavaScript se dynamically generate honge -->
 
 </tbody>
 
@@ -3852,1080 +3888,923 @@ body.dark .modal-content{
                     TEACHER COMMON JS
 ========================================================= -->
 
-<script src="../../js/teacher-dashboard.js"></script>
+<script src="../../js/api.js"></script>
 
+<style>
+.calendar-event {
+    border: 0;
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+.academic-info-box,
+.upcoming-event {
+    cursor: pointer;
+}
+.calendar-empty-state {
+    border: 1px dashed rgba(108,76,255,.35);
+    border-radius: 14px;
+    color: #64748b;
+    width: 100%;
+}
+.calendar-wrapper {
+    overflow-x: auto;
+}
+.calendar-table {
+    table-layout: fixed;
+    width: 100%;
+}
+.calendar-table thead th {
+    height: 48px;
+    text-align: center;
+}
+.calendar-table .calendar-day {
+    min-width: 0;
+    vertical-align: top;
+}
+body.dark .calendar-empty-state,
+body.dark .calendar-empty-state p,
+body.dark .calendar-empty-state .text-muted {
+    color: #cbd5e1 !important;
+}
+body.dark .calendar-empty-state i {
+    color: #8b7cff !important;
+}
+.teacher-profile-btn img,
+.profile-menu-header img {
+    height: 44px !important;
+    max-height: 44px !important;
+    max-width: 44px !important;
+    object-fit: cover !important;
+    width: 44px !important;
+}
+</style>
 
 <!-- =========================================================
-                ACADEMIC CALENDAR JAVASCRIPT
+            REAL TEACHER ACADEMIC CALENDAR
 ========================================================= -->
-
 <script>
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function(){
-
-/* =========================================================
-                    ELEMENTS
-========================================================= */
-
-const calendarBody =
-document.getElementById("calendarBody");
-
-
-const calendarMonthTitle =
-document.getElementById("calendarMonthTitle");
-
-
-const previousMonthBtn =
-document.getElementById("previousMonthBtn");
-
-
-const nextMonthBtn =
-document.getElementById("nextMonthBtn");
-
-
-const todayCalendarBtn =
-document.getElementById("todayCalendarBtn");
-
-
-const filterButtons =
-document.querySelectorAll(
-    ".calendar-filter-btn"
-);
-
-
-/* =========================================================
-                    CURRENT DATE
-========================================================= */
-
-let currentDate =
-new Date(2026,7,1);
-
-
-let activeFilter =
-"all";
-
-
-/* =========================================================
-                    ACADEMIC EVENTS
-========================================================= */
-
-const academicEvents = [
-
-    {
-        date:"2026-08-05",
-        title:"Faculty Meeting",
-        type:"meeting",
-        description:
-        "Department faculty meeting regarding academic planning.",
-        time:"11:00 AM",
-        venue:"Department Meeting Room"
-    },
-
-    {
-        date:"2026-08-08",
-        title:"Marks Submission",
-        type:"deadline",
-        description:
-        "Last date for internal assessment marks submission.",
-        time:"05:00 PM",
-        venue:"Faculty Portal"
-    },
-
-    {
-        date:"2026-08-15",
-        title:"Independence Day",
-        type:"holiday",
-        description:
-        "College holiday on the occasion of Independence Day.",
-        time:"Full Day",
-        venue:"College Campus"
-    },
-
-    {
-        date:"2026-08-21",
-        title:"AI Workshop",
-        type:"activity",
-        description:
-        "Technical workshop on Artificial Intelligence.",
-        time:"10:30 AM",
-        venue:"Seminar Hall"
-    },
-
-    {
-        date:"2026-08-27",
-        title:"Project Review",
-        type:"meeting",
-        description:
-        "Student project progress review meeting.",
-        time:"02:00 PM",
-        venue:"Computer Lab"
-    },
-
-    {
-        date:"2026-09-05",
-        title:"Teachers' Day",
-        type:"activity",
-        description:
-        "Teachers' Day celebration and academic activities.",
-        time:"10:00 AM",
-        venue:"College Auditorium"
-    },
-
-    {
-        date:"2026-09-14",
-        title:"Mid Semester Exam",
-        type:"exam",
-        description:
-        "Mid semester examination begins.",
-        time:"09:30 AM",
-        venue:"Examination Hall"
-    },
-
-    {
-        date:"2026-09-19",
-        title:"Mid Semester Ends",
-        type:"exam",
-        description:
-        "Last day of mid semester examination.",
-        time:"09:30 AM",
-        venue:"Examination Hall"
-    },
-
-    {
-        date:"2026-10-02",
-        title:"Gandhi Jayanti",
-        type:"holiday",
-        description:
-        "College holiday.",
-        time:"Full Day",
-        venue:"College"
-    },
-
-    {
-        date:"2026-11-20",
-        title:"Practical Exam",
-        type:"exam",
-        description:
-        "Practical examination begins.",
-        time:"10:00 AM",
-        venue:"Laboratory"
-    },
-
-    {
-        date:"2026-12-01",
-        title:"End Semester Exam",
-        type:"exam",
-        description:
-        "End semester examination begins.",
-        time:"09:30 AM",
-        venue:"Examination Hall"
-    },
-
-    {
-        date:"2026-12-21",
-        title:"Winter Vacation",
-        type:"holiday",
-        description:
-        "Winter vacation begins.",
-        time:"Full Day",
-        venue:"College"
-    }
-
-];
-
-
-/* =========================================================
-                    MONTH NAMES
-========================================================= */
-
-const monthNames = [
-
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-
-];
-
-
-/* =========================================================
-                    FORMAT DATE
-========================================================= */
-
-function formatDateKey(
-    year,
-    month,
-    day
-){
-
-    const formattedMonth =
-    String(month + 1)
-    .padStart(2,"0");
-
-
-    const formattedDay =
-    String(day)
-    .padStart(2,"0");
-
-
-    return (
-        year +
-        "-" +
-        formattedMonth +
-        "-" +
-        formattedDay
-    );
-
-}
-
-
-/* =========================================================
-                    RENDER CALENDAR
-========================================================= */
-
-function renderCalendar(){
-
-
-    calendarBody.innerHTML =
-    "";
-
-
-    const year =
-    currentDate.getFullYear();
-
-
-    const month =
-    currentDate.getMonth();
-
-
-    calendarMonthTitle.innerText =
-    monthNames[month] +
-    " " +
-    year;
-
-
-    const firstDay =
-    new Date(
-        year,
-        month,
-        1
-    ).getDay();
-
-
-    const daysInMonth =
-    new Date(
-        year,
-        month + 1,
-        0
-    ).getDate();
-
-
-    let dateNumber =
-    1;
-
-
-    /* Maximum 6 calendar rows */
-
-    for(
-        let row = 0;
-        row < 6;
-        row++
-    ){
-
-        const tr =
-        document.createElement("tr");
-
-
-        for(
-            let column = 0;
-            column < 7;
-            column++
-        ){
-
-
-            const td =
-            document.createElement("td");
-
-
-            if(
-                row === 0 &&
-                column < firstDay
-            ){
-
-                td.className =
-                "calendar-day empty";
-
-
-                tr.appendChild(td);
-
-                continue;
-
-            }
-
-
-            if(
-                dateNumber >
-                daysInMonth
-            ){
-
-                td.className =
-                "calendar-day empty";
-
-
-                tr.appendChild(td);
-
-                continue;
-
-            }
-
-
-            td.className =
-            "calendar-day";
-
-
-            const dateKey =
-            formatDateKey(
-                year,
-                month,
-                dateNumber
-            );
-
-
-            td.dataset.date =
-            dateKey;
-
-
-            /* =================================================
-                            DAY NUMBER
-            ================================================= */
-
-            const number =
-            document.createElement(
-                "div"
-            );
-
-
-            number.className =
-            "calendar-day-number";
-
-
-            number.innerText =
-            dateNumber;
-
-
-            td.appendChild(number);
-
-
-            /* =================================================
-                            TODAY
-            ================================================= */
-
-            const today =
-            new Date();
-
-
-            if(
-                dateNumber ===
-                today.getDate() &&
-
-                month ===
-                today.getMonth() &&
-
-                year ===
-                today.getFullYear()
-            ){
-
-                td.classList.add(
-                    "today"
-                );
-
-            }
-
-
-            /* =================================================
-                            EVENTS
-            ================================================= */
-
-            const dayEvents =
-            academicEvents.filter(
-                function(event){
-
-                    return (
-                        event.date ===
-                        dateKey
-                    );
-
-                }
-            );
-
-
-            dayEvents.forEach(
-                function(event){
-
-
-                    if(
-                        activeFilter !==
-                        "all" &&
-
-                        event.type !==
-                        activeFilter
-                    ){
-
-                        return;
-
-                    }
-
-
-                    const eventLabel =
-                    document.createElement(
-                        "span"
-                    );
-
-
-                    eventLabel.className =
-                    "calendar-event " +
-                    event.type;
-
-
-                    eventLabel.innerText =
-                    event.title;
-
-
-                    eventLabel.addEventListener(
-                        "click",
-                        function(e){
-
-                            e.stopPropagation();
-
-                            showEventDetails(
-                                event
-                            );
-
-                        }
-                    );
-
-
-                    td.appendChild(
-                        eventLabel
-                    );
-
-
-                }
-            );
-
-
-            /* =================================================
-                        CLICK CALENDAR DAY
-            ================================================= */
-
-            td.addEventListener(
-                "click",
-                function(){
-
-
-                    if(
-                        dayEvents.length >
-                        0
-                    ){
-
-                        let selectedEvents =
-                        dayEvents;
-
-
-                        if(
-                            activeFilter !==
-                            "all"
-                        ){
-
-                            selectedEvents =
-                            dayEvents.filter(
-                                function(event){
-
-                                    return (
-                                        event.type ===
-                                        activeFilter
-                                    );
-
-                                }
-                            );
-
-                        }
-
-
-                        if(
-                            selectedEvents.length >
-                            0
-                        ){
-
-                            showEventDetails(
-                                selectedEvents[0]
-                            );
-
-                        }
-
-                    }
-
-                }
-            );
-
-
-            tr.appendChild(td);
-
-
-            dateNumber++;
-
+(function () {
+    "use strict";
+
+    const BACKEND_URL = "http://127.0.0.1:5000";
+    const TOKEN_KEY = "fmps_access_token";
+    const LOGIN_PAGE = "teacher-login.html";
+    const MONTH_NAMES = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    let events = [];
+    let summary = {};
+    let teacher = {};
+    let currentMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+    let activeFilter = "all";
+    let searchValue = "";
+
+    const calendarBody = document.getElementById("calendarBody");
+    const calendarTitle = document.getElementById("calendarMonthTitle");
+    const upcomingList = document.getElementById("upcomingEventList");
+
+    prepareLoadingState();
+    document.addEventListener("DOMContentLoaded", initializePage);
+
+    async function initializePage() {
+        setupTheme();
+        setupMobileMenu();
+        setupLogout();
+        setupCalendarControls();
+
+        if (!localStorage.getItem(TOKEN_KEY)) {
+            window.location.replace(LOGIN_PAGE);
+            return;
         }
 
+        const results = await Promise.allSettled([
+            apiRequest("GET", "/academic-events"),
+            apiRequest("GET", "/teachers/me/profile"),
+            apiRequest("GET", "/notifications")
+        ]);
 
-        calendarBody.appendChild(
-            tr
-        );
-
-
-        if(
-            dateNumber >
-            daysInMonth
-        ){
-
-            break;
-
+        if (results[0].status === "rejected") {
+            handlePageError(results[0].reason);
+            return;
         }
 
-    }
+        const calendarResponse = results[0].value;
 
-}
-
-
-/* =========================================================
-                    EVENT DETAILS
-========================================================= */
-
-function showEventDetails(event){
-
-
-    document.getElementById(
-        "eventModalTitle"
-    ).innerText =
-    event.title;
-
-
-    document.getElementById(
-        "eventModalDescription"
-    ).innerText =
-    event.description;
-
-
-    document.getElementById(
-        "eventModalType"
-    ).innerText =
-    capitalizeText(
-        event.type
-    );
-
-
-    document.getElementById(
-        "eventModalDate"
-    ).innerText =
-    formatDisplayDate(
-        event.date
-    );
-
-
-    document.getElementById(
-        "eventModalTime"
-    ).innerText =
-    event.time;
-
-
-    document.getElementById(
-        "eventModalVenue"
-    ).innerText =
-    event.venue;
-
-
-    /* =====================================================
-                        MODAL ICON
-    ====================================================== */
-
-    const modalIcon =
-    document.getElementById(
-        "eventModalIcon"
-    );
-
-
-    if(
-        event.type ===
-        "exam"
-    ){
-
-        modalIcon.className =
-        "fa-solid fa-file-pen";
-
-    }
-
-    else if(
-        event.type ===
-        "holiday"
-    ){
-
-        modalIcon.className =
-        "fa-solid fa-umbrella-beach";
-
-    }
-
-    else if(
-        event.type ===
-        "meeting"
-    ){
-
-        modalIcon.className =
-        "fa-solid fa-users";
-
-    }
-
-    else if(
-        event.type ===
-        "activity"
-    ){
-
-        modalIcon.className =
-        "fa-solid fa-star";
-
-    }
-
-    else{
-
-        modalIcon.className =
-        "fa-solid fa-clock";
-
-    }
-
-
-    const modal =
-    new bootstrap.Modal(
-        document.getElementById(
-            "eventDetailsModal"
-        )
-    );
-
-
-    modal.show();
-
-}
-
-
-/* =========================================================
-                    DISPLAY DATE
-========================================================= */
-
-function formatDisplayDate(
-    dateString
-){
-
-    const parts =
-    dateString.split("-");
-
-
-    const date =
-    new Date(
-        Number(parts[0]),
-        Number(parts[1]) - 1,
-        Number(parts[2])
-    );
-
-
-    return date.toLocaleDateString(
-        "en-IN",
-        {
-
-            day:"2-digit",
-
-            month:"long",
-
-            year:"numeric"
-
+        if (!calendarResponse.success) {
+            showCalendarError(calendarResponse.message || "Unable to load academic events");
+            return;
         }
-    );
 
-}
+        events = (Array.isArray(calendarResponse.data) ? calendarResponse.data : [])
+            .map(normalizeEvent)
+            .filter(function (event) {
+                return event.startDate && event.endDate;
+            });
+        summary = calendarResponse.summary || {};
 
+        if (results[1].status === "fulfilled" && results[1].value.success) {
+            teacher = results[1].value.data || {};
+            renderProfile(teacher);
+        }
 
-/* =========================================================
-                    CAPITALIZE
-========================================================= */
+        if (results[2].status === "fulfilled" && results[2].value.success) {
+            renderNotifications(
+                results[2].value.data || [],
+                results[2].value.summary || {}
+            );
+        }
+        else {
+            renderNotifications([], { unread: 0 });
+        }
 
-function capitalizeText(text){
+        renderAll();
+    }
 
-    return (
-        text
-        .charAt(0)
-        .toUpperCase() +
-        text.slice(1)
-    );
+    async function apiRequest(method, path, body) {
+        if (window.API && typeof window.API.request === "function") {
+            return window.API.request(method, path, body || null);
+        }
 
-}
+        const token = localStorage.getItem(TOKEN_KEY);
+        const headers = { Accept: "application/json" };
 
+        if (token) {
+            headers.Authorization = "Bearer " + token;
+        }
 
-/* =========================================================
-                    PREVIOUS MONTH
-========================================================= */
+        if (body) {
+            headers["Content-Type"] = "application/json";
+        }
 
-previousMonthBtn.addEventListener(
-    "click",
-    function(){
+        const response = await fetch(BACKEND_URL + "/api" + path, {
+            method: method,
+            headers: headers,
+            body: body ? JSON.stringify(body) : undefined
+        });
+        const result = await response.json().catch(function () { return {}; });
 
-        currentDate.setMonth(
-            currentDate.getMonth() - 1
-        );
+        if (!response.ok) {
+            const error = new Error(result.message || "Request failed");
+            error.status = response.status;
+            throw error;
+        }
 
+        return result;
+    }
 
+    function normalizeEvent(item) {
+        const startDate = parseLocalDate(item.start_date || item.date);
+        let endDate = parseLocalDate(item.end_date || item.start_date || item.date);
+
+        if (startDate && endDate && endDate < startDate) {
+            endDate = new Date(startDate.getTime());
+        }
+
+        return {
+            id: item.id,
+            title: item.title || "Academic Event",
+            description: item.description || "No additional information provided.",
+            type: normalizeEventType(item.event_type || item.type),
+            startDate: startDate,
+            endDate: endDate,
+            startDateText: formatDateKey(startDate),
+            endDateText: formatDateKey(endDate),
+            department: item.department || "All Departments",
+            departmentId: item.department_id,
+            scope: item.scope || (item.department_id ? "department" : "global"),
+            createdBy: item.created_by,
+            status: calculateStatus(startDate, endDate)
+        };
+    }
+
+    function renderAll() {
+        renderStatistics();
         renderCalendar();
-
+        renderUpcomingEvents();
+        renderAcademicInformation();
+        renderImportantDates();
+        updateCalendarInfoModal();
     }
-);
 
+    function prepareLoadingState() {
+        ["totalEventsCount", "examCount", "holidayCount", "deadlineCount"]
+            .forEach(function (id) { setText(id, "--"); });
 
-/* =========================================================
-                    NEXT MONTH
-========================================================= */
-
-nextMonthBtn.addEventListener(
-    "click",
-    function(){
-
-        currentDate.setMonth(
-            currentDate.getMonth() + 1
-        );
-
-
-        renderCalendar();
-
-    }
-);
-
-
-/* =========================================================
-                    TODAY BUTTON
-========================================================= */
-
-todayCalendarBtn.addEventListener(
-    "click",
-    function(){
-
-
-        const today =
-        new Date();
-
-
-        currentDate =
-        new Date(
-            today.getFullYear(),
-            today.getMonth(),
-            1
-        );
-
-
-        activeFilter =
-        "all";
-
-
-        filterButtons.forEach(
-            function(button){
-
-                button.classList.remove(
-                    "active"
-                );
-
-            }
-        );
-
-
-        const allButton =
-        document.querySelector(
-            '[data-filter="all"]'
-        );
-
-
-        if(allButton){
-
-            allButton.classList.add(
-                "active"
-            );
-
+        if (calendarBody) {
+            calendarBody.replaceChildren(createTableMessage("Loading calendar..."));
         }
 
+        if (upcomingList) {
+            upcomingList.replaceChildren(createEmptyState(
+                "fa-spinner fa-spin",
+                "Loading academic events..."
+            ));
+        }
 
-        renderCalendar();
+        const count = document.getElementById("notificationCount");
+        if (count) { count.style.display = "none"; }
 
+        const notificationMenu = document.querySelector(".notification-menu");
+        if (notificationMenu) {
+            const item = document.createElement("li");
+            const message = document.createElement("div");
+            message.className = "p-3 text-center text-muted";
+            message.textContent = "Loading notifications...";
+            item.appendChild(message);
+            notificationMenu.replaceChildren(item);
+        }
     }
-);
 
+    function renderStatistics() {
+        const counts = events.reduce(function (result, event) {
+            result[event.status] += 1;
+            return result;
+        }, { upcoming: 0, ongoing: 0, completed: 0 });
 
-/* =========================================================
-                    EVENT FILTER
-========================================================= */
+        setText("totalEventsCount", Number(summary.total ?? events.length));
+        setText("examCount", Number(summary.upcoming ?? counts.upcoming));
+        setText("holidayCount", Number(summary.ongoing ?? counts.ongoing));
+        setText("deadlineCount", Number(summary.completed ?? counts.completed));
 
-filterButtons.forEach(
-    function(button){
+        setCardLabel("totalEventsCount", "Total Events", "fa-calendar-days");
+        setCardLabel("examCount", "Upcoming Events", "fa-clock");
+        setCardLabel("holidayCount", "Ongoing Events", "fa-circle-play");
+        setCardLabel("deadlineCount", "Completed Events", "fa-circle-check");
+    }
 
+    function setCardLabel(id, label, iconClass) {
+        const number = document.getElementById(id);
+        const card = number ? number.closest(".calendar-stat-card") : null;
+        const text = card ? card.querySelector("p") : null;
+        const icon = card ? card.querySelector(".calendar-stat-icon i") : null;
+        if (text) { text.textContent = label; }
+        if (icon) { icon.className = "fa-solid " + iconClass; }
+    }
 
-        button.addEventListener(
-            "click",
-            function(){
+    function renderCalendar() {
+        if (!calendarBody || !calendarTitle) {
+            return;
+        }
 
+        calendarBody.replaceChildren();
+        const year = currentMonth.getFullYear();
+        const month = currentMonth.getMonth();
+        const firstWeekday = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const totalCells = Math.ceil((firstWeekday + daysInMonth) / 7) * 7;
+        const today = atMidnight(new Date());
+        let day = 1;
 
-                filterButtons.forEach(
-                    function(btn){
+        calendarTitle.textContent = MONTH_NAMES[month] + " " + year;
 
-                        btn.classList.remove(
-                            "active"
-                        );
+        for (let cellIndex = 0; cellIndex < totalCells; cellIndex += 7) {
+            const row = document.createElement("tr");
 
-                    }
-                );
+            for (let column = 0; column < 7; column += 1) {
+                const absoluteIndex = cellIndex + column;
+                const cell = document.createElement("td");
 
+                if (absoluteIndex < firstWeekday || day > daysInMonth) {
+                    cell.className = "calendar-day empty";
+                    row.appendChild(cell);
+                    continue;
+                }
 
-                this.classList.add(
-                    "active"
-                );
+                const date = new Date(year, month, day);
+                const dateEvents = filteredEvents().filter(function (event) {
+                    return eventCoversDate(event, date);
+                });
+                const number = document.createElement("div");
 
+                cell.className = "calendar-day";
+                cell.dataset.date = formatDateKey(date);
+                number.className = "calendar-day-number";
+                number.textContent = String(day);
+                cell.appendChild(number);
 
-                activeFilter =
-                this.dataset.filter;
+                if (date.getTime() === today.getTime()) {
+                    cell.classList.add("today");
+                }
 
+                dateEvents.forEach(function (event) {
+                    const label = document.createElement("button");
+                    label.type = "button";
+                    label.className = "calendar-event " + event.type;
+                    label.textContent = event.title;
+                    label.title = event.title + " (" + formatRange(event) + ")";
+                    label.addEventListener("click", function (clickEvent) {
+                        clickEvent.stopPropagation();
+                        showEventDetails(event);
+                    });
+                    cell.appendChild(label);
+                });
 
+                if (dateEvents.length) {
+                    cell.addEventListener("click", function () {
+                        showEventDetails(dateEvents[0]);
+                    });
+                }
+
+                day += 1;
+                row.appendChild(cell);
+            }
+
+            calendarBody.appendChild(row);
+        }
+    }
+
+    function filteredEvents() {
+        return events.filter(function (event) {
+            const typeMatches = activeFilter === "all" || event.type === activeFilter;
+            const searchable = [
+                event.title,
+                event.description,
+                event.type,
+                event.department,
+                event.scope
+            ].join(" ").toLowerCase();
+            return typeMatches && searchable.includes(searchValue);
+        });
+    }
+
+    function eventCoversDate(event, date) {
+        const target = atMidnight(date).getTime();
+        return target >= event.startDate.getTime() && target <= event.endDate.getTime();
+    }
+
+    function renderUpcomingEvents() {
+        if (!upcomingList) {
+            return;
+        }
+
+        const upcoming = filteredEvents()
+            .filter(function (event) {
+                return event.status === "upcoming" || event.status === "ongoing";
+            })
+            .sort(function (first, second) {
+                return first.startDate - second.startDate;
+            });
+
+        upcomingList.replaceChildren();
+
+        if (!upcoming.length) {
+            upcomingList.appendChild(createEmptyState(
+                "fa-calendar-xmark",
+                events.length
+                    ? "No ongoing or upcoming events. Completed events remain available in the calendar."
+                    : "No academic events have been published yet."
+            ));
+            return;
+        }
+
+        upcoming.forEach(function (event) {
+            upcomingList.appendChild(createUpcomingEvent(event));
+        });
+    }
+
+    function createUpcomingEvent(event) {
+        const item = document.createElement("div");
+        const dateBox = document.createElement("div");
+        const month = document.createElement("span");
+        const date = document.createElement("span");
+        const details = document.createElement("div");
+        const badge = document.createElement("span");
+        const title = document.createElement("h6");
+        const description = document.createElement("p");
+        const range = document.createElement("small");
+        const icon = document.createElement("i");
+
+        item.className = "upcoming-event";
+        item.dataset.eventType = event.type;
+        dateBox.className = "event-date-box";
+        month.className = "month";
+        month.textContent = event.startDate.toLocaleDateString("en-US", { month: "short" }).toUpperCase();
+        date.className = "date";
+        date.textContent = String(event.startDate.getDate()).padStart(2, "0");
+        details.className = "event-details";
+        badge.className = "event-type-badge " + event.type;
+        badge.textContent = eventTypeLabel(event.type) + " · " + capitalize(event.status);
+        title.className = "mt-2";
+        title.textContent = event.title;
+        description.textContent = event.description;
+        icon.className = "fa-solid fa-calendar-days me-1";
+        range.append(icon, document.createTextNode(formatRange(event)));
+        dateBox.append(month, date);
+        details.append(badge, title, description, range);
+        item.append(dateBox, details);
+        item.addEventListener("click", function () { showEventDetails(event); });
+        return item;
+    }
+
+    function renderAcademicInformation() {
+        const cards = document.querySelectorAll(
+            ".academic-calendar-grid > div:first-child .calendar-card"
+        );
+        const card = cards[1];
+        const row = card ? card.querySelector(".row") : null;
+
+        if (!row) {
+            return;
+        }
+
+        const globalCount = Number(
+            summary.global_events ?? events.filter(function (event) {
+                return event.scope === "global";
+            }).length
+        );
+        const departmentCount = Number(
+            summary.department_events ?? events.filter(function (event) {
+                return event.scope === "department";
+            }).length
+        );
+        const department = teacher.department ||
+            events.find(function (event) { return event.scope === "department"; })?.department ||
+            "Not assigned";
+
+        const values = [
+            ["Teacher Department", department],
+            ["Total Visible Events", events.length],
+            ["College-wide Events", globalCount],
+            ["Department Events", departmentCount],
+            ["Upcoming Events", countStatus("upcoming")],
+            ["Completed Events", countStatus("completed")]
+        ];
+
+        row.replaceChildren();
+        values.forEach(function (value) {
+            row.appendChild(createInfoColumn(value[0], value[1]));
+        });
+    }
+
+    function createInfoColumn(label, value) {
+        const column = document.createElement("div");
+        const box = document.createElement("div");
+        const small = document.createElement("small");
+        const strong = document.createElement("strong");
+        column.className = "col-md-6";
+        box.className = "academic-info-box";
+        small.textContent = label;
+        strong.textContent = String(value);
+        box.append(small, strong);
+        column.appendChild(box);
+        return column;
+    }
+
+    function renderImportantDates() {
+        const cards = document.querySelectorAll(
+            ".academic-calendar-grid > div:last-child .calendar-card"
+        );
+        const card = cards[1];
+
+        if (!card) {
+            return;
+        }
+
+        card.querySelectorAll(".academic-info-box, .calendar-empty-state")
+            .forEach(function (element) { element.remove(); });
+
+        const important = filteredEvents()
+            .slice()
+            .sort(function (first, second) {
+                return first.startDate - second.startDate;
+            });
+
+        if (!important.length) {
+            card.appendChild(createEmptyState(
+                "fa-calendar-xmark",
+                "No dates match the selected filter."
+            ));
+            return;
+        }
+
+        important.forEach(function (event) {
+            const box = document.createElement("div");
+            const label = document.createElement("small");
+            const date = document.createElement("strong");
+            box.className = "academic-info-box";
+            label.textContent = event.title + " · " + capitalize(event.status);
+            date.textContent = formatRange(event);
+            box.append(label, date);
+            box.addEventListener("click", function () { showEventDetails(event); });
+            card.appendChild(box);
+        });
+    }
+
+    function showEventDetails(event) {
+        setText("eventModalTitle", event.title);
+        setText("eventModalDescription", event.description);
+        setText("eventModalType", eventTypeLabel(event.type) + " · " + capitalize(event.status));
+        setText("eventModalDate", formatRange(event));
+        setText("eventModalTime", "Full Day");
+        setText(
+            "eventModalVenue",
+            event.scope === "global" ? "All Departments" : event.department
+        );
+
+        const icon = document.getElementById("eventModalIcon");
+        if (icon) { icon.className = "fa-solid " + eventIcon(event.type); }
+
+        const modalElement = document.getElementById("eventDetailsModal");
+        if (modalElement && window.bootstrap) {
+            bootstrap.Modal.getOrCreateInstance(modalElement).show();
+        }
+    }
+
+    function setupCalendarControls() {
+        const previous = document.getElementById("previousMonthBtn");
+        const next = document.getElementById("nextMonthBtn");
+        const today = document.getElementById("todayCalendarBtn");
+        const search = document.getElementById("searchBox");
+
+        if (previous) {
+            previous.addEventListener("click", function () {
+                currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1);
                 renderCalendar();
+            });
+        }
 
+        if (next) {
+            next.addEventListener("click", function () {
+                currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1);
+                renderCalendar();
+            });
+        }
 
-                filterUpcomingEvents(
-                    activeFilter
-                );
+        if (today) {
+            today.addEventListener("click", function () {
+                const now = new Date();
+                currentMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+                activeFilter = "all";
+                searchValue = "";
+                if (search) { search.value = ""; }
+                activateFilterButton("all");
+                renderCalendar();
+                renderUpcomingEvents();
+                renderImportantDates();
+            });
+        }
 
+        document.querySelectorAll(".calendar-filter-btn").forEach(function (button) {
+            button.addEventListener("click", function () {
+                activeFilter = this.dataset.filter || "all";
+                activateFilterButton(activeFilter);
+                renderCalendar();
+                renderUpcomingEvents();
+                renderImportantDates();
+            });
+        });
 
-            }
-        );
-
-
+        if (search) {
+            search.addEventListener("input", function () {
+                searchValue = this.value.trim().toLowerCase();
+                renderCalendar();
+                renderUpcomingEvents();
+                renderImportantDates();
+            });
+        }
     }
-);
 
+    function activateFilterButton(filter) {
+        document.querySelectorAll(".calendar-filter-btn").forEach(function (button) {
+            button.classList.toggle("active", button.dataset.filter === filter);
+        });
+    }
 
-/* =========================================================
-                FILTER UPCOMING EVENTS
-========================================================= */
+    function updateCalendarInfoModal() {
+        const modal = document.getElementById("calendarInfoModal");
+        if (!modal) { return; }
 
-function filterUpcomingEvents(
-    filter
-){
+        const heading = modal.querySelector(".text-center h4");
+        const rows = modal.querySelectorAll(".event-detail-row");
+        const globalCount = Number(summary.global_events ?? 0);
+        const departmentCount = Number(summary.department_events ?? 0);
 
+        if (heading) { heading.textContent = "Teacher Academic Calendar"; }
 
-    const upcomingEvents =
-    document.querySelectorAll(
-        ".upcoming-event"
-    );
+        const details = [
+            ["Department", teacher.department || "Not assigned"],
+            ["Total Events", events.length],
+            ["College-wide Events", globalCount],
+            ["Department Events", departmentCount]
+        ];
 
+        rows.forEach(function (row, index) {
+            if (!details[index]) { return; }
+            const label = row.querySelector("span");
+            const value = row.querySelector("strong");
+            if (label) { label.textContent = details[index][0]; }
+            if (value) { value.textContent = String(details[index][1]); }
+        });
+    }
 
-    upcomingEvents.forEach(
-        function(event){
+    function renderProfile(data) {
+        const currentTeacher = data.teacher || data || {};
+        const user = data.user || {};
+        const name = currentTeacher.full_name || currentTeacher.username || user.username || "Teacher";
+        const designation = currentTeacher.designation || "Faculty Member";
 
+        setSelectorText(".teacher-profile-info strong", name);
+        setSelectorText(".teacher-profile-info small", designation);
+        setSelectorText(".profile-menu-header strong", name);
+        setSelectorText(".profile-menu-header small", designation);
 
-            const type =
-            event.dataset.eventType;
+        document.querySelectorAll(".teacher-profile-btn img, .profile-menu-header img")
+            .forEach(function (image) {
+                image.src = resolvePhotoUrl(currentTeacher.photo_url) || createAvatar(name);
+                image.alt = name;
+                image.onerror = function () {
+                    this.onerror = null;
+                    this.src = createAvatar(name);
+                };
+            });
+    }
 
+    function renderNotifications(items, notificationSummary) {
+        const count = document.getElementById("notificationCount");
+        const menu = document.querySelector(".notification-menu");
+        const unread = Number(notificationSummary.unread || 0);
 
-            if(
-                filter ===
-                "all" ||
-                type ===
-                filter
-            ){
+        if (count) {
+            count.textContent = unread > 99 ? "99+" : String(unread);
+            count.style.display = unread > 0 ? "flex" : "none";
+        }
 
-                event.style.display =
-                "flex";
+        if (!menu) { return; }
 
+        menu.replaceChildren();
+        const headerItem = document.createElement("li");
+        const header = document.createElement("div");
+        const headerText = document.createElement("div");
+        const title = document.createElement("h6");
+        const subtitle = document.createElement("small");
+        header.className = "notification-header";
+        title.textContent = "Notifications";
+        subtitle.textContent = unread + " unread update" + (unread === 1 ? "" : "s");
+        headerText.append(title, subtitle);
+        header.appendChild(headerText);
+        headerItem.appendChild(header);
+        menu.appendChild(headerItem);
+
+        items.slice(0, 4).forEach(function (notification) {
+            const listItem = document.createElement("li");
+            const link = document.createElement("a");
+            const iconBox = document.createElement("div");
+            const icon = document.createElement("i");
+            const content = document.createElement("div");
+            const strong = document.createElement("strong");
+            const message = document.createElement("span");
+            link.className = "notification-item";
+            link.href = notification.link || "notification.html";
+            iconBox.className = "notification-item-icon purple";
+            icon.className = "fa-solid fa-bell";
+            content.className = "notification-item-content";
+            strong.textContent = notification.title || "Notification";
+            message.textContent = notification.message || "New update available.";
+            iconBox.appendChild(icon);
+            content.append(strong, message);
+            link.append(iconBox, content);
+            listItem.appendChild(link);
+            menu.appendChild(listItem);
+        });
+
+        const footerItem = document.createElement("li");
+        const footerLink = document.createElement("a");
+        footerLink.href = "notification.html";
+        footerLink.className = "view-all-notifications";
+        footerLink.textContent = "View All Notifications";
+        footerItem.appendChild(footerLink);
+        menu.appendChild(footerItem);
+    }
+
+    function setupTheme() {
+        const button = document.getElementById("themeToggle");
+        const saved = localStorage.getItem("theme") || "light";
+        document.body.classList.toggle("dark", saved === "dark");
+        updateThemeIcon(button);
+
+        if (button) {
+            button.addEventListener("click", function () {
+                document.body.classList.toggle("dark");
+                localStorage.setItem(
+                    "theme",
+                    document.body.classList.contains("dark") ? "dark" : "light"
+                );
+                updateThemeIcon(button);
+            });
+        }
+    }
+
+    function updateThemeIcon(button) {
+        const icon = button ? button.querySelector("i") : null;
+        if (icon) {
+            icon.className = document.body.classList.contains("dark")
+                ? "fa-solid fa-sun"
+                : "fa-solid fa-moon";
+        }
+    }
+
+    function setupMobileMenu() {
+        const button = document.getElementById("mobileMenuBtn");
+        const overlay = document.getElementById("sidebarOverlay");
+
+        function closeSidebar() {
+            document.body.classList.remove("sidebar-open");
+        }
+
+        button?.addEventListener("click", function () {
+            document.body.classList.toggle("sidebar-open");
+        });
+
+        overlay?.addEventListener("click", closeSidebar);
+
+        document.querySelectorAll(".sidebar-menu a").forEach(function (link) {
+            link.addEventListener("click", closeSidebar);
+        });
+
+        window.addEventListener("resize", function () {
+            if (window.innerWidth > 900) {
+                closeSidebar();
             }
+        });
+    }
 
-            else{
+    function setupLogout() {
+        document.querySelectorAll('a[href="teacher-login.html"]').forEach(function (link) {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+                localStorage.removeItem("fmps_access_token");
+                localStorage.removeItem("fmps_refresh_token");
+                localStorage.removeItem("fmps_user");
+                window.location.replace(LOGIN_PAGE);
+            });
+        });
+    }
 
-                event.style.display =
-                "none";
+    function countStatus(status) {
+        return events.filter(function (event) { return event.status === status; }).length;
+    }
 
-            }
+    function calculateStatus(startDate, endDate) {
+        if (!startDate || !endDate) { return "upcoming"; }
+        const today = atMidnight(new Date());
+        if (today < startDate) { return "upcoming"; }
+        if (today > endDate) { return "completed"; }
+        return "ongoing";
+    }
 
+    function normalizeEventType(value) {
+        const type = String(value || "activity").toLowerCase();
+        if (["exam", "examination"].includes(type)) { return "exam"; }
+        if (["holiday", "vacation"].includes(type)) { return "holiday"; }
+        if (["meeting", "faculty_meeting"].includes(type)) { return "meeting"; }
+        if (["deadline", "submission"].includes(type)) { return "deadline"; }
+        return "activity";
+    }
 
+    function eventTypeLabel(type) {
+        const labels = {
+            exam: "Examination",
+            holiday: "Holiday",
+            meeting: "Meeting",
+            deadline: "Deadline",
+            activity: "Activity"
+        };
+        return labels[type] || capitalize(type);
+    }
+
+    function eventIcon(type) {
+        const icons = {
+            exam: "fa-file-pen",
+            holiday: "fa-umbrella-beach",
+            meeting: "fa-users",
+            deadline: "fa-clock",
+            activity: "fa-star"
+        };
+        return icons[type] || "fa-calendar-day";
+    }
+
+    function parseLocalDate(value) {
+        const match = String(value || "").match(/^(\d{4})-(\d{2})-(\d{2})/);
+        if (!match) { return null; }
+        const date = new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+        return Number.isNaN(date.getTime()) ? null : date;
+    }
+
+    function atMidnight(date) {
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    }
+
+    function formatDateKey(date) {
+        if (!date) { return ""; }
+        return [
+            date.getFullYear(),
+            String(date.getMonth() + 1).padStart(2, "0"),
+            String(date.getDate()).padStart(2, "0")
+        ].join("-");
+    }
+
+    function formatDisplayDate(date) {
+        if (!date) { return "--"; }
+        return date.toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        });
+    }
+
+    function formatRange(event) {
+        const start = formatDisplayDate(event.startDate);
+        const end = formatDisplayDate(event.endDate);
+        return event.startDateText === event.endDateText ? start : start + " to " + end;
+    }
+
+    function capitalize(value) {
+        const text = String(value || "");
+        return text.charAt(0).toUpperCase() + text.slice(1);
+    }
+
+    function createTableMessage(message) {
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+        cell.colSpan = 7;
+        cell.className = "text-center text-muted py-5";
+        cell.textContent = message;
+        row.appendChild(cell);
+        return row;
+    }
+
+    function createEmptyState(iconClass, message) {
+        const box = document.createElement("div");
+        const icon = document.createElement("i");
+        const text = document.createElement("p");
+        box.className = "calendar-empty-state text-center py-4";
+        icon.className = "fa-solid " + iconClass + " mb-2";
+        text.className = "text-muted mb-0";
+        text.textContent = message;
+        box.append(icon, text);
+        return box;
+    }
+
+    function setText(id, value) {
+        const element = document.getElementById(id);
+        if (element) { element.textContent = String(value); }
+    }
+
+    function setSelectorText(selector, value) {
+        const element = document.querySelector(selector);
+        if (element) { element.textContent = value; }
+    }
+
+    function resolvePhotoUrl(value) {
+        const photo = String(value || "").trim().replace(/\\/g, "/");
+        if (!photo) { return ""; }
+        if (/^(https?:|data:|blob:)/i.test(photo)) { return photo; }
+        return photo.startsWith("/") ? BACKEND_URL + photo : BACKEND_URL + "/" + photo;
+    }
+
+    function createAvatar(name) {
+        const initials = String(name || "T")
+            .trim().split(/\s+/).slice(0, 2)
+            .map(function (part) { return part.charAt(0).toUpperCase(); })
+            .join("") || "T";
+        const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">' +
+            '<rect width="100" height="100" rx="50" fill="#6c4cff"/>' +
+            '<text x="50" y="59" text-anchor="middle" font-family="Arial" ' +
+            'font-size="35" font-weight="700" fill="white">' + initials + '</text></svg>';
+        return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+    }
+
+    function handlePageError(error) {
+        console.error("Teacher academic calendar error:", error);
+        if (error && (error.status === 401 || error.status === 403)) {
+            localStorage.removeItem("fmps_access_token");
+            localStorage.removeItem("fmps_refresh_token");
+            localStorage.removeItem("fmps_user");
+            window.location.replace(LOGIN_PAGE);
+            return;
         }
-    );
+        showCalendarError(error && error.message ? error.message : "Unable to load academic events");
+    }
 
-}
-
-
-/* =========================================================
-                    SEARCH FUNCTION
-========================================================= */
-
-const searchBox =
-document.getElementById(
-    "searchBox"
-);
-
-
-if(searchBox){
-
-    searchBox.addEventListener(
-        "input",
-        function(){
-
-
-            const searchValue =
-            this.value
-            .toLowerCase()
-            .trim();
-
-
-            const upcomingEvents =
-            document.querySelectorAll(
-                ".upcoming-event"
-            );
-
-
-            upcomingEvents.forEach(
-                function(event){
-
-
-                    const eventText =
-                    event.innerText
-                    .toLowerCase();
-
-
-                    if(
-                        eventText.includes(
-                            searchValue
-                        )
-                    ){
-
-                        event.style.display =
-                        "flex";
-
-                    }
-
-                    else{
-
-                        event.style.display =
-                        "none";
-
-                    }
-
-
-                }
-            );
-
-
+    function showCalendarError(message) {
+        ["totalEventsCount", "examCount", "holidayCount", "deadlineCount"]
+            .forEach(function (id) { setText(id, 0); });
+        if (calendarBody) {
+            calendarBody.replaceChildren(createTableMessage(message));
         }
-    );
-
-}
-
-
-/* =========================================================
-                    STATISTICS
-========================================================= */
-
-function updateStatistics(){
-
-
-    const upcomingCount =
-    academicEvents.length;
-
-
-    const examCount =
-    academicEvents.filter(
-        function(event){
-
-            return (
-                event.type ===
-                "exam"
-            );
-
+        if (upcomingList) {
+            upcomingList.replaceChildren(createEmptyState("fa-triangle-exclamation", message));
         }
-    ).length;
-
-
-    const holidayCount =
-    academicEvents.filter(
-        function(event){
-
-            return (
-                event.type ===
-                "holiday"
-            );
-
-        }
-    ).length;
-
-
-    const deadlineCount =
-    academicEvents.filter(
-        function(event){
-
-            return (
-                event.type ===
-                "deadline"
-            );
-
-        }
-    ).length;
-
-
-    document.getElementById(
-        "totalEventsCount"
-    ).innerText =
-    upcomingCount;
-
-
-    document.getElementById(
-        "examCount"
-    ).innerText =
-    examCount;
-
-
-    document.getElementById(
-        "holidayCount"
-    ).innerText =
-    holidayCount;
-
-
-    document.getElementById(
-        "deadlineCount"
-    ).innerText =
-    deadlineCount;
-
-}
-
-
-/* =========================================================
-                    INITIAL LOAD
-========================================================= */
-
-renderCalendar();
-
-updateStatistics();
-
-
-});
-
+    }
+})();
 </script>
 
-
 </body>
-
 </html>

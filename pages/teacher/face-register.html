@@ -1219,12 +1219,582 @@ body.dark
 
 }
 
+
+/* =========================================================
+                LOGGED-IN TEACHER CARD
+========================================================= */
+
+.teacher-manual-fields{
+    display:none !important;
+}
+
+.teacher-account-summary{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+}
+
+.teacher-account-item{
+    min-width:0;
+    padding:15px 16px;
+    border:1px solid #e7e4f7;
+    border-radius:14px;
+    background:linear-gradient(135deg,#faf9ff,#f3f7ff);
+}
+
+.teacher-account-item small{
+    display:block;
+    margin-bottom:5px;
+    color:#6b7280;
+    font-size:12px;
+    font-weight:600;
+}
+
+.teacher-account-item strong{
+    display:block;
+    overflow:hidden;
+    color:#1f2937;
+    font-size:15px;
+    font-weight:700;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.teacher-account-note{
+    margin-top:15px;
+    padding:11px 14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    border-radius:12px;
+    color:#5b42d6;
+    background:rgba(108,76,255,.08);
+    font-size:13px;
+    font-weight:600;
+}
+
+.teacher-account-note i{
+    color:#22c55e;
+}
+
+body.dark .teacher-account-item{
+    border-color:#374151;
+    background:#1f2937;
+}
+
+body.dark .teacher-account-item strong{
+    color:#ffffff;
+}
+
+body.dark .teacher-account-item small{
+    color:#94a3b8;
+}
+
+body.dark .teacher-account-note{
+    color:#c4b5fd;
+    background:rgba(124,92,255,.14);
+}
+
+@media(max-width:576px){
+    .teacher-account-summary{
+        grid-template-columns:1fr;
+    }
+}
+
+
+/* =========================================================
+                TEACHER SIDEBAR (SHARED UI)
+========================================================= */
+
+:root{
+    --teacher-sidebar-width:300px;
+}
+
+.teacher-sidebar{
+    position:fixed;
+    inset:0 auto 0 0;
+    width:var(--teacher-sidebar-width);
+    height:100vh;
+    z-index:1200;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    color:#ffffff;
+    background:linear-gradient(180deg,#303a4b 0%,#263650 48%,#1a2d51 100%);
+    border-right:1px solid rgba(255,255,255,.12);
+    box-shadow:12px 0 30px rgba(15,23,42,.16);
+}
+
+.teacher-sidebar-brand{
+    flex:0 0 auto;
+    padding:29px 22px 24px;
+    text-align:center;
+}
+
+.teacher-sidebar-logo{
+    width:103px;
+    height:103px;
+    margin:0 auto 15px;
+    padding:6px;
+    display:grid;
+    place-items:center;
+    overflow:hidden;
+    border-radius:50%;
+    background:#ffffff;
+    box-shadow:0 10px 25px rgba(0,0,0,.18);
+}
+
+.teacher-sidebar-logo img{
+    width:91px;
+    height:91px;
+    object-fit:contain;
+    border-radius:50%;
+}
+
+.teacher-sidebar-brand h2{
+    margin:0;
+    color:#ffffff;
+    font-size:22px;
+    line-height:1.42;
+    font-weight:800;
+    letter-spacing:.1px;
+}
+
+.teacher-sidebar-brand p{
+    margin:13px 0 0;
+    color:rgba(255,255,255,.78);
+    font-size:15px;
+    font-weight:500;
+}
+
+.teacher-sidebar-menu{
+    flex:1;
+    min-height:0;
+    overflow-y:auto;
+    padding:26px 27px 34px;
+    scrollbar-width:thin;
+    scrollbar-color:#7357ff rgba(255,255,255,.16);
+}
+
+.teacher-sidebar-menu::-webkit-scrollbar{
+    width:8px;
+}
+
+.teacher-sidebar-menu::-webkit-scrollbar-track{
+    background:rgba(255,255,255,.16);
+    border-radius:10px;
+}
+
+.teacher-sidebar-menu::-webkit-scrollbar-thumb{
+    background:linear-gradient(180deg,#7c3cff,#3b82f6);
+    border-radius:10px;
+}
+
+.teacher-sidebar-link{
+    min-height:58px;
+    margin-bottom:8px;
+    padding:14px 18px;
+    display:flex;
+    align-items:center;
+    gap:17px;
+    color:rgba(255,255,255,.84);
+    border-radius:14px;
+    text-decoration:none;
+    font-size:16px;
+    line-height:1.3;
+    font-weight:600;
+    transition:background .2s ease,color .2s ease,transform .2s ease;
+}
+
+.teacher-sidebar-link i{
+    width:25px;
+    flex:0 0 25px;
+    text-align:center;
+    font-size:20px;
+}
+
+.teacher-sidebar-link:hover{
+    color:#ffffff;
+    background:rgba(255,255,255,.09);
+    transform:translateX(3px);
+}
+
+.teacher-sidebar-link.active{
+    color:#ffffff;
+    background:linear-gradient(135deg,#7652ff 0%,#6b31ff 100%);
+    box-shadow:0 12px 24px rgba(109,52,255,.32);
+}
+
+.teacher-sidebar-separator{
+    height:1px;
+    margin:16px 4px;
+    background:rgba(255,255,255,.13);
+}
+
+.teacher-sidebar-overlay{
+    display:none;
+}
+
+.teacher-sidebar-toggle{
+    width:44px;
+    height:44px;
+    display:none;
+    place-items:center;
+    flex:0 0 44px;
+    border:0;
+    border-radius:12px;
+    color:#ffffff;
+    background:linear-gradient(135deg,#7652ff,#5d2be8);
+    box-shadow:0 8px 18px rgba(108,76,255,.24);
+}
+
+.face-register-navbar,
+.face-register-page{
+    width:calc(100% - var(--teacher-sidebar-width));
+    margin-left:var(--teacher-sidebar-width);
+}
+
+@media(max-width:1200px) and (min-width:901px){
+    :root{
+        --teacher-sidebar-width:270px;
+    }
+
+    .teacher-sidebar-menu{
+        padding-left:20px;
+        padding-right:20px;
+    }
+
+    .teacher-sidebar-brand h2{
+        font-size:19px;
+    }
+}
+
+@media(max-width:900px){
+    .teacher-sidebar{
+        width:min(300px,86vw);
+        transform:translateX(-105%);
+        transition:transform .28s ease;
+    }
+
+    body.teacher-sidebar-open{
+        overflow:hidden;
+    }
+
+    body.teacher-sidebar-open .teacher-sidebar{
+        transform:translateX(0);
+    }
+
+    .teacher-sidebar-overlay{
+        position:fixed;
+        inset:0;
+        z-index:1150;
+        display:block;
+        visibility:hidden;
+        opacity:0;
+        background:rgba(2,6,23,.58);
+        backdrop-filter:blur(2px);
+        transition:opacity .25s ease,visibility .25s ease;
+    }
+
+    body.teacher-sidebar-open .teacher-sidebar-overlay{
+        visibility:visible;
+        opacity:1;
+    }
+
+    .teacher-sidebar-toggle{
+        display:grid;
+    }
+
+    .face-register-navbar,
+    .face-register-page{
+        width:100%;
+        margin-left:0;
+    }
+}
+
+@media(max-width:576px){
+    .teacher-sidebar-brand{
+        padding-top:22px;
+    }
+
+    .teacher-sidebar-logo{
+        width:86px;
+        height:86px;
+    }
+
+    .teacher-sidebar-logo img{
+        width:76px;
+        height:76px;
+    }
+
+    .teacher-sidebar-brand h2{
+        font-size:18px;
+    }
+
+    .teacher-sidebar-menu{
+        padding:20px 18px 28px;
+    }
+}
+
+</style>
+
+<style id="teacher-hod-theme-alignment">
+
+:root{
+    --primary:#6f36ff;
+    --primary-light:#7c55ff;
+}
+
+body:not(.dark) .teacher-sidebar{
+    background:
+        radial-gradient(circle at 8% 0%,rgba(255,255,255,.14),transparent 32%),
+        linear-gradient(180deg,#5a27ec 0%,#6735f4 48%,#7549ff 100%) !important;
+    border-right:0 !important;
+}
+
+body.dark .teacher-sidebar{
+    background:
+        radial-gradient(circle at 8% 0%,rgba(111,54,255,.09),transparent 31%),
+        linear-gradient(180deg,#111111 0%,#0e0e0e 100%) !important;
+    border-right:0 !important;
+}
+
+.teacher-sidebar-link,
+.teacher-sidebar-link i{
+    color:#ffffff !important;
+}
+
+.teacher-sidebar-link i{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+}
+
+body:not(.dark) .teacher-sidebar-link.active{
+    background:rgba(255,255,255,.20) !important;
+    box-shadow:0 10px 24px rgba(50,21,151,.20) !important;
+}
+
+body.dark .teacher-sidebar-link.active{
+    background:linear-gradient(100deg,#7742ff,#6634f4) !important;
+    box-shadow:0 10px 24px rgba(91,47,226,.28) !important;
+}
+
+.teacher-sidebar-link:hover{
+    background:rgba(255,255,255,.11) !important;
+    transform:none !important;
+}
+
+.face-register-navbar{
+    top:16px !important;
+    width:calc(100% - var(--teacher-sidebar-width) - 54px) !important;
+    min-height:100px;
+    margin:30px 27px 0 calc(var(--teacher-sidebar-width) + 27px) !important;
+    padding:18px 0 !important;
+    border:1px solid #e5e7eb;
+    border-radius:22px;
+    box-shadow:0 10px 26px rgba(28,37,61,.07) !important;
+}
+
+body.dark .face-register-navbar{
+    background:#111a2b !important;
+    border-color:#263247 !important;
+    box-shadow:0 10px 28px rgba(0,0,0,.16) !important;
+}
+
+.face-register-page{
+    padding-top:26px !important;
+}
+
+.face-brand-icon{
+    width:48px;
+    height:48px;
+    flex:0 0 48px;
+    display:grid;
+    place-items:center;
+    border-radius:14px;
+    color:#ffffff;
+    font-size:20px;
+    background:linear-gradient(135deg,#7742ff,#4e5cff);
+}
+
+.face-brand h5{
+    color:#111827 !important;
+    font-size:17px !important;
+}
+
+body.dark .face-brand h5{
+    color:#ffffff !important;
+}
+
+body:not(.dark) .face-register-header{
+    color:#ffffff !important;
+    background:
+        radial-gradient(circle at 91% 12%,rgba(255,255,255,.17),transparent 28%),
+        linear-gradient(135deg,#6942ff 0%,#7445f6 56%,#813ee8 100%) !important;
+    border:0 !important;
+    box-shadow:0 10px 26px rgba(55,30,133,.12) !important;
+}
+
+body:not(.dark) .face-register-header h2,
+body:not(.dark) .face-register-header p,
+body:not(.dark) .face-register-header h2 i{
+    color:#ffffff !important;
+}
+
+body.dark .face-register-header{
+    color:#ffffff !important;
+    background:
+        radial-gradient(circle at 91% 12%,rgba(126,78,255,.17),transparent 28%),
+        linear-gradient(135deg,#1b283c 0%,#1d2b42 60%,#24324b 100%) !important;
+    border:1px solid #293750 !important;
+    box-shadow:0 10px 28px rgba(0,0,0,.16) !important;
+}
+
+body.dark .face-register-header h2,
+body.dark .face-register-header p,
+body.dark .face-register-header h2 i{
+    color:#ffffff !important;
+}
+
+.theme-btn,
+.theme-btn:hover,
+.face-register-header .btn,
+.face-register-header .btn:hover,
+.final-register-btn,
+.final-register-btn:hover{
+    box-shadow:none !important;
+    transform:none !important;
+}
+
+@media(max-width:900px){
+    .face-register-navbar{
+        top:0 !important;
+        width:calc(100% - 32px) !important;
+        margin:16px !important;
+    }
+}
+
+@media(max-width:576px){
+    .face-brand small{
+        display:none;
+    }
+
+    .face-register-navbar .btn{
+        padding-left:14px !important;
+        padding-right:14px !important;
+    }
+}
+
 </style>
 
 </head>
 
 
 <body>
+
+<script>
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+}
+</script>
+
+
+<!-- =========================================================
+                    TEACHER SIDEBAR
+========================================================= -->
+
+<aside class="teacher-sidebar" aria-label="Teacher navigation">
+
+    <div class="teacher-sidebar-brand">
+
+        <div class="teacher-sidebar-logo">
+            <img src="../../images/logo.png" alt="Patna Women's College Logo">
+        </div>
+
+        <h2>PATNA<br>WOMEN'S COLLEGE</h2>
+        <p>(AUTONOMOUS)</p>
+
+    </div>
+
+    <nav class="teacher-sidebar-menu">
+
+        <a class="teacher-sidebar-link" href="teacher-dashboard.html">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a class="teacher-sidebar-link" href="my-classes.html">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <span>My Classes</span>
+        </a>
+
+        <a class="teacher-sidebar-link" href="timetable.html">
+            <i class="fa-solid fa-calendar-days"></i>
+            <span>Timetable</span>
+        </a>
+
+        <a class="teacher-sidebar-link active" href="face-register.html" aria-current="page">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>Face Registration</span>
+        </a>
+
+        <a class="teacher-sidebar-link" href="face-attendance.html">
+            <i class="fa-solid fa-camera"></i>
+            <span>Face Attendance</span>
+        </a>
+
+        <a class="teacher-sidebar-link" href="leave-request.html">
+            <i class="fa-solid fa-file-circle-check"></i>
+            <span>Leave Request</span>
+        </a>
+
+        <a class="teacher-sidebar-link" href="performance.html">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Performance</span>
+        </a>
+
+        <a class="teacher-sidebar-link" href="notices.html">
+            <i class="fa-solid fa-bullhorn"></i>
+            <span>Notices</span>
+        </a>
+
+        <a class="teacher-sidebar-link" href="academic-calendar.html">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span>Academic Calendar</span>
+        </a>
+
+        <a class="teacher-sidebar-link" href="notification.html">
+            <i class="fa-solid fa-bell"></i>
+            <span>Notifications</span>
+        </a>
+
+        <a class="teacher-sidebar-link" href="profile.html">
+            <i class="fa-solid fa-user"></i>
+            <span>My Profile</span>
+        </a>
+
+        <a class="teacher-sidebar-link" href="settings.html">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+        </a>
+
+        <div class="teacher-sidebar-separator"></div>
+
+        <a class="teacher-sidebar-link" href="teacher-login.html">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+
+    </nav>
+
+</aside>
+
+<div
+    class="teacher-sidebar-overlay"
+    aria-hidden="true"
+    onclick="document.body.classList.remove('teacher-sidebar-open')">
+</div>
 
 
 <!-- =========================================================
@@ -1244,24 +1814,23 @@ body.dark
     href="../../index.html"
     class="face-brand text-decoration-none">
 
-
-<img
-    src="../../images/logo.png"
-    alt="FMPS Logo">
+<span class="face-brand-icon" aria-hidden="true">
+    <i class="fa-solid fa-user-plus"></i>
+</span>
 
 
 <div>
 
 <h5>
 
-    FACULTY MANAGEMENT & PRODUCTIVITY SYSTEM
+    Teacher Face Registration
 
 </h5>
 
 
 <small>
 
-    Patna Women's College (Autonomous)
+    Register your secure biometric profile
 
 </small>
 
@@ -1277,6 +1846,18 @@ body.dark
 
 <button
     type="button"
+    class="teacher-sidebar-toggle"
+    title="Open navigation"
+    aria-label="Open teacher navigation"
+    onclick="document.body.classList.toggle('teacher-sidebar-open')">
+
+    <i class="fa-solid fa-bars"></i>
+
+</button>
+
+
+<button
+    type="button"
     id="themeToggle"
     class="theme-btn"
     title="Dark / Light Mode">
@@ -1287,12 +1868,12 @@ body.dark
 
 
 <a
-    href="teacher-login.html"
+    href="teacher-dashboard.html"
     class="btn btn-outline-primary rounded-pill px-4">
 
     <i class="fa-solid fa-arrow-left me-2"></i>
 
-    Back to Login
+    Back to Dashboard
 
 </a>
 
@@ -1350,23 +1931,23 @@ body.dark
 
 
 <a
-    href="face-login.html"
+    href="profile.html"
     class="btn btn-outline-primary">
 
-    <i class="fa-solid fa-face-viewfinder me-2"></i>
+    <i class="fa-solid fa-user me-2"></i>
 
-    Face Login
+    My Profile
 
 </a>
 
 
 <a
-    href="teacher-login.html"
+    href="teacher-dashboard.html"
     class="btn btn-primary">
 
-    <i class="fa-solid fa-key me-2"></i>
+    <i class="fa-solid fa-gauge-high me-2"></i>
 
-    Manual Login
+    Dashboard
 
 </a>
 
@@ -1394,19 +1975,50 @@ body.dark
                     TEACHER INFORMATION
 ========================================================= -->
 
-<section class="register-card">
+<section class="register-card" id="teacherAccountCard">
 
 
 <h4>
 
     <i class="fa-solid fa-id-card me-2"></i>
 
-    Teacher Information
+    Logged-in Teacher
 
 </h4>
 
 
-<div class="row g-3">
+<div class="teacher-account-summary" aria-live="polite">
+
+    <div class="teacher-account-item">
+        <small>Teacher Name</small>
+        <strong id="accountTeacherName">Loading...</strong>
+    </div>
+
+    <div class="teacher-account-item">
+        <small>Teacher ID</small>
+        <strong id="accountTeacherId">Loading...</strong>
+    </div>
+
+    <div class="teacher-account-item">
+        <small>Email Address</small>
+        <strong id="accountTeacherEmail">Loading...</strong>
+    </div>
+
+    <div class="teacher-account-item">
+        <small>Department</small>
+        <strong id="accountTeacherDepartment">Loading...</strong>
+    </div>
+
+</div>
+
+
+<div class="teacher-account-note">
+    <i class="fa-solid fa-circle-check"></i>
+    Details are loaded automatically from your logged-in Teacher account.
+</div>
+
+
+<div class="row g-3 teacher-manual-fields" aria-hidden="true">
 
 
 <div class="col-md-6">
@@ -2233,7 +2845,7 @@ LIVE
     class="btn btn-primary final-register-btn"
     disabled>
 
-    <i class="fa-solid fa-face-viewfinder me-2"></i>
+    <i class="fa-solid fa-user-check me-2"></i>
 
     Register My Face
 
@@ -2433,7 +3045,7 @@ LIVE
     href="face-login.html"
     class="btn btn-success px-4">
 
-    <i class="fa-solid fa-face-viewfinder me-2"></i>
+    <i class="fa-solid fa-face-smile me-2"></i>
 
     Go to Face Login
 
@@ -2815,7 +3427,7 @@ LIVE
     href="face-login.html"
     class="btn btn-primary">
 
-    <i class="fa-solid fa-face-viewfinder me-2"></i>
+    <i class="fa-solid fa-face-smile me-2"></i>
 
     Face Login
 
@@ -2871,7 +3483,7 @@ src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.j
                 FACE REGISTRATION JAVASCRIPT
 ========================================================= -->
 
-<script>
+<script type="text/plain" id="legacyFaceRegisterScript">
 
 document.addEventListener(
 "DOMContentLoaded",
@@ -4436,7 +5048,7 @@ document.getElementById(
 
 const savedTheme =
 localStorage.getItem(
-    "teacherFaceRegisterTheme"
+    "theme"
 );
 
 
@@ -4479,7 +5091,7 @@ document.body.classList.contains(
 
 localStorage.setItem(
 
-    "teacherFaceRegisterTheme",
+    "theme",
 
     darkMode
     ? "dark"
@@ -4771,6 +5383,8 @@ updateSampleUI();
 
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+<script src="../../js/teacher-face-register.js?v=2"></script>
 
 </body>
 

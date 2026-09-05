@@ -28,13 +28,11 @@ def create_app(config_class=Config) -> Flask:
 
     from .import models
     from .routes import register_blueprints
-    from .routes.attendance import bp as attendance_bp
     from .routes.audit_logs import bp as audit_logs_bp
     from .routes.leave_requests import bp as leave_requests_bp
 
     app.register_blueprint(leave_requests_bp)
     app.register_blueprint(audit_logs_bp)
-    app.register_blueprint(attendance_bp)
 
     register_blueprints(app)
 

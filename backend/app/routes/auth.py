@@ -473,15 +473,15 @@ def face_login():
 
     # Keep the existing Admin face-login flow backward compatible: older
     # Admin pages do not send a role, so Admin remains the safe default.
-    # The HOD face-login page sends {"role": "hod"}, which limits matching
-    # to registered HOD accounts and prevents Admin/HOD biometric mix-ups.
+    # HOD and Teacher face-login pages send their own role. Matching stays
+    # limited to that role, preventing biometric mix-ups across panels.
     requested_role = str(
         data.get("role") or "admin"
     ).strip().lower()
 
-    if requested_role not in {"admin", "hod"}:
+    if requested_role not in {"admin", "hod", "teacher"}:
         return fail(
-            "Face login role must be admin or hod",
+            "Face login role must be admin, hod or teacher",
             422
         )
 

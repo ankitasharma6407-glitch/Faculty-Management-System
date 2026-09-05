@@ -13,6 +13,7 @@ from ..models import (
     Notice,
     User,
     Hod,
+    Teacher,
     Notification,
 )
 
@@ -209,6 +210,64 @@ def create_admin_notice_notifications(
 
         notification_count += 1
 
+
+    return notification_count
+
+
+def create_hod_teacher_notice_notifications(
+    notice,
+    hod
+):
+
+    if not hod or not hod.department_id:
+        return 0
+
+    if (
+        str(notice.status or "")
+        .strip()
+        .lower()
+        != "published"
+    ):
+        return 0
+
+    if (
+        str(notice.audience or "")
+        .strip()
+        .lower()
+        not in ("all", "teacher")
+    ):
+        return 0
+
+    teacher_profiles = (
+        Teacher.query
+        .filter_by(
+            department_id=hod.department_id
+        )
+        .all()
+    )
+
+    notification_count = 0
+
+    for teacher in teacher_profiles:
+        teacher_user = db.session.get(
+            User,
+            teacher.user_id
+        )
+
+        if not teacher_user or not teacher_user.is_active:
+            continue
+
+        notification = Notification(
+            user_id=teacher_user.id,
+            title=f"New Department Notice: {notice.title}",
+            message=notice.message,
+            category="notice",
+            link="/pages/teacher/notices.html",
+            is_read=False
+        )
+
+        db.session.add(notification)
+        notification_count += 1
 
     return notification_count
 
@@ -840,7 +899,7 @@ def create_notice():
 
             "message":
                 "Notice created successfully.",
-                 
+
 
             "data":
                 notice.to_dict(),
@@ -1289,6 +1348,282 @@ def delete_notice(notice_id):
 
 
 # ============================================================
+# TEACHER NOTICE HELPER
+# ============================================================
+
+def get_current_teacher_for_notices():
+
+    identity = get_jwt_identity()
+
+    try:
+        user_id = int(identity)
+
+    except (TypeError, ValueError):
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "Invalid login session"
+            }),
+            401
+        )
+
+    user = db.session.get(
+        User,
+        user_id
+    )
+
+    if not user:
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "User not found"
+            }),
+            404
+        )
+
+    if (
+        str(user.role or "")
+        .strip()
+        .lower()
+        != "teacher"
+    ):
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "Teacher access required"
+            }),
+            403
+        )
+
+    if not user.is_active:
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "Teacher account is inactive"
+            }),
+            403
+        )
+
+    teacher = (
+        Teacher.query
+        .filter_by(user_id=user.id)
+        .first()
+    )
+
+    if not teacher:
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "Teacher profile not found"
+            }),
+            404
+        )
+
+    if not teacher.department_id:
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "No department is assigned to this Teacher"
+            }),
+            403
+        )
+
+    return user, teacher, None
+
+
+# ============================================================
+# TEACHER - GET NOTICES
+#
+# GET /api/notices/teacher/me
+#
+# Teacher can see only:
+# 1. Published, non-expired notices
+# 2. Audience all or teacher
+# 3. Admin/System notices
+# 4. Same-department HOD notices
+# ============================================================
+
+@bp.get("/teacher/me")
+@jwt_required()
+def get_teacher_notices():
+
+    try:
+
+        user, teacher, error_response = (
+            get_current_teacher_for_notices()
+        )
+
+        if error_response:
+            return error_response
+
+        category = (
+            request.args
+            .get("category", "")
+            .strip()
+            .lower()
+        )
+
+        priority = (
+            request.args
+            .get("priority", "")
+            .strip()
+            .lower()
+        )
+
+        search = (
+            request.args
+            .get("search", "")
+            .strip()
+            .lower()
+        )
+
+        query = (
+            Notice.query
+            .filter(
+                Notice.status == "published",
+                Notice.audience.in_(("all", "teacher"))
+            )
+        )
+
+        if category:
+            query = query.filter(
+                Notice.category == category
+            )
+
+        if priority:
+            query = query.filter(
+                Notice.priority == priority
+            )
+
+        notices = (
+            query
+            .order_by(
+                Notice.created_at.desc(),
+                Notice.id.desc()
+            )
+            .all()
+        )
+
+        today = datetime.now().date()
+        data = []
+
+        for notice in notices:
+
+            if notice.expiry_date and notice.expiry_date < today:
+                continue
+
+            creator = notice.creator
+            include_notice = False
+            source = "system"
+
+            if creator is None:
+                include_notice = True
+
+            else:
+                creator_role = (
+                    str(creator.role or "")
+                    .strip()
+                    .lower()
+                )
+
+                if creator_role == "admin":
+                    include_notice = True
+                    source = "admin"
+
+                elif creator_role == "hod":
+                    creator_hod = (
+                        Hod.query
+                        .filter_by(user_id=creator.id)
+                        .first()
+                    )
+
+                    if (
+                        creator_hod
+                        and creator_hod.department_id
+                        == teacher.department_id
+                    ):
+                        include_notice = True
+                        source = "department"
+
+            if not include_notice:
+                continue
+
+            item = notice.to_dict()
+
+            if search:
+                searchable_text = " ".join([
+                    str(item.get("title", "") or ""),
+                    str(item.get("message", "") or ""),
+                    str(item.get("category", "") or ""),
+                    str(item.get("priority", "") or ""),
+                ]).lower()
+
+                if search not in searchable_text:
+                    continue
+
+            item["source"] = source
+            item["can_edit"] = False
+            item["can_delete"] = False
+            data.append(item)
+
+        summary = {
+            "total": len(data),
+            "published": len(data),
+            "urgent": sum(
+                1 for item in data
+                if str(item.get("priority", "")).lower() == "urgent"
+            ),
+            "important": sum(
+                1 for item in data
+                if str(item.get("priority", "")).lower() == "important"
+            ),
+            "normal": sum(
+                1 for item in data
+                if str(item.get("priority", "")).lower() == "normal"
+            ),
+            "admin_notices": sum(
+                1 for item in data
+                if item.get("source") in ("admin", "system")
+            ),
+            "department_notices": sum(
+                1 for item in data
+                if item.get("source") == "department"
+            ),
+        }
+
+        return jsonify({
+            "success": True,
+            "teacher": {
+                "id": teacher.id,
+                "teacher_code": teacher.teacher_code,
+                "full_name": teacher.full_name,
+                "department_id": teacher.department_id,
+                "department": (
+                    teacher.department.name
+                    if teacher.department
+                    else None
+                ),
+            },
+            "summary": summary,
+            "data": data,
+        }), 200
+
+    except Exception as error:
+
+        return jsonify({
+            "success": False,
+            "message": "Unable to load Teacher notices.",
+            "error": str(error)
+        }), 500
+
+
+# ============================================================
 # HOD NOTICE HELPER
 # ============================================================
 
@@ -1729,7 +2064,7 @@ def get_hod_notices():
         }), 500
 
 
-    
+
 # ============================================================
 # HOD - CREATE NOTICE
 #
@@ -1928,6 +2263,15 @@ def create_hod_notice():
             notice
         )
 
+        db.session.flush()
+
+        notification_count = (
+            create_hod_teacher_notice_notifications(
+                notice,
+                hod
+            )
+        )
+
         db.session.commit()
 
 
@@ -1955,6 +2299,9 @@ def create_hod_notice():
                     if hod.department
                     else None
                 ),
+
+            "notification_count":
+                notification_count,
 
             "data":
                 item
@@ -2040,6 +2387,19 @@ def update_hod_notice(
                 "message":
                     "No notice data provided."
             }), 400
+
+
+        previous_status = (
+            str(notice.status or "")
+            .strip()
+            .lower()
+        )
+
+        previous_audience = (
+            str(notice.audience or "")
+            .strip()
+            .lower()
+        )
 
 
         # ----------------------------------------------------
@@ -2237,6 +2597,37 @@ def update_hod_notice(
                 )
 
 
+        current_status = (
+            str(notice.status or "")
+            .strip()
+            .lower()
+        )
+
+        current_audience = (
+            str(notice.audience or "")
+            .strip()
+            .lower()
+        )
+
+        became_teacher_visible = (
+            current_status == "published"
+            and current_audience in ("all", "teacher")
+            and (
+                previous_status != "published"
+                or previous_audience not in ("all", "teacher")
+            )
+        )
+
+        notification_count = 0
+
+        if became_teacher_visible:
+            notification_count = (
+                create_hod_teacher_notice_notifications(
+                    notice,
+                    hod
+                )
+            )
+
         db.session.commit()
 
 
@@ -2254,6 +2645,9 @@ def update_hod_notice(
 
             "message":
                 "HOD notice updated successfully.",
+
+            "notification_count":
+                notification_count,
 
             "data":
                 item
@@ -2361,4 +2755,4 @@ def delete_hod_notice(
             "error":
                 str(error)
 
-        }), 500    
+        }), 500

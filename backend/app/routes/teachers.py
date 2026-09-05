@@ -1,12 +1,28 @@
 import os
-from datetime import datetime
+from datetime import date, datetime, timedelta
 from decimal import Decimal, InvalidOperation
 
 from flask import Blueprint, jsonify, request
+from flask_jwt_extended import get_jwt_identity, jwt_required
+from sqlalchemy import func, or_
 from werkzeug.utils import secure_filename
 
 from ..extensions import db
-from ..models import User, Teacher, AuditLog
+from ..models import (
+    AcademicEvent,
+    AuditLog,
+    FaceEncoding,
+    FacultyAttendance,
+    Hod,
+    LeaveRequest,
+    Notice,
+    Notification,
+    PerformanceRecord,
+    Subject,
+    Teacher,
+    Timetable,
+    User,
+)
 
 
 # ============================================================
@@ -1243,5 +1259,1117 @@ def delete_teacher(teacher_id):
             "success": False,
 
             "message": str(error)
+
+        }), 500
+
+
+# ============================================================
+# TEACHER DASHBOARD
+#
+# GET /api/teachers/me/dashboard
+#
+# This is deliberately isolated from Admin/HOD Teacher CRUD.
+# It only reads data belonging to the logged-in teacher.
+# ============================================================
+
+def get_logged_in_teacher():
+
+    identity = get_jwt_identity()
+
+    try:
+        user_id = int(identity)
+
+    except (TypeError, ValueError):
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "Invalid login session"
+            }),
+            401
+        )
+
+
+    user = db.session.get(
+        User,
+        user_id
+    )
+
+
+    if not user:
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "User not found"
+            }),
+            404
+        )
+
+
+    if str(user.role or "").strip().lower() != "teacher":
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "Teacher access required"
+            }),
+            403
+        )
+
+
+    if not user.is_active:
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "Teacher account is inactive"
+            }),
+            403
+        )
+
+
+    teacher = (
+        Teacher.query
+        .filter_by(
+            user_id=user.id
+        )
+        .first()
+    )
+
+
+    if not teacher:
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "Teacher profile not found"
+            }),
+            404
+        )
+
+
+    return user, teacher, None
+
+
+# ============================================================
+# TEACHER SELF PROFILE
+#
+# GET   /api/teachers/me/profile
+# PATCH /api/teachers/me/profile
+# ============================================================
+
+@bp.get("/me/profile")
+@jwt_required()
+def get_teacher_profile():
+
+    try:
+
+        user, teacher, error_response = (
+            get_logged_in_teacher()
+        )
+
+        if error_response:
+            return error_response
+
+        return jsonify({
+            "success": True,
+            "data": {
+                "user": user.to_dict(),
+                "teacher": teacher.to_dict(),
+                "editable_fields": [
+                    "full_name",
+                    "email",
+                    "phone",
+                    "gender",
+                    "dob",
+                    "blood_group",
+                    "address",
+                    "qualification",
+                    "photo",
+                ],
+                "read_only_fields": [
+                    "teacher_code",
+                    "username",
+                    "department_id",
+                    "department",
+                    "designation",
+                    "experience_years",
+                    "salary",
+                    "joining_date",
+                    "status",
+                ],
+            }
+        }), 200
+
+    except Exception as error:
+
+        return jsonify({
+            "success": False,
+            "message": "Unable to load Teacher profile",
+            "error": str(error)
+        }), 500
+
+
+@bp.patch("/me/profile")
+@jwt_required()
+def update_teacher_profile():
+
+    try:
+
+        user, teacher, error_response = (
+            get_logged_in_teacher()
+        )
+
+        if error_response:
+            return error_response
+
+        data = get_request_data()
+
+        if "full_name" in data:
+            full_name = str(
+                data.get("full_name", "") or ""
+            ).strip()
+
+            if not full_name:
+                return jsonify({
+                    "success": False,
+                    "message": "Full name cannot be empty"
+                }), 400
+
+            if len(full_name) > 140:
+                return jsonify({
+                    "success": False,
+                    "message": "Full name cannot exceed 140 characters"
+                }), 400
+
+            teacher.full_name = full_name
+
+        if "email" in data:
+            email = str(
+                data.get("email", "") or ""
+            ).strip().lower()
+
+            if not email or "@" not in email or len(email) > 160:
+                return jsonify({
+                    "success": False,
+                    "message": "Enter a valid email address"
+                }), 400
+
+            duplicate_email = (
+                User.query
+                .filter(
+                    func.lower(User.email) == email,
+                    User.id != user.id
+                )
+                .first()
+            )
+
+            if duplicate_email:
+                return jsonify({
+                    "success": False,
+                    "message": "Email already exists"
+                }), 409
+
+            user.email = email
+
+        if "phone" in data:
+            phone = str(
+                data.get("phone", "") or ""
+            ).strip()
+
+            if len(phone) > 20:
+                return jsonify({
+                    "success": False,
+                    "message": "Phone number cannot exceed 20 characters"
+                }), 400
+
+            teacher.phone = phone or None
+
+        if "gender" in data:
+            gender = str(
+                data.get("gender", "") or ""
+            ).strip()
+
+            if len(gender) > 20:
+                return jsonify({
+                    "success": False,
+                    "message": "Gender value is too long"
+                }), 400
+
+            teacher.gender = gender or None
+
+        if "dob" in data:
+            dob_value = str(
+                data.get("dob", "") or ""
+            ).strip()
+
+            teacher_dob = (
+                parse_date(dob_value)
+                if dob_value
+                else None
+            )
+
+            if teacher_dob and teacher_dob > date.today():
+                return jsonify({
+                    "success": False,
+                    "message": "Date of birth cannot be in the future"
+                }), 400
+
+            teacher.dob = teacher_dob
+
+        if "blood_group" in data:
+            blood_group = str(
+                data.get("blood_group", "") or ""
+            ).strip().upper()
+
+            if len(blood_group) > 10:
+                return jsonify({
+                    "success": False,
+                    "message": "Blood group value is too long"
+                }), 400
+
+            teacher.blood_group = blood_group or None
+
+        if "address" in data:
+            address = str(
+                data.get("address", "") or ""
+            ).strip()
+
+            teacher.address = address or None
+
+        if "qualification" in data:
+            qualification = str(
+                data.get("qualification", "") or ""
+            ).strip()
+
+            if len(qualification) > 140:
+                return jsonify({
+                    "success": False,
+                    "message": "Qualification cannot exceed 140 characters"
+                }), 400
+
+            teacher.qualification = qualification or None
+
+        photo = request.files.get("photo")
+
+        if photo and photo.filename:
+            extension = (
+                photo.filename
+                .rsplit(".", 1)[-1]
+                .lower()
+                if "." in photo.filename
+                else ""
+            )
+
+            if extension not in {"png", "jpg", "jpeg", "webp"}:
+                return jsonify({
+                    "success": False,
+                    "message": "Only PNG, JPG, JPEG and WEBP photos are allowed"
+                }), 400
+
+            photo.stream.seek(0, os.SEEK_END)
+            photo_size = photo.stream.tell()
+            photo.stream.seek(0)
+
+            if photo_size > 5 * 1024 * 1024:
+                return jsonify({
+                    "success": False,
+                    "message": "Profile photo must be 5 MB or smaller"
+                }), 400
+
+            teacher.photo_url = save_teacher_photo(
+                photo,
+                user.id
+            )
+
+        db.session.commit()
+
+        write_audit_log(
+            action="SELF_PROFILE_UPDATE",
+            entity_id=teacher.id,
+            details=(
+                f"Teacher updated own profile: "
+                f"{teacher.full_name} ({teacher.teacher_code})"
+            )
+        )
+
+        return jsonify({
+            "success": True,
+            "message": "Profile updated successfully",
+            "data": {
+                "user": user.to_dict(),
+                "teacher": teacher.to_dict(),
+            }
+        }), 200
+
+    except ValueError:
+
+        db.session.rollback()
+
+        return jsonify({
+            "success": False,
+            "message": "Invalid date. Use YYYY-MM-DD."
+        }), 400
+
+    except Exception as error:
+
+        db.session.rollback()
+
+        return jsonify({
+            "success": False,
+            "message": "Unable to update Teacher profile",
+            "error": str(error)
+        }), 500
+
+
+def calculate_performance_percentage(records):
+
+    earned_marks = 0.0
+    maximum_marks = 0.0
+
+
+    for record in records:
+
+        if (
+            record.score is None
+            or record.max_score is None
+        ):
+            continue
+
+
+        maximum = float(record.max_score)
+
+        if maximum <= 0:
+            continue
+
+
+        earned_marks += float(record.score)
+        maximum_marks += maximum
+
+
+    if maximum_marks == 0:
+        return None
+
+
+    return round(
+        (earned_marks / maximum_marks) * 100,
+        2
+    )
+
+
+@bp.get("/me/dashboard")
+@jwt_required()
+def get_teacher_dashboard():
+
+    try:
+
+        user, teacher, error_response = (
+            get_logged_in_teacher()
+        )
+
+
+        if error_response:
+            return error_response
+
+
+        today = date.today()
+        today_name = today.strftime("%A")
+
+
+        # ----------------------------------------------------
+        # ASSIGNED SUBJECTS AND CLASS SCHEDULE
+        # ----------------------------------------------------
+
+        assigned_subjects = (
+            Subject.query
+            .filter_by(
+                teacher_id=teacher.id
+            )
+            .order_by(
+                Subject.name.asc()
+            )
+            .all()
+        )
+
+
+        weekly_classes_count = (
+            Timetable.query
+            .filter_by(
+                teacher_id=teacher.id
+            )
+            .count()
+        )
+
+
+        today_schedule = (
+            Timetable.query
+            .filter(
+                Timetable.teacher_id == teacher.id,
+                func.lower(Timetable.day_of_week)
+                == today_name.lower()
+            )
+            .order_by(
+                Timetable.start_time.asc()
+            )
+            .all()
+        )
+
+
+        # ----------------------------------------------------
+        # OWN FACULTY ATTENDANCE
+        # ----------------------------------------------------
+
+        # Use the same automatic attendance rules as the
+        # Teacher Attendance, HOD and Performance endpoints.
+        # This excludes Sundays/holidays and treats an
+        # unmarked working day as absent.
+        from .faculty_attendance import (
+            get_individual_attendance_data,
+            get_non_working_reason,
+        )
+
+
+        attendance_data = get_individual_attendance_data(
+            faculty_user_id=user.id,
+            department_id=teacher.department_id,
+            teacher_id=teacher.id
+        )
+
+
+        attendance_summary_data = attendance_data["summary"]
+        attendance_history = attendance_data["records"]
+
+
+        today_attendance_record = (
+            FacultyAttendance.query
+            .filter_by(
+                faculty_user_id=user.id,
+                date=today
+            )
+            .first()
+        )
+
+
+        today_non_working_reason = get_non_working_reason(
+            today,
+            teacher.department_id
+        )
+
+
+        if today_non_working_reason:
+
+            today_attendance = {
+                "id": None,
+                "date": today.isoformat(),
+                "status": "holiday",
+                "remarks": today_non_working_reason,
+                "non_working_reason": today_non_working_reason,
+                "inferred": True
+            }
+
+
+        elif today_attendance_record:
+
+            today_attendance = (
+                today_attendance_record.to_dict()
+            )
+
+            today_attendance["inferred"] = False
+
+
+        else:
+
+            today_attendance = {
+                "id": None,
+                "date": today.isoformat(),
+                "status": "pending",
+                "remarks": "Attendance not marked yet",
+                "non_working_reason": None,
+                "inferred": True
+            }
+
+
+        # ----------------------------------------------------
+        # LEAVE REQUESTS
+        # ----------------------------------------------------
+
+        recent_leaves = (
+            LeaveRequest.query
+            .filter_by(
+                teacher_id=teacher.id
+            )
+            .order_by(
+                LeaveRequest.created_at.desc()
+            )
+            .limit(5)
+            .all()
+        )
+
+
+        pending_leave_count = (
+            LeaveRequest.query
+            .filter(
+                LeaveRequest.teacher_id == teacher.id,
+                func.lower(LeaveRequest.status) == "pending"
+            )
+            .count()
+        )
+
+
+        # ----------------------------------------------------
+        # PERFORMANCE
+        # ----------------------------------------------------
+
+        performance_records = (
+            PerformanceRecord.query
+            .filter_by(
+                user_id=user.id
+            )
+            .order_by(
+                PerformanceRecord.created_at.desc()
+            )
+            .limit(10)
+            .all()
+        )
+
+
+        performance_percentage = (
+            calculate_performance_percentage(
+                performance_records
+            )
+        )
+
+
+        # ----------------------------------------------------
+        # NOTIFICATIONS AND NOTICE BOARD
+        # ----------------------------------------------------
+
+        notifications = (
+            Notification.query
+            .filter_by(
+                user_id=user.id
+            )
+            .order_by(
+                Notification.created_at.desc()
+            )
+            .limit(8)
+            .all()
+        )
+
+
+        unread_notification_count = (
+            Notification.query
+            .filter_by(
+                user_id=user.id,
+                is_read=False
+            )
+            .count()
+        )
+
+
+        notice_candidates = (
+            Notice.query
+            .filter(
+                func.lower(Notice.status) == "published",
+                func.lower(Notice.audience).in_([
+                    "all",
+                    "teacher"
+                ]),
+                or_(
+                    Notice.expiry_date.is_(None),
+                    Notice.expiry_date >= today
+                )
+            )
+            .order_by(
+                Notice.created_at.desc()
+            )
+            .all()
+        )
+
+
+        notices = []
+
+
+        for notice in notice_candidates:
+
+            include_notice = False
+
+
+            if notice.created_by is None:
+                include_notice = True
+
+
+            else:
+
+                creator = db.session.get(
+                    User,
+                    notice.created_by
+                )
+
+
+                creator_role = str(
+                    creator.role if creator else ""
+                ).strip().lower()
+
+
+                if creator_role == "admin":
+                    include_notice = True
+
+
+                elif creator_role == "hod":
+
+                    creator_hod = (
+                        Hod.query
+                        .filter_by(
+                            user_id=notice.created_by
+                        )
+                        .first()
+                    )
+
+
+                    include_notice = bool(
+                        creator_hod
+                        and creator_hod.department_id
+                        == teacher.department_id
+                    )
+
+
+            if include_notice:
+                notices.append(notice)
+
+
+            if len(notices) == 8:
+                break
+
+
+        # ----------------------------------------------------
+        # ACADEMIC CALENDAR
+        # Global events + teacher's department events only.
+        # ----------------------------------------------------
+
+        academic_events = (
+            AcademicEvent.query
+            .filter(
+                or_(
+                    AcademicEvent.department_id.is_(None),
+                    AcademicEvent.department_id
+                    == teacher.department_id
+                ),
+                or_(
+                    AcademicEvent.start_date >= today,
+                    AcademicEvent.end_date >= today
+                )
+            )
+            .order_by(
+                AcademicEvent.start_date.asc(),
+                AcademicEvent.id.asc()
+            )
+            .limit(10)
+            .all()
+        )
+
+
+        face_registered = (
+            FaceEncoding.query
+            .filter_by(
+                user_id=user.id
+            )
+            .first()
+            is not None
+        )
+
+
+        return jsonify({
+
+            "success": True,
+
+            "data": {
+
+                "generated_at": datetime.utcnow().isoformat(),
+
+                "today": {
+                    "date": today.isoformat(),
+                    "day": today_name
+                },
+
+                "user": user.to_dict(),
+
+                "teacher": teacher.to_dict(),
+
+                "stats": {
+                    "today_classes": len(today_schedule),
+                    "weekly_classes": weekly_classes_count,
+                    "assigned_subjects": len(assigned_subjects),
+                    "pending_leave_requests": pending_leave_count,
+                    "unread_notifications": unread_notification_count,
+                    "performance_percentage": performance_percentage,
+                    "attendance_percentage": (
+                        attendance_summary_data[
+                            "attendance_percentage"
+                        ]
+                    )
+                },
+
+                "subjects": [
+                    subject.to_dict()
+                    for subject in assigned_subjects
+                ],
+
+                "today_schedule": [
+                    entry.to_dict()
+                    for entry in today_schedule
+                ],
+
+                "today_attendance": today_attendance,
+
+                "attendance_summary": {
+                    "from_date": (
+                        attendance_history[-1]["date"]
+                        if attendance_history
+                        else None
+                    ),
+                    "to_date": today.isoformat(),
+                    "marked_days": (
+                        attendance_summary_data["working_days"]
+                    ),
+                    "recorded_records": (
+                        attendance_summary_data["recorded_records"]
+                    ),
+                    "working_days": (
+                        attendance_summary_data["working_days"]
+                    ),
+                    "present": attendance_summary_data["present"],
+                    "absent": attendance_summary_data["absent"],
+                    "leave": attendance_summary_data["leave"],
+                    "inferred_absent": (
+                        attendance_summary_data["inferred_absent"]
+                    ),
+                    "percentage": (
+                        attendance_summary_data[
+                            "attendance_percentage"
+                        ]
+                    )
+                },
+
+                "attendance_history": attendance_history,
+
+                "performance": {
+                    "percentage": performance_percentage,
+                    "records": [
+                        record.to_dict()
+                        for record in performance_records
+                    ]
+                },
+
+                "recent_leaves": [
+                    leave.to_dict()
+                    for leave in recent_leaves
+                ],
+
+                "notifications": [
+                    notification.to_dict()
+                    for notification in notifications
+                ],
+
+                "notices": [
+                    notice.to_dict()
+                    for notice in notices
+                ],
+
+                "academic_events": [
+                    event.to_dict()
+                    for event in academic_events
+                ],
+
+                "face_registered": face_registered
+            }
+
+        }), 200
+
+
+    except Exception as error:
+
+        return jsonify({
+
+            "success": False,
+
+            "message": "Unable to load teacher dashboard",
+
+            "error": str(error)
+
+        }), 500
+
+
+# ============================================================
+# TEACHER TIMETABLE
+#
+# GET /api/teachers/me/timetable
+#
+# Read-only endpoint for the logged-in Teacher Panel. Existing
+# Admin/HOD timetable create, update and delete routes remain
+# completely separate and unchanged.
+# ============================================================
+
+@bp.get("/me/timetable")
+@jwt_required()
+def get_teacher_timetable():
+
+    try:
+
+        user, teacher, error_response = (
+            get_logged_in_teacher()
+        )
+
+
+        if error_response:
+            return error_response
+
+
+        today = date.today()
+        now = datetime.now()
+        today_name = today.strftime("%A")
+
+
+        timetable_entries = (
+            Timetable.query
+            .filter_by(
+                teacher_id=teacher.id
+            )
+            .all()
+        )
+
+
+        day_order = {
+            "monday": 0,
+            "tuesday": 1,
+            "wednesday": 2,
+            "thursday": 3,
+            "friday": 4,
+            "saturday": 5,
+            "sunday": 6
+        }
+
+
+        timetable_entries.sort(
+            key=lambda entry: (
+                day_order.get(
+                    str(entry.day_of_week or "")
+                    .strip()
+                    .lower(),
+                    7
+                ),
+                entry.start_time,
+                entry.id
+            )
+        )
+
+
+        def serialize_entry(entry):
+
+            item = entry.to_dict()
+
+
+            start_datetime = datetime.combine(
+                today,
+                entry.start_time
+            )
+
+
+            end_datetime = datetime.combine(
+                today,
+                entry.end_time
+            )
+
+
+            duration_minutes = max(
+                0,
+                int(
+                    (
+                        end_datetime
+                        - start_datetime
+                    ).total_seconds()
+                    // 60
+                )
+            )
+
+
+            entry_day = str(
+                entry.day_of_week or ""
+            ).strip().lower()
+
+
+            if entry_day != today_name.lower():
+                status = "scheduled"
+
+            elif now.time() >= entry.end_time:
+                status = "completed"
+
+            elif (
+                entry.start_time
+                <= now.time()
+                < entry.end_time
+            ):
+                status = "current"
+
+            else:
+                status = "upcoming"
+
+
+            item["duration_minutes"] = duration_minutes
+            item["status"] = status
+
+
+            return item
+
+
+        serialized_entries = [
+            serialize_entry(entry)
+            for entry in timetable_entries
+        ]
+
+
+        today_schedule = [
+            item
+            for item in serialized_entries
+            if str(item.get("day_of_week") or "")
+            .strip()
+            .lower() == today_name.lower()
+        ]
+
+
+        completed_classes = sum(
+            1
+            for item in today_schedule
+            if item["status"] == "completed"
+        )
+
+
+        remaining_classes = sum(
+            1
+            for item in today_schedule
+            if item["status"] in {
+                "current",
+                "upcoming"
+            }
+        )
+
+
+        teaching_minutes = sum(
+            item["duration_minutes"]
+            for item in today_schedule
+        )
+
+
+        current_class = next(
+            (
+                item
+                for item in today_schedule
+                if item["status"] == "current"
+            ),
+            None
+        )
+
+
+        weekly_schedule = {
+            day: []
+            for day in (
+                "monday",
+                "tuesday",
+                "wednesday",
+                "thursday",
+                "friday",
+                "saturday",
+                "sunday"
+            )
+        }
+
+
+        for item in serialized_entries:
+
+            day_key = str(
+                item.get("day_of_week") or ""
+            ).strip().lower()
+
+
+            weekly_schedule.setdefault(
+                day_key,
+                []
+            ).append(item)
+
+
+        unique_subject_ids = {
+            item["subject_id"]
+            for item in serialized_entries
+            if item.get("subject_id") is not None
+        }
+
+
+        weekly_minutes = sum(
+            item["duration_minutes"]
+            for item in serialized_entries
+        )
+
+
+        return jsonify({
+
+            "success": True,
+
+            "data": {
+
+                "generated_at": now.isoformat(),
+
+                "today": {
+                    "date": today.isoformat(),
+                    "day": today_name
+                },
+
+                "user": user.to_dict(),
+
+                "teacher": teacher.to_dict(),
+
+                "stats": {
+                    "today_classes": len(today_schedule),
+                    "completed_classes": completed_classes,
+                    "remaining_classes": remaining_classes,
+                    "today_teaching_minutes": teaching_minutes,
+                    "today_teaching_hours": round(
+                        teaching_minutes / 60,
+                        2
+                    ),
+                    "weekly_classes": len(serialized_entries),
+                    "weekly_teaching_minutes": weekly_minutes,
+                    "weekly_teaching_hours": round(
+                        weekly_minutes / 60,
+                        2
+                    ),
+                    "assigned_subjects": len(
+                        unique_subject_ids
+                    )
+                },
+
+                "current_class": current_class,
+
+                "today_schedule": today_schedule,
+
+                "weekly_schedule": weekly_schedule,
+
+                "schedule": serialized_entries
+            }
+
+        }), 200
+
+
+    except Exception as error:
+
+        return jsonify({
+
+            "success": False,
+
+            "message": (
+                "Unable to load teacher timetable"
+            ),
+
+            "error": str(error)
 
         }), 500

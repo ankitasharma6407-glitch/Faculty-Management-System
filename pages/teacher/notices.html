@@ -2369,6 +2369,205 @@ body.dark
 
 </style>
 
+<style id="teacher-sidebar-consistency">
+:root{--sidebar-width:324px;}
+
+.teacher-sidebar{
+    position:fixed;
+    inset:0 auto 0 0;
+    z-index:1200;
+    width:var(--sidebar-width);
+    min-height:100vh;
+    display:block;
+    overflow-y:auto;
+    background:
+        radial-gradient(circle at 6% 0%,rgba(124,103,170,.12),transparent 31%),
+        linear-gradient(180deg,#303a4b 0%,#263650 46%,#1a2d51 100%);
+    color:#f7f9ff;
+    box-shadow:none;
+    scrollbar-width:auto;
+    scrollbar-color:#4567ff #f1f3f7;
+}
+
+.teacher-sidebar::-webkit-scrollbar{width:10px;}
+.teacher-sidebar::-webkit-scrollbar-track{background:#f1f3f7;}
+.teacher-sidebar::-webkit-scrollbar-thumb{
+    min-height:115px;
+    border-radius:8px;
+    background:linear-gradient(180deg,#7047ff,#3b69ff);
+}
+
+.brand-block{padding:29px 24px 27px;text-align:center;}
+.brand-logo-wrap{
+    width:103px;height:103px;margin:0 auto 17px;
+    display:grid;place-items:center;border-radius:50%;
+    background:#fff;box-shadow:0 12px 28px rgba(0,0,0,.22);
+}
+.brand-logo-wrap img{width:91px;height:91px;object-fit:contain;border-radius:50%;}
+.brand-block h2,.brand-block h3{
+    margin:0;color:#fff;font-weight:800;letter-spacing:.35px;
+}
+.brand-block h2{margin-bottom:3px;font-size:22px;}
+.brand-block h3{margin-bottom:14px;font-size:20px;}
+.brand-block p{margin:0;color:#d2d8e5;font-size:14px;font-weight:600;}
+
+.sidebar-menu{margin:0;padding:19px 17px 42px 28px;list-style:none;}
+.sidebar-menu li{margin:0 0 10px;}
+.sidebar-menu a{
+    min-height:61px;padding:15px 20px;display:flex;align-items:center;
+    gap:17px;border-radius:13px;background:transparent;color:#dce2ed;
+    font-size:17px;font-weight:600;text-decoration:none;transition:.2s ease;
+}
+.sidebar-menu a i{width:26px;color:#dce2ed;font-size:19px;text-align:center;}
+.sidebar-menu a:hover{color:#fff;background:rgba(255,255,255,.08);transform:none;}
+.sidebar-menu a:hover i{color:#fff;}
+.sidebar-menu li.active a{
+    color:#fff;background:linear-gradient(100deg,#7742ff,#6634f4);
+    box-shadow:0 12px 28px rgba(91,47,226,.42);
+}
+.sidebar-menu li.active a i{color:#fff;}
+.sidebar-menu .logout-link{color:#ffb7be;}
+
+.teacher-main{
+    width:calc(100% - var(--sidebar-width));
+    min-height:100vh;
+    margin-left:var(--sidebar-width);
+}
+
+.sidebar-overlay{
+    position:fixed;inset:0;z-index:1100;display:none;
+    border:0;background:rgba(5,10,23,.68);
+}
+
+@media(max-width:1500px){
+    :root{--sidebar-width:300px;}
+    .sidebar-menu{padding-right:20px;padding-left:20px;}
+}
+
+@media(max-width:1050px){
+    :root{--sidebar-width:270px;}
+    .sidebar-menu a{min-height:55px;padding:13px 16px;font-size:15px;}
+}
+
+@media(max-width:992px){
+    .teacher-sidebar{
+        width:min(310px,86vw);
+        transform:translateX(-105%);
+        transition:transform .25s ease;
+    }
+    body.sidebar-open .teacher-sidebar{transform:translateX(0);}
+    body.sidebar-open .sidebar-overlay{display:block;}
+    .teacher-main{width:100%;margin-left:0;}
+}
+</style>
+
+<style id="teacher-hod-theme-alignment">
+:root{--primary:#6f36ff;--primary-light:#7c55ff;}
+
+body:not(.dark) .teacher-sidebar{
+    background:
+        radial-gradient(circle at 8% 0%,rgba(255,255,255,.14),transparent 32%),
+        linear-gradient(180deg,#5a27ec 0%,#6735f4 48%,#7549ff 100%);
+    border-right:0;box-shadow:none;scrollbar-color:#a88fff #f1f3f7;
+}
+
+body.dark .teacher-sidebar{
+    background:
+        radial-gradient(circle at 8% 0%,rgba(111,54,255,.09),transparent 31%),
+        linear-gradient(180deg,#111111 0%,#0e0e0e 100%);
+    border-right:0;box-shadow:none;scrollbar-color:#7656ff #f1f3f7;
+}
+
+.sidebar-menu a,.sidebar-menu a i,
+body.dark .sidebar-menu a,body.dark .sidebar-menu a i{color:#fff;}
+
+body:not(.dark) .sidebar-menu li.active a{
+    background:rgba(255,255,255,.20);
+    box-shadow:0 10px 24px rgba(50,21,151,.20);
+}
+
+body.dark .sidebar-menu li.active a{
+    background:linear-gradient(100deg,#7742ff,#6634f4);
+    box-shadow:0 10px 24px rgba(91,47,226,.28);
+}
+
+.sidebar-menu a:hover,body.dark .sidebar-menu a:hover{
+    color:#fff;background:rgba(255,255,255,.11);transform:none;
+}
+
+.teacher-navbar{
+    top:16px;min-height:100px;height:auto;margin:28px 30px 0;padding:18px 28px;
+    background:#fff;border:1px solid #e5e7eb;border-radius:22px;
+    box-shadow:0 10px 26px rgba(28,37,61,.07);
+}
+
+body.dark .teacher-navbar{
+    background:#111a2b;border:1px solid #263247;
+    box-shadow:0 10px 28px rgba(0,0,0,.16);
+}
+
+.navbar-title h4{color:#1f2937;}
+body.dark .navbar-title h4{color:#fff;}
+
+.nav-icon-btn,body.dark .nav-icon-btn{
+    color:#1f2937;background:#f5f7fb;border:1px solid #e5e7eb;box-shadow:none;
+}
+
+body.dark .nav-icon-btn{color:#fff;background:#18243a;border-color:#30405c;}
+
+.nav-icon-btn:hover,body.dark .nav-icon-btn:hover{
+    color:#6f36ff;background:#f5f7fb;border-color:#8a67ff;
+    box-shadow:none;transform:none;
+}
+
+body.dark .nav-icon-btn:hover{background:#18243a;}
+
+.teacher-profile{
+    color:#1f2937;padding:6px 12px 6px 7px;
+    border:1px solid #e5e7eb;border-radius:50px;
+}
+
+.teacher-profile:hover{color:#1f2937;}
+body.dark .teacher-profile,body.dark .teacher-profile:hover{
+    color:#fff;border-color:#30405c;
+}
+
+.teacher-profile-chevron{margin-left:5px;font-size:11px;}
+
+body:not(.dark) .notice-page-header{
+    position:relative;overflow:hidden;color:#fff;
+    background:
+        radial-gradient(circle at 91% 12%,rgba(255,255,255,.17),transparent 28%),
+        linear-gradient(135deg,#6942ff 0%,#7445f6 56%,#813ee8 100%);
+    border:0;box-shadow:0 10px 26px rgba(55,30,133,.12);
+}
+
+body:not(.dark) .notice-page-header h2,
+body:not(.dark) .notice-page-header h2 i,
+body:not(.dark) .notice-page-header p{color:#fff;}
+
+body.dark .notice-page-header{
+    position:relative;overflow:hidden;
+    background:
+        radial-gradient(circle at 91% 12%,rgba(126,78,255,.17),transparent 28%),
+        linear-gradient(135deg,#1b283c 0%,#1d2b42 60%,#24324b 100%);
+    border:1px solid #293750;box-shadow:0 10px 28px rgba(0,0,0,.16);
+}
+
+.notice-info-btn,.notice-info-btn:hover,
+.notice-view-btn,.notice-view-btn:hover,
+.notice-filter-btn,.notice-filter-btn:hover{box-shadow:none;transform:none;}
+
+body:not(.dark) .notice-info-btn{
+    color:#fff;background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.34);
+}
+
+@media(max-width:992px){
+    .teacher-navbar{top:8px;min-height:auto;margin:18px 18px 0;padding:16px 18px;}
+}
+</style>
+
 </head>
 
 
@@ -2386,371 +2585,36 @@ body.dark
                         SIDEBAR
 ========================================================= -->
 
-<aside
-    class="teacher-sidebar"
-    id="teacherSidebar">
-
-
-<!-- =========================================================
-                    SIDEBAR BRAND
-========================================================= -->
-
-<div class="teacher-sidebar-brand">
-
-
-<img
-    src="../../images/logo.png"
-    alt="FMPS Logo">
-
-
-<h3>
-    FMPS
-</h3>
-
-
-<p>
-    Teacher Panel
-</p>
-
-
-</div>
-
-
-<!-- =========================================================
-                    SIDEBAR MENU
-========================================================= -->
-
-<ul class="teacher-sidebar-menu">
-
-
-<!-- DASHBOARD -->
-
-<li>
-
-<a href="teacher-dashboard.html">
-
-<i class="fa-solid fa-house"></i>
-
-<span>
-    Dashboard
-</span>
-
-</a>
-
-</li>
-
-
-<!-- TIMETABLE -->
-
-<li>
-
-<a href="timetable.html">
-
-<i class="fa-solid fa-calendar-days"></i>
-
-<span>
-    Timetable
-</span>
-
-</a>
-
-</li>
-
-
-<!-- ATTENDANCE -->
-
-<li>
-
-<a href="attendance.html">
-
-<i class="fa-solid fa-user-check"></i>
-
-<span>
-    Attendance
-</span>
-
-</a>
-
-</li>
-
-
-<!-- MY CLASSES -->
-
-<li>
-
-<a href="my-classes.html">
-
-<i class="fa-solid fa-book-open"></i>
-
-<span>
-    My Classes
-</span>
-
-</a>
-
-</li>
-
-
-<!-- ASSIGNMENTS -->
-
-<li>
-
-<a href="assignments.html">
-
-<i class="fa-solid fa-file-lines"></i>
-
-<span>
-    Assignments
-</span>
-
-</a>
-
-</li>
-
-
-<!-- PERFORMANCE -->
-
-<li>
-
-<a href="performance.html">
-
-<i class="fa-solid fa-chart-line"></i>
-
-<span>
-    Performance
-</span>
-
-</a>
-
-</li>
-
-
-<!-- =========================================================
-                    ACADEMIC TOOLS
-========================================================= -->
-
-<div class="sidebar-section-title">
-
-Academic Tools
-
-</div>
-
-
-<!-- ACADEMIC CALENDAR -->
-
-<li>
-
-<a href="academic-calendar.html">
-
-<i class="fa-solid fa-calendar-check"></i>
-
-<span>
-    Academic Calendar
-</span>
-
-</a>
-
-</li>
-
-
-<!-- NOTICES -->
-
-<li>
-
-<a
-    href="notices.html"
-    class="active">
-
-<i class="fa-solid fa-bullhorn"></i>
-
-<span>
-    Notices
-</span>
-
-</a>
-
-</li>
-
-
-<!-- LEAVE REQUEST -->
-
-<li>
-
-<a href="leave-request.html">
-
-<i class="fa-solid fa-calendar-minus"></i>
-
-<span>
-    Leave Request
-</span>
-
-</a>
-
-</li>
-
-
-<!-- =========================================================
-                    AI SMART FEATURES
-========================================================= -->
-
-<div class="sidebar-section-title">
-
-AI Smart Features
-
-</div>
-
-
-<!-- FACE ATTENDANCE -->
-
-<li>
-
-<a href="face-attendance.html">
-
-<i class="fa-solid fa-camera"></i>
-
-<span>
-    Face Attendance
-</span>
-
-</a>
-
-</li>
-
-
-<!-- STUDENT PERFORMANCE AI -->
-
-<li>
-
-<a href="student-performance-ai.html">
-
-<i class="fa-solid fa-brain"></i>
-
-<span>
-    Student Performance AI
-</span>
-
-</a>
-
-</li>
-
-
-<!-- SMART REPORT -->
-
-<li>
-
-<a href="smart-report.html">
-
-<i class="fa-solid fa-file-waveform"></i>
-
-<span>
-    Smart Reports
-</span>
-
-</a>
-
-</li>
-
-
-<!-- AI ASSISTANT -->
-
-<li>
-
-<a href="ai-assistant.html">
-
-<i class="fa-solid fa-robot"></i>
-
-<span>
-    AI Assistant
-</span>
-
-</a>
-
-</li>
-
-
-<!-- =========================================================
-                        ACCOUNT
-========================================================= -->
-
-<div class="sidebar-section-title">
-
-Account
-
-</div>
-
-
-<!-- PROFILE -->
-
-<li>
-
-<a href="profile.html">
-
-<i class="fa-solid fa-user"></i>
-
-<span>
-    Profile
-</span>
-
-</a>
-
-</li>
-
-
-<!-- SETTINGS -->
-
-<li>
-
-<a href="settings.html">
-
-<i class="fa-solid fa-gear"></i>
-
-<span>
-    Settings
-</span>
-
-</a>
-
-</li>
-
-
-<!-- CHANGE PASSWORD -->
-
-<li>
-
-<a href="change-password.html">
-
-<i class="fa-solid fa-lock"></i>
-
-<span>
-    Change Password
-</span>
-
-</a>
-
-</li>
-
-
-<!-- LOGOUT -->
-
-<li>
-
-<a href="teacher-login.html">
-
-<i class="fa-solid fa-right-from-bracket"></i>
-
-<span>
-    Logout
-</span>
-
-</a>
-
-</li>
-
-
-</ul>
-
-
+<aside class="teacher-sidebar" id="teacherSidebar">
+    <div class="brand-block">
+        <div class="brand-logo-wrap">
+            <img src="../../images/logo.png" alt="Patna Women's College logo">
+        </div>
+        <h2>PATNA</h2>
+        <h3>WOMEN'S COLLEGE</h3>
+        <p>(AUTONOMOUS)</p>
+    </div>
+
+    <nav aria-label="Teacher navigation">
+        <ul class="sidebar-menu">
+            <li><a href="teacher-dashboard.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a></li>
+            <li><a href="my-classes.html"><i class="fa-solid fa-chalkboard-user"></i><span>My Classes</span></a></li>
+            <li><a href="timetable.html"><i class="fa-solid fa-calendar-days"></i><span>Timetable</span></a></li>
+            <li><a href="face-register.html"><i class="fa-solid fa-user-plus"></i><span>Face Registration</span></a></li>
+            <li><a href="face-attendance.html"><i class="fa-solid fa-camera"></i><span>Face Attendance</span></a></li>
+            <li><a href="leave-request.html"><i class="fa-solid fa-file-circle-check"></i><span>Leave Request</span></a></li>
+            <li><a href="performance.html"><i class="fa-solid fa-chart-line"></i><span>Performance</span></a></li>
+            <li class="active"><a href="notices.html"><i class="fa-solid fa-bullhorn"></i><span>Notices</span></a></li>
+            <li><a href="academic-calendar.html"><i class="fa-solid fa-calendar-check"></i><span>Academic Calendar</span></a></li>
+            <li><a href="notification.html"><i class="fa-solid fa-bell"></i><span>Notifications</span></a></li>
+            <li><a href="profile.html"><i class="fa-solid fa-user"></i><span>My Profile</span></a></li>
+            <li><a href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a></li>
+            <li><a href="teacher-login.html" class="logout-link"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a></li>
+        </ul>
+    </nav>
 </aside>
+
+<button type="button" class="sidebar-overlay" id="sidebarOverlay" aria-label="Close navigation"></button>
 
 
 <!-- =========================================================
@@ -2826,7 +2690,7 @@ Account
 <!-- NOTIFICATIONS -->
 
 <a
-    href="notices.html"
+    href="notification.html"
     class="nav-icon-btn"
     title="Notifications">
 
@@ -2838,8 +2702,6 @@ Account
     class="notification-count"
     id="navbarNotificationCount">
 
-3
-
 </span>
 
 
@@ -2848,7 +2710,7 @@ Account
 
 <!-- PROFILE -->
 
-<div class="teacher-profile">
+<a href="profile.html" class="teacher-profile" title="Open profile">
 
 
 <img
@@ -2871,8 +2733,9 @@ Account
 
 </div>
 
+<i class="fa-solid fa-chevron-down teacher-profile-chevron" aria-hidden="true"></i>
 
-</div>
+</a>
 
 
 </div>
@@ -2957,7 +2820,7 @@ Notice Information
 <div class="notice-stat-info">
 
 <h3 id="totalNoticeCount">
-    6
+    --
 </h3>
 
 <p>
@@ -2985,7 +2848,7 @@ Notice Information
 <div class="notice-stat-info">
 
 <h3 id="importantNoticeCount">
-    1
+    --
 </h3>
 
 <p>
@@ -3013,7 +2876,7 @@ Notice Information
 <div class="notice-stat-info">
 
 <h3 id="academicNoticeCount">
-    2
+    --
 </h3>
 
 <p>
@@ -3041,7 +2904,7 @@ Notice Information
 <div class="notice-stat-info">
 
 <h3 id="unreadNoticeCount">
-    3
+    --
 </h3>
 
 <p>
@@ -4796,1359 +4659,1075 @@ Teacher Notice Board
                     BOOTSTRAP JAVASCRIPT
 ========================================================= -->
 
+<script src="../../js/api.js"></script>
+
 <script
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
 </script>
 
-
-
 <!-- =========================================================
-                    NOTICE JAVASCRIPT
+                REAL TEACHER NOTICE DATA
 ========================================================= -->
 
 <script>
+(function () {
+    "use strict";
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function(){
+    const BACKEND_URL = "http://127.0.0.1:5000";
+    const API_URL = BACKEND_URL + "/api";
+    const TOKEN_KEY = "fmps_access_token";
+    const READ_KEY_PREFIX = "teacher_notice_read_";
 
+    let notices = [];
+    let activeFilter = "all";
+    let searchValue = "";
+    let sortValue = "latest";
 
-/* =========================================================
-                    ELEMENTS
-========================================================= */
+    const noticeList = document.getElementById("noticeList");
 
-const sidebar =
-document.getElementById(
-    "teacherSidebar"
-);
+    prepareLoadingState();
+    document.addEventListener("DOMContentLoaded", initRealNotices);
 
+    async function initRealNotices() {
+        setupPageControls();
+        removeUnavailableMenuItems();
+        setupLogout();
+        setupPrintNotice();
+        replaceOldControls();
 
-const mobileMenuBtn =
-document.getElementById(
-    "mobileMenuBtn"
-);
+        if (!localStorage.getItem(TOKEN_KEY)) {
+            window.location.replace("teacher-login.html");
+            return;
+        }
 
+        const results = await Promise.allSettled([
+            apiRequest("GET", "/notices/teacher/me"),
+            apiRequest("GET", "/teachers/me/profile"),
+            apiRequest("GET", "/notifications")
+        ]);
 
-const themeToggle =
-document.getElementById(
-    "themeToggle"
-);
+        const noticesResult = results[0];
 
+        if (noticesResult.status === "rejected") {
+            handlePageError(noticesResult.reason);
+            return;
+        }
 
-const noticeSearchInput =
-document.getElementById(
-    "noticeSearchInput"
-);
+        if (!noticesResult.value.success) {
+            showPageError(
+                noticesResult.value.message || "Unable to load notices"
+            );
+            return;
+        }
 
+        notices = Array.isArray(noticesResult.value.data)
+            ? noticesResult.value.data
+            : [];
 
-const globalSearchBox =
-document.getElementById(
-    "searchBox"
-);
+        if (
+            results[1].status === "fulfilled" &&
+            results[1].value.success
+        ) {
+            renderProfile(results[1].value.data || {});
+        }
 
+        if (
+            results[2].status === "fulfilled" &&
+            results[2].value.success
+        ) {
+            renderNotificationCount(results[2].value.summary || {});
+        }
+        else {
+            renderNotificationCount({ unread: 0 });
+        }
 
-const sortSelect =
-document.getElementById(
-    "noticeSortSelect"
-);
+        renderAll();
+    }
 
+    // ======================================================
+    // API
+    // ======================================================
 
-const noticeList =
-document.getElementById(
-    "noticeList"
-);
+    async function apiRequest(method, path, body) {
+        if (
+            window.API &&
+            typeof window.API.request === "function"
+        ) {
+            return window.API.request(method, path, body || null);
+        }
 
+        const token = localStorage.getItem(TOKEN_KEY);
+        const headers = { Accept: "application/json" };
 
-const noNoticeResult =
-document.getElementById(
-    "noNoticeResult"
-);
+        if (token) {
+            headers.Authorization = "Bearer " + token;
+        }
 
+        if (body) {
+            headers["Content-Type"] = "application/json";
+        }
 
-const filterButtons =
-document.querySelectorAll(
-    ".notice-filter-btn"
-);
+        const response = await fetch(API_URL + path, {
+            method: method,
+            headers: headers,
+            body: body ? JSON.stringify(body) : undefined
+        });
 
+        const result = await response.json().catch(function () {
+            return {};
+        });
 
-const noticeCards =
-Array.from(
-    document.querySelectorAll(
-        ".notice-card"
-    )
-);
+        if (!response.ok) {
+            const error = new Error(result.message || "Request failed");
+            error.status = response.status;
+            throw error;
+        }
 
+        return result;
+    }
 
-let activeFilter =
-"all";
+    // ======================================================
+    // INITIAL STATE
+    // ======================================================
 
+    function prepareLoadingState() {
+        [
+            "totalNoticeCount",
+            "importantNoticeCount",
+            "academicNoticeCount",
+            "unreadNoticeCount",
+            "summaryUnreadCount",
+            "infoTotalNotices",
+            "infoImportantNotices",
+            "infoUnreadNotices"
+        ].forEach(function (id) {
+            setText(id, "--");
+        });
 
-/* =========================================================
-                    MOBILE SIDEBAR
-========================================================= */
+        if (noticeList) {
+            noticeList.replaceChildren(
+                createMessage(
+                    "fa-spinner fa-spin",
+                    "Loading Notices",
+                    "Please wait while notices are loaded."
+                )
+            );
+        }
 
-if(
-    mobileMenuBtn &&
-    sidebar
-){
+        document
+            .querySelectorAll(".notice-side-card")
+            .forEach(function (card) {
+                const loading = document.createElement("p");
+                loading.className = "text-muted mb-0";
+                loading.textContent = "Loading...";
+                card.replaceChildren(loading);
+            });
 
-mobileMenuBtn.addEventListener(
-    "click",
-    function(){
+        const count = document.getElementById("navbarNotificationCount");
 
-        sidebar.classList.toggle(
-            "show"
+        if (count) {
+            count.style.display = "none";
+        }
+    }
+
+    function replaceOldControls() {
+        const noticeSearch = replaceElement("noticeSearchInput");
+        const globalSearch = replaceElement("searchBox");
+        const sortSelect = replaceElement("noticeSortSelect");
+        const oldFilterGroup = document.querySelector(".notice-filter-group");
+        let filterGroup = oldFilterGroup;
+
+        if (oldFilterGroup) {
+            filterGroup = oldFilterGroup.cloneNode(true);
+            oldFilterGroup.replaceWith(filterGroup);
+        }
+
+        if (noticeSearch) {
+            noticeSearch.addEventListener("input", function () {
+                searchValue = this.value.trim().toLowerCase();
+
+                if (globalSearch && globalSearch.value !== this.value) {
+                    globalSearch.value = this.value;
+                }
+
+                renderNoticeList();
+            });
+        }
+
+        if (globalSearch) {
+            globalSearch.addEventListener("input", function () {
+                searchValue = this.value.trim().toLowerCase();
+
+                if (noticeSearch && noticeSearch.value !== this.value) {
+                    noticeSearch.value = this.value;
+                }
+
+                renderNoticeList();
+            });
+        }
+
+        if (sortSelect) {
+            sortValue = sortSelect.value || "latest";
+            sortSelect.addEventListener("change", function () {
+                sortValue = this.value;
+                renderNoticeList();
+            });
+        }
+
+        if (filterGroup) {
+            filterGroup
+                .querySelectorAll(".notice-filter-btn")
+                .forEach(function (button) {
+                    button.addEventListener("click", function () {
+                        filterGroup
+                            .querySelectorAll(".notice-filter-btn")
+                            .forEach(function (item) {
+                                item.classList.remove("active");
+                            });
+
+                        this.classList.add("active");
+                        activeFilter = this.dataset.filter || "all";
+                        renderNoticeList();
+                    });
+                });
+        }
+    }
+
+    function replaceElement(id) {
+        const element = document.getElementById(id);
+
+        if (!element) {
+            return null;
+        }
+
+        const clone = element.cloneNode(true);
+        element.replaceWith(clone);
+        return clone;
+    }
+
+    // ======================================================
+    // RENDER
+    // ======================================================
+
+    function renderAll() {
+        renderNoticeList();
+        renderStatistics();
+        renderPinnedNotices();
+        renderSideSummary();
+        renderQuickInformation();
+    }
+
+    function renderNoticeList() {
+        if (!noticeList) {
+            return;
+        }
+
+        const filtered = notices
+            .filter(matchesFilter)
+            .sort(compareNotices);
+
+        noticeList.replaceChildren();
+
+        if (!filtered.length) {
+            noticeList.appendChild(
+                createMessage(
+                    "fa-magnifying-glass",
+                    "No Notices Found",
+                    "No notice matches your search or selected category."
+                )
+            );
+            return;
+        }
+
+        filtered.forEach(function (notice) {
+            noticeList.appendChild(createNoticeCard(notice));
+        });
+    }
+
+    function matchesFilter(notice) {
+        const type = getDisplayType(notice);
+        const categoryMatch =
+            activeFilter === "all" || type.key === activeFilter;
+
+        const searchable = [
+            notice.title,
+            notice.message,
+            notice.category,
+            notice.priority,
+            notice.created_by_name,
+            notice.source
+        ]
+            .map(function (value) {
+                return String(value || "").toLowerCase();
+            })
+            .join(" ");
+
+        return categoryMatch && searchable.includes(searchValue);
+    }
+
+    function compareNotices(first, second) {
+        if (sortValue === "oldest") {
+            return dateValue(first.created_at) - dateValue(second.created_at);
+        }
+
+        if (sortValue === "important") {
+            const priorityDifference =
+                priorityWeight(second.priority) -
+                priorityWeight(first.priority);
+
+            if (priorityDifference !== 0) {
+                return priorityDifference;
+            }
+        }
+
+        return dateValue(second.created_at) - dateValue(first.created_at);
+    }
+
+    function createNoticeCard(notice) {
+        const type = getDisplayType(notice);
+        const card = document.createElement("article");
+        const header = document.createElement("div");
+        const titleArea = document.createElement("div");
+        const iconBox = document.createElement("div");
+        const icon = document.createElement("i");
+        const titleContent = document.createElement("div");
+        const title = document.createElement("h5");
+        const meta = document.createElement("div");
+        const dateMeta = createMeta(
+            "fa-regular fa-calendar",
+            formatDate(notice.created_at)
+        );
+        const timeMeta = createMeta(
+            "fa-regular fa-clock",
+            formatTime(notice.created_at)
+        );
+        const badge = document.createElement("span");
+        const description = document.createElement("p");
+        const footer = document.createElement("div");
+        const publisher = document.createElement("div");
+        const publisherName = document.createElement("strong");
+        const viewButton = document.createElement("button");
+
+        card.className = "notice-card " + type.key;
+        card.dataset.category = type.key;
+        card.dataset.date = String(notice.created_at || "").slice(0, 10);
+        card.dataset.title = notice.title || "";
+
+        if (!isNoticeRead(notice.id)) {
+            card.classList.add("unread");
+        }
+
+        header.className = "notice-card-header";
+        titleArea.className = "notice-title-area";
+        iconBox.className = "notice-icon";
+        icon.className = "fa-solid " + type.icon;
+        title.textContent = notice.title || "Untitled Notice";
+        meta.className = "notice-meta";
+        badge.className = "notice-badge " + type.key;
+        badge.textContent = type.label.toUpperCase();
+        description.className = "notice-description";
+        description.textContent = notice.message || "No description provided.";
+        footer.className = "notice-card-footer";
+        publisher.className = "notice-publisher";
+        publisher.appendChild(document.createTextNode("Published by "));
+        publisherName.textContent = publisherLabel(notice);
+        publisher.appendChild(publisherName);
+        viewButton.type = "button";
+        viewButton.className = "notice-view-btn";
+        viewButton.innerHTML =
+            '<i class="fa-solid fa-eye me-1"></i> View Notice';
+
+        viewButton.addEventListener("click", function () {
+            markNoticeRead(notice.id);
+            card.classList.remove("unread");
+            renderStatistics();
+            openRealNotice(notice);
+        });
+
+        iconBox.appendChild(icon);
+        meta.append(dateMeta, timeMeta);
+        titleContent.append(title, meta);
+        titleArea.append(iconBox, titleContent);
+        header.append(titleArea, badge);
+        footer.append(publisher, viewButton);
+        card.append(header, description, footer);
+
+        return card;
+    }
+
+    function createMeta(iconClass, text) {
+        const item = document.createElement("span");
+        const icon = document.createElement("i");
+
+        icon.className = iconClass;
+        item.append(icon, document.createTextNode(text));
+        return item;
+    }
+
+    function createMessage(iconClass, heading, text) {
+        const box = document.createElement("div");
+        const icon = document.createElement("i");
+        const title = document.createElement("h5");
+        const paragraph = document.createElement("p");
+
+        box.className = "no-notice-result";
+        box.style.display = "block";
+        icon.className = "fa-solid " + iconClass;
+        title.textContent = heading;
+        paragraph.textContent = text;
+        box.append(icon, title, paragraph);
+        return box;
+    }
+
+    // ======================================================
+    // STATS AND SIDE CARDS
+    // ======================================================
+
+    function renderStatistics() {
+        const important = notices.filter(function (notice) {
+            return ["urgent", "important"].includes(
+                String(notice.priority || "").toLowerCase()
+            );
+        }).length;
+
+        const academic = notices.filter(function (notice) {
+            return String(notice.category || "").toLowerCase() === "academic";
+        }).length;
+
+        const unread = notices.filter(function (notice) {
+            return !isNoticeRead(notice.id);
+        }).length;
+
+        setText("totalNoticeCount", notices.length);
+        setText("importantNoticeCount", important);
+        setText("academicNoticeCount", academic);
+        setText("unreadNoticeCount", unread);
+        setText("summaryUnreadCount", unread);
+        setText("infoTotalNotices", notices.length);
+        setText("infoImportantNotices", important);
+        setText("infoUnreadNotices", unread);
+        updateInfoModalDate();
+    }
+
+    function renderPinnedNotices() {
+        const sideCards = document.querySelectorAll(".notice-side-card");
+        const card = sideCards[0];
+
+        if (!card) {
+            return;
+        }
+
+        card.replaceChildren(createSideHeading("fa-thumbtack", "Pinned Notices"));
+
+        const pinned = notices
+            .slice()
+            .sort(function (first, second) {
+                const priorityDifference =
+                    priorityWeight(second.priority) -
+                    priorityWeight(first.priority);
+
+                return priorityDifference ||
+                    dateValue(second.created_at) - dateValue(first.created_at);
+            })
+            .slice(0, 3);
+
+        if (!pinned.length) {
+            const text = document.createElement("p");
+            text.className = "text-muted mb-0";
+            text.textContent = "No notices available.";
+            card.appendChild(text);
+            return;
+        }
+
+        pinned.forEach(function (notice) {
+            const item = document.createElement("div");
+            const title = document.createElement("h6");
+            const icon = document.createElement("i");
+            const date = document.createElement("small");
+
+            item.className = "pinned-notice";
+            icon.className = "fa-solid fa-thumbtack text-primary me-1";
+            title.append(icon, document.createTextNode(notice.title || "Notice"));
+            date.innerHTML = '<i class="fa-regular fa-calendar me-1"></i>';
+            date.appendChild(document.createTextNode(formatDate(notice.created_at)));
+            item.append(title, date);
+
+            item.addEventListener("click", function () {
+                markNoticeRead(notice.id);
+                renderStatistics();
+                renderNoticeList();
+                openRealNotice(notice);
+            });
+
+            card.appendChild(item);
+        });
+    }
+
+    function renderSideSummary() {
+        const sideCards = document.querySelectorAll(".notice-side-card");
+        const card = sideCards[1];
+
+        if (!card) {
+            return;
+        }
+
+        const counts = {
+            important: 0,
+            academic: 0,
+            exam: 0,
+            event: 0,
+            general: 0
+        };
+
+        notices.forEach(function (notice) {
+            counts[getDisplayType(notice).key] += 1;
+        });
+
+        const unread = notices.filter(function (notice) {
+            return !isNoticeRead(notice.id);
+        }).length;
+
+        card.replaceChildren(createSideHeading("fa-chart-pie", "Notice Summary"));
+        card.append(
+            createInfoRow("fa-bullhorn", "Total Notices", notices.length),
+            createInfoRow("fa-triangle-exclamation text-danger", "Important", counts.important),
+            createInfoRow("fa-graduation-cap text-primary", "Academic", counts.academic),
+            createInfoRow("fa-file-pen", "Examination", counts.exam),
+            createInfoRow("fa-users text-success", "Events", counts.event),
+            createInfoRow("fa-book", "General", counts.general),
+            createInfoRow("fa-envelope text-warning", "Unread", unread, "summaryUnreadCount")
+        );
+    }
+
+    function renderQuickInformation() {
+        const sideCards = document.querySelectorAll(".notice-side-card");
+        const card = sideCards[2];
+
+        if (!card) {
+            return;
+        }
+
+        const latest = notices
+            .slice()
+            .sort(function (first, second) {
+                return dateValue(second.created_at) - dateValue(first.created_at);
+            })[0];
+
+        card.replaceChildren(
+            createSideHeading("fa-circle-info", "Quick Information")
+        );
+        card.append(
+            createPlainInfoRow(
+                "Last Updated",
+                latest ? formatDate(latest.created_at) : "No notices"
+            ),
+            createPlainInfoRow(
+                "Latest Notice",
+                latest ? latest.title : "Not available"
+            ),
+            createPlainInfoRow("Notice Access", "Active", true)
+        );
+    }
+
+    function createSideHeading(iconName, text) {
+        const heading = document.createElement("h5");
+        const icon = document.createElement("i");
+
+        icon.className = "fa-solid " + iconName + " me-2";
+        heading.append(icon, document.createTextNode(text));
+        return heading;
+    }
+
+    function createInfoRow(iconName, label, value, id) {
+        const row = document.createElement("div");
+        const text = document.createElement("span");
+        const icon = document.createElement("i");
+        const strong = document.createElement("strong");
+
+        row.className = "notice-info-row";
+        icon.className = "fa-solid " + iconName + " me-2";
+        text.append(icon, document.createTextNode(label));
+        strong.textContent = String(value);
+
+        if (id) {
+            strong.id = id;
+        }
+
+        row.append(text, strong);
+        return row;
+    }
+
+    function createPlainInfoRow(label, value, active) {
+        const row = document.createElement("div");
+        const text = document.createElement("span");
+        const strong = document.createElement("strong");
+
+        row.className = "notice-info-row";
+        text.textContent = label;
+        strong.textContent = value;
+
+        if (active) {
+            strong.className = "text-success";
+        }
+
+        row.append(text, strong);
+        return row;
+    }
+
+    // ======================================================
+    // NOTICE MODAL
+    // ======================================================
+
+    function openRealNotice(notice) {
+        const type = getDisplayType(notice);
+
+        setText("noticeModalTitle", notice.title || "Notice");
+        setText(
+            "noticeModalShortDescription",
+            "Published by " + publisherLabel(notice)
+        );
+        setText(
+            "noticeModalDescription",
+            notice.message || "No description provided."
+        );
+        setText("noticeModalCategory", type.label);
+        setText("noticeModalDate", formatDate(notice.created_at));
+        setText("noticeModalTime", formatTime(notice.created_at));
+        setText("noticeModalPublisher", publisherLabel(notice));
+
+        const badge = document.getElementById("noticeModalBadge");
+        const icon = document.getElementById("noticeModalIcon");
+
+        if (badge) {
+            badge.textContent = type.label;
+            badge.className = "notice-badge " + type.key;
+        }
+
+        if (icon) {
+            icon.className = "fa-solid " + type.icon;
+        }
+
+        const modalElement = document.getElementById("noticeDetailsModal");
+
+        if (modalElement && window.bootstrap) {
+            bootstrap.Modal.getOrCreateInstance(modalElement).show();
+        }
+    }
+
+    // ======================================================
+    // PROFILE, NOTIFICATION COUNT AND SIDEBAR
+    // ======================================================
+
+    function setupPageControls() {
+        const mobileButton = document.getElementById("mobileMenuBtn");
+        const sidebarOverlay = document.getElementById("sidebarOverlay");
+        const themeButton = document.getElementById("themeToggle");
+        const savedTheme = localStorage.getItem("theme") || "light";
+
+        function closeSidebar() {
+            document.body.classList.remove("sidebar-open");
+        }
+
+        document.body.classList.toggle("dark", savedTheme === "dark");
+        updateThemeIcon(themeButton);
+
+        if (mobileButton) {
+            mobileButton.addEventListener("click", function () {
+                document.body.classList.toggle("sidebar-open");
+            });
+        }
+
+        sidebarOverlay?.addEventListener("click", closeSidebar);
+
+        document.querySelectorAll(".sidebar-menu a").forEach(function (link) {
+            link.addEventListener("click", closeSidebar);
+        });
+
+        window.addEventListener("resize", function () {
+            if (window.innerWidth > 992) {
+                closeSidebar();
+            }
+        });
+
+        if (themeButton) {
+            themeButton.addEventListener("click", function () {
+                document.body.classList.toggle("dark");
+                localStorage.setItem(
+                    "theme",
+                    document.body.classList.contains("dark")
+                        ? "dark"
+                        : "light"
+                );
+                updateThemeIcon(themeButton);
+            });
+        }
+    }
+
+    function updateThemeIcon(button) {
+        if (!button) {
+            return;
+        }
+
+        const icon = button.querySelector("i");
+
+        if (icon) {
+            icon.className = document.body.classList.contains("dark")
+                ? "fa-solid fa-sun"
+                : "fa-solid fa-moon";
+        }
+    }
+
+    function setupPrintNotice() {
+        window.printNotice = function () {
+            window.print();
+        };
+    }
+
+    function renderProfile(data) {
+        const teacher = data.teacher || data || {};
+        const user = data.user || {};
+        const name = teacher.full_name || teacher.username ||
+            user.username || "Teacher";
+        const designation = teacher.designation || "Faculty Member";
+        const image = document.querySelector(".teacher-profile img");
+
+        setSelectorText(".teacher-profile-info strong", name);
+        setSelectorText(".teacher-profile-info small", designation);
+
+        if (image) {
+            image.src = resolvePhotoUrl(teacher.photo_url) ||
+                createInitialsAvatar(name);
+            image.alt = name;
+            image.onerror = function () {
+                this.onerror = null;
+                this.src = createInitialsAvatar(name);
+            };
+        }
+    }
+
+    function renderNotificationCount(summary) {
+        const count = document.getElementById("navbarNotificationCount");
+
+        if (!count) {
+            return;
+        }
+
+        const unread = Number(summary.unread || 0);
+        count.textContent = unread > 99 ? "99+" : String(unread);
+        count.style.display = unread > 0 ? "flex" : "none";
+    }
+
+    function removeUnavailableMenuItems() {
+        const removePages = new Set([
+            "attendance.html",
+            "assignments.html",
+            "student-performance-ai.html",
+            "smart-report.html",
+            "ai-assistant.html"
+        ]);
+
+        document
+            .querySelectorAll(".teacher-sidebar-menu a[href]")
+            .forEach(function (link) {
+                const page = link
+                    .getAttribute("href")
+                    .split("?")[0]
+                    .split("/")
+                    .pop();
+
+                if (removePages.has(page)) {
+                    const item = link.closest("li");
+
+                    if (item) {
+                        item.remove();
+                    }
+                }
+            });
+
+        document
+            .querySelectorAll(".sidebar-section-title")
+            .forEach(function (heading) {
+                if (heading.textContent.toLowerCase().includes("ai")) {
+                    heading.textContent = "Face Services";
+                }
+            });
+    }
+
+    function setupLogout() {
+        document
+            .querySelectorAll('a[href="teacher-login.html"]')
+            .forEach(function (link) {
+                link.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    localStorage.removeItem("fmps_access_token");
+                    localStorage.removeItem("fmps_refresh_token");
+                    localStorage.removeItem("fmps_user");
+                    window.location.replace("teacher-login.html");
+                });
+            });
+    }
+
+    // ======================================================
+    // HELPERS
+    // ======================================================
+
+    function getDisplayType(notice) {
+        const priority = String(notice.priority || "").toLowerCase();
+        const category = String(notice.category || "general").toLowerCase();
+
+        if (priority === "urgent") {
+            return {
+                key: "important",
+                label: "Urgent",
+                icon: "fa-triangle-exclamation"
+            };
+        }
+
+        if (priority === "important") {
+            return {
+                key: "important",
+                label: "Important",
+                icon: "fa-triangle-exclamation"
+            };
+        }
+
+        if (["exam", "examination"].includes(category)) {
+            return { key: "exam", label: "Examination", icon: "fa-file-pen" };
+        }
+
+        if (category === "academic") {
+            return {
+                key: "academic",
+                label: "Academic",
+                icon: "fa-graduation-cap"
+            };
+        }
+
+        if (["event", "events"].includes(category)) {
+            return {
+                key: "event",
+                label: "Event",
+                icon: "fa-calendar-days"
+            };
+        }
+
+        return { key: "general", label: "General", icon: "fa-bullhorn" };
+    }
+
+    function publisherLabel(notice) {
+        const source = String(notice.source || "").toLowerCase();
+
+        if (source === "system") {
+            return "FMPS System";
+        }
+
+        if (source === "admin") {
+            return notice.created_by_name || "Administration";
+        }
+
+        if (source === "department") {
+            return notice.created_by_name
+                ? notice.created_by_name + " (Department HOD)"
+                : "Department HOD";
+        }
+
+        return notice.created_by_name || "FMPS";
+    }
+
+    function priorityWeight(value) {
+        const priority = String(value || "").toLowerCase();
+
+        if (priority === "urgent") {
+            return 3;
+        }
+
+        if (priority === "important") {
+            return 2;
+        }
+
+        return 1;
+    }
+
+    function markNoticeRead(id) {
+        if (id !== null && id !== undefined) {
+            localStorage.setItem(READ_KEY_PREFIX + id, "true");
+        }
+    }
+
+    function isNoticeRead(id) {
+        return localStorage.getItem(READ_KEY_PREFIX + id) === "true";
+    }
+
+    function formatDate(value) {
+        const date = parseDate(value);
+
+        if (!date) {
+            return "--";
+        }
+
+        return date.toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        });
+    }
+
+    function formatTime(value) {
+        const date = parseDate(value);
+
+        if (!date || !String(value || "").includes("T")) {
+            return "--";
+        }
+
+        return date.toLocaleTimeString("en-IN", {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+    }
+
+    function parseDate(value) {
+        if (!value) {
+            return null;
+        }
+
+        const parsed = new Date(value);
+        return Number.isNaN(parsed.getTime()) ? null : parsed;
+    }
+
+    function dateValue(value) {
+        const date = parseDate(value);
+        return date ? date.getTime() : 0;
+    }
+
+    function updateInfoModalDate() {
+        const rows = document.querySelectorAll(
+            "#noticeInfoModal .notice-detail-row"
         );
 
-    }
-);
-
-}
-
-
-/* =========================================================
-                    DARK MODE
-========================================================= */
-
-const savedTheme =
-localStorage.getItem(
-    "teacherTheme"
-);
-
-
-if(
-    savedTheme ===
-    "dark"
-){
-
-document.body.classList.add(
-    "dark"
-);
-
-}
-
-
-function updateThemeIcon(){
-
-
-if(!themeToggle){
-
-return;
-
-}
-
-
-const icon =
-themeToggle.querySelector(
-    "i"
-);
-
-
-if(
-    document.body.classList.contains(
-        "dark"
-    )
-){
-
-icon.className =
-"fa-solid fa-sun";
-
-}
-
-else{
-
-icon.className =
-"fa-solid fa-moon";
-
-}
-
-
-}
-
-
-updateThemeIcon();
-
-
-if(themeToggle){
-
-themeToggle.addEventListener(
-    "click",
-    function(){
-
-
-document.body.classList.toggle(
-    "dark"
-);
-
-
-if(
-    document.body.classList.contains(
-        "dark"
-    )
-){
-
-localStorage.setItem(
-    "teacherTheme",
-    "dark"
-);
-
-}
-
-else{
-
-localStorage.setItem(
-    "teacherTheme",
-    "light"
-);
-
-}
-
-
-updateThemeIcon();
-
-
-    }
-);
-
-}
-
-
-/* =========================================================
-                    FILTER NOTICES
-========================================================= */
-
-function filterNotices(){
-
-
-let searchValue =
-"";
-
-
-if(noticeSearchInput){
-
-searchValue =
-noticeSearchInput.value
-.toLowerCase()
-.trim();
-
-}
-
-
-let visibleCount =
-0;
-
-
-noticeCards.forEach(
-    function(card){
-
-
-const title =
-(
-    card.dataset.title ||
-    ""
-)
-.toLowerCase();
-
-
-const text =
-card.innerText
-.toLowerCase();
-
-
-const category =
-card.dataset.category;
-
-
-const categoryMatch =
-
-activeFilter ===
-"all"
-
-||
-
-category ===
-activeFilter;
-
-
-const searchMatch =
-
-title.includes(
-    searchValue
-)
-
-||
-
-text.includes(
-    searchValue
-);
-
-
-if(
-    categoryMatch &&
-    searchMatch
-){
-
-card.style.display =
-"block";
-
-visibleCount++;
-
-}
-
-else{
-
-card.style.display =
-"none";
-
-}
-
-
-    }
-);
-
-
-/* NO RESULT */
-
-if(noNoticeResult){
-
-noNoticeResult.style.display =
-
-visibleCount === 0
-?
-"block"
-:
-"none";
-
-}
-
-
-}
-
-
-/* =========================================================
-                    NOTICE SEARCH
-========================================================= */
-
-if(noticeSearchInput){
-
-noticeSearchInput.addEventListener(
-    "input",
-    function(){
-
-        filterNotices();
-
-    }
-);
-
-}
-
-
-/* =========================================================
-                    GLOBAL NAV SEARCH
-========================================================= */
-
-if(globalSearchBox){
-
-globalSearchBox.addEventListener(
-    "input",
-    function(){
-
-
-if(noticeSearchInput){
-
-noticeSearchInput.value =
-this.value;
-
-}
-
-
-filterNotices();
-
-
-    }
-);
-
-}
-
-
-/* =========================================================
-                    FILTER BUTTONS
-========================================================= */
-
-filterButtons.forEach(
-    function(button){
-
-
-button.addEventListener(
-    "click",
-    function(){
-
-
-filterButtons.forEach(
-    function(btn){
-
-btn.classList.remove(
-    "active"
-);
-
-    }
-);
-
-
-this.classList.add(
-    "active"
-);
-
-
-activeFilter =
-this.dataset.filter;
-
-
-filterNotices();
-
-
-    }
-);
-
-
-    }
-);
-
-
-/* =========================================================
-                    SORTING
-========================================================= */
-
-if(sortSelect){
-
-sortSelect.addEventListener(
-    "change",
-    function(){
-
-
-const sortType =
-this.value;
-
-
-const cards =
-[...noticeCards];
-
-
-if(
-    sortType ===
-    "latest"
-){
-
-cards.sort(
-    function(a,b){
-
-return (
-    new Date(
-        b.dataset.date
-    )
-    -
-    new Date(
-        a.dataset.date
-    )
-);
-
-    }
-);
-
-}
-
-
-else if(
-    sortType ===
-    "oldest"
-){
-
-cards.sort(
-    function(a,b){
-
-return (
-    new Date(
-        a.dataset.date
-    )
-    -
-    new Date(
-        b.dataset.date
-    )
-);
-
-    }
-);
-
-}
-
-
-else if(
-    sortType ===
-    "important"
-){
-
-cards.sort(
-    function(a,b){
-
-
-const aImportant =
-a.dataset.category ===
-"important"
-?
-1
-:
-0;
-
-
-const bImportant =
-b.dataset.category ===
-"important"
-?
-1
-:
-0;
-
-
-if(
-    aImportant !==
-    bImportant
-){
-
-return (
-    bImportant -
-    aImportant
-);
-
-}
-
-
-return (
-    new Date(
-        b.dataset.date
-    )
-    -
-    new Date(
-        a.dataset.date
-    )
-);
-
-
-    }
-);
-
-}
-
-
-cards.forEach(
-    function(card){
-
-noticeList.appendChild(
-    card
-);
-
-    }
-);
-
-
-filterNotices();
-
-
-    }
-);
-
-}
-
-
-/* =========================================================
-                    LOAD READ STATUS
-========================================================= */
-
-noticeCards.forEach(
-    function(card,index){
-
-
-const readStatus =
-localStorage.getItem(
-    "teacherNoticeRead_" +
-    index
-);
-
-
-if(
-    readStatus ===
-    "true"
-){
-
-card.classList.remove(
-    "unread"
-);
-
-}
-
-
-    }
-);
-
-
-/* =========================================================
-                    UPDATE STATISTICS
-========================================================= */
-
-function updateNoticeStatistics(){
-
-
-const total =
-noticeCards.length;
-
-
-const important =
-noticeCards.filter(
-    function(card){
-
-return (
-    card.dataset.category ===
-    "important"
-);
-
-    }
-).length;
-
-
-const academic =
-noticeCards.filter(
-    function(card){
-
-return (
-    card.dataset.category ===
-    "academic"
-);
-
-    }
-).length;
-
-
-const unread =
-noticeCards.filter(
-    function(card){
-
-return card.classList.contains(
-    "unread"
-);
-
-    }
-).length;
-
-
-/* TOP STATISTICS */
-
-setText(
-    "totalNoticeCount",
-    total
-);
-
-
-setText(
-    "importantNoticeCount",
-    important
-);
-
-
-setText(
-    "academicNoticeCount",
-    academic
-);
-
-
-setText(
-    "unreadNoticeCount",
-    unread
-);
-
-
-/* SIDE SUMMARY */
-
-setText(
-    "summaryUnreadCount",
-    unread
-);
-
-
-/* INFORMATION MODAL */
-
-setText(
-    "infoTotalNotices",
-    total
-);
-
-
-setText(
-    "infoImportantNotices",
-    important
-);
-
-
-setText(
-    "infoUnreadNotices",
-    unread
-);
-
-
-}
-
-
-/* =========================================================
-                    HELPER SET TEXT
-========================================================= */
-
-function setText(
-    id,
-    value
-){
-
-
-const element =
-document.getElementById(
-    id
-);
-
-
-if(element){
-
-element.innerText =
-value;
-
-}
-
-
-}
-
-
-/* =========================================================
-                MARK NOTICE AS READ
-========================================================= */
-
-noticeCards.forEach(
-    function(card,index){
-
-
-const button =
-card.querySelector(
-    ".notice-view-btn"
-);
-
-
-if(!button){
-
-return;
-
-}
-
-
-button.addEventListener(
-    "click",
-    function(){
-
-
-if(
-    card.classList.contains(
-        "unread"
-    )
-){
-
-card.classList.remove(
-    "unread"
-);
-
-
-localStorage.setItem(
-    "teacherNoticeRead_" +
-    index,
-    "true"
-);
-
-
-updateNoticeStatistics();
-
-
-}
-
-
-    }
-);
-
-
-    }
-);
-
-
-/* =========================================================
-                    INITIAL LOAD
-========================================================= */
-
-updateNoticeStatistics();
-
-filterNotices();
-
-
-});
-
-
-/* =========================================================
-                    OPEN NOTICE
-========================================================= */
-
-function openNotice(
-    title,
-    category,
-    date,
-    time,
-    publisher,
-    description
-){
-
-
-/* TITLE */
-
-document.getElementById(
-    "noticeModalTitle"
-).innerText =
-title;
-
-
-/* SHORT DESCRIPTION */
-
-document.getElementById(
-    "noticeModalShortDescription"
-).innerText =
-
-"Published by " +
-publisher;
-
-
-/* DESCRIPTION */
-
-document.getElementById(
-    "noticeModalDescription"
-).innerText =
-description;
-
-
-/* CATEGORY */
-
-document.getElementById(
-    "noticeModalCategory"
-).innerText =
-category;
-
-
-/* DATE */
-
-document.getElementById(
-    "noticeModalDate"
-).innerText =
-date;
-
-
-/* TIME */
-
-document.getElementById(
-    "noticeModalTime"
-).innerText =
-time;
-
-
-/* PUBLISHER */
-
-document.getElementById(
-    "noticeModalPublisher"
-).innerText =
-publisher;
-
-
-/* =========================================================
-                    BADGE
-========================================================= */
-
-const badge =
-document.getElementById(
-    "noticeModalBadge"
-);
-
-
-badge.innerText =
-category;
-
-
-let categoryClass =
-category
-.toLowerCase();
-
-
-if(
-    categoryClass ===
-    "examination"
-){
-
-categoryClass =
-"exam";
-
-}
-
-
-badge.className =
-"notice-badge " +
-categoryClass;
-
-
-/* =========================================================
-                    ICON
-========================================================= */
-
-const icon =
-document.getElementById(
-    "noticeModalIcon"
-);
-
-
-if(
-    category ===
-    "Important"
-){
-
-icon.className =
-"fa-solid fa-triangle-exclamation";
-
-}
-
-else if(
-    category ===
-    "Academic"
-){
-
-icon.className =
-"fa-solid fa-graduation-cap";
-
-}
-
-else if(
-    category ===
-    "Examination"
-){
-
-icon.className =
-"fa-solid fa-file-pen";
-
-}
-
-else if(
-    category ===
-    "Event"
-){
-
-icon.className =
-"fa-solid fa-calendar-days";
-
-}
-
-else{
-
-icon.className =
-"fa-solid fa-bullhorn";
-
-}
-
-
-/* =========================================================
-                    SHOW MODAL
-========================================================= */
-
-const modalElement =
-document.getElementById(
-    "noticeDetailsModal"
-);
-
-
-const modal =
-bootstrap.Modal.getOrCreateInstance(
-    modalElement
-);
-
-
-modal.show();
-
-
-}
-
-
-/* =========================================================
-                    PRINT NOTICE
-========================================================= */
-
-function printNotice(){
-
-
-const title =
-document.getElementById(
-    "noticeModalTitle"
-).innerText;
-
-
-const category =
-document.getElementById(
-    "noticeModalCategory"
-).innerText;
-
-
-const date =
-document.getElementById(
-    "noticeModalDate"
-).innerText;
-
-
-const time =
-document.getElementById(
-    "noticeModalTime"
-).innerText;
-
-
-const publisher =
-document.getElementById(
-    "noticeModalPublisher"
-).innerText;
-
-
-const description =
-document.getElementById(
-    "noticeModalDescription"
-).innerText;
-
-
-/* =========================================================
-                    PRINT WINDOW
-========================================================= */
-
-const printWindow =
-window.open(
-    "",
-    "_blank",
-    "width=900,height=700"
-);
-
-
-if(!printWindow){
-
-alert(
-    "Please allow pop-ups to print the notice."
-);
-
-return;
-
-}
-
-
-printWindow.document.write(`
-
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-
-<title>
-${title}
-</title>
-
-
-<style>
-
-*{
-    box-sizing:border-box;
-}
-
-body{
-
-    font-family:
-    Arial,
-    sans-serif;
-
-    padding:45px;
-
-    color:#1f2937;
-
-    line-height:1.7;
-
-}
-
-
-.print-header{
-
-    text-align:center;
-
-    padding-bottom:20px;
-
-    border-bottom:
-    3px solid #6c4cff;
-
-    margin-bottom:30px;
-
-}
-
-
-.print-header h2{
-
-    margin:
-    0 0 5px;
-
-    color:#4f46e5;
-
-}
-
-
-.print-header p{
-
-    margin:0;
-
-    color:#6b7280;
-
-}
-
-
-.notice-heading{
-
-    text-align:center;
-
-    margin-bottom:30px;
-
-}
-
-
-.notice-heading h1{
-
-    margin-bottom:10px;
-
-}
-
-
-.category{
-
-    display:inline-block;
-
-    padding:
-    6px 14px;
-
-    border-radius:20px;
-
-    background:#ede9fe;
-
-    color:#6c4cff;
-
-    font-weight:bold;
-
-    font-size:12px;
-
-}
-
-
-table{
-
-    width:100%;
-
-    border-collapse:collapse;
-
-    margin-bottom:30px;
-
-}
-
-
-td{
-
-    border:
-    1px solid #e5e7eb;
-
-    padding:12px;
-
-}
-
-
-td:first-child{
-
-    width:30%;
-
-    font-weight:bold;
-
-    background:#f8fafc;
-
-}
-
-
-.notice-description{
-
-    padding:22px;
-
-    background:#f8f7ff;
-
-    border-left:
-    4px solid #6c4cff;
-
-    white-space:pre-line;
-
-}
-
-
-.print-footer{
-
-    margin-top:50px;
-
-    padding-top:15px;
-
-    border-top:
-    1px solid #e5e7eb;
-
-    text-align:center;
-
-    font-size:12px;
-
-    color:#6b7280;
-
-}
-
-
-@media print{
-
-    body{
-        padding:15px;
+        rows.forEach(function (row) {
+            const label = row.querySelector("span");
+            const value = row.querySelector("strong");
+
+            if (
+                label &&
+                value &&
+                label.textContent.trim().toLowerCase() === "last updated"
+            ) {
+                const latest = notices
+                    .slice()
+                    .sort(function (first, second) {
+                        return dateValue(second.created_at) -
+                            dateValue(first.created_at);
+                    })[0];
+
+                value.textContent = latest
+                    ? formatDate(latest.created_at)
+                    : "No notices";
+            }
+        });
     }
 
-}
+    function setText(id, value) {
+        const element = document.getElementById(id);
 
-</style>
+        if (element) {
+            element.textContent = String(value);
+        }
+    }
 
+    function getText(id) {
+        const element = document.getElementById(id);
+        return element ? element.textContent.trim() : "";
+    }
 
-</head>
+    function escapeHtml(value) {
+        return String(value || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/\"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
 
+    function setSelectorText(selector, value) {
+        const element = document.querySelector(selector);
 
-<body>
+        if (element) {
+            element.textContent = value;
+        }
+    }
 
+    function resolvePhotoUrl(value) {
+        const photo = String(value || "").trim().replace(/\\/g, "/");
 
-<div class="print-header">
+        if (!photo) {
+            return "";
+        }
 
-<h2>
-Faculty Management & Productivity System
-</h2>
+        if (/^(https?:|data:|blob:)/i.test(photo)) {
+            return photo;
+        }
 
-<p>
-Teacher Notice Board
-</p>
+        return photo.startsWith("/")
+            ? BACKEND_URL + photo
+            : BACKEND_URL + "/" + photo;
+    }
 
-</div>
+    function createInitialsAvatar(name) {
+        const initials = String(name || "Teacher")
+            .trim()
+            .split(/\s+/)
+            .slice(0, 2)
+            .map(function (part) {
+                return part.charAt(0).toUpperCase();
+            })
+            .join("")
+            .replace(/[^A-Z0-9]/g, "") || "T";
 
+        const svg =
+            '<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120">' +
+            '<rect width="120" height="120" rx="60" fill="#6c4cff"/>' +
+            '<text x="60" y="67" text-anchor="middle" ' +
+            'font-family="Arial,sans-serif" font-size="42" ' +
+            'font-weight="700" fill="#fff">' +
+            initials +
+            "</text></svg>";
 
-<div class="notice-heading">
+        return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+    }
 
-<h1>
-${title}
-</h1>
+    function handlePageError(error) {
+        console.error("Teacher notices error:", error);
 
-<span class="category">
-${category}
-</span>
+        if (error && (error.status === 401 || error.status === 403)) {
+            localStorage.removeItem("fmps_access_token");
+            localStorage.removeItem("fmps_refresh_token");
+            localStorage.removeItem("fmps_user");
+            window.location.replace("teacher-login.html");
+            return;
+        }
 
-</div>
+        showPageError(
+            error && error.message
+                ? error.message
+                : "Unable to load notices"
+        );
+    }
 
+    function showPageError(message) {
+        if (noticeList) {
+            noticeList.replaceChildren(
+                createMessage(
+                    "fa-triangle-exclamation",
+                    "Unable to Load Notices",
+                    message
+                )
+            );
+        }
+    }
 
-<table>
-
-
-<tr>
-
-<td>
-Published Date
-</td>
-
-<td>
-${date}
-</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-Time
-</td>
-
-<td>
-${time}
-</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-Published By
-</td>
-
-<td>
-${publisher}
-</td>
-
-</tr>
-
-
-</table>
-
-
-<h3>
-Notice
-</h3>
-
-
-<div class="notice-description">
-
-${description}
-
-</div>
-
-
-<div class="print-footer">
-
-© 2026 Faculty Management & Productivity System
-
-</div>
-
-
-</body>
-
-</html>
-
-`);
-
-
-printWindow.document.close();
-
-
-printWindow.focus();
-
-
-setTimeout(
-    function(){
-
-printWindow.print();
-
-    },
-    400
-);
-
-
-}
-
+})();
 </script>
-
 
 </body>
 

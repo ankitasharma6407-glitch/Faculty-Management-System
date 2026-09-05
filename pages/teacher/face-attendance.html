@@ -2,3990 +2,2154 @@
 <html lang="en">
 
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>
-AI Face Attendance | Teacher Panel
-</title>
-
-
-<!-- =========================================================
-                        BOOTSTRAP
-========================================================= -->
-
-<link
-href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-rel="stylesheet">
-
-
-<!-- =========================================================
-                        FONT AWESOME
-========================================================= -->
-
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-
-<!-- =========================================================
-                        GOOGLE FONT
-========================================================= -->
-
-<link
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet">
-
-
-<!-- =========================================================
-                    TEACHER DASHBOARD CSS
-========================================================= -->
-
-<link
-rel="stylesheet"
-href="../../css/teacher-dashboard.css">
-
-
-<style>
-
-/* =========================================================
-                    FACE ATTENDANCE PAGE
-========================================================= */
-
-.face-page-header{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-gap:20px;
-
-flex-wrap:wrap;
-
-margin-bottom:25px;
-
-}
-
-.face-page-header h2{
-
-font-weight:800;
-
-margin-bottom:5px;
-
-}
-
-.face-page-header p{
-
-margin:0;
-
-color:#6b7280;
-
-}
-
-
-/* =========================================================
-                    STATISTICS
-========================================================= */
-
-.face-stat-card{
-
-background:#ffffff;
-
-border-radius:18px;
-
-padding:20px;
-
-box-shadow:0 8px 25px rgba(0,0,0,.07);
-
-height:100%;
-
-display:flex;
-
-align-items:center;
-
-gap:15px;
-
-transition:.3s;
-
-}
-
-.face-stat-card:hover{
-
-transform:translateY(-4px);
-
-box-shadow:0 12px 30px rgba(0,0,0,.11);
-
-}
-
-.face-stat-icon{
-
-width:58px;
-
-height:58px;
-
-border-radius:15px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-font-size:24px;
-
-flex-shrink:0;
-
-}
-
-.face-stat-icon.purple{
-
-background:rgba(108,76,255,.12);
-
-color:#6c4cff;
-
-}
-
-.face-stat-icon.green{
-
-background:rgba(34,197,94,.12);
-
-color:#16a34a;
-
-}
-
-.face-stat-icon.orange{
-
-background:rgba(245,158,11,.14);
-
-color:#d97706;
-
-}
-
-.face-stat-icon.blue{
-
-background:rgba(59,130,246,.12);
-
-color:#2563eb;
-
-}
-
-.face-stat-card small{
-
-display:block;
-
-color:#6b7280;
-
-margin-bottom:3px;
-
-}
-
-.face-stat-card h3{
-
-margin:0;
-
-font-weight:800;
-
-}
-
-
-/* =========================================================
-                    MAIN GRID
-========================================================= */
-
-.face-attendance-grid{
-
-display:grid;
-
-grid-template-columns:1.55fr 1fr;
-
-gap:25px;
-
-align-items:start;
-
-margin-top:25px;
-
-}
-
-
-/* =========================================================
-                    COMMON CARD
-========================================================= */
-
-.face-card{
-
-background:#ffffff;
-
-border-radius:20px;
-
-padding:25px;
-
-box-shadow:0 8px 25px rgba(0,0,0,.07);
-
-margin-bottom:25px;
-
-}
-
-.face-card-title{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-gap:15px;
-
-flex-wrap:wrap;
-
-margin-bottom:20px;
-
-}
-
-.face-card-title h4{
-
-font-weight:700;
-
-color:#6c4cff;
-
-margin:0;
-
-}
-
-
-/* =========================================================
-                    CLASS SELECT
-========================================================= */
-
-.class-control-grid{
-
-display:grid;
-
-grid-template-columns:repeat(3,1fr);
-
-gap:15px;
-
-}
-
-.class-control-grid label{
-
-font-weight:600;
-
-margin-bottom:7px;
-
-}
-
-.class-control-grid .form-select{
-
-border-radius:12px;
-
-padding:11px 14px;
-
-}
-
-
-/* =========================================================
-                    CAMERA
-========================================================= */
-
-.face-camera-area{
-
-position:relative;
-
-height:480px;
-
-background:#111827;
-
-border-radius:20px;
-
-overflow:hidden;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-color:#ffffff;
-
-}
-
-#attendanceVideo{
-
-position:absolute;
-
-width:100%;
-
-height:100%;
-
-object-fit:cover;
-
-display:none;
-
-}
-
-#attendanceCanvas{
-
-display:none;
-
-}
-
-.camera-placeholder{
-
-text-align:center;
-
-padding:30px;
-
-}
-
-.camera-placeholder i{
-
-font-size:90px;
-
-color:#8b5cf6;
-
-margin-bottom:20px;
-
-}
-
-.camera-placeholder h3{
-
-font-weight:700;
-
-}
-
-.camera-placeholder p{
-
-color:#cbd5e1;
-
-max-width:500px;
-
-margin:auto;
-
-}
-
-
-/* =========================================================
-                    FACE FRAME
-========================================================= */
-
-.attendance-face-frame{
-
-position:absolute;
-
-width:240px;
-
-height:300px;
-
-border:3px solid #22c55e;
-
-border-radius:45%;
-
-z-index:5;
-
-display:none;
-
-box-shadow:0 0 25px rgba(34,197,94,.65);
-
-animation:faceFramePulse 1.5s infinite;
-
-}
-
-@keyframes faceFramePulse{
-
-0%,100%{
-
-box-shadow:0 0 15px rgba(34,197,94,.4);
-
-}
-
-50%{
-
-box-shadow:0 0 40px rgba(34,197,94,.95);
-
-}
-
-}
-
-
-/* =========================================================
-                    SCAN LINE
-========================================================= */
-
-.attendance-scan-line{
-
-position:absolute;
-
-left:12%;
-
-right:12%;
-
-height:3px;
-
-top:15%;
-
-background:#22c55e;
-
-box-shadow:0 0 15px #22c55e;
-
-z-index:6;
-
-display:none;
-
-animation:attendanceScan 2s linear infinite;
-
-}
-
-@keyframes attendanceScan{
-
-0%{
-
-top:15%;
-
-}
-
-50%{
-
-top:82%;
-
-}
-
-100%{
-
-top:15%;
-
-}
-
-}
-
-
-/* =========================================================
-                    CAMERA BUTTONS
-========================================================= */
-
-.camera-buttons{
-
-display:flex;
-
-justify-content:center;
-
-gap:12px;
-
-flex-wrap:wrap;
-
-margin-top:20px;
-
-}
-
-.camera-buttons .btn{
-
-border-radius:12px;
-
-font-weight:600;
-
-padding:11px 18px;
-
-min-width:145px;
-
-}
-
-
-/* =========================================================
-                    STATUS
-========================================================= */
-
-.status-row{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-gap:15px;
-
-padding:14px 0;
-
-border-bottom:1px solid #eeeeee;
-
-}
-
-.status-row:last-child{
-
-border-bottom:none;
-
-}
-
-.status-row span:first-child{
-
-font-weight:600;
-
-}
-
-
-/* =========================================================
-                    STUDENT
-========================================================= */
-
-#recognizedStudent{
-
-display:none;
-
-text-align:center;
-
-}
-
-.student-photo{
-
-width:115px;
-
-height:115px;
-
-border-radius:50%;
-
-object-fit:cover;
-
-border:4px solid #22c55e;
-
-padding:3px;
-
-margin-bottom:15px;
-
-}
-
-.student-name{
-
-font-weight:800;
-
-margin-bottom:4px;
-
-}
-
-.student-information-grid{
-
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-gap:12px;
-
-margin-top:20px;
-
-text-align:left;
-
-}
-
-.student-info{
-
-border:1px solid #eeeeee;
-
-border-radius:12px;
-
-padding:12px;
-
-}
-
-.student-info small{
-
-display:block;
-
-color:#6b7280;
-
-margin-bottom:4px;
-
-}
-
-.student-info strong{
-
-font-size:14px;
-
-}
-
-
-/* =========================================================
-                    CONFIDENCE
-========================================================= */
-
-.confidence-box{
-
-margin-top:20px;
-
-text-align:left;
-
-}
-
-.confidence-box .progress{
-
-height:10px;
-
-border-radius:20px;
-
-}
-
-
-/* =========================================================
-                    SUCCESS BOX
-========================================================= */
-
-.attendance-success-box{
-
-display:none;
-
-margin-top:20px;
-
-padding:17px;
-
-border-radius:14px;
-
-background:rgba(34,197,94,.10);
-
-border:1px solid rgba(34,197,94,.25);
-
-text-align:center;
-
-}
-
-.attendance-success-box i{
-
-font-size:38px;
-
-color:#16a34a;
-
-margin-bottom:8px;
-
-}
-
-
-/* =========================================================
-                    ATTENDANCE TABLE
-========================================================= */
-
-.attendance-table-wrapper{
-
-overflow-x:auto;
-
-}
-
-.attendance-table{
-
-min-width:800px;
-
-}
-
-.attendance-table thead th{
-
-background:#f5f3ff;
-
-color:#6c4cff;
-
-border:none;
-
-padding:14px;
-
-white-space:nowrap;
-
-}
-
-.attendance-table tbody td{
-
-padding:14px;
-
-vertical-align:middle;
-
-}
-
-.student-mini-profile{
-
-display:flex;
-
-align-items:center;
-
-gap:10px;
-
-}
-
-.student-mini-profile img{
-
-width:40px;
-
-height:40px;
-
-border-radius:50%;
-
-object-fit:cover;
-
-}
-
-
-/* =========================================================
-                    EMPTY TABLE
-========================================================= */
-
-.empty-attendance{
-
-text-align:center;
-
-padding:35px;
-
-color:#6b7280;
-
-}
-
-.empty-attendance i{
-
-font-size:45px;
-
-margin-bottom:12px;
-
-color:#c4b5fd;
-
-}
-
-
-/* =========================================================
-                    AI INFO
-========================================================= */
-
-.ai-information{
-
-padding:18px;
-
-border-radius:15px;
-
-background:rgba(108,76,255,.06);
-
-border:1px solid rgba(108,76,255,.15);
-
-}
-
-.ai-information-item{
-
-display:flex;
-
-gap:12px;
-
-margin-bottom:15px;
-
-}
-
-.ai-information-item:last-child{
-
-margin-bottom:0;
-
-}
-
-.ai-information-item i{
-
-color:#6c4cff;
-
-margin-top:4px;
-
-}
-
-
-/* =========================================================
-                    DARK MODE
-========================================================= */
-
-body.dark .face-page-header p{
-
-color:#cbd5e1;
-
-}
-
-body.dark .face-stat-card,
-body.dark .face-card{
-
-background:#1f1f1f;
-
-color:#ffffff;
-
-}
-
-body.dark .face-card-title h4{
-
-color:#ffffff;
-
-}
-
-body.dark .face-stat-card small,
-body.dark .student-info small{
-
-color:#cbd5e1;
-
-}
-
-body.dark .status-row{
-
-border-color:#444444;
-
-}
-
-body.dark .student-info{
-
-background:#292929;
-
-border-color:#444444;
-
-}
-
-body.dark .attendance-table thead th{
-
-background:#292929;
-
-color:#c4b5fd;
-
-}
-
-body.dark .attendance-table tbody td{
-
-background:#1f1f1f;
-
-color:#ffffff;
-
-border-color:#444444;
-
-}
-
-body.dark .ai-information{
-
-background:#292929;
-
-border-color:#444444;
-
-}
-
-
-/* =========================================================
-                    RESPONSIVE
-========================================================= */
-
-@media(max-width:1100px){
-
-.face-attendance-grid{
-
-grid-template-columns:1fr;
-
-}
-
-}
-
-@media(max-width:768px){
-
-.class-control-grid{
-
-grid-template-columns:1fr;
-
-}
-
-}
-
-@media(max-width:576px){
-
-.face-camera-area{
-
-height:360px;
-
-}
-
-.student-information-grid{
-
-grid-template-columns:1fr;
-
-}
-
-.face-card{
-
-padding:18px;
-
-}
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Face Attendance | Teacher Panel</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../../css/teacher-dashboard.css">
+
+    <style>
+        :root {
+            --primary: #5b2cff;
+            --primary-light: #7a4dff;
+            --blue: #3b82f6;
+            --page: #f4f6fc;
+            --surface: #ffffff;
+            --surface-soft: #f8f7ff;
+            --text: #1f2333;
+            --muted: #73788a;
+            --border: #e6e9f2;
+            --success: #16a34a;
+            --danger: #dc2626;
+            --warning: #d97706;
+            --shadow: 0 10px 28px rgba(37, 33, 69, .09);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: var(--page);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dashboard-shell {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .teacher-sidebar {
+            background: linear-gradient(180deg, var(--primary), var(--primary-light));
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            left: 0;
+            overflow-y: auto;
+            padding: 24px 18px;
+            position: fixed;
+            top: 0;
+            width: 270px;
+            z-index: 100;
+        }
+
+        .brand-box {
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .brand-box img {
+            background: #fff;
+            border-radius: 50%;
+            height: 82px;
+            margin-bottom: 10px;
+            object-fit: contain;
+            padding: 7px;
+            width: 82px;
+        }
+
+        .brand-box h3 {
+            font-size: 22px;
+            font-weight: 800;
+            margin: 0 0 3px;
+        }
+
+        .brand-box p {
+            font-size: 13px;
+            margin: 0;
+            opacity: .9;
+        }
+
+        .teacher-menu li {
+            margin: 5px 0;
+        }
+
+        .teacher-menu a {
+            align-items: center;
+            border-radius: 12px;
+            color: #fff;
+            display: flex;
+            font-size: 13px;
+            gap: 13px;
+            padding: 11px 14px;
+            transition: .2s ease;
+        }
+
+        .teacher-menu a i {
+            font-size: 16px;
+            text-align: center;
+            width: 21px;
+        }
+
+        .teacher-menu li.active a,
+        .teacher-menu a:hover {
+            background: #fff;
+            color: var(--primary);
+            font-weight: 600;
+            transform: translateX(4px);
+        }
+
+        .teacher-main {
+            margin-left: 270px;
+            padding: 28px;
+            width: calc(100% - 270px);
+        }
+
+        .topbar {
+            align-items: center;
+            display: flex;
+            gap: 18px;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .topbar h2 {
+            font-size: 27px;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .topbar p {
+            color: var(--muted);
+            font-size: 13px;
+            margin: 4px 0 0;
+        }
+
+        .top-actions {
+            align-items: center;
+            display: flex;
+            gap: 12px;
+        }
+
+        .icon-button {
+            align-items: center;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            color: var(--text);
+            display: flex;
+            height: 44px;
+            justify-content: center;
+            width: 44px;
+        }
+
+        .top-profile {
+            align-items: center;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            display: flex;
+            gap: 10px;
+            padding: 6px 14px 6px 7px;
+        }
+
+        .top-profile img {
+            border-radius: 50%;
+            height: 38px;
+            object-fit: cover;
+            width: 38px;
+        }
+
+        .top-profile strong {
+            display: block;
+            font-size: 12px;
+        }
+
+        .top-profile small {
+            color: var(--muted);
+            display: block;
+            font-size: 10px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #5b2cff, #7548ff, #3b82f6);
+            border-radius: 24px;
+            box-shadow: 0 16px 35px rgba(91, 44, 255, .2);
+            color: #fff;
+            margin-bottom: 22px;
+            overflow: hidden;
+            padding: 30px 34px;
+            position: relative;
+        }
+
+        .hero::after {
+            background: rgba(255, 255, 255, .11);
+            border-radius: 50%;
+            content: "";
+            height: 260px;
+            position: absolute;
+            right: -80px;
+            top: -130px;
+            width: 260px;
+        }
+
+        .hero h1 {
+            font-size: 31px;
+            font-weight: 800;
+            margin: 0 0 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 14px;
+            margin: 0;
+            max-width: 720px;
+            opacity: .92;
+            position: relative;
+            z-index: 1;
+        }
+
+        .message-box {
+            border-radius: 13px;
+            display: none;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            padding: 13px 16px;
+        }
+
+        .message-box.info {
+            background: #eaf2ff;
+            color: #1d4ed8;
+        }
+
+        .message-box.success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .message-box.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .stats-grid {
+            display: grid;
+            gap: 18px;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            margin-bottom: 22px;
+        }
+
+        .stat-card,
+        .panel-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-card {
+            align-items: center;
+            display: flex;
+            gap: 14px;
+            padding: 20px;
+        }
+
+        .stat-icon {
+            align-items: center;
+            background: #eee9ff;
+            border-radius: 14px;
+            color: var(--primary);
+            display: flex;
+            flex: 0 0 auto;
+            font-size: 21px;
+            height: 50px;
+            justify-content: center;
+            width: 50px;
+        }
+
+        .stat-card:nth-child(2) .stat-icon {
+            background: #e6f7ee;
+            color: #15945d;
+        }
+
+        .stat-card:nth-child(3) .stat-icon {
+            background: #e7efff;
+            color: #2563eb;
+        }
+
+        .stat-card:nth-child(4) .stat-icon {
+            background: #fff0dc;
+            color: #ea7a0a;
+        }
+
+        .stat-card small {
+            color: var(--muted);
+            display: block;
+            font-size: 12px;
+            margin-bottom: 2px;
+        }
+
+        .stat-card h3 {
+            font-size: 22px;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .attendance-grid {
+            display: grid;
+            gap: 22px;
+            grid-template-columns: minmax(0, 1.25fr) minmax(320px, .75fr);
+            margin-bottom: 22px;
+        }
+
+        .panel-card {
+            padding: 22px;
+        }
+
+        .panel-title {
+            align-items: center;
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            margin-bottom: 17px;
+        }
+
+        .panel-title h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .panel-title h4 i {
+            color: var(--primary);
+            margin-right: 8px;
+        }
+
+        .camera-area {
+            align-items: center;
+            background: #0d1526;
+            border: 2px solid #27334c;
+            border-radius: 18px;
+            display: flex;
+            justify-content: center;
+            min-height: 420px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #attendanceVideo {
+            display: none;
+            height: 100%;
+            left: 0;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            transform: scaleX(-1);
+            width: 100%;
+        }
+
+        #attendanceCanvas {
+            display: none;
+        }
+
+        .camera-placeholder {
+            color: #c8d1e5;
+            max-width: 420px;
+            padding: 35px;
+            text-align: center;
+        }
+
+        .camera-placeholder i {
+            color: #8b72ff;
+            font-size: 58px;
+            margin-bottom: 16px;
+        }
+
+        .camera-placeholder h3 {
+            color: #fff;
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+        .camera-placeholder p {
+            font-size: 13px;
+            line-height: 1.7;
+            margin: 7px 0 0;
+        }
+
+        .face-frame {
+            border: 3px solid #43e68b;
+            border-radius: 45% 45% 42% 42%;
+            box-shadow: 0 0 24px rgba(67, 230, 139, .45);
+            display: none;
+            height: 250px;
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 205px;
+            z-index: 2;
+        }
+
+        .scan-line {
+            animation: scan 1.8s linear infinite;
+            background: #43e68b;
+            box-shadow: 0 0 12px #43e68b;
+            display: none;
+            height: 2px;
+            left: 15%;
+            position: absolute;
+            top: 25%;
+            width: 70%;
+            z-index: 3;
+        }
+
+        @keyframes scan {
+            0% { top: 25%; }
+            50% { top: 74%; }
+            100% { top: 25%; }
+        }
+
+        .camera-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 17px;
+        }
+
+        .status-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .status-row {
+            align-items: center;
+            background: var(--surface-soft);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            font-size: 13px;
+            justify-content: space-between;
+            padding: 12px 13px;
+        }
+
+        .teacher-result {
+            border-top: 1px solid var(--border);
+            margin-top: 18px;
+            padding-top: 18px;
+            text-align: center;
+        }
+
+        .teacher-result img {
+            border: 3px solid #dcd3ff;
+            border-radius: 50%;
+            height: 88px;
+            object-fit: cover;
+            width: 88px;
+        }
+
+        .teacher-result h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 10px 0 3px;
+        }
+
+        .teacher-result p {
+            color: var(--muted);
+            font-size: 12px;
+            margin: 0;
+        }
+
+        .confidence-wrap {
+            display: none;
+            margin-top: 16px;
+            text-align: left;
+        }
+
+        .history-table {
+            margin: 0;
+        }
+
+        .history-table th {
+            border-bottom-color: var(--border);
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .history-table td {
+            border-bottom-color: var(--border);
+            color: var(--text);
+            font-size: 13px;
+            padding-bottom: 13px;
+            padding-top: 13px;
+            vertical-align: middle;
+        }
+
+        .status-pill {
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 10px;
+            text-transform: capitalize;
+        }
+
+        .status-pill.present {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-pill.absent {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .status-pill.leave {
+            background: #fff3cd;
+            color: #8a6100;
+        }
+
+        .empty-row {
+            color: var(--muted) !important;
+            padding: 35px !important;
+            text-align: center;
+        }
+
+        body.dark {
+            --page: #0b1220;
+            --surface: #111c2f;
+            --surface-soft: #162238;
+            --text: #f4f7ff;
+            --muted: #9cabc4;
+            --border: #273650;
+            --shadow: 0 10px 28px rgba(0, 0, 0, .24);
+        }
+
+        body.dark .form-control,
+        body.dark .form-select {
+            background: #162238;
+            border-color: var(--border);
+            color: var(--text);
+        }
+
+        @media (max-width: 1100px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .attendance-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .teacher-sidebar {
+                height: auto;
+                position: static;
+                width: 100%;
+            }
+
+            .dashboard-shell {
+                display: block;
+            }
+
+            .teacher-main {
+                margin-left: 0;
+                padding: 18px;
+                width: 100%;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .camera-area {
+                min-height: 340px;
+            }
+        }
+
+        /* ==================================================
+                    SHARED TEACHER SIDEBAR
+        ================================================== */
+
+        :root {
+            --teacher-sidebar-width: 300px;
+        }
+
+        .teacher-sidebar {
+            background: linear-gradient(
+                180deg,
+                #303a4b 0%,
+                #263650 48%,
+                #1a2d51 100%
+            );
+            border-right: 1px solid rgba(255, 255, 255, .12);
+            box-shadow: 12px 0 30px rgba(15, 23, 42, .16);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            left: 0;
+            overflow: hidden;
+            padding: 0;
+            position: fixed;
+            top: 0;
+            width: var(--teacher-sidebar-width);
+            z-index: 1200;
+        }
+
+        .brand-box {
+            flex: 0 0 auto;
+            margin: 0;
+            padding: 29px 22px 24px;
+            text-align: center;
+        }
+
+        .brand-box img {
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .18);
+            height: 103px;
+            margin: 0 auto 15px;
+            object-fit: contain;
+            padding: 6px;
+            width: 103px;
+        }
+
+        .brand-box h3 {
+            color: #fff;
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.42;
+            margin: 0;
+        }
+
+        .brand-box p {
+            color: rgba(255, 255, 255, .78);
+            font-size: 15px;
+            font-weight: 500;
+            margin: 13px 0 0;
+        }
+
+        .teacher-menu {
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+            padding: 26px 27px 34px;
+            scrollbar-color: #7357ff rgba(255, 255, 255, .16);
+            scrollbar-width: thin;
+        }
+
+        .teacher-menu::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .teacher-menu::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, .16);
+            border-radius: 10px;
+        }
+
+        .teacher-menu::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #7c3cff, #3b82f6);
+            border-radius: 10px;
+        }
+
+        .teacher-menu li {
+            margin: 0 0 8px;
+        }
+
+        .teacher-menu a {
+            align-items: center;
+            border-radius: 14px;
+            color: rgba(255, 255, 255, .84);
+            display: flex;
+            font-size: 16px;
+            font-weight: 600;
+            gap: 17px;
+            line-height: 1.3;
+            min-height: 58px;
+            padding: 14px 18px;
+            transition: background .2s ease, color .2s ease, transform .2s ease;
+        }
+
+        .teacher-menu a i {
+            flex: 0 0 25px;
+            font-size: 20px;
+            text-align: center;
+            width: 25px;
+        }
+
+        .teacher-menu a:hover {
+            background: rgba(255, 255, 255, .09);
+            color: #fff;
+            font-weight: 600;
+            transform: translateX(3px);
+        }
+
+        .teacher-menu li.active a {
+            background: linear-gradient(135deg, #7652ff 0%, #6b31ff 100%);
+            box-shadow: 0 12px 24px rgba(109, 52, 255, .32);
+            color: #fff;
+            font-weight: 700;
+            transform: none;
+        }
+
+        .teacher-main {
+            margin-left: var(--teacher-sidebar-width);
+            padding: 28px;
+            width: calc(100% - var(--teacher-sidebar-width));
+        }
+
+        .teacher-sidebar-overlay {
+            display: none;
+        }
+
+        .teacher-sidebar-toggle {
+            align-items: center;
+            background: linear-gradient(135deg, #7652ff, #5d2be8);
+            border: 0;
+            border-radius: 12px;
+            box-shadow: 0 8px 18px rgba(108, 76, 255, .24);
+            color: #fff;
+            display: none;
+            flex: 0 0 44px;
+            height: 44px;
+            justify-content: center;
+            width: 44px;
+        }
+
+        @media (max-width: 1200px) and (min-width: 761px) {
+            :root {
+                --teacher-sidebar-width: 270px;
+            }
+
+            .teacher-menu {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .brand-box h3 {
+                font-size: 19px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .dashboard-shell {
+                display: block;
+            }
+
+            .teacher-sidebar {
+                height: 100vh;
+                position: fixed;
+                transform: translateX(-105%);
+                transition: transform .28s ease;
+                width: min(300px, 86vw);
+            }
+
+            body.teacher-sidebar-open {
+                overflow: hidden;
+            }
+
+            body.teacher-sidebar-open .teacher-sidebar {
+                transform: translateX(0);
+            }
+
+            .teacher-sidebar-overlay {
+                backdrop-filter: blur(2px);
+                background: rgba(2, 6, 23, .58);
+                display: block;
+                inset: 0;
+                opacity: 0;
+                position: fixed;
+                transition: opacity .25s ease, visibility .25s ease;
+                visibility: hidden;
+                z-index: 1150;
+            }
+
+            body.teacher-sidebar-open .teacher-sidebar-overlay {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .teacher-sidebar-toggle {
+                display: flex;
+            }
+
+            .teacher-main {
+                margin-left: 0;
+                padding: 18px;
+                width: 100%;
+            }
+
+            .topbar {
+                align-items: center;
+                flex-direction: row;
+            }
+
+            .top-actions {
+                flex-wrap: wrap;
+                justify-content: flex-end;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .brand-box {
+                padding-top: 22px;
+            }
+
+            .brand-box img {
+                height: 86px;
+                width: 86px;
+            }
+
+            .brand-box h3 {
+                font-size: 18px;
+            }
+
+            .teacher-menu {
+                padding: 20px 18px 28px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .top-actions {
+                justify-content: flex-start;
+                width: 100%;
+            }
+        }
+
+        /* ==================================================
+             HOD SIDEBAR STYLE MATCHED FOR TEACHER PANEL
+        ================================================== */
+
+        .teacher-sidebar {
+            background: linear-gradient(180deg, #5b2be0, #7b52ff);
+            box-shadow: none;
+            color: #fff;
+            display: block;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 20px;
+            position: fixed;
+            width: 260px;
+            z-index: 100;
+        }
+
+        .brand-box {
+            margin-bottom: 30px;
+            padding: 0;
+            text-align: center;
+        }
+
+        .brand-box img {
+            background: transparent;
+            border-radius: 50%;
+            box-shadow: none;
+            height: 70px;
+            margin: 0 0 10px;
+            object-fit: contain;
+            padding: 0;
+            width: 70px;
+        }
+
+        .brand-box h3 {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .teacher-menu {
+            list-style: none;
+            overflow: visible;
+            padding: 0;
+        }
+
+        .teacher-menu li {
+            margin: 12px 0;
+        }
+
+        .teacher-menu a {
+            align-items: center;
+            border-radius: 10px;
+            color: #fff;
+            display: flex;
+            font-size: 16px;
+            font-weight: 400;
+            gap: 12px;
+            line-height: normal;
+            min-height: auto;
+            padding: 12px 15px;
+            transition: .3s;
+        }
+
+        .teacher-menu a i {
+            flex: 0 0 auto;
+            font-size: 16px;
+            text-align: left;
+            width: auto;
+        }
+
+        .teacher-menu a:hover,
+        .teacher-menu li.active a {
+            background: rgba(255, 255, 255, .18);
+            box-shadow: none;
+            color: #fff;
+            font-weight: 400;
+            transform: none;
+        }
+
+        .teacher-main {
+            margin-left: 260px;
+            padding: 25px;
+            width: calc(100% - 260px);
+        }
+
+        .teacher-sidebar-overlay,
+        .teacher-sidebar-toggle {
+            display: none !important;
+        }
+
+        @media (max-width: 992px) {
+            .dashboard-shell {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .teacher-sidebar {
+                height: auto;
+                position: relative;
+                transform: none;
+                width: 100%;
+            }
+
+            .teacher-main {
+                margin-left: 0;
+                padding: 25px;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .teacher-main {
+                padding: 18px;
+            }
+        }
+
+        /* ==================================================
+              FINAL TEACHER SIDEBAR + REFERENCE LAYOUT
+        ================================================== */
+
+        :root {
+            --teacher-sidebar-width: 300px;
+        }
+
+        .teacher-sidebar {
+            background: linear-gradient(
+                180deg,
+                #303a4b 0%,
+                #263650 48%,
+                #1a2d51 100%
+            );
+            border-right: 1px solid rgba(255, 255, 255, .12);
+            box-shadow: 12px 0 30px rgba(15, 23, 42, .16);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+            padding: 0;
+            position: fixed;
+            width: var(--teacher-sidebar-width);
+            z-index: 1200;
+        }
+
+        .brand-box {
+            flex: 0 0 auto;
+            margin: 0;
+            padding: 29px 22px 24px;
+            text-align: center;
+        }
+
+        .brand-box img {
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .18);
+            height: 103px;
+            margin: 0 auto 15px;
+            object-fit: contain;
+            padding: 6px;
+            width: 103px;
+        }
+
+        .brand-box h3 {
+            color: #fff;
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.42;
+            margin: 0;
+        }
+
+        .brand-box p {
+            color: rgba(255, 255, 255, .78);
+            font-size: 15px;
+            font-weight: 500;
+            margin: 13px 0 0;
+        }
+
+        .teacher-menu {
+            flex: 1;
+            list-style: none;
+            min-height: 0;
+            overflow-y: auto;
+            padding: 26px 27px 34px;
+            scrollbar-color: #7357ff rgba(255, 255, 255, .16);
+            scrollbar-width: thin;
+        }
+
+        .teacher-menu li {
+            margin: 0 0 8px;
+        }
+
+        .teacher-menu a {
+            align-items: center;
+            border-radius: 14px;
+            color: rgba(255, 255, 255, .84);
+            display: flex;
+            font-size: 16px;
+            font-weight: 600;
+            gap: 17px;
+            line-height: 1.3;
+            min-height: 58px;
+            padding: 14px 18px;
+            transition: background .2s ease, color .2s ease, transform .2s ease;
+        }
+
+        .teacher-menu a i {
+            flex: 0 0 25px;
+            font-size: 20px;
+            text-align: center;
+            width: 25px;
+        }
+
+        .teacher-menu a:hover {
+            background: rgba(255, 255, 255, .09);
+            color: #fff;
+            font-weight: 600;
+            transform: translateX(3px);
+        }
+
+        .teacher-menu li.active a {
+            background: linear-gradient(135deg, #7652ff 0%, #6b31ff 100%);
+            box-shadow: 0 12px 24px rgba(109, 52, 255, .32);
+            color: #fff;
+            font-weight: 700;
+            transform: none;
+        }
+
+        .teacher-main {
+            margin-left: var(--teacher-sidebar-width);
+            padding: 25px;
+            width: calc(100% - var(--teacher-sidebar-width));
+        }
+
+        .teacher-sidebar-overlay {
+            display: none;
+        }
+
+        .teacher-sidebar-toggle {
+            align-items: center;
+            background: linear-gradient(135deg, #7652ff, #5d2be8);
+            border: 0;
+            border-radius: 12px;
+            color: #fff;
+            display: none;
+            flex: 0 0 44px;
+            height: 44px;
+            justify-content: center;
+            width: 44px;
+        }
+
+        .topbar {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 22px;
+            padding: 15px 20px;
+        }
+
+        .hero {
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            color: var(--text);
+            margin-bottom: 18px;
+            padding: 0 4px;
+        }
+
+        .hero::after {
+            display: none;
+        }
+
+        .hero h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            max-width: 900px;
+        }
+
+        .stats-grid {
+            display: none !important;
+        }
+
+        .attendance-grid {
+            align-items: start;
+            display: grid;
+            gap: 22px;
+            grid-template-columns: minmax(0, 1.45fr) minmax(310px, .95fr);
+            margin-bottom: 22px;
+        }
+
+        .attendance-left,
+        .attendance-side {
+            display: grid;
+            gap: 22px;
+        }
+
+        .attendance-grid > .scanner-card {
+            grid-column: 1;
+            grid-row: 1 / span 2;
+        }
+
+        .attendance-grid > .compact-status,
+        .attendance-grid > .recognized-card {
+            grid-column: 2;
+        }
+
+        .attendance-grid > .instructions-card {
+            grid-column: 1;
+        }
+
+        .attendance-side .panel-card,
+        .attendance-left .panel-card {
+            margin: 0;
+        }
+
+        .time-card {
+            align-items: center;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 137px;
+            padding: 22px;
+            text-align: center;
+        }
+
+        .time-card i {
+            color: var(--primary);
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .time-card strong {
+            display: block;
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .time-card small {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .compact-status .status-row {
+            background: transparent;
+            border: 0;
+            border-bottom: 1px solid var(--border);
+            border-radius: 0;
+            padding: 12px 0;
+        }
+
+        .compact-status .status-row:last-child {
+            border-bottom: 0;
+        }
+
+        .recognized-card .teacher-result {
+            border-top: 0;
+            margin-top: 0;
+            min-height: 170px;
+            padding-top: 4px;
+        }
+
+        .instructions-grid {
+            display: grid;
+            gap: 14px 24px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .instruction-item {
+            align-items: flex-start;
+            display: flex;
+            gap: 12px;
+        }
+
+        .instruction-item > i {
+            color: var(--primary);
+            font-size: 18px;
+            margin-top: 2px;
+            width: 20px;
+        }
+
+        .instruction-item strong {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+
+        .instruction-item small {
+            color: var(--muted);
+            display: block;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 1200px) and (min-width: 901px) {
+            :root {
+                --teacher-sidebar-width: 270px;
+            }
+
+            .teacher-menu {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .brand-box h3 {
+                font-size: 19px;
+            }
+
+            .attendance-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .attendance-grid > .scanner-card,
+            .attendance-grid > .time-card,
+            .attendance-grid > .compact-status,
+            .attendance-grid > .recognized-card,
+            .attendance-grid > .instructions-card {
+                grid-column: 1;
+                grid-row: auto;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .dashboard-shell {
+                display: block;
+            }
+
+            .teacher-sidebar {
+                height: 100vh;
+                position: fixed;
+                transform: translateX(-105%);
+                transition: transform .28s ease;
+                width: min(300px, 86vw);
+            }
+
+            body.teacher-sidebar-open {
+                overflow: hidden;
+            }
+
+            body.teacher-sidebar-open .teacher-sidebar {
+                transform: translateX(0);
+            }
+
+            .teacher-sidebar-overlay {
+                background: rgba(2, 6, 23, .58);
+                display: block;
+                inset: 0;
+                opacity: 0;
+                position: fixed;
+                transition: opacity .25s ease, visibility .25s ease;
+                visibility: hidden;
+                z-index: 1150;
+            }
+
+            body.teacher-sidebar-open .teacher-sidebar-overlay {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .teacher-sidebar-toggle {
+                display: flex;
+            }
+
+            .teacher-main {
+                margin-left: 0;
+                padding: 18px;
+                width: 100%;
+            }
+
+            .attendance-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .brand-box {
+                padding-top: 22px;
+            }
+
+            .brand-box img {
+                height: 86px;
+                width: 86px;
+            }
+
+            .teacher-menu {
+                padding: 20px 18px 28px;
+            }
+
+            .instructions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .top-actions {
+                justify-content: flex-start;
+                width: 100%;
+            }
+        }
+    </style>
+
+    <style id="teacher-hod-theme-alignment">
+        :root {
+            --primary: #6f36ff;
+            --primary-light: #7c55ff;
+        }
+
+        body:not(.dark) .teacher-sidebar {
+            background:
+                radial-gradient(circle at 8% 0%, rgba(255,255,255,.14), transparent 32%),
+                linear-gradient(180deg, #5a27ec 0%, #6735f4 48%, #7549ff 100%) !important;
+            border-right: 0 !important;
+            box-shadow: none !important;
+        }
+
+        body.dark .teacher-sidebar {
+            background:
+                radial-gradient(circle at 8% 0%, rgba(111,54,255,.09), transparent 31%),
+                linear-gradient(180deg, #111111 0%, #0e0e0e 100%) !important;
+            border-right: 0 !important;
+            box-shadow: none !important;
+        }
+
+        .teacher-menu a,
+        .teacher-menu a i {
+            color: #ffffff !important;
+        }
+
+        .teacher-menu a i {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body:not(.dark) .teacher-menu li.active a {
+            background: rgba(255,255,255,.20) !important;
+            box-shadow: 0 10px 24px rgba(50,21,151,.20) !important;
+        }
+
+        body.dark .teacher-menu li.active a {
+            background: linear-gradient(100deg, #7742ff, #6634f4) !important;
+            box-shadow: 0 10px 24px rgba(91,47,226,.28) !important;
+        }
+
+        .teacher-menu a:hover {
+            background: rgba(255,255,255,.11) !important;
+            transform: none !important;
+        }
+
+        .topbar {
+            min-height: 100px;
+            padding: 18px 28px !important;
+            border-radius: 22px !important;
+            box-shadow: 0 10px 26px rgba(28,37,61,.07) !important;
+        }
+
+        body.dark .topbar {
+            background: #111a2b !important;
+            border-color: #263247 !important;
+            box-shadow: 0 10px 28px rgba(0,0,0,.16) !important;
+        }
+
+        body:not(.dark) .hero {
+            color: #ffffff !important;
+            background:
+                radial-gradient(circle at 91% 12%, rgba(255,255,255,.17), transparent 28%),
+                linear-gradient(135deg, #6942ff 0%, #7445f6 56%, #813ee8 100%) !important;
+            border-radius: 24px !important;
+            padding: 30px 34px !important;
+            box-shadow: 0 10px 26px rgba(55,30,133,.12) !important;
+        }
+
+        body:not(.dark) .hero h1,
+        body:not(.dark) .hero p {
+            color: #ffffff !important;
+        }
+
+        body.dark .hero {
+            color: #ffffff !important;
+            background:
+                radial-gradient(circle at 91% 12%, rgba(126,78,255,.17), transparent 28%),
+                linear-gradient(135deg, #1b283c 0%, #1d2b42 60%, #24324b 100%) !important;
+            border: 1px solid #293750 !important;
+            border-radius: 24px !important;
+            padding: 30px 34px !important;
+            box-shadow: 0 10px 28px rgba(0,0,0,.16) !important;
+        }
+
+        body.dark .hero h1,
+        body.dark .hero p {
+            color: #ffffff !important;
+        }
+
+        .hero::after {
+            display: block !important;
+            background: rgba(255,255,255,.10) !important;
+        }
+
+        .icon-button,
+        .icon-button:hover,
+        .camera-actions .btn,
+        .camera-actions .btn:hover {
+            box-shadow: none !important;
+            transform: none !important;
+        }
+
+        .panel-card[aria-hidden="true"] {
+            display: none !important;
+        }
+
+        @media (max-width: 900px) {
+            .topbar {
+                min-height: auto;
+                padding: 16px 20px !important;
+            }
+        }
+    </style>
 </head>
 
-
 <body>
-
-
-<div class="wrapper">
-
-
-<!-- =========================================================
-                        SIDEBAR
-========================================================= -->
-
-<aside class="sidebar">
-
-
-<div class="logo">
-
-<img
-src="../../images/logo.png"
-alt="Logo">
-
-<h3>
-Teacher Panel
-</h3>
-
-</div>
-
-
-<ul class="menu">
-
-
-<li>
-
-<a href="teacher-dashboard.html">
-
-<i class="fa-solid fa-house"></i>
-
-Dashboard
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="profile.html">
-
-<i class="fa-solid fa-user"></i>
-
-My Profile
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="my-courses.html">
-
-<i class="fa-solid fa-book-open"></i>
-
-My Courses
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="timetable.html">
-
-<i class="fa-solid fa-calendar-days"></i>
-
-Timetable
-
-</a>
-
-</li>
-
-
-<li>
-
-<a
-href="attendance-report.html">
-
-<i class="fa-solid fa-clipboard-user"></i>
-
-Attendance
-
-</a>
-
-</li>
-
-
-<li class="active">
-
-<a href="face-attendance.html">
-
-<i class="fa-solid fa-face-smile"></i>
-
-Face Attendance
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="assignments.html">
-
-<i class="fa-solid fa-file-pen"></i>
-
-Assignments
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="leave-request.html">
-
-<i class="fa-solid fa-calendar-minus"></i>
-
-Leave
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="notice.html">
-
-<i class="fa-solid fa-bullhorn"></i>
-
-Notices
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="academic-calendar.html">
-
-<i class="fa-solid fa-calendar-check"></i>
-
-Academic Calendar
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="ai-assistant.html">
-
-<i class="fa-solid fa-robot"></i>
-
-AI Assistant
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="settings.html">
-
-<i class="fa-solid fa-gear"></i>
-
-Settings
-
-</a>
-
-</li>
-
-
-<li>
-
-<a href="teacher-login.html">
-
-<i class="fa-solid fa-right-from-bracket"></i>
-
-Logout
-
-</a>
-
-</li>
-
-
-</ul>
-
-</aside>
-
-
-<!-- =========================================================
-                    MAIN CONTENT
-========================================================= -->
-
-<main class="main-content">
-
-
-<!-- =========================================================
-                    TOP NAVBAR
-========================================================= -->
-
-<nav class="top-navbar">
-
-
-<h3>
-AI Face Attendance
-</h3>
-
-
-<div class="top-right">
-
-
-<div class="search-box">
-
-<i class="fa-solid fa-magnifying-glass"></i>
-
-<input
-type="text"
-id="searchBox"
-placeholder="Search...">
-
-</div>
-
-
-<button
-id="themeToggle"
-class="icon-btn"
-title="Dark / Light Mode">
-
-<i class="fa-solid fa-moon"></i>
-
-</button>
-
-
-<!-- Notifications -->
-
-<div class="dropdown">
-
-
-<button
-class="icon-btn position-relative"
-data-bs-toggle="dropdown">
-
-<i class="fa-regular fa-bell"></i>
-
-<span
-class="badge-count"
-id="notificationCount">
-
-4
-
-</span>
-
-</button>
-
-
-<ul
-class="dropdown-menu dropdown-menu-end notification-menu">
-
-<li class="dropdown-header">
-Notifications
-</li>
-
-<li>
-
-<a
-class="dropdown-item"
-href="notification.html">
-
-📢 Faculty Meeting Tomorrow
-
-</a>
-
-</li>
-
-<li>
-
-<a
-class="dropdown-item"
-href="notification.html">
-
-📄 Assignment Deadline
-
-</a>
-
-</li>
-
-<li>
-
-<a
-class="dropdown-item"
-href="notification.html">
-
-✅ Attendance Updated
-
-</a>
-
-</li>
-
-<li>
-
-<a
-class="dropdown-item"
-href="notification.html">
-
-🎓 Academic Notice
-
-</a>
-
-</li>
-
-</ul>
-
-</div>
-
-
-<!-- Profile -->
-
-<div class="dropdown">
-
-
-<div
-class="profile"
-data-bs-toggle="dropdown">
-
-<img
-src="https://i.pravatar.cc/50?img=47"
-alt="Teacher">
-
-<span>
-Welcome, Teacher
-</span>
-
-<i class="fa-solid fa-angle-down"></i>
-
-</div>
-
-
-<ul
-class="dropdown-menu dropdown-menu-end profile-menu">
-
-<li>
-
-<a
-class="dropdown-item"
-href="my-profile.html">
-
-<i class="fa-solid fa-user"></i>
-
-My Profile
-
-</a>
-
-</li>
-
-<li>
-
-<a
-class="dropdown-item"
-href="change-password.html">
-
-<i class="fa-solid fa-lock"></i>
-
-Change Password
-
-</a>
-
-</li>
-
-<li>
-
-<a
-class="dropdown-item"
-href="settings.html">
-
-<i class="fa-solid fa-gear"></i>
-
-Settings
-
-</a>
-
-</li>
-
-<li>
-
-<hr class="dropdown-divider">
-
-</li>
-
-<li>
-
-<a
-class="dropdown-item text-danger"
-href="teacher-login.html">
-
-<i class="fa-solid fa-right-from-bracket"></i>
-
-Logout
-
-</a>
-
-</li>
-
-</ul>
-
-</div>
-
-
-</div>
-
-</nav>
-
-
-<!-- =========================================================
-                    PAGE HEADER
-========================================================= -->
-
-<div class="face-page-header">
-
-
-<div>
-
-<h2>
-
-<i
-class="fa-solid fa-face-viewfinder"
-style="color:#6c4cff;">
-</i>
-
-AI Face Attendance
-
-</h2>
-
-<p>
-
-Recognize students using AI Face Recognition
-and mark attendance automatically.
-
-</p>
-
-</div>
-
-
-<div class="d-flex gap-2 flex-wrap">
-
-<a
-href="attendance.html"
-class="btn btn-outline-primary">
-
-<i class="fa-solid fa-list-check me-2"></i>
-
-Manual Attendance
-
-</a>
-
-<button
-type="button"
-class="btn btn-primary"
-id="downloadAttendanceBtn">
-
-<i class="fa-solid fa-download me-2"></i>
-
-Download Report
-
-</button>
-
-</div>
-
-
-</div>
-
-
-<!-- =========================================================
-                    STATISTICS
-========================================================= -->
-
-<div class="row g-3">
-
-
-<div class="col-xl-3 col-md-6">
-
-<div class="face-stat-card">
-
-<div class="face-stat-icon purple">
-
-<i class="fa-solid fa-users"></i>
-
-</div>
-
-<div>
-
-<small>
-Total Students
-</small>
-
-<h3 id="totalStudentsCount">
-45
-</h3>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="col-xl-3 col-md-6">
-
-<div class="face-stat-card">
-
-<div class="face-stat-icon green">
-
-<i class="fa-solid fa-user-check"></i>
-
-</div>
-
-<div>
-
-<small>
-Present Today
-</small>
-
-<h3 id="presentStudentsCount">
-0
-</h3>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="col-xl-3 col-md-6">
-
-<div class="face-stat-card">
-
-<div class="face-stat-icon orange">
-
-<i class="fa-solid fa-user-xmark"></i>
-
-</div>
-
-<div>
-
-<small>
-Remaining
-</small>
-
-<h3 id="remainingStudentsCount">
-45
-</h3>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="col-xl-3 col-md-6">
-
-<div class="face-stat-card">
-
-<div class="face-stat-icon blue">
-
-<i class="fa-solid fa-percent"></i>
-
-</div>
-
-<div>
-
-<small>
-Attendance
-</small>
-
-<h3 id="attendancePercentage">
-0%
-</h3>
-
-</div>
-
-</div>
-
-</div>
-
-
-</div>
-
-
-<!-- =========================================================
-                    CLASS SELECTION
-========================================================= -->
-
-<section class="face-card mt-4">
-
-
-<div class="face-card-title">
-
-<h4>
-
-<i class="fa-solid fa-chalkboard-user me-2"></i>
-
-Class Information
-
-</h4>
-
-<span class="badge bg-success">
-Attendance Session Active
-</span>
-
-</div>
-
-
-<div class="class-control-grid">
-
-
-<div>
-
-<label class="form-label">
-Department
-</label>
-
-<select
-class="form-select"
-id="departmentSelect">
-
-<option>
-Computer Science
-</option>
-
-<option>
-Information Technology
-</option>
-
-<option>
-Mathematics
-</option>
-
-<option>
-Commerce
-</option>
-
-</select>
-
-</div>
-
-
-<div>
-
-<label class="form-label">
-Class / Semester
-</label>
-
-<select
-class="form-select"
-id="classSelect">
-
-<option>
-BCA Semester V
-</option>
-
-<option>
-BCA Semester III
-</option>
-
-<option>
-BCA Semester I
-</option>
-
-<option>
-MCA Semester III
-</option>
-
-</select>
-
-</div>
-
-
-<div>
-
-<label class="form-label">
-Subject
-</label>
-
-<select
-class="form-select"
-id="subjectSelect">
-
-<option>
-Artificial Intelligence
-</option>
-
-<option>
-Java Programming
-</option>
-
-<option>
-Database Management System
-</option>
-
-<option>
-Web Technology
-</option>
-
-</select>
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-<!-- =========================================================
-                    MAIN GRID
-========================================================= -->
-
-<div class="face-attendance-grid">
-
-
-<!-- =========================================================
-                        LEFT SIDE
-========================================================= -->
-
-<div>
-
-
-<section class="face-card">
-
-
-<div class="face-card-title">
-
-<h4>
-
-<i class="fa-solid fa-camera me-2"></i>
-
-Live Face Scanner
-
-</h4>
-
-<span
-id="cameraTopStatus"
-class="badge bg-secondary">
-
-Camera Offline
-
-</span>
-
-</div>
-
-
-<!-- CAMERA -->
-
-<div class="face-camera-area">
-
-
-<video
-id="attendanceVideo"
-autoplay
-playsinline>
-</video>
-
-
-<canvas
-id="attendanceCanvas">
-</canvas>
-
-
-<div
-id="cameraPlaceholder"
-class="camera-placeholder">
-
-<i class="fa-solid fa-face-smile"></i>
-
-<h3>
-Face Attendance Ready
-</h3>
-
-<p>
-
-Start the camera and ask the student
-to position their face inside the
-recognition frame.
-
-</p>
-
-</div>
-
-
-<div
-id="attendanceFaceFrame"
-class="attendance-face-frame">
-</div>
-
-
-<div
-id="attendanceScanLine"
-class="attendance-scan-line">
-</div>
-
-
-</div>
-
-
-<!-- BUTTONS -->
-
-<div class="camera-buttons">
-
-
-<button
-type="button"
-id="startCameraBtn"
-class="btn btn-success">
-
-<i class="fa-solid fa-video me-2"></i>
-
-Start Camera
-
-</button>
-
-
-<button
-type="button"
-id="scanFaceBtn"
-class="btn btn-primary"
-disabled>
-
-<i class="fa-solid fa-face-viewfinder me-2"></i>
-
-Scan Face
-
-</button>
-
-
-<button
-type="button"
-id="retryScanBtn"
-class="btn btn-warning"
-disabled>
-
-<i class="fa-solid fa-rotate-right me-2"></i>
-
-Retry
-
-</button>
-
-
-<button
-type="button"
-id="stopCameraBtn"
-class="btn btn-danger"
-disabled>
-
-<i class="fa-solid fa-video-slash me-2"></i>
-
-Stop Camera
-
-</button>
-
-
-</div>
-
-
-</section>
-
-
-<!-- =========================================================
-                    TODAY ATTENDANCE TABLE
-========================================================= -->
-
-<section class="face-card">
-
-
-<div class="face-card-title">
-
-<h4>
-
-<i class="fa-solid fa-list-check me-2"></i>
-
-Today's Face Attendance
-
-</h4>
-
-<span
-class="badge bg-primary"
-id="attendanceRecordBadge">
-
-0 Records
-
-</span>
-
-</div>
-
-
-<div class="attendance-table-wrapper">
-
-
-<table class="table attendance-table">
-
-
-<thead>
-
-<tr>
-
-<th>
-#
-</th>
-
-<th>
-Student
-</th>
-
-<th>
-Roll No.
-</th>
-
-<th>
-Class
-</th>
-
-<th>
-Subject
-</th>
-
-<th>
-Time
-</th>
-
-<th>
-Confidence
-</th>
-
-<th>
-Status
-</th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="attendanceTableBody">
-
-
-<tr id="emptyAttendanceRow">
-
-<td
-colspan="8"
-class="empty-attendance">
-
-<i class="fa-solid fa-clipboard-list d-block"></i>
-
-No face attendance marked yet.
-
-</td>
-
-</tr>
-
-
-</tbody>
-
-
-</table>
-
-
-</div>
-
-
-</section>
-
-
-</div>
-
-
-<!-- =========================================================
-                        RIGHT SIDE
-========================================================= -->
-
-<div>
-
-
-<!-- =========================================================
-                    RECOGNITION STATUS
-========================================================= -->
-
-<section class="face-card">
-
-
-<div class="face-card-title">
-
-<h4>
-
-<i class="fa-solid fa-microchip me-2"></i>
-
-AI Recognition Status
-
-</h4>
-
-</div>
-
-
-<div class="status-row">
-
-<span>
-Camera
-</span>
-
-<span
-id="cameraStatus"
-class="badge bg-secondary">
-
-Offline
-
-</span>
-
-</div>
-
-
-<div class="status-row">
-
-<span>
-Face Detection
-</span>
-
-<span
-id="faceDetectionStatus"
-class="badge bg-warning text-dark">
-
-Waiting...
-
-</span>
-
-</div>
-
-
-<div class="status-row">
-
-<span>
-Recognition
-</span>
-
-<span
-id="recognitionStatus"
-class="badge bg-secondary">
-
-Pending
-
-</span>
-
-</div>
-
-
-<div class="status-row">
-
-<span>
-Attendance
-</span>
-
-<span
-id="attendanceStatus"
-class="badge bg-secondary">
-
-Not Marked
-
-</span>
-
-</div>
-
-
-</section>
-
-
-<!-- =========================================================
-                    RECOGNIZED STUDENT
-========================================================= -->
-
-<section class="face-card">
-
-
-<div class="face-card-title">
-
-<h4>
-
-<i class="fa-solid fa-user-graduate me-2"></i>
-
-Recognized Student
-
-</h4>
-
-</div>
-
-
-<!-- WAITING -->
-
-<div
-id="waitingStudent"
-class="text-center py-4">
-
-<i
-class="fa-solid fa-face-meh fa-4x text-secondary mb-3">
-</i>
-
-<h5>
-Waiting for Student
-</h5>
-
-<p class="text-muted mb-0">
-
-Scan a student's face to identify them.
-
-</p>
-
-</div>
-
-
-<!-- RECOGNIZED -->
-
-<div id="recognizedStudent">
-
-
-<img
-id="recognizedStudentPhoto"
-src="../../images/default-profile.png"
-alt="Student"
-class="student-photo">
-
-
-<h3
-id="recognizedStudentName"
-class="student-name">
-
-Student Name
-
-</h3>
-
-
-<p
-id="recognizedStudentCourse"
-class="text-muted">
-
-BCA Semester V
-
-</p>
-
-
-<div class="student-information-grid">
-
-
-<div class="student-info">
-
-<small>
-Student ID
-</small>
-
-<strong id="recognizedStudentId">
---
-</strong>
-
-</div>
-
-
-<div class="student-info">
-
-<small>
-Roll Number
-</small>
-
-<strong id="recognizedStudentRoll">
---
-</strong>
-
-</div>
-
-
-<div class="student-info">
-
-<small>
-Department
-</small>
-
-<strong id="recognizedStudentDepartment">
---
-</strong>
-
-</div>
-
-
-<div class="student-info">
-
-<small>
-Recognition Time
-</small>
-
-<strong id="recognizedStudentTime">
---
-</strong>
-
-</div>
-
-
-</div>
-
-
-<!-- CONFIDENCE -->
-
-<div class="confidence-box">
-
-
-<div
-class="d-flex justify-content-between mb-2">
-
-<span>
-Recognition Confidence
-</span>
-
-<strong id="confidenceText">
-0%
-</strong>
-
-</div>
-
-
-<div class="progress">
-
-<div
-id="confidenceBar"
-class="progress-bar bg-success"
-style="width:0%;">
-</div>
-
-</div>
-
-
-</div>
-
-
-<!-- MARK BUTTON -->
-
-<button
-type="button"
-id="markAttendanceBtn"
-class="btn btn-success w-100 mt-4">
-
-<i class="fa-solid fa-user-check me-2"></i>
-
-Mark Present
-
-</button>
-
-
-<!-- SUCCESS -->
-
-<div
-id="attendanceSuccessBox"
-class="attendance-success-box">
-
-<i class="fa-solid fa-circle-check"></i>
-
-<h5 class="fw-bold">
-Attendance Marked
-</h5>
-
-<p class="mb-0">
-
-Student has been marked present successfully.
-
-</p>
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-<!-- =========================================================
-                    AI INFORMATION
-========================================================= -->
-
-<section class="face-card">
-
-
-<div class="face-card-title">
-
-<h4>
-
-<i class="fa-solid fa-robot me-2"></i>
-
-AI Attendance System
-
-</h4>
-
-</div>
-
-
-<div class="ai-information">
-
-
-<div class="ai-information-item">
-
-<i class="fa-solid fa-face-viewfinder"></i>
-
-<div>
-
-<strong>
-Face Detection
-</strong>
-
-<p class="text-muted mb-0">
-
-AI detects the student's face from
-the live camera feed.
-
-</p>
-
-</div>
-
-</div>
-
-
-<div class="ai-information-item">
-
-<i class="fa-solid fa-brain"></i>
-
-<div>
-
-<strong>
-Face Recognition
-</strong>
-
-<p class="text-muted mb-0">
-
-The captured face is compared with
-registered student face data.
-
-</p>
-
-</div>
-
-</div>
-
-
-<div class="ai-information-item">
-
-<i class="fa-solid fa-shield-halved"></i>
-
-<div>
-
-<strong>
-Duplicate Protection
-</strong>
-
-<p class="text-muted mb-0">
-
-A student cannot be marked present
-twice in the same attendance session.
-
-</p>
-
-</div>
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-</div>
-
-
-</div>
-
-
-<!-- =========================================================
-                    SUCCESS MODAL
-========================================================= -->
-
-<div
-class="modal fade"
-id="attendanceSuccessModal"
-tabindex="-1"
-aria-hidden="true">
-
-
-<div class="modal-dialog modal-dialog-centered">
-
-
-<div class="modal-content border-0 rounded-4">
-
-
-<div class="modal-header bg-success text-white">
-
-<h5 class="modal-title">
-
-<i class="fa-solid fa-circle-check me-2"></i>
-
-Attendance Successful
-
-</h5>
-
-<button
-type="button"
-class="btn-close btn-close-white"
-data-bs-dismiss="modal">
-</button>
-
-</div>
-
-
-<div class="modal-body text-center p-4">
-
-
-<i
-class="fa-solid fa-user-check fa-4x text-success mb-3">
-</i>
-
-
-<h4 class="fw-bold">
-
-Student Marked Present
-
-</h4>
-
-
-<p
-id="successModalStudent"
-class="text-muted">
-
-Student attendance has been recorded.
-
-</p>
-
-
-</div>
-
-
-<div class="modal-footer justify-content-center">
-
-<button
-type="button"
-class="btn btn-success px-4"
-data-bs-dismiss="modal">
-
-<i class="fa-solid fa-check me-2"></i>
-
-Continue
-
-</button>
-
-</div>
-
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =========================================================
-                    DUPLICATE MODAL
-========================================================= -->
-
-<div
-class="modal fade"
-id="duplicateAttendanceModal"
-tabindex="-1"
-aria-hidden="true">
-
-
-<div class="modal-dialog modal-dialog-centered">
-
-
-<div class="modal-content border-0 rounded-4">
-
-
-<div class="modal-header bg-warning">
-
-<h5 class="modal-title">
-
-<i class="fa-solid fa-triangle-exclamation me-2"></i>
-
-Attendance Already Marked
-
-</h5>
-
-<button
-type="button"
-class="btn-close"
-data-bs-dismiss="modal">
-</button>
-
-</div>
-
-
-<div class="modal-body text-center p-4">
-
-<i
-class="fa-solid fa-user-clock fa-4x text-warning mb-3">
-</i>
-
-<h4 class="fw-bold">
-
-Duplicate Attendance
-
-</h4>
-
-<p class="text-muted">
-
-This student has already been marked
-present for the current session.
-
-</p>
-
-</div>
-
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =========================================================
-                    RECOGNITION ERROR MODAL
-========================================================= -->
-
-<div
-class="modal fade"
-id="faceErrorModal"
-tabindex="-1"
-aria-hidden="true">
-
-
-<div class="modal-dialog modal-dialog-centered">
-
-
-<div class="modal-content border-0 rounded-4">
-
-
-<div class="modal-header bg-danger text-white">
-
-<h5 class="modal-title">
-
-<i class="fa-solid fa-circle-xmark me-2"></i>
-
-Recognition Failed
-
-</h5>
-
-<button
-type="button"
-class="btn-close btn-close-white"
-data-bs-dismiss="modal">
-</button>
-
-</div>
-
-
-<div class="modal-body text-center p-4">
-
-<i
-class="fa-solid fa-face-frown fa-4x text-danger mb-3">
-</i>
-
-<h4 class="fw-bold">
-
-Face Not Recognized
-
-</h4>
-
-<p
-id="faceErrorMessage"
-class="text-muted">
-
-Unable to recognize student.
-
-</p>
-
-</div>
-
-
-<div class="modal-footer justify-content-center">
-
-<button
-type="button"
-class="btn btn-danger"
-data-bs-dismiss="modal">
-
-Try Again
-
-</button>
-
-</div>
-
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =========================================================
-                        FOOTER
-========================================================= -->
-
-<footer class="footer">
-
-© 2026 Faculty Management & Productivity System |
-Teacher AI Face Attendance
-
-</footer>
-
-
-</main>
-
-</div>
-
-
-<!-- =========================================================
-                    BOOTSTRAP JS
-========================================================= -->
-
-<script
-src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-</script>
-
-
-<!-- =========================================================
-                    TEACHER COMMON JS
-========================================================= -->
-
-<script src="../../js/teacher-dashboard.js"></script>
-
-
-<!-- =========================================================
-                FACE ATTENDANCE JAVASCRIPT
-========================================================= -->
-
-<script>
-
-document.addEventListener(
-"DOMContentLoaded",
-function(){
-
-
-/* =========================================================
-                    ELEMENTS
-========================================================= */
-
-const video =
-document.getElementById("attendanceVideo");
-
-
-const canvas =
-document.getElementById("attendanceCanvas");
-
-
-const placeholder =
-document.getElementById("cameraPlaceholder");
-
-
-const faceFrame =
-document.getElementById("attendanceFaceFrame");
-
-
-const scanLine =
-document.getElementById("attendanceScanLine");
-
-
-const startCameraBtn =
-document.getElementById("startCameraBtn");
-
-
-const scanFaceBtn =
-document.getElementById("scanFaceBtn");
-
-
-const retryScanBtn =
-document.getElementById("retryScanBtn");
-
-
-const stopCameraBtn =
-document.getElementById("stopCameraBtn");
-
-
-const cameraStatus =
-document.getElementById("cameraStatus");
-
-
-const cameraTopStatus =
-document.getElementById("cameraTopStatus");
-
-
-const faceDetectionStatus =
-document.getElementById("faceDetectionStatus");
-
-
-const recognitionStatus =
-document.getElementById("recognitionStatus");
-
-
-const attendanceStatus =
-document.getElementById("attendanceStatus");
-
-
-const waitingStudent =
-document.getElementById("waitingStudent");
-
-
-const recognizedStudent =
-document.getElementById("recognizedStudent");
-
-
-const markAttendanceBtn =
-document.getElementById("markAttendanceBtn");
-
-
-const successBox =
-document.getElementById("attendanceSuccessBox");
-
-
-const tableBody =
-document.getElementById("attendanceTableBody");
-
-
-const emptyRow =
-document.getElementById("emptyAttendanceRow");
-
-
-let cameraStream = null;
-
-let cameraStarted = false;
-
-let scanning = false;
-
-let currentStudent = null;
-
-
-/* =========================================================
-                ATTENDANCE RECORDS
-========================================================= */
-
-let attendanceRecords = [];
-
-
-/* =========================================================
-                DEMO STUDENTS
-========================================================= */
-
-const demoStudents = [
-
-{
-
-id:"STU001",
-
-name:"Aarohi Kumari",
-
-roll:"BCA-101",
-
-course:"BCA Semester V",
-
-department:"Computer Science",
-
-confidence:97.8
-
-},
-
-{
-
-id:"STU002",
-
-name:"Priya Sharma",
-
-roll:"BCA-102",
-
-course:"BCA Semester V",
-
-department:"Computer Science",
-
-confidence:96.4
-
-},
-
-{
-
-id:"STU003",
-
-name:"Neha Singh",
-
-roll:"BCA-103",
-
-course:"BCA Semester V",
-
-department:"Computer Science",
-
-confidence:95.9
-
-},
-
-{
-
-id:"STU004",
-
-name:"Anjali Verma",
-
-roll:"BCA-104",
-
-course:"BCA Semester V",
-
-department:"Computer Science",
-
-confidence:98.1
-
-}
-
-];
-
-
-/* =========================================================
-                    START CAMERA
-========================================================= */
-
-async function startCamera(){
-
-try{
-
-
-if(
-!navigator.mediaDevices ||
-!navigator.mediaDevices.getUserMedia
-){
-
-showError(
-"Your browser does not support camera access."
-);
-
-return;
-
-}
-
-
-cameraStream =
-await navigator.mediaDevices.getUserMedia({
-
-video:{
-
-facingMode:"user",
-
-width:{
-
-ideal:1280
-
-},
-
-height:{
-
-ideal:720
-
-}
-
-},
-
-audio:false
-
-});
-
-
-video.srcObject =
-cameraStream;
-
-
-video.style.display =
-"block";
-
-
-placeholder.style.display =
-"none";
-
-
-faceFrame.style.display =
-"block";
-
-
-cameraStarted =
-true;
-
-
-startCameraBtn.disabled =
-true;
-
-
-scanFaceBtn.disabled =
-false;
-
-
-retryScanBtn.disabled =
-false;
-
-
-stopCameraBtn.disabled =
-false;
-
-
-cameraStatus.innerText =
-"Online";
-
-
-cameraStatus.className =
-"badge bg-success";
-
-
-cameraTopStatus.innerText =
-"Camera Online";
-
-
-cameraTopStatus.className =
-"badge bg-success";
-
-
-faceDetectionStatus.innerText =
-"Ready";
-
-
-faceDetectionStatus.className =
-"badge bg-info text-dark";
-
-
-}
-
-catch(error){
-
-
-console.error(
-"Camera Error:",
-error
-);
-
-
-cameraStatus.innerText =
-"Permission Denied";
-
-
-cameraStatus.className =
-"badge bg-danger";
-
-
-showError(
-"Camera permission denied. Please allow camera access."
-);
-
-
-}
-
-}
-
-
-/* =========================================================
-                    START BUTTON
-========================================================= */
-
-startCameraBtn.addEventListener(
-"click",
-startCamera
-);
-
-
-/* =========================================================
-                    STOP CAMERA
-========================================================= */
-
-function stopCamera(){
-
-if(cameraStream){
-
-cameraStream
-.getTracks()
-.forEach(
-function(track){
-
-track.stop();
-
-}
-);
-
-}
-
-
-cameraStream =
-null;
-
-
-video.srcObject =
-null;
-
-
-video.style.display =
-"none";
-
-
-placeholder.style.display =
-"block";
-
-
-faceFrame.style.display =
-"none";
-
-
-scanLine.style.display =
-"none";
-
-
-cameraStarted =
-false;
-
-
-scanning =
-false;
-
-
-startCameraBtn.disabled =
-false;
-
-
-scanFaceBtn.disabled =
-true;
-
-
-retryScanBtn.disabled =
-true;
-
-
-stopCameraBtn.disabled =
-true;
-
-
-cameraStatus.innerText =
-"Offline";
-
-
-cameraStatus.className =
-"badge bg-secondary";
-
-
-cameraTopStatus.innerText =
-"Camera Offline";
-
-
-cameraTopStatus.className =
-"badge bg-secondary";
-
-
-faceDetectionStatus.innerText =
-"Waiting...";
-
-
-faceDetectionStatus.className =
-"badge bg-warning text-dark";
-
-
-}
-
-
-/* =========================================================
-                    STOP BUTTON
-========================================================= */
-
-stopCameraBtn.addEventListener(
-"click",
-stopCamera
-);
-
-
-/* =========================================================
-                    CAPTURE FRAME
-========================================================= */
-
-function captureFrame(){
-
-if(
-!video.videoWidth ||
-!video.videoHeight
-){
-
-return null;
-
-}
-
-
-canvas.width =
-video.videoWidth;
-
-
-canvas.height =
-video.videoHeight;
-
-
-const context =
-canvas.getContext("2d");
-
-
-context.drawImage(
-
-video,
-
-0,
-
-0,
-
-canvas.width,
-
-canvas.height
-
-);
-
-
-return canvas.toDataURL(
-"image/jpeg",
-0.90
-);
-
-}
-
-
-/* =========================================================
-                    SCAN FACE
-========================================================= */
-
-scanFaceBtn.addEventListener(
-"click",
-function(){
-
-
-if(!cameraStarted){
-
-showError(
-"Please start camera first."
-);
-
-return;
-
-}
-
-
-if(scanning){
-
-return;
-
-}
-
-
-const capturedImage =
-captureFrame();
-
-
-if(!capturedImage){
-
-showError(
-"Unable to capture camera image."
-);
-
-return;
-
-}
-
-
-scanning =
-true;
-
-
-scanFaceBtn.disabled =
-true;
-
-
-resetRecognizedStudent();
-
-
-scanLine.style.display =
-"block";
-
-
-faceDetectionStatus.innerText =
-"Scanning...";
-
-
-faceDetectionStatus.className =
-"badge bg-primary";
-
-
-recognitionStatus.innerText =
-"Processing...";
-
-
-recognitionStatus.className =
-"badge bg-warning text-dark";
-
-
-attendanceStatus.innerText =
-"Waiting";
-
-
-attendanceStatus.className =
-"badge bg-secondary";
-
-
-/* =========================================================
-                FRONTEND DEMO RECOGNITION
-========================================================= */
-
-/*
-
-NOTE:
-
-Ye frontend demonstration hai.
-
-Real project me capturedImage ko
-Python / Flask / FastAPI backend ko
-send karna hoga.
-
-*/
-
-
-setTimeout(
-function(){
-
-
-scanLine.style.display =
-"none";
-
-
-faceDetectionStatus.innerText =
-"Face Detected";
-
-
-faceDetectionStatus.className =
-"badge bg-success";
-
-
-/*
-
-Demo ke liye har scan par
-next student select hoga.
-
-*/
-
-
-const studentIndex =
-attendanceRecords.length %
-demoStudents.length;
-
-
-const student =
-demoStudents[studentIndex];
-
-
-processRecognizedStudent(
-student
-);
-
-
-scanning =
-false;
-
-
-scanFaceBtn.disabled =
-false;
-
-
-},
-2200
-);
-
-
-}
-);
-
-
-/* =========================================================
-                PROCESS STUDENT
-========================================================= */
-
-function processRecognizedStudent(student){
-
-
-if(
-!student ||
-student.confidence < 85
-){
-
-recognitionStatus.innerText =
-"Not Recognized";
-
-
-recognitionStatus.className =
-"badge bg-danger";
-
-
-showError(
-"Face recognition confidence is too low."
-);
-
-
-return;
-
-}
-
-
-currentStudent =
-student;
-
-
-displayStudent(
-student
-);
-
-
-}
-
-
-/* =========================================================
-                    DISPLAY STUDENT
-========================================================= */
-
-function displayStudent(student){
-
-
-waitingStudent.style.display =
-"none";
-
-
-recognizedStudent.style.display =
-"block";
-
-
-successBox.style.display =
-"none";
-
-
-document.getElementById(
-"recognizedStudentName"
-).innerText =
-student.name;
-
-
-document.getElementById(
-"recognizedStudentCourse"
-).innerText =
-student.course;
-
-
-document.getElementById(
-"recognizedStudentId"
-).innerText =
-student.id;
-
-
-document.getElementById(
-"recognizedStudentRoll"
-).innerText =
-student.roll;
-
-
-document.getElementById(
-"recognizedStudentDepartment"
-).innerText =
-student.department;
-
-
-const time =
-new Date().toLocaleTimeString(
-"en-IN",
-{
-
-hour:"2-digit",
-
-minute:"2-digit",
-
-second:"2-digit"
-
-}
-);
-
-
-document.getElementById(
-"recognizedStudentTime"
-).innerText =
-time;
-
-
-document.getElementById(
-"confidenceText"
-).innerText =
-student.confidence + "%";
-
-
-const confidenceBar =
-document.getElementById(
-"confidenceBar"
-);
-
-
-confidenceBar.style.width =
-student.confidence + "%";
-
-
-if(student.confidence >= 90){
-
-confidenceBar.className =
-"progress-bar bg-success";
-
-}
-
-else{
-
-confidenceBar.className =
-"progress-bar bg-info";
-
-}
-
-
-recognitionStatus.innerText =
-"Recognized";
-
-
-recognitionStatus.className =
-"badge bg-success";
-
-
-attendanceStatus.innerText =
-"Ready to Mark";
-
-
-attendanceStatus.className =
-"badge bg-warning text-dark";
-
-
-}
-
-
-/* =========================================================
-                    MARK ATTENDANCE
-========================================================= */
-
-markAttendanceBtn.addEventListener(
-"click",
-function(){
-
-
-if(!currentStudent){
-
-showError(
-"Please recognize a student first."
-);
-
-return;
-
-}
-
-
-/* =========================================================
-                    DUPLICATE CHECK
-========================================================= */
-
-const alreadyMarked =
-attendanceRecords.some(
-function(record){
-
-return (
-record.id ===
-currentStudent.id
-);
-
-}
-);
-
-
-if(alreadyMarked){
-
-
-const duplicateModal =
-new bootstrap.Modal(
-document.getElementById(
-"duplicateAttendanceModal"
-)
-);
-
-
-duplicateModal.show();
-
-
-return;
-
-}
-
-
-/* =========================================================
-                    CREATE RECORD
-========================================================= */
-
-const record = {
-
-...currentStudent,
-
-subject:
-document.getElementById(
-"subjectSelect"
-).value,
-
-time:
-new Date().toLocaleTimeString(
-"en-IN",
-{
-
-hour:"2-digit",
-
-minute:"2-digit"
-
-}
-),
-
-status:"Present"
-
-};
-
-
-attendanceRecords.push(
-record
-);
-
-
-addAttendanceRow(
-record
-);
-
-
-successBox.style.display =
-"block";
-
-
-attendanceStatus.innerText =
-"Present";
-
-
-attendanceStatus.className =
-"badge bg-success";
-
-
-document.getElementById(
-"successModalStudent"
-).innerText =
-record.name +
-" (" +
-record.roll +
-") has been marked present successfully.";
-
-
-const successModal =
-new bootstrap.Modal(
-document.getElementById(
-"attendanceSuccessModal"
-)
-);
-
-
-successModal.show();
-
-
-updateStatistics();
-
-
-}
-);
-
-
-/* =========================================================
-                    TABLE ROW
-========================================================= */
-
-function addAttendanceRow(record){
-
-
-if(emptyRow){
-
-emptyRow.style.display =
-"none";
-
-}
-
-
-const row =
-document.createElement("tr");
-
-
-row.innerHTML =
-
-`
-
-<td>
-${attendanceRecords.length}
-</td>
-
-
-<td>
-
-<div class="student-mini-profile">
-
-<img
-src="../../images/default-profile.png"
-alt="Student">
-
-<div>
-
-<strong>
-${record.name}
-</strong>
-
-<br>
-
-<small class="text-muted">
-${record.id}
-</small>
-
-</div>
-
-</div>
-
-</td>
-
-
-<td>
-${record.roll}
-</td>
-
-
-<td>
-${record.course}
-</td>
-
-
-<td>
-${record.subject}
-</td>
-
-
-<td>
-${record.time}
-</td>
-
-
-<td>
-
-<span class="badge bg-info text-dark">
-
-${record.confidence}%
-
-</span>
-
-</td>
-
-
-<td>
-
-<span class="badge bg-success">
-
-Present
-
-</span>
-
-</td>
-
-`;
-
-
-tableBody.appendChild(
-row
-);
-
-
-document.getElementById(
-"attendanceRecordBadge"
-).innerText =
-
-attendanceRecords.length +
-(
-attendanceRecords.length === 1
-? " Record"
-: " Records"
-);
-
-
-}
-
-
-/* =========================================================
-                    STATISTICS
-========================================================= */
-
-function updateStatistics(){
-
-
-const totalStudents =
-Number(
-document.getElementById(
-"totalStudentsCount"
-).innerText
-);
-
-
-const present =
-attendanceRecords.length;
-
-
-const remaining =
-Math.max(
-totalStudents - present,
-0
-);
-
-
-const percentage =
-totalStudents > 0
-?
-(
-present /
-totalStudents *
-100
-).toFixed(1)
-:
-0;
-
-
-document.getElementById(
-"presentStudentsCount"
-).innerText =
-present;
-
-
-document.getElementById(
-"remainingStudentsCount"
-).innerText =
-remaining;
-
-
-document.getElementById(
-"attendancePercentage"
-).innerText =
-percentage + "%";
-
-
-}
-
-
-/* =========================================================
-                    RESET STUDENT
-========================================================= */
-
-function resetRecognizedStudent(){
-
-
-currentStudent =
-null;
-
-
-waitingStudent.style.display =
-"block";
-
-
-recognizedStudent.style.display =
-"none";
-
-
-successBox.style.display =
-"none";
-
-
-recognitionStatus.innerText =
-"Pending";
-
-
-recognitionStatus.className =
-"badge bg-secondary";
-
-
-attendanceStatus.innerText =
-"Not Marked";
-
-
-attendanceStatus.className =
-"badge bg-secondary";
-
-
-}
-
-
-/* =========================================================
-                    RETRY
-========================================================= */
-
-retryScanBtn.addEventListener(
-"click",
-function(){
-
-
-resetRecognizedStudent();
-
-
-if(cameraStarted){
-
-faceDetectionStatus.innerText =
-"Ready";
-
-
-faceDetectionStatus.className =
-"badge bg-info text-dark";
-
-
-scanFaceBtn.disabled =
-false;
-
-}
-
-
-}
-);
-
-
-/* =========================================================
-                    ERROR
-========================================================= */
-
-function showError(message){
-
-
-document.getElementById(
-"faceErrorMessage"
-).innerText =
-message;
-
-
-const modal =
-new bootstrap.Modal(
-document.getElementById(
-"faceErrorModal"
-)
-);
-
-
-modal.show();
-
-
-}
-
-
-/* =========================================================
-                    DOWNLOAD CSV
-========================================================= */
-
-document.getElementById(
-"downloadAttendanceBtn"
-).addEventListener(
-"click",
-function(){
-
-
-if(
-attendanceRecords.length === 0
-){
-
-alert(
-"No attendance records available to download."
-);
-
-return;
-
-}
-
-
-let csv =
-
-"Student ID,Name,Roll Number,Class,Subject,Time,Confidence,Status\n";
-
-
-attendanceRecords.forEach(
-function(record){
-
-
-csv +=
-
-`${record.id},${record.name},${record.roll},${record.course},${record.subject},${record.time},${record.confidence}%,${record.status}\n`;
-
-
-}
-);
-
-
-const blob =
-new Blob(
-[csv],
-{
-
-type:"text/csv;charset=utf-8;"
-
-}
-);
-
-
-const url =
-URL.createObjectURL(
-blob
-);
-
-
-const link =
-document.createElement(
-"a"
-);
-
-
-link.href =
-url;
-
-
-link.download =
-"teacher-face-attendance.csv";
-
-
-document.body.appendChild(
-link
-);
-
-
-link.click();
-
-
-document.body.removeChild(
-link
-);
-
-
-URL.revokeObjectURL(
-url
-);
-
-
-}
-);
-
-
-/* =========================================================
-                    SEARCH TABLE
-========================================================= */
-
-const searchBox =
-document.getElementById(
-"searchBox"
-);
-
-
-if(searchBox){
-
-
-searchBox.addEventListener(
-"input",
-function(){
-
-
-const value =
-this.value
-.toLowerCase()
-.trim();
-
-
-const rows =
-tableBody.querySelectorAll(
-"tr"
-);
-
-
-rows.forEach(
-function(row){
-
-
-if(
-row.id ===
-"emptyAttendanceRow"
-){
-
-return;
-
-}
-
-
-const text =
-row.innerText
-.toLowerCase();
-
-
-row.style.display =
-text.includes(value)
-?
-""
-:
-"none";
-
-
-}
-);
-
-
-}
-);
-
-
-}
-
-
-/* =========================================================
-                STOP CAMERA ON PAGE CLOSE
-========================================================= */
-
-window.addEventListener(
-"beforeunload",
-function(){
-
-
-if(cameraStream){
-
-
-cameraStream
-.getTracks()
-.forEach(
-function(track){
-
-track.stop();
-
-}
-);
-
-
-}
-
-
-}
-);
-
-
-});
-
-</script>
-
-
+    <div class="dashboard-shell">
+        <aside class="teacher-sidebar">
+            <div class="brand-box">
+                <img src="../../images/logo.png" alt="College Logo">
+                <h3>PATNA<br>WOMEN'S COLLEGE</h3>
+                <p>(AUTONOMOUS)</p>
+            </div>
+
+            <ul class="teacher-menu">
+                <li><a href="teacher-dashboard.html"><i class="fa-solid fa-house"></i>Dashboard</a></li>
+                <li><a href="my-classes.html"><i class="fa-solid fa-chalkboard-user"></i>My Classes</a></li>
+                <li><a href="timetable.html"><i class="fa-solid fa-calendar-days"></i>Timetable</a></li>
+                <li><a href="face-register.html"><i class="fa-solid fa-user-plus"></i>Face Registration</a></li>
+                <li class="active"><a href="face-attendance.html"><i class="fa-solid fa-camera"></i>Face Attendance</a></li>
+                <li><a href="leave-request.html"><i class="fa-solid fa-calendar-minus"></i>Leave Request</a></li>
+                <li><a href="performance.html"><i class="fa-solid fa-chart-line"></i>Performance</a></li>
+                <li><a href="notices.html"><i class="fa-solid fa-bullhorn"></i>Notices</a></li>
+                <li><a href="academic-calendar.html"><i class="fa-solid fa-calendar-check"></i>Academic Calendar</a></li>
+                <li><a href="notification.html"><i class="fa-solid fa-bell"></i>Notifications</a></li>
+                <li><a href="profile.html"><i class="fa-solid fa-user"></i>My Profile</a></li>
+                <li><a href="settings.html"><i class="fa-solid fa-gear"></i>Settings</a></li>
+                <li><a href="teacher-login.html" id="logoutLink"><i class="fa-solid fa-right-from-bracket"></i>Logout</a></li>
+            </ul>
+        </aside>
+
+        <div
+            class="teacher-sidebar-overlay"
+            aria-hidden="true"
+            onclick="document.body.classList.remove('teacher-sidebar-open')">
+        </div>
+
+        <main class="teacher-main">
+            <header class="topbar">
+                <div>
+                    <h2>AI Face Attendance</h2>
+                    <p>Teacher Panel</p>
+                </div>
+
+                <div class="top-actions">
+                    <button
+                        type="button"
+                        class="teacher-sidebar-toggle"
+                        title="Open navigation"
+                        aria-label="Open teacher navigation"
+                        onclick="document.body.classList.toggle('teacher-sidebar-open')">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <button type="button" id="themeToggle" class="icon-button" title="Change theme">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+
+                    <div class="top-profile">
+                        <img id="topTeacherPhoto" src="../../images/default-profile.png" alt="Teacher">
+                        <div>
+                            <strong id="topTeacherName">Teacher</strong>
+                            <small id="topTeacherDesignation">Faculty Member</small>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="hero">
+                <h1>Face Attendance</h1>
+                <p>AI-powered face recognition attendance for your logged-in Teacher account.</p>
+            </section>
+
+            <div id="pageMessage" class="message-box" role="alert"></div>
+
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-calendar-day"></i></div>
+                    <div><small>Today's Status</small><h3 id="todayStatus">Not Marked</h3></div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-list-check"></i></div>
+                    <div><small>Total Records</small><h3 id="totalRecords">0</h3></div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-user-check"></i></div>
+                    <div><small>Present Days</small><h3 id="presentDays">0</h3></div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-percent"></i></div>
+                    <div><small>Attendance</small><h3 id="attendancePercentage">0%</h3></div>
+                </div>
+            </section>
+
+            <section class="attendance-grid">
+                <div class="panel-card scanner-card">
+                    <div class="panel-title">
+                        <h4><i class="fa-solid fa-camera"></i>Live Face Scanner</h4>
+                        <span id="cameraTopStatus" class="badge bg-secondary">Camera Offline</span>
+                    </div>
+
+                    <div class="camera-area">
+                        <video id="attendanceVideo" autoplay muted playsinline></video>
+                        <canvas id="attendanceCanvas"></canvas>
+
+                        <div id="cameraPlaceholder" class="camera-placeholder">
+                            <i class="fa-solid fa-face-smile"></i>
+                            <h3>Camera Ready</h3>
+                            <p>Start the camera and position your face inside the recognition frame.</p>
+                        </div>
+
+                        <div id="attendanceFaceFrame" class="face-frame"></div>
+                        <div id="attendanceScanLine" class="scan-line"></div>
+                    </div>
+
+                    <div class="camera-actions">
+                        <button type="button" id="startCameraBtn" class="btn btn-primary">
+                            <i class="fa-solid fa-video me-2"></i>Start Camera
+                        </button>
+
+                        <button type="button" id="scanFaceBtn" class="btn btn-success" disabled>
+                            <i class="fa-solid fa-camera me-2"></i>Scan & Mark Attendance
+                        </button>
+
+                        <button type="button" id="stopCameraBtn" class="btn btn-outline-danger" disabled>
+                            <i class="fa-solid fa-video-slash me-2"></i>Stop Camera
+                        </button>
+                    </div>
+                </div>
+
+                <div class="panel-card compact-status">
+                    <div class="panel-title">
+                        <h4><i class="fa-solid fa-microchip"></i>Recognition Status</h4>
+                    </div>
+
+                    <div class="status-list">
+                        <div class="status-row"><span>AI Models</span><span id="modelStatus" class="badge bg-warning text-dark">Not Loaded</span></div>
+                        <div class="status-row"><span>Camera</span><span id="cameraStatus" class="badge bg-secondary">Offline</span></div>
+                        <div class="status-row"><span>Recognition</span><span id="recognitionStatus" class="badge bg-secondary">Pending</span></div>
+                        <div class="status-row"><span>Attendance</span><span id="attendanceStatus" class="badge bg-secondary">Not Marked</span></div>
+                    </div>
+
+                </div>
+
+                <div class="panel-card recognized-card">
+                    <div class="panel-title">
+                        <h4><i class="fa-solid fa-user-check"></i>Recognized Teacher</h4>
+                    </div>
+
+                    <div class="teacher-result">
+                        <img id="teacherPhoto" src="../../images/default-profile.png" alt="Teacher">
+                        <h4 id="teacherName">Loading Teacher...</h4>
+                        <p id="teacherDetails">--</p>
+
+                        <div id="confidenceWrap" class="confidence-wrap">
+                            <div class="d-flex justify-content-between mb-2">
+                                <small>Face Match Score</small>
+                                <strong id="confidenceText">0%</strong>
+                            </div>
+                            <div class="progress">
+                                <div id="confidenceBar" class="progress-bar bg-success" style="width:0%"></div>
+                            </div>
+                        </div>
+
+                        <a id="registerFaceLink" href="face-register.html" class="btn btn-warning w-100 mt-3" style="display:none">
+                            <i class="fa-solid fa-user-plus me-2"></i>Register Face First
+                        </a>
+                    </div>
+                </div>
+
+                <div class="panel-card instructions-card">
+                    <div class="panel-title">
+                        <h4><i class="fa-solid fa-circle-info"></i>Face Attendance Instructions</h4>
+                    </div>
+
+                    <div class="instructions-grid">
+                        <div class="instruction-item">
+                            <i class="fa-solid fa-lightbulb"></i>
+                            <div><strong>Good Lighting</strong><small>Make sure your face is clearly visible.</small></div>
+                        </div>
+
+                        <div class="instruction-item">
+                            <i class="fa-solid fa-face-smile"></i>
+                            <div><strong>Look Straight</strong><small>Keep your face centered inside the frame.</small></div>
+                        </div>
+
+                        <div class="instruction-item">
+                            <i class="fa-solid fa-glasses"></i>
+                            <div><strong>Clear Face</strong><small>Remove masks or dark sunglasses.</small></div>
+                        </div>
+
+                        <div class="instruction-item">
+                            <i class="fa-solid fa-person"></i>
+                            <div><strong>One Person</strong><small>Only your face should be inside the frame.</small></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            "use strict";
+
+            const API_BASE = "http://127.0.0.1:5000/api";
+            const SERVER_BASE = "http://127.0.0.1:5000";
+            const MODEL_URL = "https://justadudewhohacks.github.io/face-api.js/models";
+            const TOKEN_KEYS = ["fmps_access_token", "access_token", "token"];
+
+            const video = document.getElementById("attendanceVideo");
+            const placeholder = document.getElementById("cameraPlaceholder");
+            const faceFrame = document.getElementById("attendanceFaceFrame");
+            const scanLine = document.getElementById("attendanceScanLine");
+            const startButton = document.getElementById("startCameraBtn");
+            const scanButton = document.getElementById("scanFaceBtn");
+            const stopButton = document.getElementById("stopCameraBtn");
+
+            let cameraStream = null;
+            let modelsLoaded = false;
+            let scanning = false;
+            let faceRegistered = false;
+            let attendanceMarkedToday = false;
+
+            function getToken() {
+                for (const key of TOKEN_KEYS) {
+                    const token = localStorage.getItem(key);
+                    if (token) return token;
+                }
+                return null;
+            }
+
+            async function apiRequest(path, options = {}) {
+                const token = getToken();
+
+                if (!token) {
+                    window.location.href = "teacher-login.html";
+                    throw new Error("Please log in again.");
+                }
+
+                const response = await fetch(API_BASE + path, {
+                    ...options,
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                        ...(options.headers || {})
+                    }
+                });
+
+                let result = {};
+
+                try {
+                    result = await response.json();
+                } catch (error) {
+                    result = {};
+                }
+
+                if (response.status === 401) {
+                    TOKEN_KEYS.forEach(key => localStorage.removeItem(key));
+                    window.location.href = "teacher-login.html";
+                    throw new Error("Session expired. Please log in again.");
+                }
+
+                if (!response.ok || result.success === false) {
+                    throw new Error(result.message || "Unable to complete request.");
+                }
+
+                return result;
+            }
+
+            function setBadge(id, text, className) {
+                const element = document.getElementById(id);
+                if (!element) return;
+                element.textContent = text;
+                element.className = `badge ${className}`;
+            }
+
+            function showMessage(message, type = "info") {
+                const box = document.getElementById("pageMessage");
+                box.textContent = message;
+                box.className = `message-box ${type}`;
+                box.style.display = "block";
+            }
+
+            function hideMessage() {
+                document.getElementById("pageMessage").style.display = "none";
+            }
+
+            function resolvePhotoUrl(value) {
+                if (!value) return "../../images/default-profile.png";
+
+                const normalized = String(value).replaceAll("\\", "/");
+
+                if (normalized.startsWith("http://") || normalized.startsWith("https://")) {
+                    return normalized;
+                }
+
+                if (normalized.startsWith("/uploads/")) {
+                    return SERVER_BASE + normalized;
+                }
+
+                if (normalized.startsWith("uploads/")) {
+                    return `${SERVER_BASE}/${normalized}`;
+                }
+
+                return normalized;
+            }
+
+            function formatDate(value) {
+                if (!value) return "--";
+                return new Date(`${value.slice(0, 10)}T00:00:00`).toLocaleDateString("en-IN", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                });
+            }
+
+            function formatDateTime(value) {
+                if (!value) return "--";
+                const date = new Date(value);
+                if (Number.isNaN(date.getTime())) return "--";
+                return date.toLocaleTimeString("en-IN", {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                });
+            }
+
+            function escapeHtml(value) {
+                return String(value ?? "")
+                    .replaceAll("&", "&amp;")
+                    .replaceAll("<", "&lt;")
+                    .replaceAll(">", "&gt;")
+                    .replaceAll('"', "&quot;")
+                    .replaceAll("'", "&#039;");
+            }
+
+            function renderTeacher(teacher = {}) {
+                const photo = resolvePhotoUrl(teacher.photo_url);
+                const details = [
+                    teacher.teacher_code,
+                    teacher.designation,
+                    teacher.department
+                ].filter(Boolean).join(" • ") || "Teacher";
+
+                document.getElementById("teacherName").textContent = teacher.full_name || "Teacher";
+                document.getElementById("teacherDetails").textContent = details;
+                document.getElementById("teacherPhoto").src = photo;
+                document.getElementById("topTeacherPhoto").src = photo;
+                document.getElementById("topTeacherName").textContent = teacher.full_name || "Teacher";
+                document.getElementById("topTeacherDesignation").textContent = teacher.designation || "Faculty Member";
+            }
+
+            function renderAttendance(data = {}) {
+                const summary = data.summary || {};
+                const today = data.today || {};
+                const record = today.record || null;
+
+                faceRegistered = data.face_registered === true;
+                attendanceMarkedToday = today.marked === true;
+
+                renderTeacher(data.teacher || {});
+                document.getElementById("totalRecords").textContent = summary.total_records ?? 0;
+                document.getElementById("presentDays").textContent = summary.present ?? 0;
+                document.getElementById("attendancePercentage").textContent = `${summary.attendance_percentage ?? 0}%`;
+
+                const todayText = record?.status
+                    ? record.status.charAt(0).toUpperCase() + record.status.slice(1)
+                    : "Not Marked";
+
+                document.getElementById("todayStatus").textContent = todayText;
+                setBadge(
+                    "attendanceStatus",
+                    todayText,
+                    record?.status === "present"
+                        ? "bg-success"
+                        : record?.status === "absent"
+                            ? "bg-danger"
+                            : record?.status === "leave"
+                                ? "bg-warning text-dark"
+                                : "bg-secondary"
+                );
+
+                const registerLink = document.getElementById("registerFaceLink");
+                registerLink.style.display = faceRegistered ? "none" : "block";
+
+                if (!faceRegistered) {
+                    showMessage("Your face is not registered. Complete Face Registration before marking attendance.", "error");
+                } else if (attendanceMarkedToday) {
+                    showMessage(
+                        `Today's attendance is already recorded as ${todayText}. You can scan again to verify your face; no duplicate attendance will be created.`,
+                        "success"
+                    );
+                } else {
+                    hideMessage();
+                }
+
+                updateScanAvailability();
+            }
+
+            function updateScanAvailability() {
+                if (scanning) {
+                    scanButton.disabled = true;
+                    scanButton.title = "Face scan is in progress";
+                    scanButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Scanning...';
+                    return;
+                }
+
+                if (!faceRegistered) {
+                    scanButton.disabled = true;
+                    scanButton.title = "Complete Face Registration first";
+                    scanButton.innerHTML = '<i class="fa-solid fa-user-plus"></i> Register Face First';
+                    return;
+                }
+
+                if (!modelsLoaded) {
+                    scanButton.disabled = true;
+                    scanButton.title = "Start the camera and wait for face models to load";
+                    scanButton.innerHTML = '<i class="fa-solid fa-hourglass-half"></i> Load Camera First';
+                    return;
+                }
+
+                if (!cameraStream) {
+                    scanButton.disabled = true;
+                    scanButton.title = "Click Start Camera first";
+                    scanButton.innerHTML = '<i class="fa-solid fa-camera"></i> Start Camera First';
+                    return;
+                }
+
+                scanButton.disabled = false;
+                scanButton.title = attendanceMarkedToday
+                    ? "Verify your face without creating a duplicate record"
+                    : "Scan your face and mark today's attendance";
+                scanButton.innerHTML = attendanceMarkedToday
+                    ? '<i class="fa-solid fa-user-check"></i> Verify Today\'s Attendance'
+                    : '<i class="fa-solid fa-camera"></i> Scan & Mark Attendance';
+            }
+
+            async function loadAttendance() {
+                try {
+                    const result = await apiRequest("/faculty-attendance/teacher/self");
+                    renderAttendance(result.data || {});
+                } catch (error) {
+                    showMessage(error.message, "error");
+                }
+            }
+
+            async function loadModels() {
+                if (modelsLoaded) return;
+
+                if (!window.faceapi) {
+                    throw new Error("Face recognition library did not load. Check internet connection.");
+                }
+
+                setBadge("modelStatus", "Loading...", "bg-warning text-dark");
+
+                await Promise.all([
+                    faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
+                    faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
+                    faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL)
+                ]);
+
+                modelsLoaded = true;
+                setBadge("modelStatus", "Ready", "bg-success");
+                updateScanAvailability();
+            }
+
+            async function startCamera() {
+                try {
+                    hideMessage();
+                    await loadModels();
+
+                    if (!navigator.mediaDevices?.getUserMedia) {
+                        throw new Error("Camera is not supported in this browser.");
+                    }
+
+                    cameraStream = await navigator.mediaDevices.getUserMedia({
+                        video: {
+                            facingMode: "user",
+                            width: { ideal: 1280 },
+                            height: { ideal: 720 }
+                        },
+                        audio: false
+                    });
+
+                    video.srcObject = cameraStream;
+                    await video.play();
+
+                    video.style.display = "block";
+                    placeholder.style.display = "none";
+                    faceFrame.style.display = "block";
+                    startButton.disabled = true;
+                    stopButton.disabled = false;
+
+                    setBadge("cameraStatus", "Online", "bg-success");
+                    setBadge("cameraTopStatus", "Camera Online", "bg-success");
+                    setBadge("recognitionStatus", "Ready", "bg-info text-dark");
+                    updateScanAvailability();
+                } catch (error) {
+                    setBadge("cameraStatus", "Unavailable", "bg-danger");
+                    setBadge("cameraTopStatus", "Camera Error", "bg-danger");
+                    showMessage(error.message, "error");
+                }
+            }
+
+            function stopCamera() {
+                if (cameraStream) {
+                    cameraStream.getTracks().forEach(track => track.stop());
+                }
+
+                cameraStream = null;
+                video.srcObject = null;
+                video.style.display = "none";
+                placeholder.style.display = "block";
+                faceFrame.style.display = "none";
+                scanLine.style.display = "none";
+                startButton.disabled = false;
+                stopButton.disabled = true;
+
+                setBadge("cameraStatus", "Offline", "bg-secondary");
+                setBadge("cameraTopStatus", "Camera Offline", "bg-secondary");
+                setBadge("recognitionStatus", "Pending", "bg-secondary");
+                updateScanAvailability();
+            }
+
+            async function scanAndMarkAttendance() {
+                if (scanning) return;
+
+                if (!faceRegistered) {
+                    showMessage("Your face is not registered. Complete Face Registration first.", "error");
+                    return;
+                }
+
+                if (!modelsLoaded) {
+                    showMessage("Face models are not ready. Click Start Camera and wait for them to load.", "error");
+                    return;
+                }
+
+                if (!cameraStream) {
+                    showMessage("Click Start Camera before scanning your face.", "error");
+                    return;
+                }
+
+                scanning = true;
+                scanLine.style.display = "block";
+                setBadge("recognitionStatus", "Scanning...", "bg-warning text-dark");
+                updateScanAvailability();
+
+                try {
+                    const options = new faceapi.TinyFaceDetectorOptions({
+                        inputSize: 416,
+                        scoreThreshold: 0.5
+                    });
+
+                    const detections = await faceapi
+                        .detectAllFaces(video, options)
+                        .withFaceLandmarks()
+                        .withFaceDescriptors();
+
+                    if (!detections.length) {
+                        throw new Error("No face detected. Keep your face clearly inside the frame.");
+                    }
+
+                    if (detections.length > 1) {
+                        throw new Error("Multiple faces detected. Only the logged-in teacher should be visible.");
+                    }
+
+                    setBadge("recognitionStatus", "Matching...", "bg-primary");
+
+                    const descriptor = Array.from(detections[0].descriptor);
+
+                    const result = await apiRequest("/faculty-attendance/teacher/self/face", {
+                        method: "POST",
+                        body: JSON.stringify({ descriptor })
+                    });
+
+                    const confidence = Number(result.confidence || 0);
+                    document.getElementById("confidenceWrap").style.display = "block";
+                    document.getElementById("confidenceText").textContent = `${confidence}%`;
+                    document.getElementById("confidenceBar").style.width = `${Math.min(confidence, 100)}%`;
+
+                    const recordedStatus = String(result.data?.status || "present").toLowerCase();
+                    const statusText = recordedStatus.charAt(0).toUpperCase() + recordedStatus.slice(1);
+                    const statusClass = recordedStatus === "present"
+                        ? "bg-success"
+                        : recordedStatus === "absent"
+                            ? "bg-danger"
+                            : recordedStatus === "leave"
+                                ? "bg-warning text-dark"
+                                : "bg-secondary";
+
+                    setBadge("recognitionStatus", "Matched", "bg-success");
+                    setBadge("attendanceStatus", statusText, statusClass);
+
+                    await loadAttendance();
+
+                    showMessage(
+                        result.already_marked
+                            ? `Face verified successfully. ${result.message || "Today's attendance was already recorded."}`
+                            : result.message || "Attendance marked successfully.",
+                        "success"
+                    );
+
+                    stopCamera();
+                } catch (error) {
+                    setBadge("recognitionStatus", "Failed", "bg-danger");
+                    showMessage(error.message, "error");
+                } finally {
+                    scanning = false;
+                    scanLine.style.display = "none";
+                    updateScanAvailability();
+                }
+            }
+
+            function setupTheme() {
+                const button = document.getElementById("themeToggle");
+                const savedTheme = localStorage.getItem("theme") || "light";
+
+                document.body.classList.toggle("dark", savedTheme === "dark");
+                button.innerHTML = savedTheme === "dark"
+                    ? '<i class="fa-solid fa-sun"></i>'
+                    : '<i class="fa-solid fa-moon"></i>';
+
+                button.addEventListener("click", function () {
+                    document.body.classList.toggle("dark");
+                    const dark = document.body.classList.contains("dark");
+                    localStorage.setItem("theme", dark ? "dark" : "light");
+                    button.innerHTML = dark
+                        ? '<i class="fa-solid fa-sun"></i>'
+                        : '<i class="fa-solid fa-moon"></i>';
+                });
+            }
+
+            document.getElementById("logoutLink").addEventListener("click", function () {
+                TOKEN_KEYS.forEach(key => localStorage.removeItem(key));
+                localStorage.removeItem("fmps_refresh_token");
+                localStorage.removeItem("fmps_user");
+            });
+
+            startButton.addEventListener("click", startCamera);
+            stopButton.addEventListener("click", stopCamera);
+            scanButton.addEventListener("click", scanAndMarkAttendance);
+            window.addEventListener("pagehide", stopCamera);
+
+            setupTheme();
+            loadAttendance();
+        });
+    </script>
 </body>
 
 </html>

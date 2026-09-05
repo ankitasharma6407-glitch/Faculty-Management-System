@@ -18,6 +18,7 @@ def register_blueprints(app, modules: Iterable[str] = None):
             "performance",
             "reports",
             "teachers",
+            "teacher_classes",
             "hod",
             "student",
             "recruiter",

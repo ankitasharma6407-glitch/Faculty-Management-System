@@ -195,6 +195,28 @@
         }
 
 
+        .notification-menu .mark-all-read-btn {
+            border: 0;
+            background: transparent;
+            color: #6d42ff;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 0;
+        }
+
+
+        .notification-menu .mark-all-read-btn:disabled {
+            color: #9ca3af;
+            cursor: default;
+        }
+
+
+        .notification-menu .notification-item.unread {
+            background: rgba(109, 66, 255, 0.1);
+            font-weight: 600;
+        }
+
+
         /* =====================================================
            CALENDAR
         ===================================================== */
@@ -585,8 +607,21 @@
                         class="dropdown-menu dropdown-menu-end notification-menu">
 
 
-                        <li class="dropdown-header">
-                            Notifications
+                        <li class="dropdown-header d-flex justify-content-between align-items-center gap-3">
+
+                            <span>Notifications</span>
+
+                            <button
+                                type="button"
+                                id="markAllNotificationsBtn"
+                                class="mark-all-read-btn"
+                                onclick="markAllNotificationsRead(event)">
+
+                                <i class="fa-solid fa-check-double me-1"></i>
+                                Mark all as read
+
+                            </button>
+
                         </li>
 
 
@@ -1503,13 +1538,16 @@ const API = {
         "http://127.0.0.1:5000/api/academic-events/departments",
 
     attendance:
-        "http://127.0.0.1:5000/api/faculty-attendance",
+        "http://127.0.0.1:5000/api/faculty-attendance/admin/calculated-report",
 
     performance:
         "http://127.0.0.1:5000/api/performance",
 
     notices:
         "http://127.0.0.1:5000/api/notices",
+
+    notifications:
+        "http://127.0.0.1:5000/api/notifications",
 
     calendar:
         "http://127.0.0.1:5000/api/academic-events"
@@ -1535,6 +1573,8 @@ let dashboardAttendance = [];
 
 let dashboardNotices = [];
 
+let dashboardNotifications = [];
+
 let dashboardEvents = [];
 
 
@@ -1554,16 +1594,77 @@ let calendarInstance =
 // SAFE API REQUEST
 // ============================================================
 
-async function fetchApi(url) {
+async function fetchApi(url, options = {}) {
 
     try {
 
+        const token =
+            localStorage.getItem(
+                "fmps_access_token"
+            );
+
+
+        if (!token) {
+
+            console.error(
+                "Admin access token is missing."
+            );
+
+            window.location.href =
+                "admin-login.html";
+
+            return null;
+
+        }
+
+
         const response =
-            await fetch(url);
+            await fetch(
+                url,
+                {
+                    ...options,
+                    headers: {
+                        "Accept":
+                            "application/json",
+                        "Authorization":
+                            `Bearer ${token}`,
+                        ...(
+                            options.headers || {}
+                        )
+                    }
+                }
+            );
+
+
+        const contentType =
+            response.headers.get(
+                "content-type"
+            ) || "";
 
 
         const result =
-            await response.json();
+            contentType.includes(
+                "application/json"
+            )
+                ? await response.json()
+                : {
+                    message:
+                        await response.text()
+                };
+
+
+        if (response.status === 401) {
+
+            localStorage.removeItem(
+                "fmps_access_token"
+            );
+
+            window.location.href =
+                "admin-login.html";
+
+            return null;
+
+        }
 
 
         if (!response.ok) {
@@ -1571,7 +1672,7 @@ async function fetchApi(url) {
             throw new Error(
                 result.message ||
                 result.error ||
-                "Request failed"
+                `Request failed (${response.status})`
             );
 
         }
@@ -1702,6 +1803,7 @@ async function loadDashboardData() {
         attendanceResult,
         performanceResult,
         noticesResult,
+        notificationsResult,
         calendarResult
 
     ] = await Promise.all([
@@ -1736,6 +1838,10 @@ async function loadDashboardData() {
 
         fetchApi(
             API.notices
+        ),
+
+        fetchApi(
+            API.notifications
         ),
 
         fetchApi(
@@ -1784,6 +1890,12 @@ async function loadDashboardData() {
     dashboardNotices =
         extractArray(
             noticesResult
+        );
+
+
+    dashboardNotifications =
+        extractArray(
+            notificationsResult
         );
 
 
@@ -2871,6 +2983,23 @@ function renderNotifications() {
         );
 
 
+    const recentNotifications =
+        dashboardNotifications.slice(
+            0,
+            5
+        );
+
+
+    const unreadNotifications =
+        dashboardNotifications.filter(
+            function (notification) {
+
+                return !notification.is_read;
+
+            }
+        );
+
+
     const count =
         document.getElementById(
             "notificationCount"
@@ -2880,10 +3009,29 @@ function renderNotifications() {
     if (count) {
 
         count.textContent =
-            publishedNotices.length >
+            unreadNotifications.length >
             99
                 ? "99+"
-                : publishedNotices.length;
+                : unreadNotifications.length;
+
+        count.style.display =
+            unreadNotifications.length > 0
+                ? "inline-flex"
+                : "none";
+
+    }
+
+
+    const markAllButton =
+        document.getElementById(
+            "markAllNotificationsBtn"
+        );
+
+
+    if (markAllButton) {
+
+        markAllButton.disabled =
+            unreadNotifications.length === 0;
 
     }
 
@@ -2898,7 +3046,7 @@ function renderNotifications() {
 
 
         if (
-            recentNotices.length ===
+            recentNotifications.length ===
             0
         ) {
 
@@ -2907,7 +3055,7 @@ function renderNotifications() {
                 <div
                     class="text-center text-muted py-3">
 
-                    No published notices.
+                    No notifications available.
 
                 </div>
 
@@ -2920,26 +3068,39 @@ function renderNotifications() {
 
 
             dropdown.innerHTML =
-                recentNotices.map(
-                    function (notice) {
+                recentNotifications.map(
+                    function (notification) {
+
+
+                        const notificationId =
+                            Number(
+                                notification.id
+                            );
+
+
+                        const unreadClass =
+                            notification.is_read
+                                ? ""
+                                : "unread";
 
 
                         return `
 
-                            <a
-                                class="dropdown-item notification-item"
-                                href="notice-board.html">
+                            <button
+                                type="button"
+                                class="dropdown-item notification-item ${unreadClass}"
+                                onclick="markNotificationRead(${notificationId}, event)">
 
                                 <i
-                                    class="fa-solid fa-bullhorn me-2">
+                                    class="fa-solid fa-bell me-2">
                                 </i>
 
                                 ${escapeHtml(
-                                    notice.title ||
-                                    "Notice"
+                                    notification.title ||
+                                    "Notification"
                                 )}
 
-                            </a>
+                            </button>
 
                         `;
 
@@ -3038,6 +3199,121 @@ function renderNotifications() {
             }
         )
         .join("");
+
+}
+
+
+// ============================================================
+// MARK ONE NOTIFICATION AS READ
+// ============================================================
+
+async function markNotificationRead(
+    notificationId,
+    event
+) {
+
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+
+    if (!Number.isInteger(notificationId)) {
+        return;
+    }
+
+
+    const notification =
+        dashboardNotifications.find(
+            function (item) {
+
+                return Number(item.id) ===
+                    notificationId;
+
+            }
+        );
+
+
+    if (!notification || notification.is_read) {
+        return;
+    }
+
+
+    const result = await fetchApi(
+        `${API.notifications}/${notificationId}/read`,
+        {
+            method: "PATCH"
+        }
+    );
+
+
+    if (!result) {
+        return;
+    }
+
+
+    notification.is_read = true;
+
+    renderNotifications();
+
+}
+
+
+// ============================================================
+// MARK ALL NOTIFICATIONS AS READ
+// ============================================================
+
+async function markAllNotificationsRead(event) {
+
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+
+    const button =
+        document.getElementById(
+            "markAllNotificationsBtn"
+        );
+
+
+    if (button) {
+        button.disabled = true;
+    }
+
+
+    const result = await fetchApi(
+        `${API.notifications}/read-all`,
+        {
+            method: "PATCH"
+        }
+    );
+
+
+    if (!result) {
+
+        if (button) {
+            button.disabled = false;
+        }
+
+        return;
+    }
+
+
+    dashboardNotifications =
+        dashboardNotifications.map(
+            function (notification) {
+
+                return {
+                    ...notification,
+                    is_read: true
+                };
+
+            }
+        );
+
+
+    renderNotifications();
 
 }
 

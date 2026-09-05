@@ -3738,10 +3738,15 @@ input:focus-visible{
         id="recognizedResult">
 
 
-        <img
-            id="recognizedTeacherPhoto"
-            src="https://i.pravatar.cc/200?img=47"
-            alt="Teacher">
+        <div class="recognized-photo-wrapper">
+        <img id="recognizedTeacherPhoto"
+         src="../../images/default-profile.png"
+         alt="Teacher">
+
+    <span class="verified-icon">
+        <i class="fa-solid fa-check"></i>
+    </span>
+</div>
 
 
         <h2 id="recognizedTeacherName">
@@ -3873,7 +3878,8 @@ input:focus-visible{
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
 </script>
 
-
+<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+<script src="../../js/teacher-face-login.js?v=1"></script>
 
 </body>
 

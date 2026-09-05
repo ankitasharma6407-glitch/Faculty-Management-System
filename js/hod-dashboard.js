@@ -1119,12 +1119,60 @@ async function loadDashboardAnalytics() {
         }
 
 
+        /*
+         * The analytics endpoint contains only stored rows.
+         * Load the calculated HOD attendance report as the
+         * attendance source so this chart matches each
+         * teacher's dashboard (automatic absent/leave rules).
+         */
+
+        let calculatedAttendance =
+            response.attendance || {};
+
+
+        try {
+
+            const attendanceResponse =
+                await API.request(
+                    "GET",
+                    "/faculty-attendance/hod"
+                );
+
+
+            if (
+                attendanceResponse &&
+                attendanceResponse.success === true
+            ) {
+
+                calculatedAttendance =
+                    buildCalculatedAttendanceAnalytics(
+                        attendanceResponse
+                    );
+            }
+        }
+
+        catch (attendanceError) {
+
+            console.warn(
+                "Calculated HOD attendance unavailable; using stored analytics.",
+                attendanceError
+            );
+        }
+
+
         window.currentHodAnalyticsData =
-            response;
+            Object.assign(
+                {},
+                response,
+                {
+                    attendance:
+                        calculatedAttendance
+                }
+            );
 
 
         renderAttendanceChart(
-            response.attendance || {}
+            calculatedAttendance
         );
 
 
@@ -3479,4 +3527,73 @@ function escapeHtml(
             "'",
             "&#039;"
         );
+}
+
+
+function buildCalculatedAttendanceAnalytics(
+    attendanceResponse
+) {
+
+    const records =
+        Array.isArray(attendanceResponse.data)
+            ? attendanceResponse.data
+            : [];
+
+    const summary =
+        attendanceResponse.summary || {};
+
+    const dateMap = {};
+
+
+    records.forEach(function (record) {
+
+        const date =
+            String(record.date || "").trim();
+
+        const status =
+            String(record.status || "")
+                .trim()
+                .toLowerCase();
+
+
+        if (
+            !date ||
+            !["present", "absent", "leave"]
+                .includes(status)
+        ) {
+            return;
+        }
+
+
+        if (!dateMap[date]) {
+
+            dateMap[date] = {
+                date: date,
+                present: 0,
+                absent: 0,
+                leave: 0,
+                total: 0
+            };
+        }
+
+
+        dateMap[date][status] += 1;
+        dateMap[date].total += 1;
+    });
+
+
+    return {
+        total: Number(summary.total || records.length || 0),
+        present: Number(summary.present || 0),
+        absent: Number(summary.absent || 0),
+        leave: Number(summary.leave || 0),
+        percentage: Number(
+            summary.attendance_percentage || 0
+        ),
+        trend: Object.keys(dateMap)
+            .sort()
+            .map(function (date) {
+                return dateMap[date];
+            })
+    };
 }

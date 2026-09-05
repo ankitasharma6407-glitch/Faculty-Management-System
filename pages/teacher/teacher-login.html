@@ -2,199 +2,85 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Teacher Login | FMPS</title>
 
-
-    <!-- Bootstrap CSS -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet">
 
-
-    <!-- Font Awesome -->
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-
-    <!-- Main CSS -->
     <link
         rel="stylesheet"
         href="../../css/style.css">
 
-
-    <!-- =====================================================
-                    TEACHER LOGIN EXTRA CSS
-    ====================================================== -->
-
     <style>
-
-        /* =====================================================
-                        LOGIN CARD
-        ====================================================== */
-
-        .teacher-login-card{
-            border-radius:24px;
-            padding:35px;
-
+        .teacher-login-card {
+            border-radius: 24px;
+            padding: 35px;
             transition:
                 transform .3s ease,
                 box-shadow .3s ease;
         }
 
-
-        .teacher-login-card:hover{
-            transform:translateY(-3px);
+        .teacher-login-card:hover {
+            transform: translateY(-3px);
         }
 
-
-        /* =====================================================
-                        TEACHER ICON
-        ====================================================== */
-
-        .teacher-login-icon{
-            color:#6f42c1;
+        .teacher-login-icon {
+            color: #6f42c1;
         }
 
-
-        /* =====================================================
-                        TEACHER BADGE
-        ====================================================== */
-
-        .teacher-portal-badge{
-
-            display:inline-block;
-
+        .teacher-portal-badge {
+            display: inline-block;
             background:
                 linear-gradient(
                     135deg,
                     #2563eb,
                     #22d3ee
                 );
-
-            color:#ffffff;
-
-            padding:9px 24px;
-
-            border-radius:30px;
-
-            font-weight:700;
-
-            font-size:14px;
-
-            margin-bottom:8px;
-
+            color: #ffffff;
+            padding: 9px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 8px;
             box-shadow:
                 0 5px 15px
-                rgba(34,211,238,.20);
+                rgba(34, 211, 238, .20);
         }
 
+        .teacher-login-btn,
+        .face-login-btn {
+            width: 100%;
+            min-height: 52px;
+            border: none;
+            border-radius: 30px;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            transition: .3s ease;
+        }
 
-        /* =====================================================
-                        LOGIN BUTTON
-        ====================================================== */
-
-        .teacher-login-btn{
-
-            width:100%;
-
-            min-height:52px;
-
-            border:none;
-
-            border-radius:30px;
-
+        .teacher-login-btn {
             background:
                 linear-gradient(
                     135deg,
                     #2563eb,
                     #22d3ee
                 );
-
-            color:#ffffff;
-
-            font-size:16px;
-
-            font-weight:700;
-
-            transition:.3s ease;
         }
 
-
-        .teacher-login-btn:hover{
-
-            color:#ffffff;
-
-            transform:translateY(-2px);
-
-            box-shadow:
-                0 8px 22px
-                rgba(37,99,235,.30);
-        }
-
-
-        /* =====================================================
-                            DIVIDER
-        ====================================================== */
-
-        .login-divider{
-
-            display:flex;
-
-            align-items:center;
-
-            gap:12px;
-
-            margin:20px 0;
-        }
-
-
-        .login-divider::before,
-        .login-divider::after{
-
-            content:"";
-
-            flex:1;
-
-            height:1px;
-
-            background:
-                rgba(148,163,184,.35);
-        }
-
-
-        .login-divider span{
-
-            color:#94a3b8;
-
-            font-size:12px;
-
-            font-weight:700;
-        }
-
-
-        /* =====================================================
-                        FACE LOGIN BUTTON
-        ====================================================== */
-
-        .face-login-btn{
-
-            width:100%;
-
-            min-height:54px;
-
-            border:none;
-
-            border-radius:30px;
-
-            padding:10px 20px;
-
+        .face-login-btn {
+            padding: 10px 20px;
             background:
                 linear-gradient(
                     135deg,
@@ -202,598 +88,614 @@
                     #2563eb,
                     #06b6d4
                 );
-
-            color:#ffffff;
-
-            display:flex;
-
-            align-items:center;
-
-            justify-content:center;
-
-            gap:10px;
-
-            font-size:15px;
-
-            font-weight:700;
-
-            cursor:pointer;
-
-            transition:
-                transform .3s ease,
-                box-shadow .3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
-
-        .face-login-btn i{
-
-            color:#ffffff;
-
-            font-size:20px;
+        .teacher-login-btn:hover,
+        .face-login-btn:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
         }
 
-
-        .face-login-btn:hover{
-
-            transform:translateY(-2px);
-
-            box-shadow:
-                0 9px 25px
-                rgba(6,182,212,.35);
+        .teacher-login-btn:disabled {
+            opacity: .7;
+            cursor: not-allowed;
+            transform: none;
         }
 
-
-        .face-login-btn:active{
-
-            transform:scale(.98);
+        .face-login-btn i {
+            color: #ffffff;
+            font-size: 20px;
         }
 
+        .login-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 20px 0;
+        }
 
-        /* =====================================================
-                            AI BADGE
-        ====================================================== */
-
-        .face-ai-badge{
-
-            padding:3px 8px;
-
-            border-radius:20px;
-
+        .login-divider::before,
+        .login-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
             background:
-                rgba(255,255,255,.20);
+                rgba(148, 163, 184, .35);
+        }
 
+        .login-divider span {
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .face-register-text {
+            margin-top: 14px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .face-register-text a {
+            color: #6f42c1;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .face-register-text a:hover {
+            text-decoration: underline;
+        }
+
+        #loginMessage {
+            display: none;
+        }
+
+        body.dark-mode .teacher-login-card,
+        body.dark .teacher-login-card {
+            background: #111827;
+            color: #ffffff;
             border:
                 1px solid
-                rgba(255,255,255,.30);
-
-            color:#ffffff;
-
-            font-size:9px;
-
-            font-weight:800;
-
-            letter-spacing:.5px;
+                rgba(255, 255, 255, .08);
         }
 
-
-        /* =====================================================
-                        FACE REGISTER TEXT
-        ====================================================== */
-
-        .face-register-text{
-
-            margin-top:14px;
-
-            text-align:center;
-
-            font-size:13px;
+        body.dark-mode .teacher-login-card .form-control,
+        body.dark .teacher-login-card .form-control {
+            background: #334155;
+            border-color: #475569;
+            color: #ffffff;
         }
 
-
-        .face-register-text a{
-
-            color:#6f42c1;
-
-            text-decoration:none;
-
-            font-weight:700;
+        body.dark-mode .teacher-login-card .form-control::placeholder,
+        body.dark .teacher-login-card .form-control::placeholder {
+            color: #cbd5e1;
         }
 
-
-        .face-register-text a:hover{
-
-            text-decoration:underline;
+        body.dark-mode .teacher-login-card .form-label,
+        body.dark-mode .teacher-login-card .form-check-label,
+        body.dark .teacher-login-card .form-label,
+        body.dark .teacher-login-card .form-check-label {
+            color: #ffffff;
         }
 
-
-        /* =====================================================
-                            DARK MODE
-        ====================================================== */
-
-        body.dark-mode .teacher-login-card{
-
-            background:#111827;
-
-            color:#ffffff;
-
-            border:
-                1px solid
-                rgba(255,255,255,.08);
-        }
-
-
-        body.dark-mode .teacher-login-card
-        .form-control{
-
-            background:#334155;
-
-            border-color:#475569;
-
-            color:#ffffff;
-        }
-
-
-        body.dark-mode .teacher-login-card
-        .form-control::placeholder{
-
-            color:#cbd5e1;
-        }
-
-
-        body.dark-mode .teacher-login-card
-        .form-label{
-
-            color:#ffffff;
-        }
-
-
-        body.dark-mode .teacher-login-card
-        .form-check-label{
-
-            color:#ffffff;
-        }
-
-
-        body.dark-mode .face-register-text{
-
-            color:#94a3b8;
-        }
-
-
-        body.dark-mode .face-register-text a{
-
-            color:#22d3ee;
-        }
-
-
-        /* =====================================================
-                            MOBILE
-        ====================================================== */
-
-        @media(max-width:576px){
-
-            .teacher-login-card{
-
-                padding:25px 20px;
+        @media (max-width: 576px) {
+            .teacher-login-card {
+                padding: 25px 20px;
             }
-
-
-            .teacher-login-btn,
-            .face-login-btn{
-
-                min-height:50px;
-            }
-
         }
-
     </style>
-
 </head>
-
 
 <body>
 
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
 
-<!-- =========================================================
-                        NAVBAR
-========================================================= -->
-
-<nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
-
-    <div class="container">
-
-
-        <!-- LOGO -->
-
-        <a
-            class="navbar-brand d-flex align-items-center text-decoration-none"
-            href="../../index.html">
-
-
-            <img
-                src="../../images/logo.png"
-                width="60"
-                class="me-3"
-                alt="FMPS Logo">
-
-
-            <div>
-
-                <h5
-                    class="mb-0 fw-bold"
-                    style="color:#6f42c1;">
-
-                    FACULTY MANAGEMENT &
-                    PRODUCTIVITY SYSTEM
-
-                </h5>
-
-
-                <small class="text-secondary">
-
-                    Patna Women's College (Autonomous)
-
-                </small>
-
-            </div>
-
-        </a>
-
-
-        <!-- RIGHT NAVBAR -->
-
-        <div class="d-flex align-items-center">
-
-
-            <!-- THEME -->
-
-            <button
-                id="themeToggle"
-                type="button"
-                class="theme-btn me-3">
-
-                <i class="fa-solid fa-moon"></i>
-
-            </button>
-
-
-            <!-- BACK -->
+        <div class="container">
 
             <a
-                href="../role-selection.html"
-                class="text-decoration-none fw-bold text-dark">
+                class="navbar-brand d-flex align-items-center text-decoration-none"
+                href="../../index.html">
 
-                <i
-                    class="fa-solid fa-arrow-left me-2"
-                    style="color:#6f42c1;">
-                </i>
+                <img
+                    src="../../images/logo.png"
+                    width="60"
+                    class="me-3"
+                    alt="FMPS Logo">
 
-                Back
+                <div>
+                    <h5
+                        class="mb-0 fw-bold"
+                        style="color:#6f42c1;">
+
+                        FACULTY MANAGEMENT &amp;
+                        PRODUCTIVITY SYSTEM
+
+                    </h5>
+
+                    <small class="text-secondary">
+                        Patna Women's College (Autonomous)
+                    </small>
+                </div>
 
             </a>
 
-        </div>
+            <div class="d-flex align-items-center">
 
+                <button
+                    id="themeToggle"
+                    type="button"
+                    class="theme-btn me-3"
+                    aria-label="Toggle theme">
 
-    </div>
+                    <i class="fa-solid fa-moon"></i>
 
-</nav>
+                </button>
 
+                <a
+                    href="../role-selection.html"
+                    class="text-decoration-none fw-bold text-dark">
 
+                    <i
+                        class="fa-solid fa-arrow-left me-2"
+                        style="color:#6f42c1;">
+                    </i>
 
-<!-- =========================================================
-                    TEACHER LOGIN SECTION
-========================================================= -->
+                    Back
 
-<section class="py-5">
-
-
-    <div class="container">
-
-
-        <div class="row justify-content-center">
-
-
-            <div class="col-lg-5 col-md-7">
-
-
-                <div class="help-card teacher-login-card">
-
-
-                    <!-- =================================================
-                                LOGIN HEADER
-                    ================================================== -->
-
-                    <div class="text-center mb-4">
-
-
-                        <i
-                            class="fa-solid fa-chalkboard-user
-                                   fa-4x mb-3
-                                   teacher-login-icon">
-                        </i>
-
-
-                        <br>
-
-
-                        <span class="teacher-portal-badge">
-
-                            Teacher Portal
-
-                        </span>
-
-
-                        <h2 class="fw-bold mt-3">
-
-                            Teacher Login
-
-                        </h2>
-
-
-                        <p class="text-muted">
-
-                            Sign in to access your Teacher Dashboard.
-
-                        </p>
-
-
-                    </div>
-
-
-
-                    <!-- =================================================
-                                NORMAL LOGIN FORM
-                    ================================================== -->
-
-                    <form
-                        action="teacher-dashboard.html"
-                        method="get">
-
-
-                        <!-- EMAIL -->
-
-                        <div class="mb-3">
-
-
-                            <label
-                                class="form-label fw-semibold">
-
-                                Teacher Email
-
-                            </label>
-
-
-                            <input
-                                type="email"
-                                class="form-control"
-                                placeholder="Enter Teacher Email"
-                                required>
-
-
-                        </div>
-
-
-
-                        <!-- PASSWORD -->
-
-                        <div class="mb-3">
-
-
-                            <label
-                                class="form-label fw-semibold">
-
-                                Password
-
-                            </label>
-
-
-                            <input
-                                type="password"
-                                class="form-control"
-                                placeholder="Enter Password"
-                                required>
-
-
-                        </div>
-
-
-
-                        <!-- REMEMBER + FORGOT PASSWORD -->
-
-                        <div
-                            class="d-flex
-                                   justify-content-between
-                                   align-items-center
-                                   mb-4">
-
-
-                            <div class="form-check">
-
-
-                                <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    id="remember">
-
-
-                                <label
-                                    class="form-check-label"
-                                    for="remember">
-
-                                    Remember Me
-
-                                </label>
-
-
-                            </div>
-
-
-
-                            <a
-                                href="#"
-                                class="text-decoration-none fw-semibold"
-                                style="color:#6f42c1;">
-
-                                Forgot Password?
-
-                            </a>
-
-
-                        </div>
-
-
-
-                        <!-- LOGIN BUTTON -->
-
-                        <button
-                            type="submit"
-                            class="teacher-login-btn">
-
-                            <i
-                                class="fa-solid
-                                       fa-right-to-bracket
-                                       me-2">
-                            </i>
-
-                            Login
-
-                        </button>
-
-
-                    </form>
-
-
-
-                    <!-- =================================================
-                                OR DIVIDER
-                    ================================================== -->
-
-                    <div class="login-divider">
-
-                        <span>OR</span>
-
-                    </div>
-
-
-
-                    <!-- =================================================
-                            FACE RECOGNITION LOGIN
-                    ================================================== -->
-
-                    <button
-                        type="button"
-                        class="face-login-btn"
-                        id="faceLoginBtn">
-
-
-                        <i class="fa-solid fa-face-smile"></i>
-
-
-                        <span>
-
-                            Login with Face Recognition
-
-                        </span>
-
-
-                        <span class="face-ai-badge">
-
-                            AI
-
-                        </span>
-
-
-                    </button>
-
-
-
-                    <!-- =================================================
-                            FACE REGISTRATION
-                    ================================================== -->
-
-                    <div class="face-register-text">
-
-                        Face not registered?
-
-                        <a href="face-register.html">
-
-                            Register Face
-
-                        </a>
-
-                    </div>
-
-
-                </div>
-
+                </a>
 
             </div>
 
+        </div>
+
+    </nav>
+
+    <section class="py-5">
+
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-lg-5 col-md-7">
+
+                    <div class="help-card teacher-login-card">
+
+                        <div class="text-center mb-4">
+
+                            <i
+                                class="fa-solid fa-chalkboard-user fa-4x mb-3 teacher-login-icon">
+                            </i>
+
+                            <br>
+
+                            <span class="teacher-portal-badge">
+                                Teacher Portal
+                            </span>
+
+                            <h2 class="fw-bold mt-3">
+                                Teacher Login
+                            </h2>
+
+                            <p class="text-muted">
+                                Sign in to access your Teacher Dashboard.
+                            </p>
+
+                        </div>
+
+                        <div
+                            id="loginMessage"
+                            class="alert"
+                            role="alert">
+                        </div>
+
+                        <form
+                            id="teacherLoginForm"
+                            novalidate>
+
+                            <div class="mb-3">
+
+                                <label
+                                    for="teacherEmail"
+                                    class="form-label fw-semibold">
+
+                                    Teacher Email
+
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="teacherEmail"
+                                    name="email"
+                                    class="form-control"
+                                    placeholder="Enter Teacher Email"
+                                    autocomplete="username"
+                                    required>
+
+                            </div>
+
+                            <div class="mb-3">
+
+                                <label
+                                    for="teacherPassword"
+                                    class="form-label fw-semibold">
+
+                                    Password
+
+                                </label>
+
+                                <input
+                                    type="password"
+                                    id="teacherPassword"
+                                    name="password"
+                                    class="form-control"
+                                    placeholder="Enter Password"
+                                    autocomplete="current-password"
+                                    required>
+
+                            </div>
+
+                            <div
+                                class="d-flex justify-content-between align-items-center mb-4">
+
+                                <div class="form-check">
+
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        id="remember">
+
+                                    <label
+                                        class="form-check-label"
+                                        for="remember">
+
+                                        Remember Email
+
+                                    </label>
+
+                                </div>
+
+                                <a
+                                    href="#"
+                                    class="text-decoration-none fw-semibold"
+                                    style="color:#6f42c1;">
+
+                                    Forgot Password?
+
+                                </a>
+
+                            </div>
+
+                            <button
+                                type="submit"
+                                id="teacherLoginButton"
+                                class="teacher-login-btn">
+
+                                <i
+                                    class="fa-solid fa-right-to-bracket me-2">
+                                </i>
+
+                                <span>Login</span>
+
+                            </button>
+
+                        </form>
+
+                        <div class="login-divider">
+                            <span>OR</span>
+                        </div>
+
+                        <button
+                            type="button"
+                            class="face-login-btn"
+                            id="faceLoginBtn">
+
+                            <i class="fa-solid fa-face-smile"></i>
+
+                            <span>
+                                Login with Face Recognition
+                            </span>
+
+                        </button>
+
+                        <div class="face-register-text">
+
+                            Face not registered?
+
+                            <a href="face-register.html">
+                                Register Face
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
+    </section>
 
-    </div>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
 
+    <script src="../../js/script.js"></script>
 
-</section>
+    <script>
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
 
+                const API_URL =
+                    "http://127.0.0.1:5000/api";
 
+                const loginForm =
+                    document.getElementById(
+                        "teacherLoginForm"
+                    );
 
-<!-- =========================================================
-                    BOOTSTRAP JAVASCRIPT
-========================================================= -->
+                const emailInput =
+                    document.getElementById(
+                        "teacherEmail"
+                    );
 
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-</script>
+                const passwordInput =
+                    document.getElementById(
+                        "teacherPassword"
+                    );
 
+                const rememberInput =
+                    document.getElementById(
+                        "remember"
+                    );
 
+                const loginButton =
+                    document.getElementById(
+                        "teacherLoginButton"
+                    );
 
-<!-- =========================================================
-                        COMMON JS
-========================================================= -->
+                const loginButtonText =
+                    loginButton.querySelector(
+                        "span"
+                    );
 
-<script src="../../js/script.js"></script>
+                const messageBox =
+                    document.getElementById(
+                        "loginMessage"
+                    );
 
+                const faceLoginButton =
+                    document.getElementById(
+                        "faceLoginBtn"
+                    );
 
+                const rememberedEmail =
+                    localStorage.getItem(
+                        "fmps_teacher_email"
+                    );
 
-<!-- =========================================================
-                    FACE LOGIN JAVASCRIPT
-========================================================= -->
+                if (rememberedEmail) {
+                    emailInput.value =
+                        rememberedEmail;
 
-<script>
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function(){
-
-        const faceLoginBtn =
-            document.getElementById(
-                "faceLoginBtn"
-            );
-
-
-        if(faceLoginBtn){
-
-            faceLoginBtn.addEventListener(
-                "click",
-                function(){
-
-                    window.location.href =
-                        "face-login.html";
-
+                    rememberInput.checked =
+                        true;
                 }
-            );
 
-        }
+                loginForm.addEventListener(
+                    "submit",
+                    async function (event) {
 
-    }
-);
+                        event.preventDefault();
 
-</script>
+                        const email =
+                            emailInput.value.trim();
 
+                        const password =
+                            passwordInput.value;
+
+                        hideMessage();
+
+                        if (!email || !password) {
+                            showMessage(
+                                "Teacher email and password are required.",
+                                "danger"
+                            );
+
+                            return;
+                        }
+
+                        setLoading(true);
+
+                        try {
+                            const response =
+                                await fetch(
+                                    API_URL +
+                                    "/auth/login",
+                                    {
+                                        method: "POST",
+
+                                        headers: {
+                                            Accept:
+                                                "application/json",
+
+                                            "Content-Type":
+                                                "application/json"
+                                        },
+
+                                        body:
+                                            JSON.stringify({
+                                                email: email,
+                                                password:
+                                                    password
+                                            })
+                                    }
+                                );
+
+                            const result =
+                                await response
+                                    .json()
+                                    .catch(
+                                        function () {
+                                            return {};
+                                        }
+                                    );
+
+                            if (!response.ok) {
+                                throw new Error(
+                                    result.message ||
+                                    "Teacher login failed."
+                                );
+                            }
+
+                            const loginData =
+                                result.data || {};
+
+                            const user =
+                                loginData.user || {};
+
+                            if (
+                                String(
+                                    user.role || ""
+                                ).toLowerCase()
+                                !== "teacher"
+                            ) {
+                                throw new Error(
+                                    "This account is not registered as a teacher."
+                                );
+                            }
+
+                            if (
+                                !loginData.access_token
+                            ) {
+                                throw new Error(
+                                    "Access token was not returned by the server."
+                                );
+                            }
+
+                            localStorage.setItem(
+                                "fmps_access_token",
+                                loginData.access_token
+                            );
+
+                            if (
+                                loginData.refresh_token
+                            ) {
+                                localStorage.setItem(
+                                    "fmps_refresh_token",
+                                    loginData.refresh_token
+                                );
+                            }
+                            else {
+                                localStorage.removeItem(
+                                    "fmps_refresh_token"
+                                );
+                            }
+
+                            localStorage.setItem(
+                                "fmps_user",
+                                JSON.stringify(user)
+                            );
+
+                            if (
+                                rememberInput.checked
+                            ) {
+                                localStorage.setItem(
+                                    "fmps_teacher_email",
+                                    email
+                                );
+                            }
+                            else {
+                                localStorage.removeItem(
+                                    "fmps_teacher_email"
+                                );
+                            }
+
+                            showMessage(
+                                "Login successful. Opening dashboard...",
+                                "success"
+                            );
+
+                            window.setTimeout(
+                                function () {
+                                    window.location.replace(
+                                        "teacher-dashboard.html"
+                                    );
+                                },
+                                500
+                            );
+                        }
+                        catch (error) {
+                            console.error(
+                                "Teacher login error:",
+                                error
+                            );
+
+                            const message =
+                                error instanceof TypeError
+                                    ? "Backend server is not reachable. Start Flask and try again."
+                                    : error.message;
+
+                            showMessage(
+                                message,
+                                "danger"
+                            );
+                        }
+                        finally {
+                            setLoading(false);
+                        }
+                    }
+                );
+
+                if (faceLoginButton) {
+                    faceLoginButton.addEventListener(
+                        "click",
+                        function () {
+                            window.location.href =
+                                "face-login.html";
+                        }
+                    );
+                }
+
+                function setLoading(loading) {
+                    loginButton.disabled =
+                        loading;
+
+                    loginButtonText.textContent =
+                        loading
+                            ? "Signing In..."
+                            : "Login";
+                }
+
+                function showMessage(
+                    message,
+                    type
+                ) {
+                    messageBox.className =
+                        "alert alert-" + type;
+
+                    messageBox.textContent =
+                        message;
+
+                    messageBox.style.display =
+                        "block";
+                }
+
+                function hideMessage() {
+                    messageBox.style.display =
+                        "none";
+
+                    messageBox.textContent =
+                        "";
+                }
+            }
+        );
+    </script>
 
 </body>
 

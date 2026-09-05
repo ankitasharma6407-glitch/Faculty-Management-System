@@ -126,7 +126,10 @@ function updateAttendanceStatistics(summary) {
     const present = Number(summary.present || 0);
     const absent = Number(summary.absent || 0);
     const leave = Number(summary.leave || 0);
-    const percentage = total > 0 ? ((present / total) * 100).toFixed(1) : "0.0";
+    const backendPercentage = Number(summary.attendance_percentage);
+    const percentage = Number.isFinite(backendPercentage)
+        ? backendPercentage.toFixed(1)
+        : (total > 0 ? ((present / total) * 100).toFixed(1) : "0.0");
 
     setText("totalRecords", total);
     setText("presentRecords", present);
@@ -169,7 +172,7 @@ function renderAttendanceRecords() {
                 <td>
                     <button type="button"
                             class="btn btn-sm btn-info viewAttendanceBtn"
-                            data-attendance-id="${Number(record.id)}"
+                            data-record-index="${index}"
                             title="View Details">
                         <i class="fa-solid fa-eye"></i>
                     </button>
@@ -215,9 +218,9 @@ function bindAttendanceTableActions() {
         const button = event.target.closest(".viewAttendanceBtn");
         if (!button) return;
 
-        const record = hodAttendanceRecords.find(
-            item => Number(item.id) === Number(button.dataset.attendanceId)
-        );
+        const record = hodAttendanceRecords[
+            Number(button.dataset.recordIndex)
+        ];
         if (!record) return;
 
         setInputValue("modalFacultyCode", record.faculty_code || "-");

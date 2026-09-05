@@ -1661,6 +1661,22 @@ class LeaveRequest(TimestampMixin, db.Model):
         nullable=False
     )
 
+    contact_number = db.Column(
+        db.String(30)
+    )
+
+    alternate_email = db.Column(
+        db.String(255)
+    )
+
+    responsibility_note = db.Column(
+        db.Text
+    )
+
+    supporting_document = db.Column(
+        db.String(500)
+    )
+
     status = db.Column(
         db.String(20),
         default="pending",
@@ -1738,6 +1754,20 @@ class LeaveRequest(TimestampMixin, db.Model):
             ),
 
             "reason": self.reason,
+
+            "contact_number": self.contact_number,
+
+            "alternate_email": self.alternate_email,
+
+            "responsibility_note": self.responsibility_note,
+
+            "supporting_document": self.supporting_document,
+
+            "supporting_document_url": (
+                f"/uploads/{self.supporting_document}"
+                if self.supporting_document
+                else None
+            ),
 
             "status": self.status,
 

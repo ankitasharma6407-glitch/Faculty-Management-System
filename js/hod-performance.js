@@ -8,6 +8,8 @@ let allPerformanceRecords = [];
 let filteredPerformanceRecords = [];
 let teacherPerformanceChart = null;
 let performanceDistributionChart = null;
+let departmentTeachers = [];
+let departmentTimetable = [];
 
 
 /* =========================================================
@@ -31,7 +33,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     preparePerformancePage();
     bindPerformanceEvents();
 
-    await loadPerformanceRecords();
+    await Promise.all([
+        loadPerformanceRecords(),
+        loadEvaluationOptions()
+    ]);
 });
 
 
@@ -183,6 +188,7 @@ async function loadPerformanceRecords() {
 
         populateSubjectFilter();
         populateTermFilter();
+        populateEvaluationTerms();
 
         applyPerformanceFilters();
 
@@ -242,6 +248,616 @@ function updateSelectedTeacherHeading(record) {
             ` — ${record.teacher_name}`
         );
     }
+}
+
+
+/* =========================================================
+   ADD EVALUATION OPTIONS
+========================================================= */
+
+async function loadEvaluationOptions() {
+
+    try {
+
+        const teachersResponse =
+            await API.request(
+                "GET",
+                "/hods/teachers"
+            );
+
+
+        if (
+            !teachersResponse ||
+            teachersResponse.success !== true
+        ) {
+            throw new Error(
+                teachersResponse?.message ||
+                "Unable to load department teachers."
+            );
+        }
+
+
+        departmentTeachers =
+            Array.isArray(teachersResponse.data)
+                ? teachersResponse.data
+                : [];
+
+
+        populateEvaluationTeachers();
+
+
+        try {
+
+            const timetableResponse =
+                await API.request(
+                    "GET",
+                    "/hod/timetable"
+                );
+
+
+            departmentTimetable =
+                timetableResponse?.success === true &&
+                Array.isArray(timetableResponse.data)
+                    ? timetableResponse.data
+                    : [];
+        }
+
+        catch (timetableError) {
+
+            console.warn(
+                "Evaluation Subjects Load Error:",
+                timetableError
+            );
+
+            departmentTimetable = [];
+        }
+
+
+        populateEvaluationSubjects();
+        populateEvaluationTerms();
+    }
+
+    catch (error) {
+
+        console.error(
+            "Evaluation Options Load Error:",
+            error
+        );
+
+        departmentTeachers = [];
+        departmentTimetable = [];
+
+        populateEvaluationTeachers();
+        populateEvaluationSubjects();
+
+        showEvaluationMessage(
+            error.message ||
+            "Unable to load evaluation form data.",
+            true
+        );
+    }
+}
+
+
+function populateEvaluationTeachers() {
+
+    const teacherSelect =
+        document.getElementById(
+            "evaluationTeacher"
+        );
+
+    if (!teacherSelect) {
+        return;
+    }
+
+
+    const currentValue =
+        teacherSelect.value;
+
+
+    teacherSelect.innerHTML = `
+        <option value="">
+            Select teacher
+        </option>
+    `;
+
+
+    departmentTeachers
+        .slice()
+        .sort(function (first, second) {
+            return String(first.full_name || "")
+                .localeCompare(
+                    String(second.full_name || "")
+                );
+        })
+        .forEach(function (teacher) {
+
+            const option =
+                document.createElement("option");
+
+            option.value = teacher.id;
+            option.textContent = [
+                teacher.full_name,
+                teacher.teacher_code
+                    ? `(${teacher.teacher_code})`
+                    : ""
+            ]
+                .filter(Boolean)
+                .join(" ");
+
+            teacherSelect.appendChild(option);
+        });
+
+
+    const teacherFromUrl =
+        new URLSearchParams(
+            window.location.search
+        ).get("teacher_id");
+
+
+    const preferredValue =
+        currentValue || teacherFromUrl || "";
+
+
+    if (
+        preferredValue &&
+        [...teacherSelect.options]
+            .some(function (option) {
+                return option.value ===
+                    String(preferredValue);
+            })
+    ) {
+        teacherSelect.value =
+            String(preferredValue);
+    }
+}
+
+
+function populateEvaluationSubjects() {
+
+    const subjectSelect =
+        document.getElementById(
+            "evaluationSubject"
+        );
+
+    const teacherId = Number(
+        document.getElementById(
+            "evaluationTeacher"
+        )?.value || 0
+    );
+
+    if (!subjectSelect) {
+        return;
+    }
+
+
+    const currentValue =
+        subjectSelect.value;
+
+
+    const subjectMap = new Map();
+
+
+    departmentTimetable
+        .filter(function (entry) {
+            return !teacherId ||
+                Number(entry.teacher_id) === teacherId;
+        })
+        .forEach(function (entry) {
+
+            if (!entry.subject_id) {
+                return;
+            }
+
+            subjectMap.set(
+                Number(entry.subject_id),
+                {
+                    id: Number(entry.subject_id),
+                    name: entry.subject ||
+                        "Unnamed Subject",
+                    code: entry.subject_code || ""
+                }
+            );
+        });
+
+
+    subjectSelect.innerHTML = `
+        <option value="">
+            General evaluation (no subject)
+        </option>
+    `;
+
+
+    [...subjectMap.values()]
+        .sort(function (first, second) {
+            return first.name.localeCompare(
+                second.name
+            );
+        })
+        .forEach(function (subject) {
+
+            const option =
+                document.createElement("option");
+
+            option.value = subject.id;
+            option.textContent = subject.code
+                ? `${subject.name} (${subject.code})`
+                : subject.name;
+
+            subjectSelect.appendChild(option);
+        });
+
+
+    if (
+        currentValue &&
+        [...subjectSelect.options]
+            .some(function (option) {
+                return option.value === currentValue;
+            })
+    ) {
+        subjectSelect.value = currentValue;
+    }
+}
+
+
+function populateEvaluationTerms() {
+
+    const termOptions =
+        document.getElementById(
+            "evaluationTermOptions"
+        );
+
+    if (!termOptions) {
+        return;
+    }
+
+
+    const terms = new Set();
+
+
+    allPerformanceRecords.forEach(
+        function (record) {
+            if (record.term) {
+                terms.add(
+                    String(record.term).trim()
+                );
+            }
+        }
+    );
+
+
+    departmentTimetable.forEach(
+        function (entry) {
+            if (entry.semester) {
+                terms.add(
+                    String(entry.semester).trim()
+                );
+            }
+        }
+    );
+
+
+    termOptions.innerHTML = "";
+
+
+    [...terms]
+        .filter(Boolean)
+        .sort()
+        .forEach(function (term) {
+
+            const option =
+                document.createElement("option");
+
+            option.value = term;
+            termOptions.appendChild(option);
+        });
+}
+
+
+function updateEvaluationPreview() {
+
+    const score = Number(
+        document.getElementById(
+            "evaluationScore"
+        )?.value
+    );
+
+    const maxScore = Number(
+        document.getElementById(
+            "evaluationMaxScore"
+        )?.value
+    );
+
+
+    const percentage =
+        Number.isFinite(score) &&
+        Number.isFinite(maxScore) &&
+        maxScore > 0 &&
+        score >= 0
+            ? Math.min(
+                (score / maxScore) * 100,
+                999.9
+            )
+            : 0;
+
+
+    let band = "Poor";
+
+    if (percentage >= 80) {
+        band = "Excellent";
+    }
+    else if (percentage >= 60) {
+        band = "Good";
+    }
+    else if (percentage >= 40) {
+        band = "Average";
+    }
+
+
+    setText(
+        "evaluationPercentage",
+        `${percentage.toFixed(1)}%`
+    );
+
+    setText(
+        "evaluationBand",
+        band
+    );
+}
+
+
+async function submitEvaluation(event) {
+
+    event.preventDefault();
+
+
+    const form = event.currentTarget;
+
+    clearEvaluationMessage();
+
+
+    if (!form.checkValidity()) {
+        form.classList.add("was-validated");
+        form.reportValidity();
+        return;
+    }
+
+
+    const teacherId = Number(
+        document.getElementById(
+            "evaluationTeacher"
+        ).value
+    );
+
+    const subjectValue =
+        document.getElementById(
+            "evaluationSubject"
+        ).value;
+
+    const term =
+        document.getElementById(
+            "evaluationTerm"
+        ).value.trim();
+
+    const score = Number(
+        document.getElementById(
+            "evaluationScore"
+        ).value
+    );
+
+    const maxScore = Number(
+        document.getElementById(
+            "evaluationMaxScore"
+        ).value
+    );
+
+
+    if (score > maxScore) {
+        showEvaluationMessage(
+            "Score cannot be greater than maximum score.",
+            true
+        );
+        return;
+    }
+
+
+    const payload = {
+        teacher_id: teacherId,
+        subject_id: subjectValue
+            ? Number(subjectValue)
+            : null,
+        term: term,
+        score: score,
+        max_score: maxScore,
+        grade:
+            document.getElementById(
+                "evaluationGrade"
+            ).value.trim() || null,
+        remarks:
+            document.getElementById(
+                "evaluationRemarks"
+            ).value.trim() || null
+    };
+
+
+    setEvaluationSaving(true);
+
+
+    try {
+
+        const response =
+            await API.request(
+                "POST",
+                "/hods/performance",
+                payload
+            );
+
+
+        if (
+            !response ||
+            response.success !== true
+        ) {
+            throw new Error(
+                response?.message ||
+                "Unable to save teacher evaluation."
+            );
+        }
+
+
+        resetEvaluationForm();
+
+
+        const modalElement =
+            document.getElementById(
+                "addEvaluationModal"
+            );
+
+        if (
+            modalElement &&
+            typeof bootstrap !== "undefined"
+        ) {
+            bootstrap.Modal
+                .getOrCreateInstance(modalElement)
+                .hide();
+        }
+
+
+        await loadPerformanceRecords();
+
+
+        alert(
+            response.message ||
+            "Teacher evaluation saved successfully."
+        );
+    }
+
+    catch (error) {
+
+        console.error(
+            "Evaluation Save Error:",
+            error
+        );
+
+        showEvaluationMessage(
+            error.message ||
+            "Unable to save teacher evaluation.",
+            true
+        );
+    }
+
+    finally {
+        setEvaluationSaving(false);
+    }
+}
+
+
+function setEvaluationSaving(isSaving) {
+
+    const saveButton =
+        document.getElementById(
+            "saveEvaluationBtn"
+        );
+
+    const spinner =
+        document.getElementById(
+            "saveEvaluationSpinner"
+        );
+
+    const icon =
+        document.getElementById(
+            "saveEvaluationIcon"
+        );
+
+    const text =
+        document.getElementById(
+            "saveEvaluationText"
+        );
+
+
+    if (saveButton) {
+        saveButton.disabled = isSaving;
+    }
+
+    spinner?.classList.toggle(
+        "d-none",
+        !isSaving
+    );
+
+    icon?.classList.toggle(
+        "d-none",
+        isSaving
+    );
+
+    if (text) {
+        text.textContent = isSaving
+            ? "Saving..."
+            : "Save Evaluation";
+    }
+}
+
+
+function showEvaluationMessage(message, isError) {
+
+    const messageBox =
+        document.getElementById(
+            "evaluationFormMessage"
+        );
+
+    if (!messageBox) {
+        return;
+    }
+
+
+    messageBox.textContent = message;
+    messageBox.className =
+        `alert ${isError
+            ? "alert-danger"
+            : "alert-success"}`;
+}
+
+
+function clearEvaluationMessage() {
+
+    const messageBox =
+        document.getElementById(
+            "evaluationFormMessage"
+        );
+
+    if (!messageBox) {
+        return;
+    }
+
+
+    messageBox.textContent = "";
+    messageBox.className = "alert d-none";
+}
+
+
+function resetEvaluationForm() {
+
+    const form =
+        document.getElementById(
+            "evaluationForm"
+        );
+
+    form?.reset();
+    form?.classList.remove("was-validated");
+
+
+    const maxScore =
+        document.getElementById(
+            "evaluationMaxScore"
+        );
+
+    if (maxScore) {
+        maxScore.value = "100";
+    }
+
+
+    clearEvaluationMessage();
+    populateEvaluationTeachers();
+    populateEvaluationSubjects();
+    updateEvaluationPreview();
 }
 
 
@@ -363,6 +979,31 @@ function bindPerformanceEvents() {
             "performanceTableBody"
         );
 
+    const evaluationForm =
+        document.getElementById(
+            "evaluationForm"
+        );
+
+    const evaluationTeacher =
+        document.getElementById(
+            "evaluationTeacher"
+        );
+
+    const evaluationScore =
+        document.getElementById(
+            "evaluationScore"
+        );
+
+    const evaluationMaxScore =
+        document.getElementById(
+            "evaluationMaxScore"
+        );
+
+    const evaluationModal =
+        document.getElementById(
+            "addEvaluationModal"
+        );
+
 
     teacherSearch?.addEventListener(
         "input",
@@ -379,6 +1020,42 @@ function bindPerformanceEvents() {
     resetButton?.addEventListener(
         "click",
         resetPerformanceFilters
+    );
+
+
+    evaluationForm?.addEventListener(
+        "submit",
+        submitEvaluation
+    );
+
+
+    evaluationTeacher?.addEventListener(
+        "change",
+        populateEvaluationSubjects
+    );
+
+
+    evaluationScore?.addEventListener(
+        "input",
+        updateEvaluationPreview
+    );
+
+
+    evaluationMaxScore?.addEventListener(
+        "input",
+        updateEvaluationPreview
+    );
+
+
+    evaluationModal?.addEventListener(
+        "show.bs.modal",
+        function () {
+            clearEvaluationMessage();
+            populateEvaluationTeachers();
+            populateEvaluationSubjects();
+            populateEvaluationTerms();
+            updateEvaluationPreview();
+        }
     );
 
 

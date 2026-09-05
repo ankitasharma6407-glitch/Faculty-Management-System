@@ -1130,7 +1130,7 @@ document.addEventListener(
 
 
 const FACULTY_ATTENDANCE_API =
-    "http://127.0.0.1:5000/api/faculty-attendance";
+    "http://127.0.0.1:5000/api/faculty-attendance/admin/calculated-report";
 
 
 let analyticsAttendanceRecords = [];
@@ -1413,10 +1413,39 @@ async function loadFacultyAttendanceAnalytics() {
     try {
 
 
+        const token =
+            localStorage.getItem(
+                "fmps_access_token"
+            );
+
+
+        if (!token) {
+            window.location.href =
+                "admin-login.html";
+            return;
+        }
+
+
         const response =
             await fetch(
-                FACULTY_ATTENDANCE_API
+                FACULTY_ATTENDANCE_API,
+                {
+                    headers: {
+                        "Accept": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
             );
+
+
+        if (response.status === 401) {
+            localStorage.removeItem(
+                "fmps_access_token"
+            );
+            window.location.href =
+                "admin-login.html";
+            return;
+        }
 
 
         const result =

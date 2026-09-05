@@ -930,7 +930,100 @@
 // ============================================================
 
 const ATTENDANCE_API_URL =
-    "http://127.0.0.1:5000/api/faculty-attendance";
+    "http://127.0.0.1:5000/api/faculty-attendance/admin/calculated-report";
+
+
+// ============================================================
+// AUTHENTICATED API REQUEST
+// ============================================================
+
+async function fetchAttendanceApi(
+    url,
+    options = {}
+) {
+
+    const token =
+        localStorage.getItem(
+            "fmps_access_token"
+        );
+
+
+    if (!token) {
+
+        window.location.href =
+            "admin-login.html";
+
+        throw new Error(
+            "Authorization token is missing. Please log in again."
+        );
+
+    }
+
+
+    const response = await fetch(
+        url,
+        {
+            ...options,
+            headers: {
+                "Accept": "application/json",
+                "Authorization": `Bearer ${token}`,
+                ...(options.headers || {})
+            }
+        }
+    );
+
+
+    const contentType =
+        response.headers.get(
+            "content-type"
+        ) || "";
+
+
+    const result =
+        contentType.includes(
+            "application/json"
+        )
+            ? await response.json()
+            : {
+                message:
+                    await response.text()
+            };
+
+
+    if (response.status === 401) {
+
+        localStorage.removeItem(
+            "fmps_access_token"
+        );
+
+        window.location.href =
+            "admin-login.html";
+
+        throw new Error(
+            result.message ||
+            "Your login session has expired."
+        );
+
+    }
+
+
+    if (
+        !response.ok ||
+        result.success === false
+    ) {
+
+        throw new Error(
+            result.message ||
+            result.error ||
+            `Request failed (${response.status})`
+        );
+
+    }
+
+
+    return result;
+
+}
 
 
 
@@ -1028,33 +1121,16 @@ async function loadAttendance() {
     try {
 
 
-        const response =
-            await fetch(
+        const result =
+            await fetchAttendanceApi(
                 ATTENDANCE_API_URL
             );
-
-
-        const result =
-            await response.json();
 
 
         console.log(
             "Attendance API Response:",
             result
         );
-
-
-        if (
-            !response.ok ||
-            result.success === false
-        ) {
-
-            throw new Error(
-                result.message ||
-                "Failed to load attendance records"
-            );
-
-        }
 
 
         allAttendanceRecords =
@@ -1568,7 +1644,7 @@ function renderAttendance(records) {
                     <button
                         type="button"
                         class="btn btn-info btn-sm"
-                        onclick="viewAttendance(${record.id})"
+                        onclick="viewAttendance(${index})"
                         title="View Attendance">
 
                         <i class="fa-solid fa-eye"></i>
@@ -1705,38 +1781,24 @@ function resetFilters() {
 // ============================================================
 
 async function viewAttendance(
-    attendanceId
+    recordIndex
 ) {
 
 
     try {
 
 
-        const response =
-            await fetch(
-                `${ATTENDANCE_API_URL}/${attendanceId}`
-            );
-
-
-        const result =
-            await response.json();
-
-
-        if (
-            !response.ok ||
-            result.success === false
-        ) {
-
-            throw new Error(
-                result.message ||
-                "Attendance record not found"
-            );
-
-        }
-
-
         const record =
-            result.data;
+            filteredAttendanceRecords[
+                Number(recordIndex)
+            ];
+
+
+        if (!record) {
+            throw new Error(
+                "Attendance record is unavailable."
+            );
+        }
 
 
         const facultyName =
@@ -2309,4 +2371,4 @@ document.addEventListener(
 
 </body>
 
-</html>  
+</html>

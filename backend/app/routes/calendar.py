@@ -14,6 +14,7 @@ from ..models import (
     Department,
     User,
     Hod,
+    Teacher,
 )
 
 
@@ -1106,6 +1107,273 @@ def delete_academic_event(event_id):
 
 
 # ============================================================
+# TEACHER CALENDAR HELPER
+# ============================================================
+
+def get_current_teacher_for_calendar():
+
+    identity = get_jwt_identity()
+
+    try:
+        user_id = int(identity)
+
+    except (TypeError, ValueError):
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "Invalid login session"
+            }),
+            401
+        )
+
+    user = db.session.get(
+        User,
+        user_id
+    )
+
+    if not user:
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "User not found"
+            }),
+            404
+        )
+
+    if (
+        str(user.role or "")
+        .strip()
+        .lower()
+        != "teacher"
+    ):
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "Teacher access required"
+            }),
+            403
+        )
+
+    if not user.is_active:
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "Teacher account is inactive"
+            }),
+            403
+        )
+
+    teacher = (
+        Teacher.query
+        .filter_by(user_id=user.id)
+        .first()
+    )
+
+    if not teacher:
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "Teacher profile not found"
+            }),
+            404
+        )
+
+    if not teacher.department_id:
+
+        return None, None, (
+            jsonify({
+                "success": False,
+                "message": "No department is assigned to this Teacher"
+            }),
+            403
+        )
+
+    return user, teacher, None
+
+
+# ============================================================
+# TEACHER - GET ACADEMIC EVENTS
+#
+# GET /api/academic-events/teacher/me
+#
+# Teacher can see:
+# 1. Global events (department_id = None)
+# 2. Events from the Teacher's own department
+# ============================================================
+
+@bp.get("/teacher/me")
+@jwt_required()
+def get_teacher_academic_events():
+
+    try:
+
+        user, teacher, error_response = (
+            get_current_teacher_for_calendar()
+        )
+
+        if error_response:
+            return error_response
+
+        event_type = (
+            request.args
+            .get("event_type", "")
+            .strip()
+            .lower()
+        )
+
+        search = (
+            request.args
+            .get("search", "")
+            .strip()
+            .lower()
+        )
+
+        from_date_value = (
+            request.args
+            .get("from_date", "")
+            .strip()
+        )
+
+        to_date_value = (
+            request.args
+            .get("to_date", "")
+            .strip()
+        )
+
+        query = (
+            AcademicEvent.query
+            .filter(
+                (
+                    AcademicEvent.department_id
+                    == teacher.department_id
+                )
+                |
+                AcademicEvent.department_id.is_(None)
+            )
+        )
+
+        if event_type:
+            query = query.filter(
+                AcademicEvent.event_type == event_type
+            )
+
+        if from_date_value:
+            parsed_from_date = parse_date(from_date_value)
+
+            if not parsed_from_date:
+                return jsonify({
+                    "success": False,
+                    "message": "Invalid from_date. Use YYYY-MM-DD."
+                }), 400
+
+            query = query.filter(
+                AcademicEvent.start_date >= parsed_from_date
+            )
+
+        if to_date_value:
+            parsed_to_date = parse_date(to_date_value)
+
+            if not parsed_to_date:
+                return jsonify({
+                    "success": False,
+                    "message": "Invalid to_date. Use YYYY-MM-DD."
+                }), 400
+
+            query = query.filter(
+                AcademicEvent.start_date <= parsed_to_date
+            )
+
+        events = (
+            query
+            .order_by(
+                AcademicEvent.start_date.asc(),
+                AcademicEvent.id.asc()
+            )
+            .all()
+        )
+
+        data = []
+
+        for event in events:
+            item = event_to_dict(event)
+
+            if search:
+                searchable_text = " ".join([
+                    str(item.get("title", "") or ""),
+                    str(item.get("description", "") or ""),
+                    str(item.get("event_type", "") or ""),
+                    str(item.get("status", "") or ""),
+                    str(item.get("department", "") or ""),
+                ]).lower()
+
+                if search not in searchable_text:
+                    continue
+
+            item["scope"] = (
+                "global"
+                if event.department_id is None
+                else "department"
+            )
+            item["can_edit"] = False
+            item["can_delete"] = False
+            data.append(item)
+
+        summary = {
+            "total": len(data),
+            "upcoming": sum(
+                1 for item in data
+                if item.get("status") == "upcoming"
+            ),
+            "ongoing": sum(
+                1 for item in data
+                if item.get("status") == "ongoing"
+            ),
+            "completed": sum(
+                1 for item in data
+                if item.get("status") == "completed"
+            ),
+            "global_events": sum(
+                1 for item in data
+                if item.get("scope") == "global"
+            ),
+            "department_events": sum(
+                1 for item in data
+                if item.get("scope") == "department"
+            ),
+        }
+
+        return jsonify({
+            "success": True,
+            "teacher": {
+                "id": teacher.id,
+                "teacher_code": teacher.teacher_code,
+                "full_name": teacher.full_name,
+                "department_id": teacher.department_id,
+                "department": (
+                    teacher.department.name
+                    if teacher.department
+                    else None
+                ),
+            },
+            "summary": summary,
+            "data": data,
+        }), 200
+
+    except Exception as error:
+
+        return jsonify({
+            "success": False,
+            "message": "Unable to load Teacher academic events.",
+            "error": str(error)
+        }), 500
+
+
+# ============================================================
 # HOD CALENDAR HELPER
 # ============================================================
 
@@ -1531,7 +1799,7 @@ def get_hod_academic_events():
             "error":
                 str(error)
 
-        }), 500    
+        }), 500
 
 
 # ============================================================
@@ -1758,7 +2026,7 @@ def create_hod_academic_event():
             "error":
                 str(error)
 
-        }), 500    
+        }), 500
 
 
 # ============================================================
@@ -1975,7 +2243,7 @@ def update_hod_academic_event(event_id):
             "error":
                 str(error)
 
-        }), 500    
+        }), 500
 
 
 # ============================================================
@@ -2064,4 +2332,4 @@ def delete_hod_academic_event(event_id):
             "error":
                 str(error)
 
-        }), 500    
+        }), 500

@@ -24,6 +24,10 @@ rel="stylesheet">
 rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap"
+rel="stylesheet">
+
 
 <style>
 
@@ -1317,6 +1321,166 @@ body.dark-mode
 
 </style>
 
+<style id="teacher-sidebar-consistency">
+
+/* Shared Teacher Panel sidebar — matches Dashboard/Admin visual structure. */
+:root {
+    --sidebar-width: 324px;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    padding: 0;
+    border-right: 0;
+    background:
+        radial-gradient(circle at 6% 0%, rgba(124, 103, 170, .12), transparent 31%),
+        linear-gradient(180deg, #303a4b 0%, #263650 46%, #1a2d51 100%);
+    color: #f7f9ff;
+    scrollbar-width: auto;
+    scrollbar-color: #4567ff #f1f3f7;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 10px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #f1f3f7;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    min-height: 115px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #7047ff, #3b69ff);
+}
+
+.brand-block {
+    padding: 29px 24px 27px;
+    text-align: center;
+}
+
+.brand-logo-wrap {
+    width: 103px;
+    height: 103px;
+    margin: 0 auto 17px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .22);
+}
+
+.brand-logo-wrap img {
+    width: 91px;
+    height: 91px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.brand-block h2,
+.brand-block h3 {
+    margin: 0;
+    color: #ffffff;
+    font-weight: 800;
+    letter-spacing: .35px;
+}
+
+.brand-block h2 {
+    margin-bottom: 3px;
+    font-size: 22px;
+}
+
+.brand-block h3 {
+    margin-bottom: 14px;
+    font-size: 20px;
+}
+
+.brand-block p {
+    margin: 0;
+    color: #d2d8e5;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.sidebar-menu {
+    margin: 0;
+    padding: 19px 17px 42px 28px;
+    list-style: none;
+}
+
+.sidebar-menu li {
+    margin: 0 0 10px;
+}
+
+.sidebar-menu a {
+    min-height: 61px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    border-radius: 13px;
+    background: transparent;
+    color: #dce2ed;
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: .2s ease;
+}
+
+.sidebar-menu a i {
+    width: 26px;
+    color: #dce2ed;
+    font-size: 19px;
+    text-align: center;
+}
+
+.sidebar-menu a:hover,
+body.dark-mode .sidebar-menu a:hover {
+    background: rgba(255, 255, 255, .08);
+    color: #ffffff;
+    transform: none;
+}
+
+.sidebar-menu a:hover i {
+    color: #ffffff;
+}
+
+.sidebar-menu li.active a,
+body.dark-mode .sidebar-menu li.active a {
+    background: linear-gradient(100deg, #7742ff, #6634f4);
+    color: #ffffff;
+    box-shadow: 0 12px 28px rgba(91, 47, 226, .42);
+}
+
+.sidebar-menu li.active a i {
+    color: #ffffff;
+}
+
+.sidebar-menu .logout-link {
+    color: #ffb7be;
+}
+
+.main-content {
+    width: calc(100% - var(--sidebar-width));
+    margin-left: var(--sidebar-width);
+}
+
+@media (max-width: 1500px) {
+    :root { --sidebar-width: 300px; }
+    .sidebar-menu { padding-right: 20px; padding-left: 20px; }
+}
+
+@media (max-width: 1050px) {
+    :root { --sidebar-width: 270px; }
+    .sidebar-menu a { min-height: 55px; padding: 13px 16px; font-size: 15px; }
+}
+
+</style>
+
 </head>
 
 
@@ -1332,165 +1496,111 @@ body.dark-mode
 
 <aside class="sidebar">
 
-
-<div class="sidebar-logo">
-
-    <img
-    src="../../images/logo.png"
-    alt="FMPS Logo">
-
-    <h2>FMPS</h2>
-
+<div class="brand-block">
+    <div class="brand-logo-wrap">
+        <img src="../../images/logo.png" alt="Patna Women's College logo">
+    </div>
+    <h2>PATNA</h2>
+    <h3>WOMEN'S COLLEGE</h3>
+    <p>(AUTONOMOUS)</p>
 </div>
 
-
+<nav aria-label="Teacher navigation">
 <ul class="sidebar-menu">
 
-
 <li>
-
 <a href="teacher-dashboard.html">
-
 <i class="fa-solid fa-house"></i>
-
 <span>Dashboard</span>
-
 </a>
-
 </li>
-
 
 <li>
-
 <a href="my-classes.html">
-
 <i class="fa-solid fa-chalkboard-user"></i>
-
 <span>My Classes</span>
-
 </a>
-
 </li>
-
 
 <li class="active">
-
 <a href="timetable.html">
-
 <i class="fa-solid fa-calendar-days"></i>
-
 <span>Timetable</span>
-
 </a>
-
 </li>
 
-
 <li>
-
-<a href="attendance-report.html">
-
-<i class="fa-solid fa-user-check"></i>
-
-<span>Attendance</span>
-
+<a href="face-register.html">
+<i class="fa-solid fa-user-plus"></i>
+<span>Face Registration</span>
 </a>
-
 </li>
 
-
 <li>
-
-<a href="students.html">
-
-<i class="fa-solid fa-users"></i>
-
-<span>Students</span>
-
+<a href="face-attendance.html">
+<i class="fa-solid fa-camera"></i>
+<span>Face Attendance</span>
 </a>
-
 </li>
 
-
 <li>
-
-<a href="assignments.html">
-
-<i class="fa-solid fa-file-pen"></i>
-
-<span>Assignments</span>
-
+<a href="leave-request.html">
+<i class="fa-solid fa-file-circle-check"></i>
+<span>Leave Request</span>
 </a>
-
 </li>
 
-
 <li>
-
-<a href="study-material.html">
-
-<i class="fa-solid fa-book-open"></i>
-
-<span>Study Materials</span>
-
+<a href="performance.html">
+<i class="fa-solid fa-chart-line"></i>
+<span>Performance</span>
 </a>
-
 </li>
 
-
 <li>
-
 <a href="notices.html">
-
 <i class="fa-solid fa-bullhorn"></i>
-
 <span>Notices</span>
-
 </a>
-
 </li>
 
+<li>
+<a href="academic-calendar.html">
+<i class="fa-solid fa-calendar-check"></i>
+<span>Academic Calendar</span>
+</a>
+</li>
 
 <li>
+<a href="notification.html">
+<i class="fa-solid fa-bell"></i>
+<span>Notifications</span>
+</a>
+</li>
 
+<li>
 <a href="profile.html">
-
 <i class="fa-solid fa-user"></i>
-
 <span>My Profile</span>
-
 </a>
-
 </li>
 
-
 <li>
-
 <a href="settings.html">
-
 <i class="fa-solid fa-gear"></i>
-
 <span>Settings</span>
-
 </a>
-
 </li>
-
 
 <li>
-
-<a href="teacher-login.html">
-
+<a href="teacher-login.html" class="logout-link">
 <i class="fa-solid fa-right-from-bracket"></i>
-
 <span>Logout</span>
-
 </a>
-
 </li>
-
 
 </ul>
+</nav>
 
 </aside>
 
@@ -1584,18 +1694,16 @@ aria-expanded="false">
 
 <span
 class="badge-count"
-id="notificationCount">
-
-4
-
-</span>
+id="notificationCount"
+style="display:none;">0</span>
 
 </button>
 
 
 
 <ul
-class="dropdown-menu dropdown-menu-end notification-menu">
+class="dropdown-menu dropdown-menu-end notification-menu"
+id="notificationDropdownMenu">
 
 
 <li class="notification-menu-header">
@@ -1605,7 +1713,7 @@ class="dropdown-menu dropdown-menu-end notification-menu">
 <strong>Notifications</strong>
 
 <small id="notificationText">
-4 unread notifications
+Loading notifications...
 </small>
 
 </div>
@@ -1614,7 +1722,8 @@ class="dropdown-menu dropdown-menu-end notification-menu">
 <button
 type="button"
 class="mark-read-btn"
-id="markAllRead">
+id="markNotificationsRead"
+disabled>
 
 Mark all read
 
@@ -1622,129 +1731,15 @@ Mark all read
 
 </li>
 
-
-
-<li>
-
-<a
-class="dropdown-item notification-item"
-href="notification.html">
-
-<span class="notification-icon">
-
-📅
-
+<li class="notification-state-row" id="notificationLoading">
+<span class="dropdown-item-text">
+<i class="fa-solid fa-spinner fa-spin"></i>
+Loading notifications...
 </span>
-
-<span class="notification-text">
-
-<strong>
-Timetable Updated
-</strong>
-
-<small>
-Your Monday schedule has been updated.
-</small>
-
-</span>
-
-</a>
-
 </li>
 
 
-
-<li>
-
-<a
-class="dropdown-item notification-item"
-href="notification.html">
-
-<span class="notification-icon">
-
-🏫
-
-</span>
-
-<span class="notification-text">
-
-<strong>
-Room Changed
-</strong>
-
-<small>
-AI class moved to Room 305.
-</small>
-
-</span>
-
-</a>
-
-</li>
-
-
-
-<li>
-
-<a
-class="dropdown-item notification-item"
-href="notification.html">
-
-<span class="notification-icon">
-
-⏰
-
-</span>
-
-<span class="notification-text">
-
-<strong>
-Upcoming Class
-</strong>
-
-<small>
-Your next class starts at 12:30 PM.
-</small>
-
-</span>
-
-</a>
-
-</li>
-
-
-
-<li>
-
-<a
-class="dropdown-item notification-item"
-href="notification.html">
-
-<span class="notification-icon">
-
-📢
-
-</span>
-
-<span class="notification-text">
-
-<strong>
-Faculty Meeting
-</strong>
-
-<small>
-Faculty meeting scheduled at 3:30 PM.
-</small>
-
-</span>
-
-</a>
-
-</li>
-
-
-
-<li class="notification-footer">
+<li class="notification-footer" id="notificationFooter">
 
 <a href="notification.html">
 
@@ -5363,6 +5358,204 @@ for this day.
 </div>
 
 
+<!-- =========================================================
+      FINAL TEACHER / HOD THEME ALIGNMENT
+      Kept here so it overrides the older page-specific styles.
+========================================================= -->
+<style id="teacher-hod-theme-alignment">
+
+:root {
+    --primary: #6f36ff;
+    --primary-light: #7c55ff;
+    --blue: #315ff4;
+}
+
+/* ---------- LIGHT MODE: HOD-style purple sidebar ---------- */
+body:not(.dark-mode) .sidebar {
+    background:
+        radial-gradient(circle at 8% 0%, rgba(255, 255, 255, .14), transparent 32%),
+        linear-gradient(180deg, #5a27ec 0%, #6735f4 48%, #7549ff 100%) !important;
+    color: #ffffff !important;
+    border-right: 0 !important;
+    scrollbar-color: #a88fff #f1f3f7;
+}
+
+/* ---------- DARK MODE: HOD-style black sidebar ---------- */
+body.dark-mode .sidebar {
+    background:
+        radial-gradient(circle at 8% 0%, rgba(111, 54, 255, .09), transparent 31%),
+        linear-gradient(180deg, #111111 0%, #0e0e0e 100%) !important;
+    color: #ffffff !important;
+    border-right: 0 !important;
+    scrollbar-color: #7656ff #f1f3f7;
+}
+
+.sidebar .brand-block h2,
+.sidebar .brand-block h3,
+.sidebar .brand-block p,
+.sidebar-menu a,
+.sidebar-menu a i {
+    color: #ffffff !important;
+}
+
+.sidebar-menu li.active a {
+    background: rgba(255, 255, 255, .20) !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 24px rgba(50, 21, 151, .20) !important;
+}
+
+body.dark-mode .sidebar-menu li.active a {
+    background: linear-gradient(100deg, #7742ff, #6634f4) !important;
+    box-shadow: 0 10px 24px rgba(91, 47, 226, .28) !important;
+}
+
+.sidebar-menu a:hover,
+body.dark-mode .sidebar-menu a:hover {
+    background: rgba(255, 255, 255, .11) !important;
+    transform: none !important;
+}
+
+/* ---------- HOD-style floating top header ---------- */
+.top-navbar {
+    position: sticky !important;
+    top: 16px !important;
+    min-height: 100px !important;
+    margin: 30px 27px 0 !important;
+    padding: 18px 28px !important;
+    color: var(--text) !important;
+    background: var(--card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 22px !important;
+    box-shadow: 0 10px 26px rgba(28, 37, 61, .07) !important;
+}
+
+body.dark-mode .top-navbar {
+    background: var(--navbar) !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .16) !important;
+}
+
+.navbar-title-icon {
+    background: linear-gradient(135deg, #7742ff, #4e5cff) !important;
+    box-shadow: none !important;
+}
+
+.search-box {
+    width: clamp(190px, 19vw, 310px) !important;
+    background: var(--background) !important;
+    border-color: var(--border) !important;
+    border-radius: 24px !important;
+}
+
+body.dark-mode .search-box {
+    background: var(--card) !important;
+}
+
+.icon-btn,
+body.dark-mode .icon-btn {
+    color: var(--text) !important;
+    background: var(--background) !important;
+    border-color: var(--border) !important;
+    border-radius: 50% !important;
+    box-shadow: none !important;
+}
+
+body.dark-mode .icon-btn {
+    background: var(--card) !important;
+}
+
+.icon-btn:hover,
+body.dark-mode .icon-btn:hover {
+    color: #6f36ff !important;
+    border-color: #8a67ff !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* ---------- LIGHT MODE: HOD-style purple hero ---------- */
+body:not(.dark-mode) .teaching-schedule-card {
+    background:
+        radial-gradient(circle at 91% 12%, rgba(255, 255, 255, .17), transparent 28%),
+        linear-gradient(135deg, #6942ff 0%, #7445f6 56%, #813ee8 100%) !important;
+    border-color: transparent !important;
+    box-shadow: 0 10px 26px rgba(55, 30, 133, .12) !important;
+}
+
+body:not(.dark-mode) .teaching-schedule-card::before {
+    background: rgba(255, 255, 255, .12) !important;
+}
+
+body:not(.dark-mode) .teaching-schedule-card::after {
+    background: rgba(255, 255, 255, .08) !important;
+}
+
+body:not(.dark-mode) .schedule-title h2,
+body:not(.dark-mode) .schedule-title p {
+    color: #ffffff !important;
+}
+
+body:not(.dark-mode) .schedule-main-icon {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, .16) !important;
+    border: 1px solid rgba(255, 255, 255, .34) !important;
+    box-shadow: none !important;
+}
+
+body:not(.dark-mode) .schedule-date-box {
+    background: rgba(255, 255, 255, .93) !important;
+    box-shadow: none !important;
+}
+
+/* ---------- DARK MODE: navy hero ---------- */
+body.dark-mode .teaching-schedule-card {
+    background:
+        radial-gradient(circle at 91% 12%, rgba(126, 78, 255, .17), transparent 28%),
+        linear-gradient(135deg, #1b283c 0%, #1d2b42 60%, #24324b 100%) !important;
+    border-color: #293750 !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .16) !important;
+}
+
+body.dark-mode .schedule-main-icon {
+    box-shadow: none !important;
+}
+
+/* Remove excessive button glow in both themes. */
+.today-btn,
+.print-btn,
+.today-btn:hover,
+.print-btn:hover {
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+@media (max-width: 1050px) {
+    .top-navbar {
+        margin: 20px 20px 0 !important;
+        padding: 16px 20px !important;
+    }
+}
+
+@media (max-width: 760px) {
+    .top-navbar {
+        position: relative !important;
+        top: 0 !important;
+        align-items: flex-start !important;
+        flex-direction: column !important;
+    }
+
+    .top-right {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .search-box {
+        width: 100% !important;
+        order: 5;
+    }
+}
+
+</style>
+
+
 
 <!-- =========================================================
                      JAVASCRIPT
@@ -5438,8 +5631,8 @@ const currentYear =
 
 const savedTheme =
     localStorage.getItem(
-        "teacherTimetableTheme"
-    );
+        "theme"
+    ) || "dark";
 
 
 if (savedTheme === "dark") {
@@ -5517,7 +5710,7 @@ if (themeToggle) {
 
 
             localStorage.setItem(
-                "teacherTimetableTheme",
+                "theme",
                 theme
             );
 
@@ -5881,84 +6074,6 @@ if (printButton) {
 
 
 /* =========================================================
-   NOTIFICATION - MARK ALL READ
-========================================================= */
-
-const markReadButton =
-    document.getElementById(
-        "markNotificationsRead"
-    );
-
-
-const notificationCount =
-    document.getElementById(
-        "notificationCount"
-    );
-
-
-if (markReadButton) {
-
-    markReadButton.addEventListener(
-        "click",
-        function (event) {
-
-
-            event.preventDefault();
-
-
-            if (notificationCount) {
-
-                notificationCount.textContent =
-                    "0";
-
-                notificationCount.style.display =
-                    "none";
-
-            }
-
-
-            localStorage.setItem(
-                "teacherNotificationsRead",
-                "true"
-            );
-
-
-            markReadButton.textContent =
-                "All Read";
-
-        }
-    );
-
-}
-
-
-
-/* =========================================================
-   RESTORE NOTIFICATION STATUS
-========================================================= */
-
-const notificationStatus =
-    localStorage.getItem(
-        "teacherNotificationsRead"
-    );
-
-
-if (
-    notificationStatus === "true" &&
-    notificationCount
-) {
-
-    notificationCount.textContent =
-        "0";
-
-    notificationCount.style.display =
-        "none";
-
-}
-
-
-
-/* =========================================================
    PROFILE LOGOUT CONFIRMATION
 ========================================================= */
 
@@ -6005,6 +6120,628 @@ if (logoutLink) {
    BOOTSTRAP JS
    Dropdown ke liye important
 ========================================================= -->
+
+<!-- Real Teacher Timetable Backend Connection -->
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+
+    const API = "http://127.0.0.1:5000/api";
+    const token = localStorage.getItem("fmps_access_token");
+    let timetable = null;
+
+    if (!token) {
+        window.location.replace("teacher-login.html");
+        return;
+    }
+
+    try {
+        const response = await fetch(
+            API + "/teachers/me/timetable",
+            {
+                headers: {
+                    "Authorization": "Bearer " + token,
+                    "Accept": "application/json"
+                }
+            }
+        );
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+            throw new Error(
+                result.message || "Unable to load timetable"
+            );
+        }
+
+        timetable = result.data;
+
+        renderProfile(timetable.teacher || {});
+        renderDate(timetable.today || {});
+        renderStats(timetable.stats || {});
+        renderCurrent(timetable.current_class);
+        renderToday(timetable.today_schedule || []);
+        removeStudentItems();
+
+        const weekly = timetable.weekly_schedule || {};
+        const today = String(
+            timetable.today?.day || ""
+        ).toLowerCase();
+
+        const firstDay = Object.keys(weekly).find(
+            function (day) {
+                return weekly[day] && weekly[day].length;
+            }
+        );
+
+        renderWeek(
+            weekly[today]?.length
+                ? today
+                : firstDay || "monday"
+        );
+
+        document.querySelectorAll(".week-btn").forEach(
+            function (button) {
+                button.addEventListener("click", function () {
+                    renderWeek(
+                        String(
+                            button.dataset.day || "monday"
+                        ).toLowerCase()
+                    );
+                });
+            }
+        );
+
+    } catch (error) {
+        console.error("Teacher timetable error:", error);
+        showError(error.message || "Unable to load timetable");
+    }
+
+    function renderProfile(teacher) {
+        const profile = document.querySelector(".profile");
+        if (!profile) return;
+
+        const name = teacher.full_name || "Teacher";
+        const image = profile.querySelector("img");
+        const title = profile.querySelector("strong");
+        const subtitle = profile.querySelector("small");
+
+        if (title) title.textContent = "Welcome, " + name;
+        if (subtitle) {
+            subtitle.textContent =
+                teacher.designation || "Faculty Member";
+        }
+
+        if (image) {
+            image.src = imageUrl(teacher.photo_url, name);
+            image.alt = name;
+            image.onerror = function () {
+                this.onerror = null;
+                this.src = initialImage(name);
+            };
+        }
+    }
+
+    function renderDate(today) {
+        const value = today.date || localDate();
+        const date = new Date(value + "T00:00:00");
+        const dateElement = document.getElementById("currentDate");
+        const yearElement = document.getElementById("currentYear");
+
+        if (dateElement) {
+            dateElement.textContent = date.toLocaleDateString("en-US", {
+                weekday: "long",
+                month: "long",
+                day: "2-digit"
+            });
+        }
+
+        if (yearElement) yearElement.textContent = date.getFullYear();
+    }
+
+    function renderStats(stats) {
+        setText("totalClasses", stats.today_classes || 0);
+        setText("completedClasses", stats.completed_classes || 0);
+        setText("remainingClasses", stats.remaining_classes || 0);
+
+        const hours = document.querySelector(
+            ".schedule-stats .schedule-stat-card:nth-child(4) h3"
+        );
+
+        if (hours) {
+            const number = Number(stats.today_teaching_minutes || 0) / 60;
+            hours.textContent = Number.isInteger(number)
+                ? number
+                : number.toFixed(1);
+        }
+    }
+
+    function renderCurrent(item) {
+        const card = document.querySelector(".current-class-card");
+        const badge = document.querySelector(".live-badge");
+
+        if (!card) return;
+
+        if (!item) {
+            if (badge) badge.style.display = "none";
+            card.innerHTML = `
+                <div class="no-class-message" style="display:block">
+                    <i class="fa-regular fa-calendar-xmark"></i>
+                    <h4>No Class in Progress</h4>
+                    <p>Your current class will appear here automatically.</p>
+                </div>
+            `;
+            return;
+        }
+
+        if (badge) badge.style.display = "inline-flex";
+
+        card.innerHTML = `
+            <div class="current-class-header">
+                <div class="subject-info">
+                    <div class="subject-icon">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <div>
+                        <h3>${escapeHtml(item.subject || "Subject")}</h3>
+                        <p>${escapeHtml(classInfo(item))}</p>
+                    </div>
+                </div>
+                <span class="class-time">
+                    <i class="fa-regular fa-clock"></i>
+                    ${escapeHtml(timeRange(item))}
+                </span>
+            </div>
+            <div class="class-details">
+                <div><i class="fa-solid fa-location-dot"></i>
+                    <span>${escapeHtml(item.room || "Room not assigned")}</span></div>
+                <div><i class="fa-solid fa-book-open"></i>
+                    <span>${escapeHtml(typeName(item.class_type))}</span></div>
+                <div><i class="fa-solid fa-clock"></i>
+                    <span>${Number(item.duration_minutes || 0)} Minutes</span></div>
+            </div>
+        `;
+    }
+
+    function renderToday(items) {
+        const body = document.getElementById("scheduleTableBody");
+        if (!body) return;
+
+        if (!items.length) {
+            body.innerHTML = `
+                <tr><td colspan="6" style="text-align:center;padding:30px">
+                    No classes scheduled for today.
+                </td></tr>
+            `;
+            return;
+        }
+
+        body.innerHTML = items.map(function (item) {
+            const type = String(item.class_type || "lecture").toLowerCase();
+            const status = String(item.status || "upcoming").toLowerCase();
+
+            return `
+                <tr class="schedule-row">
+                    <td>${escapeHtml(timeRange(item))}</td>
+                    <td><strong>${escapeHtml(item.subject || "Subject")}</strong></td>
+                    <td>${escapeHtml(classInfo(item))}</td>
+                    <td>${escapeHtml(item.room || "-")}</td>
+                    <td><span class="type-badge ${type === "lab" ? "practical" : "theory"}">
+                        <i class="fa-solid ${type === "lab" ? "fa-flask" : "fa-book"}"></i>
+                        ${escapeHtml(typeName(type))}
+                    </span></td>
+                    <td><span class="status-badge ${statusClass(status)}">
+                        <i class="fa-solid ${statusIcon(status)}"></i>
+                        ${escapeHtml(statusName(status))}
+                    </span></td>
+                </tr>
+            `;
+        }).join("");
+    }
+
+    function renderWeek(day) {
+        const list = document.getElementById("weeklyClassList");
+        const empty = document.getElementById("noClassMessage");
+        if (!list || !timetable) return;
+
+        const items = timetable.weekly_schedule?.[day] || [];
+
+        document.querySelectorAll(".week-btn").forEach(function (button) {
+            button.classList.toggle(
+                "active",
+                String(button.dataset.day).toLowerCase() === day
+            );
+        });
+
+        if (!items.length) {
+            list.innerHTML = "";
+            if (empty) empty.style.display = "block";
+            return;
+        }
+
+        if (empty) empty.style.display = "none";
+
+        list.innerHTML = items.map(function (item) {
+            return `
+                <div class="weekly-class-card" data-day="${escapeHtml(day)}">
+                    <div class="weekly-time">
+                        <i class="fa-regular fa-clock"></i>
+                        ${escapeHtml(timeRange(item))}
+                    </div>
+                    <div class="weekly-subject">
+                        <h4>${escapeHtml(item.subject || "Subject")}</h4>
+                        <p>${escapeHtml(classInfo(item))} • ${escapeHtml(typeName(item.class_type))}</p>
+                    </div>
+                    <div class="weekly-room">
+                        <i class="fa-solid fa-location-dot"></i>
+                        ${escapeHtml(item.room || "Room not assigned")}
+                    </div>
+                </div>
+            `;
+        }).join("");
+    }
+
+    function removeStudentItems() {
+        const unwanted = new Set([
+            "attendance-report.html", "students.html", "assignments.html",
+            "study-material.html", "smart-report.html",
+            "student-performance-ai.html", "ai-assistant.html",
+            "ai-lesson-planner.html"
+        ]);
+
+        document.querySelectorAll(".sidebar-menu a[href]").forEach(
+            function (link) {
+                const page = String(link.getAttribute("href"))
+                    .split("?")[0].split("/").pop();
+                if (unwanted.has(page)) link.closest("li")?.remove();
+            }
+        );
+    }
+
+    function classInfo(item) {
+        const parts = [];
+        if (item.semester) parts.push("Semester " + item.semester);
+        if (item.section) parts.push("Section " + item.section);
+        return parts.join(" • ") || "Class not specified";
+    }
+
+    function timeRange(item) {
+        return formatTime(item.start_time) + " - " + formatTime(item.end_time);
+    }
+
+    function formatTime(value) {
+        if (!value) return "--";
+        const parts = String(value).split(":");
+        let hour = Number(parts[0]);
+        const minute = parts[1] || "00";
+        const period = hour >= 12 ? "PM" : "AM";
+        hour = hour % 12 || 12;
+        return String(hour).padStart(2, "0") + ":" + minute + " " + period;
+    }
+
+    function typeName(value) {
+        const type = String(value || "lecture").toLowerCase();
+        if (type === "lab") return "Practical";
+        return type.charAt(0).toUpperCase() + type.slice(1);
+    }
+
+    function statusName(value) {
+        return value === "current"
+            ? "Live"
+            : value.charAt(0).toUpperCase() + value.slice(1);
+    }
+
+    function statusClass(value) {
+        if (value === "completed") return "completed-status";
+        if (value === "current") return "live-status";
+        return "upcoming-status";
+    }
+
+    function statusIcon(value) {
+        if (value === "completed") return "fa-check";
+        if (value === "current") return "fa-circle";
+        return "fa-clock";
+    }
+
+    function imageUrl(value, name) {
+        if (!value) return initialImage(name);
+        let path = String(value).trim().replace(/\\/g, "/");
+        if (/^https?:\/\//i.test(path) || path.startsWith("data:")) return path;
+        if (path.startsWith("/uploads/")) return "http://127.0.0.1:5000" + path;
+        if (path.startsWith("uploads/")) return "http://127.0.0.1:5000/" + path;
+        return "http://127.0.0.1:5000/uploads/" + path.replace(/^\/+/, "");
+    }
+
+    function initialImage(name) {
+        const initials = String(name || "Teacher").split(/\s+/).slice(0, 2)
+            .map(function (word) { return word[0]; }).join("").toUpperCase() || "T";
+
+        return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
+            '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">' +
+            '<rect width="100" height="100" rx="50" fill="#4f46e5"/>' +
+            '<text x="50" y="60" text-anchor="middle" font-family="Arial" font-size="34" font-weight="700" fill="white">' +
+            initials + '</text></svg>'
+        );
+    }
+
+    function localDate() {
+        const now = new Date();
+        return now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0") +
+            "-" + String(now.getDate()).padStart(2, "0");
+    }
+
+    function setText(id, value) {
+        const element = document.getElementById(id);
+        if (element) element.textContent = value;
+    }
+
+    function escapeHtml(value) {
+        return String(value ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+
+    function showError(message) {
+        const container = document.querySelector(".timetable-container");
+        if (!container) return;
+        container.insertAdjacentHTML(
+            "afterbegin",
+            '<div class="alert alert-danger">' + escapeHtml(message) + '</div>'
+        );
+    }
+});
+</script>
+
+<!-- Real Teacher Notification Dropdown -->
+<script>
+(function () {
+    "use strict";
+
+    const API_BASE = "http://127.0.0.1:5000/api";
+    const TOKEN_KEY = "fmps_access_token";
+    let notifications = [];
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const markAllButton = document.getElementById("markNotificationsRead");
+
+        if (markAllButton) {
+            markAllButton.addEventListener("click", markAllRead);
+        }
+
+        loadNotifications();
+    });
+
+    async function apiRequest(method, path) {
+        const token = localStorage.getItem(TOKEN_KEY);
+        const response = await fetch(API_BASE + path, {
+            method: method,
+            headers: {
+                "Accept": "application/json",
+                "Authorization": "Bearer " + token
+            }
+        });
+
+        const result = await response.json().catch(function () {
+            return {};
+        });
+
+        if (!response.ok || result.success === false) {
+            const error = new Error(
+                result.message || result.error || "Unable to load notifications"
+            );
+            error.status = response.status;
+            throw error;
+        }
+
+        return result;
+    }
+
+    async function loadNotifications() {
+        if (!localStorage.getItem(TOKEN_KEY)) {
+            renderError("Please login to view notifications.");
+            return;
+        }
+
+        try {
+            const response = await apiRequest("GET", "/notifications");
+            const data = response.data;
+
+            notifications = Array.isArray(data)
+                ? data
+                : (data && Array.isArray(data.notifications)
+                    ? data.notifications
+                    : []);
+
+            renderNotifications();
+        }
+        catch (error) {
+            console.error("Notification API error:", error);
+            renderError(error.message || "Unable to load notifications.");
+        }
+    }
+
+    function renderNotifications() {
+        const menu = document.getElementById("notificationDropdownMenu");
+        const footer = document.getElementById("notificationFooter");
+        const badge = document.getElementById("notificationCount");
+        const text = document.getElementById("notificationText");
+        const markAllButton = document.getElementById("markNotificationsRead");
+        const unread = notifications.filter(function (item) {
+            return !Boolean(item.is_read);
+        }).length;
+
+        removeRenderedRows(menu);
+
+        if (badge) {
+            badge.textContent = unread > 99 ? "99+" : String(unread);
+            badge.style.display = unread > 0 ? "inline-flex" : "none";
+        }
+
+        if (text) {
+            text.textContent = unread + (unread === 1
+                ? " unread notification"
+                : " unread notifications");
+        }
+
+        if (markAllButton) {
+            markAllButton.disabled = unread === 0;
+            markAllButton.textContent = unread === 0 ? "All read" : "Mark all read";
+        }
+
+        if (!menu || !footer) {
+            return;
+        }
+
+        if (!notifications.length) {
+            menu.insertBefore(createStateRow("No notifications yet."), footer);
+            return;
+        }
+
+        notifications.slice(0, 5).forEach(function (notification) {
+            menu.insertBefore(createNotificationRow(notification), footer);
+        });
+    }
+
+    function createNotificationRow(notification) {
+        const row = document.createElement("li");
+        const link = document.createElement("a");
+        const iconBox = document.createElement("span");
+        const icon = document.createElement("i");
+        const content = document.createElement("span");
+        const title = document.createElement("strong");
+        const message = document.createElement("small");
+        const target = String(notification.link || "notification.html").trim();
+
+        row.className = "real-notification-row";
+        link.className = "dropdown-item notification-item";
+        link.href = target || "notification.html";
+        iconBox.className = "notification-icon";
+        icon.className = "fa-solid " + notificationIcon(notification.category);
+        content.className = "notification-text";
+        title.textContent = notification.title || "Notification";
+        message.textContent = notification.message || "No details available.";
+
+        if (notification.is_read) {
+            link.style.opacity = ".62";
+        }
+
+        iconBox.appendChild(icon);
+        content.append(title, message);
+        link.append(iconBox, content);
+        row.appendChild(link);
+
+        link.addEventListener("click", async function (event) {
+            if (notification.is_read || !notification.id) {
+                return;
+            }
+
+            event.preventDefault();
+
+            try {
+                await apiRequest(
+                    "PATCH",
+                    "/notifications/" + encodeURIComponent(notification.id) + "/read"
+                );
+                notification.is_read = true;
+                renderNotifications();
+            }
+            catch (error) {
+                console.error("Unable to mark notification as read:", error);
+            }
+
+            window.location.href = target || "notification.html";
+        });
+
+        return row;
+    }
+
+    function createStateRow(message) {
+        const row = document.createElement("li");
+        const text = document.createElement("span");
+        row.className = "notification-state-row";
+        text.className = "dropdown-item-text";
+        text.textContent = message;
+        row.appendChild(text);
+        return row;
+    }
+
+    function removeRenderedRows(menu) {
+        if (!menu) {
+            return;
+        }
+
+        menu.querySelectorAll(
+            ".real-notification-row, .notification-state-row"
+        ).forEach(function (row) {
+            row.remove();
+        });
+    }
+
+    function notificationIcon(category) {
+        const value = String(category || "general").toLowerCase();
+
+        if (value.includes("leave")) return "fa-file-circle-check";
+        if (value.includes("attendance")) return "fa-user-check";
+        if (value.includes("timetable") || value.includes("schedule")) {
+            return "fa-calendar-days";
+        }
+        if (value.includes("performance")) return "fa-chart-line";
+        if (value.includes("notice") || value.includes("announcement")) {
+            return "fa-bullhorn";
+        }
+        return "fa-bell";
+    }
+
+    async function markAllRead(event) {
+        if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        const button = document.getElementById("markNotificationsRead");
+
+        if (!notifications.some(function (item) { return !item.is_read; })) {
+            return;
+        }
+
+        if (button) {
+            button.disabled = true;
+            button.textContent = "Updating...";
+        }
+
+        try {
+            await apiRequest("PATCH", "/notifications/read-all");
+            notifications.forEach(function (item) {
+                item.is_read = true;
+            });
+            renderNotifications();
+        }
+        catch (error) {
+            console.error("Unable to mark all notifications as read:", error);
+            if (button) {
+                button.disabled = false;
+                button.textContent = "Mark all read";
+            }
+        }
+    }
+
+    function renderError(message) {
+        const menu = document.getElementById("notificationDropdownMenu");
+        const footer = document.getElementById("notificationFooter");
+        const badge = document.getElementById("notificationCount");
+        const text = document.getElementById("notificationText");
+        const markAllButton = document.getElementById("markNotificationsRead");
+
+        removeRenderedRows(menu);
+
+        if (badge) badge.style.display = "none";
+        if (text) text.textContent = "Notifications unavailable";
+        if (markAllButton) markAllButton.disabled = true;
+
+        if (menu && footer) {
+            menu.insertBefore(createStateRow(message), footer);
+        }
+    }
+})();
+</script>
 
 <script
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">

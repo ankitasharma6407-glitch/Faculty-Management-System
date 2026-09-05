@@ -3682,6 +3682,76 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
+            selectedLeaveId = leave.id;
+
+
+            const attachmentName =
+                document.getElementById(
+                    "leaveAttachmentName"
+                );
+
+
+            const attachmentUrl =
+                leave.supporting_document_url || "";
+
+
+            const storedDocument =
+                leave.supporting_document || "";
+
+
+            let displayDocumentName =
+                storedDocument
+                    ? storedDocument
+                        .split(/[\\/]/)
+                        .pop()
+                    : attachmentUrl
+                        ? decodeURIComponent(
+                            attachmentUrl
+                                .split("/")
+                                .pop()
+                        )
+                        : "No document uploaded";
+
+
+            displayDocumentName =
+                displayDocumentName.replace(
+                    /^[a-f0-9]{32}_/i,
+                    ""
+                );
+
+
+            if (attachmentName) {
+                attachmentName.textContent =
+                    displayDocumentName;
+            }
+
+
+            if (viewAttachmentBtn) {
+                viewAttachmentBtn.disabled =
+                    !attachmentUrl;
+
+                viewAttachmentBtn.title =
+                    attachmentUrl
+                        ? "Open supporting document"
+                        : "No supporting document uploaded";
+            }
+
+
+            const existingDocumentPreview =
+                document.getElementById(
+                    "documentInlinePreview"
+                );
+
+
+            if (existingDocumentPreview) {
+                existingDocumentPreview.style.display =
+                    "none";
+
+                existingDocumentPreview.innerHTML =
+                    "";
+            }
+
+
             const requestCode =
                 "LR" +
                 String(leave.id)
@@ -3789,10 +3859,31 @@ document.addEventListener("DOMContentLoaded", function () {
                     SUPPORTING DOCUMENT
     ========================================================= */
 
-    const viewAttachmentBtn =
+    const oldViewAttachmentBtn =
         document.getElementById(
             "viewAttachmentBtn"
         );
+
+
+    /*
+        Replace the original button so any old placeholder
+        click listener from cached/shared scripts is removed.
+    */
+
+    const viewAttachmentBtn =
+        oldViewAttachmentBtn
+            ? oldViewAttachmentBtn.cloneNode(true)
+            : null;
+
+
+    if (
+        oldViewAttachmentBtn &&
+        viewAttachmentBtn
+    ) {
+        oldViewAttachmentBtn.replaceWith(
+            viewAttachmentBtn
+        );
+    }
 
     if (viewAttachmentBtn) {
 
@@ -3800,8 +3891,157 @@ document.addEventListener("DOMContentLoaded", function () {
             "click",
             function () {
 
-                alert(
-                    "Supporting document upload is not connected yet."
+                const leave =
+                    findLeaveById(
+                        selectedLeaveId
+                    );
+
+
+                if (
+                    !leave ||
+                    !leave.supporting_document_url
+                ) {
+                    alert(
+                        "No supporting document was uploaded for this request."
+                    );
+                    return;
+                }
+
+
+                const documentUrl =
+                    leave.supporting_document_url
+                        .startsWith("http")
+                        ? leave.supporting_document_url
+                        : "http://127.0.0.1:5000" +
+                          leave.supporting_document_url;
+
+
+                const displayedName =
+                    document.getElementById(
+                        "leaveAttachmentName"
+                    )?.textContent ||
+                    "Supporting document";
+
+                const cleanUrl =
+                    documentUrl.split("?")[0];
+
+                const extension =
+                    cleanUrl
+                        .split(".")
+                        .pop()
+                        .toLowerCase();
+
+
+                let previewArea =
+                    document.getElementById(
+                        "documentInlinePreview"
+                    );
+
+
+                if (!previewArea) {
+                    previewArea =
+                        document.createElement("div");
+
+                    previewArea.id =
+                        "documentInlinePreview";
+
+                    const attachmentBox =
+                        viewAttachmentBtn.closest(
+                            ".border"
+                        );
+
+                    attachmentBox?.insertAdjacentElement(
+                        "afterend",
+                        previewArea
+                    );
+                }
+
+
+                let previewContent = "";
+
+
+                if (
+                    ["jpg", "jpeg", "png", "gif", "webp"]
+                        .includes(extension)
+                ) {
+                    previewContent = `
+                        <img
+                            src="${documentUrl}"
+                            alt="${escapeHtml(displayedName)}"
+                            style="display:block; max-width:100%; max-height:60vh; margin:auto; object-fit:contain; border-radius:10px;">
+                    `;
+                }
+                else if (extension === "pdf") {
+                    previewContent = `
+                        <iframe
+                            src="${documentUrl}"
+                            title="${escapeHtml(displayedName)}"
+                            style="display:block; width:100%; height:60vh; border:0; border-radius:10px; background:#fff;">
+                        </iframe>
+                    `;
+                }
+                else {
+                    previewContent = `
+                        <div class="text-center text-white py-5">
+                            <i class="fa-solid fa-file-arrow-down fa-3x mb-3"></i>
+                            <p>This file cannot be previewed here.</p>
+                        </div>
+                    `;
+                }
+
+
+                previewArea.innerHTML = `
+                    <div
+                        class="mt-3 border rounded-3 overflow-hidden"
+                        style="background:#111827;">
+
+                        <div
+                            class="d-flex justify-content-between align-items-center gap-3 p-3"
+                            style="background:#ffffff;">
+
+                            <div class="text-start overflow-hidden">
+                                <strong class="d-block text-truncate">
+                                    <i class="fa-solid fa-file-lines text-primary me-2"></i>
+                                    ${escapeHtml(displayedName)}
+                                </strong>
+                                <small class="text-muted">
+                                    Supporting document preview
+                                </small>
+                            </div>
+
+                            <button
+                                type="button"
+                                id="closeDocumentPreview"
+                                class="btn btn-sm btn-outline-secondary">
+                                <i class="fa-solid fa-xmark me-1"></i>
+                                Close Preview
+                            </button>
+                        </div>
+
+                        <div class="p-3">
+                            ${previewContent}
+                        </div>
+                    </div>
+                `;
+
+
+                previewArea.style.display =
+                    "block";
+
+
+                const closePreviewButton =
+                    document.getElementById(
+                        "closeDocumentPreview"
+                    );
+
+
+                closePreviewButton?.addEventListener(
+                    "click",
+                    function () {
+                        previewArea.style.display =
+                            "none";
+                    },
+                    { once: true }
                 );
 
             }
