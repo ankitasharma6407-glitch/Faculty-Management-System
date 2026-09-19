@@ -16,6 +16,7 @@ const NOTIFICATIONS_PER_PAGE = 8;
 
 document.addEventListener("DOMContentLoaded", async function () {
     prepareNotificationPage();
+    bindThemeToggle();
 
     if (typeof API === "undefined" || typeof API.request !== "function") {
         showNotificationListMessage("Unable to connect with backend.", true);
@@ -25,10 +26,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     const authenticated = await protectHodNotificationPage();
     if (!authenticated) return;
 
+    loadHodNavbarProfile();
+
     bindNotificationFilters();
     bindNotificationActions();
     bindMarkAllButtons();
-    bindThemeToggle();
     bindLogout();
 
     await loadHodNotifications();
@@ -114,9 +116,16 @@ async function protectHodNotificationPage() {
             return false;
         }
 
-        const profileName = document.querySelector(".profile span");
+        const profileName = document.querySelector(".profile .profile-name");
         if (profileName) {
-            profileName.textContent = `Welcome, ${user.username || user.email || "HOD"}`;
+            const displayName =
+                user.full_name ||
+                user.name ||
+                user.username ||
+                user.email ||
+                "HOD";
+
+            profileName.textContent = `Welcome, ${displayName}`;
         }
 
         return true;
@@ -598,26 +607,97 @@ function bindThemeToggle() {
     const button = document.getElementById("themeToggle");
     if (!button) return;
 
-    const storedTheme = localStorage.getItem("fmps_theme");
-    if (storedTheme === "dark") document.body.classList.add("dark-mode");
+    const storedTheme =
+        localStorage.getItem("hodTheme") ||
+        localStorage.getItem("fmps_theme");
+
+    const isDark = storedTheme === "dark";
+
+    /* Support both theme class names used by the existing HOD styles. */
+    document.body.classList.toggle("dark", isDark);
+    document.body.classList.toggle("dark-mode", isDark);
+
     updateThemeIcon(button);
 
     button.addEventListener("click", function () {
-        document.body.classList.toggle("dark-mode");
-        localStorage.setItem(
-            "fmps_theme",
-            document.body.classList.contains("dark-mode") ? "dark" : "light"
-        );
+        const enableDark = !document.body.classList.contains("dark");
+        const theme = enableDark ? "dark" : "light";
+
+        document.body.classList.toggle("dark", enableDark);
+        document.body.classList.toggle("dark-mode", enableDark);
+
+        /* Keep this page consistent with both old and new HOD pages. */
+        localStorage.setItem("hodTheme", theme);
+        localStorage.setItem("fmps_theme", theme);
+
         updateThemeIcon(button);
     });
+}
+
+async function loadHodNavbarProfile() {
+    const profileName = document.querySelector(".profile .profile-name");
+    const profilePhoto = document.getElementById("navbarProfilePhoto");
+    const profileFallback = document.getElementById("navbarProfileFallback");
+
+    try {
+        const response = await API.request("GET", "/hods/profile");
+
+        if (!response || response.success !== true) {
+            throw new Error(response?.message || "Unable to load HOD profile.");
+        }
+
+        const profile = response.data || {};
+        const displayName =
+            profile.full_name ||
+            profile.username ||
+            profile.email ||
+            "HOD";
+
+        if (profileName) {
+            profileName.textContent = `Welcome, ${displayName}`;
+        }
+
+        const photoUrl = String(profile.photo_url || "").trim();
+        if (!photoUrl || !profilePhoto) {
+            return;
+        }
+
+        const apiBase = String(API.baseUrl || "http://127.0.0.1:5000/api");
+        const serverBase = apiBase.replace(/\/api\/?$/, "");
+        const photoSource = /^(https?:|data:|blob:)/i.test(photoUrl)
+            ? photoUrl
+            : `${serverBase}${photoUrl.startsWith("/") ? "" : "/"}${photoUrl}`;
+
+        profilePhoto.onload = function () {
+            profilePhoto.style.display = "block";
+            if (profileFallback) profileFallback.style.display = "none";
+        };
+
+        profilePhoto.onerror = function () {
+            profilePhoto.style.display = "none";
+            if (profileFallback) profileFallback.style.display = "inline-block";
+        };
+
+        profilePhoto.src = photoSource;
+    }
+    catch (error) {
+        console.warn("HOD navbar profile unavailable:", error);
+    }
 }
 
 function updateThemeIcon(button) {
     const icon = button.querySelector("i");
     if (!icon) return;
-    icon.className = document.body.classList.contains("dark-mode")
+
+    const isDark = document.body.classList.contains("dark");
+
+    icon.className = isDark
         ? "fa-solid fa-sun"
         : "fa-solid fa-moon";
+
+    button.title = isDark
+        ? "Switch to Light Mode"
+        : "Switch to Dark Mode";
 }
 
 function bindLogout() {
